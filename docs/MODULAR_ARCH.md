@@ -19,7 +19,7 @@ agentic_uav/
     └── llama_planner.py     # Ollama/Llama 3.1 LLM prompt parser & tool mapper
 
 # Run without simulation tools.
-python -m scripts.run_modular_mission
+python -m scripts.modular_mission
 
 # Run with CARLA/AirSim Simulation attached.
-python -m scripts.run_modular_mission --airsim
+python -m scripts.modular_mission --airsim

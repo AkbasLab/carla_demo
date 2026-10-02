@@ -17,8 +17,6 @@ class AirSimAdapter:
     def get_state(self, vehicle_id: str) -> VehicleState:
         state = self.client.getMultirotorState(vehicle_name=vehicle_id)
         pos = state.kinematics_estimated.position
-        
-        # Check API control status instead of accessing non-existent state.armed
         is_controlled = self.client.isApiControlEnabled(vehicle_name=vehicle_id)
         is_flying = state.landed_state == airsim.LandedState.Flying
 
@@ -31,11 +29,11 @@ class AirSimAdapter:
 
     def takeoff(self, vehicle_id: str) -> SkillResult:
         start_t = time.time()
-        # Non-blocking takeoff join to ensure complete airborne state
         self.client.takeoffAsync(vehicle_name=vehicle_id).join()
         state = self.get_state(vehicle_id)
         return SkillResult(
             vehicle_id=vehicle_id,
+            skill_name="TAKE_OFF",
             status="success",
             started_at=start_t,
             ended_at=time.time(),
@@ -50,6 +48,7 @@ class AirSimAdapter:
         state = self.get_state(vehicle_id)
         return SkillResult(
             vehicle_id=vehicle_id,
+            skill_name="LAND",
             status="success",
             started_at=start_t,
             ended_at=time.time(),
@@ -65,6 +64,7 @@ class AirSimAdapter:
         state = self.get_state(vehicle_id)
         return SkillResult(
             vehicle_id=vehicle_id,
+            skill_name=command.skill_name,
             status="success",
             started_at=start_t,
             ended_at=time.time(),

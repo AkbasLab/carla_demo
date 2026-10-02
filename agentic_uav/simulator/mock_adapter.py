@@ -30,9 +30,10 @@ class MockVehicleAdapter:
         state = self.get_state(vehicle_id)
         state.position.z = -5.0
         state.in_air = True
-        time.sleep(0.1)  # Simulate small delay
+        time.sleep(0.1)
         return SkillResult(
             vehicle_id=vehicle_id,
+            skill_name="TAKE_OFF",
             status="success",
             started_at=start_t,
             ended_at=time.time(),
@@ -47,6 +48,7 @@ class MockVehicleAdapter:
         state.armed = False
         return SkillResult(
             vehicle_id=vehicle_id,
+            skill_name="LAND",
             status="success",
             started_at=start_t,
             ended_at=time.time(),
@@ -58,18 +60,17 @@ class MockVehicleAdapter:
         current = self.get_state(vehicle_id).position
         target = command.target_position
 
-        # Compute Euclidean distance and mock traversal delay
         distance = math.sqrt(
             (target.x - current.x)**2 + (target.y - current.y)**2 + (target.z - current.z)**2
         )
         simulated_time = max(0.1, distance / command.velocity)
-        time.sleep(min(simulated_time, 1.0))  # Cap delay for fast unit testing
+        time.sleep(min(simulated_time, 0.5))
 
-        # Update position
         self.states[vehicle_id].position = Position3D(target.x, target.y, target.z)
 
         return SkillResult(
             vehicle_id=vehicle_id,
+            skill_name=command.skill_name,
             status="success",
             started_at=start_t,
             ended_at=time.time(),
