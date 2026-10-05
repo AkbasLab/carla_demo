@@ -82,4 +82,4 @@ python -m scripts.run_phase4_scenario --airsim
     simulated_targets: Ground-truth target coordinates and detection radii for proximity acquisition checks.
 
 
-Simulation Videos: https://myerauedu-my.sharepoint.com/:f:/g/personal/metint_my_erau_edu/IgDTU9PjAa2vTrS4DH4rMRclASlWYhu1K67p_uJ6AcI05-Q?e=UuyeQs
+Simulation Videos: [https://myerauedu-my.sharepoint.com/:f:/g/personal/metint_my_erau_edu/IgDTU9PjAa2vTrS4DH4rMRclASlWYhu1K67p_uJ6AcI05-Q?e=UuyeQs](https://myerauedu-my.sharepoint.com/:f:/g/personal/metint_my_erau_edu/IgDTU9PjAa2vTrS4DH4rMRclASlWYhu1K67p_uJ6AcI05-Q?e=NtjSqZ)
