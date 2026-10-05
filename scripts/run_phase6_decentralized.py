@@ -19,6 +19,7 @@ def main():
     adapter.connect()
 
     engine = SkillEngine(adapter, scenario_mgr)
+    drones = ["Drone1", "Drone2"] # vehicle tracking list
 
     # Initialize Reactive Agent on Drone2
     relay_agent = ReactiveRelayAgent(
@@ -33,6 +34,7 @@ def main():
     # 1. Takeoff both drones
     engine.execute(SkillCommand(skill_name="TAKE_OFF", vehicle_id="Drone1"))
     engine.execute(SkillCommand(skill_name="TAKE_OFF", vehicle_id="Drone2"))
+    print_live_telemetry(adapter,drones) # print coordinates after takeoff
 
     # Drone2 initially sits on standby near Base Station
     engine.execute(SkillCommand(
@@ -55,12 +57,26 @@ def main():
     # 3. Clean Landings
     print("\n--- Mission Complete: Landing Assets ---")
     engine.execute(SkillCommand(skill_name="GO_TO_WAYPOINT", vehicle_id="Drone1", target_position=Position3D(0.0, 0.0, -2.0)))
+    print_live_telemetry(adapter, drones) # print Drone1 waypoint position
     engine.execute(SkillCommand(skill_name="GO_TO_WAYPOINT", vehicle_id="Drone2", target_position=Position3D(3.0, 0.0, -2.0)))
+    print_live_telemetry(adapter, drones) # print Drone2 waypoint position
     engine.execute(SkillCommand(skill_name="LAND", vehicle_id="Drone1"))
     engine.execute(SkillCommand(skill_name="LAND", vehicle_id="Drone2"))
 
+    print_live_telemetry(adapter, drones) # final ground position
+
     print(f"\nTotal Inter-Drone Network Packets: {len(comm_bus.message_history)}")
     print(f"Reactive Relay Autonomous Repositioning Executed: {relay_agent.is_relaying}")
+
+
+def print_live_telemetry(adapter, drones):
+    """Helper function to print live 3D coordinates of all active drones."""
+    coords_str = []
+    for d_id in drones:
+        state = adapter.get_state(d_id)
+        pos = state.position
+        coords_str.append(f"{d_id}: (x={pos.x:.2f}, y={pos.y:.2f}, z={pos.z:.2f}")
+    print(f"[LIVE POSITIONS] | {'|'.join(coords_str)}")
 
 if __name__ == "__main__":
     main()
