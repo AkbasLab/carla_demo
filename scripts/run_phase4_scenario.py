@@ -50,9 +50,6 @@ def main():
     engine.execute(SkillCommand(skill_name="RETURN_HOME", vehicle_id="Drone1"))
     engine.execute(SkillCommand(skill_name="RETURN_HOME", vehicle_id="Drone2"))
     # Hover above individual landing spots before descending
-    engine.execute(SkillCommand(skill_name="GO_TO_WAYPOINT", vehicle_id="Drone1", target_position=Position3D(0.0, 0.0, -2.0)))
-    engine.execute(SkillCommand(skill_name="GO_TO_WAYPOINT", vehicle_id="Drone2", target_position=Position3D(3.0, 0.0, -2.0)))
-    # Hover above individual landing spots before descending
     engine.execute(SkillCommand(skill_name="LAND", vehicle_id="Drone1"))
     engine.execute(SkillCommand(skill_name="LAND", vehicle_id="Drone2"))
 

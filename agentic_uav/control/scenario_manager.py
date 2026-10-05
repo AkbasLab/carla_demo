@@ -2,15 +2,14 @@ import json
 import math
 import time
 from typing import List, Optional
-from agentic_uav.core.models import (
-    Position3D, SearchRegion, TargetInfo, DetectionEvent, VehicleState
-)
+from agentic_uav.core.models import Position3D, SearchRegion, TargetInfo, DetectionEvent
+from agentic_uav.comm.bus import CommBus, Message
 
 class ScenarioManager:
     """Manages ground-truth scenario assets, keep-out zones, and target acquisition."""
-
-    def __init__(self, config_path: str):
+    def __init__(self, config_path: str, comm_bus: Optional[CommBus] = None):
         self.config_path = config_path
+        self.comm_bus = comm_bus
         self.base_station: Position3D = Position3D(0, 0, 0)
         self.sectors: dict[str, SearchRegion] = {}
         self.restricted_zones: List[dict] = []
@@ -64,8 +63,7 @@ class ScenarioManager:
         for target in self.targets:
             if target.detected:
                 continue
-
-            # Calculate 2D horizontal distance to ground target
+        # Calculate 2D horizontal distance to ground target
             dist_2d = math.sqrt(
                 (uav_pos.x - target.position.x) ** 2 + 
                 (uav_pos.y - target.position.y) ** 2
@@ -85,5 +83,19 @@ class ScenarioManager:
                 )
                 self.detection_history.append(event)
                 new_detections.append(event)
+
+                # Broadcast ad-hoc discovery event across inter-drone bus
+                if self.comm_bus:
+                    msg = Message(
+                        sender_id=vehicle_id,
+                        recipient_id="*",
+                        topic="TARGET_DISCOVERED",
+                        payload={
+                            "target_id": target.target_id,
+                            "target_position": {"x": target.position.x, "y": target.position.y, "z": target.position.z},
+                            "uav_position": {"x": uav_pos.x, "y": uav_pos.y, "z": uav_pos.z}
+                        }
+                    )
+                    self.comm_bus.publish(msg)
 
         return new_detections

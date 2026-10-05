@@ -1,0 +1,31 @@
+{
+  "base_station": {
+    "position": { "x": 0.0, "y": 0.0, "z": 0.0 }
+  },
+  "search_sectors": [
+    {
+      "sector_id": "Sector_NE",
+      "min_x": 15.0,
+      "max_x": 50.0,
+      "min_y": 15.0,
+      "max_y": 50.0,
+      "altitude": -10.0
+    }
+  ],
+  "restricted_zones": [
+    {
+      "zone_id": "NFZ_1",
+      "min_x": -10.0, "max_x": 10.0,
+      "min_y": 10.0,  "max_y": 30.0,
+      "min_z": -30.0, "max_z": 0.0
+    }
+  ],
+  "simulated_targets": [
+    {
+      "target_id": "Survivor_Alpha",
+      "type": "person",
+      "position": { "x": 20.0, "y": 20.0, "z": 0.0 },
+      "detection_radius_meters": 15.0
+    }
+  ]
+}
