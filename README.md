@@ -80,3 +80,6 @@ python -m scripts.run_phase4_scenario --airsim
     restricted_zones: Defines 3D keep-out geofences (NFZ_1). Triggers warnings if a drone penetrates the space.
 
     simulated_targets: Ground-truth target coordinates and detection radii for proximity acquisition checks.
+
+
+Simulation Videos: https://myerauedu-my.sharepoint.com/:f:/g/personal/metint_my_erau_edu/IgDTU9PjAa2vTrS4DH4rMRclASlWYhu1K67p_uJ6AcI05-Q?e=UuyeQs
