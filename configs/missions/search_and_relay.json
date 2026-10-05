@@ -1,0 +1,58 @@
+{
+  "scenario_name": "canonical_search_and_relay",
+  "version": "1.0",
+  "base_station": {
+    "name": "Base_Alpha",
+    "position": {"x": 0.0, "y": 0.0, "z": 0.0}
+  },
+  "search_sectors": [
+    {
+      "sector_id": "Sector_NW",
+      "min_x": 10.0, "max_x": 50.0,
+      "min_y": -50.0, "max_y": -10.0,
+      "altitude": -10.0
+    },
+    {
+      "sector_id": "Sector_NE",
+      "min_x": 15.0, "max_x": 50.0,
+      "min_y": 15.0, "max_y": 50.0,
+      "altitude": -10.0
+    },
+    {
+      "sector_id": "Sector_SW",
+      "min_x": -50.0, "max_x": -10.0,
+      "min_y": -50.0, "max_y": -10.0,
+      "altitude": -10.0
+    },
+    {
+      "sector_id": "Sector_SE",
+      "min_x": -50.0, "max_x": -10.0,
+      "min_y": 10.0, "max_y": 50.0,
+      "altitude": -10.0
+    }
+  ],
+  "restricted_zones": [
+    {
+      "zone_id": "NFZ_1",
+      "min_x": -10.0, "max_x": 10.0,
+      "min_y": 10.0, "max_y": 30.0,
+      "min_z": -30.0, "max_z": 0.0
+    }
+  ],
+  "simulated_targets": [
+    {
+      "target_id": "Survivor_Alpha",
+      "type": "human",
+      "position": {"x": 35.0, "y": 25.0, "z": 0.0},
+      "detection_radius_meters": 8.0,
+      "detected": false
+    },
+    {
+      "target_id": "Vehicle_Bravo",
+      "type": "car",
+      "position": {"x": -30.0, "y": -35.0, "z": 0.0},
+      "detection_radius_meters": 10.0,
+      "detected": false
+    }
+  ]
+}

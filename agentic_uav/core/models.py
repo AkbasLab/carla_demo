@@ -60,3 +60,22 @@ class SkillResult:
     battery_remaining: float = 100.0
     error_code: Optional[str] = None
     details: dict = field(default_factory=dict)
+
+@dataclass
+class TargetInfo:
+    target_id: str
+    type: str
+    position: Position3D
+    detection_radius: float
+    detected: bool = False
+    detected_by: Optional[str] = None
+    detected_at: Optional[float] = None
+
+@dataclass
+class DetectionEvent:
+    target_id: str
+    vehicle_id: str
+    target_position: Position3D
+    uav_position: Position3D
+    distance: float
+    timestamp: float = field(default_factory=time.time)

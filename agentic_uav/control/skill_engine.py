@@ -1,19 +1,15 @@
 import time
-import math
 from typing import List, Optional
-from agentic_uav.core.models import (
-    SkillCommand, SkillResult, Position3D, SearchRegion, VehicleState
-)
+from agentic_uav.core.models import SkillCommand, SkillResult, Position3D, SearchRegion
 from agentic_uav.simulator.base_adapter import VehicleAdapter
+from agentic_uav.control.scenario_manager import ScenarioManager
 
 class SkillEngine:
-    """Executes high-level mission flight skills with formal contract guarantees."""
-
-    def __init__(self, adapter: VehicleAdapter):
+    def __init__(self, adapter: VehicleAdapter, scenario_mgr: Optional[ScenarioManager] = None):
         self.adapter = adapter
+        self.scenario_mgr = scenario_mgr
 
     def execute(self, command: SkillCommand) -> SkillResult:
-        """Route SkillCommand to its respective skill implementation."""
         method_map = {
             "TAKE_OFF": self.take_off,
             "GO_TO_WAYPOINT": self.go_to_waypoint,
@@ -40,12 +36,32 @@ class SkillEngine:
 
         return handler(command)
 
+    def _inspect_position(self, vehicle_id: str) -> List[dict]:
+        """Check geofences and ground-truth target proximity."""
+        if not self.scenario_mgr:
+            return []
+
+        state = self.adapter.get_state(vehicle_id)
+        
+        # Check geofence
+        violation = self.scenario_mgr.check_geofence_violation(state.position)
+        if violation:
+            print(f"[WARNING] Vehicle {vehicle_id} violated Keep-Out Zone: {violation}")
+
+        # Check target proximity
+        detections = self.scenario_mgr.check_target_detections(vehicle_id, state.position)
+        for det in detections:
+            print(f"[TARGET ACQUIRED] Vehicle '{det.vehicle_id}' spotted '{det.target_id}' at dist {det.distance}m!")
+
+        return detections
+
     def take_off(self, command: SkillCommand) -> SkillResult:
         start_t = time.time()
         try:
             self.adapter.enable_control(command.vehicle_id)
             res = self.adapter.takeoff(command.vehicle_id)
             state = self.adapter.get_state(command.vehicle_id)
+            self._inspect_position(command.vehicle_id)
             return SkillResult(
                 vehicle_id=command.vehicle_id,
                 skill_name="TAKE_OFF",
@@ -83,6 +99,7 @@ class SkillEngine:
         try:
             res = self.adapter.move_to_position(command.vehicle_id, command)
             state = self.adapter.get_state(command.vehicle_id)
+            self._inspect_position(command.vehicle_id)
             return SkillResult(
                 vehicle_id=command.vehicle_id,
                 skill_name="GO_TO_WAYPOINT",
@@ -105,7 +122,6 @@ class SkillEngine:
             )
 
     def search_region(self, command: SkillCommand) -> SkillResult:
-        """Executes a lawnmower grid pattern across the defined SearchRegion."""
         start_t = time.time()
         region = command.search_region
         if not region:
@@ -120,9 +136,8 @@ class SkillEngine:
                 error_code="MISSING_SEARCH_REGION"
             )
 
-        # Generate lawnmower pattern waypoints
         grid_step = command.params.get("grid_step", 10.0)
-        waypoints: List[Position3D] = []
+        waypoints = []
         curr_y = region.min_y
         sweep_east = True
 
@@ -138,6 +153,7 @@ class SkillEngine:
 
         try:
             waypoints_visited = 0
+            all_detections = []
             for wp in waypoints:
                 sub_cmd = SkillCommand(
                     skill_name="GO_TO_WAYPOINT",
@@ -146,6 +162,8 @@ class SkillEngine:
                     velocity=command.velocity
                 )
                 self.adapter.move_to_position(command.vehicle_id, sub_cmd)
+                dets = self._inspect_position(command.vehicle_id)
+                all_detections.extend(dets)
                 waypoints_visited += 1
 
             state = self.adapter.get_state(command.vehicle_id)
@@ -157,7 +175,10 @@ class SkillEngine:
                 ended_at=time.time(),
                 final_position=state.position,
                 battery_remaining=state.battery_level,
-                details={"waypoints_visited": waypoints_visited, "total_waypoints": len(waypoints)}
+                details={
+                    "waypoints_visited": waypoints_visited, 
+                    "detections_count": len(all_detections)
+                }
             )
         except Exception as e:
             state = self.adapter.get_state(command.vehicle_id)
@@ -172,7 +193,6 @@ class SkillEngine:
             )
 
     def hold_position(self, command: SkillCommand) -> SkillResult:
-        """Station-keeps at current or target location for duration_seconds."""
         start_t = time.time()
         vehicle_id = command.vehicle_id
         duration = command.duration_seconds if command.duration_seconds > 0 else 5.0
@@ -185,6 +205,7 @@ class SkillEngine:
             time.sleep(duration)
 
             state = self.adapter.get_state(vehicle_id)
+            self._inspect_position(vehicle_id)
             return SkillResult(
                 vehicle_id=vehicle_id,
                 skill_name="HOLD_POSITION",
@@ -208,7 +229,6 @@ class SkillEngine:
             )
 
     def act_as_relay(self, command: SkillCommand) -> SkillResult:
-        """Positions drone at communication relay waypoint and maintains position."""
         start_t = time.time()
         vehicle_id = command.vehicle_id
         duration = command.duration_seconds if command.duration_seconds > 0 else 10.0
@@ -221,6 +241,7 @@ class SkillEngine:
             time.sleep(duration)
 
             state = self.adapter.get_state(vehicle_id)
+            self._inspect_position(vehicle_id)
             return SkillResult(
                 vehicle_id=vehicle_id,
                 skill_name="ACT_AS_RELAY",
@@ -259,6 +280,7 @@ class SkillEngine:
             self.adapter.move_to_position(vehicle_id, cmd)
 
             state_after = self.adapter.get_state(vehicle_id)
+            self._inspect_position(vehicle_id)
             return SkillResult(
                 vehicle_id=vehicle_id,
                 skill_name="RETURN_HOME",
@@ -285,6 +307,7 @@ class SkillEngine:
         try:
             res = self.adapter.land(command.vehicle_id)
             state = self.adapter.get_state(command.vehicle_id)
+            self._inspect_position(command.vehicle_id)
             return SkillResult(
                 vehicle_id=command.vehicle_id,
                 skill_name="LAND",
