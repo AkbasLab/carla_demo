@@ -14,7 +14,7 @@ A modular, multi-UAV simulation framework built for autonomous search-and-relay 
 * Implemented `VehicleAdapter` base class to unify simulator interfaces.
 * Built `AirSimAdapter` for Unreal Engine/CARLA physics integration and `MockVehicleAdapter` for high-speed offline simulation.
 
-🚁 Phase 3: High-Level UAV Skill Engine
+### **🚁 Phase 3: High-Level UAV Skill Engine **
 
 Goal: Abstract low-level flight commands into deterministic, reusable autonomous skills.
 
@@ -38,7 +38,7 @@ Goal: Abstract low-level flight commands into deterministic, reusable autonomous
 
     Fixes & Telemetry: Standardized SkillResult metadata so every executed skill returned status, execution timestamps, position telemetry, and skill_name.
 
-📍 Phase 4: Canonical Search-and-Relay Scenario
+### **📍 Phase 4: Canonical Search-and-Relay Scenario ** 
 
 Goal: Build a standardized, reproducible multi-UAV mission scenario with keep-out zones and target acquisition.
 
@@ -50,7 +50,7 @@ Goal: Build a standardized, reproducible multi-UAV mission scenario with keep-ou
 
     Multi-Drone Coordination: Tested cooperative workflows where Drone1 searched designated sectors while Drone2 established a comm relay position above the base station.
 
-🧠 Phase 5: LLM Mission Planner & Autonomous Orchestration
+### ** 🧠 Phase 5: LLM Mission Planner & Autonomous Orchestration **
 
 Goal: Connect natural language commander directives to the deterministic UAV Skill Engine.
 
@@ -62,10 +62,48 @@ Goal: Connect natural language commander directives to the deterministic UAV Ski
 
     Verification Script (run_phase5_planner.py): Created a unified test script to execute natural language directives end-to-end in both Mock and AirSim/CARLA environments.
 
+### ** Phase 6: Decentralized inter-drone comm bus
+
+In real-world tactical and search-and-rescue (SAR) operations, low-altitude search drones frequently lose direct line-of-sight (LOS) telemetry with ground control due to terrain occlusion or range limits.
+
+Phase 6 resolves this by enabling autonomous drone-to-drone (D2D) communication: Drone1 sweeps sectors at low altitude ($5\text{m}$–$10\text{m}$).
+
+Upon target acquisition, Drone1 broadcasts an event over the peer-to-peer CommBus. Drone2's Reactive Relay Agent intercepts the alert, computes the 3D midpoint vector between Drone1 and the Base Station, and flies to the location to bridge telemetry.
+
+Key Features: 
+Decentralized Pub/Sub Bus (CommBus): Asynchronous, event-driven inter-drone message routing.
+Reactive Relay Controller (ReactiveRelayAgent): Onboard agent logic that dynamically computes spatial relay midpoints without central server intervention.
+Sub-10ms Decision Latency: Eliminates API round-trip delays associated with central LLM planners.
+Fault-Tolerant Execution: Drones maintain full operational autonomy even if connection to the ground control station is severed.
+
++-------------------------------------------+
+               |        Ad-Hoc CommBus (Pub/Sub)           |
+               +--------------------+----------------------+
+                                    |
+            +-----------------------+-----------------------+
+            |                                               |
+            v                                               v
+ +----------------------+                        +----------------------+
+ |       Drone 1        |  TARGET_DISCOVERED     |       Drone 2        |
+ |    (Search Asset)    |----------------------->|   (Reactive Relay)   |
+ |                      |   [Position Payload]   |                      |
+ | * Low-altitude sweep |                        | * Calculates midpoint|
+ | * Target detection   |                        | * Autonomous fly-to  |
+ +----------------------+                        +----------+-----------+
+                                                            |
+                                                            | High-Altitude Relay Link
+                                                            v
+                                                 +----------------------+
+                                                 |     Base Station     |
+                                                 |  (Ground Control)    |
+                                                 +----------------------+
+
 ## 📂 Project Structure
 
 ```text
 agentic_uav/
+├── comm/
+│   └── bus.py                       # Phase 6 Inter-drone pub/sub message bus (CommBus)
 ├── configs/
 │   └── missions/
 │       └── search_and_relay.json    # Phase 4 mission configuration (sectors, NFZs, targets)
@@ -77,6 +115,7 @@ agentic_uav/
 │   ├── scenario_manager.py          # Phase 4 ground-truth detection & keep-out zone verifier
 │   ├── planner.py                   # Phase 5 LLM task planner & command parser
 │   └── orchestrator.py              # Phase 5 mission orchestrator & emergency handler
+|   ├── reactive_relay.py            # Phase 6 dynamic midpoint relay agent
 ├── simulator/
 │   ├── base_adapter.py              # Abstract Base Class for drone controllers
 │   ├── airsim_adapter.py            # AirSim / CARLA simulation bridge
@@ -85,6 +124,7 @@ scripts/
 ├── run_phase3_skills.py             # Phase 3 Skill Engine test suite
 ├── run_phase4_scenario.py           # Phase 4 Search-and-Relay scenario runner
 └── run_phase5_planner.py            # Phase 5 LLM natural language mission runner
+└── run_phase6_decentralized.py      # Phase 6 Decentralized communication mission runner
 
 ## 🚀 How to Reproduce Scenarios
 
