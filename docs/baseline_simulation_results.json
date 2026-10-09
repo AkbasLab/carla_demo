@@ -3,11 +3,11 @@
     "id": 1,
     "category": "single_drone_simple",
     "prompt": "Drone1 move to 10, 5, -5",
-    "llm_latency_s": 11.965,
-    "total_time_s": 20.41,
+    "llm_latency_s": 3.003,
+    "total_time_s": 11.388,
     "valid_syntax": true,
     "execution_success": true,
-    "raw_output": "[{\"drone\": \"Drone1\", \"x\": 10.0, \"y\": 5.0, \"z\": -5.0}]",
+    "raw_output": "[\n  {\n    \"drone\": \"Drone1\",\n    \"x\": 10.0,\n    \"y\": 5.0,\n    \"z\": -5.0\n  }\n]",
     "parsed_targets": [
       {
         "drone": "Drone1",
@@ -21,8 +21,8 @@
     "id": 2,
     "category": "single_drone_altitude",
     "prompt": "Fly Drone2 up to altitude -15",
-    "llm_latency_s": 3.627,
-    "total_time_s": 13.626,
+    "llm_latency_s": 2.957,
+    "total_time_s": 12.938,
     "valid_syntax": true,
     "execution_success": true,
     "raw_output": "```json\n[\n  {\n    \"drone\": \"Drone2\",\n    \"x\": 0,\n    \"y\": 0,\n    \"z\": -15\n  }\n]\n```",
@@ -39,11 +39,11 @@
     "id": 3,
     "category": "dual_drone_simultaneous",
     "prompt": "Send Drone1 to 10, 0, -10 and Drone2 to -5, 10, -8",
-    "llm_latency_s": 5.819,
-    "total_time_s": 10.396,
+    "llm_latency_s": 5.644,
+    "total_time_s": 10.242,
     "valid_syntax": true,
     "execution_success": true,
-    "raw_output": "[{\"drone\": \"Drone1\", \"x\": 10.0, \"y\": 0.0, \"z\": -10.0}, {\"drone\": \"Drone2\", \"x\": -5.0, \"y\": 10.0, \"z\": -8.0}]",
+    "raw_output": "[\n  {\n    \"drone\": \"Drone1\",\n    \"x\": 10.0,\n    \"y\": 0.0,\n    \"z\": -10.0\n  },\n  {\n    \"drone\": \"Drone2\",\n    \"x\": -5.0,\n    \"y\": 10.0,\n    \"z\": -8.0\n  }\n]",
     "parsed_targets": [
       {
         "drone": "Drone1",
@@ -63,11 +63,11 @@
     "id": 4,
     "category": "multi_step_movement",
     "prompt": "Drone1 fly 20 meters forward then climb 5 meters up",
-    "llm_latency_s": 6.541,
-    "total_time_s": 11.874,
+    "llm_latency_s": 3.509,
+    "total_time_s": 9.094,
     "valid_syntax": true,
     "execution_success": true,
-    "raw_output": "[\n  {\n    \"drone\": \"Drone1\",\n    \"x\": 20,\n    \"y\": 0,\n    \"z\": 0\n  },\n  {\n    \"drone\": \"Drone1\",\n    \"x\": 20,\n    \"y\": 0,\n    \"z\": 5\n  }\n]",
+    "raw_output": "[{\"drone\": \"Drone1\", \"x\": 20, \"y\": 0, \"z\": 0}, {\"drone\": \"Drone1\", \"x\": 20, \"y\": 0, \"z\": 5}]",
     "parsed_targets": [
       {
         "drone": "Drone1",
@@ -87,8 +87,8 @@
     "id": 5,
     "category": "return_to_origin",
     "prompt": "Move Drone1 back to 0, 0, -2 and Drone2 to 2, 0, -2",
-    "llm_latency_s": 8.157,
-    "total_time_s": 14.267,
+    "llm_latency_s": 5.609,
+    "total_time_s": 11.846,
     "valid_syntax": true,
     "execution_success": true,
     "raw_output": "[\n  {\n    \"drone\": \"Drone1\",\n    \"x\": 0.0,\n    \"y\": 0.0,\n    \"z\": -2.0\n  },\n  {\n    \"drone\": \"Drone2\",\n    \"x\": 2.0,\n    \"y\": 0.0,\n    \"z\": -2.0\n  }\n]",
@@ -111,11 +111,11 @@
     "id": 6,
     "category": "ambiguous_wording",
     "prompt": "Have Drone1 check out the area on the right near 15, 15, -5",
-    "llm_latency_s": 3.562,
-    "total_time_s": 9.735,
+    "llm_latency_s": 3.142,
+    "total_time_s": 9.17,
     "valid_syntax": true,
     "execution_success": true,
-    "raw_output": "[{\"drone\": \"Drone1\", \"x\": 15.0, \"y\": 15.0, \"z\": -5.0}]",
+    "raw_output": "[\n  {\n    \"drone\": \"Drone1\",\n    \"x\": 15.0,\n    \"y\": 15.0,\n    \"z\": -5.0\n  }\n]",
     "parsed_targets": [
       {
         "drone": "Drone1",
@@ -129,11 +129,11 @@
     "id": 7,
     "category": "altitude_hold",
     "prompt": "Drone2 maintain position at current location but drop to -3 meters",
-    "llm_latency_s": 4.225,
-    "total_time_s": 5.227,
+    "llm_latency_s": 2.531,
+    "total_time_s": 3.533,
     "valid_syntax": true,
     "execution_success": true,
-    "raw_output": "[\n  {\n    \"drone\": \"Drone2\",\n    \"x\": 0.0,\n    \"y\": 0.0,\n    \"z\": -3.0\n  }\n]",
+    "raw_output": "[{\"drone\": \"Drone2\", \"x\": 0.0, \"y\": 0.0, \"z\": -3.0}]",
     "parsed_targets": [
       {
         "drone": "Drone2",
@@ -147,11 +147,11 @@
     "id": 8,
     "category": "quad_sector_split",
     "prompt": "Drone1 search sector 10, 10, -5 while Drone2 searches -10, -10, -5",
-    "llm_latency_s": 6.885,
-    "total_time_s": 12.007,
+    "llm_latency_s": 5.683,
+    "total_time_s": 10.848,
     "valid_syntax": true,
     "execution_success": true,
-    "raw_output": "[\n  {\"drone\": \"Drone1\", \"x\": 10.0, \"y\": 10.0, \"z\": -5.0},\n  {\"drone\": \"Drone2\", \"x\": -10.0, \"y\": -10.0, \"z\": -5.0}\n]",
+    "raw_output": "[\n  {\n    \"drone\": \"Drone1\",\n    \"x\": 10.0,\n    \"y\": 10.0,\n    \"z\": -5.0\n  },\n  {\n    \"drone\": \"Drone2\",\n    \"x\": -10.0,\n    \"y\": -10.0,\n    \"z\": -5.0\n  }\n]",
     "parsed_targets": [
       {
         "drone": "Drone1",
@@ -171,11 +171,11 @@
     "id": 9,
     "category": "relative_direction",
     "prompt": "Move Drone1 left 5 meters and Drone2 right 10 meters",
-    "llm_latency_s": 7.02,
-    "total_time_s": 13.615,
+    "llm_latency_s": 3.872,
+    "total_time_s": 10.404,
     "valid_syntax": true,
     "execution_success": true,
-    "raw_output": "[\n  {\n    \"drone\": \"Drone1\",\n    \"x\": 0,\n    \"y\": -5,\n    \"z\": 0\n  },\n  {\n    \"drone\": \"Drone2\",\n    \"x\": 10,\n    \"y\": 0,\n    \"z\": 0\n  }\n]",
+    "raw_output": "[{\"drone\": \"Drone1\", \"x\": 0, \"y\": -5, \"z\": 0}, {\"drone\": \"Drone2\", \"x\": 0, \"y\": 10, \"z\": 0}]",
     "parsed_targets": [
       {
         "drone": "Drone1",
@@ -185,8 +185,8 @@
       },
       {
         "drone": "Drone2",
-        "x": 10,
-        "y": 0,
+        "x": 0,
+        "y": 10,
         "z": 0
       }
     ]
@@ -195,23 +195,23 @@
     "id": 10,
     "category": "land_command",
     "prompt": "Return both drones to base and prepare to land",
-    "llm_latency_s": 7.677,
-    "total_time_s": 11.707,
+    "llm_latency_s": 5.074,
+    "total_time_s": 9.23,
     "valid_syntax": true,
     "execution_success": true,
-    "raw_output": "[\n  {\n    \"drone\": \"Drone1\",\n    \"x\": 0.0,\n    \"y\": 0.0,\n    \"z\": 1.0\n  },\n  {\n    \"drone\": \"Drone2\",\n    \"x\": 0.0,\n    \"y\": 0.0,\n    \"z\": 1.0\n  }\n]",
+    "raw_output": "[\n  {\"drone\": \"Drone1\", \"x\": 0.0, \"y\": 0.0, \"z\": -5.0},\n  {\"drone\": \"Drone2\", \"x\": 0.0, \"y\": 0.0, \"z\": -5.0}\n]",
     "parsed_targets": [
       {
         "drone": "Drone1",
         "x": 0.0,
         "y": 0.0,
-        "z": 1.0
+        "z": -5.0
       },
       {
         "drone": "Drone2",
         "x": 0.0,
         "y": 0.0,
-        "z": 1.0
+        "z": -5.0
       }
     ]
   }
