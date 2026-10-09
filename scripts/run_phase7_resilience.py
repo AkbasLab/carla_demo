@@ -1,5 +1,14 @@
 import time
 import math
+import sys
+from pathlib import Path
+
+# Add project root directory to python path
+FILE = Path(__file__).resolve()
+ROOT = FILE.parents[1]  # Parent directory containing the 'scripts' folder
+if str(ROOT) not in sys.path:
+    sys.path.append(str(ROOT))
+
 from agentic_uav.simulator.mock_adapter import MockVehicleAdapter
 from agentic_uav.comm.bus import CommBus, Message
 from agentic_uav.comm.rf_model import RFPropagationModel
