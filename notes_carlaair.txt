@@ -15,7 +15,7 @@ cp -r Engine/ /opt/CarlaAir/
 ## check the whl script instead of installing via pip: https://pypi.org/project/carla/#files
 python -m pip install carla-0.9.15-cp310-cp310-manylinux_2_27_x86_64.whl 
 
-## add 'rocky' to the setup.py at CarlaAir-main/PythonAPI/carla directory (to install on Rocky)
+## add 'rocky' to the setup.py distro-list section at CarlaAir-main/PythonAPI/carla directory (to install on Rocky)
 
 for env in $(conda env list | grep -v '^#' | awk '{print $1}'); do echo -e "\n=== Environment: $env ==="; conda list -n $env; done
 
