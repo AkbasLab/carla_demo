@@ -1,3 +1,5 @@
+## based on personal experience and documentation at https://www.carla-air.com/docs/0.1.7/getting-started/installation. 
+
 conda info --envs
 conda activate carlaAir
 python -m pip install --no-build-isolation airsim
@@ -5,10 +7,12 @@ python -m pip install --no-build-isolation pygame
 python -m pip install --no-build-isolation carla
 
 
-# Download the repo from huggingface.
+# Download the repo from huggingface. (for windows only)
+
 # Copy CarlaAir.sh to github repo
 # Copy Engine folder to github repo -> cp -r Engine/ /opt/CarlaAir/
 cp -r Engine/ /opt/CarlaAir/
+check the whl script instead of installing via pip: https://pypi.org/project/carla/#files
 python -m pip install carla-0.9.15-cp310-cp310-manylinux_2_27_x86_64.whl 
 
 for env in $(conda env list | grep -v '^#' | awk '{print $1}'); do echo -e "\n=== Environment: $env ==="; conda list -n $env; done
