@@ -27,7 +27,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--prompts', type=Path, default=ROOT / 'configs/baseline_prompts.json')
     ap.add_argument('--output', type=Path, default=ROOT / 'docs/baseline_results_groq.json')
-    ap.add_argument('--model', default=os.getenv('GROQ_MODEL', 'llama-3.3-70b-versatile'))
+    ap.add_argument('--model', default=os.getenv('GROQ_MODEL', 'openai/gpt-oss-20b'))
     args = ap.parse_args()
     if not os.getenv('GROQ_API_KEY'):
         ap.error('Set GROQ_API_KEY in your environment')
