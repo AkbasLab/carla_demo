@@ -1,11 +1,11 @@
-"""Phase 1 Groq latency benchmark. Run from the carla_demo repository."""
+"""Phase 1 Groq latency benchmark using the OpenAI-compatible SDK. Run from the carla_demo repository."""
 import argparse
 import json
 import os
 import statistics
 import time
 from pathlib import Path
-from groq import Groq
+from openai import OpenAI
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -32,7 +32,12 @@ def main():
     if not os.getenv('GROQ_API_KEY'):
         ap.error('Set GROQ_API_KEY in your environment')
     results = []
-    with Groq(api_key=os.environ['GROQ_API_KEY'], max_retries=0, timeout=60) as client:
+    with OpenAI(
+        api_key=os.environ['GROQ_API_KEY'],
+        base_url='https://api.groq.com/openai/v1',
+        max_retries=0,
+        timeout=60,
+    ) as client:
         for ident, prompt in prompts(args.prompts):
             if not isinstance(prompt, str) or not prompt.strip():
                 raise ValueError(f'Prompt {ident} is empty')
@@ -58,6 +63,8 @@ def main():
             item['latency_seconds'] = round(time.perf_counter() - start, 4)
             results.append(item)
             print(f"{ident}: {item['latency_seconds']}s ({'OK' if item['success'] else 'ERROR'})")
+            if not item['success']:
+                print(f"  Error details: {item['error']}")
     values = [r['latency_seconds'] for r in results if r['success']]
     report = {'provider': 'groq', 'model': args.model, 'results': results,
               'mean_latency_seconds': statistics.mean(values) if values else None,
