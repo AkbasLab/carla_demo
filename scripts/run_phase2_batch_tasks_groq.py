@@ -1,11 +1,11 @@
-"""Phase 2 Groq drone-target planner; AirSim execution is opt-in."""
+"""Phase 2 Groq drone-target planner using the OpenAI-compatible SDK; AirSim execution is opt-in."""
 import argparse
 import json
 import math
 import os
 import time
 from pathlib import Path
-from groq import Groq
+from openai import OpenAI
 
 ROOT = Path(__file__).resolve().parents[1]
 SYSTEM = '''Plan simulated AirSim movements for Drone1 and Drone2. Respond with a JSON
@@ -86,7 +86,12 @@ def main():
     if args.velocity <= 0:
         ap.error('Velocity must be positive')
     results = []
-    with Groq(api_key=os.environ['GROQ_API_KEY'], max_retries=0, timeout=60) as client:
+    with OpenAI(
+        api_key=os.environ['GROQ_API_KEY'],
+        base_url='https://api.groq.com/openai/v1',
+        max_retries=0,
+        timeout=60,
+    ) as client:
         for ident, prompt in tasks(args.prompts):
             if not isinstance(prompt, str) or not prompt.strip():
                 raise ValueError(f'Task {ident} has no prompt')
@@ -110,6 +115,8 @@ def main():
             item['latency_seconds'] = round(time.perf_counter() - start, 4)
             results.append(item)
             print(f"{ident}: {'OK' if item['success'] else 'ERROR'} ({item['latency_seconds']}s)")
+            if not item['success']:
+                print(f"  Error details: {item['error']}")
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps({'provider': 'groq', 'model': args.model,
                                        'airsim': args.airsim, 'results': results}, indent=2))
