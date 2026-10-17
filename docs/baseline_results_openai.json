@@ -1,0 +1,112 @@
+[
+  {
+    "id": 1,
+    "category": "single_drone_simple",
+    "prompt": "Drone1 move to 10, 5, -5",
+    "latency_seconds": 0.513,
+    "valid_syntax": false,
+    "raw_output": "",
+    "parsed_targets": null,
+    "model": "gpt-4.1-mini",
+    "error": "Error code: 429 - {'error': {'message': 'You have no credits remaining. Add credits to continue using the API at https://platform.openai.com/settings/organization/billing/.', 'type': 'insufficient_quota', 'param': None, 'code': 'credit_balance_exhausted'}}"
+  },
+  {
+    "id": 2,
+    "category": "single_drone_altitude",
+    "prompt": "Fly Drone2 up to altitude -15",
+    "latency_seconds": 0.249,
+    "valid_syntax": false,
+    "raw_output": "",
+    "parsed_targets": null,
+    "model": "gpt-4.1-mini",
+    "error": "Error code: 429 - {'error': {'message': 'You have no credits remaining. Add credits to continue using the API at https://platform.openai.com/settings/organization/billing/.', 'type': 'insufficient_quota', 'param': None, 'code': 'credit_balance_exhausted'}}"
+  },
+  {
+    "id": 3,
+    "category": "dual_drone_simultaneous",
+    "prompt": "Send Drone1 to 10, 0, -10 and Drone2 to -5, 10, -8",
+    "latency_seconds": 0.269,
+    "valid_syntax": false,
+    "raw_output": "",
+    "parsed_targets": null,
+    "model": "gpt-4.1-mini",
+    "error": "Error code: 429 - {'error': {'message': 'You have no credits remaining. Add credits to continue using the API at https://platform.openai.com/settings/organization/billing/.', 'type': 'insufficient_quota', 'param': None, 'code': 'credit_balance_exhausted'}}"
+  },
+  {
+    "id": 4,
+    "category": "multi_step_movement",
+    "prompt": "Drone1 fly 20 meters forward then climb 5 meters up",
+    "latency_seconds": 0.234,
+    "valid_syntax": false,
+    "raw_output": "",
+    "parsed_targets": null,
+    "model": "gpt-4.1-mini",
+    "error": "Error code: 429 - {'error': {'message': 'You have no credits remaining. Add credits to continue using the API at https://platform.openai.com/settings/organization/billing/.', 'type': 'insufficient_quota', 'param': None, 'code': 'credit_balance_exhausted'}}"
+  },
+  {
+    "id": 5,
+    "category": "return_to_origin",
+    "prompt": "Move Drone1 back to 0, 0, -2 and Drone2 to 2, 0, -2",
+    "latency_seconds": 0.257,
+    "valid_syntax": false,
+    "raw_output": "",
+    "parsed_targets": null,
+    "model": "gpt-4.1-mini",
+    "error": "Error code: 429 - {'error': {'message': 'You have no credits remaining. Add credits to continue using the API at https://platform.openai.com/settings/organization/billing/.', 'type': 'insufficient_quota', 'param': None, 'code': 'credit_balance_exhausted'}}"
+  },
+  {
+    "id": 6,
+    "category": "ambiguous_wording",
+    "prompt": "Have Drone1 check out the area on the right near 15, 15, -5",
+    "latency_seconds": 0.084,
+    "valid_syntax": false,
+    "raw_output": "",
+    "parsed_targets": null,
+    "model": "gpt-4.1-mini",
+    "error": "Error code: 429 - {'error': {'message': 'You have no credits remaining. Add credits to continue using the API at https://platform.openai.com/settings/organization/billing/.', 'type': 'insufficient_quota', 'param': None, 'code': 'credit_balance_exhausted'}}"
+  },
+  {
+    "id": 7,
+    "category": "altitude_hold",
+    "prompt": "Drone2 maintain position at current location but drop to -3 meters",
+    "latency_seconds": 0.237,
+    "valid_syntax": false,
+    "raw_output": "",
+    "parsed_targets": null,
+    "model": "gpt-4.1-mini",
+    "error": "Error code: 429 - {'error': {'message': 'You have no credits remaining. Add credits to continue using the API at https://platform.openai.com/settings/organization/billing/.', 'type': 'insufficient_quota', 'param': None, 'code': 'credit_balance_exhausted'}}"
+  },
+  {
+    "id": 8,
+    "category": "quad_sector_split",
+    "prompt": "Drone1 search sector 10, 10, -5 while Drone2 searches -10, -10, -5",
+    "latency_seconds": 0.07,
+    "valid_syntax": false,
+    "raw_output": "",
+    "parsed_targets": null,
+    "model": "gpt-4.1-mini",
+    "error": "Error code: 429 - {'error': {'message': 'You have no credits remaining. Add credits to continue using the API at https://platform.openai.com/settings/organization/billing/.', 'type': 'insufficient_quota', 'param': None, 'code': 'credit_balance_exhausted'}}"
+  },
+  {
+    "id": 9,
+    "category": "relative_direction",
+    "prompt": "Move Drone1 left 5 meters and Drone2 right 10 meters",
+    "latency_seconds": 0.083,
+    "valid_syntax": false,
+    "raw_output": "",
+    "parsed_targets": null,
+    "model": "gpt-4.1-mini",
+    "error": "Error code: 429 - {'error': {'message': 'You have no credits remaining. Add credits to continue using the API at https://platform.openai.com/settings/organization/billing/.', 'type': 'insufficient_quota', 'param': None, 'code': 'credit_balance_exhausted'}}"
+  },
+  {
+    "id": 10,
+    "category": "land_command",
+    "prompt": "Return both drones to base and prepare to land",
+    "latency_seconds": 0.075,
+    "valid_syntax": false,
+    "raw_output": "",
+    "parsed_targets": null,
+    "model": "gpt-4.1-mini",
+    "error": "Error code: 429 - {'error': {'message': 'You have no credits remaining. Add credits to continue using the API at https://platform.openai.com/settings/organization/billing/.', 'type': 'insufficient_quota', 'param': None, 'code': 'credit_balance_exhausted'}}"
+  }
+]
