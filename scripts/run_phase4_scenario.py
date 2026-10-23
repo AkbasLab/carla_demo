@@ -17,7 +17,12 @@ from agentic_uav.core.models import SkillCommand, Position3D
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--airsim", action="store_true", help="Run in CARLA/AirSim simulation")
+    parser.add_argument("--capture-images", action="store_true", help="Save RGB images at Drone1 search waypoints (requires --airsim)")
+    parser.add_argument("--image-output-dir", default="results/camera", help="Output directory for PNG and JSON files")
+    parser.add_argument("--camera-name", default="0", help="AirSim camera identifier")
     args = parser.parse_args()
+    if args.capture_images and not args.airsim:
+        parser.error("--capture-images requires --airsim")
 
     # Load Phase 4 scenario config
     scenario_mgr = ScenarioManager("configs/missions/search_and_relay.json")
@@ -40,9 +45,13 @@ def main():
             skill_name="SEARCH_REGION",
             vehicle_id="Drone1",
             search_region=sector_ne,
-            params={"grid_step": 15.0}
+            params={"grid_step": 15.0, "capture_images": args.capture_images,
+                    "image_output_dir": args.image_output_dir, "camera_name": args.camera_name}
         )
     )
+
+    if args.capture_images:
+        print(f"Captured {res1.details.get('images_count', 0)} images in {args.image_output_dir}")
 
     # 3. Drone2 establishes relay position for search ops
     print("\n--- Drone2 Positioned as Comm Relay ---")
