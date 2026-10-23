@@ -154,6 +154,10 @@ class SkillEngine:
         try:
             waypoints_visited = 0
             all_detections = []
+            captured_images = []
+            capture_enabled = bool(command.params.get("capture_images", False))
+            if capture_enabled and not hasattr(self.adapter, "capture_image"):
+                raise RuntimeError("Image capture requires an AirSim camera adapter")
             for wp in waypoints:
                 sub_cmd = SkillCommand(
                     skill_name="GO_TO_WAYPOINT",
@@ -164,6 +168,12 @@ class SkillEngine:
                 self.adapter.move_to_position(command.vehicle_id, sub_cmd)
                 dets = self._inspect_position(command.vehicle_id)
                 all_detections.extend(dets)
+                if capture_enabled:
+                    captured_images.append(self.adapter.capture_image(
+                        command.vehicle_id,
+                        output_dir=command.params.get("image_output_dir", "results/camera"),
+                        camera_name=command.params.get("camera_name", "0"),
+                    ))
                 waypoints_visited += 1
 
             state = self.adapter.get_state(command.vehicle_id)
@@ -177,7 +187,9 @@ class SkillEngine:
                 battery_remaining=state.battery_level,
                 details={
                     "waypoints_visited": waypoints_visited, 
-                    "detections_count": len(all_detections)
+                    "detections_count": len(all_detections),
+                    "captured_images": captured_images,
+                    "images_count": len(captured_images)
                 }
             )
         except Exception as e:
