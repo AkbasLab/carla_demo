@@ -100,7 +100,7 @@ class AirSimAdapter:
             )
         response = responses[0]
         image_bytes = bytes(response.image_data_uint8)
-        if not image_bytes.startswith(b"\x5cx89PNG\x5cr\x5cn\x5cx1a\x5cn"):
+        if not image_bytes.startswith(bytes.fromhex("89504e470d0a1a0a")):
             raise RuntimeError("AirSim did not return a valid PNG image")
 
         folder = Path(output_dir)
