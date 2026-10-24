@@ -1,0 +1,70 @@
+{
+  "seed": 42,
+  "random_cases": 200,
+  "repeats": 1000,
+  "ceiling": 30.0,
+  "margin": 3.0,
+  "effectiveness": {
+    "cases": 204,
+    "unsafe": 141,
+    "safe": 63,
+    "unguarded_unsafe_proposal_rate": 0.6911764705882353,
+    "guarded_unsafe_dispatch_rate": 0.0,
+    "intervention_rate": 0.6911764705882353,
+    "unsafe_prevention_rate": 1.0,
+    "false_rejection_rate": 0.0
+  },
+  "latency_scaling": [
+    {
+      "obstacles": 1,
+      "n": 1000,
+      "mean_us": 2.969652,
+      "median_us": 2.724,
+      "p95_us": 3.2864999999999966,
+      "p99_us": 18.019699999999997,
+      "max_us": 18.998
+    },
+    {
+      "obstacles": 2,
+      "n": 1000,
+      "mean_us": 3.760558,
+      "median_us": 3.283,
+      "p95_us": 5.105949999999994,
+      "p99_us": 18.64969,
+      "max_us": 26.61
+    },
+    {
+      "obstacles": 4,
+      "n": 1000,
+      "mean_us": 5.537223,
+      "median_us": 4.889,
+      "p95_us": 8.661,
+      "p99_us": 19.767389999999995,
+      "max_us": 85.138
+    },
+    {
+      "obstacles": 8,
+      "n": 1000,
+      "mean_us": 9.20867,
+      "median_us": 8.171,
+      "p95_us": 16.349999999999994,
+      "p99_us": 25.2137,
+      "max_us": 61.951
+    },
+    {
+      "obstacles": 16,
+      "n": 1000,
+      "mean_us": 15.20242,
+      "median_us": 13.34,
+      "p95_us": 29.12405,
+      "p99_us": 43.376479999999994,
+      "max_us": 63.557
+    }
+  ],
+  "limitations": [
+    "Geometric candidate-segment checks, not executed trajectories or physical collisions",
+    "No LLM, simulator RPC or telemetry overhead",
+    "Reject-only guardian, no rerouting",
+    "Timing depends on host hardware and Python version"
+  ]
+}
