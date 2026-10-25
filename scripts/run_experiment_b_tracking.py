@@ -56,6 +56,8 @@ def run(args):
         p0=drone.getMultirotorState().kinematics_estimated.position
         origin=(p0.x_val,p0.y_val)
         last_cmd=None
+        last_command_time=0.0
+        print("[Experiment B] Tracking started", flush=True)
         for tick in range(args.ticks):
             if args.scenario=="rectangle":
                 leg=(tick//100)%4
@@ -66,6 +68,8 @@ def run(args):
             ctrl=carla.WalkerControl()
             ctrl.speed=args.speed;ctrl.direction=carla.Vector3D(dx,dy,0.)
             walker.apply_control(ctrl)
+            if tick % args.log_every == 0:
+                print(f"[Experiment B] tick={tick}/{args.ticks} before CARLA tick", flush=True)
             world.tick()
             ped=walker.get_location()
             target_x=origin[0]+ped.x-ped0.x-dx*args.follow_distance
@@ -76,10 +80,18 @@ def run(args):
             intervened=int(cmd_z!=requested_z)
             guardian_us=(time.perf_counter_ns()-start_ns)/1000.
             command=(target_x,target_y,cmd_z)
-            if last_cmd is None or math.dist(command,last_cmd)>0.20:
+            now=time.monotonic()
+            if (last_cmd is None or math.dist(command,last_cmd)>0.20) and (last_cmd is None or now-last_command_time>=args.command_interval):
+                if tick % args.log_every == 0:
+                    print(f"[Experiment B] tick={tick} before AirSim command", flush=True)
                 drone.moveToPositionAsync(*command,velocity=args.drone_speed)
                 last_cmd=command
+                last_command_time=now
+            if tick % args.log_every == 0:
+                print(f"[Experiment B] tick={tick} before AirSim telemetry", flush=True)
             pos=drone.getMultirotorState().kinematics_estimated.position
+            if tick % args.log_every == 0:
+                print(f"[Experiment B] tick={tick} telemetry received", flush=True)
             err=math.hypot(pos.x_val-target_x,pos.y_val-target_y)
             ped_x=origin[0]+ped.x-ped0.x;ped_y=origin[1]+ped.y-ped0.y
             rows.append({"tick":tick,"carla_sim_time_s":(tick+1)*0.05,
@@ -110,11 +122,13 @@ if __name__=="__main__":
     p.add_argument("--oba",action="store_true")
     p.add_argument("--carla-host",default="localhost");p.add_argument("--carla-port",type=int,default=2000)
     p.add_argument("--ticks",type=int,default=400)
+    p.add_argument("--log-every",type=int,default=10)
+    p.add_argument("--command-interval",type=float,default=0.5,help="Minimum wall-clock seconds between AirSim move commands")
     p.add_argument("--speed",type=float,default=1.4)
     p.add_argument("--drone-speed",type=float,default=2.5)
     p.add_argument("--follow-distance",type=float,default=3.5)
     p.add_argument("--target-height",type=float,default=3.)
     p.add_argument("--z-max",type=float,default=30.)
     a=p.parse_args()
-    if a.ticks<1 or a.speed<=0 or a.target_height<=0 or a.z_max<=0: p.error("Invalid parameters")
+    if a.ticks<1 or a.speed<=0 or a.target_height<=0 or a.z_max<=0 or a.log_every<1 or a.command_interval<0: p.error("Invalid parameters")
     run(a)
