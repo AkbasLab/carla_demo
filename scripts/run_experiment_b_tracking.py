@@ -12,13 +12,14 @@ def percentile(values,p):
     a=math.floor(i);b=math.ceil(i)
     return v[a]+(v[b]-v[a])*(i-a)
 
-def summarize(rows,completed,scenario,speed,guarded):
+def summarize(rows,completed,scenario,speed,guarded,follow_distance=2.0):
     errors=[r["target_error_m"] for r in rows]
     sep=[r["ped_drone_xy_separation_m"] for r in rows]
     return {"scenario":scenario,"pedestrian_speed_mps":speed,"oba_enabled":guarded,
-            "samples":len(rows),"completed":completed,
+            "samples":len(rows),"completed":completed,"follow_distance_m":follow_distance,
             "tracking_target_rmse_m":math.sqrt(sum(e*e for e in errors)/len(errors)) if errors else None,
             "tracking_target_p95_m":percentile(errors,95),
+            "rms_ped_drone_xy_separation_m":math.sqrt(sum(d*d for d in sep)/len(sep)) if sep else None,
             "min_ped_drone_xy_separation_m":min(sep) if sep else None,
             "altitude_violation_samples":sum(r["altitude_violation"] for r in rows),
             "oba_interventions":sum(r["oba_intervention"] for r in rows),
@@ -27,6 +28,48 @@ def summarize(rows,completed,scenario,speed,guarded):
                      "Pedestrian XY is aligned using initial CARLA and AirSim positions; frames must share axes",
                      "No obstacle clearance or tracking lag inferred from these samples",
                      "CARLA ticks are simulation time; AirSim timing may not be synchronized"]}
+
+
+def plot_metrics(rows,summary,output):
+    """Save diagnostic plots without requiring a graphical display."""
+    if not rows:
+        return
+    import matplotlib
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+    t=[r["carla_sim_time_s"] for r in rows]
+    fig,axes=plt.subplots(2,2,figsize=(13,9),constrained_layout=True)
+    ax=axes[0,0]
+    for prefix,label in (("ped","Pedestrian (mapped)"),("target","Desired follow position"),("drone","Actual drone")):
+        ax.plot([r[prefix+"_x"] for r in rows],[r[prefix+"_y"] for r in rows],label=label)
+    ax.set(xlabel="X (m)",ylabel="Y (m)",title="XY trajectories")
+    ax.set_aspect("equal",adjustable="datalim")
+    ax=axes[0,1]
+    ax.plot(t,[r["target_error_m"] for r in rows],label="Tracking error")
+    ax.axhline(summary["tracking_target_rmse_m"],color="tab:red",linestyle="--",label=f'RMSE {summary["tracking_target_rmse_m"]:.2f} m')
+    ax.axhline(summary["tracking_target_p95_m"],color="tab:orange",linestyle=":",label=f'P95 {summary["tracking_target_p95_m"]:.2f} m')
+    ax.set(ylabel="XY error (m)",title="Distance from desired follow position")
+    ax=axes[1,0]
+    ax.plot(t,[r["ped_drone_xy_separation_m"] for r in rows],label="Actual XY separation")
+    ax.axhline(summary["follow_distance_m"],color="tab:green",linestyle="--",label="Requested follow distance")
+    ax.axhline(summary["rms_ped_drone_xy_separation_m"],color="tab:red",linestyle=":",label=f'RMS {summary["rms_ped_drone_xy_separation_m"]:.2f} m')
+    ax.set(ylabel="XY separation (m)",title="Drone–pedestrian horizontal separation")
+    ax=axes[1,1]
+    ax.plot(t,[-r["drone_z"] for r in rows],label="Actual drone height (AirSim origin)")
+    ax.plot(t,[-r["command_z"] for r in rows],linestyle="--",label="Commanded height")
+    ax.axhline(summary["z_max_m"],color="tab:red",linestyle=":",label="Altitude ceiling")
+    ax.set(ylabel="Height (m)",title=f'Altitude; guardian interventions: {summary["oba_interventions"]}')
+    for ax in axes.flat:
+        ax.grid(True,alpha=0.3)
+        ax.legend(fontsize="small")
+    for ax in (axes[0,1],axes[1,0],axes[1,1]):
+        ax.set_xlabel("CARLA simulation time (s)")
+    status="complete" if summary["completed"] else "partial"
+    fig.suptitle(f'Experiment B: {summary["scenario"]} ({status}); CARLA and AirSim time may differ')
+    try:
+        fig.savefig(Path(output)/"tracking_metrics.png",dpi=160)
+    finally:
+        plt.close(fig)
 
 def run(args):
     import carla,airsim
@@ -107,7 +150,14 @@ def run(args):
         if rows:
             with (output/"telemetry.csv").open("w",newline="") as f:
                 writer=csv.DictWriter(f,fieldnames=list(rows[0]));writer.writeheader();writer.writerows(rows)
-        (output/"summary.json").write_text(json.dumps(summarize(rows,completed,args.scenario,args.speed,args.oba),indent=2)+"\n")
+        summary=summarize(rows,completed,args.scenario,args.speed,args.oba,args.follow_distance)
+        summary["z_max_m"]=args.z_max
+        summary["target_height_m"]=args.target_height
+        (output/"summary.json").write_text(json.dumps(summary,indent=2)+"\n")
+        try:
+            plot_metrics(rows,summary,output)
+        except Exception as e:
+            print("Plot generation warning (telemetry and summary saved):",e,flush=True)
         if walker is not None:walker.destroy()
         if drone is not None:
             try:drone.hoverAsync().join();drone.landAsync().join();drone.armDisarm(False);drone.enableApiControl(False)
@@ -126,9 +176,9 @@ if __name__=="__main__":
     p.add_argument("--command-interval",type=float,default=0.5,help="Minimum wall-clock seconds between AirSim move commands")
     p.add_argument("--speed",type=float,default=1.4)
     p.add_argument("--drone-speed",type=float,default=2.5)
-    p.add_argument("--follow-distance",type=float,default=3.5)
+    p.add_argument("--follow-distance",type=float,default=2.0,help="Horizontal follow offset in meters (default: 2)")
     p.add_argument("--target-height",type=float,default=3.)
     p.add_argument("--z-max",type=float,default=30.)
     a=p.parse_args()
-    if a.ticks<1 or a.speed<=0 or a.target_height<=0 or a.z_max<=0 or a.log_every<1 or a.command_interval<0: p.error("Invalid parameters")
+    if a.ticks<1 or a.speed<=0 or a.target_height<=0 or a.z_max<=0 or a.log_every<1 or a.command_interval<0 or a.follow_distance<=0: p.error("Invalid parameters")
     run(a)
