@@ -67,8 +67,16 @@ def plot_metrics(rows,summary,output):
         ax.legend(fontsize="small")
     for ax in (axes[0,1],axes[1,0],axes[1,1]):
         ax.set_xlabel("CARLA simulation time (s)")
+        lower,upper=ax.get_ylim()
+        span=upper-lower
+        if ax is axes[1,1]:
+            midpoint=(lower+upper)/2
+            ax.set_ylim(midpoint-1.5*span,midpoint+1.5*span)
+        else:
+            # Distances are nonnegative: anchor at zero rather than showing negative meters.
+            ax.set_ylim(0,max(3*span,upper))
     status="complete" if summary["completed"] else "partial"
-    fig.suptitle(f'Experiment B: {summary["scenario"]} ({status}); {summary["follow_mode"]} offset {summary["follow_distance_m"]:g} m\n{summary["script_version"]}; tracking criteria: {"PASS" if summary["tracking_criteria_passed"] else "FAIL"}; clocks may differ')
+    fig.suptitle(f'Experiment B: {summary["scenario"]} ({status}); {summary["follow_mode"]} offset {summary["follow_distance_m"]:g} m\n{summary["script_version"]}; tracking criteria: {"PASS" if summary["tracking_criteria_passed"] else "FAIL"}; clocks may differ\nMetric-panel Y ranges expanded 3×')
     try:
         fig.savefig(Path(output)/"tracking_metrics.png",dpi=160)
     finally:

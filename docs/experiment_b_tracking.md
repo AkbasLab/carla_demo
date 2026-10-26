@@ -50,3 +50,7 @@ Default `--rectangle-area-scale 5` scales each side by sqrt(5), not five. At nom
 By default rectangle runs now measure one full lap: 896 ticks, or **44.8 seconds of CARLA simulation time**, excluding setup. `--ticks 400` retains a 20-second measurement window but will only cover part of this larger rectangle at the same walking speed. Zigzag defaults remain 400 ticks. Setup now waits only for commanded height within 0.3 m and vertical speed at most 0.3 m/s for 0.2 seconds, then starts pedestrian movement and measurement together; no wait for horizontal following position. Consequently initial horizontal acquisition errors remain in metrics. Setup may still require takeoff and vertical travel. `--settle-seconds` overrides the short height stability window. The initial virtual path segment retains the requested follow distance.
 
 Console and plots identify `experiment-b-large-rectangle-v5`. Summary records the height-only gate, area scale, leg ticks, effective commanded pedestrian speed, and requested tracking duration. Earlier full-3D setup and 20-second rectangle defaults documented above describe older versions.
+
+## Plot display ranges
+
+Tracking-error, horizontal-separation, and altitude panels now display three times their original automatic Y-axis span. Distance panels start at zero; altitude expands around the original midpoint. The XY trajectory panel is unchanged. The figure labels the expanded metric-panel ranges. Telemetry, summary statistics, and acceptance criteria are unchanged.
