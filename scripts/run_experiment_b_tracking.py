@@ -5,7 +5,7 @@ Requires both simulators. Run one scenario at a time, in a clear test area.
 import argparse,csv,json,math,statistics,time,hashlib
 from pathlib import Path
 
-SCRIPT_VERSION="experiment-b-settled-path-v3"
+SCRIPT_VERSION="experiment-b-height-minus25-v4"
 
 def percentile(values,p):
     v=sorted(values)
@@ -115,7 +115,7 @@ def run(args):
     world=client.get_world()
     original=world.get_settings()
     walker=None;drone=None;rows=[];completed=False
-    setup_completed=False;setup_duration_s=None;tracking_start=None
+    setup_completed=False;setup_duration_s=None;tracking_start=None;measurement_start_height=None
     try:
         settings=world.get_settings()
         settings.synchronous_mode=False;settings.fixed_delta_seconds=0.05
@@ -144,6 +144,8 @@ def run(args):
         print(f"[Experiment B] Setup: positioning at {start_target}",flush=True)
         drone.moveToPositionAsync(*start_target,velocity=args.drone_speed,timeout_sec=args.setup_timeout)
         wait_until_settled(drone,start_target,args.setup_timeout,args.settle_seconds,args.start_tolerance)
+        measurement_start_height=-drone.getMultirotorState().kinematics_estimated.position.z_val
+        print(f"[Experiment B] Height ready: {measurement_start_height:.2f} m; commanded {args.target_height:.2f} m (height = -AirSim Z)",flush=True)
         setup_duration_s=time.monotonic()-setup_start
         setup_completed=True
         # Keep the original mapping fixed; moving the origin after positioning would shift the target.
@@ -228,6 +230,8 @@ def run(args):
             summary["tracking_target_p95_m"]<=args.acceptance_p95)
         summary["z_max_m"]=args.z_max
         summary["target_height_m"]=args.target_height
+        summary["measurement_start_height_m"]=measurement_start_height
+        summary["height_convention"]="height = -AirSim NED Z, relative to AirSim origin; not ground clearance"
         summary.update(setup_completed=setup_completed,setup_duration_s=setup_duration_s,
                        drone_speed_mps=args.drone_speed,command_interval_s=args.command_interval,
                        wall_elapsed_s=rows[-1]["wall_elapsed_s"] if rows else None,
@@ -263,7 +267,7 @@ if __name__=="__main__":
     p.add_argument("--speed",type=float,default=1.4)
     p.add_argument("--drone-speed",type=float,default=4.0)
     p.add_argument("--follow-distance",type=float,default=1.0,help="Horizontal follow offset in meters (default: 1)")
-    p.add_argument("--target-height",type=float,default=3.)
+    p.add_argument("--target-height",type=float,default=-25.,help="Signed height relative to AirSim origin, equal to -NED Z (default: -25 m, commands Z=+25 m)")
     p.add_argument("--z-max",type=float,default=30.)
     p.add_argument("--follow-mode",choices=["path","heading"],default="path",help="Follow prior pedestrian path (continuous target) or instantaneous heading (legacy)")
     p.add_argument("--acceptance-rmse",type=float,default=1.,help="Provisional tracking RMSE limit in meters")
@@ -273,5 +277,5 @@ if __name__=="__main__":
     p.add_argument("--settle-seconds",type=float,default=1.,help="Required continuous settled time before measuring")
     p.add_argument("--start-tolerance",type=float,default=0.3,help="Starting 3D position tolerance in meters")
     a=p.parse_args()
-    if a.ticks<1 or a.speed<=0 or a.target_height<=0 or a.z_max<=0 or a.log_every<1 or a.command_interval<0 or a.follow_distance<=0 or a.drone_speed<=0 or a.setup_timeout<=0 or a.rpc_timeout<=0 or a.settle_seconds<=0 or a.start_tolerance<=0 or a.acceptance_rmse<=0 or a.acceptance_p95<=0 or not all(math.isfinite(v) for v in (a.acceptance_rmse,a.acceptance_p95,a.speed,a.drone_speed,a.follow_distance,a.target_height,a.z_max,a.command_interval,a.setup_timeout,a.rpc_timeout,a.settle_seconds,a.start_tolerance)): p.error("Invalid parameters")
+    if a.ticks<1 or a.speed<=0 or a.z_max<=0 or a.log_every<1 or a.command_interval<0 or a.follow_distance<=0 or a.drone_speed<=0 or a.setup_timeout<=0 or a.rpc_timeout<=0 or a.settle_seconds<=0 or a.start_tolerance<=0 or a.acceptance_rmse<=0 or a.acceptance_p95<=0 or not all(math.isfinite(v) for v in (a.acceptance_rmse,a.acceptance_p95,a.speed,a.drone_speed,a.follow_distance,a.target_height,a.z_max,a.command_interval,a.setup_timeout,a.rpc_timeout,a.settle_seconds,a.start_tolerance)): p.error("Invalid parameters")
     run(a)

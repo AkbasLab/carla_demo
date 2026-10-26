@@ -11,7 +11,7 @@ python scripts/run_experiment_b_tracking.py --scenario zigzag --output-dir resul
 
 Each run with telemetry outputs `telemetry.csv`, `summary.json`, and `tracking_metrics.png` (requires `matplotlib`). The plot includes XY trajectories, tracking error with RMSE/P95, horizontal pedestrian–drone separation with RMS, and actual/commanded altitude with the ceiling. Partial runs are labeled; plots are saved before simulator cleanup. A blocked loop must return or be interrupted before these outputs are written. Plot failures do not prevent simulator cleanup.
 
-The default horizontal follow distance is **1 m** (previously 2 m); override with `--follow-distance`. Target height remains 3 m in the AirSim frame. This changes the desired offset, not a guaranteed physical clearance.
+The default horizontal follow distance is **1 m** (previously 2 m); override with `--follow-distance`. Default target height is now -25 m relative to the AirSim origin (AirSim NED Z = +25 m). This changes the desired offset, not a guaranteed physical clearance.
 
 Tracking RMSE is `sqrt(mean((drone_x-target_x)^2 + (drone_y-target_y)^2))`. Lower values mean better tracking. RMS pedestrian–drone XY separation is `sqrt(mean((drone_x-ped_x)^2 + (drone_y-ped_y)^2))`. It measures typical horizontal separation, emphasizes larger distances, and is not tracking error: ideal following at 2 m has tracking RMSE 0 m and RMS separation 2 m. Both use the mapped coordinates described below.
 
@@ -36,3 +36,9 @@ The original coordinate mapping remains fixed during prepositioning. Horizontal 
 Default `--follow-mode path` places the desired drone XY position 1 m behind along the mapped pedestrian's traveled polyline, interpolated between samples. An initial virtual straight segment defines the offset before the pedestrian has traveled that distance. This removes the artificial target teleport at each heading change. At corners the Euclidean XY separation can be less than the requested path distance. Use `--follow-mode heading` to reproduce the old reference definition. The reference definition changes the benchmark; compare runs with the same mode, and keep all measured samples.
 
 Outputs identify `script_version`, a source SHA-256, setup completion, and follow mode. The provisional acceptance settings are `--acceptance-rmse 1 --acceptance-p95 2` (meters); these are configurable engineering goals, not a validated standard. `tracking_criteria_passed` requires a complete run, successful setup, and both limits. It does not certify physical safety, timing alignment, or OBA efficacy. The altitude plot labels the ceiling without forcing the vertical scale to 30 m, making tracking-height changes easier to inspect. Metrics remain computed from unfiltered telemetry.
+
+## Height gate at -25 m (v4)
+
+`--target-height` is a signed height relative to the AirSim origin, matching the plotted `-drone_z` value. The default is now **-25 m**, corresponding to **+25 m AirSim NED Z**. For a plotted starting height of -28 m this requests a 3 m upward change, rather than a climb to +3 m. This is not height above terrain; verify the origin and scene before flight. To command NED Z=-25 m instead, use `--target-height 25`.
+
+The existing setup gate checks the full 3D starting position (including the commanded height) within `--start-tolerance` (0.3 m), with low speed for `--settle-seconds` (1 s), before starting pedestrian movement or collecting samples. Default 400 tracking ticks then measure 20 s of CARLA time, excluding takeoff and settling. Summary adds `measurement_start_height_m` and the height convention. Console and plots identify `experiment-b-height-minus25-v4`. The altitude-only guardian still limits heights above its positive ceiling; it has no terrain or lower-bound check.
