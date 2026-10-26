@@ -5,7 +5,7 @@ Requires both simulators. Run one scenario at a time, in a clear test area.
 import argparse,csv,json,math,statistics,time,hashlib
 from pathlib import Path
 
-SCRIPT_VERSION="experiment-b-height-minus25-v4"
+SCRIPT_VERSION="experiment-b-large-rectangle-v5"
 
 def percentile(values,p):
     v=sorted(values)
@@ -88,7 +88,7 @@ def trailing_position(path,distance):
         remaining-=length
     return path[0]
 
-def wait_until_settled(drone,target,timeout,settle_seconds,tolerance):
+def wait_until_settled(drone,target,timeout,settle_seconds,tolerance,height_only=False):
     """Require position and low speed continuously; refuse to score an unready start."""
     deadline=time.monotonic()+timeout
     settled_since=None
@@ -96,8 +96,8 @@ def wait_until_settled(drone,target,timeout,settle_seconds,tolerance):
         state=drone.getMultirotorState()
         pos=state.kinematics_estimated.position
         vel=state.kinematics_estimated.linear_velocity
-        error=math.dist((pos.x_val,pos.y_val,pos.z_val),target)
-        speed=math.sqrt(vel.x_val**2+vel.y_val**2+vel.z_val**2)
+        error=abs(pos.z_val-target[2]) if height_only else math.dist((pos.x_val,pos.y_val,pos.z_val),target)
+        speed=abs(vel.z_val) if height_only else math.sqrt(vel.x_val**2+vel.y_val**2+vel.z_val**2)
         if error<=tolerance and speed<=0.3:
             if settled_since is None: settled_since=time.monotonic()
             if time.monotonic()-settled_since>=settle_seconds:
@@ -105,10 +105,13 @@ def wait_until_settled(drone,target,timeout,settle_seconds,tolerance):
         else:
             settled_since=None
         time.sleep(0.05)
-    raise TimeoutError("Drone did not settle at the starting follow position; tracking was not started")
+    raise TimeoutError("Drone did not satisfy the setup gate; tracking was not started")
 
 def run(args):
     import carla,airsim
+    leg_ticks=math.ceil(100*math.sqrt(args.rectangle_area_scale))
+    # Adjust walking speed by <1 tick of rounding so nominal side lengths scale exactly.
+    rectangle_speed=args.speed*100*math.sqrt(args.rectangle_area_scale)/leg_ticks
     print(f"[Experiment B] {SCRIPT_VERSION}; follow={args.follow_distance} m; mode={args.follow_mode}; speed={args.drone_speed} m/s",flush=True)
     output=Path(args.output_dir);output.mkdir(parents=True,exist_ok=True)
     client=carla.Client(args.carla_host,args.carla_port);client.set_timeout(10.)
@@ -140,10 +143,10 @@ def run(args):
         origin=(p0.x_val,p0.y_val)
         requested_z=-args.target_height
         setup_z=max(-args.z_max,requested_z) if args.oba else requested_z
-        start_target=(origin[0]-fx*args.follow_distance,origin[1]-fy*args.follow_distance,setup_z)
-        print(f"[Experiment B] Setup: positioning at {start_target}",flush=True)
+        start_target=(origin[0],origin[1],setup_z)
+        print(f"[Experiment B] Setup: reaching height {-setup_z:g} m; no horizontal setup wait",flush=True)
         drone.moveToPositionAsync(*start_target,velocity=args.drone_speed,timeout_sec=args.setup_timeout)
-        wait_until_settled(drone,start_target,args.setup_timeout,args.settle_seconds,args.start_tolerance)
+        wait_until_settled(drone,start_target,args.setup_timeout,args.settle_seconds,args.start_tolerance,height_only=True)
         measurement_start_height=-drone.getMultirotorState().kinematics_estimated.position.z_val
         print(f"[Experiment B] Height ready: {measurement_start_height:.2f} m; commanded {args.target_height:.2f} m (height = -AirSim Z)",flush=True)
         setup_duration_s=time.monotonic()-setup_start
@@ -154,23 +157,25 @@ def run(args):
         world.apply_settings(settings)
         tracking_start=time.monotonic()
         airsim_start=drone.getMultirotorState().timestamp
-        path=[start_target[:2],origin]
+        ped0=walker.get_location()
+        path=[(origin[0]-fx*args.follow_distance,origin[1]-fy*args.follow_distance),origin]
         last_cmd=None
         last_command_time=0.0
-        print("[Experiment B] Tracking started", flush=True)
+        print(f"[Experiment B] Height gate passed: pedestrian and measurement starting; duration={args.ticks*0.05:g} CARLA seconds", flush=True)
         for tick in range(args.ticks):
             # Pace CARLA ticks against wall time; this does not synchronize simulator clocks.
             remaining=tracking_start+(tick+1)*0.05-time.monotonic()
             if remaining>0:
                 time.sleep(remaining)
             if args.scenario=="rectangle":
-                leg=(tick//100)%4
+                leg=(tick//leg_ticks)%4
                 dx,dy=((fx,fy),(rx,ry),(-fx,-fy),(-rx,-ry))[leg]
             else:
                 bias=1.2*math.sin(tick*0.08)
                 dx,dy=norm(fx+rx*bias,fy+ry*bias)
             ctrl=carla.WalkerControl()
-            ctrl.speed=args.speed;ctrl.direction=carla.Vector3D(dx,dy,0.)
+            ctrl.speed=rectangle_speed if args.scenario=="rectangle" else args.speed
+            ctrl.direction=carla.Vector3D(dx,dy,0.)
             walker.apply_control(ctrl)
             if tick % args.log_every == 0:
                 print(f"[Experiment B] tick={tick}/{args.ticks} before CARLA tick", flush=True)
@@ -223,6 +228,11 @@ def run(args):
         summary["script_version"]=SCRIPT_VERSION
         summary["script_sha256"]=hashlib.sha256(Path(__file__).read_bytes()).hexdigest()
         summary["follow_mode"]=args.follow_mode
+        summary["setup_gate"]="height_only"
+        summary["rectangle_area_scale"]=args.rectangle_area_scale if args.scenario=="rectangle" else None
+        summary["rectangle_leg_ticks"]=leg_ticks if args.scenario=="rectangle" else None
+        summary["commanded_walking_speed_mps"]=rectangle_speed if args.scenario=="rectangle" else args.speed
+        summary["requested_tracking_duration_s"]=args.ticks*0.05
         summary["acceptance_rmse_m"]=args.acceptance_rmse
         summary["acceptance_p95_m"]=args.acceptance_p95
         summary["tracking_criteria_passed"]=bool(completed and setup_completed and rows and
@@ -261,7 +271,8 @@ if __name__=="__main__":
     p.add_argument("--output-dir",required=True)
     p.add_argument("--oba",action="store_true")
     p.add_argument("--carla-host",default="localhost");p.add_argument("--carla-port",type=int,default=2000)
-    p.add_argument("--ticks",type=int,default=400)
+    p.add_argument("--ticks",type=int,default=None,help="Measured ticks; default one full rectangle (or 400 for zigzag)")
+    p.add_argument("--rectangle-area-scale",type=float,default=5.,help="Nominal rectangle area relative to original 7 m square (default: 5)")
     p.add_argument("--log-every",type=int,default=10)
     p.add_argument("--command-interval",type=float,default=0.1,help="Minimum wall-clock seconds between AirSim move commands")
     p.add_argument("--speed",type=float,default=1.4)
@@ -274,8 +285,12 @@ if __name__=="__main__":
     p.add_argument("--acceptance-p95",type=float,default=2.,help="Provisional tracking P95 limit in meters")
     p.add_argument("--setup-timeout",type=float,default=60.,help="Timeout per setup operation in seconds")
     p.add_argument("--rpc-timeout",type=float,default=15.,help="AirSim RPC timeout in seconds")
-    p.add_argument("--settle-seconds",type=float,default=1.,help="Required continuous settled time before measuring")
-    p.add_argument("--start-tolerance",type=float,default=0.3,help="Starting 3D position tolerance in meters")
+    p.add_argument("--settle-seconds",type=float,default=0.2,help="Required continuous height settling time before pedestrian movement")
+    p.add_argument("--start-tolerance",type=float,default=0.3,help="Starting height tolerance in meters")
     a=p.parse_args()
+    if not math.isfinite(a.rectangle_area_scale) or a.rectangle_area_scale<=0:
+        p.error("Rectangle area scale must be finite and positive")
+    if a.ticks is None:
+        a.ticks=4*math.ceil(100*math.sqrt(a.rectangle_area_scale)) if a.scenario=="rectangle" else 400
     if a.ticks<1 or a.speed<=0 or a.z_max<=0 or a.log_every<1 or a.command_interval<0 or a.follow_distance<=0 or a.drone_speed<=0 or a.setup_timeout<=0 or a.rpc_timeout<=0 or a.settle_seconds<=0 or a.start_tolerance<=0 or a.acceptance_rmse<=0 or a.acceptance_p95<=0 or not all(math.isfinite(v) for v in (a.acceptance_rmse,a.acceptance_p95,a.speed,a.drone_speed,a.follow_distance,a.target_height,a.z_max,a.command_interval,a.setup_timeout,a.rpc_timeout,a.settle_seconds,a.start_tolerance)): p.error("Invalid parameters")
     run(a)
