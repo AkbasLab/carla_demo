@@ -73,3 +73,61 @@ class AirSimAdapter:
 
     def stop(self, vehicle_id: str) -> None:
         self.client.hoverAsync(vehicle_name=vehicle_id)
+
+    def capture_image(self, vehicle_id: str, output_dir: str = "results/camera",
+                      camera_name: str = "0") -> dict:
+        """Capture a PNG from an AirSim RGB camera and save capture metadata.
+
+        Requires a running AirSim/CarlaAir simulator. The vehicle-specific
+        camera name defaults to AirSim's camera '0'.
+        """
+        import json
+        import re
+        from datetime import datetime, timezone
+        from pathlib import Path
+
+        if self.client is None:
+            raise RuntimeError("AirSim is not connected; call connect() first")
+
+        responses = self.client.simGetImages(
+            [airsim.ImageRequest(str(camera_name), airsim.ImageType.Scene,
+                                 pixels_as_float=False, compress=True)],
+            vehicle_name=vehicle_id,
+        )
+        if not responses or not responses[0].image_data_uint8:
+            raise RuntimeError(
+                f"No RGB image returned for {vehicle_id} camera {camera_name}"
+            )
+        response = responses[0]
+        image_bytes = bytes(response.image_data_uint8)
+        if not image_bytes.startswith(bytes.fromhex("89504e470d0a1a0a")):
+            raise RuntimeError("AirSim did not return a valid PNG image")
+
+        folder = Path(output_dir)
+        folder.mkdir(parents=True, exist_ok=True)
+        safe_vehicle = re.sub(r"[^A-Za-z0-9_-]", "_", vehicle_id)
+        safe_camera = re.sub(r"[^A-Za-z0-9_-]", "_", str(camera_name))
+        stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S%fZ")
+        stem = f"{safe_vehicle}_{safe_camera}_{stamp}"
+        image_path = folder / f"{stem}.png"
+        metadata_path = folder / f"{stem}.json"
+        image_path.write_bytes(image_bytes)
+
+        state = self.get_state(vehicle_id)
+        metadata = {
+            "vehicle_id": vehicle_id,
+            "camera_name": str(camera_name),
+            "captured_at_utc": datetime.now(timezone.utc).isoformat(),
+            "sim_timestamp_ns": getattr(response, "time_stamp", None),
+            "image_width": response.width,
+            "image_height": response.height,
+            "vehicle_position_ned_m": {
+                "x": state.position.x, "y": state.position.y,
+                "z": state.position.z,
+            },
+            "image_path": str(image_path),
+        }
+        metadata_path.write_text(json.dumps(metadata, indent=2) + "\n",
+                                 encoding="utf-8")
+        return {"image_path": str(image_path),
+                "metadata_path": str(metadata_path)}
