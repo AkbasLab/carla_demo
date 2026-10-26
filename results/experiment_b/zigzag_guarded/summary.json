@@ -1,0 +1,19 @@
+{
+  "scenario": "zigzag",
+  "pedestrian_speed_mps": 1.4,
+  "oba_enabled": true,
+  "samples": 400,
+  "completed": true,
+  "tracking_target_rmse_m": 3.9413129228449133,
+  "tracking_target_p95_m": 5.5914505698908155,
+  "min_ped_drone_xy_separation_m": 0.0002633336309178166,
+  "altitude_violation_samples": 0,
+  "oba_interventions": 0,
+  "mean_guardian_latency_us": 13.4987225,
+  "notes": [
+    "Target error compares AirSim actual XY to desired offset-follow position, not pedestrian XY",
+    "Pedestrian XY is aligned using initial CARLA and AirSim positions; frames must share axes",
+    "No obstacle clearance or tracking lag inferred from these samples",
+    "CARLA ticks are simulation time; AirSim timing may not be synchronized"
+  ]
+}
