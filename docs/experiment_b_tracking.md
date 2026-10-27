@@ -102,6 +102,29 @@ validated measurement tolerances, not merely to obtain a passing run. This gates
 comparisons; it does **not** synchronize clocks or reconstruct exact simultaneous poses.
 Hardware/physics synchronization and interpolation require additional simulator support.
 
+### Diagnosing a setup timeout
+
+Tracking starts only after position error is <= `--start-tolerance` (default 0.3 m)
+and total speed is <=0.3 m/s continuously for `--settle-seconds` (default 1 s).
+Console output now prints the requested NED XYZ/height, initial travel distance,
+and one progress sample per second. `setup_telemetry.csv` retains all setup polling
+samples even when no tracking samples are collected. `summary.json` includes
+`setup_last_sample` and a detailed `abort_reason`.
+
+- Large or increasing XY error: verify the actual target, frame registration,
+  spectator placement, and unobstructed setup path.
+- Large height error: check the signed target and scene origin. A +25 m height
+  requests NED Z=-25; this differs from older -25 m-height experiments.
+- Error steadily decreasing with insufficient travel time: after checking the target,
+  increase `--setup-timeout` to cover travel and settling.
+- Position inside tolerance but speed too high: inspect control/physics stability
+  and competing API clients. Increasing the timeout alone may not help.
+- Persistent nonzero position error with near-zero speed: investigate the simulator's
+  position-controller stopping tolerance or obstructions before changing the gate.
+
+Do not bypass settling or widen tracking/safety thresholds to hide setup failure.
+Retry in a new output directory; existing results are preserved.
+
 Each run saves raw `telemetry.csv`, `summary.json`, and (with matplotlib)
 `tracking_metrics.png`. Outputs distinguish:
 

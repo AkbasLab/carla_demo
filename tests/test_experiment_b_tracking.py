@@ -145,3 +145,50 @@ def test_existing_results_preserved_before_simulator_connection(tmp_path, monkey
     with pytest.raises(FileExistsError):
         experiment.run(arguments(tmp_path))
     assert summary.read_text() == "existing research result"
+
+
+def setup_clock(monkeypatch):
+    clock = [0.]
+    monkeypatch.setattr(experiment, "time", NS(monotonic=lambda: clock[0],
+        sleep=lambda duration: clock.__setitem__(0, clock[0]+duration)))
+    return clock
+
+
+def setup_state(x=0., z=0., vx=0.):
+    return NS(kinematics_estimated=NS(position=NS(x_val=x,y_val=0.,z_val=z),
+              linear_velocity=NS(x_val=vx,y_val=0.,z_val=0.)))
+
+
+@pytest.mark.parametrize("state,expected", [
+    (setup_state(x=2), "last XY error=2.000 m"),
+    (setup_state(z=.5), "height error=0.500 m"),
+    (setup_state(vx=.6), "speed=0.600 m/s"),
+])
+def test_setup_timeout_reports_which_requirement_failed(monkeypatch, capsys, state, expected):
+    setup_clock(monkeypatch)
+    drone=Mock()
+    drone.getMultirotorState.return_value=state
+    samples=[]
+    with pytest.raises(TimeoutError, match=expected):
+        experiment.wait_until_settled(drone,(0.,0.,0.),.2,.1,.3,False,samples.append)
+    assert samples
+    assert "target NED XYZ=" in capsys.readouterr().out
+
+
+def test_setup_requires_continuous_settling_and_retains_samples(monkeypatch):
+    setup_clock(monkeypatch)
+    drone=Mock()
+    states=iter([setup_state(),setup_state(vx=1.),setup_state()])
+    drone.getMultirotorState.side_effect=lambda: next(states,setup_state())
+    samples=[]
+    experiment.wait_until_settled(drone,(0.,0.,0.),1.,.1,.3,False,samples.append)
+    assert samples[-1]["setup_elapsed_s"] >= .2
+    assert len(samples) >= 5
+
+
+def test_setup_rejects_nonfinite_pose(monkeypatch):
+    setup_clock(monkeypatch)
+    drone=Mock()
+    drone.getMultirotorState.return_value=setup_state(x=math.nan)
+    with pytest.raises(RuntimeError, match="Non-finite setup telemetry"):
+        experiment.wait_until_settled(drone,(0.,0.,0.),1.,.1,.3)
