@@ -100,24 +100,53 @@ def trailing_position(path,distance):
         remaining-=length
     return path[0]
 
-def wait_until_settled(drone,target,timeout,settle_seconds,tolerance,height_only=False):
+def wait_until_settled(drone,target,timeout,settle_seconds,tolerance,height_only=False,diagnostic_callback=None):
     """Require position and low speed continuously; refuse to score an unready start."""
-    deadline=time.monotonic()+timeout
+    started=time.monotonic()
+    deadline=started+timeout
     settled_since=None
+    last_sample=None
+    next_log=started
+    print(f"[Setup] target NED XYZ=({target[0]:.3f}, {target[1]:.3f}, {target[2]:.3f}); "
+          f"height={-target[2]:.3f} m relative to AirSim origin; "
+          f"tolerance={tolerance:g} m; speed<=0.3 m/s for {settle_seconds:g} s",flush=True)
     while time.monotonic()<deadline:
         state=drone.getMultirotorState()
         pos=state.kinematics_estimated.position
         vel=state.kinematics_estimated.linear_velocity
+        if not all(math.isfinite(v) for v in (pos.x_val,pos.y_val,pos.z_val,vel.x_val,vel.y_val,vel.z_val)):
+            raise RuntimeError("Non-finite setup telemetry; refusing to start tracking")
         error=abs(pos.z_val-target[2]) if height_only else math.dist((pos.x_val,pos.y_val,pos.z_val),target)
         speed=abs(vel.z_val) if height_only else math.sqrt(vel.x_val**2+vel.y_val**2+vel.z_val**2)
+        now=time.monotonic()
+        last_sample={"setup_elapsed_s":now-started,"drone_x":pos.x_val,"drone_y":pos.y_val,"drone_z":pos.z_val,
+                     "target_x":target[0],"target_y":target[1],"target_z":target[2],
+                     "xy_error_m":math.hypot(pos.x_val-target[0],pos.y_val-target[1]),
+                     "height_error_m":abs(pos.z_val-target[2]),"position_error_m":error,"speed_mps":speed,
+                     "vx":vel.x_val,"vy":vel.y_val,"vz":vel.z_val,
+                     "position_ready":int(error<=tolerance),"speed_ready":int(speed<=0.3)}
+        if diagnostic_callback is not None:
+            diagnostic_callback(last_sample)
+        if now>=next_log:
+            print(f"[Setup] t={now-started:.1f}s NED=({pos.x_val:.3f}, {pos.y_val:.3f}, {pos.z_val:.3f}) "
+                  f"XY error={last_sample['xy_error_m']:.3f} m; height error={last_sample['height_error_m']:.3f} m; "
+                  f"speed={speed:.3f} m/s",flush=True)
+            next_log=now+1.
         if error<=tolerance and speed<=0.3:
-            if settled_since is None: settled_since=time.monotonic()
-            if time.monotonic()-settled_since>=settle_seconds:
+            if settled_since is None: settled_since=now
+            if now-settled_since>=settle_seconds:
                 return
         else:
             settled_since=None
         time.sleep(0.05)
-    raise TimeoutError("Drone did not satisfy the setup gate; tracking was not started")
+    detail="No setup telemetry received"
+    if last_sample is not None:
+        detail=(f"last XY error={last_sample['xy_error_m']:.3f} m, "
+                f"height error={last_sample['height_error_m']:.3f} m, "
+                f"speed={last_sample['speed_mps']:.3f} m/s; "
+                f"required position error<={tolerance:g} m and speed<=0.3 m/s "
+                f"continuously for {settle_seconds:g} s")
+    raise TimeoutError(f"Drone did not satisfy the setup gate within {timeout:g}s: {detail}. Tracking was not started")
 
 def run(args):
     import carla, airsim
@@ -129,7 +158,7 @@ def run(args):
                               args.max_acceleration)
     output = Path(args.output_dir)
     output.mkdir(parents=True, exist_ok=True)
-    if any((output/name).exists() for name in ("telemetry.csv", "summary.json", "tracking_metrics.png")):
+    if any((output/name).exists() for name in ("telemetry.csv", "summary.json", "tracking_metrics.png", "setup_telemetry.csv")):
         raise FileExistsError("Choose a new output directory; existing experiment artifacts will not be overwritten")
     client = carla.Client(args.carla_host, args.carla_port)
     client.set_timeout(args.rpc_timeout)
@@ -137,6 +166,7 @@ def run(args):
     original = world.get_settings()
     walker = drone = None
     rows = []
+    setup_samples = []
     completed = setup_completed = False
     abort_reason = None
     setup_duration_s = measurement_start_height = None
@@ -191,9 +221,16 @@ def run(args):
         command_height = min(args.z_max-args.safety_margin,
                              max(args.height_min+args.safety_margin, args.target_height)) if args.oba else args.target_height
         start_target = (*start_xy, -command_height)
+        setup_position=drone.getMultirotorState().kinematics_estimated.position
+        setup_distance=math.dist((setup_position.x_val,setup_position.y_val,setup_position.z_val),start_target)
+        print(f"[Setup] move distance={setup_distance:.2f} m at requested speed={args.drone_speed:g} m/s; "
+              f"timeout={args.setup_timeout:g}s",flush=True)
+        if setup_distance/args.drone_speed+args.settle_seconds>args.setup_timeout:
+            print("[Setup] Warning: ideal travel time plus settling exceeds timeout. "
+                  "Check calibration/target coordinates before increasing --setup-timeout.",flush=True)
         drone.moveToPositionAsync(*start_target, velocity=args.drone_speed, timeout_sec=args.setup_timeout)
         wait_until_settled(drone, start_target, args.setup_timeout,
-                           args.settle_seconds, args.start_tolerance)
+                           args.settle_seconds, args.start_tolerance, False, setup_samples.append)
         setup_duration_s = time.monotonic()-setup_start
         setup_completed = True
         baseline_state = drone.getMultirotorState()
@@ -316,6 +353,11 @@ def run(args):
         except Exception as exc:
             abort_reason = abort_reason or f"Recovery failed: {exc}"
         try:
+            if setup_samples:
+                with (output/"setup_telemetry.csv").open("w", newline="") as f:
+                    writer = csv.DictWriter(f, fieldnames=list(setup_samples[0]))
+                    writer.writeheader()
+                    writer.writerows(setup_samples)
             if rows:
                 with (output/"telemetry.csv").open("w", newline="") as f:
                     writer = csv.DictWriter(f, fieldnames=list(rows[0]))
@@ -327,6 +369,7 @@ def run(args):
                 configuration=vars(args),
                 follow_mode=args.follow_mode,setup_gate="full_position_and_speed",setup_completed=setup_completed,
                 setup_duration_s=setup_duration_s,measurement_start_height_m=measurement_start_height,
+                setup_last_sample=setup_samples[-1] if setup_samples else None,
                 target_height_m=args.target_height,z_max_m=args.z_max,height_min_m=args.height_min,
                 minimum_separation_m=args.minimum_separation,safety_margin_m=args.safety_margin,
                 frame_calibrated=calibrated,frame_verified=args.frame_verified,
