@@ -56,3 +56,7 @@ Tests cover geometry (including intersections missed by midpoint checks), descen
 ```
 PYTHONPATH=. python -u scripts/run_experiment_d_resilience.py   --loss 1.0   --inject-at 5   --duration 30   --timeout 2   --recovery hover   --seed 42   --output-dir results/experiment_d/loss100_hover_seed42
 ```
+
+## Optional flight-bound expansion
+
+Pass `--expand-flight-bounds` to expand each configured AirSim NED axis to at least [-100, +100] meters. Already wider bounds are preserved. The source JSON is not edited, keepouts and landing-site validation remain active, and console/summary show the effective bounds. Without this option the configured bounds are unchanged. Expanded bounds change the boundary-preservation benchmark and do not verify scene clearance. Use identical effective bounds in all comparison arms. Initial-route rejection now includes the current position, target, and effective bounds.

@@ -41,6 +41,29 @@ class GeometryTests(unittest.TestCase):
         self.assertTrue(self.g.violations((0, 0, -25)))
 
 
+class BoundExpansionTests(unittest.TestCase):
+    def test_expansion_preserves_other_configuration_and_source(self):
+        spec = importlib.util.spec_from_file_location('experiment_d_bounds', ROOT / 'scripts/run_experiment_d_resilience.py')
+        m = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(m)
+        with tempfile.TemporaryDirectory() as d:
+            path = Path(d) / 'bounds.json'
+            cfg = copy.deepcopy(CONFIG)
+            cfg['flight_bounds']['x_min'] = -200
+            path.write_text(json.dumps(cfg))
+            self.assertEqual(m.load_boundary_config(path), cfg)
+            expanded = m.load_boundary_config(path, True)
+            self.assertEqual(expanded['flight_bounds']['x_min'], -200)
+            self.assertEqual(expanded['flight_bounds']['z_min'], -100)
+            self.assertEqual(expanded['flight_bounds']['z_max'], 100)
+            self.assertEqual(expanded['keepouts'], cfg['keepouts'])
+            self.assertEqual(expanded['landing_site'], cfg['landing_site'])
+            self.assertEqual(json.loads(path.read_text()), cfg)
+            guardian = RecoveryGuardian.from_config(expanded)
+            self.assertTrue(guardian.inside((50, 50, 0)))
+            self.assertFalse(guardian.inside((101, 0, 0)))
+
+
 class IntegrationTests(unittest.TestCase):
     def exercise(self, mode, loss, collision=False):
         spec = importlib.util.spec_from_file_location('experiment_d', ROOT / 'scripts/run_experiment_d_resilience.py')

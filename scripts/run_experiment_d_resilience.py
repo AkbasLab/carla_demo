@@ -22,10 +22,22 @@ def xyz(vector):
     return (vector.x_val, vector.y_val, vector.z_val)
 
 
+def load_boundary_config(path, expand=False):
+    config = json.loads(Path(path).read_text())
+    if expand:
+        # Expand each axis to at least [-100, 100] NED meters; never shrink a wider box.
+        for axis in 'xyz':
+            bounds = config['flight_bounds']
+            bounds[axis + '_min'] = min(bounds[axis + '_min'], -100.)
+            bounds[axis + '_max'] = max(bounds[axis + '_max'], 100.)
+    return config
+
+
 def run(args):
     import airsim
     import carla
-    config = json.loads(Path(args.boundary_config).read_text())
+    config = load_boundary_config(args.boundary_config, args.expand_flight_bounds)
+    print(f"[D] Effective AirSim NED flight bounds: {config['flight_bounds']}", flush=True)
     guardian = RecoveryGuardian.from_config(config)
     if args.recovery == 'oba-land' and guardian.site.get('surveyed_clear') is not True:
         raise ValueError('Configure a surveyed-clear landing site before using oba-land')
@@ -77,7 +89,7 @@ def run(args):
         initial = xyz(air.getMultirotorState().kinematics_estimated.position)
         ok, reason = guardian.check_segment(initial, route[0])
         if not ok:
-            raise ValueError('Initial setup route rejected: ' + reason)
+            raise ValueError(f'Initial setup route rejected: {reason}; current={initial}; target={route[0]}; bounds={guardian.bounds}')
         air.takeoffAsync(timeout_sec=args.setup_timeout).join()
         air.moveToPositionAsync(*route[0], velocity=args.speed,
                                 timeout_sec=args.setup_timeout)
@@ -265,6 +277,8 @@ def run(args):
 def parse_args():
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument('--boundary-config', required=True)
+    p.add_argument('--expand-flight-bounds', action='store_true',
+                   help='Expand each configured NED axis to at least [-100, 100] meters; preserve keepouts and landing checks')
     p.add_argument('--output-dir', required=True)
     p.add_argument('--recovery', choices=['none', 'hover', 'oba-land'], default='hover')
     for name, default in [('loss', 0.5), ('inject-at', 5.), ('duration', 45.), ('timeout', 2.),
