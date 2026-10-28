@@ -52,3 +52,7 @@ python -m unittest discover -s tests -p 'test_experiment_d_recovery.py' -v
 ```
 
 Tests cover geometry (including intersections missed by midpoint checks), descent clearance, invalid/unapproved sites, ground-coordinate offsets, loss-triggered landing, no-loss controls, disabled recovery, and collision blocking using simulated API responses. Live CARLA–AirSim flight validation is still required.
+
+```
+PYTHONPATH=. python -u scripts/run_experiment_d_resilience.py   --loss 1.0   --inject-at 5   --duration 30   --timeout 2   --recovery hover   --seed 42   --output-dir results/experiment_d/loss100_hover_seed42
+```
