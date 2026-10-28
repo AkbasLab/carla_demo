@@ -1,6 +1,6 @@
 # Experiment D: communication resilience with OBA landing recovery
 
-`scripts/run_experiment_d_resilience.py` now compares `--recovery none`, `hover`, and `oba-land` using the same bounded shuttle mission, heartbeat injection, and output schema. Start CARLA–AirSim and run from the repository root. No LLM is used. This is an application heartbeat fault, not an outage of AirSim RPC or actual RF.
+`scripts/run_experiment_d_resilience.py` now compares `--recovery none`, `hover`, and `oba-land` using the same bounded shuttle mission, heartbeat injection, and output schema. Start CARLA–AirSim and run from the repository root. LLM mission commands are optional; recovery remains deterministic. This is an application heartbeat fault, not an outage of AirSim RPC or actual RF.
 
 ## Calibrate the scene first
 
@@ -60,3 +60,41 @@ PYTHONPATH=. python -u scripts/run_experiment_d_resilience.py   --loss 1.0   --i
 ## Optional flight-bound expansion
 
 Pass `--expand-flight-bounds` to expand each configured AirSim NED axis to at least [-100, +100] meters. Already wider bounds are preserved. The source JSON is not edited, keepouts and landing-site validation remain active, and console/summary show the effective bounds. Without this option the configured bounds are unchanged. Expanded bounds change the boundary-preservation benchmark and do not verify scene clearance. Use identical effective bounds in all comparison arms. Initial-route rejection now includes the current position, target, and effective bounds.
+
+## LLM commands with the hover-on-timeout baseline (v3)
+
+Run Ollama locally at `http://localhost:11434` with `llama3.1:latest` installed. The script uses the local Ollama HTTP endpoint with a bounded request timeout, without needing a new Python SDK. Start Ollama separately (`ollama serve` if it is not running) and install the model with `ollama pull llama3.1:latest`.
+
+```bash
+python -u scripts/run_experiment_d_resilience.py \
+  --boundary-config configs/experiments/d_resilience.local.json \
+  --expand-flight-bounds --communication-only \
+  --command-source llm --llm-provider ollama --llm-model llama3.1:latest \
+  --recovery hover --loss 1 --inject-at 5 --timeout 2 \
+  --duration 45 --seed 42 \
+  --output-dir results/experiment_d/llm_hover_loss100
+```
+
+The LLM proposes absolute XYZ NED waypoints; it cannot issue arbitrary flight actions or recovery commands. Structured responses must contain exactly `{"target":[x,y,z]}` with finite numbers. Sequence numbers, creation/expiry times, and receiver latching are generated and enforced in deterministic code. These are protocol validation, not OBA spatial validation. In `--communication-only` hover/none trials, configured geometry is recorded but not used to approve setup/flight or hover observation. The calibrated site and cruise-height settings are still used for initial positioning. Do not use that switch with `oba-land`.
+
+A single daemon worker handles LLM inference outside the control loop. Heartbeats continue independently; LLM errors or latency do not themselves create heartbeat loss. `--llm-timeout`, `--llm-interval`, and `--command-ttl` default to 15, 3, and 20 seconds. Validity starts when the request is submitted, so very slow results can expire before delivery. Only one request is in flight; cleanup signals cancellation without waiting for an active request to finish. No live inference call is made by automated tests.
+
+Fault injection now applies the same per-tick delivery gate to both command packets and heartbeats (correlated loss at that application timestep, not independent packet-by-packet transport). With `--loss 1`, new LLM commands are dropped after injection; any active movement can continue until the local watchdog issues hover. Late commands are suppressed after recovery latches. An RPC outage or blocked RPC can still impair the local control loop: the asynchronous LLM design is not an onboard watchdog guarantee.
+
+Outputs add `commands.json`, `replay_commands.json`, command decisions/counts, inference latency, speed at first loss, and number of LLM/replay commands dispatched before loss. Confirm a command was dispatched and meaningful motion occurred before injection; otherwise the run does not test stopping from LLM-directed flight. Increase `--inject-at` consistently across comparison arms if a cold model needs longer. Slow hover observation counts separately from collision/boundary safety (`sustained_hover_observed` versus `recovery_success`). Collisions do not block the hover command.
+
+For paired trials, reuse a captured proposal schedule:
+
+```bash
+python -u scripts/run_experiment_d_resilience.py \
+  --boundary-config configs/experiments/d_resilience.local.json \
+  --expand-flight-bounds --communication-only \
+  --command-source replay \
+  --replay-file results/experiment_d/llm_hover_loss100/replay_commands.json \
+  --recovery hover --loss 0 --duration 45 --seed 42 \
+  --output-dir results/experiment_d/replay_hover_loss0
+```
+
+Replay records have `at_s` (arrival relative to measurement start), `created_at_s` (request creation), and `target`. The raw proposal schedule includes dropped, expired, and suppressed responses. It reproduces proposals that were observed, not an entire hypothetical mission after a live trial stopped requesting commands. For full-duration paired comparisons, capture an adequate schedule from a no-loss live trial first, then replay it with each fault schedule. No LLM API calls are made in replay mode.
+
+OpenAI is optional: install `openai`, set `OPENAI_API_KEY` in your environment, and use `--llm-provider openai --llm-model gpt-4o-mini`. Keys are not written to result files. The mission prompt and vehicle-state context are sent to the selected provider; results record provider/model and prompt for reproducibility. Live outputs may vary even with an identical injection seed.

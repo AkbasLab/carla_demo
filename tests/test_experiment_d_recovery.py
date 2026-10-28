@@ -65,7 +65,7 @@ class BoundExpansionTests(unittest.TestCase):
 
 
 class IntegrationTests(unittest.TestCase):
-    def exercise(self, mode, loss, collision=False):
+    def exercise(self, mode, loss, collision=False, llm=False):
         spec = importlib.util.spec_from_file_location('experiment_d', ROOT / 'scripts/run_experiment_d_resilience.py')
         m = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(m)
@@ -93,6 +93,16 @@ class IntegrationTests(unittest.TestCase):
             def simGetCollisionInfo(self):
                 hit = collision and clock.t > 2
                 return N(has_collided=hit, time_stamp=1 if hit else 0)
+        class Worker:
+            def __init__(self, *a): self.pending=None
+            def submit(self, sequence, state):
+                self.pending=(sequence,clock.t,clock.t+(.1 if sequence==1 else 3))
+            def poll(self):
+                if self.pending is None or clock.t<self.pending[2]: return None
+                sequence,created,_=self.pending;self.pending=None
+                return dict(sequence=sequence,target=(10,0,25),created_at=created,
+                            expires_at=created+20,inference_latency_s=clock.t-created)
+            def close(self): pass
         air = Air()
         settings=N(synchronous_mode=True)
         world=N(get_settings=lambda:copy.copy(settings),apply_settings=lambda x:None,
@@ -105,7 +115,9 @@ class IntegrationTests(unittest.TestCase):
             argv=['run','--boundary-config',str(cfg),'--output-dir',d,'--recovery',mode,
                   '--loss',str(loss),'--duration','10','--inject-at','1','--timeout','1',
                   '--stable-seconds','.3','--log-every','1000']
-            with patch('sys.argv',argv),patch.object(m,'time',clock),patch.dict('sys.modules',{'airsim':airsim,'carla':carla}):
+            if llm:
+                argv += ['--command-source','llm','--communication-only','--llm-interval','0.5']
+            with patch.object(m,'LLMCommandWorker',Worker),patch('sys.argv',argv),patch.object(m,'time',clock),patch.dict('sys.modules',{'airsim':airsim,'carla':carla}):
                 m.run(m.parse_args())
             return json.loads((Path(d)/'summary.json').read_text()),air.lands
 
@@ -128,6 +140,15 @@ class IntegrationTests(unittest.TestCase):
         self.assertIsNotNone(s['failsafe_detection_s'])
         self.assertEqual(lands,0)
         self.assertFalse(s['recovery_success'])
+
+    def test_llm_late_command_cannot_cancel_hover(self):
+        s,lands=self.exercise('hover',1,llm=True)
+        decisions=[c['decision'] for c in s['command_events']]
+        self.assertIn('accepted',decisions)
+        self.assertIn('suppressed_after_timeout',decisions)
+        self.assertTrue(s['sustained_hover_observed'])
+        self.assertEqual(lands,0)
+        self.assertLess(s['failsafe_detection_s'],3)
 
     def test_collision_blocks_landing(self):
         s,lands=self.exercise('oba-land',1,collision=True)
