@@ -98,3 +98,18 @@ python -u scripts/run_experiment_d_resilience.py \
 Replay records have `at_s` (arrival relative to measurement start), `created_at_s` (request creation), and `target`. The raw proposal schedule includes dropped, expired, and suppressed responses. It reproduces proposals that were observed, not an entire hypothetical mission after a live trial stopped requesting commands. For full-duration paired comparisons, capture an adequate schedule from a no-loss live trial first, then replay it with each fault schedule. No LLM API calls are made in replay mode.
 
 OpenAI is optional: install `openai`, set `OPENAI_API_KEY` in your environment, and use `--llm-provider openai --llm-model gpt-4o-mini`. Keys are not written to result files. The mission prompt and vehicle-state context are sent to the selected provider; results record provider/model and prompt for reproducibility. Live outputs may vary even with an identical injection seed.
+
+## Automatic plots and plotting existing results
+
+New runs automatically save `resilience_metrics.png`, `resilience_metrics.pdf`, and `plot_metrics.json` in the output directory after simulator cleanup. Use `--no-plots` to skip this step. Plotting failures are reported without discarding telemetry. Matplotlib is required; no simulator, Ollama, or API key is required to plot saved results.
+
+To plot an existing run:
+
+```bash
+python scripts/plot_experiment_d_resilience.py \
+  --result-dir results/experiment_d/llm_hover_loss100
+```
+
+The six panels show speed with stopping threshold, heartbeat age with timeout threshold, XY trajectory with recovery interval, command receiver decisions, height above the configured ground (or origin-relative height for older data), and completed/failed inference latency. Time panels mark configured injection, first undelivered heartbeat, timeout, and observed stable recovery where available. Unobserved milestones are omitted, not fabricated. All curves use raw sampled telemetry, without smoothing or clipping. Command-free and older runs show unavailable-data labels. No-recovery arms label a timeout without implying a hover command.
+
+`plot_metrics.json` adds sampled 3D path length and net displacement from detection through stable-recovery confirmation. This interval includes the stability dwell; it is not an exact braking-distance estimate. Values are null when recovery is unobserved or too few position samples are available. Plotting does not modify `summary.json` or raw telemetry. The plotting utility is per-run; cross-trial success-rate and loss-rate comparison figures require aggregated runs and are not generated here.
