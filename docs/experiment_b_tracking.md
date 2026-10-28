@@ -1,159 +1,56 @@
-# Experiment B: tracking and sampled boundary monitoring (v6)
+# Experiment B: live CARLA–AirSim pedestrian tracking
 
-Run `scripts/run_experiment_b_tracking.py` from the repository root with a compatible
-CARLA/AirSim pair in a clear test area. This version changes the reference, control,
-setup gate, and validity criteria; do not pool its results with the archived v5 runs.
-Existing results are retained unchanged.
-
-## Coordinate registration is a prerequisite
-
-The old runner mapped the initial pedestrian XY directly onto the initial drone XY.
-That displacement mapping supports relative trajectory comparisons but cannot establish
-physical pedestrian clearance. Guarded runs now require an independently verified
-static registration:
-
-```
-airsim_x = cos(yaw)*carla_x - sin(yaw)*carla_y + offset_x
-airsim_y = sin(yaw)*carla_x + cos(yaw)*carla_y + offset_y
-```
-
-Angles are degrees, coordinates are meters. Determine rotation/translation from known
-corresponding landmarks or simulator transforms and check additional landmarks not used
-for calibration. `--frame-verified` records the operator's verification; the script cannot
-perform it or detect incorrect calibration. A reflected or differently scaled frame must
-be corrected before using this rotation/translation model. Never copy zero offsets unless
-independently verified. Unguarded runs without calibration retain the legacy relative
-mapping, but cannot pass tracking validity or sampled boundary compliance.
-
-Height is **-AirSim NED Z relative to the AirSim origin**, not terrain clearance.
-The default target is now **+25 m** (NED Z=-25), replacing the old signed -25 m
-(NED Z=+25). The default floor/ceiling are 0/30 m in that same origin-relative frame.
-Verify the origin against the scene and set `--height-min`, `--z-max`, and
-`--target-height` accordingly. This runner does not observe terrain or obstacles.
-
-## Define a consistent envelope
-
-Defaults conservatively interpret pedestrian clearance as **horizontal separation**:
-
-- `--minimum-separation 3`: minimum XY distance, distinct from tracking accuracy.
-- `--safety-margin 0.5`: reserve outside the boundary.
-- `--follow-distance 5`: desired path distance; a guarded 1 m request is rejected.
-- `--prediction-horizon 0.5`: seconds of constant-velocity lookahead.
-- `--max-acceleration 2`: horizontal command slew limit and assumed braking acceleration.
-
-These are engineering settings, not a validated interpretation of every threshold in the
-paper. If the research definition is vertical or 3D clearance, implement that definition
-explicitly before making equivalent claims. Verify braking assumptions experimentally;
-command slew limits do not prove physical braking performance. At corners, the path target
-is projected outside the minimum-plus-margin disk when needed. This changes the reference
-and is logged as an intervention. There is no maximum separation safety constraint here.
-
-## Example guarded run
-
-After supplying your actual calibration, use:
+Script: `scripts/run_experiment_b_tracking.py`. Run from the repository root with CARLA and AirSim running.
 
 ```bash
-python scripts/run_experiment_b_tracking.py \
-  --scenario rectangle --oba \
-  --frame-offset-x "$CALIBRATED_OFFSET_X" \
-  --frame-offset-y "$CALIBRATED_OFFSET_Y" \
-  --frame-yaw-deg "$CALIBRATED_YAW_DEG" --frame-verified \
-  --minimum-separation 3 --safety-margin 0.5 --follow-distance 5 \
-  --height-min 0 --z-max 30 --target-height 25 \
-  --output-dir results/experiment_b/rectangle_v6_trial1
+python scripts/run_experiment_b_tracking.py --scenario rectangle --oba --output-dir results/experiment_b/rectangle_guarded
+python scripts/run_experiment_b_tracking.py --scenario rectangle --output-dir results/experiment_b/rectangle_unguarded
+python scripts/run_experiment_b_tracking.py --scenario zigzag --oba --output-dir results/experiment_b/zigzag_guarded
+python scripts/run_experiment_b_tracking.py --scenario zigzag --output-dir results/experiment_b/zigzag_unguarded
 ```
 
-These shell variables are local non-secret calibration values, not automatically supplied
-by the environment. The script requires CARLA's Python client and AirSim; no live simulator
-validation is implied by the example. Remove `--oba` for a controlled unguarded comparison,
-retaining calibration, controller, reference, timing settings, and initial scene. Unguarded
-runs deliberately do not enforce the safety envelope; use an isolated simulation only.
+Each run with telemetry outputs `telemetry.csv`, `summary.json`, and `tracking_metrics.png` (requires `matplotlib`). The plot includes XY trajectories, tracking error with RMSE/P95, horizontal pedestrian–drone separation with RMS, and actual/commanded altitude with the ceiling. Partial runs are labeled; plots are saved before simulator cleanup. A blocked loop must return or be interrupted before these outputs are written. Plot failures do not prevent simulator cleanup.
 
-## Setup, control, and recovery
+The default horizontal follow distance is **1 m** (previously 2 m); override with `--follow-distance`. Default target height is now -25 m relative to the AirSim origin (AirSim NED Z = +25 m). This changes the desired offset, not a guaranteed physical clearance.
 
-Before arming, guarded runs reject a straight setup segment intersecting the stationary
-pedestrian's protected disk. Full XYZ settling within 0.3 m and speed <=0.3 m/s for 1 s
-is required before measurement; startup acquisition errors are excluded explicitly.
+Tracking RMSE is `sqrt(mean((drone_x-target_x)^2 + (drone_y-target_y)^2))`. Lower values mean better tracking. RMS pedestrian–drone XY separation is `sqrt(mean((drone_x-ped_x)^2 + (drone_y-ped_y)^2))`. It measures typical horizontal separation, emphasizes larger distances, and is not tracking error: ideal following at 2 m has tracking RMSE 0 m and RMS separation 2 m. Both use the mapped coordinates described below.
 
-During tracking, CARLA is stepped at 20 Hz. A proportional position controller plus
-measured pedestrian-velocity feedforward issues short-lived AirSim velocity commands.
-Horizontal speed and changes from measured velocity are bounded; vertical velocity has
-a separate proportional gain and speed limit. Defaults: XY speed 3 m/s, gains 0.8/s,
-vertical speed 1 m/s, command duration 0.15 s. These replace asynchronous position-command
-refreshes/deadbands; the old `--command-interval` setting is no longer used.
+The script connects to CARLA at localhost:2000 and AirSim's default MultirotorClient, spawns a pedestrian relative to the CARLA spectator, enables CARLA synchronous 20-Hz stepping, and restores the original world settings on exit.
 
-Every update checks measured height/separation and closest predicted XY approach under
-both measured velocity and the proposed command. Closing-speed stopping distance adds to
-the configured reserve. Predicted height is checked for current and commanded vertical
-velocity. Risk, invalid telemetry, or timing failure aborts a guarded trial with nonzero
-exit status. The runner stops the pedestrian, cancels the last flight task, and requests
-hover, then restores CARLA settings. It **leaves API control active for operator recovery**
-instead of automatically landing on unknown terrain. Recovery is best effort, not a proof
-of safety; a target that can independently move into the drone needs a validated evasive
-controller. The simulated pedestrian is destroyed after output generation.
+**Interpretation:** Tracking target error is the horizontal distance between actual drone XY and desired offset-follow XY, not drone-to-pedestrian distance. Pedestrian-to-drone XY separation is reported separately. A tracking run is complete if the requested ticks execute; this is not a mission success criterion. The altitude guardian only clamps the target Z when `--oba` is supplied; at default target height 3 m and ceiling 30 m it will not intervene. Therefore guarded/unguarded trajectories should be similar and the experiment **cannot demonstrate obstacle avoidance or generalized OBA efficacy** without further constraints. Altitude violations are sampled from drone telemetry. Guardian timing is a minimal local altitude clamp and not the existing Phase 6 full guardian.
 
-## Timing and output interpretation
+**Limitations:** The CARLA-to-AirSim mapping assumes axes are aligned, using initial positions and displacement only. It does not estimate a frame rotation, so verify alignment before publishing results. CARLA synchronous ticks are not synchronized with AirSim time; 400 ticks represent 20 s of CARLA simulation time, not necessarily 20 s of real flight. No tracking-lag estimate or obstacle-clearance metric is computed. The script does not enforce deterministic simulator reset or seeded repeated trials. Avoid interpreting horizontal pedestrian-to-drone separation as collision clearance because vertical separation is ignored. Review telemetry before making claims.
 
-Pedestrian poses come from the tick's CARLA snapshot. Telemetry includes actual CARLA
-simulation elapsed time, AirSim elapsed time, their relative drift, and host acquisition
-latency. Guarded runs reject nonadvancing AirSim timestamps, drift >0.1 s, or acquisition
-latency >0.1 s by default. Configure `--max-clock-skew` and `--max-telemetry-latency` from
-validated measurement tolerances, not merely to obtain a passing run. This gates uncertain
-comparisons; it does **not** synchronize clocks or reconstruct exact simultaneous poses.
-Hardware/physics synchronization and interpolation require additional simulator support.
+For publication, run repeated trials with controlled start state, add independent boundary constraints that can actually activate, and independently validate physical collisions and coordinate alignment.
 
-### Diagnosing a setup timeout
+## Setup and measurement phases
 
-Tracking starts only after position error is <= `--start-tolerance` (default 0.3 m)
-and total speed is <=0.3 m/s continuously for `--settle-seconds` (default 1 s).
-Console output now prints the requested NED XYZ/height, initial travel distance,
-and one progress sample per second. `setup_telemetry.csv` retains all setup polling
-samples even when no tracking samples are collected. `summary.json` includes
-`setup_last_sample` and a detailed `abort_reason`.
+Takeoff and positioning now run with CARLA asynchronous stepping, before measurement. The pedestrian remains uncontrolled/stationary during setup. The drone must reach the initial mapped follow position and commanded altitude, within 0.3 m in 3D with speed at most 0.3 m/s, continuously for 1 s. Failure to settle aborts the tracking phase rather than scoring startup motion. Configure `--setup-timeout`, `--start-tolerance`, and `--settle-seconds` as needed. AirSim RPCs use `--rpc-timeout` (15 s by default); an RPC in progress can extend a polling deadline by its timeout. Setup does not validate physical coordinate registration or ground clearance.
 
-- Large or increasing XY error: verify the actual target, frame registration,
-  spectator placement, and unobstructed setup path.
-- Large height error: check the signed target and scene origin. A +25 m height
-  requests NED Z=-25; this differs from older -25 m-height experiments.
-- Error steadily decreasing with insufficient travel time: after checking the target,
-  increase `--setup-timeout` to cover travel and settling.
-- Position inside tolerance but speed too high: inspect control/physics stability
-  and competing API clients. Increasing the timeout alone may not help.
-- Persistent nonzero position error with near-zero speed: investigate the simulator's
-  position-controller stopping tolerance or obstructions before changing the gate.
+Defaults are now `--follow-distance 1 --drone-speed 4 --command-interval 0.1`. The pedestrian speed remains 1.4 m/s. CARLA tracking ticks are paced against wall time at 20 Hz; overloaded ticks are not skipped, and this does not synchronize AirSim physics. Telemetry adds `wall_elapsed_s` and `airsim_elapsed_s`; compare them with `carla_sim_time_s` before interpreting results. Summary records setup completion/duration and controller settings. Landing uses asynchronous CARLA stepping, then restores the original world settings.
 
-Do not bypass settling or widen tracking/safety thresholds to hide setup failure.
-Retry in a new output directory; existing results are preserved.
+The original coordinate mapping remains fixed during prepositioning. Horizontal distances are still mapped estimates, not validated physical separation. Rectangle heading changes still cause discontinuous target offsets; reducing the offset reduces these jumps but does not remove them. Compare repeated runs under the same timing, initial state, speed, and distance settings; changing defaults changes the benchmark conditions.
 
-Each run saves raw `telemetry.csv`, `summary.json`, and (with matplotlib)
-`tracking_metrics.png`. Outputs distinguish:
+## Continuous path-following target (v3)
 
-- `completed`: requested measurement ticks executed.
-- `tracking_criteria_passed`: completed, settled, verified calibration, valid timing,
-  XY target RMSE <=1 m and P95 <=2 m (configurable).
-- `sampled_boundary_compliance`: completed with valid timing/calibration, no abort,
-  no sampled separation or height violations. This is not a formal safety certificate.
-- Violation counts, sample-interval-based violation duration, reasons for abort/intervention,
-  max clock skew/acquisition latency, guardian computation time, and controller settings.
+Default `--follow-mode path` places the desired drone XY position 1 m behind along the mapped pedestrian's traveled polyline, interpolated between samples. An initial virtual straight segment defines the offset before the pedestrian has traveled that distance. This removes the artificial target teleport at each heading change. At corners the Euclidean XY separation can be less than the requested path distance. Use `--follow-mode heading` to reproduce the old reference definition. The reference definition changes the benchmark; compare runs with the same mode, and keep all measured samples.
 
-RMS pedestrian separation is not tracking RMSE. Plots show the configured minimum
-horizontal distance, height bounds, and distinct timing/tracking/boundary outcomes.
-No between-sample collision, obstacle, terrain, maximum following-distance, or moving-target
-safety guarantee is evaluated. Continuous checks here mean checks on each sampled control
-update, not continuous-time verification.
+Outputs identify `script_version`, a source SHA-256, setup completion, and follow mode. The provisional acceptance settings are `--acceptance-rmse 1 --acceptance-p95 2` (meters); these are configurable engineering goals, not a validated standard. `tracking_criteria_passed` requires a complete run, successful setup, and both limits. It does not certify physical safety, timing alignment, or OBA efficacy. The altitude plot labels the ceiling without forcing the vertical scale to 30 m, making tracking-height changes easier to inspect. Metrics remain computed from unfiltered telemetry.
 
-## Validation and research protocol
+## Height gate at -25 m (v4)
 
-Run simulator-free tests:
+`--target-height` is a signed height relative to the AirSim origin, matching the plotted `-drone_z` value. The default is now **-25 m**, corresponding to **+25 m AirSim NED Z**. For a plotted starting height of -28 m this requests a 3 m upward change, rather than a climb to +3 m. This is not height above terrain; verify the origin and scene before flight. To command NED Z=-25 m instead, use `--target-height 25`.
 
-```bash
-PYTHONDONTWRITEBYTECODE=1 python -m pytest -q -p no:cacheprovider tests/test_experiment_b_tracking.py
-```
+The existing setup gate checks the full 3D starting position (including the commanded height) within `--start-tolerance` (0.3 m), with low speed for `--settle-seconds` (1 s), before starting pedestrian movement or collecting samples. Default 400 tracking ticks then measure 20 s of CARLA time, excluding takeoff and settling. Summary adds `measurement_start_height_m` and the height convention. Console and plots identify `experiment-b-height-minus25-v4`. The altitude-only guardian still limits heights above its positive ceiling; it has no terrain or lower-bound check.
 
-Tests cover geometry, braking lookahead, command limits, configuration rejection,
-non-finite data, command dispatch, stale-clock abort, and cleanup using fake simulator APIs.
-They do not verify real physics or control stability. For publication, use live repeated
-trials with fixed scene initialization, verified frames/time tolerances, deliberate boundary
-challenges, and independent trajectory-based violation checks. Compare unguarded,
-pre-dispatch-only, and sampled runtime monitoring under matching conditions. Retain failures
-and interrupted trials; do not retune acceptance thresholds after observing results.
+## Larger rectangle and height-triggered walking (v5)
+
+Default `--rectangle-area-scale 5` scales each side by sqrt(5), not five. At nominal pedestrian speed 1.4 m/s, the original 7 m square becomes approximately 15.65 m per side (245 square meters versus 49). Each leg uses 224 ticks; commanded walking speed is adjusted slightly (about 1.398 m/s) to compensate tick rounding. This defines the nominal commanded geometry; collisions and simulator behavior may change the actual path.
+
+By default rectangle runs now measure one full lap: 896 ticks, or **44.8 seconds of CARLA simulation time**, excluding setup. `--ticks 400` retains a 20-second measurement window but will only cover part of this larger rectangle at the same walking speed. Zigzag defaults remain 400 ticks. Setup now waits only for commanded height within 0.3 m and vertical speed at most 0.3 m/s for 0.2 seconds, then starts pedestrian movement and measurement together; no wait for horizontal following position. Consequently initial horizontal acquisition errors remain in metrics. Setup may still require takeoff and vertical travel. `--settle-seconds` overrides the short height stability window. The initial virtual path segment retains the requested follow distance.
+
+Console and plots identify `experiment-b-large-rectangle-v5`. Summary records the height-only gate, area scale, leg ticks, effective commanded pedestrian speed, and requested tracking duration. Earlier full-3D setup and 20-second rectangle defaults documented above describe older versions.
+
+## Plot display ranges
+
+Tracking-error, horizontal-separation, and altitude panels now display three times their original automatic Y-axis span. Distance panels start at zero; altitude expands around the original midpoint. The XY trajectory panel is unchanged. The figure labels the expanded metric-panel ranges. Telemetry, summary statistics, and acceptance criteria are unchanged.
