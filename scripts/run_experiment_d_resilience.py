@@ -352,6 +352,12 @@ def run(args):
                     print('[D] Cleanup excluded from metrics; landed vehicle disarmed.' if phase == 'landed' else '[D] Unlanded vehicle hovering under API control; manage it after the test.', flush=True)
             finally:
                 world.apply_settings(previous)
+        if not args.no_plots:
+            try:
+                from scripts.plot_experiment_d_resilience import generate_plots
+                print(f'[D] Plot saved: {generate_plots(out)}', flush=True)
+            except Exception as exc:
+                print(f'[D] Plot generation warning: {exc}; raw results remain saved.', flush=True)
 
 
 def parse_args():
@@ -360,6 +366,7 @@ def parse_args():
     p.add_argument('--expand-flight-bounds', action='store_true',
                    help='Expand each configured NED axis to at least [-100, 100] meters; preserve keepouts and landing checks')
     p.add_argument('--output-dir', required=True)
+    p.add_argument('--no-plots', action='store_true', help='Skip automatic post-run plotting')
     p.add_argument('--recovery', choices=['none', 'hover', 'oba-land'], default='hover')
     for name, default in [('loss', 0.5), ('inject-at', 5.), ('duration', 45.), ('timeout', 2.),
                           ('hz', 10.), ('rf-range', 60.), ('safe-speed', 0.25), ('speed', 2.),

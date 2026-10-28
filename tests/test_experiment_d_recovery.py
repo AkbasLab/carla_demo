@@ -112,7 +112,7 @@ class IntegrationTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as d:
             config=copy.deepcopy(CONFIG);config['landing_site']['surveyed_clear']=True
             cfg=Path(d)/'config.json';cfg.write_text(json.dumps(config))
-            argv=['run','--boundary-config',str(cfg),'--output-dir',d,'--recovery',mode,
+            argv=['run','--no-plots','--boundary-config',str(cfg),'--output-dir',d,'--recovery',mode,
                   '--loss',str(loss),'--duration','10','--inject-at','1','--timeout','1',
                   '--stable-seconds','.3','--log-every','1000']
             if llm:
