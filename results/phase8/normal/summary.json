@@ -1,0 +1,32 @@
+{
+  "mode": "phase8_decentralized_contract_net_mock",
+  "llm": false,
+  "mission_complete": true,
+  "time_s": 4.8,
+  "completed_task_ids": [
+    "SEARCH_SECTOR_A",
+    "SEARCH_SECTOR_B",
+    "SEARCH_SECTOR_C",
+    "SEARCH_SECTOR_D"
+  ],
+  "completions_by_agent": {
+    "Drone1": 1,
+    "Drone2": 1,
+    "Drone3": 1,
+    "Drone4": 1
+  },
+  "duplicate_task_completions": 0,
+  "conflict_corrections": 3,
+  "lease_expirations": 0,
+  "local_lease_expiration_events": 0,
+  "fail_agent": null,
+  "fail_at_s": null,
+  "message_instances": 284,
+  "recipient_records": 852,
+  "limitations": [
+    "Mock task work and positions; not physical sector coverage or live flight",
+    "Known team membership, perfect transport, trusted deterministic peers",
+    "Silent-agent suspicion uses heartbeat age; not distributed consensus under network partitions",
+    "Task progress renews leases via INTENT_UPDATE; protocol has no TASK_PROGRESS type"
+  ]
+}
