@@ -85,7 +85,7 @@ def execute_and_wait_until_reached(engine, adapter, vehicle_id, target_pos, spee
         print(f"⏳ [T + {elapsed_time}s] Stepping simulation flight tick...")
         time.sleep(1.0)  # Visual pause for log inspection
 
-def main():
+def legacy_main():
     rf_model = RFPropagationModel(max_range_meters=25.0)
     comm_bus = CommBus(rf_model=rf_model)
     scenario_mgr = ScenarioManager("configs/missions/search_and_relay_phase6.json", comm_bus=comm_bus)
@@ -166,6 +166,22 @@ def main():
     print_live_telemetry(adapter, drones)
 
     print("\n=== Phase 7 Test Complete ===")
+
+def main():
+    import argparse
+    from agentic_uav.comm.phase7_demo import run_protocol_demo
+    parser = argparse.ArgumentParser(description="Plan Phase 7 perfect-communication protocol; legacy RF demo remains opt-in")
+    parser.add_argument('--legacy-resilience', action='store_true')
+    parser.add_argument('--ticks', type=int, default=20)
+    parser.add_argument('--output-dir', default='results/phase7/protocol')
+    args = parser.parse_args()
+    if args.ticks < 1:
+        parser.error('--ticks must be positive')
+    if args.legacy_resilience:
+        legacy_main()
+    else:
+        run_protocol_demo(args.ticks, output_dir=args.output_dir)
+
 
 if __name__ == "__main__":
     main()
