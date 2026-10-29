@@ -172,15 +172,29 @@ def main():
     from agentic_uav.comm.phase7_demo import run_protocol_demo
     parser = argparse.ArgumentParser(description="Plan Phase 7 perfect-communication protocol; legacy RF demo remains opt-in")
     parser.add_argument('--legacy-resilience', action='store_true')
+    parser.add_argument('--backend', choices=['mock','airsim'], default='mock')
+    parser.add_argument('--vehicles', nargs=4, default=['Drone1','Drone2','Drone3','Drone4'])
+    parser.add_argument('--dt', type=float, default=.1)
+    parser.add_argument('--airsim-host', default='127.0.0.1')
+    parser.add_argument('--carla-host', default=None, help='Optional CARLAAir host; use async stepping during flight')
+    parser.add_argument('--carla-port', type=int, default=2000)
+    parser.add_argument('--rpc-timeout', type=float, default=15.)
+    parser.add_argument('--setup-timeout', type=float, default=60.)
+    parser.add_argument('--flight-height', type=float, default=3., help='Height above each initial NED Z, not origin-relative altitude')
+    parser.add_argument('--flight-speed', type=float, default=.5)
+    parser.add_argument('--flight-distance', type=float, default=2.)
     parser.add_argument('--ticks', type=int, default=20)
     parser.add_argument('--output-dir', default='results/phase7/protocol')
     args = parser.parse_args()
-    if args.ticks < 1:
-        parser.error('--ticks must be positive')
+    if args.ticks < 1 or len(set(args.vehicles)) != 4 or any(not math.isfinite(v) or v<=0 for v in (args.dt,args.rpc_timeout,args.setup_timeout,args.flight_height,args.flight_speed,args.flight_distance)):
+        parser.error('Require positive finite parameters and four distinct vehicle names')
     if args.legacy_resilience:
         legacy_main()
+    elif args.backend == 'airsim':
+        from agentic_uav.comm.phase7_live import run_live_protocol
+        run_live_protocol(args)
     else:
-        run_protocol_demo(args.ticks, output_dir=args.output_dir)
+        run_protocol_demo(args.ticks, dt=args.dt, output_dir=args.output_dir)
 
 
 if __name__ == "__main__":

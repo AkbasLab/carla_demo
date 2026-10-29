@@ -12,6 +12,7 @@ class ProtocolAgent:
         self.team_beliefs = {}
         self.received_types = set()
         self.action = "hold_for_peer_status"
+        self.decision_trace = []
 
     def send(self, kind, payload, now):
         self.sequence += 1
@@ -28,9 +29,9 @@ class ProtocolAgent:
                 belief.update(msg.payload)
                 belief['last_received_creation_time'] = msg.timestamp
                 if msg.message_type == MessageType.STATUS_UPDATE and 'in_air' in msg.payload:
-                    self.action = ('continue_mock_flight' if all(self.team_beliefs.get(peer, {}).get('in_air') for peer in self.peers)
+                    self.action = ('continue_flight' if all(self.team_beliefs.get(peer, {}).get('in_air') for peer in self.peers)
                                    else 'hold_for_peer_status')
-                    self.endpoint.mark_influenced(msg.message_id)
+                    self.decision_trace.append(dict(message_id=msg.message_id, action=self.action))
             # Other types are protocol probes, not implemented task-allocation decisions.
 
 
@@ -47,12 +48,15 @@ def run_protocol_demo(ticks=20, dt=.1, output_dir='results/phase7/protocol'):
         now[0] = tick*dt
         for index, agent in enumerate(agents):
             # Deterministic local kinematics, not AirSim or a physical flight model.
-            if agent.action == "continue_mock_flight":
+            if agent.action == "continue_flight":
                 agent.position[0] += dt*(index+1)
             agent.send(MessageType.HEARTBEAT, {'alive': True}, now[0])
             agent.send(MessageType.STATUS_UPDATE, {'position': list(agent.position), 'role': 'searcher', 'in_air': True}, now[0])
         for agent in agents:
             agent.receive()
+            for decision in agent.decision_trace:
+                bus.record_decision(agent.agent_id, decision["message_id"])
+            agent.decision_trace.clear()
             trace.append(dict(time_s=now[0], agent_id=agent.agent_id,
                               own_position=list(agent.position), action=agent.action, team_beliefs=json.loads(json.dumps(agent.team_beliefs))))
     logs = bus.logs()

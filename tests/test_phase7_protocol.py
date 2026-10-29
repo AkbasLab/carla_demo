@@ -15,6 +15,9 @@ class ProtocolTests(unittest.TestCase):
     def message(self, kind=MessageType.STATUS_UPDATE, seq=1, recipients=None):
         return new_message(kind,'a',recipients or ['b'],'m',self.now,seq,{'position':[1,2,3]})
 
+    def test_endpoint_has_only_two_public_methods(self):
+        self.assertEqual([name for name in dir(self.a) if not name.startswith('_')], ['receive_available', 'send'])
+
     def test_all_types_round_trip(self):
         self.assertEqual(len(MessageType),13)
         for i,kind in enumerate(MessageType,1):
@@ -45,7 +48,7 @@ class ProtocolTests(unittest.TestCase):
         self.assertEqual(r['status'],'expired')
         self.assertIsNone(r['actual_delivery_time'])
         self.assertGreater(r['size_bytes'],0)
-        with self.assertRaises(ValueError):self.b.mark_influenced(m.message_id)
+        with self.assertRaises(ValueError):self.bus.record_decision('b',m.message_id)
 
     def test_impersonation_unknown_recipient_and_duplicates(self):
         m=self.message()
@@ -56,7 +59,7 @@ class ProtocolTests(unittest.TestCase):
         with self.assertRaises(ValueError):self.a.send(self.message(seq=1))
 
     def test_delivered_decision_logging(self):
-        m=self.message();self.a.send(m);self.b.receive_available();self.b.mark_influenced(m.message_id)
+        m=self.message();self.a.send(m);self.b.receive_available();self.bus.record_decision('b',m.message_id)
         log=self.bus.logs()[0]
         self.assertEqual(log['status'],'delivered');self.assertTrue(log['influenced_decision'])
         log['status']='changed'

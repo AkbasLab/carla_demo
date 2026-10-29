@@ -31,7 +31,7 @@ class AgentMessage:
     message_id: str
     message_type: MessageType
     sender_id: str
-    recipient_ids: list
+    recipient_ids: list[str]
     mission_id: str
     timestamp: float
     sequence_number: int
@@ -68,8 +68,8 @@ class AgentMessage:
 
 class AgentEndpoint:
     """Agent-local API; no queue or other agents' memories are exposed."""
-    def __init__(self, sender, receive, mark):
-        self._sender, self._receive, self._mark = sender, receive, mark
+    def __init__(self, sender, receive):
+        self._sender, self._receive = sender, receive
 
     def send(self, message):
         return self._sender(message)
@@ -77,9 +77,6 @@ class AgentEndpoint:
     def receive_available(self):
         return self._receive()
 
-    def mark_influenced(self, message_id):
-        """Receiver explicitly reports that a delivered message affected a decision."""
-        self._mark(message_id)
 
 
 class PerfectMessageBus:
@@ -97,8 +94,7 @@ class PerfectMessageBus:
         if agent_id not in self._queues:
             raise ValueError('Unknown endpoint')
         return AgentEndpoint(lambda m: self._send(agent_id, m),
-                             lambda: self._receive(agent_id),
-                             lambda mid: self._mark(agent_id, mid))
+                             lambda: self._receive(agent_id))
 
     def _send(self, agent_id, message):
         # Snapshot/validate at the boundary so sender mutation cannot affect delivery.
@@ -122,7 +118,7 @@ class PerfectMessageBus:
                 sent_time=now, scheduled_delivery_time=now, actual_delivery_time=None,
                 size_bytes=len(message.to_json().encode('utf-8')),
                 expires_at=message.timestamp+message.time_to_live_s,
-                status='queued', influenced_decision=False)
+                status='queued', dropped=False, expired=False, influenced_decision=False)
             self._log.append(record)
             self._queues[recipient].append((message.to_json(), record))
         return message.message_id
@@ -133,14 +129,15 @@ class PerfectMessageBus:
         delivered = []
         for serialized, record in items:
             if now >= record['expires_at']:
-                record['status'] = 'expired'
+                record.update(status='expired', dropped=True, expired=True)
                 continue
             record.update(status='delivered', actual_delivery_time=now)
             self._delivered[(agent_id, record['message_id'])] = record
             delivered.append(AgentMessage.from_json(serialized))
         return delivered
 
-    def _mark(self, agent_id, message_id):
+    def record_decision(self, agent_id, message_id):
+        """Experiment logger only: link an agent decision trace to a delivered message."""
         record = self._delivered.get((agent_id, message_id))
         if record is None:
             raise ValueError('Cannot mark an undelivered message')
