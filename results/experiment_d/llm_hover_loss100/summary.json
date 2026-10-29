@@ -1,0 +1,123 @@
+{
+  "script_version": "experiment-d-llm-hover-v3",
+  "status": "completed",
+  "error": null,
+  "script_sha256": "0ebe7995ee2b02e5e99d2be42c14aca6610585358541f43ec3df5a807edf4beb",
+  "parameters": {
+    "boundary_config": "configs/experiments/d_resilience.local.json",
+    "expand_flight_bounds": true,
+    "output_dir": "results/experiment_d/llm_hover_loss100",
+    "recovery": "hover",
+    "loss": 1.0,
+    "inject_at": 5.0,
+    "duration": 45.0,
+    "timeout": 2.0,
+    "hz": 10.0,
+    "rf_range": 60.0,
+    "safe_speed": 0.25,
+    "speed": 2.0,
+    "cruise_height": 3.0,
+    "mission_distance": 10.0,
+    "command_interval": 0.5,
+    "setup_timeout": 60.0,
+    "rpc_timeout": 15.0,
+    "recovery_timeout": 30.0,
+    "stable_seconds": 1.0,
+    "position_tolerance": 0.3,
+    "ground_tolerance": 0.5,
+    "command_source": "llm",
+    "communication_only": true,
+    "llm_provider": "ollama",
+    "llm_model": "llama3.1:latest",
+    "llm_timeout": 15.0,
+    "llm_interval": 3.0,
+    "command_ttl": 20.0,
+    "mission_prompt": "Fly between the two suggested waypoints, choosing the one farther from the current position. Keep cruise Z unchanged.",
+    "replay_file": null,
+    "seed": 42,
+    "log_every": 10,
+    "carla_host": "localhost",
+    "carla_port": 2000
+  },
+  "boundary_config": {
+    "flight_bounds": {
+      "x_min": -100,
+      "x_max": 100,
+      "y_min": -100,
+      "y_max": 100,
+      "z_min": -100,
+      "z_max": 100
+    },
+    "keepouts": [],
+    "obstacle_margin_m": 0.5,
+    "landing_site": {
+      "x": 0,
+      "y": 0,
+      "ground_z": 28,
+      "radius_m": 1,
+      "surveyed_clear": true
+    }
+  },
+  "samples": 450,
+  "command_events": [],
+  "command_counts": {
+    "accepted": 0,
+    "dropped": 0,
+    "expired": 0,
+    "suppressed_after_timeout": 0,
+    "duplicate_or_out_of_order": 0,
+    "oba_rejected": 0
+  },
+  "heartbeat_delivered": 49,
+  "injected_drops": 401,
+  "speed_at_first_loss_mps": 0.019858119146588693,
+  "llm_commands_dispatched_before_first_loss": 0,
+  "first_undelivered_heartbeat_s": 5.001729605020955,
+  "failsafe_detection_s": 6.901613353024004,
+  "detection_loss_streak_start_s": 5.001729605020955,
+  "detection_latency_from_loss_streak_s": 1.8998837480030488,
+  "recovery_observed_s": 8.10128471700591,
+  "landing_commanded": false,
+  "sustained_hover_observed": true,
+  "recovery_time_from_detection_s": 1.1996713639819063,
+  "boundary_violation_samples": 0,
+  "boundary_violation_samples_during_recovery": 0,
+  "collision_seen": false,
+  "recovery_success": true,
+  "mission_legs_completed": 0,
+  "mission_completion": null,
+  "false_failsafe_activation": null,
+  "events": [
+    {
+      "event": "heartbeat_timeout",
+      "elapsed_s": 6.901613353024004,
+      "loss_streak_start_s": 5.001729605020955,
+      "delay_from_last_heartbeat_s": 2.000100139004644
+    },
+    {
+      "event": "hover_command",
+      "elapsed_s": 6.901613353024004
+    },
+    {
+      "event": "stable_hover_observed",
+      "elapsed_s": 8.10128471700591
+    },
+    {
+      "event": "llm_request_failed",
+      "elapsed_s": 15.202420235000318,
+      "sequence": 1,
+      "error_type": "TimeoutError",
+      "inference_latency_s": 15.01738015000592
+    }
+  ],
+  "limitations": [
+    "Heartbeat injection only; RPC remains available; watchdog runs in Python client, not onboard",
+    "Static configured geometry and surveyed landing-site assumption; no terrain perception",
+    "Estimated vehicle state; sampled violations can miss between-sample excursions",
+    "Asynchronous CARLA and AirSim clocks are not synchronized",
+    "Mission completion and false activation require a separately defined mission and expected-outage oracle",
+    "Optional live LLM or replay; syntax validation is not semantic safety verification",
+    "Commands and heartbeats share a per-tick application delivery gate; inference does not stop heartbeats",
+    "Communication-only hover verifies stopping, not collision-free or boundary-preserving safety"
+  ]
+}

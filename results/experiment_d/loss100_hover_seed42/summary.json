@@ -1,0 +1,33 @@
+{
+  "status": "completed",
+  "error": null,
+  "scenario": "live_carla_airsim_heartbeat_fault",
+  "seed": 42,
+  "configured_loss_probability": 1.0,
+  "recovery_mode": "hover",
+  "samples": 300,
+  "heartbeat_delivered": 49,
+  "injected_drops": 251,
+  "altitude_violation_samples": 300,
+  "first_undelivered_heartbeat_s": 5.009150296013104,
+  "failsafe_detection_s": 6.908218411001144,
+  "recovery_observed_s": 6.908218411001144,
+  "recovery_time_from_detection_s": 0.0,
+  "events": [
+    {
+      "event": "timeout_hover_command",
+      "elapsed_s": 6.908218411001144
+    },
+    {
+      "event": "low_speed_observed",
+      "elapsed_s": 6.908218411001144
+    }
+  ],
+  "limitations": [
+    "Injected loss affects application-level heartbeat only; CARLA and AirSim RPC remain available",
+    "Hover command is not the existing FailSafeManager RETURN_HOME/LAND policy",
+    "Low speed is only a partial recovery criterion, not full safety verification",
+    "No LLM planning or real RF packet injection",
+    "CARLA and AirSim clocks are not synchronized"
+  ]
+}

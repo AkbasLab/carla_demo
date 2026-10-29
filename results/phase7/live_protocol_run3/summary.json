@@ -1,0 +1,42 @@
+{
+  "mode": "perfect_communication_airsim_protocol",
+  "completed": false,
+  "error": null,
+  "agents": [
+    "Drone1",
+    "Drone2",
+    "Drone3",
+    "Drone4"
+  ],
+  "ticks": 200,
+  "exit_criterion_passed": false,
+  "message_types": [
+    "HEARTBEAT",
+    "STATUS_UPDATE",
+    "TASK_ANNOUNCEMENT",
+    "TASK_BID",
+    "TASK_AWARD",
+    "TASK_ACCEPT",
+    "TASK_RELEASE",
+    "TASK_COMPLETE",
+    "INTENT_UPDATE",
+    "TARGET_FOUND",
+    "HELP_REQUEST",
+    "ROLE_CHANGE",
+    "MISSION_UPDATE"
+  ],
+  "recipient_deliveries": 0,
+  "delivered": 0,
+  "cleanup_errors": [
+    "Drone1: RuntimeError('IOLoop is already running')",
+    "Drone2: RuntimeError('IOLoop is already running')",
+    "Drone3: RuntimeError('IOLoop is already running')",
+    "Drone4: RuntimeError('IOLoop is already running')"
+  ],
+  "limitations": [
+    "Configured separated spawns/clear route required; no collision avoidance is provided",
+    "Agent isolation is an API convention, not a security sandbox",
+    "Task/role message probes do not implement auctions or negotiation",
+    "AirSim integration requires live validation; passing mock tests is not flight evidence"
+  ]
+}

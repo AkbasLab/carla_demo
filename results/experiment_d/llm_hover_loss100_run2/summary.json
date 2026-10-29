@@ -1,0 +1,284 @@
+{
+  "script_version": "experiment-d-llm-hover-v3",
+  "status": "completed",
+  "error": null,
+  "script_sha256": "8c34e1e677c033a1a1366587c8dbee0e3b7abc2d7af0e92bb350fccd1a75ca82",
+  "parameters": {
+    "boundary_config": "configs/experiments/d_resilience.local.json",
+    "expand_flight_bounds": true,
+    "output_dir": "results/experiment_d/llm_hover_loss100_run2",
+    "no_plots": false,
+    "recovery": "hover",
+    "loss": 1.0,
+    "inject_at": 20.0,
+    "duration": 60.0,
+    "timeout": 2.0,
+    "hz": 10.0,
+    "rf_range": 60.0,
+    "safe_speed": 0.25,
+    "speed": 2.0,
+    "cruise_height": 3.0,
+    "mission_distance": 10.0,
+    "command_interval": 0.5,
+    "setup_timeout": 60.0,
+    "rpc_timeout": 15.0,
+    "recovery_timeout": 30.0,
+    "stable_seconds": 1.0,
+    "position_tolerance": 0.3,
+    "ground_tolerance": 0.5,
+    "command_source": "llm",
+    "communication_only": true,
+    "llm_provider": "ollama",
+    "llm_model": "llama3.1:latest",
+    "llm_timeout": 15.0,
+    "llm_interval": 3.0,
+    "command_ttl": 20.0,
+    "mission_prompt": "Fly between the two suggested waypoints, choosing the one farther from the current position. Keep cruise Z unchanged.",
+    "replay_file": null,
+    "seed": 42,
+    "log_every": 10,
+    "carla_host": "localhost",
+    "carla_port": 2000
+  },
+  "boundary_config": {
+    "flight_bounds": {
+      "x_min": -100,
+      "x_max": 100,
+      "y_min": -100,
+      "y_max": 100,
+      "z_min": -100,
+      "z_max": 100
+    },
+    "keepouts": [],
+    "obstacle_margin_m": 0.5,
+    "landing_site": {
+      "x": 0,
+      "y": 0,
+      "ground_z": 28,
+      "radius_m": 1,
+      "surveyed_clear": true
+    }
+  },
+  "samples": 600,
+  "command_events": [
+    {
+      "sequence": 1,
+      "target": [
+        10.0,
+        0.0,
+        25.0
+      ],
+      "at_s": 0.10239118500612676,
+      "received_at_s": 3.1019780120113865,
+      "inference_latency_s": 2.9404992450145073,
+      "decision": "accepted"
+    },
+    {
+      "sequence": 2,
+      "target": [
+        10.0,
+        0.0,
+        25.0
+      ],
+      "at_s": 3.1026001770223957,
+      "received_at_s": 6.001614231005078,
+      "inference_latency_s": 2.8355866920028348,
+      "decision": "accepted"
+    },
+    {
+      "sequence": 3,
+      "target": [
+        10.0,
+        0.0,
+        25.0
+      ],
+      "at_s": 6.202253446012037,
+      "received_at_s": 9.201237489003688,
+      "inference_latency_s": 2.9199943789863028,
+      "decision": "accepted"
+    },
+    {
+      "sequence": 4,
+      "target": [
+        10.0,
+        0.0,
+        25.0
+      ],
+      "at_s": 9.302464670006884,
+      "received_at_s": 12.2011672820081,
+      "inference_latency_s": 2.880632512999,
+      "decision": "accepted"
+    },
+    {
+      "sequence": 5,
+      "target": [
+        10.0,
+        0.0,
+        25.0
+      ],
+      "at_s": 12.402350279997336,
+      "received_at_s": 15.401176398008829,
+      "inference_latency_s": 2.9904847270227037,
+      "decision": "accepted"
+    },
+    {
+      "sequence": 6,
+      "target": [
+        10.0,
+        0.0,
+        25.0
+      ],
+      "at_s": 15.502640384016559,
+      "received_at_s": 18.601519230025588,
+      "inference_latency_s": 3.006296523992205,
+      "decision": "accepted"
+    },
+    {
+      "sequence": 7,
+      "target": [
+        10.0,
+        0.0,
+        25.0
+      ],
+      "at_s": 18.60221004401683,
+      "received_at_s": 21.601387618022272,
+      "inference_latency_s": 2.962352970993379,
+      "decision": "dropped"
+    },
+    {
+      "sequence": 8,
+      "target": [
+        10.0,
+        0.0,
+        25.0
+      ],
+      "at_s": 21.70221047400264,
+      "received_at_s": 24.70164849801222,
+      "inference_latency_s": 2.956751065008575,
+      "decision": "suppressed_after_timeout"
+    }
+  ],
+  "command_counts": {
+    "accepted": 6,
+    "dropped": 1,
+    "expired": 0,
+    "suppressed_after_timeout": 1,
+    "duplicate_or_out_of_order": 0,
+    "oba_rejected": 0
+  },
+  "heartbeat_delivered": 199,
+  "injected_drops": 401,
+  "speed_at_first_loss_mps": 0.41046645972412443,
+  "llm_commands_dispatched_before_first_loss": 6,
+  "first_undelivered_heartbeat_s": 20.001629988022614,
+  "failsafe_detection_s": 22.00137593402178,
+  "detection_loss_streak_start_s": 20.001629988022614,
+  "detection_latency_from_loss_streak_s": 1.999745945999166,
+  "recovery_observed_s": 33.80135697001242,
+  "landing_commanded": false,
+  "sustained_hover_observed": true,
+  "recovery_time_from_detection_s": 11.79998103599064,
+  "boundary_violation_samples": 0,
+  "boundary_violation_samples_during_recovery": 0,
+  "collision_seen": true,
+  "recovery_success": false,
+  "mission_legs_completed": 0,
+  "mission_completion": null,
+  "false_failsafe_activation": null,
+  "events": [
+    {
+      "event": "mission_command_accepted",
+      "elapsed_s": 3.1019780120113865,
+      "sequence": 1
+    },
+    {
+      "event": "mission_command_dispatched",
+      "elapsed_s": 3.1019780120113865,
+      "sequence": 1
+    },
+    {
+      "event": "mission_command_accepted",
+      "elapsed_s": 6.001614231005078,
+      "sequence": 2
+    },
+    {
+      "event": "mission_command_dispatched",
+      "elapsed_s": 6.001614231005078,
+      "sequence": 2
+    },
+    {
+      "event": "mission_command_accepted",
+      "elapsed_s": 9.201237489003688,
+      "sequence": 3
+    },
+    {
+      "event": "mission_command_dispatched",
+      "elapsed_s": 9.201237489003688,
+      "sequence": 3
+    },
+    {
+      "event": "mission_command_accepted",
+      "elapsed_s": 12.2011672820081,
+      "sequence": 4
+    },
+    {
+      "event": "mission_command_dispatched",
+      "elapsed_s": 12.2011672820081,
+      "sequence": 4
+    },
+    {
+      "event": "mission_command_accepted",
+      "elapsed_s": 15.401176398008829,
+      "sequence": 5
+    },
+    {
+      "event": "mission_command_dispatched",
+      "elapsed_s": 15.401176398008829,
+      "sequence": 5
+    },
+    {
+      "event": "mission_command_accepted",
+      "elapsed_s": 18.601519230025588,
+      "sequence": 6
+    },
+    {
+      "event": "mission_command_dispatched",
+      "elapsed_s": 18.601519230025588,
+      "sequence": 6
+    },
+    {
+      "event": "mission_command_dropped",
+      "elapsed_s": 21.601387618022272,
+      "sequence": 7
+    },
+    {
+      "event": "heartbeat_timeout",
+      "elapsed_s": 22.00137593402178,
+      "loss_streak_start_s": 20.001629988022614,
+      "delay_from_last_heartbeat_s": 2.0999858459981624
+    },
+    {
+      "event": "hover_command",
+      "elapsed_s": 22.00137593402178
+    },
+    {
+      "event": "mission_command_suppressed_after_timeout",
+      "elapsed_s": 24.70164849801222,
+      "sequence": 8
+    },
+    {
+      "event": "stable_hover_observed",
+      "elapsed_s": 33.80135697001242
+    }
+  ],
+  "limitations": [
+    "Heartbeat injection only; RPC remains available; watchdog runs in Python client, not onboard",
+    "Static configured geometry and surveyed landing-site assumption; no terrain perception",
+    "Estimated vehicle state; sampled violations can miss between-sample excursions",
+    "Asynchronous CARLA and AirSim clocks are not synchronized",
+    "Mission completion and false activation require a separately defined mission and expected-outage oracle",
+    "Optional live LLM or replay; syntax validation is not semantic safety verification",
+    "Commands and heartbeats share a per-tick application delivery gate; inference does not stop heartbeats",
+    "Communication-only hover verifies stopping, not collision-free or boundary-preserving safety"
+  ]
+}
