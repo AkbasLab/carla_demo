@@ -20,7 +20,8 @@ def run_live_protocol(args):
     if missing:
         raise ValueError(f'Configure four AirSim multirotors first; missing {sorted(missing)}')
     now = [0.]
-    bus = PerfectMessageBus(ids, lambda: now[0])
+    measurement_start = [None]
+    bus = PerfectMessageBus(ids, lambda: 0. if measurement_start[0] is None else time.monotonic()-measurement_start[0])
     agents = [ProtocolAgent(agent, [p for p in ids if p != agent], bus.endpoint(agent)) for agent in ids]
     trace, cleanup_errors, controlled = [], [], []
     world = previous = None
@@ -69,6 +70,7 @@ def run_live_protocol(args):
         else:
             raise TimeoutError('Four vehicles did not reach airborne starting positions')
         start = time.monotonic()
+        measurement_start[0] = start
         # Exercise all envelopes; only heartbeat/status currently have decision consumers.
         for kind in MessageType:
             agents[0].send(kind, {'protocol_probe': True}, 0.)
@@ -83,7 +85,10 @@ def run_live_protocol(args):
                 agent.send(MessageType.HEARTBEAT, {'alive': True}, now[0])
                 agent.send(MessageType.STATUS_UPDATE, {'position':list(agent.position), 'in_air':airborne, 'role':'searcher'}, now[0])
                 trace.append(dict(tick=tick, time_s=now[0], agent_id=agent.agent_id,
-                                  own_position=list(agent.position), in_air=airborne))
+                                  own_position=list(agent.position), in_air=airborne,
+                                  height_above_start_m=initial[agent.agent_id][2]+args.flight_height-p.z_val,
+                                  speed_mps=math.sqrt(sum(v*v for v in (state.kinematics_estimated.linear_velocity.x_val,
+                                      state.kinematics_estimated.linear_velocity.y_val,state.kinematics_estimated.linear_velocity.z_val)))))
             for agent in agents:
                 agent.receive()
                 for decision in agent.decision_trace:

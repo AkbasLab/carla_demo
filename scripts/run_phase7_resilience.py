@@ -185,6 +185,7 @@ def main():
     parser.add_argument('--flight-distance', type=float, default=2.)
     parser.add_argument('--ticks', type=int, default=20)
     parser.add_argument('--output-dir', default='results/phase7/protocol')
+    parser.add_argument('--no-plots', action='store_true', help='Skip post-run protocol plots')
     args = parser.parse_args()
     if args.ticks < 1 or len(set(args.vehicles)) != 4 or any(not math.isfinite(v) or v<=0 for v in (args.dt,args.rpc_timeout,args.setup_timeout,args.flight_height,args.flight_speed,args.flight_distance)):
         parser.error('Require positive finite parameters and four distinct vehicle names')
@@ -195,6 +196,12 @@ def main():
         run_live_protocol(args)
     else:
         run_protocol_demo(args.ticks, dt=args.dt, output_dir=args.output_dir)
+    if not args.legacy_resilience and not args.no_plots:
+        try:
+            from scripts.plot_phase7_protocol import generate_plots
+            print(f'Phase 7 plots: {generate_plots(args.output_dir)}')
+        except Exception as exc:
+            print(f'Plot warning: {exc}; raw protocol results remain saved.')
 
 
 if __name__ == "__main__":

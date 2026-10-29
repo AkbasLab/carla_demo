@@ -79,3 +79,17 @@ Omit `--carla-host` for standalone AirSim. The CARLAAir option temporarily selec
 The harness connects, checks four vehicle names, takes off all four, waits for settled airborne positions, then collects heartbeat/status exchange during short deterministic forward flights. Each agent sees only its own telemetry plus addressed delivered messages; peer beliefs never come from another vehicle's RPC state. All thirteen envelopes are also exercised as protocol probes. No packet loss or artificial delay is injected. Finite TTL and receiver polling can still cause expiration on an overloaded client, which is logged and fails the exit check.
 
 `summary.json` records `exit_criterion_passed` only when measurement completes with all sampled vehicles airborne, each agent has beliefs about all three peers, and every recipient message is delivered. Cleanup landing is separate. Partial results and cleanup errors are logged on failure. This verifies the protocol exit criterion, not physical mission safety. The live harness has mocked-API tests; real four-drone flight still requires verification. The mock backend remains the default for reproducible protocol checks.
+
+## Protocol graphs and metrics
+
+New non-legacy runs automatically generate `phase7_metrics.png`, `phase7_metrics.pdf`, and `protocol_metrics.json` after flight cleanup. Use `--no-plots` to skip plotting. To plot an existing run, without connecting to AirSim:
+
+```bash
+python scripts/plot_phase7_protocol.py --result-dir results/phase7/live_protocol
+```
+
+Six panels show cumulative unique sends and recipient deliveries; a sender/recipient delivery heatmap; per-drone height; measured speed where recorded; application send-to-inbox delay; and local peer-belief coverage. One message addressed to three peers is one unique send and three recipient deliveries. `protocol_metrics.json` also reports counts by type and outcome, serialized byte counts, decision-influencing deliveries, and mean/P95/max delay and message age. JSON sizes are not wire bandwidth. Landing warnings appear in the title and do not change the message delivery ratio.
+
+New live telemetry includes height above each vehicle's initial Z reference and speed. This height assumes the initial position was a valid landed reference, not independently measured terrain. Older results lack that reference; the plot labels their height as origin-relative -NED Z and leaves speed unavailable rather than inventing values. Measurements cover message exchange only, excluding takeoff and cleanup landing.
+
+Live bus timing now uses the actual monotonic measurement clock for send/receipt logs. The measured interval includes harness work, RPC time, and receiver polling; it is not radio latency. Older live logs and deterministic mock logs can legitimately show zero delay because they use a shared/frozen tick clock. Plotting saved data cannot recover timing that was never measured.
