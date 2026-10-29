@@ -96,3 +96,19 @@ An executor starts only when the locally owned version has settled and responsiv
 Console messages show task/version, waypoint index, movement, holds, and injected failures. `waypoint_arrivals.json` records observed arrival positions/times; `commands.json`, `events.json`, `beliefs.json`, `messages.json`, and `summary.json` capture execution and allocation. Mission completion requires complete task ledgers at all surviving agents; it is separate from cleanup landing. Cleanup polls for landed state with `--landing-confirm-timeout` before disarming, otherwise retaining API control and recording a warning. CARLA asynchronous settings are restored afterward.
 
 The live path has automated mocked-API checks for observed completion, stale-owner stopping, stalled-vehicle behavior, and silent-agent takeover. Passing those tests does not replace a real CARLAAir run. There is no OBA/geofence or live obstacle-avoidance integration in this Phase 8 runner, and no partition/rejoin fencing. Do not report its waypoint completion as full sector coverage without a separately specified coverage metric.
+
+## Larger movements and team overview
+
+`--route-scale 3` multiplies each shared waypoint X and Y by three about the shared mission origin. Z and vehicle frame offsets are unchanged. This expands routes and their spacing; it changes mission distances and may require longer run/waypoint timeouts. The original JSON is not edited. Before takeoff, the runner prints every task's numbered XYZ targets, writes `effective_mission.json`, and generates `mission_routes.png` with labeled routes and four starting positions. The route map shows plans, not proof of obstacle clearance or execution.
+
+To frame the entire mission rather than follow Drone1, use `--overview-camera --carla-frame-origin X Y Z` with `--carla-host`. This sets the **CARLA spectator** to a top-down view of the routes plus starting positions and draws colored waypoint/route labels in the world. `--camera-height 40` sets a minimum height above the routes; the actual height grows to frame wider missions. The previous spectator pose is restored during cleanup.
+
+The transform is `CARLA = (origin_x + mission_x, origin_y + mission_y, origin_z - mission_z)`, assuming aligned horizontal axes. Supply a calibrated origin. For example, origin `0 0 28` is appropriate only if shared NED ground Z=28 maps to CARLA ground Z=0 and horizontal origins coincide. Do not use it blindly; the mission-to-vehicle frame offsets are a separate calibration. Camera rotation/frame yaw calibration is not implemented.
+
+Example additions after calibration:
+
+```text
+--route-scale 3 --overview-camera --carla-frame-origin 0 0 28 --camera-height 40
+```
+
+The option controls CARLA's spectator actor, not AirSim's selected FPV/chase/onboard camera. If your CARLAAir viewport remains attached to Drone1, select its spectator/free-camera view to see this overview. Camera mode switching depends on the CARLAAir build; this script does not alter your AirSim settings. Larger routes still require scene inspection; there is no collision avoidance.

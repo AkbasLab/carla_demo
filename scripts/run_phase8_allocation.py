@@ -59,6 +59,10 @@ if __name__=='__main__':
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument('--backend',choices=['mock','airsim'],default='mock')
     p.add_argument('--mission-config',help='Required for AirSim; shared NED waypoints and per-vehicle offsets')
+    p.add_argument('--route-scale',type=float,default=1.,help='Scale shared mission waypoint X/Y, preserving Z and vehicle offsets')
+    p.add_argument('--overview-camera',action='store_true',help='Frame routes and four starts in CARLA spectator; draw waypoint labels')
+    p.add_argument('--carla-frame-origin',nargs=3,type=float,metavar=('X','Y','Z'),help='CARLA position of shared NED origin, assuming aligned X/Y and inverted Z')
+    p.add_argument('--camera-height',type=float,default=40.,help='Minimum overhead camera height above mission routes')
     p.add_argument('--airsim-host',default='127.0.0.1')
     p.add_argument('--carla-host',default=None)
     p.add_argument('--carla-port',type=int,default=2000)
@@ -80,8 +84,12 @@ if __name__=='__main__':
     a=p.parse_args()
     import math
     if a.ticks<1 or not math.isfinite(a.dt) or a.dt<=0 or not math.isfinite(a.fail_at) or a.fail_at<0:p.error('Invalid timing')
-    for value in (a.lease_seconds,a.bid_window,a.flight_height,a.speed,a.arrival_tolerance,a.rpc_timeout,a.setup_timeout,a.waypoint_timeout,a.landing_confirm_timeout):
+    for value in (a.route_scale,a.camera_height,a.lease_seconds,a.bid_window,a.flight_height,a.speed,a.arrival_tolerance,a.rpc_timeout,a.setup_timeout,a.waypoint_timeout,a.landing_confirm_timeout):
         if not math.isfinite(value) or value<=0:p.error('Flight parameters must be finite and positive')
+    if a.overview_camera and (a.backend!='airsim' or not a.carla_host or a.carla_frame_origin is None):
+        p.error('--overview-camera requires --backend airsim --carla-host and calibrated --carla-frame-origin X Y Z')
+    if a.carla_frame_origin is not None and not all(math.isfinite(v) for v in a.carla_frame_origin):
+        p.error('Camera frame origin must be finite')
     if a.backend=='airsim':
         if not a.mission_config:p.error('--mission-config is required for AirSim')
         from agentic_uav.coordination.phase8_live import run_live

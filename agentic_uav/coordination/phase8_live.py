@@ -6,10 +6,11 @@ from pathlib import Path
 from agentic_uav.comm.protocol import PerfectMessageBus
 from agentic_uav.coordination.contract_net import AllocationAgent,MissionTask,Geometry,TaskType,TaskStatus
 from agentic_uav.coordination.flight_executor import WaypointExecutor
+from agentic_uav.coordination.mission_view import scale_routes, draw_overview, save_route_map
 
 
-def load_mission(path):
-    config=json.loads(Path(path).read_text())
+def load_mission(path,route_scale=1.):
+    config=scale_routes(json.loads(Path(path).read_text()),route_scale)
     ids=list(config['vehicles'])
     if len(ids)!=4:raise ValueError('Mission requires four vehicles')
     offsets={a:config['vehicles'][a]['frame_offset_m'] for a in ids}
@@ -30,7 +31,7 @@ def load_mission(path):
 
 def run_live(args):
     import airsim
-    config,ids,offsets,routes,tasks=load_mission(args.mission_config)
+    config,ids,offsets,routes,tasks=load_mission(args.mission_config,getattr(args,"route_scale",1.))
     if args.fail_agent is not None and args.fail_agent not in ids:raise ValueError('Failed agent not in mission')
     client=airsim.MultirotorClient(ip=args.airsim_host,timeout_value=args.rpc_timeout)
     client.confirmConnection()
@@ -40,12 +41,18 @@ def run_live(args):
     bus=PerfectMessageBus(ids,lambda:0. if stamp[0] is None else time.monotonic()-stamp[0])
     agents=[];executors={};controlled=[];trace=[];commands=[];failure=None;complete=False
     cleanup_errors=[];world=previous=None;failed=set();ticks_run=0
+    spectator_previous=None;camera_location=None
     last_commands={};targets={}
     out=Path(args.output_dir);out.mkdir(parents=True,exist_ok=True)
     def position(a):
         state=client.getMultirotorState(vehicle_name=a)
         p=state.kinematics_estimated.position
         return state,[v+o for v,o in zip((p.x_val,p.y_val,p.z_val),offsets[a])]
+    for task_id,route in routes.items():
+        print(f'[Phase8] {task_id}: shared NED targets (meters)',flush=True)
+        for index,point in enumerate(route,1):
+            print(f'  WP{index}: X={point[0]:.1f}, Y={point[1]:.1f}, Z={point[2]:.1f}',flush=True)
+    (out/'effective_mission.json').write_text(json.dumps(config,indent=2)+'\n')
     try:
         if args.carla_host:
             import carla
@@ -59,6 +66,15 @@ def run_live(args):
             targets[a]=[p[0],p[1],p[2]-args.flight_height]
             client.enableApiControl(True,vehicle_name=a);controlled.append(a)
             client.armDisarm(True,vehicle_name=a)
+        try:
+            save_route_map(routes,targets,out/'mission_routes.png')
+        except Exception as exc:
+            print(f'[Phase8] Route-map warning: {exc}',flush=True)
+        if getattr(args,'overview_camera',False):
+            spectator_previous=world.get_spectator().get_transform()
+            camera_location=draw_overview(world,carla,routes,targets,args.carla_frame_origin,
+                args.camera_height,args.ticks*args.dt+args.setup_timeout+60)
+            print(f'[Phase8] Overhead CARLA spectator at {camera_location}; routes and all four starts framed.',flush=True)
         futures=[client.takeoffAsync(timeout_sec=args.setup_timeout,vehicle_name=a) for a in ids]
         for f in futures:f.join()
         for a in ids:
@@ -128,6 +144,9 @@ def run_live(args):
                     client.hoverAsync(vehicle_name=a);cleanup_errors.append(f'{a}: landing not confirmed; API retained')
             except Exception as exc:cleanup_errors.append(f'{a}: {exc!r}')
         if world is not None and previous is not None:
+            if spectator_previous is not None:
+                try:world.get_spectator().set_transform(spectator_previous)
+                except Exception as exc:cleanup_errors.append(f'Spectator restore: {exc!r}')
             try:world.apply_settings(previous)
             except Exception as exc:cleanup_errors.append(f'CARLA restore: {exc!r}')
         events=sorted([e for a in agents for e in a.events],key=lambda e:(e['time_s'],e['agent_id']))
@@ -139,6 +158,7 @@ def run_live(args):
             conflict_corrections=sum(e['event']=='claim_corrected' for e in events),
             lease_expirations=len({(e['task_id'],e['version']) for e in events if e['event']=='lease_expired'}),
             failed_agents=sorted(failed),cleanup_errors=cleanup_errors,mission_config=config,
+            route_scale=getattr(args,'route_scale',1.),overview_camera_location=camera_location,
             limitations=['Observed ordered waypoint visits, not sensor-confirmed search coverage',
                 'No collision avoidance; scene and frame-offset calibration required',
                 'Silent-agent injection commands physical hover; peers infer failure only from missing messages',
