@@ -67,3 +67,32 @@ python -m unittest discover -s tests -p 'test_phase8_allocation.py' -v
 ```
 
 Tests cover task serialization, transparent costs/capability exclusion, deterministic claim order, stale/non-owner progress rejection, lease expiry, voluntary release, normal four-agent division, simultaneous claims without duplicate completion, and reassignment following a silent owner. UUID-free Phase 8 message IDs and fixed simulation timing make runs reproducible. These checks establish a mock baseline only. Live sector execution, partition/rejoin behavior, sophisticated geometry, and research-scale repeated trials remain future work.
+
+## Live CARLAAir backend
+
+The runner now accepts `--backend airsim`. Four configured AirSim vehicles execute observed ordered waypoint routes after distributed allocation. No LLM is used. This extends the mock baseline; real flight still requires validation on your scene.
+
+1. Start with all four drones landed at separated, clear spawn positions.
+2. Copy `configs/phase8/carlaair.example.json` to `configs/phase8/carlaair.local.json` and calibrate it before running.
+3. Set each vehicle's `frame_offset_m` so **shared mission NED position = AirSim API position + offset**. If API telemetry already uses the common mission frame, use `[0,0,0]` for all vehicles. If it is vehicle-local, use the independently established spawn-frame translation. Offsets are not inferred from other agents or assumed from vehicle names; frame rotations are not supported. Verify axes are aligned.
+4. Inspect every waypoint route, transit path, and takeoff/landing corridor in the actual scene. Example Z=+25 assumes a suitable common NED reference, matching the earlier -25 m plotted-height setup; do not apply it blindly to another origin.
+
+The example defines four separated, short ordered routes. These are waypoint-search demonstrations, not evidence of area coverage, target detection, or collision avoidance. Shared tasks describe routes and priorities; the mission does not preassign vehicles. Each agent computes bids from its own transformed telemetry and private ledger. The harness reads telemetry for execution/logging, never to supply global task assignments or peer task beliefs.
+
+Normal live run, allowing up to 240 seconds of measurement:
+
+```bash
+python -u scripts/run_phase8_allocation.py \
+  --backend airsim --mission-config configs/phase8/carlaair.local.json \
+  --carla-host localhost --ticks 2400 --dt 0.1 \
+  --flight-height 3 --speed 1 --lease-seconds 10 --bid-window 1 \
+  --output-dir results/phase8/live_normal
+```
+
+For a silent agent during execution, add `--fail-agent Drone1 --fail-at 8` and use a fresh output directory. Verify that time is during an active task using the console/command log. The simulator harness commands the failed vehicle to hover before stopping its allocation/heartbeat/progress loop. Surviving peers receive no explicit failure notification: they infer suspicion and lease expiry from missing messages. The failed vehicle's physical hover is an experimental intervention, not onboard recovery under total RPC failure. Cross-sector takeover routes must also be clear.
+
+An executor starts only when the locally owned version has settled and responsive peers acknowledge the claim. Every task/version change cancels the old movement before a new one is issued. Progress renewal requires a verified waypoint arrival or a reduction in distance to the pending waypoint; elapsed time or motion away from the target cannot complete the task. A stalled agent can lose its lease even while heartbeats continue. TASK_COMPLETE requires observations of all ordered waypoints within `--arrival-tolerance`. Reassigned tasks conservatively restart their route; partially searched work may be repeated.
+
+Console messages show task/version, waypoint index, movement, holds, and injected failures. `waypoint_arrivals.json` records observed arrival positions/times; `commands.json`, `events.json`, `beliefs.json`, `messages.json`, and `summary.json` capture execution and allocation. Mission completion requires complete task ledgers at all surviving agents; it is separate from cleanup landing. Cleanup polls for landed state with `--landing-confirm-timeout` before disarming, otherwise retaining API control and recording a warning. CARLA asynchronous settings are restored afterward.
+
+The live path has automated mocked-API checks for observed completion, stale-owner stopping, stalled-vehicle behavior, and silent-agent takeover. Passing those tests does not replace a real CARLAAir run. There is no OBA/geofence or live obstacle-avoidance integration in this Phase 8 runner, and no partition/rejoin fencing. Do not report its waypoint completion as full sector coverage without a separately specified coverage metric.

@@ -1,4 +1,4 @@
-"""Four-agent deterministic contract-net mock benchmark. No LLM or live flight."""
+"""Four-agent contract-net benchmark: mock or live CARLAAir, without an LLM."""
 import argparse
 import json
 from pathlib import Path
@@ -57,6 +57,20 @@ def run(ticks=300,dt=.1,output_dir='results/phase8/allocation',inject_conflict=T
 
 if __name__=='__main__':
     p=argparse.ArgumentParser(description=__doc__)
+    p.add_argument('--backend',choices=['mock','airsim'],default='mock')
+    p.add_argument('--mission-config',help='Required for AirSim; shared NED waypoints and per-vehicle offsets')
+    p.add_argument('--airsim-host',default='127.0.0.1')
+    p.add_argument('--carla-host',default=None)
+    p.add_argument('--carla-port',type=int,default=2000)
+    p.add_argument('--lease-seconds',type=float,default=10.)
+    p.add_argument('--bid-window',type=float,default=1.)
+    p.add_argument('--flight-height',type=float,default=3.)
+    p.add_argument('--speed',type=float,default=1.)
+    p.add_argument('--arrival-tolerance',type=float,default=.4)
+    p.add_argument('--rpc-timeout',type=float,default=15.)
+    p.add_argument('--setup-timeout',type=float,default=120.)
+    p.add_argument('--waypoint-timeout',type=float,default=60.)
+    p.add_argument('--landing-confirm-timeout',type=float,default=15.)
     p.add_argument('--ticks',type=int,default=300)
     p.add_argument('--dt',type=float,default=.1)
     p.add_argument('--output-dir',default='results/phase8/allocation')
@@ -66,4 +80,11 @@ if __name__=='__main__':
     a=p.parse_args()
     import math
     if a.ticks<1 or not math.isfinite(a.dt) or a.dt<=0 or not math.isfinite(a.fail_at) or a.fail_at<0:p.error('Invalid timing')
-    run(a.ticks,a.dt,a.output_dir,not a.no_conflict_injection,a.fail_agent,a.fail_at)
+    for value in (a.lease_seconds,a.bid_window,a.flight_height,a.speed,a.arrival_tolerance,a.rpc_timeout,a.setup_timeout,a.waypoint_timeout,a.landing_confirm_timeout):
+        if not math.isfinite(value) or value<=0:p.error('Flight parameters must be finite and positive')
+    if a.backend=='airsim':
+        if not a.mission_config:p.error('--mission-config is required for AirSim')
+        from agentic_uav.coordination.phase8_live import run_live
+        run_live(a)
+    else:
+        run(a.ticks,a.dt,a.output_dir,not a.no_conflict_injection,a.fail_agent,a.fail_at)

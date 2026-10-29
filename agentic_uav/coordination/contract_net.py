@@ -199,7 +199,7 @@ class AllocationAgent:
                     self.announce(task,now,task.version+1);used=True
             if used:self.decisions.append(msg.message_id)
 
-    def step(self,now,dt,process_inbox=True):
+    def step(self,now,dt,process_inbox=True,execute_mock=True):
         if process_inbox:self.receive(now)
         self.send(MT.HEARTBEAT,dict(alive=True),now)
         for task in self.tasks.values():
@@ -230,6 +230,7 @@ class AllocationAgent:
                     self.send(MT.TASK_AWARD,claim,now);self.adopt(task,claim,now)
                     self.conflict_injected|=inject
                     self.log('claim_sent',now,**claim)
+        if not execute_mock:return
         for task in self.tasks.values():
             if task.status!=TaskStatus.ASSIGNED or task.assigned_agent!=self.agent_id:continue
             # Only execute after every peer has acknowledged the current winning claim.
@@ -247,3 +248,29 @@ class AllocationAgent:
                 self.send(MT.INTENT_UPDATE,dict(task_id=task.task_id,version=task.version,intent='task_progress',progress=min(1,done/task.work_units)),now)
                 task.lease_expires_at=now+self.lease_s;self.last_progress[task.task_id]=now
                 self.log('progress_reported',now,task_id=task.task_id,version=task.version,progress=done/task.work_units)
+
+    def executable_task(self,now):
+        for task in self.tasks.values():
+            if task.status!=TaskStatus.ASSIGNED or task.assigned_agent!=self.agent_id or now>=task.lease_expires_at:
+                continue
+            active={p for p in self.peers if now-self.last_heartbeat.get(p,now)<=self.lease_s}
+            if active<=self.acks.get(task.task_id,set()) and now-self.claim_time[task.task_id]>=self.bid_window:
+                return task
+        return None
+
+    def report_execution(self,task_id,version,now,progress,complete=False):
+        task=self.tasks[task_id]
+        if (task.version!=version or task.status!=TaskStatus.ASSIGNED or task.assigned_agent!=self.agent_id
+                or now>=task.lease_expires_at):
+            return False
+        if not math.isfinite(progress) or not 0<=progress<=1:
+            raise ValueError('Invalid observed progress')
+        if complete:
+            self.send(MT.TASK_COMPLETE,dict(task_id=task_id,version=version,owner=self.agent_id),now)
+            task.status=TaskStatus.COMPLETE;task.lease_expires_at=None
+            self.log('work_completed',now,task_id=task_id,version=version,source='observed_waypoint_arrivals')
+        else:
+            self.send(MT.INTENT_UPDATE,dict(task_id=task_id,version=version,intent='task_progress',progress=progress),now)
+            task.lease_expires_at=now+self.lease_s
+            self.log('progress_reported',now,task_id=task_id,version=version,progress=progress,source='observed_motion')
+        return True
