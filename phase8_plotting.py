@@ -2,7 +2,7 @@ import json
 from pathlib import Path
 import matplotlib.pyplot as plt
 
-folder = Path("results/phase8/recovery_fixed_run4")
+folder = Path("results/phase8/drone3_failure_run1")
 arrivals = json.loads((folder / "waypoint_arrivals.json").read_text())
 mission = json.loads((folder / "effective_mission.json").read_text())
 
