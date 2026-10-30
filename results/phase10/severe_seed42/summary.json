@@ -1,0 +1,194 @@
+{
+  "mode": "phase10_degraded_communications_mock",
+  "llm": false,
+  "mission_complete": false,
+  "time_s": 119.9,
+  "failed_agent_injection": null,
+  "fail_at_s": null,
+  "initial_roles": {
+    "Drone1": "SCOUT",
+    "Drone2": "SCOUT",
+    "Drone3": "RELAY",
+    "Drone4": "RESERVE"
+  },
+  "final_roles": {
+    "Drone1": "RELAY",
+    "Drone2": "RELAY",
+    "Drone3": "RELAY",
+    "Drone4": "RELAY"
+  },
+  "completions_by_agent": {
+    "Drone1": 0,
+    "Drone2": 0,
+    "Drone3": 0,
+    "Drone4": 0
+  },
+  "duplicate_task_completions": 0,
+  "role_changes": 4,
+  "health_transitions": 768,
+  "lease_expirations": 8,
+  "final_peer_health": {
+    "Drone1": {
+      "Drone2": "UNREACHABLE",
+      "Drone3": "UNREACHABLE",
+      "Drone4": "UNREACHABLE"
+    },
+    "Drone2": {
+      "Drone1": "UNREACHABLE",
+      "Drone3": "UNREACHABLE",
+      "Drone4": "UNREACHABLE"
+    },
+    "Drone3": {
+      "Drone1": "UNREACHABLE",
+      "Drone2": "UNREACHABLE",
+      "Drone4": "UNREACHABLE"
+    },
+    "Drone4": {
+      "Drone1": "UNREACHABLE",
+      "Drone2": "UNREACHABLE",
+      "Drone3": "UNREACHABLE"
+    }
+  },
+  "limitations": [
+    "Mock role positioning/task work only; live four-drone execution not integrated",
+    "Relay election maintains a designated role; no RF reachability/throughput improvement is measured",
+    "Silence becomes UNREACHABLE, never confirmed FAILED without supervisor evidence",
+    "Health RECOVERED does not authorize safe rejoin of old task epochs; rejoin execution not supported",
+    "Fixed membership and trusted peers; allocation is not partition consensus",
+    "Application-level network model; not calibrated RF. ACK RTT includes peer scheduling. Pending messages at mission stop are censored."
+  ],
+  "seed": 42,
+  "network_config": {
+    "latency_ms_mean": 400,
+    "latency_ms_jitter": 200,
+    "packet_loss_probability": 0.3,
+    "message_rate_limit": 60,
+    "bandwidth_bytes_per_second": 50000,
+    "communication_range_m": null,
+    "partitions": []
+  },
+  "replay_parameters": {
+    "ticks": 1200,
+    "dt": 0.1,
+    "fail_agent": null,
+    "fail_at": 2.0,
+    "critical_task": false,
+    "target_at": 5.0
+  },
+  "network_outcomes": {
+    "delivered": 11052,
+    "dropped": 8706,
+    "expired": 9176,
+    "queued": 334
+  },
+  "network_drop_reasons": {
+    "independent_loss": 8706,
+    "ttl": 9176
+  },
+  "final_communication_estimates": {
+    "Drone1": {
+      "Drone2": {
+        "heartbeat_arrival_rate_hz": 0.0,
+        "heartbeat_age_s": 111.30000000000001,
+        "missing_sequence_count": 1471,
+        "highest_sequence": 2392,
+        "acknowledgment_rtt_s": 5.799999999999997,
+        "recent_acknowledgments": 20
+      },
+      "Drone3": {
+        "heartbeat_arrival_rate_hz": 0.0,
+        "heartbeat_age_s": 104.60000000000001,
+        "missing_sequence_count": 1455,
+        "highest_sequence": 2385,
+        "acknowledgment_rtt_s": 4.5,
+        "recent_acknowledgments": 20
+      },
+      "Drone4": {
+        "heartbeat_arrival_rate_hz": 0.0,
+        "heartbeat_age_s": 108.80000000000001,
+        "missing_sequence_count": 1481,
+        "highest_sequence": 2393,
+        "acknowledgment_rtt_s": 4.900000000000006,
+        "recent_acknowledgments": 17
+      }
+    },
+    "Drone2": {
+      "Drone1": {
+        "heartbeat_arrival_rate_hz": 0.0,
+        "heartbeat_age_s": 111.4,
+        "missing_sequence_count": 1486,
+        "highest_sequence": 2392,
+        "acknowledgment_rtt_s": 5.6000000000000085,
+        "recent_acknowledgments": 17
+      },
+      "Drone4": {
+        "heartbeat_arrival_rate_hz": 0.0,
+        "heartbeat_age_s": 108.4,
+        "missing_sequence_count": 1438,
+        "highest_sequence": 2387,
+        "acknowledgment_rtt_s": 4.8999999999999915,
+        "recent_acknowledgments": 21
+      },
+      "Drone3": {
+        "heartbeat_arrival_rate_hz": 0.0,
+        "heartbeat_age_s": 103.0,
+        "missing_sequence_count": 1458,
+        "highest_sequence": 2391,
+        "acknowledgment_rtt_s": 4.6000000000000085,
+        "recent_acknowledgments": 22
+      }
+    },
+    "Drone3": {
+      "Drone1": {
+        "heartbeat_arrival_rate_hz": 0.0,
+        "heartbeat_age_s": 111.80000000000001,
+        "missing_sequence_count": 1491,
+        "highest_sequence": 2392,
+        "acknowledgment_rtt_s": 4.599999999999994,
+        "recent_acknowledgments": 21
+      },
+      "Drone2": {
+        "heartbeat_arrival_rate_hz": 0.0,
+        "heartbeat_age_s": 111.60000000000001,
+        "missing_sequence_count": 1472,
+        "highest_sequence": 2392,
+        "acknowledgment_rtt_s": 4.300000000000011,
+        "recent_acknowledgments": 20
+      },
+      "Drone4": {
+        "heartbeat_arrival_rate_hz": 0.0,
+        "heartbeat_age_s": 108.7,
+        "missing_sequence_count": 1451,
+        "highest_sequence": 2387,
+        "acknowledgment_rtt_s": 3.799999999999997,
+        "recent_acknowledgments": 17
+      }
+    },
+    "Drone4": {
+      "Drone3": {
+        "heartbeat_arrival_rate_hz": 0.0,
+        "heartbeat_age_s": 104.7,
+        "missing_sequence_count": 1444,
+        "highest_sequence": 2391,
+        "acknowledgment_rtt_s": 3.8999999999999915,
+        "recent_acknowledgments": 18
+      },
+      "Drone1": {
+        "heartbeat_arrival_rate_hz": 0.0,
+        "heartbeat_age_s": 111.30000000000001,
+        "missing_sequence_count": 1488,
+        "highest_sequence": 2386,
+        "acknowledgment_rtt_s": 5.299999999999997,
+        "recent_acknowledgments": 20
+      },
+      "Drone2": {
+        "heartbeat_arrival_rate_hz": 0.0,
+        "heartbeat_age_s": 111.5,
+        "missing_sequence_count": 1491,
+        "highest_sequence": 2390,
+        "acknowledgment_rtt_s": 5.1000000000000085,
+        "recent_acknowledgments": 24
+      }
+    }
+  }
+}
