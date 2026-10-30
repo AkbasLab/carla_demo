@@ -1,0 +1,139 @@
+{
+  "note": "Shared position = API NED position + frame_offset_m. Verify these offsets against actual telemetry. Separated task routes do not provide collision avoidance during transit or reassignment.",
+  "vehicles": {
+    "Drone1": {
+      "frame_offset_m": [
+        0,
+        0,
+        0
+      ]
+    },
+    "Drone2": {
+      "frame_offset_m": [
+        0,
+        5,
+        0
+      ]
+    },
+    "Drone3": {
+      "frame_offset_m": [
+        0,
+        10,
+        0
+      ]
+    },
+    "Drone4": {
+      "frame_offset_m": [
+        0,
+        15,
+        0
+      ]
+    }
+  },
+  "tasks": [
+    {
+      "task_id": "SEARCH_SECTOR_A",
+      "waypoints": [
+        [
+          6.0,
+          0.0,
+          25
+        ],
+        [
+          18.0,
+          0.0,
+          25
+        ],
+        [
+          18.0,
+          3.0,
+          25
+        ],
+        [
+          6.0,
+          3.0,
+          25
+        ]
+      ],
+      "priority": 1
+    },
+    {
+      "task_id": "SEARCH_SECTOR_B",
+      "waypoints": [
+        [
+          6.0,
+          15.0,
+          25
+        ],
+        [
+          18.0,
+          15.0,
+          25
+        ],
+        [
+          18.0,
+          18.0,
+          25
+        ],
+        [
+          6.0,
+          18.0,
+          25
+        ]
+      ],
+      "priority": 1
+    },
+    {
+      "task_id": "SEARCH_SECTOR_C",
+      "waypoints": [
+        [
+          6.0,
+          30.0,
+          25
+        ],
+        [
+          18.0,
+          30.0,
+          25
+        ],
+        [
+          18.0,
+          33.0,
+          25
+        ],
+        [
+          6.0,
+          33.0,
+          25
+        ]
+      ],
+      "priority": 1
+    },
+    {
+      "task_id": "SEARCH_SECTOR_D",
+      "waypoints": [
+        [
+          6.0,
+          45.0,
+          25
+        ],
+        [
+          18.0,
+          45.0,
+          25
+        ],
+        [
+          18.0,
+          48.0,
+          25
+        ],
+        [
+          6.0,
+          48.0,
+          25
+        ]
+      ],
+      "priority": 1
+    }
+  ]
+}

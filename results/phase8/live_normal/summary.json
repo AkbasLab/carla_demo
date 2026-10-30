@@ -1,0 +1,170 @@
+{
+  "mode": "phase8_decentralized_contract_net_airsim",
+  "llm": false,
+  "mission_complete": false,
+  "error": null,
+  "ticks": 2400,
+  "time_s": 239.90014988399344,
+  "completed_task_ids": [],
+  "completions_by_agent": {
+    "Drone1": 0,
+    "Drone2": 0,
+    "Drone3": 0,
+    "Drone4": 0
+  },
+  "duplicate_task_completions": 0,
+  "conflict_corrections": 3,
+  "lease_expirations": 76,
+  "failed_agents": [],
+  "cleanup_errors": [
+    "Drone1: landing not confirmed; API retained",
+    "Drone2: landing not confirmed; API retained",
+    "Drone3: landing not confirmed; API retained",
+    "Drone4: landing not confirmed; API retained"
+  ],
+  "mission_config": {
+    "note": "Calibrate offsets and routes for your map. Shared position = API NED position + frame_offset_m. Example offsets assume API positions are vehicle-local.",
+    "vehicles": {
+      "Drone1": {
+        "frame_offset_m": [
+          0,
+          0,
+          0
+        ]
+      },
+      "Drone2": {
+        "frame_offset_m": [
+          0,
+          5,
+          0
+        ]
+      },
+      "Drone3": {
+        "frame_offset_m": [
+          0,
+          10,
+          0
+        ]
+      },
+      "Drone4": {
+        "frame_offset_m": [
+          0,
+          15,
+          0
+        ]
+      }
+    },
+    "tasks": [
+      {
+        "task_id": "SEARCH_SECTOR_A",
+        "waypoints": [
+          [
+            2,
+            0,
+            25
+          ],
+          [
+            6,
+            0,
+            25
+          ],
+          [
+            6,
+            1,
+            25
+          ],
+          [
+            2,
+            1,
+            25
+          ]
+        ],
+        "priority": 1
+      },
+      {
+        "task_id": "SEARCH_SECTOR_B",
+        "waypoints": [
+          [
+            2,
+            5,
+            25
+          ],
+          [
+            6,
+            5,
+            25
+          ],
+          [
+            6,
+            6,
+            25
+          ],
+          [
+            2,
+            6,
+            25
+          ]
+        ],
+        "priority": 1
+      },
+      {
+        "task_id": "SEARCH_SECTOR_C",
+        "waypoints": [
+          [
+            2,
+            10,
+            25
+          ],
+          [
+            6,
+            10,
+            25
+          ],
+          [
+            6,
+            11,
+            25
+          ],
+          [
+            2,
+            11,
+            25
+          ]
+        ],
+        "priority": 1
+      },
+      {
+        "task_id": "SEARCH_SECTOR_D",
+        "waypoints": [
+          [
+            2,
+            15,
+            25
+          ],
+          [
+            6,
+            15,
+            25
+          ],
+          [
+            6,
+            16,
+            25
+          ],
+          [
+            2,
+            16,
+            25
+          ]
+        ],
+        "priority": 1
+      }
+    ]
+  },
+  "limitations": [
+    "Observed ordered waypoint visits, not sensor-confirmed search coverage",
+    "No collision avoidance; scene and frame-offset calibration required",
+    "Silent-agent injection commands physical hover; peers infer failure only from missing messages",
+    "No network partition/rejoin fencing; perfect communication among surviving agents"
+  ]
+}

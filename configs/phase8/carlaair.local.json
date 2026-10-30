@@ -1,0 +1,15 @@
+{
+  "note": "Calibrate offsets and routes for your map. Shared position = API NED position + frame_offset_m. Example offsets assume API positions are vehicle-local.",
+  "vehicles": {
+    "Drone1": {"frame_offset_m": [0, 0, 0]},
+    "Drone2": {"frame_offset_m": [0, 5, 0]},
+    "Drone3": {"frame_offset_m": [0, 10, 0]},
+    "Drone4": {"frame_offset_m": [0, 15, 0]}
+  },
+  "tasks": [
+    {"task_id": "SEARCH_SECTOR_A", "waypoints": [[2,0,25],[6,0,25],[6,10,25],[2,1,25]], "priority": 1},
+    {"task_id": "SEARCH_SECTOR_B", "waypoints": [[2,5,25],[6,5,25],[6,8,25],[2,2,25]], "priority": 1},
+    {"task_id": "SEARCH_SECTOR_C", "waypoints": [[2,10,25],[6,10,25],[6,5,25],[2,5,25]], "priority": 1},
+    {"task_id": "SEARCH_SECTOR_D", "waypoints": [[2,15,25],[6,15,25],[6,8,25],[2,8,25]], "priority": 1}
+  ]
+}
