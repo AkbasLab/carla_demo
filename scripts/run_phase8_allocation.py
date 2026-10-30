@@ -70,7 +70,10 @@ if __name__=='__main__':
     p.add_argument('--bid-window',type=float,default=1.)
     p.add_argument('--flight-height',type=float,default=3.)
     p.add_argument('--speed',type=float,default=1.)
-    p.add_argument('--arrival-tolerance',type=float,default=.4)
+    p.add_argument('--arrival-tolerance',type=float,default=.4,help='Horizontal waypoint tolerance (meters) in live mode')
+    p.add_argument('--altitude-tolerance',type=float,default=.6,help='Independent vertical arrival tolerance (meters)')
+    p.add_argument('--stall-timeout',type=float,default=4.,help='Seconds without distance improvement before retrying the current valid movement')
+    p.add_argument('--max-waypoint-retries',type=int,default=2)
     p.add_argument('--rpc-timeout',type=float,default=15.)
     p.add_argument('--setup-timeout',type=float,default=120.)
     p.add_argument('--waypoint-timeout',type=float,default=60.)
@@ -84,8 +87,9 @@ if __name__=='__main__':
     a=p.parse_args()
     import math
     if a.ticks<1 or not math.isfinite(a.dt) or a.dt<=0 or not math.isfinite(a.fail_at) or a.fail_at<0:p.error('Invalid timing')
-    for value in (a.route_scale,a.camera_height,a.lease_seconds,a.bid_window,a.flight_height,a.speed,a.arrival_tolerance,a.rpc_timeout,a.setup_timeout,a.waypoint_timeout,a.landing_confirm_timeout):
+    for value in (a.altitude_tolerance,a.stall_timeout,a.route_scale,a.camera_height,a.lease_seconds,a.bid_window,a.flight_height,a.speed,a.arrival_tolerance,a.rpc_timeout,a.setup_timeout,a.waypoint_timeout,a.landing_confirm_timeout):
         if not math.isfinite(value) or value<=0:p.error('Flight parameters must be finite and positive')
+    if a.max_waypoint_retries<0:p.error('--max-waypoint-retries must be nonnegative')
     if a.overview_camera and (a.backend!='airsim' or not a.carla_host or a.carla_frame_origin is None):
         p.error('--overview-camera requires --backend airsim --carla-host and calibrated --carla-frame-origin X Y Z')
     if a.carla_frame_origin is not None and not all(math.isfinite(v) for v in a.carla_frame_origin):

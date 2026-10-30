@@ -108,6 +108,7 @@ class AllocationAgent:
         self.sequence=0;self.events=[];self.decisions=[]
         self.bids={};self.auction_end={};self.claims={};self.claim_time={};self.acks={}
         self.progress={};self.last_progress={};self.last_heartbeat={}
+        self.checkpoints={}
         self.inject_conflict=inject_conflict;self.conflict_injected=False
 
     def log(self,name,now,**data):
@@ -128,7 +129,7 @@ class AllocationAgent:
         self.bids[task.task_id]={};self.claims.pop(task.task_id,None)
         self.auction_end[task.task_id]=now+self.bid_window
         self.send(MT.TASK_ANNOUNCEMENT,dict(task_id=task.task_id,version=version,
-                  bidding_until=now+self.bid_window),now)
+                  bidding_until=now+self.bid_window,resume_index=self.checkpoints.get(task.task_id,0)),now)
         self.offer(task,now)
         self.log('task_announced',now,task_id=task.task_id,version=version)
 
@@ -190,6 +191,10 @@ class AllocationAgent:
                 elif msg.message_type==MT.TASK_ACCEPT and p.get('owner')==task.assigned_agent:
                     self.acks.setdefault(task.task_id,set()).add(msg.sender_id);used=True
                 elif msg.message_type==MT.INTENT_UPDATE and p.get('intent')=='task_progress' and msg.sender_id==task.assigned_agent and task.lease_expires_at is not None and now<task.lease_expires_at:
+                    checkpoint=p.get('completed_waypoints')
+                    if checkpoint is not None:
+                        if isinstance(checkpoint,bool) or not isinstance(checkpoint,int) or not 0<=checkpoint<=task.work_units:continue
+                        self.checkpoints[task.task_id]=max(self.checkpoints.get(task.task_id,0),checkpoint)
                     task.lease_expires_at=now+self.lease_s;used=True
                     self.log('lease_renewed',now,task_id=task.task_id,owner=msg.sender_id)
                 elif msg.message_type==MT.TASK_COMPLETE and msg.sender_id==task.assigned_agent and task.lease_expires_at is not None and now<task.lease_expires_at:
@@ -204,7 +209,8 @@ class AllocationAgent:
         self.send(MT.HEARTBEAT,dict(alive=True),now)
         for task in self.tasks.values():
             if task.status==TaskStatus.ASSIGNED and now>=task.lease_expires_at:
-                self.log('lease_expired',now,task_id=task.task_id,owner=task.assigned_agent,version=task.version)
+                self.log('lease_expired',now,task_id=task.task_id,owner=task.assigned_agent,version=task.version,
+                         lease_deadline=task.lease_expires_at,completed_waypoints=self.checkpoints.get(task.task_id,0))
                 self.announce(task,now,task.version+1)
         # One distributed auction at a time makes workload changes visible before the next task.
         if not any(t.status==TaskStatus.BIDDING for t in self.tasks.values()):
@@ -258,19 +264,23 @@ class AllocationAgent:
                 return task
         return None
 
-    def report_execution(self,task_id,version,now,progress,complete=False):
+    def report_execution(self,task_id,version,now,progress,complete=False,completed_waypoints=None):
         task=self.tasks[task_id]
         if (task.version!=version or task.status!=TaskStatus.ASSIGNED or task.assigned_agent!=self.agent_id
                 or now>=task.lease_expires_at):
             return False
         if not math.isfinite(progress) or not 0<=progress<=1:
             raise ValueError('Invalid observed progress')
+        if completed_waypoints is not None:
+            if isinstance(completed_waypoints,bool) or not isinstance(completed_waypoints,int) or not 0<=completed_waypoints<=task.work_units:
+                raise ValueError('Invalid waypoint checkpoint')
+            self.checkpoints[task_id]=max(self.checkpoints.get(task_id,0),completed_waypoints)
         if complete:
             self.send(MT.TASK_COMPLETE,dict(task_id=task_id,version=version,owner=self.agent_id),now)
             task.status=TaskStatus.COMPLETE;task.lease_expires_at=None
             self.log('work_completed',now,task_id=task_id,version=version,source='observed_waypoint_arrivals')
         else:
-            self.send(MT.INTENT_UPDATE,dict(task_id=task_id,version=version,intent='task_progress',progress=progress),now)
+            self.send(MT.INTENT_UPDATE,dict(task_id=task_id,version=version,intent='task_progress',progress=progress,completed_waypoints=completed_waypoints),now)
             task.lease_expires_at=now+self.lease_s
             self.log('progress_reported',now,task_id=task_id,version=version,progress=progress,source='observed_motion')
         return True

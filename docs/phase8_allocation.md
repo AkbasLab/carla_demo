@@ -91,7 +91,7 @@ python -u scripts/run_phase8_allocation.py \
 
 For a silent agent during execution, add `--fail-agent Drone1 --fail-at 8` and use a fresh output directory. Verify that time is during an active task using the console/command log. The simulator harness commands the failed vehicle to hover before stopping its allocation/heartbeat/progress loop. Surviving peers receive no explicit failure notification: they infer suspicion and lease expiry from missing messages. The failed vehicle's physical hover is an experimental intervention, not onboard recovery under total RPC failure. Cross-sector takeover routes must also be clear.
 
-An executor starts only when the locally owned version has settled and responsive peers acknowledge the claim. Every task/version change cancels the old movement before a new one is issued. Progress renewal requires a verified waypoint arrival or a reduction in distance to the pending waypoint; elapsed time or motion away from the target cannot complete the task. A stalled agent can lose its lease even while heartbeats continue. TASK_COMPLETE requires observations of all ordered waypoints within `--arrival-tolerance`. Reassigned tasks conservatively restart their route; partially searched work may be repeated.
+An executor starts only when the locally owned version has settled and responsive peers acknowledge the claim. Every task/version change cancels the old movement before a new one is issued. Progress renewal requires a verified waypoint arrival or a reduction in distance to the pending waypoint; elapsed time or motion away from the target cannot complete the task. A stalled agent can lose its lease even while heartbeats continue. TASK_COMPLETE requires observations of all ordered waypoints, including any verified prefix from prior owners. Live arrival checks use independent horizontal `--arrival-tolerance` and vertical `--altitude-tolerance` limits. Reassigned tasks now resume from a verified ordered waypoint prefix received in valid owner progress messages; unknown/unreported progress is conservatively repeated.
 
 Console messages show task/version, waypoint index, movement, holds, and injected failures. `waypoint_arrivals.json` records observed arrival positions/times; `commands.json`, `events.json`, `beliefs.json`, `messages.json`, and `summary.json` capture execution and allocation. Mission completion requires complete task ledgers at all surviving agents; it is separate from cleanup landing. Cleanup polls for landed state with `--landing-confirm-timeout` before disarming, otherwise retaining API control and recording a warning. CARLA asynchronous settings are restored afterward.
 
@@ -112,3 +112,23 @@ Example additions after calibration:
 ```
 
 The option controls CARLA's spectator actor, not AirSim's selected FPV/chase/onboard camera. If your CARLAAir viewport remains attached to Drone1, select its spectator/free-camera view to see this overview. Camera mode switching depends on the CARLAAir build; this script does not alter your AirSim settings. Larger routes still require scene inspection; there is no collision avoidance.
+
+## Incomplete-recovery fix: separate tolerances, retries, checkpoints
+
+Live arrival acceptance now defaults to XY error <=0.4 m **and** absolute NED Z error <=0.6 m. The old single 3D ball could reject a vehicle that reached XY but held an approximately 0.5 m altitude offset. Both errors and targets are logged in arrivals, commands, and waypoint-arrival events; accepting an arrival does not fix altitude control. Setup uses these same independent position tolerances plus its existing speed gate. Mock allocation behavior remains unchanged.
+
+The executor tracks decreasing distance throughout a long leg, sending progress at most one third of a lease apart when actual approach occurred. A stationary vehicle does not receive unconditional lease renewals. After `--stall-timeout 4` seconds without sufficient distance improvement, it can reissue the current command up to `--max-waypoint-retries 2` times per waypoint/version. A retry remains fenced by valid ownership and does not itself count as progress. The live runner no longer inserts a hover between ordinary consecutive waypoints or a retry of the same valid task/version; it still cancels motion on release, revocation, or assignment changes.
+
+Owner progress messages include the length of the verified ordered waypoint prefix. Receivers accept checkpoints only from the current owner, current version, and a live lease. Checkpoints never decrease; old-owner messages cannot advance them. On reassignment the executor resumes at the next unverified waypoint, instead of repeatedly restarting from WP1. This relies on trusted peers, static shared task routes, and reliable delivery; it is not protection against dishonest completion reports or network partition/rejoin.
+
+Example recovery options:
+
+```text
+--arrival-tolerance 0.4 --altitude-tolerance 0.6
+--lease-seconds 10 --stall-timeout 4 --max-waypoint-retries 2
+--waypoint-timeout 180 --fail-agent Drone1 --fail-at 8
+```
+
+Use a new output directory; waypoint arrivals from a resumed version will intentionally omit the already verified prefix. Check `verified_checkpoints`, TASK_COMPLETE events, and mission-complete state rather than requiring a full duplicate waypoint sequence in each version. Summary records tolerances, retries, and checkpoints. Lease-expiration events include their prior deadline and checkpoint count.
+
+Regression tests emulate a 30 m leg with 0.5 m vertical bias, a silent owner at 8 s followed by checkpoint takeover, stalled movement with bounded retries/lease expiry, and rejection of stale-owner checkpoints. They establish software behavior in controlled models, not resolution of scene collisions, frame errors, or live AirSim control issues. Repeat the normal and failure flights to verify end-to-end recovery.

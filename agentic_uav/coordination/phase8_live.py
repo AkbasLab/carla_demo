@@ -5,7 +5,7 @@ import time
 from pathlib import Path
 from agentic_uav.comm.protocol import PerfectMessageBus
 from agentic_uav.coordination.contract_net import AllocationAgent,MissionTask,Geometry,TaskType,TaskStatus
-from agentic_uav.coordination.flight_executor import WaypointExecutor
+from agentic_uav.coordination.flight_executor import WaypointExecutor, within_waypoint
 from agentic_uav.coordination.mission_view import scale_routes, draw_overview, save_route_map
 
 
@@ -24,7 +24,7 @@ def load_mission(path,route_scale=1.):
             raise ValueError('Invalid or duplicate task route')
         routes[item['task_id']]=route
         center=tuple(sum(p[i] for p in route)/len(route) for i in range(3))
-        tasks.append(MissionTask(item['task_id'],TaskType.SEARCH_SECTOR,Geometry(center),item.get('priority',1),{'search'}))
+        tasks.append(MissionTask(item['task_id'],TaskType.SEARCH_SECTOR,Geometry(center),item.get('priority',1),{'search'},work_units=len(route)))
     if not tasks:raise ValueError('Mission needs tasks')
     return config,ids,offsets,routes,tasks
 
@@ -86,7 +86,7 @@ def run_live(args):
             for a in ids:
                 state,p=position(a)
                 v=state.kinematics_estimated.linear_velocity
-                ready &= (state.landed_state!=airsim.LandedState.Landed and math.dist(p,targets[a])<=args.arrival_tolerance and math.sqrt(v.x_val**2+v.y_val**2+v.z_val**2)<.3)
+                ready &= (state.landed_state!=airsim.LandedState.Landed and within_waypoint(p,targets[a],args.arrival_tolerance,getattr(args,"altitude_tolerance",.6)) and math.sqrt(v.x_val**2+v.y_val**2+v.z_val**2)<.3)
             ready_since=(time.monotonic() if ready_since is None else ready_since) if ready else None
             if ready_since is not None and time.monotonic()-ready_since>=1:break
             time.sleep(args.dt)
@@ -95,7 +95,9 @@ def run_live(args):
             _,p=position(a)
             agents.append(AllocationAgent(a,[peer for peer in ids if peer!=a],bus.endpoint(a),tasks,p,
                 lease_s=args.lease_seconds,bid_window=args.bid_window,inject_conflict=not args.no_conflict_injection))
-            executors[a]=WaypointExecutor(routes,args.arrival_tolerance)
+            executors[a]=WaypointExecutor(routes,args.arrival_tolerance,
+                z_tolerance=getattr(args,'altitude_tolerance',.6),
+                stall_timeout=getattr(args,'stall_timeout',4.),max_retries=getattr(args,'max_waypoint_retries',2))
         stamp[0]=time.monotonic()
         for tick in range(args.ticks):
             time.sleep(max(0,stamp[0]+tick*args.dt-time.monotonic()))
@@ -113,10 +115,11 @@ def run_live(args):
             for a in active:
                 a.step(now,args.dt,process_inbox=False,execute_mock=False)
                 action=executors[a.agent_id].update(a,now)
-                command_key=(action['action'],action.get('task_id'),action.get('version'),action.get('index'))
+                command_key=(action['action'],action.get('task_id'),action.get('version'),action.get('index'),action.get('retry',0))
                 if command_key!=last_commands.get(a.agent_id):
                     # Stop the previous command before dispatch on task/version changes.
-                    client.hoverAsync(vehicle_name=a.agent_id)
+                    if action['action']=='hold' or last_commands.get(a.agent_id,(None,None,None))[1:3]!=(action.get('task_id'),action.get('version')):
+                        client.hoverAsync(vehicle_name=a.agent_id)
                     if action['action']=='move':
                         local=[v-o for v,o in zip(action['target'],offsets[a.agent_id])]
                         client.moveToPositionAsync(*local,velocity=args.speed,timeout_sec=args.waypoint_timeout,vehicle_name=a.agent_id)
@@ -126,7 +129,7 @@ def run_live(args):
                 for mid in a.decisions:bus.record_decision(a.agent_id,mid)
                 a.decisions.clear()
                 trace.append(dict(time_s=now,agent_id=a.agent_id,position=a.position[:],
-                    execution=action,tasks=[t.to_dict() for t in a.tasks.values()]))
+                    execution=action,verified_checkpoints=dict(a.checkpoints),tasks=[t.to_dict() for t in a.tasks.values()]))
             if active and all(all(t.status==TaskStatus.COMPLETE for t in a.tasks.values()) for a in active):
                 complete=True;break
     except Exception as exc:
@@ -157,8 +160,12 @@ def run_live(args):
             duplicate_task_completions=len(finishes)-len({e['task_id'] for e in finishes}),
             conflict_corrections=sum(e['event']=='claim_corrected' for e in events),
             lease_expirations=len({(e['task_id'],e['version']) for e in events if e['event']=='lease_expired'}),
+            waypoint_command_retries=sum(e['event']=='waypoint_command_retry' for e in events),
+            xy_arrival_tolerance_m=args.arrival_tolerance,z_arrival_tolerance_m=getattr(args,'altitude_tolerance',.6),
             failed_agents=sorted(failed),cleanup_errors=cleanup_errors,mission_config=config,
             route_scale=getattr(args,'route_scale',1.),overview_camera_location=camera_location,
+            verified_checkpoints={a.agent_id:dict(a.checkpoints) for a in agents},
+            stall_timeout_s=getattr(args,'stall_timeout',4.),max_waypoint_retries=getattr(args,'max_waypoint_retries',2),
             limitations=['Observed ordered waypoint visits, not sensor-confirmed search coverage',
                 'No collision avoidance; scene and frame-offset calibration required',
                 'Silent-agent injection commands physical hover; peers infer failure only from missing messages',
