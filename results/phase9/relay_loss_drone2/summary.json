@@ -1,0 +1,53 @@
+{
+  "mode": "phase9_dynamic_roles_mock",
+  "llm": false,
+  "mission_complete": true,
+  "time_s": 17.4,
+  "failed_agent_injection": "Drone2",
+  "fail_at_s": 2.0,
+  "initial_roles": {
+    "Drone1": "SCOUT",
+    "Drone2": "SCOUT",
+    "Drone3": "RELAY",
+    "Drone4": "RESERVE"
+  },
+  "final_roles": {
+    "Drone1": "SCOUT",
+    "Drone3": "RELAY",
+    "Drone4": "SCOUT"
+  },
+  "completions_by_agent": {
+    "Drone1": 2,
+    "Drone2": 0,
+    "Drone3": 0,
+    "Drone4": 2
+  },
+  "duplicate_task_completions": 0,
+  "role_changes": 1,
+  "health_transitions": 6,
+  "lease_expirations": 1,
+  "final_peer_health": {
+    "Drone1": {
+      "Drone2": "UNREACHABLE",
+      "Drone3": "HEALTHY",
+      "Drone4": "HEALTHY"
+    },
+    "Drone3": {
+      "Drone1": "HEALTHY",
+      "Drone2": "UNREACHABLE",
+      "Drone4": "HEALTHY"
+    },
+    "Drone4": {
+      "Drone1": "HEALTHY",
+      "Drone2": "UNREACHABLE",
+      "Drone3": "HEALTHY"
+    }
+  },
+  "limitations": [
+    "Mock role positioning/task work only; live four-drone execution not integrated",
+    "Relay election maintains a designated role; no RF reachability/throughput improvement is measured",
+    "Silence becomes UNREACHABLE, never confirmed FAILED without supervisor evidence",
+    "Health RECOVERED does not authorize safe rejoin of old task epochs; rejoin execution not supported",
+    "Fixed membership and trusted perfect messaging; not partition consensus"
+  ]
+}
