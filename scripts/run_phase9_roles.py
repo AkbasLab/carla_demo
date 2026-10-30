@@ -11,14 +11,21 @@ from agentic_uav.coordination.dynamic_roles import DynamicRoleAgent,Role
 
 
 def run(ticks=600,dt=.1,output_dir='results/phase9/roles',fail_agent='Drone1',fail_at=2.,
-        low_battery_agent=None,low_battery_at=2.,critical_task=False,target_at=5.):
+        low_battery_agent=None,low_battery_at=2.,critical_task=False,target_at=5.,network_config=None,seed=42):
     ids=[f'Drone{i}' for i in range(1,5)]
     roles=dict(zip(ids,['SCOUT','SCOUT','RELAY','RESERVE']))
     tasks=[MissionTask('SEARCH_SECTOR_'+letter,TaskType.SEARCH_SECTOR,Geometry((x,y,-3)),1,{'search'},work_units=8.)
            for letter,(x,y) in zip('ABCD',[(0,0),(10,0),(0,10),(10,10)])]
     target_reported=False
-    time=[0.];bus=PerfectMessageBus(ids,lambda:time[0])
-    agents=[DynamicRoleAgent(a,[p for p in ids if p!=a],bus.endpoint(a),tasks,position,
+    time=[0.]
+    endpoints={}
+    if network_config is None:bus=PerfectMessageBus(ids,lambda:time[0])
+    else:
+        from agentic_uav.comm.degraded import DegradedMessageBus,ObservedEndpoint
+        bus=DegradedMessageBus(ids,lambda:time[0],network_config,seed,
+            positions=lambda aid: next(a.position for a in agents if a.agent_id==aid))
+        endpoints={aid:ObservedEndpoint(bus.endpoint(aid),aid,lambda:time[0],mission_lifetime_s=ticks*dt+1) for aid in ids}
+    agents=[DynamicRoleAgent(a,[p for p in ids if p!=a],endpoints.get(a) or bus.endpoint(a),tasks,position,
             initial_roles=roles,lease_s=3.,bid_window=.3,relay_point=(5,5,-3))
             for a,position in zip(ids,[(0,0,-3),(10,0,-3),(5,5,-3),(10,10,-3)])]
     failed=set();trace=[];active=[];complete=False
@@ -38,7 +45,7 @@ def run(ticks=600,dt=.1,output_dir='results/phase9/roles',fail_agent='Drone1',fa
             for mid in a.decisions:bus.record_decision(a.agent_id,mid)
             a.decisions.clear()
             trace.append(dict(time_s=time[0],agent_id=a.agent_id,role=a.role.value,position=a.position[:],
-                battery=a.battery,objective=a.objective,peer_health={p:h.state.value for p,h in a.peer_health.items()},
+                battery=a.battery,objective=a.objective,communication_health=endpoints[a.agent_id].estimates() if endpoints else {},peer_health={p:h.state.value for p,h in a.peer_health.items()},
                 peer_status=json.loads(json.dumps(a.peer_status)),tasks=[t.to_dict() for t in a.tasks.values()]))
         if active and all(all(t.status==TaskStatus.COMPLETE for t in a.tasks.values()) for a in active):complete=True;break
     events=sorted([e for a in agents for e in a.events],key=lambda e:(e['time_s'],e['agent_id']))
@@ -57,6 +64,16 @@ def run(ticks=600,dt=.1,output_dir='results/phase9/roles',fail_agent='Drone1',fa
             'Silence becomes UNREACHABLE, never confirmed FAILED without supervisor evidence',
             'Health RECOVERED does not authorize safe rejoin of old task epochs; rejoin execution not supported',
             'Fixed membership and trusted perfect messaging; not partition consensus'])
+    if network_config is not None:
+        from dataclasses import asdict
+        from collections import Counter
+        summary.update(mode='phase10_degraded_communications_mock',seed=seed,network_config=asdict(network_config),
+            replay_parameters=dict(ticks=ticks,dt=dt,fail_agent=fail_agent,fail_at=fail_at,critical_task=critical_task,target_at=target_at),
+            network_outcomes=dict(Counter(r['status'] for r in bus.logs())),
+            network_drop_reasons=dict(Counter(r['drop_reason'] for r in bus.logs() if r.get('drop_reason'))),
+            final_communication_estimates={a.agent_id:endpoints[a.agent_id].estimates() for a in active})
+        summary['limitations'][-1]='Fixed membership and trusted peers; allocation is not partition consensus'
+        summary['limitations'].append('Application-level network model; not calibrated RF. ACK RTT includes peer scheduling. Pending messages at mission stop are censored.')
     out=Path(output_dir);out.mkdir(parents=True,exist_ok=True)
     for name,data in dict(summary=summary,events=events,beliefs=trace,messages=bus.logs()).items():
         (out/(name+'.json')).write_text(json.dumps(data,indent=2)+'\n')
