@@ -62,3 +62,7 @@ python -u scripts/run_phase10_sweep.py \
 ```
 
 This runs all four conditions with identical mission settings and no stopped agent, using seeds 1–30. Each condition/seed directory contains a compact `summary.json`; detailed traces are omitted to limit storage. The root contains `manifest.json`, `trials.csv` and `comparison.json`. The comparison reports success counts, Wilson 95% intervals, average completed tasks, lease expirations and duplicate-completion runs. Completion-time averages include successful missions only; incomplete trials are censored at the configured horizon. These intervals describe sampled network randomness for this fixed mock mission, not generalization to other missions or real radio environments. Use a fresh output directory for a new sweep.
+
+## Completion evidence
+
+See [Phase 10 report](phase10_report.md) for requirement coverage, measured validation and remaining limitations, with machine-readable evidence in [phase10_network_validation.json](phase10_network_validation.json). Regenerate both with `python scripts/validate_phase10_network.py --seed 42 --messages 10000`.

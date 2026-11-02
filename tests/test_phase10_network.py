@@ -90,6 +90,32 @@ class NetworkTests(unittest.TestCase):
         self.assertEqual(received,expected)
         self.assertNotEqual(received,[f'a:{i}' for i in range(1,21)])
 
+    def test_base_station_partition_and_expiry_report_checks(self):
+        from validate_phase10_network import partition_check, expiry_check
+        partition=partition_check()
+        self.assertTrue(partition['passed'])
+        self.assertEqual([r['delivered'] for r in partition['observations']],[20,8,8,20])
+        self.assertTrue(expiry_check()['passed'])
+
+    def test_target_and_failure_scenario_replay(self):
+        with tempfile.TemporaryDirectory() as tmp,redirect_stdout(io.StringIO()):
+            outputs=[]
+            for name in ['first','repeat']:
+                out=Path(tmp)/name
+                run(ticks=100,output_dir=out,fail_agent='Drone3',fail_at=2.,critical_task=True,
+                    target_at=.5,network_config=preset('moderate'),seed=42)
+                outputs.append({key:(out/(key+'.json')).read_text() for key in ['summary','events','messages','beliefs']})
+            self.assertEqual(*outputs)
+            summary=json.loads(outputs[0]['summary'])
+            self.assertEqual(summary['fail_at_s'],2.)
+            events=json.loads(outputs[0]['events'])
+            self.assertTrue(any(e['event']=='critical_target_discovered' and e['time_s']==.5 for e in events))
+            beliefs=json.loads(outputs[0]['beliefs'])
+            targets=[t for b in beliefs for t in b['tasks'] if t['task_id']=='INSPECT_TARGET_T1']
+            self.assertTrue(targets)
+            self.assertTrue(all(t['location_or_region']['center']==[5,5,-3] for t in targets))
+            self.assertFalse(any(b['agent_id']=='Drone3' and b['time_s']>=2 for b in beliefs))
+
     def test_invalid_configuration(self):
         for kw in [dict(packet_loss_probability=1.1),dict(latency_ms_mean=-1),dict(latency_ms_jitter=100),dict(message_rate_limit=0)]:
             with self.assertRaises(ValueError):NetworkConfig(**kw)
