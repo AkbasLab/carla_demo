@@ -51,3 +51,14 @@ Tests send 10,000 messages per seed, compare independent loss against 30% (±2 p
 ## Initial seed-42 pilot
 
 With no agent failure and the default 120-second maximum, nominal completed at 18.1 s. Moderate, severe and partitioned conditions reached the 119.9 s final sample without mission completion. No duplicate completions were observed in these four runs. These are individual deterministic pilot results, not a statistical recovery-success estimate. The current protocol requires further reliability/reconciliation work before claiming resilient mission completion under degraded transport.
+
+## Matched multi-seed sweep
+
+```bash
+python -u scripts/run_phase10_sweep.py \
+  --seeds $(seq 1 30) \
+  --workers 4 \
+  --output-dir results/phase10/multiseed_1_30
+```
+
+This runs all four conditions with identical mission settings and no stopped agent, using seeds 1–30. Each condition/seed directory contains a compact `summary.json`; detailed traces are omitted to limit storage. The root contains `manifest.json`, `trials.csv` and `comparison.json`. The comparison reports success counts, Wilson 95% intervals, average completed tasks, lease expirations and duplicate-completion runs. Completion-time averages include successful missions only; incomplete trials are censored at the configured horizon. These intervals describe sampled network randomness for this fixed mock mission, not generalization to other missions or real radio environments. Use a fresh output directory for a new sweep.

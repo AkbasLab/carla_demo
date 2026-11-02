@@ -11,7 +11,7 @@ from agentic_uav.coordination.dynamic_roles import DynamicRoleAgent,Role
 
 
 def run(ticks=600,dt=.1,output_dir='results/phase9/roles',fail_agent='Drone1',fail_at=2.,
-        low_battery_agent=None,low_battery_at=2.,critical_task=False,target_at=5.,network_config=None,seed=42):
+        low_battery_agent=None,low_battery_at=2.,critical_task=False,target_at=5.,network_config=None,seed=42,record_details=True):
     ids=[f'Drone{i}' for i in range(1,5)]
     roles=dict(zip(ids,['SCOUT','SCOUT','RELAY','RESERVE']))
     tasks=[MissionTask('SEARCH_SECTOR_'+letter,TaskType.SEARCH_SECTOR,Geometry((x,y,-3)),1,{'search'},work_units=8.)
@@ -44,7 +44,7 @@ def run(ticks=600,dt=.1,output_dir='results/phase9/roles',fail_agent='Drone1',fa
             a.step(time[0],dt,process_inbox=False)
             for mid in a.decisions:bus.record_decision(a.agent_id,mid)
             a.decisions.clear()
-            trace.append(dict(time_s=time[0],agent_id=a.agent_id,role=a.role.value,position=a.position[:],
+            if record_details:trace.append(dict(time_s=time[0],agent_id=a.agent_id,role=a.role.value,position=a.position[:],
                 battery=a.battery,objective=a.objective,communication_health=endpoints[a.agent_id].estimates() if endpoints else {},peer_health={p:h.state.value for p,h in a.peer_health.items()},
                 peer_status=json.loads(json.dumps(a.peer_status)),tasks=[t.to_dict() for t in a.tasks.values()]))
         if active and all(all(t.status==TaskStatus.COMPLETE for t in a.tasks.values()) for a in active):complete=True;break
@@ -75,7 +75,9 @@ def run(ticks=600,dt=.1,output_dir='results/phase9/roles',fail_agent='Drone1',fa
         summary['limitations'][-1]='Fixed membership and trusted peers; allocation is not partition consensus'
         summary['limitations'].append('Application-level network model; not calibrated RF. ACK RTT includes peer scheduling. Pending messages at mission stop are censored.')
     out=Path(output_dir);out.mkdir(parents=True,exist_ok=True)
-    for name,data in dict(summary=summary,events=events,beliefs=trace,messages=bus.logs()).items():
+    outputs=dict(summary=summary)
+    if record_details:outputs.update(events=events,beliefs=trace,messages=bus.logs())
+    for name,data in outputs.items():
         (out/(name+'.json')).write_text(json.dumps(data,indent=2)+'\n')
     print(json.dumps(summary,indent=2));return summary
 
