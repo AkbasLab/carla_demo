@@ -1,10 +1,10 @@
 # Agentic UAV Simulation & Mission Framework
 
-A modular multi-UAV research framework for search-and-relay operations using CARLA–AirSim and Python mock environments. The project progresses from simulator adapters and deterministic skills to message-based task allocation, dynamic roles, and reproducible degraded-communication experiments.
+A modular multi-UAV research framework for search-and-relay operations using CARLA–AirSim and Python mock environments. The project progresses from simulator adapters and deterministic skills to message-based task allocation, dynamic roles, reproducible degraded-communication experiments, and deterministic runtime safety checks.
 
-LLM benchmarks and command-generation experiments are separate from the deterministic coordination baselines: **Phases 7–10 do not require an LLM**. Mock task completion, live waypoint execution, communication delivery, and flight safety are distinct measurements.
+LLM benchmarks and command-generation experiments are separate from the deterministic coordination baselines: **Phases 7–11 do not require an LLM**. Mock task completion, live waypoint execution, communication delivery, and flight safety are distinct measurements.
 
-## Project phases: 1–10
+## Project phases: 1–11
 
 | Phase | Focus | Main entry point | Execution / evidence |
 |---|---|---|---|
@@ -18,6 +18,7 @@ LLM benchmarks and command-generation experiments are separate from the determin
 | 8 | Decentralized task allocation without an LLM | `scripts/run_phase8_allocation.py` | Mock and live waypoint execution; leases and reassignment |
 | 9 | Dynamic roles and teammate-disruption recovery | `scripts/run_phase9_roles.py` | Deterministic mock baseline |
 | 10 | Seeded degraded-communications simulator | `scripts/run_phase10_network.py` | Mock network validation and matched-seed mission trials |
+| 11 | Independent deterministic runtime-safety guardian | `scripts/run_phase11_guardian.py` | Mock unsafe-command injection; no AirSim runtime required |
 
 ### Phase 1: environment setup, foundation, and LLM baseline
 
@@ -131,6 +132,29 @@ No duplicate completions were observed. Mission success additionally requires ag
 
 [Phase 10 report](docs/phase10_report.md) · [Network documentation](docs/phase10_degraded_communications.md) · [Validation evidence](docs/phase10_network_validation.json) · [Multi-seed results](results/phase10/multiseed_1_30)
 
+### Phase 11: independent runtime-safety guardian
+
+Phase 11 implements the runtime-enforcement component of OBA: an independent deterministic gate between proposed actions and the executor. It checks proposals using explicit constraints rather than trusting the generating policy or consulting another unconstrained LLM.
+
+- Checks altitude, geofence, restricted zones, waypoint validity, maximum speed, battery reserve, command timeout, known-drone separation, landing-site validity and conflicting simultaneous commands. Concurrent accepted routes are checked for separation conflicts.
+- Returns `APPROVE`, `APPROVE_WITH_MODIFICATION`, `REJECT_AND_REPLAN`, or `EXECUTE_SAFE_FALLBACK`.
+- Selects and validates `HOLD_POSITION`, `CLIMB_OR_DESCEND_TO_SAFE_LAYER`, `RETURN_HOME`, `LAND_AT_SAFE_LOCATION`, or `CONTINUE_LAST_VALID_PLAN` according to phase, battery, communication state, hazards and belief confidence. If no fallback can be verified, it dispatches no unchecked replacement.
+- Uses a runtime watchdog, command-ID checks and confirmed cancellation before replacement. A previous plan's TTL is preserved rather than refreshed by continuation.
+- Keeps guardian audits separate from policy-case and mission-effect logs: proposed action, supplied safety state, reasons, modified/fallback action and executor-reported effect.
+
+The recorded mock run intercepted **all 36 unsafe proposals without executing them unchanged**, approved all **four valid control proposals**, and exercised **all five fallbacks**. Its 43 decisions include setup and watchdog actions:
+
+| Guardian outcome | Count |
+|---|---:|
+| APPROVE | 6 |
+| APPROVE_WITH_MODIFICATION | 2 |
+| REJECT_AND_REPLAN | 19 |
+| EXECUTE_SAFE_FALLBACK | 16 |
+
+One watchdog cancellation was confirmed by the mock executor. The mock injection exit criterion is satisfied for tested commands routed through the gateway. LLM-labelled inputs are synthetic; no LLM inference, CARLA or AirSim runtime is required. **Existing live runners are not yet protected by this gateway.** Static surveyed geometry, abstract battery cost and predicted peer motion do not establish physical collision avoidance, safe landing or certified flight safety.
+
+[Phase 11 documentation](docs/phase11_runtime_guardian.md) · [Example configuration](configs/phase11/guardian.example.json) · [Recorded guardian results](results/phase11/guardian_baseline)
+
 ## Project structure
 
 ```text
@@ -151,7 +175,8 @@ agentic_uav/
 │   ├── planner.py                  # Phase 5 planning interface / fallback
 │   ├── orchestrator.py             # Phase 5 execution and recovery
 │   ├── reactive_relay.py           # Phase 6 reactive midpoint relay
-│   └── oba_recovery.py             # Experiment D recovery geometry
+│   ├── oba_recovery.py             # Experiment D recovery geometry
+│   └── runtime_guardian.py         # Phase 11 deterministic command gate
 ├── coordination/
 │   ├── contract_net.py             # Phase 8 task protocol
 │   ├── flight_executor.py          # Ordered live waypoints / checkpoints
@@ -161,7 +186,7 @@ agentic_uav/
     ├── base_adapter.py
     ├── airsim_adapter.py
     └── mock_adapter.py
-configs/                            # Missions, live coordinates, experiments, network
+configs/                            # Missions, live coordinates, experiments, network, guardian
 scripts/                            # Phase runners, validators and plotting tools
 docs/                               # Setup, phase documentation and reports
 tests/                              # Automated checks
@@ -264,6 +289,20 @@ python scripts/validate_phase10_network.py --seed 42 --messages 10000
 
 Individual detailed runs produce `summary.json`, `events.json`, `messages.json` and `beliefs.json`. Compact sweeps retain per-run summaries plus `manifest.json`, `trials.csv` and `comparison.json`. A seed reproduces the same trace for the same code, settings and offered traffic; different architectures can generate different traffic. Failure injection remains separately specified through `--fail-agent` and `--fail-at`.
 
+### Phase 11: guardian injection and safety checks
+
+```bash
+# Mock injection experiment; no simulator or LLM required
+python -u scripts/run_phase11_guardian.py \
+  --config configs/phase11/guardian.example.json \
+  --output-dir results/phase11/guardian_run1
+
+# Individual safety rules and edge cases
+python -m unittest discover -s tests -p 'test_phase11_guardian.py' -v
+```
+
+Inspect `summary.json`, `guardian_audit.json`, `mission_effects.json`, `injection_cases.json` and `effective_config.json`. The example geometry uses ground Z = 0; it must not be copied into the earlier CARLAAir scene with ground Z = 28 without calibration. The site's surveyed-clear flag is a synthetic test assumption.
+
 ### Automated verification
 
 ```bash
@@ -271,7 +310,7 @@ python -m unittest discover -s tests -q
 python -m unittest discover -s tests -p 'test_phase10*.py' -v
 ```
 
-The Phase 10 report update passed 73 automated tests. Passing mock tests is not evidence of collision-free flight, safe landing, real-radio resilience or restored RF connectivity.
+The Phase 11 update passed **90 automated tests**, including **17 focused guardian tests**. The earlier Phase 10 report update passed 73 tests. Passing mock tests is not evidence of collision-free flight, safe landing, real-radio resilience or restored RF connectivity.
 
 ## Related OBA and tracking experiments
 
