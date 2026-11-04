@@ -69,6 +69,47 @@ class AgentTests(unittest.TestCase):
         with self.assertRaises(PolicyError):validate_decision('{"confidence":0,"confidence":1}',self.a.peers)
         self.assertEqual(set(TOOLS),set(decision_schema()['properties']['selected_tool']['enum']))
 
+    def test_observed_two_field_reply_stays_rejected_with_explicit_feedback(self):
+        raw='{"selected_tool":"send_bid","parameters":{"task_id":"SEARCH_SECTOR_A","task_version":1}}'
+        with self.assertRaises(PolicyError) as caught:validate_decision(raw,self.a.peers)
+        self.assertEqual(str(caught.exception),'decision_fields')
+        self.assertEqual(caught.exception.details['missing_fields'],['confidence','outgoing_messages','situation_assessment'])
+        self.assertEqual(caught.exception.details['unexpected_fields'],[])
+
+    def test_schema_branches_are_complete_without_parent_merging(self):
+        schema=decision_schema();required=set(decision())
+        self.assertEqual(len(schema['oneOf']),len(TOOLS))
+        for branch in schema['oneOf']:
+            self.assertEqual(branch['type'],'object')
+            self.assertFalse(branch['additionalProperties'])
+            self.assertEqual(set(branch['required']),required)
+            self.assertEqual(set(branch['properties']),required)
+            tool=branch['properties']['selected_tool']['const']
+            params=branch['properties']['parameters']
+            self.assertEqual(set(params['required']),set(TOOLS[tool]))
+            self.assertFalse(params['additionalProperties'])
+            self.assertNotIn('oneOf',branch)
+        # Branches must not share mutable common properties.
+        schema['oneOf'][0]['properties']['confidence']['minimum']=.5
+        self.assertEqual(schema['oneOf'][1]['properties']['confidence']['minimum'],0)
+
+    def test_correction_requests_all_fields_and_requires_model_to_supply_them(self):
+        class Correcting(ReplayProvider):
+            def generate(self,prompt):
+                context=json.loads(prompt)
+                if context['correction']:
+                    assert set(context['correction']['required_fields'])==set(decision())
+                    assert context['correction']['validation_details']['missing_fields']==['confidence','outgoing_messages','situation_assessment']
+                    return json.dumps(decision())
+                return '{"selected_tool":"hold","parameters":{"duration_s":1}}'
+        self.a.provider=Correcting()
+        self.a.request(0);self.a.poll(0,self.gate)
+        self.assertEqual(self.a.model_decisions,0);self.assertFalse(self.executed)
+        self.a.request(0);self.a.poll(0,self.gate)
+        self.assertEqual(self.a.model_decisions,1);self.assertEqual(self.a.fallback_count,0)
+        self.assertEqual(len(self.executed),1)
+        self.assertEqual(self.a.events_policy[0]['validation_details']['missing_fields'],['confidence','outgoing_messages','situation_assessment'])
+
     def test_outgoing_message_cannot_forge_award_or_unknown_recipient(self):
         d=decision('request_help',dict(reason_code='BASE_LINK_LOST'),[dict(message_type='TASK_AWARD',recipients=['Drone2'],payload={})])
         with self.assertRaises(PolicyError):validate_decision(json.dumps(d),self.a.peers)
@@ -226,6 +267,9 @@ class ModelPinTests(unittest.TestCase):
         chat=next(data for path,data in calls if path=='/api/chat')
         self.assertEqual(chat['options']['temperature'],0)
         self.assertEqual(chat['format'],decision_schema())
+        system=chat['messages'][0]['content']
+        for field in decision():self.assertIn(field,system)
+        self.assertIn('Never return only selected_tool and parameters',system)
         tags['models'][0]['digest']='b'*64
         with self.assertRaises(ModelIdentityError):p.generate('{}')
 

@@ -52,7 +52,7 @@ def run(args,provider=None):
     hashes={str(p.relative_to(root)):hashlib.sha256(p.read_bytes()).hexdigest() for p in sorted(sources)}
     (out/'run_manifest.json').write_text(json.dumps(dict(backend=args.backend,provider=identity['provider'],seed=args.seed,
         ticks=args.ticks,dt=args.dt,decision_interval=args.decision_interval,inference_timeout=args.inference_timeout,
-        lease_seconds=args.lease_seconds,bid_window=args.bid_window,python=platform.python_version(),source_hashes=hashes),indent=2)+'\n')
+        lease_seconds=args.lease_seconds,bid_window=args.bid_window,max_context_age=args.max_context_age,python=platform.python_version(),source_hashes=hashes),indent=2)+'\n')
     clock=[0.];bus=PerfectMessageBus(list(m['vehicles']),lambda:clock[0]);guardian=RuntimeGuardian(config)
     backend=(MockFlight(m['vehicles'],lambda:clock[0]) if args.backend=='mock' else
              AirSimFlight(m['vehicles'],lambda:clock[0],args.airsim_host,args.rpc_timeout,config.ground_z))

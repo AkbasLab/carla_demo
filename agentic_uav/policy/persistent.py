@@ -10,7 +10,7 @@ from agentic_uav.comm.protocol import MessageType as MT, AgentMessage
 from agentic_uav.coordination.contract_net import AllocationAgent, TaskStatus, TaskType, MissionTask, Geometry, bid_cost
 from agentic_uav.coordination.flight_executor import WaypointExecutor
 from agentic_uav.control.runtime_guardian import Action, Outcome, Peer, State
-from .structured import TOOLS, PolicyError, AsyncWorker, ReplayProvider, validate_decision
+from .structured import TOOLS, PolicyError, AsyncWorker, ReplayProvider, validate_decision, decision_example
 
 
 class PersistentAgent(AllocationAgent):
@@ -102,7 +102,7 @@ class PersistentAgent(AllocationAgent):
         return dict(agent_id=self.agent_id,team_mission=self.mission,current_role=self.role,
             current_task=dict(task_id=active.task_id,version=active.version,executable=executable is not None) if active else None,
             own_state=dict(position=self.position,velocity=self.velocity,battery=self.battery,flight_phase=self.phase,time_s=now,observed_at=self.state_time),
-            tasks=tasks[:32],non_negotiable_constraints=asdict(self.guardian.config),
+            tasks=tasks[:32],decision_format=dict(required_fields=list(decision_example()),example=decision_example()),non_negotiable_constraints=asdict(self.guardian.config),
             summarized_beliefs=copy.deepcopy(self.peer_beliefs),recent_important_messages=list(self.recent_messages),
             memory=list(self.memory),available_tools=TOOLS,communication_estimate={p:dict(
                 heartbeat_age_s=max(0,now-self.last_heartbeat.get(p,0)),received_messages=self.received_counts.get(p,0)) for p in self.peers},
@@ -134,10 +134,10 @@ class PersistentAgent(AllocationAgent):
             action=Action(f'fallback:{self.agent_id}:{now}',self.agent_id,'HOLD',now,now+3,(),1,1,'rule_policy')
             gate.dispatch(action,self.safety_state(now),now)
 
-    def _failure(self,reason,now,gate,correctable):
-        self.record('policy_error',now,reason_code=reason,correction_attempt=self.correction_attempt)
+    def _failure(self,reason,now,gate,correctable,details=None):
+        self.record('policy_error',now,reason_code=reason,correction_attempt=self.correction_attempt,validation_details=details)
         if correctable and self.correction_attempt==0:
-            self.correction_attempt=1;self.correction=dict(error=reason,instruction='Return exactly one corrected schema-valid decision. Do not invent coordinates or task ownership.')
+            self.correction_attempt=1;self.correction=dict(error=reason,validation_details=details,required_fields=list(decision_example()),example=decision_example(),instruction='Return ALL FIVE top-level fields in exactly one corrected decision: situation_assessment, selected_tool, parameters, outgoing_messages, confidence. Supply your own assessment and confidence; do not invent coordinates or task ownership.')
             self.last_request=-math.inf
             self.record('structured_correction_requested',now,reason_code=reason)
         else:
@@ -163,7 +163,7 @@ class PersistentAgent(AllocationAgent):
                 tool_result=self.apply(decision,now,gate)
             except (PolicyError,ValueError,KeyError,TypeError) as error:
                 reason=str(error)[:160] if isinstance(error,PolicyError) else type(error).__name__
-                self._failure(reason,now,gate,True);return
+                self._failure(reason,now,gate,True,details=getattr(error,'details',None));return
             self.model_decisions+=1
             self.memory.append(dict(time_s=now,selected_tool=decision['selected_tool'],parameters=decision['parameters'],result=tool_result))
             self.last_skill_result=tool_result

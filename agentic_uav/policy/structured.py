@@ -10,7 +10,11 @@ import time
 import urllib.request
 
 
-class PolicyError(ValueError):pass
+class PolicyError(ValueError):
+    def __init__(self,reason,details=None):
+        super().__init__(reason)
+        self.details=details
+
 class ModelIdentityError(PolicyError):pass
 
 
@@ -51,9 +55,22 @@ def decision_schema():
             required=['message_type','recipients','payload'],properties=dict(message_type=dict(type='string',enum=['ROLE_CHANGE','HELP_REQUEST']),
                 recipients=dict(type='array',minItems=1,uniqueItems=True,items=dict(type='string')),payload=dict(type='object')))),
         'confidence':dict(type='number',minimum=0,maximum=1)}
-    base['oneOf']=[dict(properties=dict(selected_tool={'const':tool},parameters=dict(type='object',additionalProperties=False,
-        required=list(params),properties={key:types[kind] for key,kind in params.items()}))) for tool,params in TOOLS.items()]
+    # Some schema-to-grammar converters select a oneOf branch without merging
+    # its siblings. Each branch must therefore be a complete decision schema.
+    branches=[]
+    for tool,params in TOOLS.items():
+        branch=copy.deepcopy(base)
+        branch['properties']['selected_tool']={'const':tool}
+        branch['properties']['parameters']=dict(type='object',additionalProperties=False,
+            required=list(params),properties={key:copy.deepcopy(types[kind]) for key,kind in params.items()})
+        branches.append(branch)
+    base['oneOf']=branches
     return base
+
+
+def decision_example():
+    return dict(situation_assessment=dict(mission_progress='partial',communication_status='nominal',current_risk='low'),
+        selected_tool='hold',parameters=dict(duration_s=1.),outgoing_messages=[],confidence=.8)
 
 
 def validate_decision(raw,peers):
@@ -68,7 +85,8 @@ def validate_decision(raw,peers):
     try:d=json.loads(raw,parse_constant=reject_constant,object_pairs_hook=unique_keys)
     except (ValueError,TypeError) as e:raise PolicyError('invalid_json') from e
     required={'situation_assessment','selected_tool','parameters','outgoing_messages','confidence'}
-    if not isinstance(d,dict) or set(d)!=required:raise PolicyError('decision_fields')
+    if not isinstance(d,dict):raise PolicyError('decision_fields',dict(expected_fields=sorted(required),received_type=type(d).__name__))
+    if set(d)!=required:raise PolicyError('decision_fields',dict(missing_fields=sorted(required-set(d)),unexpected_fields=sorted(set(d)-required),expected_fields=sorted(required)))
     assessment=d['situation_assessment']
     allowed=dict(mission_progress={'none','partial','complete'},communication_status={'nominal','degraded','lost','unknown'},current_risk={'low','medium','high','unknown'})
     if not isinstance(assessment,dict) or set(assessment)!=set(allowed):raise PolicyError('assessment_fields')
@@ -129,7 +147,7 @@ class OllamaProvider:
         # Check both sides of inference. Never silently accept a tag replacement.
         self.verify()
         response=self._http('/api/chat',dict(model=self.model,stream=False,format=decision_schema(),
-            messages=[dict(role='system',content='You are one UAV high-level agent. Use ONLY the listed structured tools. Do not emit code or private chain of thought. Use short reason codes. Deterministic tools calculate geometry, costs and safety. Send a bid only for an open bidding task while idle; start_search only for your own executable task. Hold while waiting. Do not request motion merely to calculate a cost. Respect ownership and guardian constraints.'),
+            messages=[dict(role='system',content='You are one UAV high-level agent. Use ONLY the listed structured tools. Do not emit code or private chain of thought. Use short reason codes. Deterministic tools calculate geometry, costs and safety. Send a bid only for an open bidding task while idle; start_search only for your own executable task. Hold while waiting. Do not request motion merely to calculate a cost. Respect ownership and guardian constraints. Your response must contain ALL FIVE top-level fields: situation_assessment, selected_tool, parameters, outgoing_messages, confidence. Never return only selected_tool and parameters. outgoing_messages may be an empty array. Complete shape example (choose your own valid tool and values): '+json.dumps(decision_example())),
                       dict(role='user',content=prompt)],options=self.options))
         self.verify()
         raw=response['message']['content']

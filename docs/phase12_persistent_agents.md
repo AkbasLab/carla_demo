@@ -161,3 +161,9 @@ The replay smoke run completes all four two-waypoint routes in 19.0 simulated se
 The full repository regression suite passed **110 tests**, including these 20 focused policy tests.
 
 This is implementation and plumbing evidence. No real Ollama inference or live flight result is claimed by the replay baseline. Run the pinned-model experiments and review their per-agent decision histories before marking Phase 12's real-LLM exit criterion complete.
+
+## Diagnosing missing decision fields
+
+The first uploaded Ollama run returned two-field tool objects and applied no LLM decisions. See [easy_run1 investigation](phase12_easy_run1_diagnosis.md) for the 28-response evidence, schema/prompt correction and controlled rerun command. Each tool schema branch is now self-contained, and structured correction identifies the exact missing fields; validation and guardian checks remain strict.
+
+After the schema correction, the regression suite passes 113 tests, including 23 Phase 12 tests. The original 20-test replay validation and real-model failed run remain separate historical evidence.
