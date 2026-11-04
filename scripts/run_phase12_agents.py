@@ -63,6 +63,7 @@ def run(args,provider=None):
         ticks=args.ticks,dt=args.dt,decision_interval=args.decision_interval,inference_timeout=args.inference_timeout,
         lease_seconds=args.lease_seconds,bid_window=args.bid_window,max_context_age=args.max_context_age,
         progress_timeout=args.progress_timeout,max_hold_seconds=args.max_hold_seconds,
+        deadline_bidding=args.provider=='ollama',bid_response_margin=args.bid_response_margin,safety_rejection_limit=args.safety_rejection_limit,
         inference_parallelism=args.inference_parallelism if args.provider=='ollama' else 4,model_warmup=identity['warmup']['performed'],python=platform.python_version(),source_hashes=hashes),indent=2)+'\n')
     clock=[0.];bus=PerfectMessageBus(list(m['vehicles']),lambda:clock[0]);guardian=RuntimeGuardian(config)
     backend=(MockFlight(m['vehicles'],lambda:clock[0]) if args.backend=='mock' else
@@ -74,7 +75,8 @@ def run(args,provider=None):
         agents.append(PersistentAgent(a,[p for p in m['vehicles'] if p!=a],bus.endpoint(a),tasks,v['start_position'],
             role=v['role'],routes=routes,home=v['home'],relay_point=m['relay_point'],guardian=guardian,
             output_dir=out,provider=provider,mission=m['mission'],lease_s=args.lease_seconds,bid_window=args.bid_window,
-            decision_interval=args.decision_interval,inference_timeout=args.inference_timeout,max_context_age=args.max_context_age,progress_timeout=args.progress_timeout,max_hold_seconds=args.max_hold_seconds))
+            decision_interval=args.decision_interval,inference_timeout=args.inference_timeout,max_context_age=args.max_context_age,progress_timeout=args.progress_timeout,max_hold_seconds=args.max_hold_seconds,
+            inference_capacity=args.inference_parallelism,bid_response_margin=args.bid_response_margin,safety_rejection_limit=args.safety_rejection_limit))
     traces=[];error=None;complete=False;world=previous=None;cleanup=[];start=time.monotonic();last_now=0.
     realtime=args.provider=='ollama' or args.backend=='airsim'
     def refresh():
@@ -169,6 +171,7 @@ def run(args,provider=None):
             **evidence,
             guardian_decisions=len(gate.audit),cleanup_warnings=cleanup,
             limitations=['Replay fixtures do not establish LLM inference; live adapter requires scene-specific validation',
+                'Deadline-protected bids and safety-triggered releases are deterministic support, not LLM decision evidence',
                 'Static geometry, constant-velocity peer predictions and abstract battery budgets inherit Phase 11 limits',
                 'SimpleFlight may lack battery telemetry; any configured battery assumption is explicit in the mission manifest',
                 'Phase 10 degraded-communication recovery weaknesses are not fixed by adding an LLM',
@@ -192,6 +195,8 @@ def parse_args(argv=None):
     p.add_argument('--no-model-warmup',action='store_true')
     p.add_argument('--progress-timeout',type=float,default=None)
     p.add_argument('--max-hold-seconds',type=float,default=2.)
+    p.add_argument('--bid-response-margin',type=float,default=1.)
+    p.add_argument('--safety-rejection-limit',type=int,default=2)
     p.add_argument('--decision-interval',type=float,default=1.);p.add_argument('--inference-timeout',type=float,default=15.)
     p.add_argument('--max-context-age',type=float,default=20.);p.add_argument('--lease-seconds',type=float,default=45.)
     p.add_argument('--bid-window',type=float,default=2.);p.add_argument('--flight-height',type=float,default=3.)
@@ -200,9 +205,10 @@ def parse_args(argv=None):
     p.add_argument('--output-dir',default='results/phase12/replay')
     a=p.parse_args(argv)
     if a.progress_timeout is None:a.progress_timeout=max(30.,2*a.inference_timeout)
-    for value in [a.progress_timeout,a.max_hold_seconds,a.dt,a.decision_interval,a.inference_timeout,a.max_context_age,a.lease_seconds,a.bid_window,a.flight_height,a.setup_timeout,a.rpc_timeout]:
+    for value in [a.bid_response_margin,a.progress_timeout,a.max_hold_seconds,a.dt,a.decision_interval,a.inference_timeout,a.max_context_age,a.lease_seconds,a.bid_window,a.flight_height,a.setup_timeout,a.rpc_timeout]:
         if not math.isfinite(value) or value<=0:p.error('Timing and height values must be positive and finite')
     if a.ticks<1:p.error('Ticks must be positive')
+    if a.safety_rejection_limit<2:p.error('Safety rejection limit must be at least two')
     if a.provider=='ollama' and (not a.model or not a.model_digest):p.error('Ollama requires --model and --model-digest')
     return a
 

@@ -166,7 +166,7 @@ class OllamaProvider:
         context=json.loads(prompt)
         example=context.get('decision_format',{}).get('example',decision_example())
         return dict(model=self.model,stream=False,format=decision_schema(context),
-            messages=[dict(role='system',content='You are one UAV high-level agent. Use ONLY the listed structured tools. Do not emit code or private chain of thought. Use short reason codes. Deterministic tools calculate geometry, costs and safety. Send a bid only for an open bidding task while idle; start_search only for your own executable task. Use hold when genuinely waiting or when motion is unsafe. When your owned task is executable, prioritize starting its search or evaluating its cost; repeating hold is not task progress. Do not request motion merely to calculate a cost. Respect ownership and guardian constraints. Your response must contain ALL FIVE top-level fields: situation_assessment, selected_tool, parameters, outgoing_messages, confidence. Never return only selected_tool and parameters. outgoing_messages may be an empty array. Complete shape example (choose your own valid tool and values): '+json.dumps(example)),
+            messages=[dict(role='system',content='You are one UAV high-level agent. Use ONLY the listed structured tools. Do not emit code or private chain of thought. Use short reason codes. Deterministic tools calculate geometry, costs and safety. Send a bid only for an open bidding task while idle; start_search only for your own executable task. Use hold when genuinely waiting or when motion is unsafe. Inspect approach_validation: if a route is blocked, release_task with SAFETY_ROUTE_BLOCKED so another drone can bid; do not repeat a rejected start_search. Hold when telemetry or cancellation is uncertain. When your owned task is executable and its approach is feasible, prioritize starting its search or evaluating its cost; repeating hold is not task progress. Do not request motion merely to calculate a cost. Respect ownership and guardian constraints. Your response must contain ALL FIVE top-level fields: situation_assessment, selected_tool, parameters, outgoing_messages, confidence. Never return only selected_tool and parameters. outgoing_messages may be an empty array. Complete shape example (choose your own valid tool and values): '+json.dumps(example)),
                       dict(role='user',content=prompt)],options=copy.deepcopy(self.options))
 
     def generate(self,prompt):
@@ -213,6 +213,8 @@ class ReplayProvider:
         params={};tool='hold'
         if active and active['executable']:
             tool='start_search';params=dict(task_id=active['task_id'],task_version=active['version'])
+            if c.get('approach_validation',{}).get('feasible') is False:
+                tool='release_task';params['reason_code']='SAFETY_ROUTE_BLOCKED'
         elif active:tool='compute_task_cost';params=dict(task_id=active['task_id'])
         elif role=='RELAY':tool='act_as_relay'
         elif role=='RESERVE':params=dict(duration_s=1.)

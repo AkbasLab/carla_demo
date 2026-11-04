@@ -15,7 +15,8 @@ from .structured import TOOLS, PolicyError, AsyncWorker, ReplayProvider, validat
 
 class PersistentAgent(AllocationAgent):
     def __init__(self,*args,role,routes,home,relay_point,guardian,output_dir,provider,
-                 mission,decision_interval=1.,inference_timeout=15.,max_context_age=20.,progress_timeout=None,max_hold_seconds=2.,**kwargs):
+                 mission,decision_interval=1.,inference_timeout=15.,max_context_age=20.,progress_timeout=None,max_hold_seconds=2.,
+                 deadline_bidding=None,inference_capacity=1,bid_response_margin=1.,safety_rejection_limit=2,**kwargs):
         super().__init__(*args,**kwargs)
         self.role=role;self.routes=copy.deepcopy(routes);self.home=tuple(home);self.relay_point=tuple(relay_point)
         self.guardian=guardian;self.mission=mission;self.provider=provider
@@ -34,6 +35,10 @@ class PersistentAgent(AllocationAgent):
         self.policy_source='llm' if isinstance(provider,OllamaProvider) else 'replay_fixture' if isinstance(provider,ReplayProvider) else 'test_fixture'
         self.identity_fault=False;self.model_decisions=0;self.fallback_count=0;self.events_policy=[];self.completed_requests=set()
         self.received_counts={};self.status_times={};self.last_measurement=None;self.last_distance=None
+        self.deadline_bidding=isinstance(provider,OllamaProvider) if deadline_bidding is None else deadline_bidding
+        self.inference_estimate=inference_timeout;self.inference_admission_delay_s=max(0,len(self.peers)//inference_capacity)*inference_timeout
+        self.bid_response_margin=bid_response_margin;self.safety_rejection_limit=safety_rejection_limit
+        self.blocked_approaches={};self.bid_blocked_until={};self.declined_task_epochs=set()
 
     def record(self,kind,now,**data):
         event=dict(time_s=now,agent_id=self.agent_id,event=kind,**data)
@@ -49,7 +54,18 @@ class PersistentAgent(AllocationAgent):
         try:super().offer(task,now)
         finally:self.role=saved
 
+    def _bid_available(self,task,now):
+        if (task.task_id,task.version) in self.declined_task_epochs:return
+        if self.agent_id in self.bids.get(task.task_id,{}):return
+        if now>=self.auction_end.get(task.task_id,-math.inf) or now<self.bid_blocked_until.get(task.task_id,-math.inf):return
+        if task.status!=TaskStatus.BIDDING or self.workload() or self.role!='SCOUT':return
+        # Bids promise executable work, not just a low geometric cost.
+        if self.guardian._state_errors(self.safety_state(now),now):return
+        calculation=self._cost(task,now)
+        return calculation['route_feasible'] and calculation['battery_sufficient']
+
     def _bid(self,task,now):
+        if not self._bid_available(task,now):return
         self._allow_bid=True
         try:self.offer(task,now)
         finally:self._allow_bid=False
@@ -90,8 +106,58 @@ class PersistentAgent(AllocationAgent):
 
     def protocol_tick(self,now,dt):
         self.send(MT.STATUS_UPDATE,dict(role=self.role,position=list(self.position),velocity=list(self.velocity),battery=self.battery,observed_at=self.state_time),now)
+        self._deadline_bids(now)
         super().step(now,dt,process_inbox=False,execute_mock=False)
         self._update_opportunity(now)
+
+    def _deadline_bids(self,now):
+        if not self.deadline_bidding or self.workload() or self.role!='SCOUT':return
+        for task in self.tasks.values():
+            if task.status!=TaskStatus.BIDDING or self.agent_id in self.bids.get(task.task_id,{}):continue
+            slack=self.auction_end.get(task.task_id,-math.inf)-now
+            required=self.inference_admission_delay_s+self.inference_estimate+self.bid_response_margin
+            if not 0<slack<=required:continue
+            self._bid(task,now)
+            if self.agent_id in self.bids.get(task.task_id,{}):
+                self.record('deadline_bid_submitted',now,task_id=task.task_id,version=task.version,
+                    deadline=self.auction_end[task.task_id],remaining_s=slack,
+                    estimated_admission_s=self.inference_admission_delay_s,estimated_inference_s=self.inference_estimate,
+                    source='deterministic_deadline_guard')
+
+    def _approach(self,task,now,speed=None):
+        if speed is None:speed=min(1.,self.guardian.config.max_speed_mps)
+        index=self.executor.index if self.executor.key==(task.task_id,task.version) else self.checkpoints.get(task.task_id,0)
+        if index>=len(self.routes[task.task_id]):raise PolicyError('waypoint_out_of_order')
+        target=tuple(self.routes[task.task_id][index])
+        action=Action(f'approach:{self.agent_id}:{now}',self.agent_id,'MOVE',now,now+30,(target,),speed)
+        check=self.guardian.evaluate(action,self.safety_state(now),now)
+        return index,target,check
+
+    def _note_blocked(self,task,index,reasons,now):
+        key=(task.task_id,task.version,index);reasons=tuple(sorted(set(reasons)))
+        previous=self.blocked_approaches.get(task.task_id,{})
+        count=previous.get('count',0)+1 if previous.get('key')==key and previous.get('reasons')==reasons else 1
+        self.blocked_approaches[task.task_id]=dict(key=key,reasons=reasons,count=count,observed_at=now)
+        self.record('approach_blocked',now,task_id=task.task_id,version=task.version,index=index,reasons=list(reasons),consecutive_rejections=count)
+
+    def _blocked_task(self):
+        for tid,blocked in self.blocked_approaches.items():
+            task=self.tasks[tid]
+            if task.status==TaskStatus.ASSIGNED and task.assigned_agent==self.agent_id and blocked['key'][1]==task.version:return task,blocked
+        return None,None
+
+    def _release_blocked(self,task,now,gate,source='deterministic_safety_recovery'):
+        try:self._stop_motion(gate)
+        except PolicyError:
+            self.record('blocked_task_release_deferred',now,task_id=task.task_id,reason_code='cancellation_unconfirmed')
+            return False
+        version=task.version
+        self.bid_blocked_until[task.task_id]=now+self.bid_window
+        self.release_task(task.task_id,now)
+        self.record('blocked_task_released',now,task_id=task.task_id,previous_version=version,new_version=task.version,
+            reason_code='SAFETY_ROUTE_BLOCKED',source=source)
+        self.correction=None;self.correction_attempt=0
+        return True
 
     def safety_state(self,now):
         peers={p:Peer(tuple(v['position']),tuple(v['velocity']),v['observed_at']) for p,v in self.peer_beliefs.items()}
@@ -106,7 +172,7 @@ class PersistentAgent(AllocationAgent):
             return ('EXECUTE_OWNED_TASK',ready.task_id,ready.version)
         if not self.workload() and self.role=='SCOUT' and self.battery>=self.guardian.config.min_battery_reserve_percent:
             for t in sorted(self.tasks.values(),key=lambda t:(-t.priority,t.task_id)):
-                if t.status==TaskStatus.BIDDING and self.agent_id not in self.bids.get(t.task_id,{}):
+                if self._bid_available(t,now):
                     return ('BID_FOR_AVAILABLE_TASK',t.task_id,t.version)
         return None
 
@@ -117,7 +183,7 @@ class PersistentAgent(AllocationAgent):
         return opportunity
 
     def needs_decision(self,now):
-        if self.correction or self.model_decisions==0:return True
+        if self.correction:return True
         if self._opportunity(now):return True
         if self.battery<self.guardian.config.min_battery_reserve_percent or self.safety_state(now).communication!='HEALTHY':return True
         if self.role=='RELAY' and math.dist(self.position,self.relay_point)>.4:return True
@@ -140,13 +206,15 @@ class PersistentAgent(AllocationAgent):
             result['release_task']=[dict(**key,reason_code='TASK_UNSUITABLE')]
             result['decline_task']=[dict(**key,reason_code='TASK_UNSUITABLE')]
         if ready and self.role=='SCOUT':
-            index=self.executor.index if self.executor.key==(ready.task_id,ready.version) else self.checkpoints.get(ready.task_id,0)
-            if index<len(self.routes[ready.task_id]):
+            index,target,check=self._approach(ready,now)
+            if check.outcome in (Outcome.APPROVE,Outcome.APPROVE_WITH_MODIFICATION):
                 key=dict(task_id=ready.task_id,task_version=ready.version)
                 result['start_search']=[key]
                 result['go_to_waypoint']=[dict(**key,waypoint_index=index,speed_mps=min(1.,self.guardian.config.max_speed_mps))]
+            elif not self.guardian._state_errors(self.safety_state(now),now):
+                result['release_task']=[dict(task_id=ready.task_id,task_version=ready.version,reason_code='SAFETY_ROUTE_BLOCKED')]
         if not owned and self.role=='SCOUT' and self.battery>=self.guardian.config.min_battery_reserve_percent:
-            bids=[dict(task_id=t.task_id,task_version=t.version) for t in unfinished if t.status==TaskStatus.BIDDING and self.agent_id not in self.bids.get(t.task_id,{})]
+            bids=[dict(task_id=t.task_id,task_version=t.version) for t in unfinished if self._bid_available(t,now)]
             if bids:result['send_bid']=bids
             claims=[]
             for t in unfinished:
@@ -171,6 +239,13 @@ class PersistentAgent(AllocationAgent):
 
     def _example(self,now,candidates):
         opportunity=self._opportunity(now)
+        blocked_task,_=self._blocked_task()
+        if blocked_task is not None and 'release_task' in candidates and not self.guardian._state_errors(self.safety_state(now),now):
+            return decision_example('release_task',dict(task_id=blocked_task.task_id,task_version=blocked_task.version,reason_code='SAFETY_ROUTE_BLOCKED'))
+        if opportunity and opportunity[0]=='EXECUTE_OWNED_TASK' and 'start_search' not in candidates:
+            # Unknown telemetry calls for waiting; a known blocked route calls for reallocation.
+            tool='release_task' if not self.guardian._state_errors(self.safety_state(now),now) and 'release_task' in candidates else 'hold'
+            return decision_example(tool,copy.deepcopy(candidates[tool][0]))
         tool=('start_search' if opportunity and opportunity[0]=='EXECUTE_OWNED_TASK' else
               'send_bid' if opportunity else 'act_as_relay' if self.role=='RELAY' else 'hold')
         if tool not in candidates:tool='hold'
@@ -216,7 +291,13 @@ class PersistentAgent(AllocationAgent):
         active=next((t for t in self.tasks.values() if t.assigned_agent==self.agent_id and t.status==TaskStatus.ASSIGNED),None)
         executable=self.executable_task(now)
         candidates=self._tool_candidates(now);example=self._example(now,candidates);opportunity=self._update_opportunity(now)
+        approach=None
+        if executable is not None:
+            index,target,check=self._approach(executable,now)
+            approach=dict(task_id=executable.task_id,version=executable.version,index=index,target=list(target),
+                checked_at=now,feasible=check.outcome in (Outcome.APPROVE,Outcome.APPROVE_WITH_MODIFICATION),reasons=check.reasons)
         tasks=[dict(task_id=t.task_id,version=t.version,status=t.status.value,owner=t.assigned_agent,priority=t.priority,
+                    bidding_remaining_s=max(0,self.auction_end.get(t.task_id,now)-now) if t.status==TaskStatus.BIDDING else None,
                     own_bid=self.agent_id in self.bids.get(t.task_id,{}),center=list(t.location_or_region.center))
                for t in sorted(self.tasks.values(),key=lambda t:t.task_id)]
         return dict(agent_id=self.agent_id,team_mission=self.mission,current_role=self.role,
@@ -228,6 +309,8 @@ class PersistentAgent(AllocationAgent):
             tool_candidates=candidates,policy_limits=dict(max_hold_seconds=self.max_hold_seconds,progress_timeout_s=self.progress_timeout),
             mission_progress_requirement=dict(opportunity=opportunity,waiting_s=now-self.opportunity_since,
                 instruction='Complete owned executable work. Use deterministic calculations if needed; do not repeatedly hold when progress is feasible.'),
+            approach_validation=approach,bidding_budget=dict(estimated_admission_s=self.inference_admission_delay_s,
+                estimated_inference_s=self.inference_estimate,response_margin_s=self.bid_response_margin,deadline_guard_enabled=self.deadline_bidding),
             deterministic_calculations=list(self.calculations.values())[-4:],communication_estimate={p:dict(
                 heartbeat_age_s=max(0,now-self.last_heartbeat.get(p,0)),received_messages=self.received_counts.get(p,0)) for p in self.peers},
             current_skill_result=self.last_skill_result,unresolved_decisions=([dict(goal=opportunity[0],task_id=opportunity[1],task_version=opportunity[2])] if opportunity else ['wait for acknowledgments, a suitable task, or role-specific work; obey safety']),
@@ -256,15 +339,28 @@ class PersistentAgent(AllocationAgent):
             for task in self.tasks.values():
                 if task.status==TaskStatus.BIDDING:self._bid(task,now)
             task=self.executable_task(now)
-            if task is not None and self.authorized!=(task.task_id,task.version):self._authorize(task,now,'deterministic_fallback','start_search')
+            if task is not None and self.authorized!=(task.task_id,task.version):
+                index,target,check=self._approach(task,now)
+                if check.outcome in (Outcome.APPROVE,Outcome.APPROVE_WITH_MODIFICATION):
+                    self._authorize(task,now,'deterministic_fallback','start_search')
+                else:
+                    self._note_blocked(task,index,check.reasons,now)
+                    if self.blocked_approaches[task.task_id]['count']>=self.safety_rejection_limit:self._release_blocked(task,now,gate)
         if self.agent_id not in gate.active:
             action=Action(f'fallback:{self.agent_id}:{now}',self.agent_id,'HOLD',now,now+3,(),1,1,'rule_policy')
             gate.dispatch(action,self.safety_state(now),now)
 
     def _failure(self,reason,now,gate,correctable,details=None):
         self.record('policy_error',now,reason_code=reason,correction_attempt=self.correction_attempt,validation_details=details)
+        task,blocked=self._blocked_task()
+        if task is not None and blocked['count']>=self.safety_rejection_limit:
+            self._release_blocked(task,now,gate)
+            return
         if correctable and self.correction_attempt==0:
-            self.correction_attempt=1;self.correction=dict(error=reason,validation_details=details,required_fields=list(decision_example()),example=self._example(now,self._tool_candidates(now)),instruction='Return ALL FIVE top-level fields in exactly one corrected decision: situation_assessment, selected_tool, parameters, outgoing_messages, confidence. Supply your own assessment and confidence; do not invent coordinates or task ownership.')
+            example=self._example(now,self._tool_candidates(now))
+            instruction=('Release the blocked task so a peer can rebid; do not repeat the rejected start_search or waypoint. Hold if cancellation or telemetry is uncertain. '
+                if task is not None else 'Use the current task version and bidding deadline; a closed auction cannot accept a late bid. ' if reason=='not_eligible_to_bid' else '')
+            self.correction_attempt=1;self.correction=dict(error=reason,validation_details=details,required_fields=list(decision_example()),example=example,instruction=instruction+'Return ALL FIVE top-level fields in exactly one corrected decision: situation_assessment, selected_tool, parameters, outgoing_messages, confidence. Supply your own assessment and confidence; do not invent coordinates or task ownership.')
             self.last_request=-math.inf
             self.record('structured_correction_requested',now,reason_code=reason)
         else:
@@ -284,6 +380,8 @@ class PersistentAgent(AllocationAgent):
                 self._failure(result['error_type'],now,gate,False);return
             if now-pending['context_time']>self.max_context_age:
                 self._failure('stale_decision_context',now,gate,False);return
+            latency=result.get('latency_s',0.)
+            if latency>0:self.inference_estimate=min(self.inference_timeout,max(latency,.75*self.inference_estimate+.25*latency))
             try:
                 decision=validate_decision(result['raw'],self.peers)
                 if decision['confidence']<.5:raise PolicyError('low_policy_confidence')
@@ -314,7 +412,9 @@ class PersistentAgent(AllocationAgent):
         return task
 
     def _cost(self,task,now):
-        route=self.routes[task.task_id];target=route[0];entry_distance=math.dist(self.position,target)
+        route=self.routes[task.task_id][self.checkpoints.get(task.task_id,0):]
+        if not route:raise PolicyError('task_route_already_traversed')
+        target=route[0];entry_distance=math.dist(self.position,target)
         distance=sum(math.dist(a,b) for a,b in zip([self.position]+route,route));speed=min(1.,self.guardian.config.max_speed_mps)
         score=bid_cost(task,self.position,self.battery,self.workload(),self.communication_risk,self.capabilities,self.weights,'searcher')
         proposed=Action(f'calculation:{self.agent_id}:{now}',self.agent_id,'MOVE',now,now+30,tuple(tuple(p) for p in route),speed)
@@ -354,7 +454,7 @@ class PersistentAgent(AllocationAgent):
             task=self._task(p,now)
             if task.status!=TaskStatus.BIDDING or self.workload() or self.role!='SCOUT':raise PolicyError('not_eligible_to_bid')
             self._bid(task,now)
-            if self.agent_id not in self.bids.get(task.task_id,{}):raise PolicyError('capability_or_battery_ineligible')
+            if self.agent_id not in self.bids.get(task.task_id,{}):raise PolicyError('bid_not_feasible_or_deadline_passed')
             return self._cost(task,now)
         if tool=='claim_task':
             task=self._task(p,now);offers=self.bids.get(task.task_id,{})
@@ -372,8 +472,11 @@ class PersistentAgent(AllocationAgent):
                 return dict(status='ownership_confirmed',task_id=task.task_id)
             if tool in ('release_task','decline_task'):
                 if task.assigned_agent==self.agent_id:
-                    self._stop_motion(gate);self.release_task(task.task_id,now)
+                    if task.task_id in self.blocked_approaches or p['reason_code']=='SAFETY_ROUTE_BLOCKED':
+                        if not self._release_blocked(task,now,gate,source=self.policy_source):raise PolicyError('cancellation_unconfirmed')
+                    else:self._stop_motion(gate);self.release_task(task.task_id,now)
                 else:
+                    self.declined_task_epochs.add((task.task_id,task.version))
                     self.bids.get(task.task_id,{}).pop(self.agent_id,None)
                     self.send(MT.TASK_RELEASE,dict(task_id=task.task_id,version=task.version,reason='bid_withdrawn'),now)
                 return dict(status='released_or_declined')
@@ -386,11 +489,20 @@ class PersistentAgent(AllocationAgent):
             else:speed=min(1.,self.guardian.config.max_speed_mps);self.single_index=None
             index=self.executor.index if self.executor.key==(task.task_id,task.version) else self.checkpoints.get(task.task_id,0)
             target=self.routes[task.task_id][index]
+            index,target,preview=self._approach(task,now,speed)
+            self.record('approach_revalidated',now,task_id=task.task_id,version=task.version,index=index,
+                target=list(target),reasons=preview.reasons,outcome=preview.outcome.value)
+            if preview.outcome not in (Outcome.APPROVE,Outcome.APPROVE_WITH_MODIFICATION):
+                self._note_blocked(task,index,preview.reasons,now)
+                raise PolicyError('unsafe_action:'+','.join(preview.reasons),dict(task_id=task.task_id,task_version=task.version,index=index,reasons=preview.reasons,recovery_tool='release_task'))
             action=Action(f'policy:{self.agent_id}:{self.request_number}:{now}',self.agent_id,'MOVE',now,now+30,(tuple(target),),speed,source='llm' if self.worker else 'rule_policy')
             if self.agent_id not in gate.active:
                 checked=gate.dispatch(action,state,now)
-                if checked.outcome not in (Outcome.APPROVE,Outcome.APPROVE_WITH_MODIFICATION):raise PolicyError('unsafe_action:'+','.join(checked.reasons))
+                if checked.outcome not in (Outcome.APPROVE,Outcome.APPROVE_WITH_MODIFICATION):
+                    self._note_blocked(task,index,checked.reasons,now)
+                    raise PolicyError('unsafe_action:'+','.join(checked.reasons))
                 self.motion_key=(task.task_id,task.version,index)
+            self.blocked_approaches.pop(task.task_id,None)
             self.accepted_tasks.add((task.task_id,task.version))
             self._authorize(task,now,self.policy_source,tool,f'{self.agent_id}:{self.request_number}')
             return dict(status='search_authorized',task_id=task.task_id,version=task.version)
@@ -449,6 +561,14 @@ class PersistentAgent(AllocationAgent):
             self.authorized=None;self.motion_key=None
             self._fallback(now,gate,'task_authorization_revoked');return
         if not self.authorized:return
+        if self.agent_id not in gate.active:
+            index,target,preview=self._approach(task,now)
+            if preview.outcome not in (Outcome.APPROVE,Outcome.APPROVE_WITH_MODIFICATION):
+                self.authorized=None
+                self.record('execution_guardian_intervention',now,reasons=preview.reasons)
+                self._note_blocked(task,index,preview.reasons,now)
+                if self.blocked_approaches[task.task_id]['count']>=self.safety_rejection_limit:self._release_blocked(task,now,gate)
+                return
         arrival_start=len(self.executor.arrivals)
         action=self.executor.update(self,now)
         self._observe_arrivals(arrival_start,now)
@@ -460,11 +580,13 @@ class PersistentAgent(AllocationAgent):
         key=(action['task_id'],action['version'],action['index'])
         if self.agent_id in gate.active:return
         target=tuple(action['target'])
-        proposed=Action(f'executor:{self.agent_id}:{now}',self.agent_id,'MOVE',now,now+30,(target,),1,source='rule_policy')
+        proposed=Action(f'executor:{self.agent_id}:{now}',self.agent_id,'MOVE',now,now+30,(target,),min(1.,self.guardian.config.max_speed_mps),source='rule_policy')
         decision=gate.dispatch(proposed,self.safety_state(now),now)
         self.motion_key=key
         if decision.outcome not in (Outcome.APPROVE,Outcome.APPROVE_WITH_MODIFICATION):
             self.authorized=None;self.record('execution_guardian_intervention',now,reasons=decision.reasons)
+            self._note_blocked(task,action['index'],decision.reasons,now)
+            if self.blocked_approaches[task.task_id]['count']>=self.safety_rejection_limit:self._release_blocked(task,now,gate)
 
     def save_memory(self):
         (self.out/'memory.json').write_text(json.dumps(dict(agent_id=self.agent_id,memory=list(self.memory)),indent=2)+'\n')

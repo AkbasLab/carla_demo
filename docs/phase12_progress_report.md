@@ -60,3 +60,7 @@ python -u scripts/run_phase12_agents.py \
 This pilot gives the shared server a longer bid window and lease than `easy_run2`; it changes both policy behavior and protocol timing. It is not a controlled attribution of improvement to one change. Calibrate on the actual hardware, then freeze timings for formal comparisons. The deadline is approximately 300 seconds of mission wall time, excluding preflight warmup. Do not replace the expected digest automatically if verification fails.
 
 First inspect `mission_complete`, `error`, `llm_productive_decisions_by_agent`, `fallbacks_by_agent`, `policy_errors_by_agent` and the three criterion/success flags. Every drone needs genuine productive LLM evidence, not only a positive aggregate decision count. Preserve `request_specs.jsonl`, prompts, responses, histories, telemetry and guardian audits. Repeat with fixed settings and multiple seeds before paper claims. No new real-model or live-flight success is claimed by this implementation report.
+
+## Bidding deadline and blocked-route follow-up
+
+See [deadline and recovery report](phase12_deadline_recovery_report.md) for the `easy_run3` diagnosis, deadline-protected calculated bids, fresh approach checks, bounded release/reauction, recovery-specific correction and the `easy_run4` command. Historical results and prior test counts above remain unchanged.

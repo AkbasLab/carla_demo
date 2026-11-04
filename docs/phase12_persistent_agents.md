@@ -172,3 +172,7 @@ After the schema correction, the regression suite passes 113 tests, including 23
 ## Productive-policy correction after easy_run2
 
 See [Phase 12 progress report](phase12_progress_report.md) for the repeated-HOLD diagnosis, contextual tool schemas, fair inference admission, bounded deferral correction, attributable motion evidence, 126-test validation and the recommended next real-model pilot command. The earlier generic command remains illustrative; use the report’s calibrated pilot settings for the next investigation. Individual HOLDs default to at most two seconds. Repeated safe-opportunity deferrals use `--progress-timeout` (default twice the inference timeout, at least 30 seconds) and one correction before fallback; fallback completion is never counted as LLM progress. Historical run files are unchanged.
+
+## Bidding deadline and blocked-route follow-up
+
+See [deadline and recovery report](phase12_deadline_recovery_report.md) for the `easy_run3` diagnosis, deadline-protected calculated bids, fresh approach checks, bounded release/reauction, recovery-specific correction and the `easy_run4` command. Historical results and prior test counts above remain unchanged.
