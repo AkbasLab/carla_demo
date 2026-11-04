@@ -16,6 +16,7 @@ from agentic_uav.control.runtime_guardian import RuntimeGuardian, Config, Guarde
 from agentic_uav.policy.structured import OllamaProvider, ReplayProvider, decision_schema
 from agentic_uav.policy.persistent import PersistentAgent
 from agentic_uav.policy.backends import MockFlight, AirSimFlight
+from agentic_uav.policy.evidence import admit_requests, policy_evidence
 
 
 def load_mission(path):
@@ -44,6 +45,14 @@ def run(args,provider=None):
     out.mkdir(parents=True,exist_ok=True)
     provider=provider or (ReplayProvider() if args.provider=='replay' else OllamaProvider(args.model,args.model_digest,args.ollama_url,args.inference_timeout,args.seed))
     identity=provider.verify()  # Fail before vehicle control if the model is not pinned.
+    if isinstance(provider,OllamaProvider) and not args.no_model_warmup:
+        try:identity['warmup']=provider.warmup()
+        except Exception as exc:
+            failure=dict(stage='model_warmup',error_type=type(exc).__name__,vehicle_control_started=False)
+            (out/'preflight_error.json').write_text(json.dumps(failure,indent=2)+'\n')
+            (out/'model_manifest.json').write_text(json.dumps(identity,indent=2)+'\n')
+            raise
+    else:identity['warmup']=dict(performed=False)
     (out/'decision_schema.json').write_text(json.dumps(decision_schema(),indent=2)+'\n')
     (out/'model_manifest.json').write_text(json.dumps(identity,indent=2)+'\n')
     (out/'effective_mission.json').write_text(json.dumps(m,indent=2)+'\n')
@@ -52,7 +61,9 @@ def run(args,provider=None):
     hashes={str(p.relative_to(root)):hashlib.sha256(p.read_bytes()).hexdigest() for p in sorted(sources)}
     (out/'run_manifest.json').write_text(json.dumps(dict(backend=args.backend,provider=identity['provider'],seed=args.seed,
         ticks=args.ticks,dt=args.dt,decision_interval=args.decision_interval,inference_timeout=args.inference_timeout,
-        lease_seconds=args.lease_seconds,bid_window=args.bid_window,max_context_age=args.max_context_age,python=platform.python_version(),source_hashes=hashes),indent=2)+'\n')
+        lease_seconds=args.lease_seconds,bid_window=args.bid_window,max_context_age=args.max_context_age,
+        progress_timeout=args.progress_timeout,max_hold_seconds=args.max_hold_seconds,
+        inference_parallelism=args.inference_parallelism if args.provider=='ollama' else 4,model_warmup=identity['warmup']['performed'],python=platform.python_version(),source_hashes=hashes),indent=2)+'\n')
     clock=[0.];bus=PerfectMessageBus(list(m['vehicles']),lambda:clock[0]);guardian=RuntimeGuardian(config)
     backend=(MockFlight(m['vehicles'],lambda:clock[0]) if args.backend=='mock' else
              AirSimFlight(m['vehicles'],lambda:clock[0],args.airsim_host,args.rpc_timeout,config.ground_z))
@@ -63,7 +74,7 @@ def run(args,provider=None):
         agents.append(PersistentAgent(a,[p for p in m['vehicles'] if p!=a],bus.endpoint(a),tasks,v['start_position'],
             role=v['role'],routes=routes,home=v['home'],relay_point=m['relay_point'],guardian=guardian,
             output_dir=out,provider=provider,mission=m['mission'],lease_s=args.lease_seconds,bid_window=args.bid_window,
-            decision_interval=args.decision_interval,inference_timeout=args.inference_timeout,max_context_age=args.max_context_age))
+            decision_interval=args.decision_interval,inference_timeout=args.inference_timeout,max_context_age=args.max_context_age,progress_timeout=args.progress_timeout,max_hold_seconds=args.max_hold_seconds))
     traces=[];error=None;complete=False;world=previous=None;cleanup=[];start=time.monotonic();last_now=0.
     realtime=args.provider=='ollama' or args.backend=='airsim'
     def refresh():
@@ -104,20 +115,22 @@ def run(args,provider=None):
                 time.sleep(max(0,start_tick+tick*args.dt-time.monotonic()));clock[0]=ready+time.monotonic()-start_tick
             else:clock[0]=round(ready+tick*args.dt,8)
             delta=max(0,clock[0]-last_now);last_now=clock[0]
-            for a,cid in backend.advance(delta):gate.confirm_completion(a,cid)
+            completed_commands=backend.advance(delta)
+            for aid,cid in completed_commands:gate.confirm_completion(aid,cid)
             refresh()
+            for aid,cid in completed_commands:
+                next(a for a in agents if a.agent_id==aid).observe_completion(cid,clock[0])
             for a in agents:
                 gate.watchdog(a.safety_state(clock[0]),clock[0])
                 a.protocol_tick(clock[0],args.dt)
                 a.execution_tick(clock[0],gate)
                 a.poll(clock[0],gate)
                 if a.identity_fault:raise RuntimeError('Pinned model identity changed; formal run aborted')
-                # Do not ask for a new motion command while an authorized search is running.
-                if not a.authorized:a.request(clock[0])
                 traces.append(dict(time_s=clock[0],agent_id=a.agent_id,position=a.position,role=a.role,
                     flight_phase=a.phase,authorized_task=a.authorized,current_task=next((t.task_id for t in a.tasks.values() if t.assigned_agent==a.agent_id and t.status==TaskStatus.ASSIGNED),None)))
                 for mid in a.decisions:bus.record_decision(a.agent_id,mid)
                 a.decisions.clear()
+            admit_requests(agents,clock[0],args.inference_parallelism if args.provider=='ollama' else len(agents))
             if all(all(t.status==TaskStatus.COMPLETE for t in a.tasks.values()) for a in agents):complete=True;break
     except Exception as exc:
         error=dict(type=type(exc).__name__,message=str(exc)[:200])
@@ -147,14 +160,13 @@ def run(args,provider=None):
         completions=[e for a in agents for e in a.events if e['event']=='work_completed']
         guarded_ids={e['selected_action']['command_id'] for e in gate.audit if e['selected_action'] is not None}
         all_guarded=all(e['command_id'] in guarded_ids for e in backend.effects)
-        airborne_policy={a.agent_id:any(e['event']=='policy_decision_applied' and e.get('flight_phase')=='AIRBORNE' for e in a.events_policy) for a in agents}
-        llm_observed=identity['provider']=='ollama' and all(airborne_policy.values()) and all_guarded and error is None
+        evidence=policy_evidence(agents,identity['provider'],all_guarded,error,complete,len(completions)-len({e['task_id'] for e in completions}),args.backend)
         summary=dict(mode='phase12_persistent_high_level_agents',backend=args.backend,provider=identity['provider'],
             llm_inference=identity['provider']=='ollama',mission_complete=complete,error=error,time_s=clock[0],
             completed_task_ids=sorted({e['task_id'] for e in completions}),duplicate_task_completions=len(completions)-len({e['task_id'] for e in completions}),
             decisions_by_agent={a.agent_id:a.model_decisions for a in agents},fallbacks_by_agent={a.agent_id:a.fallback_count for a in agents},
             persistent_contexts=len(agents),all_dispatched_actions_guarded=all_guarded,
-            llm_exit_criterion_observed=llm_observed,live_exit_criterion_observed=llm_observed and args.backend=='airsim',
+            **evidence,
             guardian_decisions=len(gate.audit),cleanup_warnings=cleanup,
             limitations=['Replay fixtures do not establish LLM inference; live adapter requires scene-specific validation',
                 'Static geometry, constant-velocity peer predictions and abstract battery budgets inherit Phase 11 limits',
@@ -176,6 +188,10 @@ def parse_args(argv=None):
     p.add_argument('--mission-config',default='configs/phase12/mission.example.json')
     p.add_argument('--model');p.add_argument('--model-digest');p.add_argument('--ollama-url',default='http://localhost:11434')
     p.add_argument('--ticks',type=int,default=400);p.add_argument('--dt',type=float,default=.2);p.add_argument('--seed',type=int,default=42)
+    p.add_argument('--inference-parallelism',type=int,choices=range(1,5),default=1)
+    p.add_argument('--no-model-warmup',action='store_true')
+    p.add_argument('--progress-timeout',type=float,default=None)
+    p.add_argument('--max-hold-seconds',type=float,default=2.)
     p.add_argument('--decision-interval',type=float,default=1.);p.add_argument('--inference-timeout',type=float,default=15.)
     p.add_argument('--max-context-age',type=float,default=20.);p.add_argument('--lease-seconds',type=float,default=45.)
     p.add_argument('--bid-window',type=float,default=2.);p.add_argument('--flight-height',type=float,default=3.)
@@ -183,7 +199,8 @@ def parse_args(argv=None):
     p.add_argument('--airsim-host',default='127.0.0.1');p.add_argument('--carla-host');p.add_argument('--carla-port',type=int,default=2000)
     p.add_argument('--output-dir',default='results/phase12/replay')
     a=p.parse_args(argv)
-    for value in [a.dt,a.decision_interval,a.inference_timeout,a.max_context_age,a.lease_seconds,a.bid_window,a.flight_height,a.setup_timeout,a.rpc_timeout]:
+    if a.progress_timeout is None:a.progress_timeout=max(30.,2*a.inference_timeout)
+    for value in [a.progress_timeout,a.max_hold_seconds,a.dt,a.decision_interval,a.inference_timeout,a.max_context_age,a.lease_seconds,a.bid_window,a.flight_height,a.setup_timeout,a.rpc_timeout]:
         if not math.isfinite(value) or value<=0:p.error('Timing and height values must be positive and finite')
     if a.ticks<1:p.error('Ticks must be positive')
     if a.provider=='ollama' and (not a.model or not a.model_digest):p.error('Ollama requires --model and --model-digest')

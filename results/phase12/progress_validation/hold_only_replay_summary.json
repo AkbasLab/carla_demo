@@ -1,0 +1,98 @@
+{
+  "mode": "phase12_persistent_high_level_agents",
+  "backend": "mock",
+  "provider": "replay",
+  "llm_inference": false,
+  "mission_complete": true,
+  "error": null,
+  "time_s": 29.8,
+  "completed_task_ids": [
+    "SEARCH_SECTOR_A",
+    "SEARCH_SECTOR_B",
+    "SEARCH_SECTOR_C",
+    "SEARCH_SECTOR_D"
+  ],
+  "duplicate_task_completions": 0,
+  "decisions_by_agent": {
+    "Drone1": 4,
+    "Drone2": 6,
+    "Drone3": 8,
+    "Drone4": 10
+  },
+  "fallbacks_by_agent": {
+    "Drone1": 2,
+    "Drone2": 3,
+    "Drone3": 4,
+    "Drone4": 5
+  },
+  "persistent_contexts": 4,
+  "all_dispatched_actions_guarded": true,
+  "llm_integration_observed": false,
+  "llm_exit_criterion_observed": false,
+  "live_exit_criterion_observed": false,
+  "cooperative_mission_success": false,
+  "productive_decisions_by_agent": {
+    "Drone1": 0,
+    "Drone2": 0,
+    "Drone3": 0,
+    "Drone4": 0
+  },
+  "llm_productive_decisions_by_agent": {
+    "Drone1": 0,
+    "Drone2": 0,
+    "Drone3": 0,
+    "Drone4": 0
+  },
+  "observed_progress_sources_by_agent": {
+    "Drone1": {
+      "deterministic_fallback": 2
+    },
+    "Drone2": {
+      "deterministic_fallback": 2
+    },
+    "Drone3": {
+      "deterministic_fallback": 2
+    },
+    "Drone4": {
+      "deterministic_fallback": 2
+    }
+  },
+  "policy_tools_by_agent": {
+    "Drone1": {
+      "hold": 4
+    },
+    "Drone2": {
+      "hold": 6
+    },
+    "Drone3": {
+      "hold": 8
+    },
+    "Drone4": {
+      "hold": 10
+    }
+  },
+  "policy_errors_by_agent": {
+    "Drone1": {
+      "mission_progress_stall": 4
+    },
+    "Drone2": {
+      "mission_progress_stall": 6
+    },
+    "Drone3": {
+      "mission_progress_stall": 8
+    },
+    "Drone4": {
+      "mission_progress_stall": 10
+    }
+  },
+  "guardian_decisions": 50,
+  "cleanup_warnings": [],
+  "limitations": [
+    "Replay fixtures do not establish LLM inference; live adapter requires scene-specific validation",
+    "Static geometry, constant-velocity peer predictions and abstract battery budgets inherit Phase 11 limits",
+    "SimpleFlight may lack battery telemetry; any configured battery assumption is explicit in the mission manifest",
+    "Phase 10 degraded-communication recovery weaknesses are not fixed by adding an LLM",
+    "One shared local server may serialize requests; timeouts and late responses are explicitly logged",
+    "Live setup/cleanup remain client-side; no onboard safety guarantee or automatic unchecked landing"
+  ]
+}

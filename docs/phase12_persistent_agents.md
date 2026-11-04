@@ -15,7 +15,7 @@ The deterministic team already works under nominal conditions. Phase 10's degrad
 | 12.1 Persistent per-drone state | `PersistentAgent` creates separate local ledgers, memory deques, recent-message summaries, inboxes, task authorizations and per-agent JSONL histories. No other agent memory is included in a prompt. Persistence is across decisions within a run, not safe process restart/rejoin. |
 | 12.2 Structured tools | Closed allowlist of 15 tools. No arbitrary Python, AirSim calls, numerical bid injection or unrestricted waypoint generation. |
 | 12.3 Structured decisions | Strict fields for categorical assessment, selected tool, tool-specific parameters, optional constrained message intent and confidence. Extra fields, duplicate JSON keys, nonfinite values, wrong types and invalid recipients are rejected. |
-| 12.4 Relevant context | Mission, constraints, own role/task/telemetry, local task beliefs, five recent message summaries, twelve memory entries, local communication estimates, latest skill/tool result and correction feedback. No complete raw flight log or other agents' histories. |
+| 12.4 Relevant context | Mission, constraints, own role/task/telemetry, local task beliefs, bounded important-message summaries and memory, local communication estimates, latest skill/tool result and correction feedback. No complete raw flight log or other agents' histories. |
 | 12.5 Deterministic calculations | `compute_task_cost` and bid/claim handlers compute distance, travel time, battery budget, local contact observations, cost, route feasibility and separation reasons. Actual motion is checked again by the guardian. |
 | 12.6 Timeouts and fallback | One structured correction for correctable schema/tool/unsafe-action errors; otherwise deterministic bidding/guarded continuation or hold. Inference failures/timeouts use fallback directly. Responses arriving after timeout or from stale contexts cannot actuate. Ownership/version is revalidated when applying a response. |
 | 12.7 Frozen primary model | Explicit non-`latest` tag plus full expected digest, verified before/after inference; temperature zero, fixed seed, token/context settings, model details and server version saved. Identity changes abort the formal run. Prompts, raw structured responses and decision histories are recorded per agent. |
@@ -109,7 +109,7 @@ python -u scripts/run_phase12_agents.py \
   --output-dir results/phase12/ollama_mock_run1
 ```
 
-Actual-model runs are paced in wall time, including mock flight, so timeout and inference latency measurements are meaningful. Four requests may queue on a single server. Calibrate inference budget, bid window and leases through pilot runs and freeze the chosen values for comparisons; server queueing can otherwise bias task allocation. Temperature zero plus a pinned digest does not guarantee bitwise-identical generated outputs across hardware/server scheduling, so preserve the recorded prompts and responses.
+Actual-model runs are paced in wall time, including mock flight, so timeout and inference latency measurements are meaningful. Model warmup happens before vehicle setup; one inference request is admitted at a time by default. Admission wait and inference latency are logged separately. Increase `--inference-parallelism` only after measuring server capacity. Calibrate inference budget, bid window and leases through pilot runs and freeze the chosen values for comparisons; server queueing can otherwise bias task allocation. Temperature zero plus a pinned digest does not guarantee bitwise-identical generated outputs across hardware/server scheduling, so preserve the recorded prompts and responses.
 
 ## Run 3: optional live CARLA–AirSim adapter
 
@@ -143,6 +143,7 @@ Use a new output directory for each run.
 | `run_manifest.json` | Timing/lease settings, seed, Python version and source hashes. |
 | `decision_schema.json`, `effective_mission.json` | Exact structured interface and mission/safety configuration. |
 | `DroneN/prompts.jsonl` | Every submitted bounded prompt and correction attempt, with per-agent request ID. |
+| `DroneN/request_specs.jsonl` | Exact Ollama wire request: system prompt, user context, offered schema and model options. |
 | `DroneN/responses.jsonl` | Raw returned content, latency/error and request ID. Returned shutdown results are discarded without actuation; still-outstanding requests are marked abandoned in history. |
 | `DroneN/decision_history.jsonl`, `memory.json` | Applied decisions, failures, corrections, late responses, fallback events and bounded final memory. |
 | `guardian_audit.json` | Separate safety decisions and executor acknowledgments; an approval is not completion evidence. |
@@ -150,7 +151,7 @@ Use a new output directory for each run.
 | `messages.json`, `protocol_events.json` | Message delivery and deterministic task-protocol evidence. |
 | `summary.json` | Provider/backend, per-agent decisions/fallbacks, mission result, duplicate completions, dispatch coverage and exit-criterion observation flags. |
 
-`llm_exit_criterion_observed` requires a genuine Ollama run, an applied airborne decision for every agent, guardian coverage of every dispatched action and no run error. `live_exit_criterion_observed` additionally requires the AirSim backend. These are observed software conditions, not a flight-safety certificate. Replay must keep both flags false even when it completes the mission.
+`llm_integration_observed` requires genuine Ollama decisions applied while airborne for every agent, guarded dispatch and no run error. `llm_exit_criterion_observed` additionally requires observed progress from an accepted LLM mission-motion request for every drone. HOLDs, bids and deterministic fallback motion cannot satisfy it. `live_exit_criterion_observed` additionally requires AirSim; `cooperative_mission_success` adds mission completion without duplicate task completions. Replay keeps all LLM success flags false. These are software evidence checks, not a flight-safety certificate.
 
 Report task completion separately from LLM decision validity, repair/fallback frequency and guardian intervention. A completed mission with many deterministic corrections does not establish a reliable LLM. The separate logs make those distinctions measurable. Do not compare completion times directly across different task geometries, timing budgets or hardware.
 
@@ -167,3 +168,7 @@ This is implementation and plumbing evidence. No real Ollama inference or live f
 The first uploaded Ollama run returned two-field tool objects and applied no LLM decisions. See [easy_run1 investigation](phase12_easy_run1_diagnosis.md) for the 28-response evidence, schema/prompt correction and controlled rerun command. Each tool schema branch is now self-contained, and structured correction identifies the exact missing fields; validation and guardian checks remain strict.
 
 After the schema correction, the regression suite passes 113 tests, including 23 Phase 12 tests. The original 20-test replay validation and real-model failed run remain separate historical evidence.
+
+## Productive-policy correction after easy_run2
+
+See [Phase 12 progress report](phase12_progress_report.md) for the repeated-HOLD diagnosis, contextual tool schemas, fair inference admission, bounded deferral correction, attributable motion evidence, 126-test validation and the recommended next real-model pilot command. The earlier generic command remains illustrative; use the report’s calibrated pilot settings for the next investigation. Individual HOLDs default to at most two seconds. Repeated safe-opportunity deferrals use `--progress-timeout` (default twice the inference timeout, at least 30 seconds) and one correction before fallback; fallback completion is never counted as LLM progress. Historical run files are unchanged.

@@ -1,0 +1,33 @@
+{
+  "evidence_type": "replay_regression_only",
+  "llm_inference": false,
+  "live_flight": false,
+  "test_command": "python -m unittest discover -s tests",
+  "tests_passed": 126,
+  "phase12_tests_passed": 36,
+  "source_hashes": {
+    "agentic_uav/policy/persistent.py": "87bab6be8434eea091a78d3b96fcfbf055dc7352c8c56a4c09fcb1885ed6a06f",
+    "agentic_uav/policy/structured.py": "05260f091619ca62a48a0b5313628e9b370caf2f7e5b781bd22676f7ab7c7f58",
+    "agentic_uav/policy/evidence.py": "138c38c22855bb9e93214799048b4e33046f263a587377e5b2f76ad175113e70",
+    "scripts/run_phase12_agents.py": "caae550d8a9a4ae07f735a27f8e6e42c863318e08bd77529d0778e9ea39a3b03",
+    "tests/test_phase12_progress.py": "7b2dfc0ad7b37be9d20cb60f7bebf3e2f155070439403fcb826c4f0f5ad1bcb3"
+  },
+  "fixtures": {
+    "progressing_replay": {
+      "provider": "ReplayProvider",
+      "ticks": 400,
+      "dt": 0.2,
+      "progress_timeout": 30
+    },
+    "hold_only_replay": {
+      "provider": "HoldOnly fixture in test_phase12_progress.py",
+      "ticks": 400,
+      "dt": 0.2,
+      "progress_timeout": 2
+    }
+  },
+  "limitations": [
+    "Compact summaries; formal experiments must preserve full request, response, protocol, telemetry and guardian traces",
+    "No claim of new real-model success or live-flight validation"
+  ]
+}

@@ -36,7 +36,7 @@ TOOLS={
 }
 
 
-def decision_schema():
+def decision_schema(context=None):
     types={'str':{'type':'string','minLength':1,'maxLength':100},
            'int':{'type':'integer','minimum':0},
            'positive':{'type':'number','exclusiveMinimum':0},
@@ -57,20 +57,33 @@ def decision_schema():
         'confidence':dict(type='number',minimum=0,maximum=1)}
     # Some schema-to-grammar converters select a oneOf branch without merging
     # its siblings. Each branch must therefore be a complete decision schema.
+    offered=context.get('available_tools') if context else None
+    candidates=context.get('tool_candidates',{}) if context else {}
+    if offered is not None:
+        if not isinstance(offered,dict) or not offered or any(tool not in TOOLS for tool in offered):raise PolicyError('invalid_context_tools')
+        base['properties']['selected_tool']['enum']=list(offered)
     branches=[]
     for tool,params in TOOLS.items():
+        if offered is not None and tool not in offered:continue
         branch=copy.deepcopy(base)
         branch['properties']['selected_tool']={'const':tool}
         branch['properties']['parameters']=dict(type='object',additionalProperties=False,
             required=list(params),properties={key:copy.deepcopy(types[kind]) for key,kind in params.items()})
+        examples=candidates.get(tool,[])
+        for name in ('task_id','task_version','waypoint_index','observation_id','new_role'):
+            values=[call[name] for call in examples if name in call]
+            if values and name in branch['properties']['parameters']['properties']:
+                branch['properties']['parameters']['properties'][name]['enum']=sorted(set(values))
+        if tool=='hold' and context:
+            branch['properties']['parameters']['properties']['duration_s']['maximum']=context.get('policy_limits',{}).get('max_hold_seconds',2.)
         branches.append(branch)
     base['oneOf']=branches
     return base
 
 
-def decision_example():
+def decision_example(selected_tool='hold',parameters=None):
     return dict(situation_assessment=dict(mission_progress='partial',communication_status='nominal',current_risk='low'),
-        selected_tool='hold',parameters=dict(duration_s=1.),outgoing_messages=[],confidence=.8)
+        selected_tool=selected_tool,parameters=parameters if parameters is not None else dict(duration_s=1.),outgoing_messages=[],confidence=.8)
 
 
 def validate_decision(raw,peers):
@@ -143,12 +156,23 @@ class OllamaProvider:
         return dict(provider='ollama',model=self.model,digest=self.digest,options=copy.deepcopy(self.options),
                     server=self.url,server_version=self.server_version,details=found.get('details',{}))
 
+    def warmup(self):
+        self.verify();started=time.monotonic()
+        self._http('/api/generate',dict(model=self.model,prompt='',stream=False,keep_alive='10m',options=self.options))
+        self.verify()
+        return dict(performed=True,latency_s=time.monotonic()-started)
+
+    def request_spec(self,prompt):
+        context=json.loads(prompt)
+        example=context.get('decision_format',{}).get('example',decision_example())
+        return dict(model=self.model,stream=False,format=decision_schema(context),
+            messages=[dict(role='system',content='You are one UAV high-level agent. Use ONLY the listed structured tools. Do not emit code or private chain of thought. Use short reason codes. Deterministic tools calculate geometry, costs and safety. Send a bid only for an open bidding task while idle; start_search only for your own executable task. Use hold when genuinely waiting or when motion is unsafe. When your owned task is executable, prioritize starting its search or evaluating its cost; repeating hold is not task progress. Do not request motion merely to calculate a cost. Respect ownership and guardian constraints. Your response must contain ALL FIVE top-level fields: situation_assessment, selected_tool, parameters, outgoing_messages, confidence. Never return only selected_tool and parameters. outgoing_messages may be an empty array. Complete shape example (choose your own valid tool and values): '+json.dumps(example)),
+                      dict(role='user',content=prompt)],options=copy.deepcopy(self.options))
+
     def generate(self,prompt):
         # Check both sides of inference. Never silently accept a tag replacement.
         self.verify()
-        response=self._http('/api/chat',dict(model=self.model,stream=False,format=decision_schema(),
-            messages=[dict(role='system',content='You are one UAV high-level agent. Use ONLY the listed structured tools. Do not emit code or private chain of thought. Use short reason codes. Deterministic tools calculate geometry, costs and safety. Send a bid only for an open bidding task while idle; start_search only for your own executable task. Hold while waiting. Do not request motion merely to calculate a cost. Respect ownership and guardian constraints. Your response must contain ALL FIVE top-level fields: situation_assessment, selected_tool, parameters, outgoing_messages, confidence. Never return only selected_tool and parameters. outgoing_messages may be an empty array. Complete shape example (choose your own valid tool and values): '+json.dumps(decision_example())),
-                      dict(role='user',content=prompt)],options=self.options))
+        response=self._http('/api/chat',self.request_spec(prompt))
         self.verify()
         raw=response['message']['content']
         if not isinstance(raw,str) or len(raw.encode())>65536:raise PolicyError('response_size_or_type')
