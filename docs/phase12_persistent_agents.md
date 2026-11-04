@@ -94,13 +94,14 @@ with urllib.request.urlopen('http://localhost:11434/api/tags') as response:
         print(model['name'], model['digest'])
 PY
 ```
+ollama cp llama3.1:latest phase12-agent:pinned
 
 Record the inspected digest as part of your experiment configuration; do not automatically adopt a changed digest on every rerun. Replace the placeholder below with the recorded full 64-hex digest (an optional `sha256:` prefix is accepted):
 
 ```bash
 python -u scripts/run_phase12_agents.py \
   --backend mock --provider ollama \
-  --model llama3.1:8b \
+  --model phase12-agent:pinned \
   --model-digest YOUR_RECORDED_64_HEX_DIGEST \
   --seed 42 --ticks 1500 --dt 0.2 \
   --inference-timeout 15 --max-context-age 20 \
