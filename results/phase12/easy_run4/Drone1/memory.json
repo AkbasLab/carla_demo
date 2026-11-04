@@ -1,0 +1,88 @@
+{
+  "agent_id": "Drone1",
+  "memory": [
+    {
+      "time_s": 7.201333371922374,
+      "selected_tool": "send_bid",
+      "parameters": {
+        "task_id": "SEARCH_SECTOR_A",
+        "task_version": 1
+      },
+      "result": {
+        "task_id": "SEARCH_SECTOR_A",
+        "task_version": 1,
+        "computed_at": 7.201333371922374,
+        "distance_m": 8.0,
+        "distance_to_entry_m": 4.0,
+        "travel_time_s": 8.0,
+        "bid": {
+          "score": 7.0,
+          "components": {
+            "distance": 6.0,
+            "battery": 0.19999999999999996,
+            "workload": 0.0,
+            "communication": 0.0,
+            "mismatch": 0.0
+          }
+        },
+        "battery_sufficient": true,
+        "communication_reachability": {
+          "Drone2": "recent_contact",
+          "Drone3": "recent_contact",
+          "Drone4": "recent_contact"
+        },
+        "route_feasible": true,
+        "separation_risk": false,
+        "guardian_reasons": []
+      }
+    },
+    {
+      "time_s": 69.2013477080036,
+      "selected_tool": "start_search",
+      "parameters": {
+        "task_id": "SEARCH_SECTOR_A",
+        "task_version": 1
+      },
+      "result": {
+        "status": "search_authorized",
+        "task_id": "SEARCH_SECTOR_A",
+        "version": 1
+      }
+    },
+    {
+      "time_s": 85.80135359195992,
+      "selected_tool": "send_bid",
+      "parameters": {
+        "task_id": "SEARCH_SECTOR_C",
+        "task_version": 1
+      },
+      "result": {
+        "task_id": "SEARCH_SECTOR_C",
+        "task_version": 1,
+        "computed_at": 85.80135359195992,
+        "distance_m": 20.492422502470642,
+        "distance_to_entry_m": 16.492422502470642,
+        "travel_time_s": 20.492422502470642,
+        "bid": {
+          "score": 17.1285154965971,
+          "components": {
+            "distance": 16.1245154965971,
+            "battery": 0.2008000000000003,
+            "workload": 0.0,
+            "communication": 0.0,
+            "mismatch": 0.0
+          }
+        },
+        "battery_sufficient": true,
+        "communication_reachability": {
+          "Drone2": "recent_contact",
+          "Drone3": "recent_contact",
+          "Drone4": "recent_contact"
+        },
+        "route_feasible": true,
+        "separation_risk": false,
+        "guardian_reasons": []
+      }
+    }
+  ]
+}
