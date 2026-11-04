@@ -335,3 +335,5 @@ python -u scripts/run_phase13_comparison.py --architecture C --output-dir result
 ```
 
 See [Phase 13 architecture and ablation guide](docs/phase13_comparison_architectures.md) for all four commands, pinned-model testing, matched inputs, failure scenarios and ablations. See [Phase 12 agents](docs/phase12_persistent_agents.md) for persistent-policy details.
+
+Phase 13 also provides [an automated test matrix and manual pinned-model commands](docs/phase13_automated_testing.md). `scripts/run_phase13_suite.py` keeps every case in a separate folder and produces figure-ready metrics while retaining full traces. Validation replay and actual-model profiles remain explicitly separated.

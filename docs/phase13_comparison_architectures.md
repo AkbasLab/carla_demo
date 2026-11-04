@@ -129,3 +129,7 @@ The common stop criterion is observed route completion, not universal agreement 
 python -m unittest discover -s tests -p 'test_phase13*.py' -v
 python -m unittest discover -s tests
 ```
+
+## Automated matrix and manual pinned-model commands
+
+See [automated testing and local commands](phase13_automated_testing.md) for one-folder-per-test execution, shared pinned configurations, role-specific controls, serial real-model testing, safe resume and figure-ready lossless trace archives. The offline validation dataset is separate from real-model evidence.
