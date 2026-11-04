@@ -214,7 +214,9 @@ class ReplayProvider:
         if active and active['executable']:
             tool='start_search';params=dict(task_id=active['task_id'],task_version=active['version'])
             if c.get('approach_validation',{}).get('feasible') is False:
-                tool='release_task';params['reason_code']='SAFETY_ROUTE_BLOCKED'
+                example=c.get('decision_format',{}).get('example')
+                if example:tool=example['selected_tool'];params=example['parameters']
+                else:tool='release_task';params['reason_code']='SAFETY_ROUTE_BLOCKED'
         elif active:tool='compute_task_cost';params=dict(task_id=active['task_id'])
         elif role=='RELAY':tool='act_as_relay'
         elif role=='RESERVE':params=dict(duration_s=1.)

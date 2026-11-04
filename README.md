@@ -4,7 +4,7 @@ A modular multi-UAV research framework for search-and-relay operations using CAR
 
 LLM benchmarks and command-generation experiments are separate from the deterministic coordination baselines: **Phases 7–11 do not require an LLM**. Mock task completion, live waypoint execution, communication delivery, and flight safety are distinct measurements.
 
-## Project phases: 1–11
+## Project phases: 1–13
 
 | Phase | Focus | Main entry point | Execution / evidence |
 |---|---|---|---|
@@ -19,6 +19,8 @@ LLM benchmarks and command-generation experiments are separate from the determin
 | 9 | Dynamic roles and teammate-disruption recovery | `scripts/run_phase9_roles.py` | Deterministic mock baseline |
 | 10 | Seeded degraded-communications simulator | `scripts/run_phase10_network.py` | Mock network validation and matched-seed mission trials |
 | 11 | Independent deterministic runtime-safety guardian | `scripts/run_phase11_guardian.py` | Mock unsafe-command injection; no AirSim runtime required |
+| 12 | Persistent high-level LLM agents | `scripts/run_phase12_agents.py` | Pinned Ollama and replay; successful four-agent mock integration; live evidence remains separate |
+| 13 | Configurable comparison architectures A–D and ablations | `scripts/run_phase13_comparison.py` | Shared mock mission, network, executor and guardian; actual-model comparisons still required |
 
 ### Phase 1: environment setup, foundation, and LLM baseline
 
@@ -323,3 +325,13 @@ These complement the numbered phases and should be evaluated using their own tel
 ## Simulation videos
 
 [Recorded simulation videos](https://myerauedu-my.sharepoint.com/:f:/g/personal/metint_my_erau_edu/IgDTU9PjAa2vTrS4DH4rMRclASlWYhu1K67p_uJ6AcI05-Q?e=NtjSqZ)
+
+## Phase 13: matched architecture comparisons
+
+One configuration selects centralized control (A), independent persistent policies (B), deterministic decentralized agents (C), or agentic decentralized agents (D). All four share mission inputs, seeded network degradation, observed waypoint execution and the runtime guardian. The initial comparison backend is mock flight; replay output does not establish LLM performance or live-flight safety.
+
+```bash
+python -u scripts/run_phase13_comparison.py --architecture C --output-dir results/phase13/C_nominal_run1
+```
+
+See [Phase 13 architecture and ablation guide](docs/phase13_comparison_architectures.md) for all four commands, pinned-model testing, matched inputs, failure scenarios and ablations. See [Phase 12 agents](docs/phase12_persistent_agents.md) for persistent-policy details.
