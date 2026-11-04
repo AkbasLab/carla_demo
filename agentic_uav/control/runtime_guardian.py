@@ -163,7 +163,7 @@ class RuntimeGuardian:
         c=self.config;route=self._route(a,state);points=[tuple(state.position)]+route;errors=[]
         if a.speed_mps>c.max_speed_mps:errors.append('maximum_speed')
         if state.flight_phase=='GROUNDED' and a.kind not in ('HOLD','TAKEOFF'):errors.append('invalid_grounded_action')
-        if state.flight_phase!='GROUNDED' and a.kind=='TAKEOFF':errors.append('takeoff_while_airborne')
+        if state.flight_phase not in ('GROUNDED','TAKEOFF') and a.kind=='TAKEOFF':errors.append('takeoff_while_airborne')
         if a.kind=='LAND':
             ok,reason=self.geometry.approve_landing(state.position,min(.25,c.landing_site['radius_m']/2))
             if not ok:errors.append(reason)
