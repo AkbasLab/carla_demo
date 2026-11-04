@@ -1,0 +1,29 @@
+{
+  "backend": "mock",
+  "provider": "ollama",
+  "seed": 42,
+  "ticks": 1500,
+  "dt": 0.2,
+  "decision_interval": 1.0,
+  "inference_timeout": 30.0,
+  "lease_seconds": 180.0,
+  "bid_window": 30.0,
+  "max_context_age": 35.0,
+  "progress_timeout": 60.0,
+  "max_hold_seconds": 2.0,
+  "inference_parallelism": 1,
+  "model_warmup": true,
+  "python": "3.14.9",
+  "source_hashes": {
+    "agentic_uav/comm/protocol.py": "565f9cdaba420fb97a164073b18f0a4c877babc15f3279e09d5bebd7f533a856",
+    "agentic_uav/control/runtime_guardian.py": "1c51979284ed8fd4b8165e9041997ca006d8c0de3bc26794922614dbc98f66d0",
+    "agentic_uav/coordination/contract_net.py": "044b09220547f33db76446ef9ba8b8cc136150ab3011795c4c6c491ea686e269",
+    "agentic_uav/coordination/flight_executor.py": "34b057b31aa55825ab326004f6bc29dd20fb0de6db725eeca5adc2f74bf582fd",
+    "agentic_uav/policy/__init__.py": "ac57c6d71031f589d9db3da0cc48117f8ff438b2fdb5380d73b045d8df5e646e",
+    "agentic_uav/policy/backends.py": "13c232ef6a6889abf640a1c3eff0e4067659af78f09cc75f75980efbff0b1cb0",
+    "agentic_uav/policy/evidence.py": "138c38c22855bb9e93214799048b4e33046f263a587377e5b2f76ad175113e70",
+    "agentic_uav/policy/persistent.py": "87bab6be8434eea091a78d3b96fcfbf055dc7352c8c56a4c09fcb1885ed6a06f",
+    "agentic_uav/policy/structured.py": "05260f091619ca62a48a0b5313628e9b370caf2f7e5b781bd22676f7ab7c7f58",
+    "scripts/run_phase12_agents.py": "caae550d8a9a4ae07f735a27f8e6e42c863318e08bd77529d0778e9ea39a3b03"
+  }
+}
