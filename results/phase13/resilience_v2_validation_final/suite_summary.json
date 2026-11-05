@@ -1,0 +1,22 @@
+{
+  "profile": "validation",
+  "planned_cases": 18,
+  "statuses": {
+    "completed": 18
+  },
+  "completed_simulations": 18,
+  "successful_missions": 18,
+  "incomplete_missions": 0,
+  "runtime_errors": 0,
+  "validation_failures": 0,
+  "actual_llm_runs": 0,
+  "reproducibility_checks_passed": null,
+  "mismatched_input_checks": 0,
+  "limitations": [
+    "Validation B/D are replay, not LLM evidence",
+    "One seed is a pilot, not a statistical reliability estimate",
+    "Incomplete guarded missions are outcomes; a completed batch does not imply successful recovery",
+    "No live AirSim comparison; full traces are stored losslessly per case",
+    "Targeted engineering subset; D uses replay, not Ollama"
+  ]
+}
