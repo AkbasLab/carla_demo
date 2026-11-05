@@ -1,0 +1,1535 @@
+{
+  "ablations/moderate/D/without_task_leases/seed_42": {
+    "case_id": "ablations/moderate/D/without_task_leases/seed_42",
+    "checks": {
+      "completed_ids_match": true,
+      "completed_tasks_have_arrival_evidence": true,
+      "executed_actions_have_guarded_effects": true,
+      "productive_llm_counts_match": true,
+      "no_expired_delivery": true
+    },
+    "guardian_reasons": {
+      "stale_or_future_peer_belief": 53
+    },
+    "policy_errors": {
+      "unsafe_action:stale_or_future_peer_belief": 35
+    },
+    "claims": [
+      {
+        "task_id": "SEARCH_SECTOR_A",
+        "version": 1,
+        "owner": "Drone2",
+        "score": 11.33347470666437,
+        "event": "claim_sent",
+        "time_s": 188.0000822719885,
+        "agent_id": "Drone2"
+      }
+    ],
+    "claimed_unstarted_task_ids": [
+      "SEARCH_SECTOR_A"
+    ],
+    "completed_task_ids": []
+  },
+  "ablations/nominal/D/fallback_policy/seed_42": {
+    "case_id": "ablations/nominal/D/fallback_policy/seed_42",
+    "checks": {
+      "completed_ids_match": true,
+      "completed_tasks_have_arrival_evidence": true,
+      "executed_actions_have_guarded_effects": true,
+      "productive_llm_counts_match": true,
+      "no_expired_delivery": true
+    },
+    "guardian_reasons": {},
+    "policy_errors": {},
+    "claims": [
+      {
+        "task_id": "SEARCH_SECTOR_A",
+        "version": 1,
+        "owner": "Drone1",
+        "score": 7.166675748187117,
+        "event": "claim_sent",
+        "time_s": 30.00010152393952,
+        "agent_id": "Drone1"
+      },
+      {
+        "task_id": "SEARCH_SECTOR_B",
+        "version": 1,
+        "owner": "Drone2",
+        "score": 7.333294618370322,
+        "event": "claim_sent",
+        "time_s": 60.10008273599669,
+        "agent_id": "Drone2"
+      },
+      {
+        "task_id": "SEARCH_SECTOR_C",
+        "version": 1,
+        "owner": "Drone3",
+        "score": 7.833350473355191,
+        "event": "claim_sent",
+        "time_s": 90.30009653593879,
+        "agent_id": "Drone3"
+      },
+      {
+        "task_id": "SEARCH_SECTOR_D",
+        "version": 1,
+        "owner": "Drone4",
+        "score": 7.500013209918203,
+        "event": "claim_sent",
+        "time_s": 120.40008785692044,
+        "agent_id": "Drone4"
+      }
+    ],
+    "claimed_unstarted_task_ids": [],
+    "completed_task_ids": [
+      "SEARCH_SECTOR_A",
+      "SEARCH_SECTOR_B",
+      "SEARCH_SECTOR_C",
+      "SEARCH_SECTOR_D"
+    ]
+  },
+  "ablations/nominal/D/without_dynamic_roles/seed_42": {
+    "case_id": "ablations/nominal/D/without_dynamic_roles/seed_42",
+    "checks": {
+      "completed_ids_match": true,
+      "completed_tasks_have_arrival_evidence": true,
+      "executed_actions_have_guarded_effects": true,
+      "productive_llm_counts_match": true,
+      "no_expired_delivery": true
+    },
+    "guardian_reasons": {
+      "stale_or_future_peer_belief": 48
+    },
+    "policy_errors": {
+      "unsafe_action:stale_or_future_peer_belief": 32
+    },
+    "claims": [
+      {
+        "task_id": "SEARCH_SECTOR_A",
+        "version": 1,
+        "owner": "Drone1",
+        "score": 7.166691643341133,
+        "event": "claim_sent",
+        "time_s": 30.00009610899724,
+        "agent_id": "Drone1"
+      }
+    ],
+    "claimed_unstarted_task_ids": [
+      "SEARCH_SECTOR_A"
+    ],
+    "completed_task_ids": []
+  },
+  "ablations/nominal/D/without_memory/seed_42": {
+    "case_id": "ablations/nominal/D/without_memory/seed_42",
+    "checks": {
+      "completed_ids_match": true,
+      "completed_tasks_have_arrival_evidence": true,
+      "executed_actions_have_guarded_effects": true,
+      "productive_llm_counts_match": true,
+      "no_expired_delivery": true
+    },
+    "guardian_reasons": {},
+    "policy_errors": {},
+    "claims": [
+      {
+        "task_id": "SEARCH_SECTOR_A",
+        "version": 1,
+        "owner": "Drone1",
+        "score": 7.1679763518041,
+        "event": "claim_sent",
+        "time_s": 30.000079771038145,
+        "agent_id": "Drone1"
+      },
+      {
+        "task_id": "SEARCH_SECTOR_B",
+        "version": 1,
+        "owner": "Drone2",
+        "score": 7.166664803400636,
+        "event": "claim_sent",
+        "time_s": 60.100087424973026,
+        "agent_id": "Drone2"
+      },
+      {
+        "task_id": "SEARCH_SECTOR_C",
+        "version": 1,
+        "owner": "Drone3",
+        "score": 7.499997391598299,
+        "event": "claim_sent",
+        "time_s": 90.30008120997809,
+        "agent_id": "Drone3"
+      },
+      {
+        "task_id": "SEARCH_SECTOR_D",
+        "version": 1,
+        "owner": "Drone4",
+        "score": 7.833304211652527,
+        "event": "claim_sent",
+        "time_s": 120.50008500402328,
+        "agent_id": "Drone4"
+      }
+    ],
+    "claimed_unstarted_task_ids": [],
+    "completed_task_ids": [
+      "SEARCH_SECTOR_A",
+      "SEARCH_SECTOR_B",
+      "SEARCH_SECTOR_C",
+      "SEARCH_SECTOR_D"
+    ]
+  },
+  "ablations/severe/D/perfect_communication/seed_42": {
+    "case_id": "ablations/severe/D/perfect_communication/seed_42",
+    "checks": {
+      "completed_ids_match": true,
+      "completed_tasks_have_arrival_evidence": true,
+      "executed_actions_have_guarded_effects": true,
+      "productive_llm_counts_match": true,
+      "no_expired_delivery": true
+    },
+    "guardian_reasons": {},
+    "policy_errors": {},
+    "claims": [
+      {
+        "task_id": "SEARCH_SECTOR_A",
+        "version": 1,
+        "owner": "Drone1",
+        "score": 7.166690524977942,
+        "event": "claim_sent",
+        "time_s": 30.00007911294233,
+        "agent_id": "Drone1"
+      },
+      {
+        "task_id": "SEARCH_SECTOR_B",
+        "version": 1,
+        "owner": "Drone2",
+        "score": 7.833339788368903,
+        "event": "claim_sent",
+        "time_s": 60.100081476033665,
+        "agent_id": "Drone2"
+      },
+      {
+        "task_id": "SEARCH_SECTOR_C",
+        "version": 1,
+        "owner": "Drone3",
+        "score": 7.500000011525117,
+        "event": "claim_sent",
+        "time_s": 90.30007327103522,
+        "agent_id": "Drone3"
+      },
+      {
+        "task_id": "SEARCH_SECTOR_D",
+        "version": 1,
+        "owner": "Drone4",
+        "score": 7.666683868233425,
+        "event": "claim_sent",
+        "time_s": 120.40008907997981,
+        "agent_id": "Drone4"
+      }
+    ],
+    "claimed_unstarted_task_ids": [],
+    "completed_task_ids": [
+      "SEARCH_SECTOR_A",
+      "SEARCH_SECTOR_B",
+      "SEARCH_SECTOR_C",
+      "SEARCH_SECTOR_D"
+    ]
+  },
+  "baselines/moderate/A/control/seed_42": {
+    "case_id": "baselines/moderate/A/control/seed_42",
+    "checks": {
+      "completed_ids_match": true,
+      "completed_tasks_have_arrival_evidence": true,
+      "executed_actions_have_guarded_effects": true,
+      "productive_llm_counts_match": true,
+      "no_expired_delivery": true
+    },
+    "guardian_reasons": {
+      "runtime_timeout_or_state_violation": 4
+    },
+    "policy_errors": {
+      "active_command_requires_completion": 3
+    },
+    "claims": [],
+    "claimed_unstarted_task_ids": [],
+    "completed_task_ids": [
+      "SEARCH_SECTOR_A",
+      "SEARCH_SECTOR_B",
+      "SEARCH_SECTOR_C",
+      "SEARCH_SECTOR_D"
+    ]
+  },
+  "baselines/moderate/B/control/seed_42": {
+    "case_id": "baselines/moderate/B/control/seed_42",
+    "checks": {
+      "completed_ids_match": true,
+      "completed_tasks_have_arrival_evidence": true,
+      "executed_actions_have_guarded_effects": true,
+      "productive_llm_counts_match": true,
+      "no_expired_delivery": true
+    },
+    "guardian_reasons": {
+      "stale_or_future_peer_belief": 1
+    },
+    "policy_errors": {},
+    "claims": [],
+    "claimed_unstarted_task_ids": [],
+    "completed_task_ids": [
+      "SEARCH_SECTOR_A",
+      "SEARCH_SECTOR_B",
+      "SEARCH_SECTOR_C",
+      "SEARCH_SECTOR_D"
+    ]
+  },
+  "baselines/moderate/C/control/seed_42": {
+    "case_id": "baselines/moderate/C/control/seed_42",
+    "checks": {
+      "completed_ids_match": true,
+      "completed_tasks_have_arrival_evidence": true,
+      "executed_actions_have_guarded_effects": true,
+      "productive_llm_counts_match": true,
+      "no_expired_delivery": true
+    },
+    "guardian_reasons": {
+      "stale_or_future_peer_belief": 9
+    },
+    "policy_errors": {
+      "active_command_requires_completion": 265,
+      "unsafe_action:stale_or_future_peer_belief": 5
+    },
+    "claims": [
+      {
+        "task_id": "SEARCH_SECTOR_A",
+        "version": 1,
+        "owner": "Drone1",
+        "score": 7.333473769909081,
+        "event": "claim_sent",
+        "time_s": 30.000081378035247,
+        "agent_id": "Drone1"
+      },
+      {
+        "task_id": "SEARCH_SECTOR_A",
+        "version": 2,
+        "owner": "Drone1",
+        "score": 7.666660103403652,
+        "event": "claim_sent",
+        "time_s": 240.100086475024,
+        "agent_id": "Drone1"
+      },
+      {
+        "task_id": "SEARCH_SECTOR_B",
+        "version": 1,
+        "owner": "Drone2",
+        "score": 8.66667370009236,
+        "event": "claim_sent",
+        "time_s": 60.10010501195211,
+        "agent_id": "Drone2"
+      },
+      {
+        "task_id": "SEARCH_SECTOR_D",
+        "version": 1,
+        "owner": "Drone2",
+        "score": 19.588010183942338,
+        "event": "claim_sent",
+        "time_s": 240.50008781498764,
+        "agent_id": "Drone2"
+      },
+      {
+        "task_id": "SEARCH_SECTOR_B",
+        "version": 2,
+        "owner": "Drone2",
+        "score": 8.500002693307275,
+        "event": "claim_sent",
+        "time_s": 270.20008949097246,
+        "agent_id": "Drone2"
+      },
+      {
+        "task_id": "SEARCH_SECTOR_C",
+        "version": 1,
+        "owner": "Drone3",
+        "score": 8.666647481615655,
+        "event": "claim_sent",
+        "time_s": 90.30008807394188,
+        "agent_id": "Drone3"
+      },
+      {
+        "task_id": "SEARCH_SECTOR_D",
+        "version": 1,
+        "owner": "Drone4",
+        "score": 9.00001330988016,
+        "event": "claim_sent",
+        "time_s": 120.70008213701658,
+        "agent_id": "Drone4"
+      }
+    ],
+    "claimed_unstarted_task_ids": [
+      "SEARCH_SECTOR_A",
+      "SEARCH_SECTOR_B",
+      "SEARCH_SECTOR_D"
+    ],
+    "completed_task_ids": [
+      "SEARCH_SECTOR_C"
+    ]
+  },
+  "baselines/moderate/D/control/seed_42": {
+    "case_id": "baselines/moderate/D/control/seed_42",
+    "checks": {
+      "completed_ids_match": true,
+      "completed_tasks_have_arrival_evidence": true,
+      "executed_actions_have_guarded_effects": true,
+      "productive_llm_counts_match": true,
+      "no_expired_delivery": true
+    },
+    "guardian_reasons": {},
+    "policy_errors": {
+      "hold_duration_exceeds_policy_limit": 3
+    },
+    "claims": [
+      {
+        "task_id": "SEARCH_SECTOR_A",
+        "version": 1,
+        "owner": "Drone1",
+        "score": 7.333478395089817,
+        "event": "claim_sent",
+        "time_s": 30.00010912702419,
+        "agent_id": "Drone1"
+      },
+      {
+        "task_id": "SEARCH_SECTOR_A",
+        "version": 2,
+        "owner": "Drone1",
+        "score": 9.165339576701323,
+        "event": "claim_sent",
+        "time_s": 240.20008753903676,
+        "agent_id": "Drone1"
+      },
+      {
+        "task_id": "SEARCH_SECTOR_B",
+        "version": 1,
+        "owner": "Drone2",
+        "score": 8.499879088369198,
+        "event": "claim_sent",
+        "time_s": 60.20009896007832,
+        "agent_id": "Drone2"
+      },
+      {
+        "task_id": "SEARCH_SECTOR_C",
+        "version": 1,
+        "owner": "Drone3",
+        "score": 8.16584260656964,
+        "event": "claim_sent",
+        "time_s": 90.30008161405567,
+        "agent_id": "Drone3"
+      },
+      {
+        "task_id": "SEARCH_SECTOR_D",
+        "version": 1,
+        "owner": "Drone4",
+        "score": 7.999974436708726,
+        "event": "claim_sent",
+        "time_s": 120.50009134004358,
+        "agent_id": "Drone4"
+      }
+    ],
+    "claimed_unstarted_task_ids": [
+      "SEARCH_SECTOR_A",
+      "SEARCH_SECTOR_C",
+      "SEARCH_SECTOR_D"
+    ],
+    "completed_task_ids": [
+      "SEARCH_SECTOR_B"
+    ]
+  },
+  "baselines/nominal/A/control/seed_42": {
+    "case_id": "baselines/nominal/A/control/seed_42",
+    "checks": {
+      "completed_ids_match": true,
+      "completed_tasks_have_arrival_evidence": true,
+      "executed_actions_have_guarded_effects": true,
+      "productive_llm_counts_match": true,
+      "no_expired_delivery": true
+    },
+    "guardian_reasons": {},
+    "policy_errors": {},
+    "claims": [],
+    "claimed_unstarted_task_ids": [],
+    "completed_task_ids": [
+      "SEARCH_SECTOR_A",
+      "SEARCH_SECTOR_B",
+      "SEARCH_SECTOR_C",
+      "SEARCH_SECTOR_D"
+    ]
+  },
+  "baselines/nominal/B/control/seed_42": {
+    "case_id": "baselines/nominal/B/control/seed_42",
+    "checks": {
+      "completed_ids_match": true,
+      "completed_tasks_have_arrival_evidence": true,
+      "executed_actions_have_guarded_effects": true,
+      "productive_llm_counts_match": true,
+      "no_expired_delivery": true
+    },
+    "guardian_reasons": {},
+    "policy_errors": {},
+    "claims": [],
+    "claimed_unstarted_task_ids": [],
+    "completed_task_ids": [
+      "SEARCH_SECTOR_A",
+      "SEARCH_SECTOR_B",
+      "SEARCH_SECTOR_C",
+      "SEARCH_SECTOR_D"
+    ]
+  },
+  "baselines/nominal/C/control/seed_42": {
+    "case_id": "baselines/nominal/C/control/seed_42",
+    "checks": {
+      "completed_ids_match": true,
+      "completed_tasks_have_arrival_evidence": true,
+      "executed_actions_have_guarded_effects": true,
+      "productive_llm_counts_match": true,
+      "no_expired_delivery": true
+    },
+    "guardian_reasons": {},
+    "policy_errors": {},
+    "claims": [
+      {
+        "task_id": "SEARCH_SECTOR_A",
+        "version": 1,
+        "owner": "Drone1",
+        "score": 7.166661575009735,
+        "event": "claim_sent",
+        "time_s": 30.0000898380531,
+        "agent_id": "Drone1"
+      },
+      {
+        "task_id": "SEARCH_SECTOR_B",
+        "version": 1,
+        "owner": "Drone2",
+        "score": 7.666677344900866,
+        "event": "claim_sent",
+        "time_s": 60.10008193703834,
+        "agent_id": "Drone2"
+      },
+      {
+        "task_id": "SEARCH_SECTOR_C",
+        "version": 1,
+        "owner": "Drone3",
+        "score": 7.166691454942338,
+        "event": "claim_sent",
+        "time_s": 90.20009254000615,
+        "agent_id": "Drone3"
+      },
+      {
+        "task_id": "SEARCH_SECTOR_D",
+        "version": 1,
+        "owner": "Drone4",
+        "score": 7.333319505055745,
+        "event": "claim_sent",
+        "time_s": 120.40008022799157,
+        "agent_id": "Drone4"
+      }
+    ],
+    "claimed_unstarted_task_ids": [],
+    "completed_task_ids": [
+      "SEARCH_SECTOR_A",
+      "SEARCH_SECTOR_B",
+      "SEARCH_SECTOR_C",
+      "SEARCH_SECTOR_D"
+    ]
+  },
+  "baselines/nominal/D/control/seed_42": {
+    "case_id": "baselines/nominal/D/control/seed_42",
+    "checks": {
+      "completed_ids_match": true,
+      "completed_tasks_have_arrival_evidence": true,
+      "executed_actions_have_guarded_effects": true,
+      "productive_llm_counts_match": true,
+      "no_expired_delivery": true
+    },
+    "guardian_reasons": {},
+    "policy_errors": {},
+    "claims": [
+      {
+        "task_id": "SEARCH_SECTOR_A",
+        "version": 1,
+        "owner": "Drone1",
+        "score": 7.166687606639849,
+        "event": "claim_sent",
+        "time_s": 30.000083146966062,
+        "agent_id": "Drone1"
+      },
+      {
+        "task_id": "SEARCH_SECTOR_B",
+        "version": 1,
+        "owner": "Drone2",
+        "score": 7.499949633376673,
+        "event": "claim_sent",
+        "time_s": 60.20009453804232,
+        "agent_id": "Drone2"
+      },
+      {
+        "task_id": "SEARCH_SECTOR_C",
+        "version": 1,
+        "owner": "Drone3",
+        "score": 7.833359579943741,
+        "event": "claim_sent",
+        "time_s": 90.40008989803027,
+        "agent_id": "Drone3"
+      },
+      {
+        "task_id": "SEARCH_SECTOR_D",
+        "version": 1,
+        "owner": "Drone4",
+        "score": 7.999989536746094,
+        "event": "claim_sent",
+        "time_s": 120.50008256896399,
+        "agent_id": "Drone4"
+      }
+    ],
+    "claimed_unstarted_task_ids": [],
+    "completed_task_ids": [
+      "SEARCH_SECTOR_A",
+      "SEARCH_SECTOR_B",
+      "SEARCH_SECTOR_C",
+      "SEARCH_SECTOR_D"
+    ]
+  },
+  "baselines/partitioned/A/control/seed_42": {
+    "case_id": "baselines/partitioned/A/control/seed_42",
+    "checks": {
+      "completed_ids_match": true,
+      "completed_tasks_have_arrival_evidence": true,
+      "executed_actions_have_guarded_effects": true,
+      "productive_llm_counts_match": true,
+      "no_expired_delivery": true
+    },
+    "guardian_reasons": {
+      "stale_or_future_peer_belief": 114
+    },
+    "policy_errors": {
+      "unsafe_action:stale_or_future_peer_belief,stale_or_future_peer_belief": 72
+    },
+    "claims": [],
+    "claimed_unstarted_task_ids": [],
+    "completed_task_ids": [
+      "SEARCH_SECTOR_A",
+      "SEARCH_SECTOR_B",
+      "SEARCH_SECTOR_C",
+      "SEARCH_SECTOR_D"
+    ]
+  },
+  "baselines/partitioned/B/control/seed_42": {
+    "case_id": "baselines/partitioned/B/control/seed_42",
+    "checks": {
+      "completed_ids_match": true,
+      "completed_tasks_have_arrival_evidence": true,
+      "executed_actions_have_guarded_effects": true,
+      "productive_llm_counts_match": true,
+      "no_expired_delivery": true
+    },
+    "guardian_reasons": {},
+    "policy_errors": {
+      "unsafe_action:stale_or_future_peer_belief,stale_or_future_peer_belief": 1,
+      "message_tool_mismatch": 1
+    },
+    "claims": [],
+    "claimed_unstarted_task_ids": [],
+    "completed_task_ids": [
+      "SEARCH_SECTOR_A",
+      "SEARCH_SECTOR_B",
+      "SEARCH_SECTOR_C",
+      "SEARCH_SECTOR_D"
+    ]
+  },
+  "baselines/partitioned/C/control/seed_42": {
+    "case_id": "baselines/partitioned/C/control/seed_42",
+    "checks": {
+      "completed_ids_match": true,
+      "completed_tasks_have_arrival_evidence": true,
+      "executed_actions_have_guarded_effects": true,
+      "productive_llm_counts_match": true,
+      "no_expired_delivery": true
+    },
+    "guardian_reasons": {
+      "stale_or_future_peer_belief": 100
+    },
+    "policy_errors": {
+      "active_command_requires_completion": 8,
+      "unsafe_action:stale_or_future_peer_belief,stale_or_future_peer_belief": 64
+    },
+    "claims": [
+      {
+        "task_id": "SEARCH_SECTOR_A",
+        "version": 1,
+        "owner": "Drone1",
+        "score": 7.166690928163007,
+        "event": "claim_sent",
+        "time_s": 30.000077184056863,
+        "agent_id": "Drone1"
+      },
+      {
+        "task_id": "SEARCH_SECTOR_B",
+        "version": 1,
+        "owner": "Drone2",
+        "score": 7.833313945137585,
+        "event": "claim_sent",
+        "time_s": 60.20008467405569,
+        "agent_id": "Drone2"
+      },
+      {
+        "task_id": "SEARCH_SECTOR_C",
+        "version": 1,
+        "owner": "Drone3",
+        "score": 7.166675606742501,
+        "event": "claim_sent",
+        "time_s": 90.30007946200203,
+        "agent_id": "Drone3"
+      },
+      {
+        "task_id": "SEARCH_SECTOR_D",
+        "version": 1,
+        "owner": "Drone4",
+        "score": 7.166647208194869,
+        "event": "claim_sent",
+        "time_s": 120.50008479505777,
+        "agent_id": "Drone4"
+      }
+    ],
+    "claimed_unstarted_task_ids": [],
+    "completed_task_ids": [
+      "SEARCH_SECTOR_A",
+      "SEARCH_SECTOR_B",
+      "SEARCH_SECTOR_C",
+      "SEARCH_SECTOR_D"
+    ]
+  },
+  "baselines/partitioned/D/control/seed_42": {
+    "case_id": "baselines/partitioned/D/control/seed_42",
+    "checks": {
+      "completed_ids_match": true,
+      "completed_tasks_have_arrival_evidence": true,
+      "executed_actions_have_guarded_effects": true,
+      "productive_llm_counts_match": true,
+      "no_expired_delivery": true
+    },
+    "guardian_reasons": {},
+    "policy_errors": {},
+    "claims": [
+      {
+        "task_id": "SEARCH_SECTOR_A",
+        "version": 1,
+        "owner": "Drone1",
+        "score": 7.166685044920692,
+        "event": "claim_sent",
+        "time_s": 30.000077581964433,
+        "agent_id": "Drone1"
+      },
+      {
+        "task_id": "SEARCH_SECTOR_B",
+        "version": 1,
+        "owner": "Drone2",
+        "score": 7.166678250146409,
+        "event": "claim_sent",
+        "time_s": 60.10009632096626,
+        "agent_id": "Drone2"
+      },
+      {
+        "task_id": "SEARCH_SECTOR_C",
+        "version": 1,
+        "owner": "Drone3",
+        "score": 7.833352688350715,
+        "event": "claim_sent",
+        "time_s": 90.30009013495874,
+        "agent_id": "Drone3"
+      },
+      {
+        "task_id": "SEARCH_SECTOR_D",
+        "version": 1,
+        "owner": "Drone4",
+        "score": 7.999983776709996,
+        "event": "claim_sent",
+        "time_s": 120.40009777399246,
+        "agent_id": "Drone4"
+      }
+    ],
+    "claimed_unstarted_task_ids": [],
+    "completed_task_ids": [
+      "SEARCH_SECTOR_A",
+      "SEARCH_SECTOR_B",
+      "SEARCH_SECTOR_C",
+      "SEARCH_SECTOR_D"
+    ]
+  },
+  "baselines/severe/A/control/seed_42": {
+    "case_id": "baselines/severe/A/control/seed_42",
+    "checks": {
+      "completed_ids_match": true,
+      "completed_tasks_have_arrival_evidence": true,
+      "executed_actions_have_guarded_effects": true,
+      "productive_llm_counts_match": true,
+      "no_expired_delivery": true
+    },
+    "guardian_reasons": {
+      "stale_or_future_peer_belief": 747,
+      "runtime_timeout_or_state_violation": 92,
+      "communication_or_belief_uncertainty": 4
+    },
+    "policy_errors": {
+      "unsafe_action:stale_or_future_peer_belief": 338,
+      "active_command_requires_completion": 1272,
+      "unsafe_action:communication_or_belief_uncertainty": 4,
+      "unsafe_action:stale_or_future_peer_belief,stale_or_future_peer_belief": 11
+    },
+    "claims": [],
+    "claimed_unstarted_task_ids": [],
+    "completed_task_ids": [
+      "SEARCH_SECTOR_A"
+    ]
+  },
+  "baselines/severe/B/control/seed_42": {
+    "case_id": "baselines/severe/B/control/seed_42",
+    "checks": {
+      "completed_ids_match": true,
+      "completed_tasks_have_arrival_evidence": true,
+      "executed_actions_have_guarded_effects": true,
+      "productive_llm_counts_match": true,
+      "no_expired_delivery": true
+    },
+    "guardian_reasons": {
+      "stale_or_future_peer_belief": 15,
+      "runtime_timeout_or_state_violation": 3
+    },
+    "policy_errors": {
+      "unsafe_action:stale_or_future_peer_belief": 2,
+      "hold_duration_exceeds_policy_limit": 1
+    },
+    "claims": [],
+    "claimed_unstarted_task_ids": [],
+    "completed_task_ids": [
+      "SEARCH_SECTOR_A",
+      "SEARCH_SECTOR_B",
+      "SEARCH_SECTOR_C",
+      "SEARCH_SECTOR_D"
+    ]
+  },
+  "baselines/severe/C/control/seed_42": {
+    "case_id": "baselines/severe/C/control/seed_42",
+    "checks": {
+      "completed_ids_match": true,
+      "completed_tasks_have_arrival_evidence": true,
+      "executed_actions_have_guarded_effects": true,
+      "productive_llm_counts_match": true,
+      "no_expired_delivery": true
+    },
+    "guardian_reasons": {
+      "stale_or_future_peer_belief": 671,
+      "runtime_timeout_or_state_violation": 160,
+      "communication_or_belief_uncertainty": 11
+    },
+    "policy_errors": {
+      "active_command_requires_completion": 1452,
+      "unsafe_action:stale_or_future_peer_belief": 294,
+      "unsafe_action:communication_or_belief_uncertainty": 11,
+      "unsafe_action:stale_or_future_peer_belief,stale_or_future_peer_belief": 13
+    },
+    "claims": [
+      {
+        "task_id": "SEARCH_SECTOR_A",
+        "version": 1,
+        "owner": "Drone1",
+        "score": 8.000145336729474,
+        "event": "claim_sent",
+        "time_s": 30.00008703803178,
+        "agent_id": "Drone1"
+      },
+      {
+        "task_id": "SEARCH_SECTOR_A",
+        "version": 2,
+        "owner": "Drone1",
+        "score": 9.999981181734862,
+        "event": "claim_sent",
+        "time_s": 240.10008017299697,
+        "agent_id": "Drone1"
+      },
+      {
+        "task_id": "SEARCH_SECTOR_B",
+        "version": 1,
+        "owner": "Drone2",
+        "score": 8.833331634989008,
+        "event": "claim_sent",
+        "time_s": 60.600097625982016,
+        "agent_id": "Drone2"
+      },
+      {
+        "task_id": "SEARCH_SECTOR_B",
+        "version": 2,
+        "owner": "Drone2",
+        "score": 8.666659275069833,
+        "event": "claim_sent",
+        "time_s": 270.70008285797667,
+        "agent_id": "Drone2"
+      },
+      {
+        "task_id": "SEARCH_SECTOR_C",
+        "version": 1,
+        "owner": "Drone3",
+        "score": 11.333353963447735,
+        "event": "claim_sent",
+        "time_s": 92.00007581105456,
+        "agent_id": "Drone3"
+      },
+      {
+        "task_id": "SEARCH_SECTOR_C",
+        "version": 1,
+        "owner": "Drone4",
+        "score": 12.50001507155442,
+        "event": "claim_sent",
+        "time_s": 92.00007581105456,
+        "agent_id": "Drone4"
+      },
+      {
+        "task_id": "SEARCH_SECTOR_D",
+        "version": 1,
+        "owner": "Drone4",
+        "score": 9.166671836554693,
+        "event": "claim_sent",
+        "time_s": 272.90009399305563,
+        "agent_id": "Drone4"
+      }
+    ],
+    "claimed_unstarted_task_ids": [
+      "SEARCH_SECTOR_A",
+      "SEARCH_SECTOR_B",
+      "SEARCH_SECTOR_C",
+      "SEARCH_SECTOR_D"
+    ],
+    "completed_task_ids": []
+  },
+  "baselines/severe/D/control/seed_42": {
+    "case_id": "baselines/severe/D/control/seed_42",
+    "checks": {
+      "completed_ids_match": true,
+      "completed_tasks_have_arrival_evidence": true,
+      "executed_actions_have_guarded_effects": true,
+      "productive_llm_counts_match": true,
+      "no_expired_delivery": true
+    },
+    "guardian_reasons": {
+      "stale_or_future_peer_belief": 14,
+      "runtime_timeout_or_state_violation": 4
+    },
+    "policy_errors": {
+      "unsafe_action:stale_or_future_peer_belief": 5
+    },
+    "claims": [
+      {
+        "task_id": "SEARCH_SECTOR_A",
+        "version": 1,
+        "owner": "Drone1",
+        "score": 8.000127258400122,
+        "event": "claim_sent",
+        "time_s": 30.000078973011114,
+        "agent_id": "Drone1"
+      },
+      {
+        "task_id": "SEARCH_SECTOR_A",
+        "version": 2,
+        "owner": "Drone1",
+        "score": 8.833347450010478,
+        "event": "claim_sent",
+        "time_s": 240.00009148102254,
+        "agent_id": "Drone1"
+      },
+      {
+        "task_id": "SEARCH_SECTOR_B",
+        "version": 1,
+        "owner": "Drone2",
+        "score": 9.000066140123332,
+        "event": "claim_sent",
+        "time_s": 60.70007701404393,
+        "agent_id": "Drone2"
+      },
+      {
+        "task_id": "SEARCH_SECTOR_B",
+        "version": 2,
+        "owner": "Drone2",
+        "score": 10.499973801663145,
+        "event": "claim_sent",
+        "time_s": 270.8000776650151,
+        "agent_id": "Drone2"
+      },
+      {
+        "task_id": "SEARCH_SECTOR_B",
+        "version": 1,
+        "owner": "Drone3",
+        "score": 13.833355183247477,
+        "event": "claim_sent",
+        "time_s": 60.70007701404393,
+        "agent_id": "Drone3"
+      },
+      {
+        "task_id": "SEARCH_SECTOR_C",
+        "version": 1,
+        "owner": "Drone3",
+        "score": 9.99998224324857,
+        "event": "claim_sent",
+        "time_s": 243.0000882340828,
+        "agent_id": "Drone3"
+      },
+      {
+        "task_id": "SEARCH_SECTOR_D",
+        "version": 1,
+        "owner": "Drone3",
+        "score": 14.166688001559425,
+        "event": "claim_sent",
+        "time_s": 243.30008971400093,
+        "agent_id": "Drone3"
+      },
+      {
+        "task_id": "SEARCH_SECTOR_C",
+        "version": 1,
+        "owner": "Drone4",
+        "score": 12.500007758343903,
+        "event": "claim_sent",
+        "time_s": 92.0000957720913,
+        "agent_id": "Drone4"
+      }
+    ],
+    "claimed_unstarted_task_ids": [
+      "SEARCH_SECTOR_A",
+      "SEARCH_SECTOR_B",
+      "SEARCH_SECTOR_C",
+      "SEARCH_SECTOR_D"
+    ],
+    "completed_task_ids": []
+  },
+  "drone1_failure/moderate/A/control/seed_42": {
+    "case_id": "drone1_failure/moderate/A/control/seed_42",
+    "checks": {
+      "completed_ids_match": true,
+      "completed_tasks_have_arrival_evidence": true,
+      "executed_actions_have_guarded_effects": true,
+      "productive_llm_counts_match": true,
+      "no_expired_delivery": true
+    },
+    "guardian_reasons": {
+      "runtime_timeout_or_state_violation": 6,
+      "drone_separation": 6,
+      "stale_or_future_peer_belief": 4066
+    },
+    "policy_errors": {
+      "active_command_requires_completion": 4,
+      "unsafe_action:drone_separation": 4,
+      "unsafe_action:stale_or_future_peer_belief": 2709
+    },
+    "claims": [],
+    "claimed_unstarted_task_ids": [],
+    "completed_task_ids": [
+      "SEARCH_SECTOR_D"
+    ]
+  },
+  "drone1_failure/moderate/B/control/seed_42": {
+    "case_id": "drone1_failure/moderate/B/control/seed_42",
+    "checks": {
+      "completed_ids_match": true,
+      "completed_tasks_have_arrival_evidence": true,
+      "executed_actions_have_guarded_effects": true,
+      "productive_llm_counts_match": true,
+      "no_expired_delivery": true
+    },
+    "guardian_reasons": {
+      "stale_or_future_peer_belief": 47
+    },
+    "policy_errors": {
+      "hold_duration_exceeds_policy_limit": 1,
+      "unsafe_action:stale_or_future_peer_belief": 30,
+      "message_tool_mismatch": 6
+    },
+    "claims": [],
+    "claimed_unstarted_task_ids": [],
+    "completed_task_ids": []
+  },
+  "drone1_failure/moderate/C/control/seed_42": {
+    "case_id": "drone1_failure/moderate/C/control/seed_42",
+    "checks": {
+      "completed_ids_match": true,
+      "completed_tasks_have_arrival_evidence": true,
+      "executed_actions_have_guarded_effects": true,
+      "productive_llm_counts_match": true,
+      "no_expired_delivery": true
+    },
+    "guardian_reasons": {
+      "stale_or_future_peer_belief": 4023
+    },
+    "policy_errors": {
+      "active_command_requires_completion": 13,
+      "unsafe_action:stale_or_future_peer_belief": 2682
+    },
+    "claims": [
+      {
+        "task_id": "SEARCH_SECTOR_A",
+        "version": 1,
+        "owner": "Drone2",
+        "score": 11.333469761729551,
+        "event": "claim_sent",
+        "time_s": 187.80009117897134,
+        "agent_id": "Drone2"
+      }
+    ],
+    "claimed_unstarted_task_ids": [
+      "SEARCH_SECTOR_A"
+    ],
+    "completed_task_ids": []
+  },
+  "drone1_failure/moderate/D/control/seed_42": {
+    "case_id": "drone1_failure/moderate/D/control/seed_42",
+    "checks": {
+      "completed_ids_match": true,
+      "completed_tasks_have_arrival_evidence": true,
+      "executed_actions_have_guarded_effects": true,
+      "productive_llm_counts_match": true,
+      "no_expired_delivery": true
+    },
+    "guardian_reasons": {
+      "stale_or_future_peer_belief": 51
+    },
+    "policy_errors": {
+      "unsafe_action:stale_or_future_peer_belief": 34,
+      "message_tool_mismatch": 1
+    },
+    "claims": [
+      {
+        "task_id": "SEARCH_SECTOR_A",
+        "version": 1,
+        "owner": "Drone2",
+        "score": 11.333466088244071,
+        "event": "claim_sent",
+        "time_s": 188.00009592599235,
+        "agent_id": "Drone2"
+      }
+    ],
+    "claimed_unstarted_task_ids": [
+      "SEARCH_SECTOR_A"
+    ],
+    "completed_task_ids": []
+  },
+  "drone1_failure/nominal/A/control/seed_42": {
+    "case_id": "drone1_failure/nominal/A/control/seed_42",
+    "checks": {
+      "completed_ids_match": true,
+      "completed_tasks_have_arrival_evidence": true,
+      "executed_actions_have_guarded_effects": true,
+      "productive_llm_counts_match": true,
+      "no_expired_delivery": true
+    },
+    "guardian_reasons": {},
+    "policy_errors": {},
+    "claims": [],
+    "claimed_unstarted_task_ids": [],
+    "completed_task_ids": [
+      "SEARCH_SECTOR_A",
+      "SEARCH_SECTOR_B",
+      "SEARCH_SECTOR_C",
+      "SEARCH_SECTOR_D"
+    ]
+  },
+  "drone1_failure/nominal/B/control/seed_42": {
+    "case_id": "drone1_failure/nominal/B/control/seed_42",
+    "checks": {
+      "completed_ids_match": true,
+      "completed_tasks_have_arrival_evidence": true,
+      "executed_actions_have_guarded_effects": true,
+      "productive_llm_counts_match": true,
+      "no_expired_delivery": true
+    },
+    "guardian_reasons": {
+      "stale_or_future_peer_belief": 46
+    },
+    "policy_errors": {
+      "unsafe_action:stale_or_future_peer_belief": 29,
+      "message_tool_mismatch": 7
+    },
+    "claims": [],
+    "claimed_unstarted_task_ids": [],
+    "completed_task_ids": []
+  },
+  "drone1_failure/nominal/C/control/seed_42": {
+    "case_id": "drone1_failure/nominal/C/control/seed_42",
+    "checks": {
+      "completed_ids_match": true,
+      "completed_tasks_have_arrival_evidence": true,
+      "executed_actions_have_guarded_effects": true,
+      "productive_llm_counts_match": true,
+      "no_expired_delivery": true
+    },
+    "guardian_reasons": {
+      "stale_or_future_peer_belief": 4026
+    },
+    "policy_errors": {
+      "active_command_requires_completion": 6,
+      "unsafe_action:stale_or_future_peer_belief": 2682
+    },
+    "claims": [
+      {
+        "task_id": "SEARCH_SECTOR_A",
+        "version": 1,
+        "owner": "Drone2",
+        "score": 11.166683286661282,
+        "event": "claim_sent",
+        "time_s": 187.70008896605577,
+        "agent_id": "Drone2"
+      }
+    ],
+    "claimed_unstarted_task_ids": [
+      "SEARCH_SECTOR_A"
+    ],
+    "completed_task_ids": []
+  },
+  "drone1_failure/nominal/D/control/seed_42": {
+    "case_id": "drone1_failure/nominal/D/control/seed_42",
+    "checks": {
+      "completed_ids_match": true,
+      "completed_tasks_have_arrival_evidence": true,
+      "executed_actions_have_guarded_effects": true,
+      "productive_llm_counts_match": true,
+      "no_expired_delivery": true
+    },
+    "guardian_reasons": {
+      "stale_or_future_peer_belief": 54
+    },
+    "policy_errors": {
+      "unsafe_action:stale_or_future_peer_belief": 36,
+      "hold_duration_exceeds_policy_limit": 1
+    },
+    "claims": [
+      {
+        "task_id": "SEARCH_SECTOR_A",
+        "version": 1,
+        "owner": "Drone2",
+        "score": 11.166669510072097,
+        "event": "claim_sent",
+        "time_s": 187.90008664899506,
+        "agent_id": "Drone2"
+      }
+    ],
+    "claimed_unstarted_task_ids": [
+      "SEARCH_SECTOR_A"
+    ],
+    "completed_task_ids": []
+  },
+  "drone1_failure/partitioned/A/control/seed_42": {
+    "case_id": "drone1_failure/partitioned/A/control/seed_42",
+    "checks": {
+      "completed_ids_match": true,
+      "completed_tasks_have_arrival_evidence": true,
+      "executed_actions_have_guarded_effects": true,
+      "productive_llm_counts_match": true,
+      "no_expired_delivery": true
+    },
+    "guardian_reasons": {
+      "stale_or_future_peer_belief": 4096
+    },
+    "policy_errors": {
+      "unsafe_action:stale_or_future_peer_belief,stale_or_future_peer_belief": 50,
+      "unsafe_action:stale_or_future_peer_belief,stale_or_future_peer_belief,stale_or_future_peer_belief": 8,
+      "unsafe_action:stale_or_future_peer_belief": 2667
+    },
+    "claims": [],
+    "claimed_unstarted_task_ids": [],
+    "completed_task_ids": []
+  },
+  "drone1_failure/partitioned/B/control/seed_42": {
+    "case_id": "drone1_failure/partitioned/B/control/seed_42",
+    "checks": {
+      "completed_ids_match": true,
+      "completed_tasks_have_arrival_evidence": true,
+      "executed_actions_have_guarded_effects": true,
+      "productive_llm_counts_match": true,
+      "no_expired_delivery": true
+    },
+    "guardian_reasons": {
+      "stale_or_future_peer_belief": 56
+    },
+    "policy_errors": {
+      "unsafe_action:stale_or_future_peer_belief,stale_or_future_peer_belief": 1,
+      "unsafe_action:stale_or_future_peer_belief": 37
+    },
+    "claims": [],
+    "claimed_unstarted_task_ids": [],
+    "completed_task_ids": []
+  },
+  "drone1_failure/partitioned/C/control/seed_42": {
+    "case_id": "drone1_failure/partitioned/C/control/seed_42",
+    "checks": {
+      "completed_ids_match": true,
+      "completed_tasks_have_arrival_evidence": true,
+      "executed_actions_have_guarded_effects": true,
+      "productive_llm_counts_match": true,
+      "no_expired_delivery": true
+    },
+    "guardian_reasons": {
+      "stale_or_future_peer_belief": 4068
+    },
+    "policy_errors": {
+      "active_command_requires_completion": 8,
+      "unsafe_action:stale_or_future_peer_belief,stale_or_future_peer_belief": 43,
+      "unsafe_action:stale_or_future_peer_belief,stale_or_future_peer_belief,stale_or_future_peer_belief": 8,
+      "unsafe_action:stale_or_future_peer_belief": 2658
+    },
+    "claims": [
+      {
+        "task_id": "SEARCH_SECTOR_A",
+        "version": 1,
+        "owner": "Drone2",
+        "score": 11.166686461695159,
+        "event": "claim_sent",
+        "time_s": 187.80007712298539,
+        "agent_id": "Drone2"
+      }
+    ],
+    "claimed_unstarted_task_ids": [
+      "SEARCH_SECTOR_A"
+    ],
+    "completed_task_ids": []
+  },
+  "drone1_failure/partitioned/D/control/seed_42": {
+    "case_id": "drone1_failure/partitioned/D/control/seed_42",
+    "checks": {
+      "completed_ids_match": true,
+      "completed_tasks_have_arrival_evidence": true,
+      "executed_actions_have_guarded_effects": true,
+      "productive_llm_counts_match": true,
+      "no_expired_delivery": true
+    },
+    "guardian_reasons": {
+      "stale_or_future_peer_belief": 49
+    },
+    "policy_errors": {
+      "unsafe_action:stale_or_future_peer_belief": 32,
+      "hold_duration_exceeds_policy_limit": 1
+    },
+    "claims": [
+      {
+        "task_id": "SEARCH_SECTOR_A",
+        "version": 1,
+        "owner": "Drone2",
+        "score": 11.166674525050135,
+        "event": "claim_sent",
+        "time_s": 187.60008518700488,
+        "agent_id": "Drone2"
+      }
+    ],
+    "claimed_unstarted_task_ids": [
+      "SEARCH_SECTOR_A"
+    ],
+    "completed_task_ids": []
+  },
+  "drone1_failure/severe/A/control/seed_42": {
+    "case_id": "drone1_failure/severe/A/control/seed_42",
+    "checks": {
+      "completed_ids_match": true,
+      "completed_tasks_have_arrival_evidence": true,
+      "executed_actions_have_guarded_effects": true,
+      "productive_llm_counts_match": true,
+      "no_expired_delivery": true
+    },
+    "guardian_reasons": {
+      "stale_or_future_peer_belief": 4067,
+      "runtime_timeout_or_state_violation": 1
+    },
+    "policy_errors": {
+      "active_command_requires_completion": 25,
+      "unsafe_action:stale_or_future_peer_belief": 2446,
+      "unsafe_action:stale_or_future_peer_belief,stale_or_future_peer_belief": 248,
+      "unsafe_action:stale_or_future_peer_belief,stale_or_future_peer_belief,stale_or_future_peer_belief": 9
+    },
+    "claims": [],
+    "claimed_unstarted_task_ids": [],
+    "completed_task_ids": []
+  },
+  "drone1_failure/severe/B/control/seed_42": {
+    "case_id": "drone1_failure/severe/B/control/seed_42",
+    "checks": {
+      "completed_ids_match": true,
+      "completed_tasks_have_arrival_evidence": true,
+      "executed_actions_have_guarded_effects": true,
+      "productive_llm_counts_match": true,
+      "no_expired_delivery": true
+    },
+    "guardian_reasons": {
+      "stale_or_future_peer_belief": 47
+    },
+    "policy_errors": {
+      "unsafe_action:stale_or_future_peer_belief": 26,
+      "unsafe_action:stale_or_future_peer_belief,stale_or_future_peer_belief": 4,
+      "message_tool_mismatch": 6
+    },
+    "claims": [],
+    "claimed_unstarted_task_ids": [],
+    "completed_task_ids": []
+  },
+  "drone1_failure/severe/C/control/seed_42": {
+    "case_id": "drone1_failure/severe/C/control/seed_42",
+    "checks": {
+      "completed_ids_match": true,
+      "completed_tasks_have_arrival_evidence": true,
+      "executed_actions_have_guarded_effects": true,
+      "productive_llm_counts_match": true,
+      "no_expired_delivery": true
+    },
+    "guardian_reasons": {
+      "stale_or_future_peer_belief": 4046,
+      "communication_or_belief_uncertainty": 1
+    },
+    "policy_errors": {
+      "active_command_requires_completion": 41,
+      "unsafe_action:stale_or_future_peer_belief": 2498,
+      "unsafe_action:stale_or_future_peer_belief,stale_or_future_peer_belief": 184,
+      "unsafe_action:stale_or_future_peer_belief,stale_or_future_peer_belief,stale_or_future_peer_belief": 9,
+      "unsafe_action:communication_or_belief_uncertainty": 1
+    },
+    "claims": [
+      {
+        "task_id": "SEARCH_SECTOR_A",
+        "version": 1,
+        "owner": "Drone2",
+        "score": 13.833349878395286,
+        "event": "claim_sent",
+        "time_s": 186.90009018499404,
+        "agent_id": "Drone2"
+      }
+    ],
+    "claimed_unstarted_task_ids": [
+      "SEARCH_SECTOR_A"
+    ],
+    "completed_task_ids": []
+  },
+  "drone1_failure/severe/D/control/seed_42": {
+    "case_id": "drone1_failure/severe/D/control/seed_42",
+    "checks": {
+      "completed_ids_match": true,
+      "completed_tasks_have_arrival_evidence": true,
+      "executed_actions_have_guarded_effects": true,
+      "productive_llm_counts_match": true,
+      "no_expired_delivery": true
+    },
+    "guardian_reasons": {
+      "stale_or_future_peer_belief": 51
+    },
+    "policy_errors": {
+      "unsafe_action:stale_or_future_peer_belief": 33,
+      "unsafe_action:stale_or_future_peer_belief,stale_or_future_peer_belief": 1
+    },
+    "claims": [
+      {
+        "task_id": "SEARCH_SECTOR_A",
+        "version": 1,
+        "owner": "Drone2",
+        "score": 13.833329751544321,
+        "event": "claim_sent",
+        "time_s": 187.70011058903765,
+        "agent_id": "Drone2"
+      }
+    ],
+    "claimed_unstarted_task_ids": [
+      "SEARCH_SECTOR_A"
+    ],
+    "completed_task_ids": []
+  },
+  "relay_failure/nominal/C/control/seed_42": {
+    "case_id": "relay_failure/nominal/C/control/seed_42",
+    "checks": {
+      "completed_ids_match": true,
+      "completed_tasks_have_arrival_evidence": true,
+      "executed_actions_have_guarded_effects": true,
+      "productive_llm_counts_match": true,
+      "no_expired_delivery": true
+    },
+    "guardian_reasons": {
+      "drone_separation": 12,
+      "stale_or_future_peer_belief": 4026
+    },
+    "policy_errors": {
+      "active_command_requires_completion": 18,
+      "unsafe_action:stale_or_future_peer_belief": 2682,
+      "unsafe_action:drone_separation": 12
+    },
+    "claims": [
+      {
+        "task_id": "SEARCH_SECTOR_A",
+        "version": 1,
+        "owner": "Drone1",
+        "score": 7.166716450088036,
+        "event": "claim_sent",
+        "time_s": 30.000107678934,
+        "agent_id": "Drone1"
+      }
+    ],
+    "claimed_unstarted_task_ids": [
+      "SEARCH_SECTOR_A"
+    ],
+    "completed_task_ids": []
+  },
+  "relay_failure/nominal/D/control/seed_42": {
+    "case_id": "relay_failure/nominal/D/control/seed_42",
+    "checks": {
+      "completed_ids_match": true,
+      "completed_tasks_have_arrival_evidence": true,
+      "executed_actions_have_guarded_effects": true,
+      "productive_llm_counts_match": true,
+      "no_expired_delivery": true
+    },
+    "guardian_reasons": {
+      "stale_or_future_peer_belief": 43
+    },
+    "policy_errors": {
+      "unsafe_action:stale_or_future_peer_belief": 29
+    },
+    "claims": [
+      {
+        "task_id": "SEARCH_SECTOR_A",
+        "version": 1,
+        "owner": "Drone1",
+        "score": 7.1666754550145315,
+        "event": "claim_sent",
+        "time_s": 30.000095499912277,
+        "agent_id": "Drone1"
+      }
+    ],
+    "claimed_unstarted_task_ids": [
+      "SEARCH_SECTOR_A"
+    ],
+    "completed_task_ids": []
+  },
+  "relay_failure/nominal/D/fallback_policy/seed_42": {
+    "case_id": "relay_failure/nominal/D/fallback_policy/seed_42",
+    "checks": {
+      "completed_ids_match": true,
+      "completed_tasks_have_arrival_evidence": true,
+      "executed_actions_have_guarded_effects": true,
+      "productive_llm_counts_match": true,
+      "no_expired_delivery": true
+    },
+    "guardian_reasons": {
+      "drone_separation": 12,
+      "stale_or_future_peer_belief": 4023
+    },
+    "policy_errors": {
+      "active_command_requires_completion": 18,
+      "unsafe_action:stale_or_future_peer_belief": 2680,
+      "unsafe_action:drone_separation": 12
+    },
+    "claims": [
+      {
+        "task_id": "SEARCH_SECTOR_A",
+        "version": 1,
+        "owner": "Drone1",
+        "score": 7.166679004905745,
+        "event": "claim_sent",
+        "time_s": 30.00007878500037,
+        "agent_id": "Drone1"
+      }
+    ],
+    "claimed_unstarted_task_ids": [
+      "SEARCH_SECTOR_A"
+    ],
+    "completed_task_ids": []
+  }
+}

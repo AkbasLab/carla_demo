@@ -1,0 +1,194 @@
+{
+  "source_commit": "a7d40605d52438358df9d502c7967e1f17772d46",
+  "planned_cases": 40,
+  "uploaded_cases": 40,
+  "missing_cases": [],
+  "successful_missions": 15,
+  "actual_llm_runs": 21,
+  "injected_failure_runs": 20,
+  "successful_injected_failure_runs": 0,
+  "failure_requested_but_not_observed": [
+    "drone1_failure/nominal/A/control/seed_42"
+  ],
+  "audit_failures": [],
+  "matched_input_checks": [
+    {
+      "group": [
+        "baselines",
+        "moderate",
+        42
+      ],
+      "matched": true,
+      "cases": 4
+    },
+    {
+      "group": [
+        "baselines",
+        "nominal",
+        42
+      ],
+      "matched": true,
+      "cases": 4
+    },
+    {
+      "group": [
+        "baselines",
+        "partitioned",
+        42
+      ],
+      "matched": true,
+      "cases": 4
+    },
+    {
+      "group": [
+        "baselines",
+        "severe",
+        42
+      ],
+      "matched": true,
+      "cases": 4
+    },
+    {
+      "group": [
+        "drone1_failure",
+        "moderate",
+        42
+      ],
+      "matched": true,
+      "cases": 4
+    },
+    {
+      "group": [
+        "drone1_failure",
+        "nominal",
+        42
+      ],
+      "matched": true,
+      "cases": 4
+    },
+    {
+      "group": [
+        "drone1_failure",
+        "partitioned",
+        42
+      ],
+      "matched": true,
+      "cases": 4
+    },
+    {
+      "group": [
+        "drone1_failure",
+        "severe",
+        42
+      ],
+      "matched": true,
+      "cases": 4
+    },
+    {
+      "group": [
+        "relay_failure",
+        "nominal",
+        42
+      ],
+      "matched": true,
+      "cases": 3
+    }
+  ],
+  "verified_model_identities": [
+    {
+      "model": "phase12-agent:pinned",
+      "digest": "46e0c10c039e019119339687c3c1757cc81b9da49709a3b3924863ba87ca666e"
+    }
+  ],
+  "analysis_source_sha256": "8acc52bc20de032527adba3caa116915933a77451f793a3c7da2c7479d3445ab",
+  "selected_attempts": {
+    "ablations/moderate/D/without_task_leases/seed_42": "run",
+    "ablations/nominal/D/fallback_policy/seed_42": "run",
+    "ablations/nominal/D/without_dynamic_roles/seed_42": "run_attempt_002",
+    "ablations/nominal/D/without_memory/seed_42": "run",
+    "ablations/severe/D/perfect_communication/seed_42": "run",
+    "baselines/moderate/A/control/seed_42": "run",
+    "baselines/moderate/B/control/seed_42": "run",
+    "baselines/moderate/C/control/seed_42": "run",
+    "baselines/moderate/D/control/seed_42": "run",
+    "baselines/nominal/A/control/seed_42": "run",
+    "baselines/nominal/B/control/seed_42": "run",
+    "baselines/nominal/C/control/seed_42": "run",
+    "baselines/nominal/D/control/seed_42": "run",
+    "baselines/partitioned/A/control/seed_42": "run",
+    "baselines/partitioned/B/control/seed_42": "run",
+    "baselines/partitioned/C/control/seed_42": "run",
+    "baselines/partitioned/D/control/seed_42": "run",
+    "baselines/severe/A/control/seed_42": "run",
+    "baselines/severe/B/control/seed_42": "run",
+    "baselines/severe/C/control/seed_42": "run",
+    "baselines/severe/D/control/seed_42": "run",
+    "drone1_failure/moderate/A/control/seed_42": "run",
+    "drone1_failure/moderate/B/control/seed_42": "run",
+    "drone1_failure/moderate/C/control/seed_42": "run",
+    "drone1_failure/moderate/D/control/seed_42": "run",
+    "drone1_failure/nominal/A/control/seed_42": "run",
+    "drone1_failure/nominal/B/control/seed_42": "run",
+    "drone1_failure/nominal/C/control/seed_42": "run",
+    "drone1_failure/nominal/D/control/seed_42": "run",
+    "drone1_failure/partitioned/A/control/seed_42": "run",
+    "drone1_failure/partitioned/B/control/seed_42": "run",
+    "drone1_failure/partitioned/C/control/seed_42": "run",
+    "drone1_failure/partitioned/D/control/seed_42": "run",
+    "drone1_failure/severe/A/control/seed_42": "run",
+    "drone1_failure/severe/B/control/seed_42": "run",
+    "drone1_failure/severe/C/control/seed_42": "run",
+    "drone1_failure/severe/D/control/seed_42": "run",
+    "relay_failure/nominal/C/control/seed_42": "run",
+    "relay_failure/nominal/D/control/seed_42": "run",
+    "relay_failure/nominal/D/fallback_policy/seed_42": "run"
+  },
+  "input_archives_sha256": {
+    "ablations/moderate/D/without_task_leases/seed_42": "7e426f75a86a9a04d529766ea0091ff761b4b8d667e7371156deb421938da4a2",
+    "ablations/nominal/D/fallback_policy/seed_42": "d57a799673a9b2e506f37e12143ed3e178b4ad2742448934b4460d98a811dac2",
+    "ablations/nominal/D/without_dynamic_roles/seed_42": "9a526c3d2c6dd2873a7fb10284286e2ad65de664ee48de27b8096413b8824928",
+    "ablations/nominal/D/without_memory/seed_42": "d7c5d53a94fbb671608a99917902d117df5d71edfbe3fe56e6f076ed41e86520",
+    "ablations/severe/D/perfect_communication/seed_42": "63668477ab2f01203bb2ab996b4647580e185a80262d8fc2e918c73a6e9c6781",
+    "baselines/moderate/A/control/seed_42": "5a2245d215f9ef86358b37b15f0cd4fe9288d6cef6e158c4dbfece92ea70889e",
+    "baselines/moderate/B/control/seed_42": "cd3a6fe46328021c402785a57965f41dfc9a0865ef3f185cbe2eb12a32508cd9",
+    "baselines/moderate/C/control/seed_42": "c03d68c8a7a08651879c99ecae51a47b037bcf3d15778549c42a5d8b0408b05f",
+    "baselines/moderate/D/control/seed_42": "47bf4cbb5f6d0e462b736ccadb284fb6e8740f35aa82acda188216a456d4c757",
+    "baselines/nominal/A/control/seed_42": "6f486a46fd7146939af08dee2944a6ad75f279d0c2be328de0a7d4f88fb5b712",
+    "baselines/nominal/B/control/seed_42": "cc3854819ef62f86504d83b886312a4914f452fb8b4b692a5fd614cc1bd7832b",
+    "baselines/nominal/C/control/seed_42": "8a00de4325ba049f6118035bd237abbdf308be43bf172659539e36696fec803d",
+    "baselines/nominal/D/control/seed_42": "6edab22d15458e773d760bc2e6e7a5ebe98c9fed13818b69bd3ab6ddc454f48c",
+    "baselines/partitioned/A/control/seed_42": "7236750004b29964b99c3bd48d9c27f0202d55cd9a4af5c4c8ecfaa287680f7e",
+    "baselines/partitioned/B/control/seed_42": "9c840d0534bacf617c272f05d948eb478bf44a3aebcecb53ed1d45dab44ebc26",
+    "baselines/partitioned/C/control/seed_42": "01dcbf0152138fff349e6bc09509da1e22f1bbb12b7bb122621801c561595a80",
+    "baselines/partitioned/D/control/seed_42": "efaf97773eed598827ce68bc1ebdcd036d1a594760ea2e9a87bb59a9643719f6",
+    "baselines/severe/A/control/seed_42": "14923f4268bbea9e8905bca1aa7f6fb1dd0ab4695905ed0c1586eb8c32962a9d",
+    "baselines/severe/B/control/seed_42": "102f49528c0366155d3a7270d99ea67d3d8c76f6f9bf22d6c2a1c102952cfd36",
+    "baselines/severe/C/control/seed_42": "14d9236d1bd6c2a28af20c9a745c0e299a8815eed6f04e0f4b4b6df9da6e9d23",
+    "baselines/severe/D/control/seed_42": "3ead9ef7fbb8619727007b93a33e458a07a6f76300bf140e370e9361f4e0743a",
+    "drone1_failure/moderate/A/control/seed_42": "cb3ba5d4f60ef97655794abc616db95ea377cd9b43146661a9393e1aa074b779",
+    "drone1_failure/moderate/B/control/seed_42": "298a4b7f9dc5945170a9214995c9255877d14c38abdac2cea277993430d7e2ce",
+    "drone1_failure/moderate/C/control/seed_42": "b308fe737552b7922a51a218112c6c902b357213b88a661b8814284ebb11fa63",
+    "drone1_failure/moderate/D/control/seed_42": "b7f71231856041c76eda4e34b96b66e7cb8c9af6fa28c949e4e6627277b9d15a",
+    "drone1_failure/nominal/A/control/seed_42": "c897be9472c8581e7682b8b021406aa71e10a423c1d406804565bb92720f42b1",
+    "drone1_failure/nominal/B/control/seed_42": "3645a6a6c6b7552e66c275f11ce0496541d4ef4bf653018c7c03ceaf0955f84f",
+    "drone1_failure/nominal/C/control/seed_42": "8668eaf9c81b53085df08398ff0cbcad118110fc1eedde60d794285990fb034f",
+    "drone1_failure/nominal/D/control/seed_42": "950215a6112d974ac444796b90e08299f28cb401a5211447fe31314437f2a033",
+    "drone1_failure/partitioned/A/control/seed_42": "8a453efb1b4a1a4f71a46dcf779742649da9767284632fd0fdb5b35dcacec490",
+    "drone1_failure/partitioned/B/control/seed_42": "39ed28ea0aca57c05f31078ba0ea6b341864029025f3ae338b67c1464169b4b1",
+    "drone1_failure/partitioned/C/control/seed_42": "806529e5c81eca4d09062b98de1e8b163c9ffda3023b5bda9bad0817a1e4559b",
+    "drone1_failure/partitioned/D/control/seed_42": "25b5bbd280a3d37a61db32b828737392e6aedea689339a8591d1f91944e74fdd",
+    "drone1_failure/severe/A/control/seed_42": "8db370cfae4114b3ff6d1bf3ad94f95da772caa43089fdcfaf4ebfa890d4f469",
+    "drone1_failure/severe/B/control/seed_42": "1242e70d1ba2c9c059506c921d858a7385367cce58982975477e3c7cfdcab0a6",
+    "drone1_failure/severe/C/control/seed_42": "3a5220e89aaee01ebb8644cb627bbb3a51fde837f0f0f62c0c7e3ca4b8035349",
+    "drone1_failure/severe/D/control/seed_42": "e1d9360c06aaf85bf0ae90c8750ebea45a927a5184f9e24ced74f113c86504eb",
+    "relay_failure/nominal/C/control/seed_42": "e6e3c63ab804b09a26dd996f48f68d1f7d2b89dd6fa42eefc79f64ea1a64255c",
+    "relay_failure/nominal/D/control/seed_42": "54ce6c3234f5cbb1f8be053fce206ac790ead19a572f6db30095a7c65dad6b2f",
+    "relay_failure/nominal/D/fallback_policy/seed_42": "a499d70d0cb205e7c0363916dfe208be17e72fa569bfa6c533b07fe193b75c89"
+  },
+  "limitations": [
+    "One seed / one run per case; no confidence intervals or general superiority claims",
+    "Upload coverage is reported explicitly; absent cases are never counted as failed experiments",
+    "Mock flight; guarded dispatch is not proof of physical collision avoidance or live safety",
+    "Unsuccessful completion times are censored; no synthetic successful 300-second values"
+  ]
+}
