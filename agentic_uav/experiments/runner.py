@@ -82,14 +82,14 @@ def compile_experiment(entry,folder,manifest):
     return c
 
 
-def run_experiment(entry,root,batch_configuration_path=None):
+def run_experiment(entry,root,batch_configuration_path=None,metric_registration=None):
     folder=Path(root)/entry['experiment_id'];folder.mkdir()
     initial=provenance();run_id=uuid.uuid4().hex
     manifest=dict(schema_version=1,run_id=run_id,experiment_id=entry['experiment_id'],requested_configuration=copy.deepcopy(entry),
         architecture=entry.get('architecture'),scenario_id=entry.get('scenario'),random_seed=entry.get('random_seed'),
         started_at_utc=utc_now(),finished_at_utc=None,status='running',run_completed=False,mission_complete=None,
         error=None,configuration_files=[],provenance=initial,model_identity_verified=False,
-        instrumentation='phase14_scoped_observers_v1')
+        instrumentation='phase14_phase15_observers_v2',metric_registration=metric_registration)
     write_json(folder/'manifest.json',manifest)
     log=EventLog(folder/'events.jsonl',entry['experiment_id'],run_id)
     log.emit('RUN_STARTED',requested_configuration=entry)
@@ -123,19 +123,19 @@ def run_experiment(entry,root,batch_configuration_path=None):
             manifest['model_identity_verified']=details['effective_provider']['provider']=='ollama'
         after=provenance()
         manifest.update(finished_at_utc=utc_now(),source_changed_during_run=initial['source_sha256']!=after['source_sha256'],
-            event_counts=dict(log.counts),event_coverage={name:log.counts[name] for name in EVENT_TYPES})
+            event_counts=log.snapshot_counts(),event_coverage={name:log.snapshot_counts().get(name,0) for name in EVENT_TYPES})
         manifest['failure_observed']=False
         scenario=folder/'run/scenario_events.json'
         events=read_optional(scenario)
         if events:manifest['failure_observed']=any(e['event']=='actor_silenced' for e in events)
         log.emit('RUN_FINISHED',status=manifest['status'])
-        manifest['event_counts']=dict(log.counts)
+        manifest['event_counts']=log.seal()
         write_json(folder/'manifest.json',manifest)
     return dict(experiment_id=entry['experiment_id'],status=manifest['status'],run_completed=manifest['run_completed'],
         mission_complete=manifest['mission_complete'],error=manifest['error'],result_dir=str(folder))
 
 
-def run_batch(configuration_path,output_dir):
+def run_batch(configuration_path,output_dir,evaluate=False):
     configuration_path=resolve(configuration_path)
     batch=json.loads(configuration_path.read_text())
     if set(batch)!={'schema_version','experiments'} or batch['schema_version']!=1:raise ValueError('Expected schema_version=1 and experiments list')
@@ -147,15 +147,26 @@ def run_batch(configuration_path,output_dir):
     root=Path(output_dir)
     if root.exists() and any(root.iterdir()):raise ValueError('Use an empty output folder; previous results are never overwritten')
     root.mkdir(parents=True,exist_ok=True)
+    registration=None
+    if evaluate:
+        from .metrics import register
+        registration=register(root)
     write_json(root/'batch_configuration.json',batch)
     result=dict(schema_version=1,started_at_utc=utc_now(),finished_at_utc=None,status='running',planned_experiments=len(entries),runs=[])
     write_json(root/'batch_manifest.json',result)
     for entry in entries:
-        row=run_experiment(entry,root,configuration_path);result['runs'].append(row)
+        row=run_experiment(entry,root,configuration_path,registration);result['runs'].append(row)
         write_json(root/'batch_manifest.json',result)
         if row['status']=='interrupted':break
     result.update(finished_at_utc=utc_now(),status='interrupted' if any(r['status']=='interrupted' for r in result['runs']) else 'finished',
         finished_runs=sum(r['run_completed'] for r in result['runs']),successful_missions=sum(r['mission_complete'] is True and r['error'] is None for r in result['runs']),
         errors=sum(r['status']=='error' for r in result['runs']))
     write_json(root/'batch_manifest.json',result)
+    if evaluate:
+        from .metrics import evaluate_batch
+        try:result['evaluation']=evaluate_batch(root)
+        except Exception as exc:
+            result['evaluation_error']=dict(type=type(exc).__name__,message=str(exc)[:2000])
+            write_json(root/'metric_evaluation_error.json',dict(**result['evaluation_error'],traceback=traceback.format_exc()))
+        write_json(root/'batch_manifest.json',result)
     return result

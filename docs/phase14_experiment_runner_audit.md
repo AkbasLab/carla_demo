@@ -102,7 +102,7 @@ The Git SHA identifies the checkout; a dirty checkout is explicitly marked, and 
 
 ## Event semantics
 
-Events contain `event_id`, `experiment_id`, `attempt_id`, `wall_time_utc`, `simulation_time_s`, `agent_id`, and a structured `data` object. They are written and closed per record; a later crash does not discard the complete earlier records. This adds logging overhead and is recorded as `phase14_scoped_observers_v1`.
+Events contain `event_id`, `experiment_id`, `attempt_id`, `wall_time_utc`, `simulation_time_s`, `agent_id`, and a structured `data` object. They are written and closed per record; a later crash does not discard the complete earlier records. The original Phase 14 observer is recorded as `phase14_scoped_observers_v1`. The Phase 15 extension records `phase14_phase15_observers_v2` and adds own-telemetry series, final/fault task snapshots and provider-reported usage. Both add logging overhead.
 
 All requested names are supported:
 

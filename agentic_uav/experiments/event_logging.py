@@ -4,6 +4,8 @@ from contextlib import ExitStack, contextmanager
 import copy
 from datetime import datetime, timezone
 import json
+import hashlib
+import threading
 from pathlib import Path
 from unittest.mock import patch
 from agentic_uav.comm.protocol import MessageType as MT
@@ -20,15 +22,24 @@ def utc_now():return datetime.now(timezone.utc).isoformat()
 class EventLog:
     def __init__(self,path,experiment_id,attempt_id):
         self.path=Path(path);self.experiment_id=experiment_id;self.attempt_id=attempt_id
-        self.counts=Counter();self.sequence=0
+        self.counts=Counter();self.sequence=0;self.lock=threading.Lock();self.sealed=False
 
     def emit(self,event_type,simulation_time_s=None,agent_id=None,**data):
-        self.sequence+=1;self.counts[event_type]+=1
-        record=dict(schema_version=1,event_id=f'{self.attempt_id}:{self.sequence}',
-            experiment_id=self.experiment_id,attempt_id=self.attempt_id,event_type=event_type,
-            wall_time_utc=utc_now(),simulation_time_s=simulation_time_s,agent_id=agent_id,data=data)
-        # Each record is closed/flushed immediately, including during a failed run.
-        with self.path.open('a') as stream:stream.write(json.dumps(record,allow_nan=False,sort_keys=True)+'\n')
+        with self.lock:
+            if self.sealed:return False
+            self.sequence+=1;self.counts[event_type]+=1
+            record=dict(schema_version=1,event_id=f'{self.attempt_id}:{self.sequence}',
+                experiment_id=self.experiment_id,attempt_id=self.attempt_id,event_type=event_type,
+                wall_time_utc=utc_now(),simulation_time_s=simulation_time_s,agent_id=agent_id,data=data)
+            with self.path.open('a') as stream:stream.write(json.dumps(record,allow_nan=False,sort_keys=True)+'\n')
+            return True
+
+    def snapshot_counts(self):
+        with self.lock:return dict(self.counts)
+
+    def seal(self):
+        with self.lock:
+            self.sealed=True;return dict(self.counts)
 
 
 @contextmanager
@@ -38,6 +49,7 @@ def instrument(comparison,log):
     Serial runner only. Infrastructure observes transport outcomes; agents still
     see only their delivered inboxes. No events are synthesized for absent paths.
     """
+    observed_agents={}
     class LoggedBus(comparison.DegradedMessageBus):
         def __init__(self,*args,**kwargs):
             super().__init__(*args,**kwargs);self.recorded_drops=set()
@@ -75,6 +87,7 @@ def instrument(comparison,log):
         class LoggedAgent(base):
             def __init__(self,*args,**kwargs):
                 super().__init__(*args,**kwargs)
+                observed_agents[self.agent_id]=self
                 for task in self.tasks.values():
                     if task.assigned_agent==self.agent_id:
                         log.emit('TASK_ASSIGNED',0.,self.agent_id,task_id=task.task_id,owner=self.agent_id,
@@ -84,6 +97,9 @@ def instrument(comparison,log):
                 event={'task_announced':'TASK_ANNOUNCED','bid_computed':'TASK_BID',
                     'task_released':'TASK_RELEASED','losing_claim_released':'TASK_RELEASED'}.get(name)
                 if event:log.emit(event,now,self.agent_id,source_event=name,details=data)
+                if name=='waypoint_arrived':
+                    log.emit('WAYPOINT_ARRIVED',now,self.agent_id,position=list(self.position),**data)
+                elif name=='work_completed':log.emit('TASK_COMPLETED',now,self.agent_id,**data)
             def record(self,name,now,**data):
                 super().record(name,now,**data)
                 if name=='role_changed':log.emit('ROLE_CHANGED',now,self.agent_id,**data)
@@ -108,6 +124,10 @@ def instrument(comparison,log):
                         if assignments[t.task_id]!=(t.status,t.assigned_agent,t.version) and t.assigned_agent==self.agent_id:
                             log.emit('TASK_ASSIGNED',now,self.agent_id,task_id=t.task_id,
                                 owner=t.assigned_agent,version=t.version,authority='delivered controller command')
+            def save_memory(self):
+                log.emit('TASK_STATE_SNAPSHOT',self.state_time,self.agent_id,scope='final',
+                    tasks=[t.to_dict() for t in self.tasks.values()])
+                return super().save_memory()
             def request(self,now):
                 before=self.request_number
                 try:return super().request(now)
@@ -142,10 +162,17 @@ def instrument(comparison,log):
 
     class LoggedFlight(comparison.MockFlight):
         def __init__(self,*args,**kwargs):
-            super().__init__(*args,**kwargs)
+            super().__init__(*args,**kwargs);self.last_samples={}
             log.emit('MISSION_STARTED',self.clock(),vehicles=list(self.states),backend='mock')
             for aid,state in self.states.items():
                 log.emit('OBSERVATION_RECEIVED',self.clock(),aid,source='own_telemetry',observation=state)
+        def sample(self,agent_id):
+            state=super().sample(agent_id)
+            key=(self.clock(),json.dumps(state,sort_keys=True))
+            if self.last_samples.get(agent_id)!=key:
+                self.last_samples[agent_id]=key
+                log.emit('OBSERVATION_RECEIVED',self.clock(),agent_id,source='own_telemetry',observation=state)
+            return state
         def execute(self,action):
             result=super().execute(action)
             if result.get('executed'):log.emit('SKILL_STARTED',self.clock(),action.vehicle_id,
@@ -160,15 +187,32 @@ def instrument(comparison,log):
             if active and result:log.emit('SKILL_CANCELLED',self.clock(),aid,command_id=active['action'].command_id)
             return result
 
+    class LoggedOllama(comparison.OllamaProvider):
+        def _http(self,path,data=None):
+            response=super()._http(path,data)
+            if path=='/api/chat' and data is not None:
+                prompt=next((m['content'] for m in data.get('messages',[]) if m.get('role')=='user'),'')
+                try:context=json.loads(prompt)
+                except (ValueError,TypeError):context={}
+                log.emit('LLM_USAGE',context.get('own_state',{}).get('time_s'),context.get('agent_id'),
+                    prompt_sha256=hashlib.sha256(prompt.encode()).hexdigest(),
+                    prompt_eval_count=response.get('prompt_eval_count'),eval_count=response.get('eval_count'),
+                    time_basis='request_context_time',model=data.get('model'))
+            return response
+
     class LoggedSchedule(comparison.ExperimentSchedule):
         def advance(self,now):
             result=super().advance(now)
-            for aid in result:log.emit('FAULT_INJECTED',now,aid,fault='actor_silenced')
+            for aid in result:
+                if aid in observed_agents:
+                    log.emit('TASK_STATE_SNAPSHOT',now,aid,scope='fault_onset',
+                        tasks=[t.to_dict() for t in observed_agents[aid].tasks.values()])
+                log.emit('FAULT_INJECTED',now,aid,fault='actor_silenced')
             return result
 
     classes=dict(DegradedMessageBus=LoggedBus,ComparisonAgent=agent_class(comparison.ComparisonAgent),
         FixedTaskAgent=agent_class(comparison.FixedTaskAgent),FleetController=LoggedController,GuardedExecutor=LoggedGate,
-        MockFlight=LoggedFlight,ExperimentSchedule=LoggedSchedule)
+        MockFlight=LoggedFlight,ExperimentSchedule=LoggedSchedule,OllamaProvider=LoggedOllama)
     with ExitStack() as stack:
         for name,cls in classes.items():stack.enter_context(patch.object(comparison,name,cls))
         yield
