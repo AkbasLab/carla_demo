@@ -5,6 +5,23 @@ from typing import List, Optional
 from agentic_uav.core.models import Position3D, SearchRegion, TargetInfo, DetectionEvent
 from agentic_uav.comm.bus import CommBus, Message
 
+class ExperimentSchedule:
+    """Shared deterministic injection schedule; never expose this object to a policy.
+
+    Actor silence is an injection, not supervisor evidence delivered to other actors.
+    This route-completion benchmark has no hidden target-placement experiment.
+    """
+    def __init__(self,fail_agent=None,fail_at_s=8.):
+        if not math.isfinite(fail_at_s) or fail_at_s<0:raise ValueError('Invalid failure time')
+        self.fail_agent=fail_agent;self.fail_at_s=fail_at_s;self.stopped=set();self.events=[]
+
+    def advance(self,now):
+        newly=[]
+        if self.fail_agent and now>=self.fail_at_s and self.fail_agent not in self.stopped:
+            self.stopped.add(self.fail_agent);newly.append(self.fail_agent)
+            self.events.append(dict(event='actor_silenced',time_s=now,agent_id=self.fail_agent))
+        return newly
+
 class ScenarioManager:
     """Manages ground-truth scenario assets, keep-out zones, and target acquisition."""
     def __init__(self, config_path: str, comm_bus: Optional[CommBus] = None):

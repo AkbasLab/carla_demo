@@ -1,0 +1,37 @@
+{
+  "mode": "phase12_persistent_high_level_agents",
+  "backend": "mock",
+  "provider": "ollama",
+  "llm_inference": true,
+  "mission_complete": false,
+  "error": null,
+  "time_s": 299.80296208395157,
+  "completed_task_ids": [],
+  "duplicate_task_completions": 0,
+  "decisions_by_agent": {
+    "Drone1": 12,
+    "Drone2": 10,
+    "Drone3": 9,
+    "Drone4": 9
+  },
+  "fallbacks_by_agent": {
+    "Drone1": 1,
+    "Drone2": 1,
+    "Drone3": 1,
+    "Drone4": 1
+  },
+  "persistent_contexts": 4,
+  "all_dispatched_actions_guarded": true,
+  "llm_exit_criterion_observed": true,
+  "live_exit_criterion_observed": false,
+  "guardian_decisions": 41,
+  "cleanup_warnings": [],
+  "limitations": [
+    "Replay fixtures do not establish LLM inference; live adapter requires scene-specific validation",
+    "Static geometry, constant-velocity peer predictions and abstract battery budgets inherit Phase 11 limits",
+    "SimpleFlight may lack battery telemetry; any configured battery assumption is explicit in the mission manifest",
+    "Phase 10 degraded-communication recovery weaknesses are not fixed by adding an LLM",
+    "One shared local server may serialize requests; timeouts and late responses are explicitly logged",
+    "Live setup/cleanup remain client-side; no onboard safety guarantee or automatic unchecked landing"
+  ]
+}

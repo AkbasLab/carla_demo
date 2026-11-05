@@ -1,0 +1,1733 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "situation_assessment",
+    "selected_tool",
+    "parameters",
+    "outgoing_messages",
+    "confidence"
+  ],
+  "properties": {
+    "situation_assessment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "mission_progress",
+        "communication_status",
+        "current_risk"
+      ],
+      "properties": {
+        "mission_progress": {
+          "type": "string",
+          "enum": [
+            "none",
+            "partial",
+            "complete"
+          ]
+        },
+        "communication_status": {
+          "type": "string",
+          "enum": [
+            "nominal",
+            "degraded",
+            "lost",
+            "unknown"
+          ]
+        },
+        "current_risk": {
+          "type": "string",
+          "enum": [
+            "low",
+            "medium",
+            "high",
+            "unknown"
+          ]
+        }
+      }
+    },
+    "selected_tool": {
+      "type": "string",
+      "enum": [
+        "accept_task",
+        "decline_task",
+        "compute_task_cost",
+        "announce_task",
+        "send_bid",
+        "claim_task",
+        "release_task",
+        "change_role",
+        "request_help",
+        "report_target",
+        "start_search",
+        "go_to_waypoint",
+        "act_as_relay",
+        "return_home",
+        "hold"
+      ]
+    },
+    "parameters": {
+      "type": "object"
+    },
+    "outgoing_messages": {
+      "type": "array",
+      "maxItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "message_type",
+          "recipients",
+          "payload"
+        ],
+        "properties": {
+          "message_type": {
+            "type": "string",
+            "enum": [
+              "ROLE_CHANGE",
+              "HELP_REQUEST"
+            ]
+          },
+          "recipients": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+              "type": "string"
+            }
+          },
+          "payload": {
+            "type": "object"
+          }
+        }
+      }
+    },
+    "confidence": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    }
+  },
+  "oneOf": [
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "situation_assessment",
+        "selected_tool",
+        "parameters",
+        "outgoing_messages",
+        "confidence"
+      ],
+      "properties": {
+        "situation_assessment": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "mission_progress",
+            "communication_status",
+            "current_risk"
+          ],
+          "properties": {
+            "mission_progress": {
+              "type": "string",
+              "enum": [
+                "none",
+                "partial",
+                "complete"
+              ]
+            },
+            "communication_status": {
+              "type": "string",
+              "enum": [
+                "nominal",
+                "degraded",
+                "lost",
+                "unknown"
+              ]
+            },
+            "current_risk": {
+              "type": "string",
+              "enum": [
+                "low",
+                "medium",
+                "high",
+                "unknown"
+              ]
+            }
+          }
+        },
+        "selected_tool": {
+          "const": "accept_task"
+        },
+        "parameters": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "task_id",
+            "task_version"
+          ],
+          "properties": {
+            "task_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 100
+            },
+            "task_version": {
+              "type": "integer",
+              "minimum": 0
+            }
+          }
+        },
+        "outgoing_messages": {
+          "type": "array",
+          "maxItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "message_type",
+              "recipients",
+              "payload"
+            ],
+            "properties": {
+              "message_type": {
+                "type": "string",
+                "enum": [
+                  "ROLE_CHANGE",
+                  "HELP_REQUEST"
+                ]
+              },
+              "recipients": {
+                "type": "array",
+                "minItems": 1,
+                "uniqueItems": true,
+                "items": {
+                  "type": "string"
+                }
+              },
+              "payload": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        }
+      }
+    },
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "situation_assessment",
+        "selected_tool",
+        "parameters",
+        "outgoing_messages",
+        "confidence"
+      ],
+      "properties": {
+        "situation_assessment": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "mission_progress",
+            "communication_status",
+            "current_risk"
+          ],
+          "properties": {
+            "mission_progress": {
+              "type": "string",
+              "enum": [
+                "none",
+                "partial",
+                "complete"
+              ]
+            },
+            "communication_status": {
+              "type": "string",
+              "enum": [
+                "nominal",
+                "degraded",
+                "lost",
+                "unknown"
+              ]
+            },
+            "current_risk": {
+              "type": "string",
+              "enum": [
+                "low",
+                "medium",
+                "high",
+                "unknown"
+              ]
+            }
+          }
+        },
+        "selected_tool": {
+          "const": "decline_task"
+        },
+        "parameters": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "task_id",
+            "task_version",
+            "reason_code"
+          ],
+          "properties": {
+            "task_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 100
+            },
+            "task_version": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "reason_code": {
+              "type": "string",
+              "pattern": "^[A-Z0-9_]{1,48}$"
+            }
+          }
+        },
+        "outgoing_messages": {
+          "type": "array",
+          "maxItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "message_type",
+              "recipients",
+              "payload"
+            ],
+            "properties": {
+              "message_type": {
+                "type": "string",
+                "enum": [
+                  "ROLE_CHANGE",
+                  "HELP_REQUEST"
+                ]
+              },
+              "recipients": {
+                "type": "array",
+                "minItems": 1,
+                "uniqueItems": true,
+                "items": {
+                  "type": "string"
+                }
+              },
+              "payload": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        }
+      }
+    },
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "situation_assessment",
+        "selected_tool",
+        "parameters",
+        "outgoing_messages",
+        "confidence"
+      ],
+      "properties": {
+        "situation_assessment": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "mission_progress",
+            "communication_status",
+            "current_risk"
+          ],
+          "properties": {
+            "mission_progress": {
+              "type": "string",
+              "enum": [
+                "none",
+                "partial",
+                "complete"
+              ]
+            },
+            "communication_status": {
+              "type": "string",
+              "enum": [
+                "nominal",
+                "degraded",
+                "lost",
+                "unknown"
+              ]
+            },
+            "current_risk": {
+              "type": "string",
+              "enum": [
+                "low",
+                "medium",
+                "high",
+                "unknown"
+              ]
+            }
+          }
+        },
+        "selected_tool": {
+          "const": "compute_task_cost"
+        },
+        "parameters": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "task_id"
+          ],
+          "properties": {
+            "task_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 100
+            }
+          }
+        },
+        "outgoing_messages": {
+          "type": "array",
+          "maxItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "message_type",
+              "recipients",
+              "payload"
+            ],
+            "properties": {
+              "message_type": {
+                "type": "string",
+                "enum": [
+                  "ROLE_CHANGE",
+                  "HELP_REQUEST"
+                ]
+              },
+              "recipients": {
+                "type": "array",
+                "minItems": 1,
+                "uniqueItems": true,
+                "items": {
+                  "type": "string"
+                }
+              },
+              "payload": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        }
+      }
+    },
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "situation_assessment",
+        "selected_tool",
+        "parameters",
+        "outgoing_messages",
+        "confidence"
+      ],
+      "properties": {
+        "situation_assessment": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "mission_progress",
+            "communication_status",
+            "current_risk"
+          ],
+          "properties": {
+            "mission_progress": {
+              "type": "string",
+              "enum": [
+                "none",
+                "partial",
+                "complete"
+              ]
+            },
+            "communication_status": {
+              "type": "string",
+              "enum": [
+                "nominal",
+                "degraded",
+                "lost",
+                "unknown"
+              ]
+            },
+            "current_risk": {
+              "type": "string",
+              "enum": [
+                "low",
+                "medium",
+                "high",
+                "unknown"
+              ]
+            }
+          }
+        },
+        "selected_tool": {
+          "const": "announce_task"
+        },
+        "parameters": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "task_id"
+          ],
+          "properties": {
+            "task_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 100
+            }
+          }
+        },
+        "outgoing_messages": {
+          "type": "array",
+          "maxItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "message_type",
+              "recipients",
+              "payload"
+            ],
+            "properties": {
+              "message_type": {
+                "type": "string",
+                "enum": [
+                  "ROLE_CHANGE",
+                  "HELP_REQUEST"
+                ]
+              },
+              "recipients": {
+                "type": "array",
+                "minItems": 1,
+                "uniqueItems": true,
+                "items": {
+                  "type": "string"
+                }
+              },
+              "payload": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        }
+      }
+    },
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "situation_assessment",
+        "selected_tool",
+        "parameters",
+        "outgoing_messages",
+        "confidence"
+      ],
+      "properties": {
+        "situation_assessment": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "mission_progress",
+            "communication_status",
+            "current_risk"
+          ],
+          "properties": {
+            "mission_progress": {
+              "type": "string",
+              "enum": [
+                "none",
+                "partial",
+                "complete"
+              ]
+            },
+            "communication_status": {
+              "type": "string",
+              "enum": [
+                "nominal",
+                "degraded",
+                "lost",
+                "unknown"
+              ]
+            },
+            "current_risk": {
+              "type": "string",
+              "enum": [
+                "low",
+                "medium",
+                "high",
+                "unknown"
+              ]
+            }
+          }
+        },
+        "selected_tool": {
+          "const": "send_bid"
+        },
+        "parameters": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "task_id",
+            "task_version"
+          ],
+          "properties": {
+            "task_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 100
+            },
+            "task_version": {
+              "type": "integer",
+              "minimum": 0
+            }
+          }
+        },
+        "outgoing_messages": {
+          "type": "array",
+          "maxItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "message_type",
+              "recipients",
+              "payload"
+            ],
+            "properties": {
+              "message_type": {
+                "type": "string",
+                "enum": [
+                  "ROLE_CHANGE",
+                  "HELP_REQUEST"
+                ]
+              },
+              "recipients": {
+                "type": "array",
+                "minItems": 1,
+                "uniqueItems": true,
+                "items": {
+                  "type": "string"
+                }
+              },
+              "payload": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        }
+      }
+    },
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "situation_assessment",
+        "selected_tool",
+        "parameters",
+        "outgoing_messages",
+        "confidence"
+      ],
+      "properties": {
+        "situation_assessment": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "mission_progress",
+            "communication_status",
+            "current_risk"
+          ],
+          "properties": {
+            "mission_progress": {
+              "type": "string",
+              "enum": [
+                "none",
+                "partial",
+                "complete"
+              ]
+            },
+            "communication_status": {
+              "type": "string",
+              "enum": [
+                "nominal",
+                "degraded",
+                "lost",
+                "unknown"
+              ]
+            },
+            "current_risk": {
+              "type": "string",
+              "enum": [
+                "low",
+                "medium",
+                "high",
+                "unknown"
+              ]
+            }
+          }
+        },
+        "selected_tool": {
+          "const": "claim_task"
+        },
+        "parameters": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "task_id",
+            "task_version"
+          ],
+          "properties": {
+            "task_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 100
+            },
+            "task_version": {
+              "type": "integer",
+              "minimum": 0
+            }
+          }
+        },
+        "outgoing_messages": {
+          "type": "array",
+          "maxItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "message_type",
+              "recipients",
+              "payload"
+            ],
+            "properties": {
+              "message_type": {
+                "type": "string",
+                "enum": [
+                  "ROLE_CHANGE",
+                  "HELP_REQUEST"
+                ]
+              },
+              "recipients": {
+                "type": "array",
+                "minItems": 1,
+                "uniqueItems": true,
+                "items": {
+                  "type": "string"
+                }
+              },
+              "payload": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        }
+      }
+    },
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "situation_assessment",
+        "selected_tool",
+        "parameters",
+        "outgoing_messages",
+        "confidence"
+      ],
+      "properties": {
+        "situation_assessment": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "mission_progress",
+            "communication_status",
+            "current_risk"
+          ],
+          "properties": {
+            "mission_progress": {
+              "type": "string",
+              "enum": [
+                "none",
+                "partial",
+                "complete"
+              ]
+            },
+            "communication_status": {
+              "type": "string",
+              "enum": [
+                "nominal",
+                "degraded",
+                "lost",
+                "unknown"
+              ]
+            },
+            "current_risk": {
+              "type": "string",
+              "enum": [
+                "low",
+                "medium",
+                "high",
+                "unknown"
+              ]
+            }
+          }
+        },
+        "selected_tool": {
+          "const": "release_task"
+        },
+        "parameters": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "task_id",
+            "task_version",
+            "reason_code"
+          ],
+          "properties": {
+            "task_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 100
+            },
+            "task_version": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "reason_code": {
+              "type": "string",
+              "pattern": "^[A-Z0-9_]{1,48}$"
+            }
+          }
+        },
+        "outgoing_messages": {
+          "type": "array",
+          "maxItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "message_type",
+              "recipients",
+              "payload"
+            ],
+            "properties": {
+              "message_type": {
+                "type": "string",
+                "enum": [
+                  "ROLE_CHANGE",
+                  "HELP_REQUEST"
+                ]
+              },
+              "recipients": {
+                "type": "array",
+                "minItems": 1,
+                "uniqueItems": true,
+                "items": {
+                  "type": "string"
+                }
+              },
+              "payload": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        }
+      }
+    },
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "situation_assessment",
+        "selected_tool",
+        "parameters",
+        "outgoing_messages",
+        "confidence"
+      ],
+      "properties": {
+        "situation_assessment": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "mission_progress",
+            "communication_status",
+            "current_risk"
+          ],
+          "properties": {
+            "mission_progress": {
+              "type": "string",
+              "enum": [
+                "none",
+                "partial",
+                "complete"
+              ]
+            },
+            "communication_status": {
+              "type": "string",
+              "enum": [
+                "nominal",
+                "degraded",
+                "lost",
+                "unknown"
+              ]
+            },
+            "current_risk": {
+              "type": "string",
+              "enum": [
+                "low",
+                "medium",
+                "high",
+                "unknown"
+              ]
+            }
+          }
+        },
+        "selected_tool": {
+          "const": "change_role"
+        },
+        "parameters": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "new_role",
+            "reason_code"
+          ],
+          "properties": {
+            "new_role": {
+              "type": "string",
+              "enum": [
+                "SCOUT",
+                "RELAY",
+                "RESERVE"
+              ]
+            },
+            "reason_code": {
+              "type": "string",
+              "pattern": "^[A-Z0-9_]{1,48}$"
+            }
+          }
+        },
+        "outgoing_messages": {
+          "type": "array",
+          "maxItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "message_type",
+              "recipients",
+              "payload"
+            ],
+            "properties": {
+              "message_type": {
+                "type": "string",
+                "enum": [
+                  "ROLE_CHANGE",
+                  "HELP_REQUEST"
+                ]
+              },
+              "recipients": {
+                "type": "array",
+                "minItems": 1,
+                "uniqueItems": true,
+                "items": {
+                  "type": "string"
+                }
+              },
+              "payload": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        }
+      }
+    },
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "situation_assessment",
+        "selected_tool",
+        "parameters",
+        "outgoing_messages",
+        "confidence"
+      ],
+      "properties": {
+        "situation_assessment": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "mission_progress",
+            "communication_status",
+            "current_risk"
+          ],
+          "properties": {
+            "mission_progress": {
+              "type": "string",
+              "enum": [
+                "none",
+                "partial",
+                "complete"
+              ]
+            },
+            "communication_status": {
+              "type": "string",
+              "enum": [
+                "nominal",
+                "degraded",
+                "lost",
+                "unknown"
+              ]
+            },
+            "current_risk": {
+              "type": "string",
+              "enum": [
+                "low",
+                "medium",
+                "high",
+                "unknown"
+              ]
+            }
+          }
+        },
+        "selected_tool": {
+          "const": "request_help"
+        },
+        "parameters": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "reason_code"
+          ],
+          "properties": {
+            "reason_code": {
+              "type": "string",
+              "pattern": "^[A-Z0-9_]{1,48}$"
+            }
+          }
+        },
+        "outgoing_messages": {
+          "type": "array",
+          "maxItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "message_type",
+              "recipients",
+              "payload"
+            ],
+            "properties": {
+              "message_type": {
+                "type": "string",
+                "enum": [
+                  "ROLE_CHANGE",
+                  "HELP_REQUEST"
+                ]
+              },
+              "recipients": {
+                "type": "array",
+                "minItems": 1,
+                "uniqueItems": true,
+                "items": {
+                  "type": "string"
+                }
+              },
+              "payload": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        }
+      }
+    },
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "situation_assessment",
+        "selected_tool",
+        "parameters",
+        "outgoing_messages",
+        "confidence"
+      ],
+      "properties": {
+        "situation_assessment": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "mission_progress",
+            "communication_status",
+            "current_risk"
+          ],
+          "properties": {
+            "mission_progress": {
+              "type": "string",
+              "enum": [
+                "none",
+                "partial",
+                "complete"
+              ]
+            },
+            "communication_status": {
+              "type": "string",
+              "enum": [
+                "nominal",
+                "degraded",
+                "lost",
+                "unknown"
+              ]
+            },
+            "current_risk": {
+              "type": "string",
+              "enum": [
+                "low",
+                "medium",
+                "high",
+                "unknown"
+              ]
+            }
+          }
+        },
+        "selected_tool": {
+          "const": "report_target"
+        },
+        "parameters": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "observation_id"
+          ],
+          "properties": {
+            "observation_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 100
+            }
+          }
+        },
+        "outgoing_messages": {
+          "type": "array",
+          "maxItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "message_type",
+              "recipients",
+              "payload"
+            ],
+            "properties": {
+              "message_type": {
+                "type": "string",
+                "enum": [
+                  "ROLE_CHANGE",
+                  "HELP_REQUEST"
+                ]
+              },
+              "recipients": {
+                "type": "array",
+                "minItems": 1,
+                "uniqueItems": true,
+                "items": {
+                  "type": "string"
+                }
+              },
+              "payload": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        }
+      }
+    },
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "situation_assessment",
+        "selected_tool",
+        "parameters",
+        "outgoing_messages",
+        "confidence"
+      ],
+      "properties": {
+        "situation_assessment": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "mission_progress",
+            "communication_status",
+            "current_risk"
+          ],
+          "properties": {
+            "mission_progress": {
+              "type": "string",
+              "enum": [
+                "none",
+                "partial",
+                "complete"
+              ]
+            },
+            "communication_status": {
+              "type": "string",
+              "enum": [
+                "nominal",
+                "degraded",
+                "lost",
+                "unknown"
+              ]
+            },
+            "current_risk": {
+              "type": "string",
+              "enum": [
+                "low",
+                "medium",
+                "high",
+                "unknown"
+              ]
+            }
+          }
+        },
+        "selected_tool": {
+          "const": "start_search"
+        },
+        "parameters": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "task_id",
+            "task_version"
+          ],
+          "properties": {
+            "task_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 100
+            },
+            "task_version": {
+              "type": "integer",
+              "minimum": 0
+            }
+          }
+        },
+        "outgoing_messages": {
+          "type": "array",
+          "maxItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "message_type",
+              "recipients",
+              "payload"
+            ],
+            "properties": {
+              "message_type": {
+                "type": "string",
+                "enum": [
+                  "ROLE_CHANGE",
+                  "HELP_REQUEST"
+                ]
+              },
+              "recipients": {
+                "type": "array",
+                "minItems": 1,
+                "uniqueItems": true,
+                "items": {
+                  "type": "string"
+                }
+              },
+              "payload": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        }
+      }
+    },
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "situation_assessment",
+        "selected_tool",
+        "parameters",
+        "outgoing_messages",
+        "confidence"
+      ],
+      "properties": {
+        "situation_assessment": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "mission_progress",
+            "communication_status",
+            "current_risk"
+          ],
+          "properties": {
+            "mission_progress": {
+              "type": "string",
+              "enum": [
+                "none",
+                "partial",
+                "complete"
+              ]
+            },
+            "communication_status": {
+              "type": "string",
+              "enum": [
+                "nominal",
+                "degraded",
+                "lost",
+                "unknown"
+              ]
+            },
+            "current_risk": {
+              "type": "string",
+              "enum": [
+                "low",
+                "medium",
+                "high",
+                "unknown"
+              ]
+            }
+          }
+        },
+        "selected_tool": {
+          "const": "go_to_waypoint"
+        },
+        "parameters": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "task_id",
+            "task_version",
+            "waypoint_index",
+            "speed_mps"
+          ],
+          "properties": {
+            "task_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 100
+            },
+            "task_version": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "waypoint_index": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "speed_mps": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            }
+          }
+        },
+        "outgoing_messages": {
+          "type": "array",
+          "maxItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "message_type",
+              "recipients",
+              "payload"
+            ],
+            "properties": {
+              "message_type": {
+                "type": "string",
+                "enum": [
+                  "ROLE_CHANGE",
+                  "HELP_REQUEST"
+                ]
+              },
+              "recipients": {
+                "type": "array",
+                "minItems": 1,
+                "uniqueItems": true,
+                "items": {
+                  "type": "string"
+                }
+              },
+              "payload": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        }
+      }
+    },
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "situation_assessment",
+        "selected_tool",
+        "parameters",
+        "outgoing_messages",
+        "confidence"
+      ],
+      "properties": {
+        "situation_assessment": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "mission_progress",
+            "communication_status",
+            "current_risk"
+          ],
+          "properties": {
+            "mission_progress": {
+              "type": "string",
+              "enum": [
+                "none",
+                "partial",
+                "complete"
+              ]
+            },
+            "communication_status": {
+              "type": "string",
+              "enum": [
+                "nominal",
+                "degraded",
+                "lost",
+                "unknown"
+              ]
+            },
+            "current_risk": {
+              "type": "string",
+              "enum": [
+                "low",
+                "medium",
+                "high",
+                "unknown"
+              ]
+            }
+          }
+        },
+        "selected_tool": {
+          "const": "act_as_relay"
+        },
+        "parameters": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [],
+          "properties": {}
+        },
+        "outgoing_messages": {
+          "type": "array",
+          "maxItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "message_type",
+              "recipients",
+              "payload"
+            ],
+            "properties": {
+              "message_type": {
+                "type": "string",
+                "enum": [
+                  "ROLE_CHANGE",
+                  "HELP_REQUEST"
+                ]
+              },
+              "recipients": {
+                "type": "array",
+                "minItems": 1,
+                "uniqueItems": true,
+                "items": {
+                  "type": "string"
+                }
+              },
+              "payload": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        }
+      }
+    },
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "situation_assessment",
+        "selected_tool",
+        "parameters",
+        "outgoing_messages",
+        "confidence"
+      ],
+      "properties": {
+        "situation_assessment": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "mission_progress",
+            "communication_status",
+            "current_risk"
+          ],
+          "properties": {
+            "mission_progress": {
+              "type": "string",
+              "enum": [
+                "none",
+                "partial",
+                "complete"
+              ]
+            },
+            "communication_status": {
+              "type": "string",
+              "enum": [
+                "nominal",
+                "degraded",
+                "lost",
+                "unknown"
+              ]
+            },
+            "current_risk": {
+              "type": "string",
+              "enum": [
+                "low",
+                "medium",
+                "high",
+                "unknown"
+              ]
+            }
+          }
+        },
+        "selected_tool": {
+          "const": "return_home"
+        },
+        "parameters": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [],
+          "properties": {}
+        },
+        "outgoing_messages": {
+          "type": "array",
+          "maxItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "message_type",
+              "recipients",
+              "payload"
+            ],
+            "properties": {
+              "message_type": {
+                "type": "string",
+                "enum": [
+                  "ROLE_CHANGE",
+                  "HELP_REQUEST"
+                ]
+              },
+              "recipients": {
+                "type": "array",
+                "minItems": 1,
+                "uniqueItems": true,
+                "items": {
+                  "type": "string"
+                }
+              },
+              "payload": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        }
+      }
+    },
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "situation_assessment",
+        "selected_tool",
+        "parameters",
+        "outgoing_messages",
+        "confidence"
+      ],
+      "properties": {
+        "situation_assessment": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "mission_progress",
+            "communication_status",
+            "current_risk"
+          ],
+          "properties": {
+            "mission_progress": {
+              "type": "string",
+              "enum": [
+                "none",
+                "partial",
+                "complete"
+              ]
+            },
+            "communication_status": {
+              "type": "string",
+              "enum": [
+                "nominal",
+                "degraded",
+                "lost",
+                "unknown"
+              ]
+            },
+            "current_risk": {
+              "type": "string",
+              "enum": [
+                "low",
+                "medium",
+                "high",
+                "unknown"
+              ]
+            }
+          }
+        },
+        "selected_tool": {
+          "const": "hold"
+        },
+        "parameters": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "duration_s"
+          ],
+          "properties": {
+            "duration_s": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            }
+          }
+        },
+        "outgoing_messages": {
+          "type": "array",
+          "maxItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "message_type",
+              "recipients",
+              "payload"
+            ],
+            "properties": {
+              "message_type": {
+                "type": "string",
+                "enum": [
+                  "ROLE_CHANGE",
+                  "HELP_REQUEST"
+                ]
+              },
+              "recipients": {
+                "type": "array",
+                "minItems": 1,
+                "uniqueItems": true,
+                "items": {
+                  "type": "string"
+                }
+              },
+              "payload": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "mode": "phase11_runtime_guardian_mock",
+  "llm_inference": false,
+  "unsafe_proposals": 36,
+  "unsafe_original_actions_executed": 0,
+  "exit_criterion_passed": true,
+  "valid_controls_approved": 4,
+  "all_five_fallbacks_exercised": true,
+  "outcomes": {
+    "APPROVE": 6,
+    "APPROVE_WITH_MODIFICATION": 2,
+    "EXECUTE_SAFE_FALLBACK": 16,
+    "REJECT_AND_REPLAN": 19
+  },
+  "watchdog_cancellations": 1,
+  "limitations": [
+    "Synthetic LLM-labelled inputs; no LLM inference or live flight",
+    "Static surveyed geometry and constant-velocity peer prediction; no perception or certified collision avoidance",
+    "Battery cost is a configured abstract distance budget, not an aircraft energy model",
+    "Only actions routed through this gateway are protected; legacy runners are unchanged",
+    "Cancellation acknowledgments and mock completion are not physical braking or landing evidence"
+  ]
+}

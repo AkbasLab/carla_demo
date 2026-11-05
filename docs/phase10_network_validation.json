@@ -1,0 +1,164 @@
+{
+  "seed": 42,
+  "packets_per_condition": 10000,
+  "statistical_conditions": [
+    {
+      "condition": "nominal",
+      "configuration": {
+        "latency_ms_mean": 10,
+        "latency_ms_jitter": 2,
+        "packet_loss_probability": 0,
+        "message_rate_limit": null,
+        "bandwidth_bytes_per_second": null,
+        "communication_range_m": null,
+        "partitions": []
+      },
+      "measured": {
+        "offered_packets": 10000,
+        "independent_losses": 0,
+        "loss_fraction": 0.0,
+        "sampled_latency_mean_ms": 9.997576523392794,
+        "sampled_latency_variance_ms2": 1.3415788144097403,
+        "sampled_latency_min_ms": 8.000327810161831,
+        "sampled_latency_max_ms": 11.999376818392733,
+        "maximum_uniform_cdf_error": 0.0039000000000000146,
+        "outcomes": {
+          "delivered": 10000
+        },
+        "trace_sha256": "5bc70080aca9f3a5f745c73bab4286ae9b047dd0c54b9f8532c6c1083a5b6c03"
+      },
+      "checks": {
+        "loss_within_two_percentage_points": true,
+        "latency_mean_within_two_ms": true,
+        "uniform_cdf_error_at_most_002": true,
+        "latency_within_configured_support": true,
+        "variance_within_five_percent": true,
+        "identical_seed_identical_trace": true,
+        "different_seed_different_trace": true
+      },
+      "passed": true
+    },
+    {
+      "condition": "moderate",
+      "configuration": {
+        "latency_ms_mean": 100,
+        "latency_ms_jitter": 50,
+        "packet_loss_probability": 0.1,
+        "message_rate_limit": null,
+        "bandwidth_bytes_per_second": null,
+        "communication_range_m": null,
+        "partitions": []
+      },
+      "measured": {
+        "offered_packets": 10000,
+        "independent_losses": 999,
+        "loss_fraction": 0.0999,
+        "sampled_latency_mean_ms": 99.93941308481986,
+        "sampled_latency_variance_ms2": 838.4867590060876,
+        "sampled_latency_min_ms": 50.00819525404579,
+        "sampled_latency_max_ms": 149.98442045981835,
+        "maximum_uniform_cdf_error": 0.0039000000000000146,
+        "outcomes": {
+          "delivered": 9001,
+          "dropped": 999
+        },
+        "trace_sha256": "a5a604a102d69606012e27b4f198b26f26be19e3160e4b1142c0d1d0f6fe792b"
+      },
+      "checks": {
+        "loss_within_two_percentage_points": true,
+        "latency_mean_within_two_ms": true,
+        "uniform_cdf_error_at_most_002": true,
+        "latency_within_configured_support": true,
+        "variance_within_five_percent": true,
+        "identical_seed_identical_trace": true,
+        "different_seed_different_trace": true
+      },
+      "passed": true
+    },
+    {
+      "condition": "severe",
+      "configuration": {
+        "latency_ms_mean": 400,
+        "latency_ms_jitter": 200,
+        "packet_loss_probability": 0.3,
+        "message_rate_limit": null,
+        "bandwidth_bytes_per_second": null,
+        "communication_range_m": null,
+        "partitions": []
+      },
+      "measured": {
+        "offered_packets": 10000,
+        "independent_losses": 3038,
+        "loss_fraction": 0.3038,
+        "sampled_latency_mean_ms": 399.75765233927945,
+        "sampled_latency_variance_ms2": 13415.788144097402,
+        "sampled_latency_min_ms": 200.03278101618315,
+        "sampled_latency_max_ms": 599.9376818392734,
+        "maximum_uniform_cdf_error": 0.0039000000000000146,
+        "outcomes": {
+          "delivered": 6962,
+          "dropped": 3038
+        },
+        "trace_sha256": "0523c0847638576f3bfba1a4d49cad6b8c59a0b6556caff88b2f08b0d199f00b"
+      },
+      "checks": {
+        "loss_within_two_percentage_points": true,
+        "latency_mean_within_two_ms": true,
+        "uniform_cdf_error_at_most_002": true,
+        "latency_within_configured_support": true,
+        "variance_within_five_percent": true,
+        "identical_seed_identical_trace": true,
+        "different_seed_different_trace": true
+      },
+      "passed": true
+    }
+  ],
+  "base_station_partition": {
+    "passed": true,
+    "groups": [
+      [
+        "Drone1",
+        "Drone2"
+      ],
+      [
+        "Drone3",
+        "Drone4",
+        "BaseStation"
+      ]
+    ],
+    "observations": [
+      {
+        "time_s": 4.0,
+        "delivered": 20,
+        "partition_drops": 0,
+        "passed": true
+      },
+      {
+        "time_s": 5.0,
+        "delivered": 8,
+        "partition_drops": 12,
+        "passed": true
+      },
+      {
+        "time_s": 11.9,
+        "delivered": 8,
+        "partition_drops": 12,
+        "passed": true
+      },
+      {
+        "time_s": 12.0,
+        "delivered": 20,
+        "partition_drops": 0,
+        "passed": true
+      }
+    ]
+  },
+  "expiration": {
+    "passed": true,
+    "rejected_at_exact_ttl": true,
+    "received_sequences": [
+      2
+    ]
+  },
+  "passed": true
+}

@@ -1,0 +1,242 @@
+[
+  {
+    "scenario": "valid_move",
+    "source": "rule_policy",
+    "unsafe_injection": false,
+    "outcome": "APPROVE"
+  },
+  {
+    "scenario": "excess_speed",
+    "source": "rule_policy",
+    "unsafe_injection": true,
+    "outcome": "APPROVE_WITH_MODIFICATION"
+  },
+  {
+    "scenario": "altitude",
+    "source": "rule_policy",
+    "unsafe_injection": true,
+    "outcome": "EXECUTE_SAFE_FALLBACK"
+  },
+  {
+    "scenario": "geofence",
+    "source": "rule_policy",
+    "unsafe_injection": true,
+    "outcome": "REJECT_AND_REPLAN"
+  },
+  {
+    "scenario": "restricted_zone_crossing",
+    "source": "rule_policy",
+    "unsafe_injection": true,
+    "outcome": "REJECT_AND_REPLAN"
+  },
+  {
+    "scenario": "nonfinite_waypoint",
+    "source": "rule_policy",
+    "unsafe_injection": true,
+    "outcome": "REJECT_AND_REPLAN"
+  },
+  {
+    "scenario": "negative_speed",
+    "source": "rule_policy",
+    "unsafe_injection": true,
+    "outcome": "REJECT_AND_REPLAN"
+  },
+  {
+    "scenario": "battery_reserve",
+    "source": "rule_policy",
+    "unsafe_injection": true,
+    "outcome": "EXECUTE_SAFE_FALLBACK"
+  },
+  {
+    "scenario": "critical_battery_landing",
+    "source": "rule_policy",
+    "unsafe_injection": true,
+    "outcome": "EXECUTE_SAFE_FALLBACK"
+  },
+  {
+    "scenario": "timeout",
+    "source": "rule_policy",
+    "unsafe_injection": true,
+    "outcome": "EXECUTE_SAFE_FALLBACK"
+  },
+  {
+    "scenario": "peer_separation",
+    "source": "rule_policy",
+    "unsafe_injection": true,
+    "outcome": "REJECT_AND_REPLAN"
+  },
+  {
+    "scenario": "invalid_landing_site",
+    "source": "rule_policy",
+    "unsafe_injection": true,
+    "outcome": "REJECT_AND_REPLAN"
+  },
+  {
+    "scenario": "communication_loss",
+    "source": "rule_policy",
+    "unsafe_injection": true,
+    "outcome": "EXECUTE_SAFE_FALLBACK"
+  },
+  {
+    "scenario": "uncertain_belief",
+    "source": "rule_policy",
+    "unsafe_injection": true,
+    "outcome": "EXECUTE_SAFE_FALLBACK"
+  },
+  {
+    "scenario": "stale_state",
+    "source": "rule_policy",
+    "unsafe_injection": true,
+    "outcome": "REJECT_AND_REPLAN"
+  },
+  {
+    "scenario": "stale_peer",
+    "source": "rule_policy",
+    "unsafe_injection": true,
+    "outcome": "REJECT_AND_REPLAN"
+  },
+  {
+    "scenario": "safe_layer",
+    "source": "rule_policy",
+    "unsafe_injection": true,
+    "outcome": "EXECUTE_SAFE_FALLBACK"
+  },
+  {
+    "scenario": "missing_peer",
+    "source": "rule_policy",
+    "unsafe_injection": true,
+    "outcome": "REJECT_AND_REPLAN"
+  },
+  {
+    "scenario": "surveyed_landing",
+    "source": "rule_policy",
+    "unsafe_injection": false,
+    "outcome": "APPROVE"
+  },
+  {
+    "scenario": "valid_move",
+    "source": "llm",
+    "unsafe_injection": false,
+    "outcome": "APPROVE"
+  },
+  {
+    "scenario": "excess_speed",
+    "source": "llm",
+    "unsafe_injection": true,
+    "outcome": "APPROVE_WITH_MODIFICATION"
+  },
+  {
+    "scenario": "altitude",
+    "source": "llm",
+    "unsafe_injection": true,
+    "outcome": "EXECUTE_SAFE_FALLBACK"
+  },
+  {
+    "scenario": "geofence",
+    "source": "llm",
+    "unsafe_injection": true,
+    "outcome": "REJECT_AND_REPLAN"
+  },
+  {
+    "scenario": "restricted_zone_crossing",
+    "source": "llm",
+    "unsafe_injection": true,
+    "outcome": "REJECT_AND_REPLAN"
+  },
+  {
+    "scenario": "nonfinite_waypoint",
+    "source": "llm",
+    "unsafe_injection": true,
+    "outcome": "REJECT_AND_REPLAN"
+  },
+  {
+    "scenario": "negative_speed",
+    "source": "llm",
+    "unsafe_injection": true,
+    "outcome": "REJECT_AND_REPLAN"
+  },
+  {
+    "scenario": "battery_reserve",
+    "source": "llm",
+    "unsafe_injection": true,
+    "outcome": "EXECUTE_SAFE_FALLBACK"
+  },
+  {
+    "scenario": "critical_battery_landing",
+    "source": "llm",
+    "unsafe_injection": true,
+    "outcome": "EXECUTE_SAFE_FALLBACK"
+  },
+  {
+    "scenario": "timeout",
+    "source": "llm",
+    "unsafe_injection": true,
+    "outcome": "EXECUTE_SAFE_FALLBACK"
+  },
+  {
+    "scenario": "peer_separation",
+    "source": "llm",
+    "unsafe_injection": true,
+    "outcome": "REJECT_AND_REPLAN"
+  },
+  {
+    "scenario": "invalid_landing_site",
+    "source": "llm",
+    "unsafe_injection": true,
+    "outcome": "REJECT_AND_REPLAN"
+  },
+  {
+    "scenario": "communication_loss",
+    "source": "llm",
+    "unsafe_injection": true,
+    "outcome": "EXECUTE_SAFE_FALLBACK"
+  },
+  {
+    "scenario": "uncertain_belief",
+    "source": "llm",
+    "unsafe_injection": true,
+    "outcome": "EXECUTE_SAFE_FALLBACK"
+  },
+  {
+    "scenario": "stale_state",
+    "source": "llm",
+    "unsafe_injection": true,
+    "outcome": "REJECT_AND_REPLAN"
+  },
+  {
+    "scenario": "stale_peer",
+    "source": "llm",
+    "unsafe_injection": true,
+    "outcome": "REJECT_AND_REPLAN"
+  },
+  {
+    "scenario": "safe_layer",
+    "source": "llm",
+    "unsafe_injection": true,
+    "outcome": "EXECUTE_SAFE_FALLBACK"
+  },
+  {
+    "scenario": "missing_peer",
+    "source": "llm",
+    "unsafe_injection": true,
+    "outcome": "REJECT_AND_REPLAN"
+  },
+  {
+    "scenario": "surveyed_landing",
+    "source": "llm",
+    "unsafe_injection": false,
+    "outcome": "APPROVE"
+  },
+  {
+    "scenario": "continue_last_valid_plan",
+    "source": "rule_policy",
+    "unsafe_injection": true,
+    "outcome": "EXECUTE_SAFE_FALLBACK"
+  },
+  {
+    "scenario": "simultaneous_commands",
+    "source": "rule_policy",
+    "unsafe_injection": true,
+    "outcome": "REJECT_AND_REPLAN"
+  }
+]

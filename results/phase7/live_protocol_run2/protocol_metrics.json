@@ -1,0 +1,54 @@
+{
+  "unique_messages_sent": 1613,
+  "recipient_attempts": 4839,
+  "recipient_deliveries": 4839,
+  "delivery_ratio": 1.0,
+  "outcomes": {
+    "delivered": 4839
+  },
+  "unique_message_types": {
+    "HEARTBEAT": 801,
+    "STATUS_UPDATE": 801,
+    "TASK_ANNOUNCEMENT": 1,
+    "TASK_BID": 1,
+    "TASK_AWARD": 1,
+    "TASK_ACCEPT": 1,
+    "TASK_RELEASE": 1,
+    "TASK_COMPLETE": 1,
+    "INTENT_UPDATE": 1,
+    "TARGET_FOUND": 1,
+    "HELP_REQUEST": 1,
+    "ROLE_CHANGE": 1,
+    "MISSION_UPDATE": 1
+  },
+  "recipient_delivery_types": {
+    "HEARTBEAT": 2403,
+    "STATUS_UPDATE": 2403,
+    "TASK_ANNOUNCEMENT": 3,
+    "TASK_BID": 3,
+    "TASK_AWARD": 3,
+    "TASK_ACCEPT": 3,
+    "TASK_RELEASE": 3,
+    "TASK_COMPLETE": 3,
+    "INTENT_UPDATE": 3,
+    "TARGET_FOUND": 3,
+    "HELP_REQUEST": 3,
+    "ROLE_CHANGE": 3,
+    "MISSION_UPDATE": 3
+  },
+  "serialized_unique_bytes": 579995,
+  "serialized_recipient_bytes": 1739985,
+  "decision_influencing_deliveries": 2400,
+  "send_to_receive_s": {
+    "mean": 0.006296378306110201,
+    "p95": 0.012609337308094836,
+    "max": 0.02214566699694842
+  },
+  "creation_to_receive_age_s": {
+    "mean": 0.013296973922097543,
+    "p95": 0.016951355995843187,
+    "max": 0.023128979984903708
+  },
+  "timing_note": "Application inbox polling, including harness processing; not RF/network latency. Legacy tick-clock logs can show zero delay.",
+  "byte_note": "Serialized JSON bytes, not measured wire bandwidth."
+}

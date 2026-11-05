@@ -1,0 +1,30 @@
+{
+  "evidence_type": "synthetic_replay_timing_regression",
+  "llm_inference": false,
+  "live_flight": false,
+  "fixture": "RecoveryTests.test_single_slow_model_queue_still_completes_all_four_lanes",
+  "test_command": "python -m unittest discover -s tests -p 'test_phase12_recovery.py' -v",
+  "fixture_overrides": {
+    "provider": "ContextReplay selects the contextual example; no LLM",
+    "response_delay_simulated_s": 9,
+    "shared_inference_capacity": 1,
+    "deadline_bidding": true,
+    "ticks": 1500,
+    "dt": 0.2,
+    "inference_timeout": 30,
+    "max_context_age": 35,
+    "lease_seconds": 180,
+    "bid_window": 30
+  },
+  "source_hashes": {
+    "agentic_uav/policy/persistent.py": "35d5692d97648d3fa4d24c29d44b1af4decb6e1648910bee4e17082060338c69",
+    "agentic_uav/policy/evidence.py": "c0cb02067270bb2196f2e6a1e9878eaf321ff1b9cc6a9d217abab174838638ac",
+    "agentic_uav/policy/structured.py": "700731231aba766a483108fbbc47ec9398b6abf6ad0c50cc8f3b6f4259f03b7c",
+    "scripts/run_phase12_agents.py": "5b4d3ee908cae4ed981580cf3d5e99f4c5fb77d551a0d36da90e9237d3f77023",
+    "tests/test_phase12_recovery.py": "df2cb07d0cfc6e93a2a9ccaa4d411713aa1854fdb67e611834701f41570c94d6"
+  },
+  "limitations": [
+    "Protocol and mock motion evidence only; no new real-model or live-flight claim",
+    "Compact summary; the test uses temporary full traces. Preserve full traces for formal real-model experiments."
+  ]
+}

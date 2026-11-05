@@ -1,0 +1,213 @@
+{
+  "mode": "phase8_decentralized_contract_net_airsim",
+  "llm": false,
+  "mission_complete": false,
+  "error": null,
+  "ticks": 2400,
+  "time_s": 239.90016051899875,
+  "completed_task_ids": [
+    "SEARCH_SECTOR_B",
+    "SEARCH_SECTOR_C",
+    "SEARCH_SECTOR_D"
+  ],
+  "completions_by_agent": {
+    "Drone1": 0,
+    "Drone2": 0,
+    "Drone3": 0,
+    "Drone4": 3
+  },
+  "duplicate_task_completions": 0,
+  "conflict_corrections": 5,
+  "lease_expirations": 25,
+  "waypoint_command_retries": 48,
+  "xy_arrival_tolerance_m": 0.4,
+  "z_arrival_tolerance_m": 0.6,
+  "failed_agents": [
+    "Drone1"
+  ],
+  "cleanup_errors": [
+    "Drone1: landing not confirmed; API retained",
+    "Drone2: landing not confirmed; API retained",
+    "Drone3: landing not confirmed; API retained",
+    "Drone4: landing not confirmed; API retained"
+  ],
+  "mission_config": {
+    "note": "Calibrate offsets and routes for your map. Shared position = API NED position + frame_offset_m. Example offsets assume API positions are vehicle-local.",
+    "vehicles": {
+      "Drone1": {
+        "frame_offset_m": [
+          0,
+          0,
+          0
+        ]
+      },
+      "Drone2": {
+        "frame_offset_m": [
+          0,
+          5,
+          0
+        ]
+      },
+      "Drone3": {
+        "frame_offset_m": [
+          0,
+          10,
+          0
+        ]
+      },
+      "Drone4": {
+        "frame_offset_m": [
+          0,
+          15,
+          0
+        ]
+      }
+    },
+    "tasks": [
+      {
+        "task_id": "SEARCH_SECTOR_A",
+        "waypoints": [
+          [
+            6.0,
+            0.0,
+            25
+          ],
+          [
+            18.0,
+            0.0,
+            25
+          ],
+          [
+            18.0,
+            30.0,
+            25
+          ],
+          [
+            6.0,
+            3.0,
+            25
+          ]
+        ],
+        "priority": 1
+      },
+      {
+        "task_id": "SEARCH_SECTOR_B",
+        "waypoints": [
+          [
+            6.0,
+            15.0,
+            25
+          ],
+          [
+            18.0,
+            15.0,
+            25
+          ],
+          [
+            18.0,
+            24.0,
+            25
+          ],
+          [
+            6.0,
+            6.0,
+            25
+          ]
+        ],
+        "priority": 1
+      },
+      {
+        "task_id": "SEARCH_SECTOR_C",
+        "waypoints": [
+          [
+            6.0,
+            30.0,
+            25
+          ],
+          [
+            18.0,
+            30.0,
+            25
+          ],
+          [
+            18.0,
+            15.0,
+            25
+          ],
+          [
+            6.0,
+            15.0,
+            25
+          ]
+        ],
+        "priority": 1
+      },
+      {
+        "task_id": "SEARCH_SECTOR_D",
+        "waypoints": [
+          [
+            6.0,
+            45.0,
+            25
+          ],
+          [
+            18.0,
+            45.0,
+            25
+          ],
+          [
+            18.0,
+            24.0,
+            25
+          ],
+          [
+            6.0,
+            24.0,
+            25
+          ]
+        ],
+        "priority": 1
+      }
+    ]
+  },
+  "route_scale": 3.0,
+  "overview_camera_location": [
+    8.974199218675494,
+    22.5,
+    67.0
+  ],
+  "verified_checkpoints": {
+    "Drone1": {
+      "SEARCH_SECTOR_A": 0,
+      "SEARCH_SECTOR_B": 0,
+      "SEARCH_SECTOR_C": 0,
+      "SEARCH_SECTOR_D": 0
+    },
+    "Drone2": {
+      "SEARCH_SECTOR_A": 2,
+      "SEARCH_SECTOR_B": 3,
+      "SEARCH_SECTOR_C": 3,
+      "SEARCH_SECTOR_D": 3
+    },
+    "Drone3": {
+      "SEARCH_SECTOR_A": 2,
+      "SEARCH_SECTOR_B": 3,
+      "SEARCH_SECTOR_C": 3,
+      "SEARCH_SECTOR_D": 3
+    },
+    "Drone4": {
+      "SEARCH_SECTOR_A": 2,
+      "SEARCH_SECTOR_B": 4,
+      "SEARCH_SECTOR_C": 4,
+      "SEARCH_SECTOR_D": 4
+    }
+  },
+  "stall_timeout_s": 4.0,
+  "max_waypoint_retries": 2,
+  "limitations": [
+    "Observed ordered waypoint visits, not sensor-confirmed search coverage",
+    "No collision avoidance; scene and frame-offset calibration required",
+    "Silent-agent injection commands physical hover; peers infer failure only from missing messages",
+    "No network partition/rejoin fencing; perfect communication among surviving agents"
+  ]
+}

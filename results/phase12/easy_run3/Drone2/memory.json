@@ -1,0 +1,88 @@
+{
+  "agent_id": "Drone2",
+  "memory": [
+    {
+      "time_s": 13.40198638907168,
+      "selected_tool": "send_bid",
+      "parameters": {
+        "task_id": "SEARCH_SECTOR_A",
+        "task_version": 1
+      },
+      "result": {
+        "task_id": "SEARCH_SECTOR_A",
+        "task_version": 1,
+        "computed_at": 13.40198638907168,
+        "distance_m": 12.94427190999916,
+        "distance_to_entry_m": 8.94427190999916,
+        "travel_time_s": 12.94427190999916,
+        "bid": {
+          "score": 11.0,
+          "components": {
+            "distance": 10.0,
+            "battery": 0.19999999999999996,
+            "workload": 0.0,
+            "communication": 0.0,
+            "mismatch": 0.0
+          }
+        },
+        "battery_sufficient": true,
+        "communication_reachability": {
+          "Drone1": "recent_contact",
+          "Drone3": "recent_contact",
+          "Drone4": "recent_contact"
+        },
+        "route_feasible": true,
+        "separation_risk": false,
+        "guardian_reasons": []
+      }
+    },
+    {
+      "time_s": 38.40199227700941,
+      "selected_tool": "send_bid",
+      "parameters": {
+        "task_id": "SEARCH_SECTOR_B",
+        "task_version": 1
+      },
+      "result": {
+        "task_id": "SEARCH_SECTOR_B",
+        "task_version": 1,
+        "computed_at": 38.40199227700941,
+        "distance_m": 8.0,
+        "distance_to_entry_m": 4.0,
+        "travel_time_s": 8.0,
+        "bid": {
+          "score": 7.0,
+          "components": {
+            "distance": 6.0,
+            "battery": 0.19999999999999996,
+            "workload": 0.0,
+            "communication": 0.0,
+            "mismatch": 0.0
+          }
+        },
+        "battery_sufficient": true,
+        "communication_reachability": {
+          "Drone1": "recent_contact",
+          "Drone3": "recent_contact",
+          "Drone4": "recent_contact"
+        },
+        "route_feasible": true,
+        "separation_risk": false,
+        "guardian_reasons": []
+      }
+    },
+    {
+      "time_s": 113.0020013890462,
+      "selected_tool": "start_search",
+      "parameters": {
+        "task_id": "SEARCH_SECTOR_B",
+        "task_version": 1
+      },
+      "result": {
+        "status": "search_authorized",
+        "task_id": "SEARCH_SECTOR_B",
+        "version": 1
+      }
+    }
+  ]
+}

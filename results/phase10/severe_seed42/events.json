@@ -1,0 +1,7388 @@
+[
+  {
+    "task_id": "SEARCH_SECTOR_A",
+    "version": 1,
+    "agent_id": "Drone1",
+    "score": 0.0,
+    "components": {
+      "distance": 0.0,
+      "battery": 0.0,
+      "workload": 0.0,
+      "communication": 0.0,
+      "mismatch": 0.0
+    },
+    "event": "bid_computed",
+    "time_s": 0.0
+  },
+  {
+    "task_id": "SEARCH_SECTOR_A",
+    "version": 1,
+    "event": "task_announced",
+    "time_s": 0.0,
+    "agent_id": "Drone1"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_A",
+    "version": 1,
+    "agent_id": "Drone2",
+    "score": 10.0,
+    "components": {
+      "distance": 10.0,
+      "battery": 0.0,
+      "workload": 0.0,
+      "communication": 0.0,
+      "mismatch": 0.0
+    },
+    "event": "bid_computed",
+    "time_s": 0.0
+  },
+  {
+    "task_id": "SEARCH_SECTOR_A",
+    "version": 1,
+    "event": "task_announced",
+    "time_s": 0.0,
+    "agent_id": "Drone2"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_A",
+    "version": 1,
+    "event": "task_announced",
+    "time_s": 0.0,
+    "agent_id": "Drone3"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_A",
+    "version": 1,
+    "event": "task_announced",
+    "time_s": 0.0,
+    "agent_id": "Drone4"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_A",
+    "version": 1,
+    "owner": "Drone1",
+    "score": 0.0,
+    "event": "claim_sent",
+    "time_s": 0.3,
+    "agent_id": "Drone1"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_A",
+    "version": 1,
+    "owner": "Drone2",
+    "score": 10.0,
+    "event": "claim_sent",
+    "time_s": 0.3,
+    "agent_id": "Drone2"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_B",
+    "version": 1,
+    "event": "task_announced",
+    "time_s": 0.4,
+    "agent_id": "Drone1"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_B",
+    "version": 1,
+    "event": "task_announced",
+    "time_s": 0.4,
+    "agent_id": "Drone2"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_B",
+    "version": 1,
+    "event": "task_announced",
+    "time_s": 0.9,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 1.1,
+    "agent_id": "Drone3"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_A",
+    "previous": "Drone2",
+    "winner": "Drone1",
+    "version": 1,
+    "event": "claim_corrected",
+    "time_s": 1.1,
+    "agent_id": "Drone4"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_B",
+    "version": 1,
+    "event": "task_announced",
+    "time_s": 1.1,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 1.1,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 1.2,
+    "agent_id": "Drone3"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_A",
+    "previous": "Drone2",
+    "winner": "Drone1",
+    "version": 1,
+    "event": "claim_corrected",
+    "time_s": 1.2,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 1.2,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 1.3,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 1.3,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 1.3,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 1.3,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 1.4,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 1.5,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 1.5,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 1.5,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 1.6,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 1.7,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 1.7,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 1.7,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 1.7,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 1.8,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 1.8,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 1.8,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 1.8,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 1.8,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 1.9,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 2.0,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 2.1,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 2.1,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 2.1,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 2.1,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 2.1,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 2.2,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 2.2,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 2.3,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 2.4,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 2.4,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 2.5,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 2.5,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 2.5,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 2.5,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 2.5,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 2.6,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 2.6,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 2.6,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 2.6,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 2.7,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 2.8,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 2.9,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 2.9,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 2.9,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 2.9,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 3.0,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 3.0,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 3.1,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 3.2,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 3.2,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 3.2,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 3.2,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 3.2,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 3.2,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 3.3,
+    "agent_id": "Drone1"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_A",
+    "owner": "Drone1",
+    "version": 1,
+    "lease_deadline": 3.3,
+    "completed_waypoints": 0,
+    "event": "lease_expired",
+    "time_s": 3.3,
+    "agent_id": "Drone1"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_A",
+    "version": 2,
+    "agent_id": "Drone1",
+    "score": 0.0,
+    "components": {
+      "distance": 0.0,
+      "battery": 0.0,
+      "workload": 0.0,
+      "communication": 0.0,
+      "mismatch": 0.0
+    },
+    "event": "bid_computed",
+    "time_s": 3.3
+  },
+  {
+    "task_id": "SEARCH_SECTOR_A",
+    "version": 2,
+    "event": "task_announced",
+    "time_s": 3.3,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 3.3,
+    "agent_id": "Drone2"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_A",
+    "owner": "Drone2",
+    "version": 1,
+    "lease_deadline": 3.3,
+    "completed_waypoints": 0,
+    "event": "lease_expired",
+    "time_s": 3.3,
+    "agent_id": "Drone2"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_A",
+    "version": 2,
+    "agent_id": "Drone2",
+    "score": 10.0,
+    "components": {
+      "distance": 10.0,
+      "battery": 0.0,
+      "workload": 0.0,
+      "communication": 0.0,
+      "mismatch": 0.0
+    },
+    "event": "bid_computed",
+    "time_s": 3.3
+  },
+  {
+    "task_id": "SEARCH_SECTOR_A",
+    "version": 2,
+    "event": "task_announced",
+    "time_s": 3.3,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 3.3,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 3.3,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 3.4,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 3.4,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 3.4,
+    "agent_id": "Drone4"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_B",
+    "version": 1,
+    "agent_id": "Drone1",
+    "score": 10.0,
+    "components": {
+      "distance": 10.0,
+      "battery": 0.0,
+      "workload": 0.0,
+      "communication": 0.0,
+      "mismatch": 0.0
+    },
+    "event": "bid_computed",
+    "time_s": 3.5
+  },
+  {
+    "task_id": "SEARCH_SECTOR_B",
+    "version": 1,
+    "agent_id": "Drone2",
+    "score": 0.0,
+    "components": {
+      "distance": 0.0,
+      "battery": 0.0,
+      "workload": 0.0,
+      "communication": 0.0,
+      "mismatch": 0.0
+    },
+    "event": "bid_computed",
+    "time_s": 3.5
+  },
+  {
+    "peer": "Drone1",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 3.5,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 3.6,
+    "agent_id": "Drone1"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_A",
+    "version": 2,
+    "owner": "Drone1",
+    "score": 0.0,
+    "event": "claim_sent",
+    "time_s": 3.6,
+    "agent_id": "Drone1"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_A",
+    "version": 2,
+    "owner": "Drone2",
+    "score": 10.0,
+    "event": "claim_sent",
+    "time_s": 3.6,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 3.6,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 3.7,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 3.7,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 3.7,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 3.7,
+    "agent_id": "Drone4"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_B",
+    "version": 1,
+    "owner": "Drone1",
+    "score": 10.0,
+    "event": "claim_sent",
+    "time_s": 3.8,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 3.8,
+    "agent_id": "Drone2"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_B",
+    "version": 1,
+    "owner": "Drone2",
+    "score": 0.0,
+    "event": "claim_sent",
+    "time_s": 3.8,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 3.8,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 3.9,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 3.9,
+    "agent_id": "Drone1"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_C",
+    "version": 1,
+    "event": "task_announced",
+    "time_s": 3.9,
+    "agent_id": "Drone1"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_C",
+    "version": 1,
+    "event": "task_announced",
+    "time_s": 3.9,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 3.9,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 3.9,
+    "agent_id": "Drone4"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_A",
+    "version": 2,
+    "event": "task_announced",
+    "time_s": 4.0,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 4.1,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 4.1,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 4.1,
+    "agent_id": "Drone4"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_A",
+    "version": 2,
+    "event": "task_announced",
+    "time_s": 4.1,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 4.2,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 4.2,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 4.2,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 4.2,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 4.2,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 4.3,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 4.3,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 4.4,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 4.4,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 4.4,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 4.4,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 4.4,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 4.4,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 4.4,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 4.4,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 4.4,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 4.4,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 4.5,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 4.5,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 4.5,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 4.5,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 4.5,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 4.5,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 4.5,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 4.6,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 4.6,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 4.6,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 4.6,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 4.6,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 4.6,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 4.7,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 4.7,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 4.7,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 4.7,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 4.7,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 4.7,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 4.7,
+    "agent_id": "Drone3"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_A",
+    "previous": "Drone2",
+    "winner": "Drone1",
+    "version": 2,
+    "event": "claim_corrected",
+    "time_s": 4.7,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 4.7,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 4.7,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 4.8,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 4.8,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 4.8,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 4.8,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 4.8,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 4.8,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 4.8,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 4.8,
+    "agent_id": "Drone4"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_C",
+    "version": 1,
+    "event": "task_announced",
+    "time_s": 4.8,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 4.9,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 4.9,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 4.9,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 4.9,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 4.9,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 4.9,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 5.0,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 5.0,
+    "agent_id": "Drone3"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_C",
+    "version": 1,
+    "event": "task_announced",
+    "time_s": 5.0,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 5.0,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 5.1,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 5.1,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 5.1,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 5.1,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 5.1,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 5.1,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 5.1,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 5.1,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 5.1,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 5.1,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 5.1,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 5.1,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 5.2,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 5.2,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 5.2,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 5.2,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 5.2,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 5.2,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 5.2,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 5.3,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 5.3,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 5.3,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 5.3,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 5.3,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 5.3,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 5.3,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 5.3,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 5.4,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 5.4,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 5.4,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 5.4,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 5.4,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 5.4,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 5.4,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 5.5,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 5.5,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 5.5,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 5.5,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 5.5,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 5.5,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 5.5,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 5.5,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 5.5,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 5.6,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 5.6,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 5.6,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 5.6,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 5.6,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 5.6,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 5.6,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 5.6,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 5.7,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 5.7,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 5.7,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 5.7,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 5.7,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 5.7,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 5.7,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 5.7,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 5.8,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 5.8,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 5.8,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 5.8,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 5.8,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 5.8,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 5.8,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 5.8,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 5.8,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 5.8,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 5.8,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 5.8,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 5.9,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 5.9,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 5.9,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 5.9,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 5.9,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 5.9,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 5.9,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 5.9,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 5.9,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 5.9,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 5.9,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 5.9,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 6.0,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 6.0,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 6.0,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 6.0,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 6.0,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 6.0,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 6.0,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 6.0,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 6.0,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 6.0,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 6.0,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 6.0,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 6.1,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 6.1,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 6.1,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 6.1,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 6.1,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 6.1,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 6.1,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 6.1,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 6.1,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 6.2,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 6.2,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 6.2,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 6.2,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 6.2,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 6.2,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 6.2,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 6.2,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 6.2,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 6.2,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 6.2,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 6.2,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 6.2,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 6.2,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 6.2,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 6.3,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 6.3,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 6.3,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 6.3,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 6.3,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 6.3,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 6.3,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 6.3,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 6.3,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 6.3,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 6.3,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 6.3,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 6.4,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 6.4,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 6.4,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 6.4,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 6.4,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 6.4,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 6.4,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 6.4,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 6.4,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 6.5,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 6.5,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 6.5,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 6.5,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 6.6,
+    "agent_id": "Drone1"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_A",
+    "owner": "Drone1",
+    "version": 2,
+    "lease_deadline": 6.6,
+    "completed_waypoints": 0,
+    "event": "lease_expired",
+    "time_s": 6.6,
+    "agent_id": "Drone1"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_A",
+    "version": 3,
+    "event": "task_announced",
+    "time_s": 6.6,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 6.6,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 6.6,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 6.6,
+    "agent_id": "Drone2"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_A",
+    "owner": "Drone2",
+    "version": 2,
+    "lease_deadline": 6.6,
+    "completed_waypoints": 0,
+    "event": "lease_expired",
+    "time_s": 6.6,
+    "agent_id": "Drone2"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_A",
+    "version": 3,
+    "event": "task_announced",
+    "time_s": 6.6,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 6.6,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 6.6,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 6.6,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 6.6,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 6.6,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 6.6,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 6.7,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 6.7,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 6.7,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 6.7,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 6.7,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 6.7,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 6.7,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 6.7,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 6.7,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 6.7,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 6.7,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 6.8,
+    "agent_id": "Drone1"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_B",
+    "owner": "Drone1",
+    "version": 1,
+    "lease_deadline": 6.8,
+    "completed_waypoints": 0,
+    "event": "lease_expired",
+    "time_s": 6.8,
+    "agent_id": "Drone1"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_B",
+    "version": 2,
+    "agent_id": "Drone1",
+    "score": 10.0,
+    "components": {
+      "distance": 10.0,
+      "battery": 0.0,
+      "workload": 0.0,
+      "communication": 0.0,
+      "mismatch": 0.0
+    },
+    "event": "bid_computed",
+    "time_s": 6.8
+  },
+  {
+    "task_id": "SEARCH_SECTOR_B",
+    "version": 2,
+    "event": "task_announced",
+    "time_s": 6.8,
+    "agent_id": "Drone1"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_B",
+    "owner": "Drone2",
+    "version": 1,
+    "lease_deadline": 6.8,
+    "completed_waypoints": 0,
+    "event": "lease_expired",
+    "time_s": 6.8,
+    "agent_id": "Drone2"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_B",
+    "version": 2,
+    "agent_id": "Drone2",
+    "score": 0.0,
+    "components": {
+      "distance": 0.0,
+      "battery": 0.0,
+      "workload": 0.0,
+      "communication": 0.0,
+      "mismatch": 0.0
+    },
+    "event": "bid_computed",
+    "time_s": 6.8
+  },
+  {
+    "task_id": "SEARCH_SECTOR_B",
+    "version": 2,
+    "event": "task_announced",
+    "time_s": 6.8,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 6.8,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 6.8,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 6.8,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 6.8,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 6.8,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 6.8,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 6.9,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 6.9,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 6.9,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 6.9,
+    "agent_id": "Drone1"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_A",
+    "version": 3,
+    "agent_id": "Drone1",
+    "score": 0.0,
+    "components": {
+      "distance": 0.0,
+      "battery": 0.0,
+      "workload": 0.0,
+      "communication": 0.0,
+      "mismatch": 0.0
+    },
+    "event": "bid_computed",
+    "time_s": 6.9
+  },
+  {
+    "task_id": "SEARCH_SECTOR_C",
+    "version": 1,
+    "agent_id": "Drone1",
+    "score": 10.0,
+    "components": {
+      "distance": 10.0,
+      "battery": 0.0,
+      "workload": 0.0,
+      "communication": 0.0,
+      "mismatch": 0.0
+    },
+    "event": "bid_computed",
+    "time_s": 6.9
+  },
+  {
+    "task_id": "SEARCH_SECTOR_A",
+    "version": 3,
+    "agent_id": "Drone2",
+    "score": 10.0,
+    "components": {
+      "distance": 10.0,
+      "battery": 0.0,
+      "workload": 0.0,
+      "communication": 0.0,
+      "mismatch": 0.0
+    },
+    "event": "bid_computed",
+    "time_s": 6.9
+  },
+  {
+    "task_id": "SEARCH_SECTOR_C",
+    "version": 1,
+    "agent_id": "Drone2",
+    "score": 14.142135623730951,
+    "components": {
+      "distance": 14.142135623730951,
+      "battery": 0.0,
+      "workload": 0.0,
+      "communication": 0.0,
+      "mismatch": 0.0
+    },
+    "event": "bid_computed",
+    "time_s": 6.9
+  },
+  {
+    "peer": "Drone4",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 6.9,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 6.9,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 6.9,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 6.9,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 6.9,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 6.9,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 6.9,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 6.9,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 7.0,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 7.0,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 7.0,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 7.0,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 7.0,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 7.0,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 7.0,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 7.0,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 7.0,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 7.0,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 7.0,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 7.0,
+    "agent_id": "Drone4"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_B",
+    "version": 2,
+    "owner": "Drone1",
+    "score": 10.0,
+    "event": "claim_sent",
+    "time_s": 7.1,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 7.1,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 7.1,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 7.1,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 7.1,
+    "agent_id": "Drone2"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_B",
+    "version": 2,
+    "owner": "Drone2",
+    "score": 0.0,
+    "event": "claim_sent",
+    "time_s": 7.1,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 7.1,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 7.1,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 7.1,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 7.1,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 7.1,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 7.2,
+    "agent_id": "Drone1"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_A",
+    "version": 3,
+    "owner": "Drone1",
+    "score": 0.0,
+    "event": "claim_sent",
+    "time_s": 7.2,
+    "agent_id": "Drone1"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_C",
+    "version": 1,
+    "owner": "Drone1",
+    "score": 10.0,
+    "event": "claim_sent",
+    "time_s": 7.2,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 7.2,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 7.2,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 7.2,
+    "agent_id": "Drone2"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_A",
+    "version": 3,
+    "owner": "Drone2",
+    "score": 10.0,
+    "event": "claim_sent",
+    "time_s": 7.2,
+    "agent_id": "Drone2"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_C",
+    "version": 1,
+    "owner": "Drone2",
+    "score": 14.142135623730951,
+    "event": "claim_sent",
+    "time_s": 7.2,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 7.2,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 7.2,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 7.2,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 7.2,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 7.2,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 7.2,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 7.2,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 7.2,
+    "agent_id": "Drone4"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_D",
+    "version": 1,
+    "event": "task_announced",
+    "time_s": 7.3,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 7.3,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 7.3,
+    "agent_id": "Drone2"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_D",
+    "version": 1,
+    "event": "task_announced",
+    "time_s": 7.3,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 7.3,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 7.3,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 7.3,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 7.3,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 7.3,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 7.3,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 7.3,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 7.3,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 7.3,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 7.4,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 7.4,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 7.4,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 7.4,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 7.4,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 7.4,
+    "agent_id": "Drone3"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_A",
+    "owner": "Drone2",
+    "version": 2,
+    "lease_deadline": 7.4,
+    "completed_waypoints": 0,
+    "event": "lease_expired",
+    "time_s": 7.4,
+    "agent_id": "Drone3"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_A",
+    "version": 3,
+    "event": "task_announced",
+    "time_s": 7.4,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 7.4,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 7.4,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 7.5,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 7.5,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 7.5,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 7.5,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 7.5,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 7.5,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 7.5,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 7.6,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 7.6,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 7.6,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 7.6,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 7.6,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 7.6,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 7.6,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 7.6,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 7.6,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 7.6,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 7.6,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 7.7,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 7.7,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 7.7,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 7.7,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 7.7,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 7.7,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 7.7,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 7.7,
+    "agent_id": "Drone4"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_A",
+    "version": 3,
+    "event": "task_announced",
+    "time_s": 7.7,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 7.7,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 7.7,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 7.7,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 7.8,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 7.8,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 7.8,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 7.8,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 7.8,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 7.8,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 7.8,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 7.8,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 7.8,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 7.8,
+    "agent_id": "Drone4"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_B",
+    "owner": "Drone2",
+    "version": 1,
+    "lease_deadline": 7.8,
+    "completed_waypoints": 0,
+    "event": "lease_expired",
+    "time_s": 7.8,
+    "agent_id": "Drone4"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_B",
+    "version": 2,
+    "event": "task_announced",
+    "time_s": 7.8,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 7.9,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 7.9,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 7.9,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 7.9,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 7.9,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 7.9,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 8.0,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 8.0,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 8.0,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 8.0,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 8.0,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 8.0,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 8.0,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 8.0,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 8.0,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 8.0,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 8.0,
+    "agent_id": "Drone3"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_B",
+    "owner": "Drone1",
+    "version": 1,
+    "lease_deadline": 8.0,
+    "completed_waypoints": 0,
+    "event": "lease_expired",
+    "time_s": 8.0,
+    "agent_id": "Drone3"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_B",
+    "version": 2,
+    "event": "task_announced",
+    "time_s": 8.0,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 8.0,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 8.0,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 8.0,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 8.1,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 8.1,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 8.1,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 8.1,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 8.1,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 8.1,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 8.1,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 8.1,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 8.1,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 8.1,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 8.1,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 8.1,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 8.1,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 8.2,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 8.2,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 8.2,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 8.2,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 8.2,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 8.3,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 8.3,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 8.3,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 8.3,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 8.3,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 8.3,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 8.3,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 8.3,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 8.4,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 8.4,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 8.4,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 8.4,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 8.4,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 8.4,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 8.4,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 8.4,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 8.4,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 8.5,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 8.5,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 8.5,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 8.5,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 8.5,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 8.5,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 8.5,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 8.5,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 8.5,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 8.5,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 8.6,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 8.6,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 8.6,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 8.6,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 8.6,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 8.6,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 8.6,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 8.6,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 8.7,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 8.7,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 8.7,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 8.7,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 8.7,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 8.8,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 8.8,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 8.8,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 8.8,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 8.8,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 8.8,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 8.9,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 8.9,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 8.9,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 8.9,
+    "agent_id": "Drone4"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_D",
+    "version": 1,
+    "event": "task_announced",
+    "time_s": 8.9,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 9.0,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 9.0,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 9.0,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 9.1,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 9.1,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 9.1,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 9.2,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 9.2,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 9.2,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 9.2,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 9.2,
+    "agent_id": "Drone2"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_D",
+    "version": 1,
+    "event": "task_announced",
+    "time_s": 9.2,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 9.2,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 9.3,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 9.3,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 9.3,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 9.3,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 9.3,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 9.3,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 9.4,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 9.4,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 9.4,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 9.4,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 9.4,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 9.4,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 9.4,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 9.4,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 9.4,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 9.4,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 9.5,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 9.5,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 9.5,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 9.5,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 9.5,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 9.6,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 9.6,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 9.6,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 9.6,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 9.6,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 9.6,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 9.6,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 9.6,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 9.6,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 9.6,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 9.6,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 9.7,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 9.8,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 9.8,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 9.8,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 9.8,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 9.8,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 9.8,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 9.8,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 9.9,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 9.9,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "SUSPECTED",
+    "state": "UNREACHABLE",
+    "event": "peer_health_changed",
+    "time_s": 9.9,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "SUSPECTED",
+    "state": "UNREACHABLE",
+    "event": "peer_health_changed",
+    "time_s": 9.9,
+    "agent_id": "Drone3"
+  },
+  {
+    "objective": "CRITICAL_ONLY",
+    "reason": "fewer_than_three_responsive_agents",
+    "event": "mission_reprioritized",
+    "time_s": 9.9,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 10.0,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 10.0,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 10.0,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 10.0,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 10.0,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 10.0,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 10.0,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "SUSPECTED",
+    "state": "UNREACHABLE",
+    "event": "peer_health_changed",
+    "time_s": 10.0,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 10.0,
+    "agent_id": "Drone4"
+  },
+  {
+    "previous": "RESERVE",
+    "role": "SCOUT",
+    "reason": "peer_disruption_or_critical_task",
+    "event": "role_changed",
+    "time_s": 10.0,
+    "agent_id": "Drone4"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_D",
+    "version": 1,
+    "agent_id": "Drone4",
+    "score": 0.0,
+    "components": {
+      "distance": 0.0,
+      "battery": 0.0,
+      "workload": 0.0,
+      "communication": 0.0,
+      "mismatch": 0.0
+    },
+    "event": "bid_computed",
+    "time_s": 10.0
+  },
+  {
+    "task_id": "SEARCH_SECTOR_D",
+    "version": 1,
+    "owner": "Drone4",
+    "score": 0.0,
+    "event": "claim_sent",
+    "time_s": 10.0,
+    "agent_id": "Drone4"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_B",
+    "owner": "Drone1",
+    "version": 2,
+    "lease_deadline": 10.1,
+    "completed_waypoints": 0,
+    "event": "lease_expired",
+    "time_s": 10.1,
+    "agent_id": "Drone1"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_B",
+    "version": 3,
+    "event": "task_announced",
+    "time_s": 10.1,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 10.1,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 10.1,
+    "agent_id": "Drone2"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_B",
+    "owner": "Drone2",
+    "version": 2,
+    "lease_deadline": 10.1,
+    "completed_waypoints": 0,
+    "event": "lease_expired",
+    "time_s": 10.1,
+    "agent_id": "Drone2"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_B",
+    "version": 3,
+    "event": "task_announced",
+    "time_s": 10.1,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 10.1,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 10.1,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 10.2,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 10.2,
+    "agent_id": "Drone1"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_A",
+    "owner": "Drone1",
+    "version": 3,
+    "lease_deadline": 10.2,
+    "completed_waypoints": 0,
+    "event": "lease_expired",
+    "time_s": 10.2,
+    "agent_id": "Drone1"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_A",
+    "version": 4,
+    "event": "task_announced",
+    "time_s": 10.2,
+    "agent_id": "Drone1"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_C",
+    "owner": "Drone1",
+    "version": 1,
+    "lease_deadline": 10.2,
+    "completed_waypoints": 0,
+    "event": "lease_expired",
+    "time_s": 10.2,
+    "agent_id": "Drone1"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_C",
+    "version": 2,
+    "agent_id": "Drone1",
+    "score": 10.0,
+    "components": {
+      "distance": 10.0,
+      "battery": 0.0,
+      "workload": 0.0,
+      "communication": 0.0,
+      "mismatch": 0.0
+    },
+    "event": "bid_computed",
+    "time_s": 10.2
+  },
+  {
+    "task_id": "SEARCH_SECTOR_C",
+    "version": 2,
+    "event": "task_announced",
+    "time_s": 10.2,
+    "agent_id": "Drone1"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_A",
+    "owner": "Drone2",
+    "version": 3,
+    "lease_deadline": 10.2,
+    "completed_waypoints": 0,
+    "event": "lease_expired",
+    "time_s": 10.2,
+    "agent_id": "Drone2"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_A",
+    "version": 4,
+    "event": "task_announced",
+    "time_s": 10.2,
+    "agent_id": "Drone2"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_C",
+    "owner": "Drone2",
+    "version": 1,
+    "lease_deadline": 10.2,
+    "completed_waypoints": 0,
+    "event": "lease_expired",
+    "time_s": 10.2,
+    "agent_id": "Drone2"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_C",
+    "version": 2,
+    "agent_id": "Drone2",
+    "score": 14.142135623730951,
+    "components": {
+      "distance": 14.142135623730951,
+      "battery": 0.0,
+      "workload": 0.0,
+      "communication": 0.0,
+      "mismatch": 0.0
+    },
+    "event": "bid_computed",
+    "time_s": 10.2
+  },
+  {
+    "task_id": "SEARCH_SECTOR_C",
+    "version": 2,
+    "event": "task_announced",
+    "time_s": 10.2,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 10.2,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 10.2,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 10.2,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 10.2,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone2",
+    "previous": "SUSPECTED",
+    "state": "UNREACHABLE",
+    "event": "peer_health_changed",
+    "time_s": 10.3,
+    "agent_id": "Drone1"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_D",
+    "version": 1,
+    "agent_id": "Drone1",
+    "score": 14.142135623730951,
+    "components": {
+      "distance": 14.142135623730951,
+      "battery": 0.0,
+      "workload": 0.0,
+      "communication": 0.0,
+      "mismatch": 0.0
+    },
+    "event": "bid_computed",
+    "time_s": 10.3
+  },
+  {
+    "peer": "Drone4",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 10.3,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 10.3,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone1",
+    "previous": "SUSPECTED",
+    "state": "UNREACHABLE",
+    "event": "peer_health_changed",
+    "time_s": 10.3,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 10.3,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 10.3,
+    "agent_id": "Drone2"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_D",
+    "version": 1,
+    "agent_id": "Drone2",
+    "score": 10.0,
+    "components": {
+      "distance": 10.0,
+      "battery": 0.0,
+      "workload": 0.0,
+      "communication": 0.0,
+      "mismatch": 0.0
+    },
+    "event": "bid_computed",
+    "time_s": 10.3
+  },
+  {
+    "peer": "Drone1",
+    "previous": "SUSPECTED",
+    "state": "UNREACHABLE",
+    "event": "peer_health_changed",
+    "time_s": 10.3,
+    "agent_id": "Drone4"
+  },
+  {
+    "objective": "CRITICAL_ONLY",
+    "reason": "fewer_than_three_responsive_agents",
+    "event": "mission_reprioritized",
+    "time_s": 10.3,
+    "agent_id": "Drone4"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_D",
+    "version": 1,
+    "event": "task_released",
+    "time_s": 10.3,
+    "agent_id": "Drone4"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_D",
+    "version": 2,
+    "event": "task_announced",
+    "time_s": 10.3,
+    "agent_id": "Drone4"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_B",
+    "version": 3,
+    "agent_id": "Drone1",
+    "score": 10.0,
+    "components": {
+      "distance": 10.0,
+      "battery": 0.0,
+      "workload": 0.0,
+      "communication": 0.0,
+      "mismatch": 0.0
+    },
+    "event": "bid_computed",
+    "time_s": 10.4
+  },
+  {
+    "peer": "Drone4",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 10.4,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 10.4,
+    "agent_id": "Drone2"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_B",
+    "version": 3,
+    "agent_id": "Drone2",
+    "score": 0.0,
+    "components": {
+      "distance": 0.0,
+      "battery": 0.0,
+      "workload": 0.0,
+      "communication": 0.0,
+      "mismatch": 0.0
+    },
+    "event": "bid_computed",
+    "time_s": 10.4
+  },
+  {
+    "peer": "Drone4",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 10.4,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 10.4,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 10.4,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 10.4,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 10.5,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 10.5,
+    "agent_id": "Drone1"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_A",
+    "version": 4,
+    "agent_id": "Drone1",
+    "score": 0.0,
+    "components": {
+      "distance": 0.0,
+      "battery": 0.0,
+      "workload": 0.0,
+      "communication": 0.0,
+      "mismatch": 0.0
+    },
+    "event": "bid_computed",
+    "time_s": 10.5
+  },
+  {
+    "task_id": "SEARCH_SECTOR_C",
+    "version": 2,
+    "owner": "Drone1",
+    "score": 10.0,
+    "event": "claim_sent",
+    "time_s": 10.5,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 10.5,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 10.5,
+    "agent_id": "Drone2"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_A",
+    "version": 4,
+    "agent_id": "Drone2",
+    "score": 10.0,
+    "components": {
+      "distance": 10.0,
+      "battery": 0.0,
+      "workload": 0.0,
+      "communication": 0.0,
+      "mismatch": 0.0
+    },
+    "event": "bid_computed",
+    "time_s": 10.5
+  },
+  {
+    "task_id": "SEARCH_SECTOR_C",
+    "version": 2,
+    "owner": "Drone2",
+    "score": 14.142135623730951,
+    "event": "claim_sent",
+    "time_s": 10.5,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 10.5,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 10.5,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 10.5,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 10.5,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 10.6,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 10.6,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 10.6,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 10.6,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 10.6,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 10.6,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 10.6,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 10.6,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 10.6,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 10.6,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 10.7,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 10.7,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 10.7,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 10.7,
+    "agent_id": "Drone1"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_D",
+    "version": 1,
+    "owner": "Drone1",
+    "score": 14.142135623730951,
+    "event": "claim_sent",
+    "time_s": 10.7,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 10.7,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 10.7,
+    "agent_id": "Drone2"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_D",
+    "version": 1,
+    "owner": "Drone2",
+    "score": 10.0,
+    "event": "claim_sent",
+    "time_s": 10.7,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 10.7,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 10.7,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 10.7,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 10.7,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 10.8,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 10.8,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 10.8,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 10.8,
+    "agent_id": "Drone1"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_A",
+    "version": 4,
+    "owner": "Drone1",
+    "score": 0.0,
+    "event": "claim_sent",
+    "time_s": 10.8,
+    "agent_id": "Drone1"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_B",
+    "version": 3,
+    "owner": "Drone1",
+    "score": 10.0,
+    "event": "claim_sent",
+    "time_s": 10.8,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 10.8,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 10.8,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 10.8,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 10.8,
+    "agent_id": "Drone2"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_A",
+    "version": 4,
+    "owner": "Drone2",
+    "score": 10.0,
+    "event": "claim_sent",
+    "time_s": 10.8,
+    "agent_id": "Drone2"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_B",
+    "version": 3,
+    "owner": "Drone2",
+    "score": 0.0,
+    "event": "claim_sent",
+    "time_s": 10.8,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 10.8,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 10.8,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 10.9,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 10.9,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 10.9,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 10.9,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 11.0,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 11.0,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 11.0,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 11.0,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 11.0,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 11.0,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 11.1,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 11.1,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 11.1,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 11.1,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 11.1,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 11.1,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 11.1,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 11.1,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 11.1,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 11.1,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 11.2,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 11.2,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 11.2,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 11.2,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 11.3,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 11.3,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 11.3,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 11.3,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 11.4,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 11.4,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 11.4,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 11.4,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 11.4,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 11.4,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 11.5,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 11.5,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 11.5,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 11.5,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 11.6,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 11.6,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 11.6,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 11.6,
+    "agent_id": "Drone2"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_B",
+    "owner": "Drone1",
+    "version": 2,
+    "lease_deadline": 11.6,
+    "completed_waypoints": 0,
+    "event": "lease_expired",
+    "time_s": 11.6,
+    "agent_id": "Drone4"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_B",
+    "version": 3,
+    "event": "task_announced",
+    "time_s": 11.6,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 11.7,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 11.7,
+    "agent_id": "Drone2"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_D",
+    "version": 2,
+    "event": "task_announced",
+    "time_s": 11.7,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 11.7,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 11.7,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 11.8,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 11.8,
+    "agent_id": "Drone1"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_C",
+    "owner": "Drone1",
+    "version": 1,
+    "lease_deadline": 11.8,
+    "completed_waypoints": 0,
+    "event": "lease_expired",
+    "time_s": 11.8,
+    "agent_id": "Drone3"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_C",
+    "version": 2,
+    "event": "task_announced",
+    "time_s": 11.8,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 11.8,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 11.8,
+    "agent_id": "Drone4"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_A",
+    "owner": "Drone2",
+    "version": 3,
+    "lease_deadline": 11.8,
+    "completed_waypoints": 0,
+    "event": "lease_expired",
+    "time_s": 11.8,
+    "agent_id": "Drone4"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_A",
+    "version": 4,
+    "event": "task_announced",
+    "time_s": 11.8,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 11.9,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 11.9,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 11.9,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 11.9,
+    "agent_id": "Drone2"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_C",
+    "owner": "Drone2",
+    "version": 1,
+    "lease_deadline": 11.9,
+    "completed_waypoints": 0,
+    "event": "lease_expired",
+    "time_s": 11.9,
+    "agent_id": "Drone4"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_C",
+    "version": 2,
+    "event": "task_announced",
+    "time_s": 11.9,
+    "agent_id": "Drone4"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_D",
+    "version": 2,
+    "event": "task_announced",
+    "time_s": 12.0,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 12.0,
+    "agent_id": "Drone2"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_D",
+    "version": 2,
+    "event": "task_announced",
+    "time_s": 12.0,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 12.0,
+    "agent_id": "Drone2"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_B",
+    "version": 3,
+    "event": "task_announced",
+    "time_s": 12.0,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 12.1,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 12.1,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 12.1,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 12.1,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 12.1,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 12.1,
+    "agent_id": "Drone4"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_A",
+    "version": 4,
+    "event": "task_announced",
+    "time_s": 12.2,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 12.3,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 12.3,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 12.3,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 12.3,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 12.3,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 12.3,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 12.4,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 12.4,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 12.4,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 12.4,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 12.5,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 12.5,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 12.6,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 12.6,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 12.7,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 12.7,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 12.7,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 12.7,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 12.7,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 12.7,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 12.8,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 12.8,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "SUSPECTED",
+    "state": "UNREACHABLE",
+    "event": "peer_health_changed",
+    "time_s": 12.8,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "SUSPECTED",
+    "state": "UNREACHABLE",
+    "event": "peer_health_changed",
+    "time_s": 12.9,
+    "agent_id": "Drone1"
+  },
+  {
+    "objective": "CRITICAL_ONLY",
+    "reason": "fewer_than_three_responsive_agents",
+    "event": "mission_reprioritized",
+    "time_s": 12.9,
+    "agent_id": "Drone1"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_A",
+    "version": 4,
+    "event": "task_released",
+    "time_s": 12.9,
+    "agent_id": "Drone1"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_A",
+    "version": 5,
+    "event": "task_announced",
+    "time_s": 12.9,
+    "agent_id": "Drone1"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_B",
+    "version": 3,
+    "event": "task_released",
+    "time_s": 12.9,
+    "agent_id": "Drone1"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_B",
+    "version": 4,
+    "event": "task_announced",
+    "time_s": 12.9,
+    "agent_id": "Drone1"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_C",
+    "version": 2,
+    "event": "task_released",
+    "time_s": 12.9,
+    "agent_id": "Drone1"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_C",
+    "version": 3,
+    "event": "task_announced",
+    "time_s": 12.9,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 12.9,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 12.9,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 12.9,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 12.9,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 13.0,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 13.0,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 13.1,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 13.1,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 13.1,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 13.1,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 13.2,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 13.2,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone4",
+    "previous": "SUSPECTED",
+    "state": "UNREACHABLE",
+    "event": "peer_health_changed",
+    "time_s": 13.2,
+    "agent_id": "Drone2"
+  },
+  {
+    "objective": "CRITICAL_ONLY",
+    "reason": "fewer_than_three_responsive_agents",
+    "event": "mission_reprioritized",
+    "time_s": 13.2,
+    "agent_id": "Drone2"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_A",
+    "version": 4,
+    "event": "task_released",
+    "time_s": 13.2,
+    "agent_id": "Drone2"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_A",
+    "version": 5,
+    "event": "task_announced",
+    "time_s": 13.2,
+    "agent_id": "Drone2"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_B",
+    "version": 3,
+    "event": "task_released",
+    "time_s": 13.2,
+    "agent_id": "Drone2"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_B",
+    "version": 4,
+    "event": "task_announced",
+    "time_s": 13.2,
+    "agent_id": "Drone2"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_C",
+    "version": 2,
+    "event": "task_released",
+    "time_s": 13.2,
+    "agent_id": "Drone2"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_C",
+    "version": 3,
+    "event": "task_announced",
+    "time_s": 13.2,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 13.3,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 13.3,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 13.4,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 13.4,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 13.4,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 13.4,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 13.5,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 13.5,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 13.6,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 13.6,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 13.6,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 13.6,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 13.7,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 13.7,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 13.7,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 13.7,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 13.8,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 13.8,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 13.9,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 13.9,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 13.9,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 13.9,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 14.1,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 14.1,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 14.2,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 14.2,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 14.4,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 14.4,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 14.6,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 14.6,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 14.7,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 14.7,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 15.2,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 15.2,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 15.2,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 15.2,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "HEALTHY",
+    "event": "peer_health_changed",
+    "time_s": 15.3,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "HEALTHY",
+    "state": "SUSPECTED",
+    "event": "peer_health_changed",
+    "time_s": 15.3,
+    "agent_id": "Drone1"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_A",
+    "version": 5,
+    "event": "task_announced",
+    "time_s": 15.3,
+    "agent_id": "Drone3"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_C",
+    "version": 3,
+    "event": "task_announced",
+    "time_s": 15.5,
+    "agent_id": "Drone4"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_C",
+    "owner": "Drone2",
+    "version": 2,
+    "lease_deadline": 15.6,
+    "completed_waypoints": 0,
+    "event": "lease_expired",
+    "time_s": 15.6,
+    "agent_id": "Drone3"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_C",
+    "version": 3,
+    "event": "task_announced",
+    "time_s": 15.6,
+    "agent_id": "Drone3"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_A",
+    "version": 5,
+    "event": "task_announced",
+    "time_s": 15.7,
+    "agent_id": "Drone4"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_B",
+    "version": 4,
+    "event": "task_announced",
+    "time_s": 15.8,
+    "agent_id": "Drone4"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_B",
+    "owner": "Drone2",
+    "version": 3,
+    "lease_deadline": 16.1,
+    "completed_waypoints": 0,
+    "event": "lease_expired",
+    "time_s": 16.1,
+    "agent_id": "Drone3"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_B",
+    "version": 4,
+    "event": "task_announced",
+    "time_s": 16.1,
+    "agent_id": "Drone3"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "UNREACHABLE",
+    "event": "peer_health_changed",
+    "time_s": 16.3,
+    "agent_id": "Drone2"
+  },
+  {
+    "previous": "SCOUT",
+    "role": "RELAY",
+    "reason": "relay_election",
+    "event": "role_changed",
+    "time_s": 16.3,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "UNREACHABLE",
+    "event": "peer_health_changed",
+    "time_s": 16.8,
+    "agent_id": "Drone4"
+  },
+  {
+    "previous": "SCOUT",
+    "role": "RELAY",
+    "reason": "relay_election",
+    "event": "role_changed",
+    "time_s": 16.8,
+    "agent_id": "Drone4"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "UNREACHABLE",
+    "state": "RECOVERED",
+    "event": "peer_health_changed",
+    "time_s": 16.9,
+    "agent_id": "Drone2"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "SUSPECTED",
+    "state": "UNREACHABLE",
+    "event": "peer_health_changed",
+    "time_s": 17.0,
+    "agent_id": "Drone1"
+  },
+  {
+    "previous": "SCOUT",
+    "role": "RELAY",
+    "reason": "relay_election",
+    "event": "role_changed",
+    "time_s": 17.0,
+    "agent_id": "Drone1"
+  },
+  {
+    "peer": "Drone3",
+    "previous": "RECOVERED",
+    "state": "UNREACHABLE",
+    "event": "peer_health_changed",
+    "time_s": 18.5,
+    "agent_id": "Drone2"
+  }
+]

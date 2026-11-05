@@ -1,0 +1,30 @@
+{
+  "mode": "perfect_communication_mock_protocol",
+  "agents": 4,
+  "ticks": 20,
+  "message_types": [
+    "HEARTBEAT",
+    "STATUS_UPDATE",
+    "TASK_ANNOUNCEMENT",
+    "TASK_BID",
+    "TASK_AWARD",
+    "TASK_ACCEPT",
+    "TASK_RELEASE",
+    "TASK_COMPLETE",
+    "INTENT_UPDATE",
+    "TARGET_FOUND",
+    "HELP_REQUEST",
+    "ROLE_CHANGE",
+    "MISSION_UPDATE"
+  ],
+  "message_instances": 173,
+  "recipient_deliveries": 519,
+  "delivered": 519,
+  "all_peer_beliefs_present": true,
+  "limitations": [
+    "Mock kinematics only; live four-drone flight remains unvalidated",
+    "All 13 envelopes exercised; task auctions, leases, role negotiation are not implemented here",
+    "Legacy RF bus and Experiment D are separate; no automatic protocol migration",
+    "Endpoint isolation is an API design convention, not an adversarial process sandbox"
+  ]
+}
