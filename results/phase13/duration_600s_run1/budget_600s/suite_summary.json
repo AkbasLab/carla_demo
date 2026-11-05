@@ -1,0 +1,21 @@
+{
+  "profile": "pinned",
+  "planned_cases": 40,
+  "statuses": {
+    "completed": 40
+  },
+  "completed_simulations": 40,
+  "successful_missions": 15,
+  "incomplete_missions": 25,
+  "runtime_errors": 0,
+  "validation_failures": 0,
+  "actual_llm_runs": 21,
+  "reproducibility_checks_passed": null,
+  "mismatched_input_checks": 0,
+  "limitations": [
+    "Validation B/D are replay, not LLM evidence",
+    "One seed is a pilot, not a statistical reliability estimate",
+    "Incomplete guarded missions are outcomes; a completed batch does not imply successful recovery",
+    "No live AirSim comparison; full traces are stored losslessly per case"
+  ]
+}
