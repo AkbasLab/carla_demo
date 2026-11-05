@@ -60,3 +60,11 @@ Next priorities are reliable assignment acknowledgments/retries, safe handling o
 [Download the PDF figure](../results/phase13/duration_600s_run1/baseline_300_vs_600.pdf)
 
 The figure shows no-failure baseline outcomes only. It does not hide incomplete failure/ablation cases; those are counted in the overall table above. PNG and PDF are included.
+
+## Completion-time scatter plot
+
+Circles mark completed missions; triangles mark incomplete observations at the 600-second limit. This panel uses the same four no-failure conditions as the baseline comparison.
+
+![600-second completion times](../results/phase13/duration_600s_run1/baseline_completion_times_600s.png)
+
+[Download PDF](../results/phase13/duration_600s_run1/baseline_completion_times_600s.pdf)
