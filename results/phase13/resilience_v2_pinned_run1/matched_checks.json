@@ -1,0 +1,105 @@
+[
+  {
+    "case_id": "ablations/nominal/D/without_memory/seed_42",
+    "control_id": "baselines/nominal/D/control/seed_42",
+    "shared_inputs_match": true
+  },
+  {
+    "case_id": "ablations/moderate/D/without_task_leases/seed_42",
+    "control_id": "drone1_failure/moderate/D/control/seed_42",
+    "shared_inputs_match": true
+  },
+  {
+    "case_id": "ablations/nominal/D/without_dynamic_roles/seed_42",
+    "control_id": "relay_failure/nominal/D/control/seed_42",
+    "shared_inputs_match": true
+  },
+  {
+    "case_id": "ablations/severe/D/perfect_communication/seed_42",
+    "control_id": "baselines/severe/D/control/seed_42",
+    "shared_inputs_match": false,
+    "intentional_difference": "effective network only"
+  },
+  {
+    "case_id": "ablations/nominal/D/fallback_policy/seed_42",
+    "control_id": "baselines/nominal/D/control/seed_42",
+    "shared_inputs_match": true
+  },
+  {
+    "case_id": "relay_failure/nominal/D/fallback_policy/seed_42",
+    "control_id": "relay_failure/nominal/D/control/seed_42",
+    "shared_inputs_match": true
+  },
+  {
+    "comparison_group": [
+      "baselines",
+      "moderate",
+      42
+    ],
+    "shared_inputs_match": true
+  },
+  {
+    "comparison_group": [
+      "baselines",
+      "nominal",
+      42
+    ],
+    "shared_inputs_match": true
+  },
+  {
+    "comparison_group": [
+      "baselines",
+      "partitioned",
+      42
+    ],
+    "shared_inputs_match": true
+  },
+  {
+    "comparison_group": [
+      "baselines",
+      "severe",
+      42
+    ],
+    "shared_inputs_match": true
+  },
+  {
+    "comparison_group": [
+      "drone1_failure",
+      "moderate",
+      42
+    ],
+    "shared_inputs_match": true
+  },
+  {
+    "comparison_group": [
+      "drone1_failure",
+      "nominal",
+      42
+    ],
+    "shared_inputs_match": true
+  },
+  {
+    "comparison_group": [
+      "drone1_failure",
+      "partitioned",
+      42
+    ],
+    "shared_inputs_match": true
+  },
+  {
+    "comparison_group": [
+      "drone1_failure",
+      "severe",
+      42
+    ],
+    "shared_inputs_match": true
+  },
+  {
+    "comparison_group": [
+      "relay_failure",
+      "nominal",
+      42
+    ],
+    "shared_inputs_match": true
+  }
+]

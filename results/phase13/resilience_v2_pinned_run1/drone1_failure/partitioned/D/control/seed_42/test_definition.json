@@ -1,0 +1,70 @@
+{
+  "case_id": "drone1_failure/partitioned/D/control/seed_42",
+  "group": "drone1_failure",
+  "condition": "partitioned",
+  "architecture": "D",
+  "seed": 42,
+  "variant": "control",
+  "control_id": null,
+  "configuration": {
+    "schema_version": 1,
+    "architecture": "D",
+    "backend": "mock",
+    "mission_config": "configs/phase12/mission.example.json",
+    "condition": "partitioned",
+    "network": {},
+    "seed": 42,
+    "ticks": 6000,
+    "dt": 0.1,
+    "clock_mode": "wall",
+    "lease_seconds": 180.0,
+    "bid_window": 30.0,
+    "decision_interval": 0.5,
+    "inference_timeout": 30.0,
+    "max_context_age": 35.0,
+    "inference_parallelism": 1,
+    "progress_timeout": 60.0,
+    "beacon_interval_s": 0.5,
+    "command_timeout_s": 3.0,
+    "state_timeout_s": 2.0,
+    "policy": {
+      "provider": "ollama",
+      "model": "phase12-agent:pinned",
+      "model_digest": "46e0c10c039e019119339687c3c1757cc81b9da49709a3b3924863ba87ca666e",
+      "ollama_url": "http://localhost:11434"
+    },
+    "resilience": {
+      "enabled": true,
+      "retry_interval_s": 1.0,
+      "max_attempts": 6,
+      "segment_duration_s": 1.0,
+      "peer_prediction_limit_s": 5.0
+    },
+    "scenario": {
+      "fail_agent": "Drone1",
+      "fail_at_s": 8.0
+    },
+    "initial_assignments": {
+      "Drone1": [
+        "SEARCH_SECTOR_A"
+      ],
+      "Drone2": [
+        "SEARCH_SECTOR_B"
+      ],
+      "Drone3": [
+        "SEARCH_SECTOR_C"
+      ],
+      "Drone4": [
+        "SEARCH_SECTOR_D"
+      ]
+    },
+    "ablations": {
+      "persistent_memory": true,
+      "task_leases": true,
+      "dynamic_roles": true,
+      "perfect_communication": false,
+      "fallback_policy": false
+    },
+    "output_dir": "results/phase13/resilience_v2_pinned_run1/drone1_failure/partitioned/D/control/seed_42/run"
+  }
+}

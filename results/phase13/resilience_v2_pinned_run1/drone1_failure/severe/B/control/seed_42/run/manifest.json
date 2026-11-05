@@ -1,0 +1,362 @@
+{
+  "effective_configuration": {
+    "schema_version": 1,
+    "architecture": "B",
+    "backend": "mock",
+    "mission_config": "configs/phase12/mission.example.json",
+    "condition": "severe",
+    "network": {},
+    "seed": 42,
+    "ticks": 6000,
+    "dt": 0.1,
+    "clock_mode": "wall",
+    "lease_seconds": 180.0,
+    "bid_window": 30.0,
+    "decision_interval": 0.5,
+    "inference_timeout": 30.0,
+    "max_context_age": 35.0,
+    "inference_parallelism": 1,
+    "progress_timeout": 60.0,
+    "beacon_interval_s": 0.5,
+    "command_timeout_s": 3.0,
+    "state_timeout_s": 2.0,
+    "policy": {
+      "provider": "ollama",
+      "model": "phase12-agent:pinned",
+      "model_digest": "46e0c10c039e019119339687c3c1757cc81b9da49709a3b3924863ba87ca666e",
+      "ollama_url": "http://localhost:11434"
+    },
+    "resilience": {
+      "enabled": true,
+      "retry_interval_s": 1.0,
+      "max_attempts": 6,
+      "segment_duration_s": 1.0,
+      "peer_prediction_limit_s": 5.0
+    },
+    "scenario": {
+      "fail_agent": "Drone1",
+      "fail_at_s": 8.0
+    },
+    "initial_assignments": {
+      "Drone1": [
+        "SEARCH_SECTOR_A"
+      ],
+      "Drone2": [
+        "SEARCH_SECTOR_B"
+      ],
+      "Drone3": [
+        "SEARCH_SECTOR_C"
+      ],
+      "Drone4": [
+        "SEARCH_SECTOR_D"
+      ]
+    },
+    "ablations": {
+      "persistent_memory": true,
+      "task_leases": true,
+      "dynamic_roles": true,
+      "perfect_communication": false,
+      "fallback_policy": false
+    },
+    "output_dir": "results/phase13/resilience_v2_pinned_run1/drone1_failure/severe/B/control/seed_42/run"
+  },
+  "shared_inputs": {
+    "mission": {
+      "mission": "Four drones cooperatively complete all four configured search routes. Use local beliefs and delivered messages; obey task ownership and runtime safety.",
+      "guardian": {
+        "flight_bounds": {
+          "x_min": -10,
+          "x_max": 25,
+          "y_min": -10,
+          "y_max": 40,
+          "z_min": -20,
+          "z_max": 1
+        },
+        "keepouts": [],
+        "landing_site": {
+          "x": 0,
+          "y": 0,
+          "ground_z": 0,
+          "radius_m": 1,
+          "surveyed_clear": true
+        },
+        "ground_z": 0,
+        "min_height_m": 2,
+        "max_height_m": 15,
+        "max_speed_mps": 3,
+        "max_state_age_s": 2,
+        "max_peer_age_s": 2
+      },
+      "vehicles": {
+        "Drone1": {
+          "role": "SCOUT",
+          "start_position": [
+            0,
+            0,
+            -3
+          ],
+          "home": [
+            0,
+            0,
+            -3
+          ],
+          "frame_offset_m": [
+            0,
+            0,
+            0
+          ]
+        },
+        "Drone2": {
+          "role": "SCOUT",
+          "start_position": [
+            0,
+            8,
+            -3
+          ],
+          "home": [
+            0,
+            8,
+            -3
+          ],
+          "frame_offset_m": [
+            0,
+            8,
+            0
+          ]
+        },
+        "Drone3": {
+          "role": "SCOUT",
+          "start_position": [
+            0,
+            16,
+            -3
+          ],
+          "home": [
+            0,
+            16,
+            -3
+          ],
+          "frame_offset_m": [
+            0,
+            16,
+            0
+          ]
+        },
+        "Drone4": {
+          "role": "SCOUT",
+          "start_position": [
+            0,
+            24,
+            -3
+          ],
+          "home": [
+            0,
+            24,
+            -3
+          ],
+          "frame_offset_m": [
+            0,
+            24,
+            0
+          ]
+        }
+      },
+      "relay_point": [
+        0,
+        32,
+        -3
+      ],
+      "tasks": [
+        {
+          "task_id": "SEARCH_SECTOR_A",
+          "waypoints": [
+            [
+              4,
+              0,
+              -3
+            ],
+            [
+              8,
+              0,
+              -3
+            ]
+          ],
+          "priority": 1
+        },
+        {
+          "task_id": "SEARCH_SECTOR_B",
+          "waypoints": [
+            [
+              4,
+              8,
+              -3
+            ],
+            [
+              8,
+              8,
+              -3
+            ]
+          ],
+          "priority": 1
+        },
+        {
+          "task_id": "SEARCH_SECTOR_C",
+          "waypoints": [
+            [
+              4,
+              16,
+              -3
+            ],
+            [
+              8,
+              16,
+              -3
+            ]
+          ],
+          "priority": 1
+        },
+        {
+          "task_id": "SEARCH_SECTOR_D",
+          "waypoints": [
+            [
+              4,
+              24,
+              -3
+            ],
+            [
+              8,
+              24,
+              -3
+            ]
+          ],
+          "priority": 1
+        }
+      ]
+    },
+    "network": {
+      "latency_ms_mean": 400,
+      "latency_ms_jitter": 200,
+      "packet_loss_probability": 0.3,
+      "message_rate_limit": 60,
+      "bandwidth_bytes_per_second": 50000,
+      "communication_range_m": null,
+      "partitions": []
+    },
+    "scenario": {
+      "fail_agent": "Drone1",
+      "fail_at_s": 8.0
+    },
+    "seed": 42,
+    "dt": 0.1,
+    "ticks": 6000,
+    "lease_seconds": 180.0,
+    "bid_window": 30.0,
+    "beacon_interval_s": 0.5,
+    "command_timeout_s": 3.0,
+    "state_timeout_s": 2.0,
+    "backend": "mock",
+    "bid_weights": {
+      "distance": 1.0,
+      "battery": 5.0,
+      "workload": 20.0,
+      "communication": 5.0,
+      "mismatch": 100.0
+    },
+    "decision_interval": 0.5,
+    "inference_timeout": 30.0,
+    "max_context_age": 35.0,
+    "progress_timeout": 60.0,
+    "inference_parallelism": 1,
+    "clock_mode": "wall",
+    "resilience": {
+      "enabled": true,
+      "retry_interval_s": 1.0,
+      "max_attempts": 6,
+      "segment_duration_s": 1.0,
+      "peer_prediction_limit_s": 5.0
+    },
+    "primary_policy_configuration": {
+      "provider": "ollama",
+      "model": "phase12-agent:pinned",
+      "model_digest": "46e0c10c039e019119339687c3c1757cc81b9da49709a3b3924863ba87ca666e",
+      "ollama_url": "http://localhost:11434"
+    },
+    "initial_assignments": {
+      "Drone1": [
+        "SEARCH_SECTOR_A"
+      ],
+      "Drone2": [
+        "SEARCH_SECTOR_B"
+      ],
+      "Drone3": [
+        "SEARCH_SECTOR_C"
+      ],
+      "Drone4": [
+        "SEARCH_SECTOR_D"
+      ]
+    }
+  },
+  "shared_inputs_sha256": "fa8b116c4dcf51bde8a3c3e08d98d6e138f9303c101a4e399791dfa15fe7cb8f",
+  "effective_clock": "wall",
+  "effective_provider": {
+    "provider": "ollama",
+    "model": "phase12-agent:pinned",
+    "digest": "46e0c10c039e019119339687c3c1757cc81b9da49709a3b3924863ba87ca666e",
+    "options": {
+      "temperature": 0,
+      "seed": 42,
+      "num_predict": 512,
+      "num_ctx": 8192
+    },
+    "server": "http://localhost:11434",
+    "server_version": "0.32.1",
+    "details": {
+      "parent_model": "",
+      "format": "gguf",
+      "family": "llama",
+      "families": [
+        "llama"
+      ],
+      "parameter_size": "8.0B",
+      "quantization_level": "Q4_K_M",
+      "context_length": 131072,
+      "embedding_length": 4096
+    },
+    "warmup": {
+      "performed": true,
+      "latency_s": 0.3762364600552246
+    }
+  },
+  "effective_task_lease_seconds": null,
+  "task_lease_expiry_disabled": true,
+  "lease_deadline_when_disabled_s": 601.0,
+  "agent_class": "FixedTaskAgent",
+  "skills": "Phase12 WaypointExecutor + MockFlight",
+  "guardian": "ReachablePeerGuardian + GuardedExecutor",
+  "benchmark_version": "resilience_v2",
+  "uncertainty_assumptions": "Every peer speed <= guardian maximum speed; reachable balls include observation age and segment horizon",
+  "allocation_authority": "operator fixed initial assignments",
+  "communication_health_inputs": "ObservedEndpoint heartbeat/sequence/ack/RTT + local staged peer health",
+  "source_hashes": {
+    "agentic_uav/comm/degraded.py": "e6c91b6b6357e64123c108ca482dd11db794682b4ebff2acfb30b8e17eec0e6d",
+    "agentic_uav/comm/protocol.py": "565f9cdaba420fb97a164073b18f0a4c877babc15f3279e09d5bebd7f533a856",
+    "agentic_uav/control/runtime_guardian.py": "1c51979284ed8fd4b8165e9041997ca006d8c0de3bc26794922614dbc98f66d0",
+    "agentic_uav/control/scenario_manager.py": "0c3eaecad7da354a7c33954b3f90e4f02f6a91675db9eecb94cb317d43bda943",
+    "agentic_uav/coordination/contract_net.py": "044b09220547f33db76446ef9ba8b8cc136150ab3011795c4c6c491ea686e269",
+    "agentic_uav/coordination/dynamic_roles.py": "d7efea49410688c98d3178e5b3b53f7a6148d3d94461c410862d45acd9db25b4",
+    "agentic_uav/coordination/flight_executor.py": "34b057b31aa55825ab326004f6bc29dd20fb0de6db725eeca5adc2f74bf582fd",
+    "agentic_uav/experiments/__init__.py": "44e681a43c63a4dc989a6e719d381f82abb52de6d104558e6566cfa56cf569a4",
+    "agentic_uav/experiments/architectures.py": "831ef0a7ace84dc862516c30061ea65bc6ed9199c984ae1211fc8e910cafd148",
+    "agentic_uav/experiments/comparison.py": "8c8bb7b4dca3fd2e3f59963292cc74e1a0dc2545758724c441da1331a88d04aa",
+    "agentic_uav/experiments/followup.py": "fd8d06963f153beb9a58a1bbbf30793c9419e0f9cb432717a3617b98ebdfb5bc",
+    "agentic_uav/experiments/resilience.py": "653328a71f7f02dafd4e3151569fded131eb374411b690faa6a6c2374afe2b8b",
+    "agentic_uav/experiments/suite.py": "d17d953b838d00818b45889e5309824c6787d86df12ee12cdcad51e9cf44b87e",
+    "agentic_uav/policy/__init__.py": "ac57c6d71031f589d9db3da0cc48117f8ff438b2fdb5380d73b045d8df5e646e",
+    "agentic_uav/policy/backends.py": "13c232ef6a6889abf640a1c3eff0e4067659af78f09cc75f75980efbff0b1cb0",
+    "agentic_uav/policy/evidence.py": "c0cb02067270bb2196f2e6a1e9878eaf321ff1b9cc6a9d217abab174838638ac",
+    "agentic_uav/policy/mission.py": "df3d9e569f9f1fa596f234c50f503ccc3956657a113a8e4cf3010ef40014a4ca",
+    "agentic_uav/policy/persistent.py": "35d5692d97648d3fa4d24c29d44b1af4decb6e1648910bee4e17082060338c69",
+    "agentic_uav/policy/structured.py": "34bf9449c8fe65bf8d4c0541649fb308c29cf52a3da38ab0f5541a1f396a07df",
+    "scripts/run_phase13_comparison.py": "53e051e3c96640bc92d1f8767f26a24e7724f1b9462f80cf083a314c9777a230"
+  }
+}
