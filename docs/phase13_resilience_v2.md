@@ -77,4 +77,77 @@ Independent checks matched all actual effects to executed guardian selections, c
 
 [Validation summary](../results/phase13/resilience_v2_validation_final/suite_summary.json) · [Metrics CSV](../results/phase13/resilience_v2_validation_final/metrics.csv) · [Arrival and validation evidence](../results/phase13/resilience_v2_validation_final/validation_evidence.json) · [Independent audit](../results/phase13/resilience_v2_validation_final/independent_audit.json)
 
-The repository contains compact manifests, metrics, arrival evidence and archive checksums. Large per-case raw trace archives remain in the execution workspace and can be regenerated with the validator command. Three seeds are an engineering check, not a statistical reliability estimate. No new result is claimed for actual teammate-failure recovery or real pinned-model D until those experiments are run.
+The repository contains compact manifests, metrics, arrival evidence and archive checksums. Large per-case raw trace archives remain in the execution workspace and can be regenerated with the validator command. Three seeds are an engineering check, not a statistical reliability estimate. These offline checks do not establish actual teammate-failure recovery or real-model performance; the subsequent pinned-model results are documented below.
+
+## Observed pinned-model results: resilience_v2_pinned_run1
+
+The uploaded [suite summary](../results/phase13/resilience_v2_pinned_run1/suite_summary.json) and [per-case metrics](../results/phase13/resilience_v2_pinned_run1/metrics.json) were reviewed at repository commit `ac834a7e6f4f0c647e1622937b831937ad20984c`. The reference is the [previous 600-second suite](../results/phase13/duration_600s_run1/budget_600s/metrics.json). Both are single-seed pilots (seed 42) with a 600-second budget and mock flight. A/C are deterministic; B/D use actual pinned Ollama inference. These results are separate from the replay-based offline validation above.
+
+### Completion across the suite
+
+| Measure | Previous 600-second suite | Pinned resilience v2 |
+|---|---:|---:|
+| Tests finished | 40/40 | 40/40 |
+| Successful missions | 15/40 | **19/40** |
+| Incomplete missions | 25/40 | 21/40 |
+| Successful baselines without an intentionally stopped drone | 12/16 | **16/16** |
+| Observed actor-failure injections | 21 | 21 |
+| Successful missions after an observed actor failure | 0/21 | **0/21** |
+
+The new suite reports zero runtime errors, zero validation failures, zero mismatched-input checks and 21 actual-model runs. All 40 summaries, validation records, waypoint files and fault-event files were cross-checked: completion and injection flags agree, every completed task has waypoint indices 0 and 1, and all summaries report zero duplicate completions. The pinned profile does not perform the offline profile's exact same-seed packet-replay check.
+
+### Previously incomplete moderate/severe baselines
+
+| Architecture and condition | Previous result | Pinned resilience v2 |
+|---|---|---|
+| A, severe | 2/4 tasks; incomplete | **4/4 in 23.5 s** |
+| C, severe | 0/4 tasks; incomplete | **4/4 in 163.0 s** |
+| D, severe | 1/4 tasks; incomplete | **4/4 in 214.9 s** |
+| C, moderate | 3/4 tasks; incomplete | **4/4 in 159.0 s** |
+| D, moderate | 4/4 in 522.5 s | **4/4 in 168.1 s** |
+
+The three newly completed severe cases and moderate C account for the four additional successful missions. Moderate D's observed completion time decreases by approximately 68% in this pair.
+
+These baselines test communication degradation without intentionally stopping a drone. The inspected severe-D manifests retain the same mission, model digest and network parameters: 400 ms mean latency, ±200 ms jitter, 30% independent loss, a 60-recipient-packets/s per-sender rate limit and 50,000 bytes/s per-sender bandwidth.
+
+All v2 no-agent-failure baselines complete:
+
+| Condition | A: centralized | B: independent LLM | C: decentralized rules | D: decentralized LLM |
+|---|---:|---:|---:|---:|
+| Nominal | 10.6 s | 88.2 s | 158.5 s | 169.9 s |
+| Moderate | 11.2 s | 38.9 s | 159.0 s | 168.1 s |
+| Severe | 23.5 s | 60.5 s | 163.0 s | 214.9 s |
+| Partitioned | 17.6 s | 50.1 s | 158.9 s | 167.3 s |
+
+Every cell is 4/4 tasks and full mission success. This does not imply every completion time improved: nominal B increases from 38.3 s to 88.2 s and nominal A from 8.1 s to 10.6 s. C remains faster than D under severe communication.
+
+### Evidence for actual LLM participation in severe D
+
+The severe-D run uses `phase12-agent:pinned`, digest `46e0c10c039e019119339687c3c1757cc81b9da49709a3b3924863ba87ca666e`, temperature 0. Each drone completes one sector, and productive LLM decisions are observed for every drone:
+
+| Drone / sector | Final waypoint time |
+|---|---:|
+| Drone1 / A | 123.9 s |
+| Drone2 / B | 114.1 s |
+| Drone3 / C | 187.2 s |
+| Drone4 / D | 214.9 s |
+
+All eight arrivals link to applied LLM request IDs in the archived decision histories. All recorded arrivals use task version 1, and the run reports no lease expirations. The inspected histories contain zero inference timeouts and one recorded policy fallback.
+
+An independent check of the severe-D guardian archive matches all 47 actual effects to executed guardian selections. Minimum sampled inter-drone separation is 8.0 m; this is not a physical or between-sample safety guarantee. The 56 guardian records comprise 38 approved bounded-segment modifications, 9 approvals and 9 rejections. Routine segment modifications must not be counted as unsafe LLM proposals. The retry archive records 255 bounded retry events, which still consume the configured degraded channel.
+
+### Remaining failure-recovery limitation
+
+All 21 incomplete v2 cases have actual actor-failure injections. Completion under severe packet loss has improved, but mission completion after a permanently silent teammate remains unresolved. Stale-peer safety stops still appear in the failed cases; an unreachable aircraft is not deleted or assumed safely contained.
+
+The D relay-failure control now changes Drone4 from RESERVE to RELAY at 70.8 s, whereas the previous D control made no role change. The archived source is **deterministic_role_fallback**, not an LLM-selected role change. The run still completes zero tasks. This demonstrates the role-decision deadline rule, not successful relay positioning, restored RF connectivity or full mission recovery.
+
+### Interpretation and ablations
+
+The nominal deterministic policy replacement finishes at 158.7 s versus 169.9 s for nominal D. Memory-off D finishes at 170.5 s. These single observations do not establish an LLM or memory advantage. Perfect-communication D finishes at 169.0 s; severe D now also completes, at 214.9 s. The network override changes several network properties together.
+
+V2 changes shared retry/coordination support and the guardian to `ReachablePeerGuardian`. The observed gains support that combined implementation, not an isolated claim that LLM reasoning improved. They do not establish statistical reliability, live-flight safety or general superiority of D. Matched multiple-seed pinned trials and safe execution under missing-peer uncertainty remain necessary.
+
+A suitable research statement is:
+
+> In a seed-42 pinned-model mock-flight pilot, the revised shared resilience infrastructure increased no-agent-failure mission completion from 12/16 to 16/16 across four communication conditions. Centralized, deterministic decentralized and agentic decentralized architectures all completed the severe-loss mission within 600 seconds; mission recovery after intentional actor silence remained incomplete.
