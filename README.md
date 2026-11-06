@@ -4,7 +4,7 @@ A modular multi-UAV research framework for search-and-relay operations using CAR
 
 LLM benchmarks and command-generation experiments are separate from the deterministic coordination baselines: **Phases 7–11 do not require an LLM**. Mock task completion, live waypoint execution, communication delivery, and flight safety are distinct measurements.
 
-## Project phases: 1–13
+## Project phases: 1–15
 
 | Phase | Focus | Main entry point | Execution / evidence |
 |---|---|---|---|
@@ -21,6 +21,8 @@ LLM benchmarks and command-generation experiments are separate from the determin
 | 11 | Independent deterministic runtime-safety guardian | `scripts/run_phase11_guardian.py` | Mock unsafe-command injection; no AirSim runtime required |
 | 12 | Persistent high-level LLM agents | `scripts/run_phase12_agents.py` | Pinned Ollama and replay; successful four-agent mock integration; live evidence remains separate |
 | 13 | Configurable comparison architectures A–D and ablations | `scripts/run_phase13_comparison.py` | Shared mock mission, network, executor and guardian; actual-model comparisons still required |
+| 14 | Automatic experiment batches and complete logging | `scripts/run_phase14_experiments.py` | Per-run provenance, JSONL events and retained unsuccessful runs; validated on mock flight |
+| 15 | Predefined evaluation metrics and evidence checks | `scripts/evaluate_phase15_metrics.py` or Phase 14 `--evaluate` | Pre-run metric registration; validated definitions, censoring, matched references and missing-data handling |
 
 ### Phase 1: environment setup, foundation, and LLM baseline
 
@@ -184,6 +186,10 @@ agentic_uav/
 │   ├── flight_executor.py          # Ordered live waypoints / checkpoints
 │   ├── phase8_live.py              # AirSim allocation backend
 │   └── dynamic_roles.py            # Phase 9 roles and health states
+├── experiments/
+│   ├── runner.py                   # Phase 14 batch execution and manifests
+│   ├── event_logging.py            # Structured experiment event logs
+│   └── metrics.py                  # Phase 15 registration and evaluation
 └── simulator/
     ├── base_adapter.py
     ├── airsim_adapter.py
@@ -337,3 +343,73 @@ python -u scripts/run_phase13_comparison.py --architecture C --output-dir result
 See [Phase 13 architecture and ablation guide](docs/phase13_comparison_architectures.md) for all four commands, pinned-model testing, matched inputs, failure scenarios and ablations. See [Phase 12 agents](docs/phase12_persistent_agents.md) for persistent-policy details.
 
 Phase 13 also provides [an automated test matrix and manual pinned-model commands](docs/phase13_automated_testing.md). `scripts/run_phase13_suite.py` keeps every case in a separate folder and produces figure-ready metrics while retaining full traces. Validation replay and actual-model profiles remain explicitly separated.
+
+
+## Phase 14: automatic experiments and complete logging
+
+One batch configuration selects experiment identity, architecture, scenario, team size, network/failure profiles, seed and planner. The runner executes the list without per-run prompts and creates a separate result directory for each experiment.
+
+- Manifests retain the Git revision, source/configuration hashes and copies, model settings, software versions, timestamps, run completion and errors.
+- Structured JSONL events trace messages, beliefs, task allocation, decisions, guardian outcomes, skills and injected faults. LLM prompts, responses and provider usage are preserved when inference is used.
+- Unsuccessful missions remain available for analysis. `run_completed=true` means the runner finished; it does not imply `mission_complete=true`.
+- Uploaded validation contains four runs and **37,918 event records**: three completed missions and one correctly preserved incomplete mission. The pinned-model run completed all four tasks in **175.3 wall-clock mission seconds**, with five LLM calls across four persistent agent contexts.
+
+Phase 14's automatic-runner/logging exit criterion is validated for the mock backend. Role-change and target-report events, and actual crash capture, were not exercised by those uploaded batches. Live-flight safety remains separate.
+
+[Phase 14 implementation guide](docs/phase14_experiment_runner_audit.md) · [Results and visual summary](docs/phase14_results.md) · [Figures: PNG/PDF](results/phase14/results_analysis)
+
+## Phase 15: predefined evaluation metrics
+
+Phase 15 defines the measurements before main experiments and evaluates the immutable Phase 14 evidence. Its six primary metrics are:
+
+| Metric | Current definition |
+|---|---|
+| Mission completion | Strict route-execution success, verified required waypoints and guarded actions |
+| Completion time | Successful mission duration; timeouts retain a null successful time, endpoint and budget |
+| Continuity retention | Degraded MissionScore / matched nominal MissionScore; unavailable references produce null |
+| Recovery time | Disruption onset to replacement local task acceptance; productive resumption reported separately |
+| Safety | Sampled separation/restricted-zone violations, unsafe proposals, fallbacks and guardian interventions |
+| Communication overhead | Unique sends, recipient attempts, modeled bytes, retries, duplicates and expired/pending records |
+
+Diagnostics include route-work efficiency, task reassignment, role changes, invalid outputs, LLM latency/calls/tokens, fallback use, sampled distance and simulated battery decrease. Route waypoint work is not measured searched area. Missing collision, area, target or safe-return observations remain **unavailable**, rather than being reported as zero or success.
+
+The uploaded seven-run offline batch completed six missions. Its failed-worker case completed no tasks and correctly censored unobserved recovery. A separate actual pinned-model run completed all four tasks in **173.6 wall-clock mission seconds**, with five LLM calls and complete provider token usage. This is a different run from the Phase 14 result above. Offline replay D uses no LLM and its simulated timings must not be pooled with real inference timings.
+
+All eight uploaded metric records recomputed exactly, both batches verified pre-run registration with zero evidence issues, and **22 focused metric tests passed**. Phase 15's written-definition and tested-implementation exit criterion is satisfied for the documented mock route benchmark. Successful failed-worker recovery, degraded real-model performance and physical safety are separate validation goals.
+
+[Metric definitions](docs/phase15_evaluation_metrics.md) · [Testing guide](docs/phase15_testing.md) · [Results report](docs/phase15_results.md) · [Figures: PNG/PDF](results/phase15/results_analysis)
+
+### Run Phases 14 and 15 together
+
+Run from the repository root and choose a new output directory for every batch. The offline example requires neither Ollama nor CARLA–AirSim; it runs seven experiments with 40 simulated seconds per case.
+
+```bash
+python -u scripts/run_phase14_experiments.py \
+  --batch configs/phase15/paired.example.json \
+  --evaluate \
+  --output-dir results/phase15/combined_offline_run2
+```
+
+For actual inference, start Ollama with the configured pinned model available. The following runs one nominal D mission on the mock backend with a 600-second wall-clock budget:
+
+```bash
+python -u scripts/run_phase14_experiments.py \
+  --batch configs/phase14/batch.pinned.example.json \
+  --evaluate \
+  --output-dir results/phase15/pinned_logging_metrics_run2
+```
+
+The configuration verifies `phase12-agent:pinned` against digest `46e0c10c039e019119339687c3c1757cc81b9da49709a3b3924863ba87ca666e`. Each drone retains separate agent state while sharing the model server.
+
+Outputs include `batch_manifest.json`, per-run manifests/events/raw evidence, `metric_registration.json`, saved metric definitions/contract, and a `metrics/` directory containing CSV/JSON results and an evaluation report. Inspect `prespecified`, `evidence_issues`, mission outcomes and unavailable-data reasons. Existing batches without original pre-run registration are evaluated as retrospective; registration is not backdated.
+
+```bash
+# Evaluate an existing batch separately
+python scripts/evaluate_phase15_metrics.py \
+  --input-dir results/phase14/offline_run1 \
+  --output-dir results/phase15/retrospective_review2
+
+# Runner and metric regression checks
+python -m unittest discover -s tests -p 'test_phase14_runner.py' -v
+python -m unittest discover -s tests -p 'test_phase15_metrics.py' -v
+```
