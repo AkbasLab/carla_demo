@@ -1,0 +1,27 @@
+{
+  "mission": "Four drones cooperatively complete all four configured search routes. Use local beliefs and delivered messages; obey task ownership and runtime safety.",
+  "guardian": {
+    "flight_bounds": {"x_min": -10, "x_max": 25, "y_min": -10, "y_max": 40, "z_min": -20, "z_max": 1},
+    "keepouts": [],
+    "landing_site": {"x": 0, "y": 0, "ground_z": 0, "radius_m": 1, "surveyed_clear": true},
+    "ground_z": 0,
+    "min_height_m": 2,
+    "max_height_m": 15,
+    "max_speed_mps": 3,
+    "max_state_age_s": 2,
+    "max_peer_age_s": 2
+  },
+  "vehicles": {
+    "Drone1": {"role": "SCOUT", "start_position": [0,0,-3], "home": [0,0,-3], "frame_offset_m": [0,0,0]},
+    "Drone2": {"role": "SCOUT", "start_position": [0,8,-3], "home": [0,8,-3], "frame_offset_m": [0,8,0]},
+    "Drone3": {"role": "SCOUT", "start_position": [0,16,-3], "home": [0,16,-3], "frame_offset_m": [0,16,0]},
+    "Drone4": {"role": "SCOUT", "start_position": [0,24,-3], "home": [0,24,-3], "frame_offset_m": [0,24,0]}
+  },
+  "relay_point": [0,32,-3],
+  "tasks": [
+    {"task_id": "SEARCH_SECTOR_A", "waypoints": [[4,0,-3],[8,0,-3]], "priority": 1},
+    {"task_id": "SEARCH_SECTOR_B", "waypoints": [[4,8,-3],[8,8,-3]], "priority": 1},
+    {"task_id": "SEARCH_SECTOR_C", "waypoints": [[4,16,-3],[8,16,-3]], "priority": 1},
+    {"task_id": "SEARCH_SECTOR_D", "waypoints": [[4,24,-3],[8,24,-3]], "priority": 1}
+  ]
+}

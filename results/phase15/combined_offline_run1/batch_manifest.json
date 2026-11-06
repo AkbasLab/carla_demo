@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "started_at_utc": "2026-11-06T02:51:36.881560+00:00",
+  "finished_at_utc": "2026-11-06T02:51:46.338525+00:00",
+  "status": "finished",
+  "planned_experiments": 7,
+  "runs": [
+    {
+      "experiment_id": "deterministic_decentralized_nominal_42",
+      "status": "completed",
+      "run_completed": true,
+      "mission_complete": true,
+      "error": null,
+      "result_dir": "results/phase15/combined_offline_run1/deterministic_decentralized_nominal_42"
+    },
+    {
+      "experiment_id": "deterministic_decentralized_moderate_42",
+      "status": "completed",
+      "run_completed": true,
+      "mission_complete": true,
+      "error": null,
+      "result_dir": "results/phase15/combined_offline_run1/deterministic_decentralized_moderate_42"
+    },
+    {
+      "experiment_id": "deterministic_decentralized_severe_42",
+      "status": "completed",
+      "run_completed": true,
+      "mission_complete": true,
+      "error": null,
+      "result_dir": "results/phase15/combined_offline_run1/deterministic_decentralized_severe_42"
+    },
+    {
+      "experiment_id": "agentic_decentralized_nominal_42",
+      "status": "completed",
+      "run_completed": true,
+      "mission_complete": true,
+      "error": null,
+      "result_dir": "results/phase15/combined_offline_run1/agentic_decentralized_nominal_42"
+    },
+    {
+      "experiment_id": "agentic_decentralized_moderate_42",
+      "status": "completed",
+      "run_completed": true,
+      "mission_complete": true,
+      "error": null,
+      "result_dir": "results/phase15/combined_offline_run1/agentic_decentralized_moderate_42"
+    },
+    {
+      "experiment_id": "agentic_decentralized_severe_42",
+      "status": "completed",
+      "run_completed": true,
+      "mission_complete": true,
+      "error": null,
+      "result_dir": "results/phase15/combined_offline_run1/agentic_decentralized_severe_42"
+    },
+    {
+      "experiment_id": "failed_worker_rules",
+      "status": "incomplete",
+      "run_completed": true,
+      "mission_complete": false,
+      "error": null,
+      "result_dir": "results/phase15/combined_offline_run1/failed_worker_rules"
+    }
+  ],
+  "finished_runs": 7,
+  "successful_missions": 6,
+  "errors": 0,
+  "evaluation": {
+    "definition_id": "phase15.route_metrics.v1",
+    "prespecified": true,
+    "evaluation_type": "predeclared",
+    "evaluator_source_sha256": "90c96d19d9d8b13391d66138dc53ce30b5461b68352b36dc79f2632a11821a92",
+    "experiments_evaluated": 7,
+    "mission_successes": 6,
+    "not_started": 0,
+    "censored_missions": 1,
+    "evidence_issues": 0,
+    "limitations": [
+      "Route waypoint work is not area coverage",
+      "Absent collision/target/return sensing is not a zero measurement",
+      "Recovery acceptance is local ownership, not consensus or safe execution",
+      "Physical/between-sample safety is not certified",
+      "Retrospective analysis does not establish preregistration"
+    ]
+  }
+}

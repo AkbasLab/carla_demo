@@ -1,0 +1,264 @@
+{"time_s": 0.1, "agent_id": "Drone3", "event": "deadline_bid_submitted", "task_id": "SEARCH_SECTOR_A", "version": 1, "deadline": 0.5, "remaining_s": 0.4, "estimated_admission_s": 90.0, "estimated_inference_s": 30.0, "source": "deterministic_deadline_guard"}
+{"time_s": 0.6, "agent_id": "Drone3", "event": "delivered_bid_evidence_reconciled", "task_id": "SEARCH_SECTOR_A", "version": 1, "message_id": "phase8:Drone1:7:tx:7"}
+{"time_s": 0.7, "agent_id": "Drone3", "event": "deadline_bid_submitted", "task_id": "SEARCH_SECTOR_B", "version": 1, "deadline": 1.1, "remaining_s": 0.40000000000000013, "estimated_admission_s": 0.0, "estimated_inference_s": 30.0, "source": "deterministic_deadline_guard"}
+{"time_s": 0.7, "agent_id": "Drone3", "event": "policy_decision_applied", "request_id": "Drone3:1", "decision": {"confidence": 0.8, "outgoing_messages": [], "parameters": {"task_id": "SEARCH_SECTOR_B", "task_version": 1}, "selected_tool": "send_bid", "situation_assessment": {"communication_status": "nominal", "current_risk": "low", "mission_progress": "partial"}}, "tool_result": {"task_id": "SEARCH_SECTOR_B", "task_version": 1, "computed_at": 0.7, "distance_m": 12.94427190999916, "distance_to_entry_m": 8.94427190999916, "travel_time_s": 12.94427190999916, "bid": {"score": 11.333333333333332, "components": {"distance": 10.0, "battery": 0.19999999999999996, "workload": 0.0, "communication": 0.06666666666666665, "mismatch": 0.0}}, "battery_sufficient": true, "communication_reachability": {"Drone1": "recent_contact", "Drone2": "recent_contact", "Drone4": "recent_contact"}, "route_feasible": true, "separation_risk": false, "guardian_reasons": ["bounded_motion_segment"], "full_route_static_feasible": true, "immediate_segment_feasible": true, "future_segments_require_revalidation": true}, "source": "deterministic_policy", "flight_phase": "AIRBORNE"}
+{"time_s": 1.2, "agent_id": "Drone3", "event": "delivered_bid_evidence_reconciled", "task_id": "SEARCH_SECTOR_B", "version": 1, "message_id": "phase8:Drone2:12:tx:14"}
+{"time_s": 1.3, "agent_id": "Drone3", "event": "deadline_bid_submitted", "task_id": "SEARCH_SECTOR_C", "version": 1, "deadline": 1.7, "remaining_s": 0.3999999999999999, "estimated_admission_s": 0.0, "estimated_inference_s": 30.0, "source": "deterministic_deadline_guard"}
+{"time_s": 1.3, "agent_id": "Drone3", "event": "policy_decision_applied", "request_id": "Drone3:2", "decision": {"confidence": 0.8, "outgoing_messages": [], "parameters": {"task_id": "SEARCH_SECTOR_C", "task_version": 1}, "selected_tool": "send_bid", "situation_assessment": {"communication_status": "nominal", "current_risk": "low", "mission_progress": "partial"}}, "tool_result": {"task_id": "SEARCH_SECTOR_C", "task_version": 1, "computed_at": 1.3, "distance_m": 8.0, "distance_to_entry_m": 4.0, "travel_time_s": 8.0, "bid": {"score": 8.333333333333332, "components": {"distance": 6.0, "battery": 0.19999999999999996, "workload": 0.0, "communication": 0.26666666666666666, "mismatch": 0.0}}, "battery_sufficient": true, "communication_reachability": {"Drone1": "recent_contact", "Drone2": "recent_contact", "Drone4": "recent_contact"}, "route_feasible": true, "separation_risk": false, "guardian_reasons": ["bounded_motion_segment"], "full_route_static_feasible": true, "immediate_segment_feasible": true, "future_segments_require_revalidation": true}, "source": "deterministic_policy", "flight_phase": "AIRBORNE"}
+{"time_s": 1.5, "agent_id": "Drone3", "event": "peer_health_changed", "peer": "Drone1", "previous": "HEALTHY", "state": "SUSPECTED"}
+{"time_s": 1.8, "agent_id": "Drone3", "event": "policy_decision_applied", "request_id": "Drone3:3", "decision": {"confidence": 0.8, "outgoing_messages": [], "parameters": {"duration_s": 1.0}, "selected_tool": "hold", "situation_assessment": {"communication_status": "nominal", "current_risk": "low", "mission_progress": "partial"}}, "tool_result": {"status": "guarded_skill_dispatched", "kind": "HOLD"}, "source": "deterministic_policy", "flight_phase": "AIRBORNE"}
+{"time_s": 2.2, "agent_id": "Drone3", "event": "delivered_bid_evidence_reconciled", "task_id": "SEARCH_SECTOR_B", "version": 1, "message_id": "phase8:Drone2:12:tx:28"}
+{"time_s": 2.4, "agent_id": "Drone3", "event": "delivered_bid_evidence_reconciled", "task_id": "SEARCH_SECTOR_D", "version": 1, "message_id": "phase8:Drone4:23:tx:32"}
+{"time_s": 2.9, "agent_id": "Drone3", "event": "policy_decision_applied", "request_id": "Drone3:4", "decision": {"confidence": 0.8, "outgoing_messages": [], "parameters": {"duration_s": 1.0}, "selected_tool": "hold", "situation_assessment": {"communication_status": "nominal", "current_risk": "low", "mission_progress": "partial"}}, "tool_result": {"status": "guarded_skill_dispatched", "kind": "HOLD"}, "source": "deterministic_policy", "flight_phase": "AIRBORNE"}
+{"time_s": 3.2, "agent_id": "Drone3", "event": "delivered_bid_evidence_reconciled", "task_id": "SEARCH_SECTOR_B", "version": 1, "message_id": "phase8:Drone2:12:tx:43"}
+{"time_s": 3.4, "agent_id": "Drone3", "event": "delivered_bid_evidence_reconciled", "task_id": "SEARCH_SECTOR_D", "version": 1, "message_id": "phase8:Drone4:23:tx:49"}
+{"time_s": 3.5, "agent_id": "Drone3", "event": "peer_health_changed", "peer": "Drone1", "previous": "SUSPECTED", "state": "UNREACHABLE"}
+{"time_s": 4.2, "agent_id": "Drone3", "event": "delivered_bid_evidence_reconciled", "task_id": "SEARCH_SECTOR_B", "version": 1, "message_id": "phase8:Drone2:12:tx:58"}
+{"time_s": 4.3, "agent_id": "Drone3", "event": "policy_error", "reason_code": "unsafe_action:communication_or_belief_uncertainty,no_verified_safe_fallback", "correction_attempt": 0, "validation_details": null}
+{"time_s": 4.3, "agent_id": "Drone3", "event": "structured_correction_requested", "reason_code": "unsafe_action:communication_or_belief_uncertainty,no_verified_safe_fallback"}
+{"time_s": 4.4, "agent_id": "Drone3", "event": "delivered_bid_evidence_reconciled", "task_id": "SEARCH_SECTOR_D", "version": 1, "message_id": "phase8:Drone4:23:tx:66"}
+{"time_s": 4.4, "agent_id": "Drone3", "event": "policy_error", "reason_code": "unsafe_action:communication_or_belief_uncertainty,no_verified_safe_fallback", "correction_attempt": 1, "validation_details": null}
+{"time_s": 4.4, "agent_id": "Drone3", "event": "deterministic_fallback", "reason_code": "unsafe_action:communication_or_belief_uncertainty,no_verified_safe_fallback"}
+{"time_s": 4.9, "agent_id": "Drone3", "event": "policy_error", "reason_code": "unsafe_action:communication_or_belief_uncertainty,no_verified_safe_fallback", "correction_attempt": 0, "validation_details": null}
+{"time_s": 4.9, "agent_id": "Drone3", "event": "structured_correction_requested", "reason_code": "unsafe_action:communication_or_belief_uncertainty,no_verified_safe_fallback"}
+{"time_s": 5.0, "agent_id": "Drone3", "event": "policy_error", "reason_code": "unsafe_action:communication_or_belief_uncertainty,no_verified_safe_fallback", "correction_attempt": 1, "validation_details": null}
+{"time_s": 5.0, "agent_id": "Drone3", "event": "deterministic_fallback", "reason_code": "unsafe_action:communication_or_belief_uncertainty,no_verified_safe_fallback"}
+{"time_s": 5.2, "agent_id": "Drone3", "event": "delivered_bid_evidence_reconciled", "task_id": "SEARCH_SECTOR_B", "version": 1, "message_id": "phase8:Drone2:12:tx:73"}
+{"time_s": 5.4, "agent_id": "Drone3", "event": "delivered_bid_evidence_reconciled", "task_id": "SEARCH_SECTOR_D", "version": 1, "message_id": "phase8:Drone4:23:tx:83"}
+{"time_s": 5.5, "agent_id": "Drone3", "event": "policy_error", "reason_code": "unsafe_action:communication_or_belief_uncertainty,no_verified_safe_fallback", "correction_attempt": 0, "validation_details": null}
+{"time_s": 5.5, "agent_id": "Drone3", "event": "structured_correction_requested", "reason_code": "unsafe_action:communication_or_belief_uncertainty,no_verified_safe_fallback"}
+{"time_s": 5.6, "agent_id": "Drone3", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 1, "validation_details": null}
+{"time_s": 5.6, "agent_id": "Drone3", "event": "deterministic_fallback", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 6.1, "agent_id": "Drone3", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 0, "validation_details": null}
+{"time_s": 6.1, "agent_id": "Drone3", "event": "structured_correction_requested", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 6.2, "agent_id": "Drone3", "event": "delivered_bid_evidence_reconciled", "task_id": "SEARCH_SECTOR_B", "version": 1, "message_id": "phase8:Drone2:12:tx:86"}
+{"time_s": 6.2, "agent_id": "Drone3", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 1, "validation_details": null}
+{"time_s": 6.2, "agent_id": "Drone3", "event": "deterministic_fallback", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 6.4, "agent_id": "Drone3", "event": "delivered_bid_evidence_reconciled", "task_id": "SEARCH_SECTOR_D", "version": 1, "message_id": "phase8:Drone4:23:tx:98"}
+{"time_s": 6.7, "agent_id": "Drone3", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 0, "validation_details": null}
+{"time_s": 6.7, "agent_id": "Drone3", "event": "structured_correction_requested", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 6.8, "agent_id": "Drone3", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 1, "validation_details": null}
+{"time_s": 6.8, "agent_id": "Drone3", "event": "deterministic_fallback", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 7.3, "agent_id": "Drone3", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 0, "validation_details": null}
+{"time_s": 7.3, "agent_id": "Drone3", "event": "structured_correction_requested", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 7.4, "agent_id": "Drone3", "event": "delivered_bid_evidence_reconciled", "task_id": "SEARCH_SECTOR_D", "version": 1, "message_id": "phase8:Drone4:23:tx:107"}
+{"time_s": 7.4, "agent_id": "Drone3", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 1, "validation_details": null}
+{"time_s": 7.4, "agent_id": "Drone3", "event": "deterministic_fallback", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 7.9, "agent_id": "Drone3", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 0, "validation_details": null}
+{"time_s": 7.9, "agent_id": "Drone3", "event": "structured_correction_requested", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 8.0, "agent_id": "Drone3", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 1, "validation_details": null}
+{"time_s": 8.0, "agent_id": "Drone3", "event": "deterministic_fallback", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 8.5, "agent_id": "Drone3", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 0, "validation_details": null}
+{"time_s": 8.5, "agent_id": "Drone3", "event": "structured_correction_requested", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 8.6, "agent_id": "Drone3", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 1, "validation_details": null}
+{"time_s": 8.6, "agent_id": "Drone3", "event": "deterministic_fallback", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 9.1, "agent_id": "Drone3", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 0, "validation_details": null}
+{"time_s": 9.1, "agent_id": "Drone3", "event": "structured_correction_requested", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 9.2, "agent_id": "Drone3", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 1, "validation_details": null}
+{"time_s": 9.2, "agent_id": "Drone3", "event": "deterministic_fallback", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 9.7, "agent_id": "Drone3", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 0, "validation_details": null}
+{"time_s": 9.7, "agent_id": "Drone3", "event": "structured_correction_requested", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 9.8, "agent_id": "Drone3", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 1, "validation_details": null}
+{"time_s": 9.8, "agent_id": "Drone3", "event": "deterministic_fallback", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 10.3, "agent_id": "Drone3", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 0, "validation_details": null}
+{"time_s": 10.3, "agent_id": "Drone3", "event": "structured_correction_requested", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 10.4, "agent_id": "Drone3", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 1, "validation_details": null}
+{"time_s": 10.4, "agent_id": "Drone3", "event": "deterministic_fallback", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 10.9, "agent_id": "Drone3", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 0, "validation_details": null}
+{"time_s": 10.9, "agent_id": "Drone3", "event": "structured_correction_requested", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 11.0, "agent_id": "Drone3", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 1, "validation_details": null}
+{"time_s": 11.0, "agent_id": "Drone3", "event": "deterministic_fallback", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 11.0, "agent_id": "Drone3", "event": "temporary_approach_wait", "task_id": "SEARCH_SECTOR_C", "version": 1, "reasons": ["stale_or_future_peer_belief"]}
+{"time_s": 11.5, "agent_id": "Drone3", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 0, "validation_details": null}
+{"time_s": 11.5, "agent_id": "Drone3", "event": "structured_correction_requested", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 11.6, "agent_id": "Drone3", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 1, "validation_details": null}
+{"time_s": 11.6, "agent_id": "Drone3", "event": "deterministic_fallback", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 11.6, "agent_id": "Drone3", "event": "temporary_approach_wait", "task_id": "SEARCH_SECTOR_C", "version": 1, "reasons": ["stale_or_future_peer_belief"]}
+{"time_s": 12.1, "agent_id": "Drone3", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 0, "validation_details": null}
+{"time_s": 12.1, "agent_id": "Drone3", "event": "structured_correction_requested", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 12.2, "agent_id": "Drone3", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 1, "validation_details": null}
+{"time_s": 12.2, "agent_id": "Drone3", "event": "deterministic_fallback", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 12.7, "agent_id": "Drone3", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 0, "validation_details": null}
+{"time_s": 12.7, "agent_id": "Drone3", "event": "structured_correction_requested", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 12.8, "agent_id": "Drone3", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 1, "validation_details": null}
+{"time_s": 12.8, "agent_id": "Drone3", "event": "deterministic_fallback", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 13.3, "agent_id": "Drone3", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 0, "validation_details": null}
+{"time_s": 13.3, "agent_id": "Drone3", "event": "structured_correction_requested", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 13.4, "agent_id": "Drone3", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 1, "validation_details": null}
+{"time_s": 13.4, "agent_id": "Drone3", "event": "deterministic_fallback", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 13.9, "agent_id": "Drone3", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 0, "validation_details": null}
+{"time_s": 13.9, "agent_id": "Drone3", "event": "structured_correction_requested", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 14.0, "agent_id": "Drone3", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 1, "validation_details": null}
+{"time_s": 14.0, "agent_id": "Drone3", "event": "deterministic_fallback", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 14.5, "agent_id": "Drone3", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 0, "validation_details": null}
+{"time_s": 14.5, "agent_id": "Drone3", "event": "structured_correction_requested", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 14.6, "agent_id": "Drone3", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 1, "validation_details": null}
+{"time_s": 14.6, "agent_id": "Drone3", "event": "deterministic_fallback", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 15.1, "agent_id": "Drone3", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 0, "validation_details": null}
+{"time_s": 15.1, "agent_id": "Drone3", "event": "structured_correction_requested", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 15.2, "agent_id": "Drone3", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 1, "validation_details": null}
+{"time_s": 15.2, "agent_id": "Drone3", "event": "deterministic_fallback", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 15.7, "agent_id": "Drone3", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 0, "validation_details": null}
+{"time_s": 15.7, "agent_id": "Drone3", "event": "structured_correction_requested", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 15.8, "agent_id": "Drone3", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 1, "validation_details": null}
+{"time_s": 15.8, "agent_id": "Drone3", "event": "deterministic_fallback", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 16.3, "agent_id": "Drone3", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 0, "validation_details": null}
+{"time_s": 16.3, "agent_id": "Drone3", "event": "structured_correction_requested", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 16.4, "agent_id": "Drone3", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 1, "validation_details": null}
+{"time_s": 16.4, "agent_id": "Drone3", "event": "deterministic_fallback", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 16.9, "agent_id": "Drone3", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 0, "validation_details": null}
+{"time_s": 16.9, "agent_id": "Drone3", "event": "structured_correction_requested", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 17.0, "agent_id": "Drone3", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 1, "validation_details": null}
+{"time_s": 17.0, "agent_id": "Drone3", "event": "deterministic_fallback", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 17.5, "agent_id": "Drone3", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 0, "validation_details": null}
+{"time_s": 17.5, "agent_id": "Drone3", "event": "structured_correction_requested", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 17.6, "agent_id": "Drone3", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 1, "validation_details": null}
+{"time_s": 17.6, "agent_id": "Drone3", "event": "deterministic_fallback", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 18.1, "agent_id": "Drone3", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 0, "validation_details": null}
+{"time_s": 18.1, "agent_id": "Drone3", "event": "structured_correction_requested", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 18.2, "agent_id": "Drone3", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 1, "validation_details": null}
+{"time_s": 18.2, "agent_id": "Drone3", "event": "deterministic_fallback", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 18.7, "agent_id": "Drone3", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 0, "validation_details": null}
+{"time_s": 18.7, "agent_id": "Drone3", "event": "structured_correction_requested", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 18.8, "agent_id": "Drone3", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 1, "validation_details": null}
+{"time_s": 18.8, "agent_id": "Drone3", "event": "deterministic_fallback", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 19.3, "agent_id": "Drone3", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 0, "validation_details": null}
+{"time_s": 19.3, "agent_id": "Drone3", "event": "structured_correction_requested", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 19.4, "agent_id": "Drone3", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 1, "validation_details": null}
+{"time_s": 19.4, "agent_id": "Drone3", "event": "deterministic_fallback", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 19.9, "agent_id": "Drone3", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 0, "validation_details": null}
+{"time_s": 19.9, "agent_id": "Drone3", "event": "structured_correction_requested", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 20.0, "agent_id": "Drone3", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 1, "validation_details": null}
+{"time_s": 20.0, "agent_id": "Drone3", "event": "deterministic_fallback", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 20.5, "agent_id": "Drone3", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 0, "validation_details": null}
+{"time_s": 20.5, "agent_id": "Drone3", "event": "structured_correction_requested", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 20.6, "agent_id": "Drone3", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 1, "validation_details": null}
+{"time_s": 20.6, "agent_id": "Drone3", "event": "deterministic_fallback", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 21.1, "agent_id": "Drone3", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 0, "validation_details": null}
+{"time_s": 21.1, "agent_id": "Drone3", "event": "structured_correction_requested", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 21.2, "agent_id": "Drone3", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 1, "validation_details": null}
+{"time_s": 21.2, "agent_id": "Drone3", "event": "deterministic_fallback", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 21.7, "agent_id": "Drone3", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 0, "validation_details": null}
+{"time_s": 21.7, "agent_id": "Drone3", "event": "structured_correction_requested", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 21.8, "agent_id": "Drone3", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 1, "validation_details": null}
+{"time_s": 21.8, "agent_id": "Drone3", "event": "deterministic_fallback", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 22.3, "agent_id": "Drone3", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 0, "validation_details": null}
+{"time_s": 22.3, "agent_id": "Drone3", "event": "structured_correction_requested", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 22.4, "agent_id": "Drone3", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 1, "validation_details": null}
+{"time_s": 22.4, "agent_id": "Drone3", "event": "deterministic_fallback", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 22.9, "agent_id": "Drone3", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 0, "validation_details": null}
+{"time_s": 22.9, "agent_id": "Drone3", "event": "structured_correction_requested", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 23.0, "agent_id": "Drone3", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 1, "validation_details": null}
+{"time_s": 23.0, "agent_id": "Drone3", "event": "deterministic_fallback", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 23.5, "agent_id": "Drone3", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 0, "validation_details": null}
+{"time_s": 23.5, "agent_id": "Drone3", "event": "structured_correction_requested", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 23.6, "agent_id": "Drone3", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 1, "validation_details": null}
+{"time_s": 23.6, "agent_id": "Drone3", "event": "deterministic_fallback", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 24.1, "agent_id": "Drone3", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 0, "validation_details": null}
+{"time_s": 24.1, "agent_id": "Drone3", "event": "structured_correction_requested", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 24.2, "agent_id": "Drone3", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 1, "validation_details": null}
+{"time_s": 24.2, "agent_id": "Drone3", "event": "deterministic_fallback", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 24.7, "agent_id": "Drone3", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 0, "validation_details": null}
+{"time_s": 24.7, "agent_id": "Drone3", "event": "structured_correction_requested", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 24.8, "agent_id": "Drone3", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 1, "validation_details": null}
+{"time_s": 24.8, "agent_id": "Drone3", "event": "deterministic_fallback", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 25.3, "agent_id": "Drone3", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 0, "validation_details": null}
+{"time_s": 25.3, "agent_id": "Drone3", "event": "structured_correction_requested", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 25.4, "agent_id": "Drone3", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 1, "validation_details": null}
+{"time_s": 25.4, "agent_id": "Drone3", "event": "deterministic_fallback", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 25.9, "agent_id": "Drone3", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 0, "validation_details": null}
+{"time_s": 25.9, "agent_id": "Drone3", "event": "structured_correction_requested", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 26.0, "agent_id": "Drone3", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 1, "validation_details": null}
+{"time_s": 26.0, "agent_id": "Drone3", "event": "deterministic_fallback", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 26.5, "agent_id": "Drone3", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 0, "validation_details": null}
+{"time_s": 26.5, "agent_id": "Drone3", "event": "structured_correction_requested", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 26.6, "agent_id": "Drone3", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 1, "validation_details": null}
+{"time_s": 26.6, "agent_id": "Drone3", "event": "deterministic_fallback", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 27.1, "agent_id": "Drone3", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 0, "validation_details": null}
+{"time_s": 27.1, "agent_id": "Drone3", "event": "structured_correction_requested", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 27.2, "agent_id": "Drone3", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 1, "validation_details": null}
+{"time_s": 27.2, "agent_id": "Drone3", "event": "deterministic_fallback", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 27.7, "agent_id": "Drone3", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 0, "validation_details": null}
+{"time_s": 27.7, "agent_id": "Drone3", "event": "structured_correction_requested", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 27.8, "agent_id": "Drone3", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 1, "validation_details": null}
+{"time_s": 27.8, "agent_id": "Drone3", "event": "deterministic_fallback", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 28.3, "agent_id": "Drone3", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 0, "validation_details": null}
+{"time_s": 28.3, "agent_id": "Drone3", "event": "structured_correction_requested", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 28.4, "agent_id": "Drone3", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 1, "validation_details": null}
+{"time_s": 28.4, "agent_id": "Drone3", "event": "deterministic_fallback", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 28.9, "agent_id": "Drone3", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 0, "validation_details": null}
+{"time_s": 28.9, "agent_id": "Drone3", "event": "structured_correction_requested", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 29.0, "agent_id": "Drone3", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 1, "validation_details": null}
+{"time_s": 29.0, "agent_id": "Drone3", "event": "deterministic_fallback", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 29.5, "agent_id": "Drone3", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 0, "validation_details": null}
+{"time_s": 29.5, "agent_id": "Drone3", "event": "structured_correction_requested", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 29.6, "agent_id": "Drone3", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 1, "validation_details": null}
+{"time_s": 29.6, "agent_id": "Drone3", "event": "deterministic_fallback", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 30.1, "agent_id": "Drone3", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 0, "validation_details": null}
+{"time_s": 30.1, "agent_id": "Drone3", "event": "structured_correction_requested", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 30.2, "agent_id": "Drone3", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 1, "validation_details": null}
+{"time_s": 30.2, "agent_id": "Drone3", "event": "deterministic_fallback", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 30.7, "agent_id": "Drone3", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 0, "validation_details": null}
+{"time_s": 30.7, "agent_id": "Drone3", "event": "structured_correction_requested", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 30.8, "agent_id": "Drone3", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 1, "validation_details": null}
+{"time_s": 30.8, "agent_id": "Drone3", "event": "deterministic_fallback", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 31.3, "agent_id": "Drone3", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 0, "validation_details": null}
+{"time_s": 31.3, "agent_id": "Drone3", "event": "structured_correction_requested", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 31.4, "agent_id": "Drone3", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 1, "validation_details": null}
+{"time_s": 31.4, "agent_id": "Drone3", "event": "deterministic_fallback", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 31.9, "agent_id": "Drone3", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 0, "validation_details": null}
+{"time_s": 31.9, "agent_id": "Drone3", "event": "structured_correction_requested", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 32.0, "agent_id": "Drone3", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 1, "validation_details": null}
+{"time_s": 32.0, "agent_id": "Drone3", "event": "deterministic_fallback", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 32.5, "agent_id": "Drone3", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 0, "validation_details": null}
+{"time_s": 32.5, "agent_id": "Drone3", "event": "structured_correction_requested", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 32.6, "agent_id": "Drone3", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 1, "validation_details": null}
+{"time_s": 32.6, "agent_id": "Drone3", "event": "deterministic_fallback", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 33.1, "agent_id": "Drone3", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 0, "validation_details": null}
+{"time_s": 33.1, "agent_id": "Drone3", "event": "structured_correction_requested", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 33.2, "agent_id": "Drone3", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 1, "validation_details": null}
+{"time_s": 33.2, "agent_id": "Drone3", "event": "deterministic_fallback", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 33.7, "agent_id": "Drone3", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 0, "validation_details": null}
+{"time_s": 33.7, "agent_id": "Drone3", "event": "structured_correction_requested", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 33.8, "agent_id": "Drone3", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 1, "validation_details": null}
+{"time_s": 33.8, "agent_id": "Drone3", "event": "deterministic_fallback", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 34.3, "agent_id": "Drone3", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 0, "validation_details": null}
+{"time_s": 34.3, "agent_id": "Drone3", "event": "structured_correction_requested", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 34.4, "agent_id": "Drone3", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 1, "validation_details": null}
+{"time_s": 34.4, "agent_id": "Drone3", "event": "deterministic_fallback", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 34.9, "agent_id": "Drone3", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 0, "validation_details": null}
+{"time_s": 34.9, "agent_id": "Drone3", "event": "structured_correction_requested", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 35.0, "agent_id": "Drone3", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 1, "validation_details": null}
+{"time_s": 35.0, "agent_id": "Drone3", "event": "deterministic_fallback", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 35.5, "agent_id": "Drone3", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 0, "validation_details": null}
+{"time_s": 35.5, "agent_id": "Drone3", "event": "structured_correction_requested", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 35.6, "agent_id": "Drone3", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 1, "validation_details": null}
+{"time_s": 35.6, "agent_id": "Drone3", "event": "deterministic_fallback", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 36.1, "agent_id": "Drone3", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 0, "validation_details": null}
+{"time_s": 36.1, "agent_id": "Drone3", "event": "structured_correction_requested", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 36.2, "agent_id": "Drone3", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 1, "validation_details": null}
+{"time_s": 36.2, "agent_id": "Drone3", "event": "deterministic_fallback", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 36.7, "agent_id": "Drone3", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 0, "validation_details": null}
+{"time_s": 36.7, "agent_id": "Drone3", "event": "structured_correction_requested", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 36.8, "agent_id": "Drone3", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 1, "validation_details": null}
+{"time_s": 36.8, "agent_id": "Drone3", "event": "deterministic_fallback", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 37.3, "agent_id": "Drone3", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 0, "validation_details": null}
+{"time_s": 37.3, "agent_id": "Drone3", "event": "structured_correction_requested", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 37.4, "agent_id": "Drone3", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 1, "validation_details": null}
+{"time_s": 37.4, "agent_id": "Drone3", "event": "deterministic_fallback", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 37.9, "agent_id": "Drone3", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 0, "validation_details": null}
+{"time_s": 37.9, "agent_id": "Drone3", "event": "structured_correction_requested", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 38.0, "agent_id": "Drone3", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 1, "validation_details": null}
+{"time_s": 38.0, "agent_id": "Drone3", "event": "deterministic_fallback", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 38.5, "agent_id": "Drone3", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 0, "validation_details": null}
+{"time_s": 38.5, "agent_id": "Drone3", "event": "structured_correction_requested", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 38.6, "agent_id": "Drone3", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 1, "validation_details": null}
+{"time_s": 38.6, "agent_id": "Drone3", "event": "deterministic_fallback", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 39.1, "agent_id": "Drone3", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 0, "validation_details": null}
+{"time_s": 39.1, "agent_id": "Drone3", "event": "structured_correction_requested", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 39.2, "agent_id": "Drone3", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 1, "validation_details": null}
+{"time_s": 39.2, "agent_id": "Drone3", "event": "deterministic_fallback", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 39.7, "agent_id": "Drone3", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 0, "validation_details": null}
+{"time_s": 39.7, "agent_id": "Drone3", "event": "structured_correction_requested", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 39.8, "agent_id": "Drone3", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 1, "validation_details": null}
+{"time_s": 39.8, "agent_id": "Drone3", "event": "deterministic_fallback", "reason_code": "unsafe_action:stale_or_future_peer_belief"}

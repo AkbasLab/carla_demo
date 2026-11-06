@@ -1,0 +1,98 @@
+{
+  "agent_id": "Drone3",
+  "memory": [
+    {
+      "time_s": 0.7,
+      "selected_tool": "send_bid",
+      "parameters": {
+        "task_id": "SEARCH_SECTOR_B",
+        "task_version": 1
+      },
+      "result": {
+        "task_id": "SEARCH_SECTOR_B",
+        "task_version": 1,
+        "computed_at": 0.7,
+        "distance_m": 12.94427190999916,
+        "distance_to_entry_m": 8.94427190999916,
+        "travel_time_s": 12.94427190999916,
+        "bid": {
+          "score": 11.333333333333332,
+          "components": {
+            "distance": 10.0,
+            "battery": 0.19999999999999996,
+            "workload": 0.0,
+            "communication": 0.06666666666666665,
+            "mismatch": 0.0
+          }
+        },
+        "battery_sufficient": true,
+        "communication_reachability": {
+          "Drone1": "recent_contact",
+          "Drone2": "recent_contact",
+          "Drone4": "recent_contact"
+        },
+        "route_feasible": true,
+        "separation_risk": false,
+        "guardian_reasons": [
+          "bounded_motion_segment"
+        ],
+        "full_route_static_feasible": true,
+        "immediate_segment_feasible": true,
+        "future_segments_require_revalidation": true
+      }
+    },
+    {
+      "time_s": 1.3,
+      "selected_tool": "send_bid",
+      "parameters": {
+        "task_id": "SEARCH_SECTOR_C",
+        "task_version": 1
+      },
+      "result": {
+        "task_id": "SEARCH_SECTOR_C",
+        "task_version": 1,
+        "computed_at": 1.3,
+        "distance_m": 8.0,
+        "distance_to_entry_m": 4.0,
+        "travel_time_s": 8.0,
+        "bid": {
+          "score": 7.5,
+          "components": {
+            "distance": 6.0,
+            "battery": 0.19999999999999996,
+            "workload": 0.0,
+            "communication": 0.10000000000000002,
+            "mismatch": 0.0
+          }
+        },
+        "battery_sufficient": true,
+        "communication_reachability": {
+          "Drone1": "recent_contact",
+          "Drone2": "recent_contact",
+          "Drone4": "recent_contact"
+        },
+        "route_feasible": true,
+        "separation_risk": false,
+        "guardian_reasons": [
+          "bounded_motion_segment"
+        ],
+        "full_route_static_feasible": true,
+        "immediate_segment_feasible": true,
+        "future_segments_require_revalidation": true
+      }
+    },
+    {
+      "time_s": 2.3,
+      "selected_tool": "start_search",
+      "parameters": {
+        "task_id": "SEARCH_SECTOR_C",
+        "task_version": 1
+      },
+      "result": {
+        "status": "search_authorized",
+        "task_id": "SEARCH_SECTOR_C",
+        "version": 1
+      }
+    }
+  ]
+}
