@@ -1,1 +1,98 @@
-[]
+[
+  {
+    "time_s": 0.0027851079357787967,
+    "vehicle_id": "Drone1",
+    "observed_state": {
+      "vehicle_id": "Drone1",
+      "position": [
+        -0.05501953139901161,
+        0.05615234375,
+        31.24532127380371
+      ],
+      "observed_at": 5.378969945013523e-06,
+      "battery_percent": 80.0,
+      "home": [
+        0,
+        0,
+        25
+      ],
+      "peers": {
+        "Drone2": {
+          "position": [
+            -0.05501953139901161,
+            5.05615234375,
+            31.244571685791016
+          ],
+          "velocity": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "observed_at": 0.0007541229715570807
+        },
+        "Drone3": {
+          "position": [
+            -0.05501953139901161,
+            10.05615234375,
+            31.24382209777832
+          ],
+          "velocity": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "observed_at": 0.001442597946152091
+        },
+        "Drone4": {
+          "position": [
+            -0.052021484822034836,
+            15.053105466067791,
+            29.234577178955078
+          ],
+          "velocity": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "observed_at": 0.002169222920201719
+        }
+      },
+      "expected_peers": [
+        "Drone2",
+        "Drone3",
+        "Drone4"
+      ],
+      "flight_phase": "GROUNDED",
+      "communication": "HEALTHY",
+      "belief_confidence": 1.0
+    },
+    "proposed_action": {
+      "command_id": "regression:1",
+      "vehicle_id": "Drone1",
+      "kind": "TAKEOFF",
+      "issued_at": 0.0027851079357787967,
+      "valid_until": 30.00278510793578,
+      "waypoints": [
+        [
+          0,
+          0,
+          25
+        ]
+      ],
+      "speed_mps": 1.0,
+      "duration_s": 1.0,
+      "source": "rule_policy"
+    },
+    "outcome": "REJECT_AND_REPLAN",
+    "reasons": [
+      "geofence"
+    ],
+    "selected_action": null,
+    "fallback": null,
+    "fallback_rejections": [],
+    "mission_effect": {
+      "executed": false,
+      "status": "replan_required"
+    }
+  }
+]
