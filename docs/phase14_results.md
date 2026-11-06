@@ -52,3 +52,12 @@ No software crash occurred. The incomplete replay demonstrates preservation of u
 These results validate the automatic runner and logging for mock experiments. They do not establish live CARLA–AirSim performance or physical flight safety. The reviewed batches also lack Phase 15 metric-registration/evaluation outputs and should not be presented as predeclared Phase 15 evaluations.
 
 Phase 14 can be treated as validated for this mock setup, with the additional event and crash cases remaining as coverage extensions.
+
+
+## Visual summary
+
+![Phase 14 logging volume, offline outcomes and separate pinned-model evidence](../results/phase14/results_analysis/logging_results.png)
+
+[Download PDF](../results/phase14/results_analysis/logging_results.pdf).
+
+The triangle marks the incomplete replay observation endpoint, not a successful completion time. The pinned run uses a separate wall clock. Event volume demonstrates retained instrumentation, not architectural efficiency. These figures summarize the original Phase 14 batches; the newer Phase 15 pinned run is analyzed separately in [Phase 15 results](phase15_results.md).
