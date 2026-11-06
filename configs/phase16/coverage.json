@@ -1,0 +1,92 @@
+{
+  "schema_version": 1,
+  "layers": {
+    "unit": {
+      "task_cost": [
+        "test_phase8_allocation.AllocationTests.test_cost_components_and_ineligibility"
+      ],
+      "tie_breaking": [
+        "test_phase8_allocation.AllocationTests.test_claim_order_independent"
+      ],
+      "lease_expiration": [
+        "test_phase8_allocation.AllocationTests.test_expired_lease_not_revived_by_late_progress"
+      ],
+      "message_serialization": [
+        "test_phase7_protocol.ProtocolTests.test_all_types_round_trip"
+      ],
+      "message_expiration": [
+        "test_phase7_protocol.ProtocolTests.test_expiry_and_log_fields"
+      ],
+      "packet_loss_sampling": [
+        "test_phase10_network.NetworkTests.test_statistical_loss_latency_and_reproducibility"
+      ],
+      "latency_scheduling": [
+        "test_phase10_network.NetworkTests.test_scheduled_delivery_and_expiration",
+        "test_phase10_network.NetworkTests.test_jitter_reorders_by_network_arrival"
+      ],
+      "role_transitions": [
+        "test_phase9_roles.RoleTests.test_scout_can_become_relay_and_reprioritize"
+      ],
+      "belief_aging": [
+        "test_phase9_roles.HealthTests.test_silence_never_means_confirmed_failure",
+        "test_phase11_guardian.GuardianTests.test_stale_missing_beliefs_and_low_confidence"
+      ],
+      "geofence": [
+        "test_phase11_guardian.GuardianTests.test_all_waypoints_and_segments"
+      ],
+      "battery": [
+        "test_phase11_guardian.GuardianTests.test_battery_fallbacks_and_energy_budget"
+      ],
+      "invalid_llm_output": [
+        "test_phase12_agents.AgentTests.test_schema_blocks_code_unknown_tools_extra_params_and_nan"
+      ]
+    },
+    "integration": {
+      "two_agents_two_tasks": [
+        "test_phase16_verification.FlightRegressionTests.test_all_five_cases_use_observed_motion_and_guarded_effects"
+      ],
+      "four_agents_four_tasks": [
+        "test_phase8_allocation.AllocationTests.test_mock_exit_and_repeatability",
+        "test_phase16_verification.FlightRegressionTests.test_all_five_cases_use_observed_motion_and_guarded_effects"
+      ],
+      "disappearance_and_reassignment": [
+        "test_phase8_allocation.AllocationTests.test_silent_owner_reassigned",
+        "test_phase16_verification.FlightRegressionTests.test_all_five_cases_use_observed_motion_and_guarded_effects"
+      ],
+      "partition": [
+        "test_phase16_verification.TransportIntegrationTests.test_partition_prevents_cross_group_receipt_until_link_restored",
+        "test_phase13_comparison.ComparisonTests.test_partitioned_controller_reports_are_not_hidden_global_state"
+      ],
+      "delayed_claim_conflict": [
+        "test_phase16_verification.TransportIntegrationTests.test_delayed_competing_claims_converge_to_lower_valid_bid"
+      ],
+      "relay_replacement": [
+        "test_phase9_roles.RoleTests.test_relay_loss_elects_reserve"
+      ],
+      "malformed_llm_fallback": [
+        "test_phase12_agents.AgentTests.test_one_correction_then_deterministic_fallback"
+      ]
+    },
+    "determinism": {
+      "network_events": [
+        "test_phase10_network.NetworkTests.test_statistical_loss_latency_and_reproducibility",
+        "test_phase13_comparison.ComparisonTests.test_seeded_network_replay_reproduces_actual_message_outcomes"
+      ],
+      "targets_and_faults": [
+        "test_phase16_verification.DeterminismTests.test_configured_targets_and_injected_fault_schedule_repeat",
+        "test_phase10_network.NetworkTests.test_target_and_failure_scenario_replay"
+      ],
+      "policies_and_motion": [
+        "test_phase16_verification.DeterminismTests.test_deterministic_execution_repeats_across_process_hash_seeds",
+        "test_phase10_network.NetworkTests.test_mission_replay_all_conditions"
+      ]
+    }
+  },
+  "manual_airsim_cases": [
+    "single_waypoint",
+    "two_nonconflicting",
+    "four_search",
+    "reassignment",
+    "return_home"
+  ]
+}

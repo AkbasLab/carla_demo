@@ -4,7 +4,7 @@ A modular multi-UAV research framework for search-and-relay operations using CAR
 
 LLM benchmarks and command-generation experiments are separate from the deterministic coordination baselines: **Phases 7–11 do not require an LLM**. Mock task completion, live waypoint execution, communication delivery, and flight safety are distinct measurements.
 
-## Project phases: 1–15
+## Project phases: 1–16
 
 | Phase | Focus | Main entry point | Execution / evidence |
 |---|---|---|---|
@@ -23,6 +23,7 @@ LLM benchmarks and command-generation experiments are separate from the determin
 | 13 | Configurable comparison architectures A–D and ablations | `scripts/run_phase13_comparison.py` | Shared mock mission, network, executor and guardian; actual-model comparisons still required |
 | 14 | Automatic experiment batches and complete logging | `scripts/run_phase14_experiments.py` | Per-run provenance, JSONL events and retained unsuccessful runs; validated on mock flight |
 | 15 | Predefined evaluation metrics and evidence checks | `scripts/evaluate_phase15_metrics.py` or Phase 14 `--evaluate` | Pre-run metric registration; validated definitions, censoring, matched references and missing-data handling |
+| 16 | Unit, mock integration, determinism and flight regressions | `scripts/run_phase16_verification.py` | Simulator-free requirement map and PR CI; five opt-in AirSim regression cases remain separately validated |
 
 ### Phase 1: environment setup, foundation, and LLM baseline
 
@@ -413,3 +414,19 @@ python scripts/evaluate_phase15_metrics.py \
 python -m unittest discover -s tests -p 'test_phase14_runner.py' -v
 python -m unittest discover -s tests -p 'test_phase15_metrics.py' -v
 ```
+
+## Phase 16: verification and regression testing
+
+The simulator-free verification runner maps the Phase 16 requirements to actual tests, runs the repository suite, and retains per-test outcomes, source hashes, a coverage map and an execution log. It covers costs/tie breaking, leases, message serialization/expiration, loss/latency, roles, belief aging, guardian rules and invalid-policy fallback. Integration tests include delayed claim conflicts, partitions and relay replacement. A process-level replay checks identical motion, message and guardian traces under different Python hash seeds.
+
+```bash
+python -m pip install -r requirements-test.txt
+python scripts/run_phase16_verification.py \
+  --output-dir results/phase16/verification_run2
+```
+
+**Local validation: 236 tests passed**, with zero failures, errors or skips, and all five standalone mock regressions passed. Live AirSim runs and hosted CI execution remain separate.
+
+Five observed-flight regressions use the existing allocator, waypoint executor, adapters and guardian: single drone, two drones, four-drone search, task takeover and return-home fallback. They can run with the kinematic mock or manually against calibrated AirSim using `scripts/run_phase16_regression.py`. The regression safety observer retains telemetry for a stopped drone; this reliable-observation test does not resolve the degraded-belief recovery limitation reported in Phase 15.
+
+The GitHub Actions workflow runs simulator-free tests on pull requests and `main` pushes for Python 3.11/3.12. Live tests require an explicit manual command and remain separate from CI and physical safety claims. See the [Phase 16 guide and live commands](docs/phase16_verification.md) and [executable requirement map](configs/phase16/coverage.json).

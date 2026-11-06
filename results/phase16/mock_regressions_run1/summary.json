@@ -1,0 +1,96 @@
+[
+  {
+    "case": "single_waypoint",
+    "backend": "mock",
+    "passed": true,
+    "mission_complete": true,
+    "error": null,
+    "duplicate_completions": 0,
+    "failed_agent": null,
+    "affected_tasks": [],
+    "recovered_tasks": [],
+    "return_home_observed": false,
+    "cleanup_warnings": [],
+    "limitations": [
+      "Kinematic mock is not live evidence",
+      "Perfect transport and shared safety observer; not decentralized safety estimation",
+      "Live cleanup requests hover and retains API control; no landing verification"
+    ]
+  },
+  {
+    "case": "two_nonconflicting",
+    "backend": "mock",
+    "passed": true,
+    "mission_complete": true,
+    "error": null,
+    "duplicate_completions": 0,
+    "failed_agent": null,
+    "affected_tasks": [],
+    "recovered_tasks": [],
+    "return_home_observed": false,
+    "cleanup_warnings": [],
+    "limitations": [
+      "Kinematic mock is not live evidence",
+      "Perfect transport and shared safety observer; not decentralized safety estimation",
+      "Live cleanup requests hover and retains API control; no landing verification"
+    ]
+  },
+  {
+    "case": "four_search",
+    "backend": "mock",
+    "passed": true,
+    "mission_complete": true,
+    "error": null,
+    "duplicate_completions": 0,
+    "failed_agent": null,
+    "affected_tasks": [],
+    "recovered_tasks": [],
+    "return_home_observed": false,
+    "cleanup_warnings": [],
+    "limitations": [
+      "Kinematic mock is not live evidence",
+      "Perfect transport and shared safety observer; not decentralized safety estimation",
+      "Live cleanup requests hover and retains API control; no landing verification"
+    ]
+  },
+  {
+    "case": "reassignment",
+    "backend": "mock",
+    "passed": true,
+    "mission_complete": true,
+    "error": null,
+    "duplicate_completions": 0,
+    "failed_agent": "Drone1",
+    "affected_tasks": [
+      "SEARCH_SECTOR_A"
+    ],
+    "recovered_tasks": [
+      "SEARCH_SECTOR_A"
+    ],
+    "return_home_observed": false,
+    "cleanup_warnings": [],
+    "limitations": [
+      "Kinematic mock is not live evidence",
+      "Perfect transport and shared safety observer; not decentralized safety estimation",
+      "Live cleanup requests hover and retains API control; no landing verification"
+    ]
+  },
+  {
+    "case": "return_home",
+    "backend": "mock",
+    "passed": true,
+    "mission_complete": true,
+    "error": null,
+    "duplicate_completions": 0,
+    "failed_agent": null,
+    "affected_tasks": [],
+    "recovered_tasks": [],
+    "return_home_observed": true,
+    "cleanup_warnings": [],
+    "limitations": [
+      "Kinematic mock is not live evidence",
+      "Perfect transport and shared safety observer; not decentralized safety estimation",
+      "Live cleanup requests hover and retains API control; no landing verification"
+    ]
+  }
+]

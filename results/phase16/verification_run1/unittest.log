@@ -1,0 +1,1254 @@
+test_missing_telemetry_is_explicit (test_experiment_d_plots.PlotTests.test_missing_telemetry_is_explicit) ... ok
+test_path_length_differs_from_displacement (test_experiment_d_plots.PlotTests.test_path_length_differs_from_displacement) ... ok
+test_render_with_and_without_recovery (test_experiment_d_plots.PlotTests.test_render_with_and_without_recovery) ... ok
+test_expansion_preserves_other_configuration_and_source (test_experiment_d_recovery.BoundExpansionTests.test_expansion_preserves_other_configuration_and_source) ... ok
+test_exact_intersection_not_midpoint (test_experiment_d_recovery.GeometryTests.test_exact_intersection_not_midpoint) ... ok
+test_fail_closed (test_experiment_d_recovery.GeometryTests.test_fail_closed) ... ok
+test_nonzero_ground_origin (test_experiment_d_recovery.GeometryTests.test_nonzero_ground_origin) ... ok
+test_route_and_corridor (test_experiment_d_recovery.GeometryTests.test_route_and_corridor) ... ok
+test_collision_blocks_landing (test_experiment_d_recovery.IntegrationTests.test_collision_blocks_landing) ... [D] Effective AirSim NED flight bounds: {'x_min': -20, 'x_max': 20, 'y_min': -20, 'y_max': 20, 'z_min': 15, 'z_max': 29}
+[D] 0.1s phase=mission heartbeat=True
+[D] 2.00s heartbeat_timeout {'loss_streak_start_s': 1.0, 'delay_from_last_heartbeat_s': 1.0999999999999996}
+[D] 2.00s hover_command {}
+[D] 2.00s recovery_blocked {'reasons': ['collision']}
+[D] Unlanded vehicle hovering under API control; manage it after the test.
+ok
+test_disabled_recovery_detects_but_never_lands (test_experiment_d_recovery.IntegrationTests.test_disabled_recovery_detects_but_never_lands) ... [D] Effective AirSim NED flight bounds: {'x_min': -20, 'x_max': 20, 'y_min': -20, 'y_max': 20, 'z_min': 15, 'z_max': 29}
+[D] 0.1s phase=mission heartbeat=True
+[D] 2.00s heartbeat_timeout {'loss_streak_start_s': 1.0, 'delay_from_last_heartbeat_s': 1.0999999999999996}
+[D] Unlanded vehicle hovering under API control; manage it after the test.
+ok
+test_llm_late_command_cannot_cancel_hover (test_experiment_d_recovery.IntegrationTests.test_llm_late_command_cannot_cancel_hover) ... [D] Effective AirSim NED flight bounds: {'x_min': -20, 'x_max': 20, 'y_min': -20, 'y_max': 20, 'z_min': 15, 'z_max': 29}
+[D] 0.1s phase=mission heartbeat=True
+[D] 0.20s mission_command_accepted {'sequence': 1}
+[D] 0.20s mission_command_dispatched {'sequence': 1}
+[D] 2.00s heartbeat_timeout {'loss_streak_start_s': 1.0, 'delay_from_last_heartbeat_s': 1.0999999999999996}
+[D] 2.00s hover_command {}
+[D] 2.50s stable_hover_observed {}
+[D] 3.60s mission_command_suppressed_after_timeout {'sequence': 2}
+[D] Unlanded vehicle hovering under API control; manage it after the test.
+ok
+test_no_loss_no_recovery_or_cleanup_landing (test_experiment_d_recovery.IntegrationTests.test_no_loss_no_recovery_or_cleanup_landing) ... [D] Effective AirSim NED flight bounds: {'x_min': -20, 'x_max': 20, 'y_min': -20, 'y_max': 20, 'z_min': 15, 'z_max': 29}
+[D] 0.1s phase=mission heartbeat=True
+[D] Unlanded vehicle hovering under API control; manage it after the test.
+ok
+test_oba_lands_after_timeout_and_observation (test_experiment_d_recovery.IntegrationTests.test_oba_lands_after_timeout_and_observation) ... [D] Effective AirSim NED flight bounds: {'x_min': -20, 'x_max': 20, 'y_min': -20, 'y_max': 20, 'z_min': 15, 'z_max': 29}
+[D] 0.1s phase=mission heartbeat=True
+[D] 2.00s heartbeat_timeout {'loss_streak_start_s': 1.0, 'delay_from_last_heartbeat_s': 1.0999999999999996}
+[D] 2.00s hover_command {}
+[D] 2.10s approved_return_command {'target': (0, 0, 25.0)}
+[D] 2.20s approved_land_command {}
+[D] 2.60s landing_observed {}
+[D] Cleanup excluded from metrics; landed vehicle disarmed.
+ok
+test_expiry_drop_order_and_latch (test_llm_commands.CommandTests.test_expiry_drop_order_and_latch) ... ok
+test_schema_rejects_invalid_and_nonfinite (test_llm_commands.CommandTests.test_schema_rejects_invalid_and_nonfinite) ... ok
+test_slow_generation_never_blocks_poll (test_llm_commands.CommandTests.test_slow_generation_never_blocks_poll) ... ok
+test_base_station_partition_and_expiry_report_checks (test_phase10_network.NetworkTests.test_base_station_partition_and_expiry_report_checks) ... ok
+test_egress_bandwidth_and_rate (test_phase10_network.NetworkTests.test_egress_bandwidth_and_rate) ... ok
+test_invalid_configuration (test_phase10_network.NetworkTests.test_invalid_configuration) ... ok
+test_jitter_reorders_by_network_arrival (test_phase10_network.NetworkTests.test_jitter_reorders_by_network_arrival) ... ok
+test_mission_replay_all_conditions (test_phase10_network.NetworkTests.test_mission_replay_all_conditions) ... ok
+test_partition_only_cross_group_links_and_interval (test_phase10_network.NetworkTests.test_partition_only_cross_group_links_and_interval) ... ok
+test_range_and_observed_ack (test_phase10_network.NetworkTests.test_range_and_observed_ack) ... ok
+test_scheduled_delivery_and_expiration (test_phase10_network.NetworkTests.test_scheduled_delivery_and_expiration) ... ok
+test_statistical_loss_latency_and_reproducibility (test_phase10_network.NetworkTests.test_statistical_loss_latency_and_reproducibility) ... ok
+test_target_and_failure_scenario_replay (test_phase10_network.NetworkTests.test_target_and_failure_scenario_replay) ... ok
+test_censored_runs_excluded_from_completion_time (test_phase10_sweep.SweepTests.test_censored_runs_excluded_from_completion_time) ... ok
+test_compact_summary_matches_detailed (test_phase10_sweep.SweepTests.test_compact_summary_matches_detailed) ... ok
+test_all_waypoints_and_segments (test_phase11_guardian.GuardianTests.test_all_waypoints_and_segments) ... ok
+test_battery_fallbacks_and_energy_budget (test_phase11_guardian.GuardianTests.test_battery_fallbacks_and_energy_budget) ... ok
+test_conflict_replay_and_watchdog_cancellation (test_phase11_guardian.GuardianTests.test_conflict_replay_and_watchdog_cancellation) ... ok
+test_executor_failure_blocks_concurrent_dispatch (test_phase11_guardian.GuardianTests.test_executor_failure_blocks_concurrent_dispatch) ... ok
+test_grounded_phase_and_no_implicit_takeoff (test_phase11_guardian.GuardianTests.test_grounded_phase_and_no_implicit_takeoff) ... ok
+test_injection_harness_and_separate_finite_audit (test_phase11_guardian.GuardianTests.test_injection_harness_and_separate_finite_audit) ... ok
+test_landing_location_and_descent_corridor (test_phase11_guardian.GuardianTests.test_landing_location_and_descent_corridor) ... ok
+test_last_plan_revalidated_and_original_deadline_preserved (test_phase11_guardian.GuardianTests.test_last_plan_revalidated_and_original_deadline_preserved) ... ok
+test_malformed_and_identity_inputs (test_phase11_guardian.GuardianTests.test_malformed_and_identity_inputs) ... ok
+test_no_blind_hold_with_unsafe_local_hazard (test_phase11_guardian.GuardianTests.test_no_blind_hold_with_unsafe_local_hazard) ... ok
+test_peer_separation_including_crossing_motion (test_phase11_guardian.GuardianTests.test_peer_separation_including_crossing_motion) ... ok
+test_runtime_comm_loss_and_failed_cancellation (test_phase11_guardian.GuardianTests.test_runtime_comm_loss_and_failed_cancellation) ... ok
+test_safe_layer_reentry (test_phase11_guardian.GuardianTests.test_safe_layer_reentry) ... ok
+test_simultaneous_crossing_reservations (test_phase11_guardian.GuardianTests.test_simultaneous_crossing_reservations) ... ok
+test_stale_missing_beliefs_and_low_confidence (test_phase11_guardian.GuardianTests.test_stale_missing_beliefs_and_low_confidence) ... ok
+test_valid_and_modified_commands (test_phase11_guardian.GuardianTests.test_valid_and_modified_commands) ... ok
+test_watchdog_hard_duration_and_completion_identity (test_phase11_guardian.GuardianTests.test_watchdog_hard_duration_and_completion_identity) ... ok
+test_beliefs_update_only_after_delivery (test_phase12_agents.AgentTests.test_beliefs_update_only_after_delivery) ... ok
+test_correction_requests_all_fields_and_requires_model_to_supply_them (test_phase12_agents.AgentTests.test_correction_requests_all_fields_and_requires_model_to_supply_them) ... ok
+test_deterministic_calculations_and_no_fabricated_ownership (test_phase12_agents.AgentTests.test_deterministic_calculations_and_no_fabricated_ownership) ... ok
+test_known_target_report_and_versioned_release (test_phase12_agents.AgentTests.test_known_target_report_and_versioned_release) ... ok
+test_late_result_is_timed_out_even_if_already_queued (test_phase12_agents.AgentTests.test_late_result_is_timed_out_even_if_already_queued) ... ok
+test_model_identity_fault_disables_future_requests (test_phase12_agents.AgentTests.test_model_identity_fault_disables_future_requests) ... ok
+test_nonblocking_timeout_heartbeat_and_late_response (test_phase12_agents.AgentTests.test_nonblocking_timeout_heartbeat_and_late_response) ... ok
+test_observed_two_field_reply_stays_rejected_with_explicit_feedback (test_phase12_agents.AgentTests.test_observed_two_field_reply_stays_rejected_with_explicit_feedback) ... ok
+test_one_correction_then_deterministic_fallback (test_phase12_agents.AgentTests.test_one_correction_then_deterministic_fallback) ... ok
+test_outgoing_message_cannot_forge_award_or_unknown_recipient (test_phase12_agents.AgentTests.test_outgoing_message_cannot_forge_award_or_unknown_recipient) ... ok
+test_replay_end_to_end_four_contexts_and_guarded_flight (test_phase12_agents.AgentTests.test_replay_end_to_end_four_contexts_and_guarded_flight) ... ok
+test_role_changes_follow_deterministic_constraints (test_phase12_agents.AgentTests.test_role_changes_follow_deterministic_constraints) ... ok
+test_schema_blocks_code_unknown_tools_extra_params_and_nan (test_phase12_agents.AgentTests.test_schema_blocks_code_unknown_tools_extra_params_and_nan) ... ok
+test_schema_branches_are_complete_without_parent_merging (test_phase12_agents.AgentTests.test_schema_branches_are_complete_without_parent_merging) ... ok
+test_separate_identity_beliefs_memory_and_history (test_phase12_agents.AgentTests.test_separate_identity_beliefs_memory_and_history) ... ok
+test_stale_context_and_task_epoch_cannot_restart_motion (test_phase12_agents.AgentTests.test_stale_context_and_task_epoch_cannot_restart_motion) ... ok
+test_targeted_help_uses_only_selected_inbox (test_phase12_agents.AgentTests.test_targeted_help_uses_only_selected_inbox) ... ok
+test_unsafe_motion_never_bypasses_guardian (test_phase12_agents.AgentTests.test_unsafe_motion_never_bypasses_guardian) ... ok
+test_explicit_frame_conversion_and_cancel_ack (test_phase12_agents.AirSimInterfaceTests.test_explicit_frame_conversion_and_cancel_ack) ... ok
+test_in_progress_takeoff_keeps_guardian_phase_checks (test_phase12_agents.ModelPinTests.test_in_progress_takeoff_keeps_guardian_phase_checks) ... ok
+test_latest_or_unpinned_model_rejected (test_phase12_agents.ModelPinTests.test_latest_or_unpinned_model_rejected) ... ok
+test_mutation_during_generation_rejected (test_phase12_agents.ModelPinTests.test_mutation_during_generation_rejected) ... ok
+test_pin_checked_before_and_after_inference (test_phase12_agents.ModelPinTests.test_pin_checked_before_and_after_inference) ... ok
+test_failed_warmup_aborts_before_vehicle_backend (test_phase12_progress.EvidenceTests.test_failed_warmup_aborts_before_vehicle_backend) ... ok
+test_fallback_progress_cannot_be_credited_to_an_llm (test_phase12_progress.EvidenceTests.test_fallback_progress_cannot_be_credited_to_an_llm) ... ok
+test_hold_only_integration_is_not_a_productive_exit (test_phase12_progress.EvidenceTests.test_hold_only_integration_is_not_a_productive_exit) ... ok
+test_inference_admission_is_bounded_and_fair (test_phase12_progress.EvidenceTests.test_inference_admission_is_bounded_and_fair) ... ok
+test_real_accepted_motion_requires_observed_effects_and_guard_coverage (test_phase12_progress.EvidenceTests.test_real_accepted_motion_requires_observed_effects_and_guard_coverage) ... ok
+test_warmup_preserves_pin_and_does_not_generate_agent_decisions (test_phase12_progress.EvidenceTests.test_warmup_preserves_pin_and_does_not_generate_agent_decisions) ... ok
+test_executable_task_has_actionable_start_example_and_no_bid (test_phase12_progress.ProgressTests.test_executable_task_has_actionable_start_example_and_no_bid) ... ok
+test_first_delayed_calculation_is_not_treated_as_repeated_deferral (test_phase12_progress.ProgressTests.test_first_delayed_calculation_is_not_treated_as_repeated_deferral) ... ok
+test_hold_duration_cannot_block_policy_for_thirty_seconds (test_phase12_progress.ProgressTests.test_hold_duration_cannot_block_policy_for_thirty_seconds) ... ok
+test_hold_only_policy_can_recover_without_receiving_llm_credit (test_phase12_progress.ProgressTests.test_hold_only_policy_can_recover_without_receiving_llm_credit) ... ok
+test_progressing_replay_has_observed_policy_effects_and_no_llm_claim (test_phase12_progress.ProgressTests.test_progressing_replay_has_observed_policy_effects_and_no_llm_claim) ... ok
+test_repeated_deferral_is_correctable_only_when_route_is_safe (test_phase12_progress.ProgressTests.test_repeated_deferral_is_correctable_only_when_route_is_safe) ... ok
+test_search_authorization_audit_is_atomic_and_attributable (test_phase12_progress.ProgressTests.test_search_authorization_audit_is_atomic_and_attributable) ... ok
+test_admission_hint_accounts_for_jobs_ahead_without_reading_beliefs (test_phase12_recovery.RecoveryTests.test_admission_hint_accounts_for_jobs_ahead_without_reading_beliefs) ... ok
+test_approach_preview_respects_configured_speed_below_one (test_phase12_recovery.RecoveryTests.test_approach_preview_respects_configured_speed_below_one) ... ok
+test_correction_example_releases_blocked_work_instead_of_repeating_motion (test_phase12_recovery.RecoveryTests.test_correction_example_releases_blocked_work_instead_of_repeating_motion) ... ok
+test_deadline_guard_does_not_bid_after_close_or_with_stale_telemetry (test_phase12_recovery.RecoveryTests.test_deadline_guard_does_not_bid_after_close_or_with_stale_telemetry) ... ok
+test_deadline_guard_leaves_time_for_llm_when_budget_is_sufficient (test_phase12_recovery.RecoveryTests.test_deadline_guard_leaves_time_for_llm_when_budget_is_sufficient) ... ok
+test_explicit_decline_is_not_undone_by_deadline_guard (test_phase12_recovery.RecoveryTests.test_explicit_decline_is_not_undone_by_deadline_guard) ... ok
+test_feasibility_is_rechecked_when_peer_moves_after_cost_was_computed (test_phase12_recovery.RecoveryTests.test_feasibility_is_rechecked_when_peer_moves_after_cost_was_computed) ... ok
+test_ignoring_corrected_tool_catalog_also_triggers_bounded_recovery (test_phase12_recovery.RecoveryTests.test_ignoring_corrected_tool_catalog_also_triggers_bounded_recovery) ... ok
+test_late_queued_nearby_bid_is_submitted_before_deadline_and_wins (test_phase12_recovery.RecoveryTests.test_late_queued_nearby_bid_is_submitted_before_deadline_and_wins) ... ok
+test_peer_can_take_over_and_finish_released_task_using_delivered_messages (test_phase12_recovery.RecoveryTests.test_peer_can_take_over_and_finish_released_task_using_delivered_messages) ... ok
+test_release_waits_for_cancellation_acknowledgment (test_phase12_recovery.RecoveryTests.test_release_waits_for_cancellation_acknowledgment) ... ok
+test_repeated_identical_rejection_releases_and_reannounces_new_epoch (test_phase12_recovery.RecoveryTests.test_repeated_identical_rejection_releases_and_reannounces_new_epoch) ... ok
+test_single_slow_model_queue_still_completes_all_four_lanes (test_phase12_recovery.RecoveryTests.test_single_slow_model_queue_still_completes_all_four_lanes) ... ok
+test_completed_retry_is_selected_without_counting_original_attempt (test_phase13_analysis.AnalysisTests.test_completed_retry_is_selected_without_counting_original_attempt) ... ok
+test_incomplete_observation_does_not_become_successful_completion_time (test_phase13_analysis.AnalysisTests.test_incomplete_observation_does_not_become_successful_completion_time) ... ok
+test_missing_arrival_is_not_hidden_by_success_summary (test_phase13_analysis.AnalysisTests.test_missing_arrival_is_not_hidden_by_success_summary) ... ok
+test_missing_guard_record_is_not_hidden_by_declared_coverage (test_phase13_analysis.AnalysisTests.test_missing_guard_record_is_not_hidden_by_declared_coverage) ... ok
+test_replay_suite_cannot_be_labelled_as_pinned_model_evidence (test_phase13_analysis.AnalysisTests.test_replay_suite_cannot_be_labelled_as_pinned_model_evidence) ... ok
+test_requested_but_unobserved_failure_is_not_evaluable (test_phase13_analysis.AnalysisTests.test_requested_but_unobserved_failure_is_not_evaluable) ... ok
+test_success_requires_independent_arrivals_and_guarded_effects (test_phase13_analysis.AnalysisTests.test_success_requires_independent_arrivals_and_guarded_effects) ... ok
+test_all_architectures_reject_motion_into_the_same_restricted_zone (test_phase13_comparison.ComparisonTests.test_all_architectures_reject_motion_into_the_same_restricted_zone) ... ok
+test_all_four_selected_architectures_complete_nominal_with_shared_inputs (test_phase13_comparison.ComparisonTests.test_all_four_selected_architectures_complete_nominal_with_shared_inputs) ... ok
+test_c_and_d_have_identical_local_health_inputs_and_tool_candidates (test_phase13_comparison.ComparisonTests.test_c_and_d_have_identical_local_health_inputs_and_tool_candidates) ... ok
+test_cli_and_json_select_the_same_architecture_and_ablation (test_phase13_comparison.ComparisonTests.test_cli_and_json_select_the_same_architecture_and_ablation) ... ok
+test_configuration_rejects_mislabelled_ablations_and_optional_unimplemented_e (test_phase13_comparison.ComparisonTests.test_configuration_rejects_mislabelled_ablations_and_optional_unimplemented_e) ... ok
+test_controller_cannot_assign_from_undelivered_state (test_phase13_comparison.ComparisonTests.test_controller_cannot_assign_from_undelivered_state) ... ok
+test_delivered_state_but_lost_central_commands_trigger_local_fallback (test_phase13_comparison.ComparisonTests.test_delivered_state_but_lost_central_commands_trigger_local_fallback) ... ok
+test_failed_task_is_reauctioned_with_leases_but_not_without_them (test_phase13_comparison.ComparisonTests.test_failed_task_is_reauctioned_with_leases_but_not_without_them) ... ok
+test_failure_time_is_a_shared_scenario_not_a_failure_oracle (test_phase13_comparison.ComparisonTests.test_failure_time_is_a_shared_scenario_not_a_failure_oracle) ... ok
+test_fallback_replacement_never_calls_a_model_or_claims_llm_evidence (test_phase13_comparison.ComparisonTests.test_fallback_replacement_never_calls_a_model_or_claims_llm_evidence) ... ok
+test_independent_agent_ignores_all_peer_allocation_commands (test_phase13_comparison.ComparisonTests.test_independent_agent_ignores_all_peer_allocation_commands) ... ok
+test_initial_beacon_acquisition_does_not_spend_inference_on_missing_peers (test_phase13_comparison.ComparisonTests.test_initial_beacon_acquisition_does_not_spend_inference_on_missing_peers) ... ok
+test_initial_relay_is_not_replaced_before_loss_is_observed (test_phase13_comparison.ComparisonTests.test_initial_relay_is_not_replaced_before_loss_is_observed) ... ok
+test_lease_ablation_disables_expiration_for_the_experiment_horizon (test_phase13_comparison.ComparisonTests.test_lease_ablation_disables_expiration_for_the_experiment_horizon) ... ok
+test_memory_ablation_keeps_local_beliefs_and_audit_identity (test_phase13_comparison.ComparisonTests.test_memory_ablation_keeps_local_beliefs_and_audit_identity) ... ok
+test_model_identity_failure_precedes_vehicle_control (test_phase13_comparison.ComparisonTests.test_model_identity_failure_precedes_vehicle_control) ... ok
+test_partitioned_controller_reports_are_not_hidden_global_state (test_phase13_comparison.ComparisonTests.test_partitioned_controller_reports_are_not_hidden_global_state) ... ok
+test_perfect_communication_ablation_removes_all_degradation (test_phase13_comparison.ComparisonTests.test_perfect_communication_ablation_removes_all_degradation) ... ok
+test_role_rules_change_a_reserve_without_teleporting (test_phase13_comparison.ComparisonTests.test_role_rules_change_a_reserve_without_teleporting) ... ok
+test_seeded_network_replay_reproduces_actual_message_outcomes (test_phase13_comparison.ComparisonTests.test_seeded_network_replay_reproduces_actual_message_outcomes) ... ok
+test_blocked_model_stops_without_fake_later_budgets (test_phase13_followup.FollowupTests.test_blocked_model_stops_without_fake_later_budgets) ... ok
+test_full_matrix_at_each_budget_keeps_safety_network_and_failure_inputs (test_phase13_followup.FollowupTests.test_full_matrix_at_each_budget_keeps_safety_network_and_failure_inputs) ... ok
+test_observed_failure_guard_reasons_are_reported_not_removed (test_phase13_followup.FollowupTests.test_observed_failure_guard_reasons_are_reported_not_removed) ... ok
+test_pinned_parallel_workers_rejected (test_phase13_followup.FollowupTests.test_pinned_parallel_workers_rejected) ... ok
+test_plan_only_does_not_contact_model_or_run_experiments (test_phase13_followup.FollowupTests.test_plan_only_does_not_contact_model_or_run_experiments) ... ok
+test_real_short_and_long_runs_remain_censored_until_waypoints_complete (test_phase13_followup.FollowupTests.test_real_short_and_long_runs_remain_censored_until_waypoints_complete) ... ok
+test_reject_invalid_or_fractional_tick_budget (test_phase13_followup.FollowupTests.test_reject_invalid_or_fractional_tick_budget) ... ok
+test_award_reconciles_only_embedded_delivered_matching_bid_evidence (test_phase13_resilience.ResilienceTests.test_award_reconciles_only_embedded_delivered_matching_bid_evidence) ... ok
+test_collision_and_restricted_zone_cannot_be_executed (test_phase13_resilience.ResilienceTests.test_collision_and_restricted_zone_cannot_be_executed) ... ok
+test_completion_fact_requires_delivery_and_original_observation_time (test_phase13_resilience.ResilienceTests.test_completion_fact_requires_delivery_and_original_observation_time) ... ok
+test_fresh_evidence_resumes_work_instead_of_releasing_temporary_block (test_phase13_resilience.ResilienceTests.test_fresh_evidence_resumes_work_instead_of_releasing_temporary_block) ... ok
+test_legacy_default_is_opt_out_and_invalid_settings_are_rejected (test_phase13_resilience.ResilienceTests.test_legacy_default_is_opt_out_and_invalid_settings_are_rejected) ... ok
+test_out_of_order_observations_cannot_regress_state_in_same_inbox_batch (test_phase13_resilience.ResilienceTests.test_out_of_order_observations_cannot_regress_state_in_same_inbox_batch) ... ok
+test_retry_is_bounded_and_cannot_resurrect_expired_message (test_phase13_resilience.ResilienceTests.test_retry_is_bounded_and_cannot_resurrect_expired_message) ... ok
+test_retry_traverses_partition_and_preserves_original_time_and_ttl (test_phase13_resilience.ResilienceTests.test_retry_traverses_partition_and_preserves_original_time_and_ttl) ... ok
+test_role_timeout_has_separate_deterministic_provenance (test_phase13_resilience.ResilienceTests.test_role_timeout_has_separate_deterministic_provenance) ... ok
+test_short_motion_modification_and_far_stale_peer_are_spatially_checked (test_phase13_resilience.ResilienceTests.test_short_motion_modification_and_far_stale_peer_are_spatially_checked) ... ok
+test_stale_near_future_missing_and_excess_speed_peers_are_not_ignored (test_phase13_resilience.ResilienceTests.test_stale_near_future_missing_and_excess_speed_peers_are_not_ignored) ... ok
+test_static_route_calculation_does_not_hide_later_restricted_waypoints (test_phase13_resilience.ResilienceTests.test_static_route_calculation_does_not_hide_later_restricted_waypoints) ... ok
+test_transient_rejection_does_not_release_or_reannounce_owned_work (test_phase13_resilience.ResilienceTests.test_transient_rejection_does_not_release_or_reannounce_owned_work) ... ok
+test_complete_plan_has_one_folder_per_scenario_and_paired_controls (test_phase13_suite.SuiteTests.test_complete_plan_has_one_folder_per_scenario_and_paired_controls) ... ok
+test_full_trace_archive_roundtrips_json_and_jsonl (test_phase13_suite.SuiteTests.test_full_trace_archive_roundtrips_json_and_jsonl) ... ok
+test_incomplete_mission_is_not_a_runtime_error_and_time_is_censored (test_phase13_suite.SuiteTests.test_incomplete_mission_is_not_a_runtime_error_and_time_is_censored) ... ok
+test_model_unavailable_creates_blocked_folders_without_fake_summaries (test_phase13_suite.SuiteTests.test_model_unavailable_creates_blocked_folders_without_fake_summaries) ... ok
+test_replay_and_matching_are_checked_from_actual_saved_packets (test_phase13_suite.SuiteTests.test_replay_and_matching_are_checked_from_actual_saved_packets) ... ok
+test_resume_rejects_different_source_or_inputs (test_phase13_suite.SuiteTests.test_resume_rejects_different_source_or_inputs) ... ok
+test_validation_is_explicitly_replay_and_pinned_is_serial_wall (test_phase13_suite.SuiteTests.test_validation_is_explicitly_replay_and_pinned_is_serial_wall) ... ok
+test_bad_configuration_keeps_manifest_error_and_continues_batch (test_phase14_runner.Phase14Tests.test_bad_configuration_keeps_manifest_error_and_continues_batch) ... ok
+test_drops_and_delivered_target_reports_have_distinct_provenance (test_phase14_runner.Phase14Tests.test_drops_and_delivered_target_reports_have_distinct_provenance) ... ok
+test_existing_results_and_invalid_folder_names_are_never_overwritten (test_phase14_runner.Phase14Tests.test_existing_results_and_invalid_folder_names_are_never_overwritten) ... ok
+test_incomplete_fault_run_is_preserved_without_false_mission_completed (test_phase14_runner.Phase14Tests.test_incomplete_fault_run_is_preserved_without_false_mission_completed) ... ok
+test_instrumentation_restores_classes_even_when_context_raises (test_phase14_runner.Phase14Tests.test_instrumentation_restores_classes_even_when_context_raises) ... ok
+test_keyboard_interrupt_preserves_attempt_and_stops_batch (test_phase14_runner.Phase14Tests.test_keyboard_interrupt_preserves_attempt_and_stops_batch) ... ok
+test_manifest_and_streamed_events_cover_actual_completed_mission (test_phase14_runner.Phase14Tests.test_manifest_and_streamed_events_cover_actual_completed_mission) ... ok
+test_model_verification_failure_precedes_flight_and_still_has_manifest (test_phase14_runner.Phase14Tests.test_model_verification_failure_precedes_flight_and_still_has_manifest) ... ok
+test_requested_model_label_cannot_misrepresent_replay_or_rules (test_phase14_runner.Phase14Tests.test_requested_model_label_cannot_misrepresent_replay_or_rules) ... ok
+test_run_ids_differ_between_independent_batches (test_phase14_runner.Phase14Tests.test_run_ids_differ_between_independent_batches) ... ok
+test_runtime_crash_preserves_partial_events_and_stops_no_later_cases (test_phase14_runner.Phase14Tests.test_runtime_crash_preserves_partial_events_and_stops_no_later_cases) ... ok
+test_wrapped_and_direct_runner_agree_on_deterministic_outcome (test_phase14_runner.Phase14Tests.test_wrapped_and_direct_runner_agree_on_deterministic_outcome) ... ok
+test_combined_phase14_phase15_registers_before_run_and_exports_metrics (test_phase15_metrics.MetricIntegrationTests.test_combined_phase14_phase15_registers_before_run_and_exports_metrics) ... ok
+test_corrupt_case_does_not_discard_other_results (test_phase15_metrics.MetricIntegrationTests.test_corrupt_case_does_not_discard_other_results) ... ok
+test_missing_arrival_cannot_inherit_summary_success (test_phase15_metrics.MetricIntegrationTests.test_missing_arrival_cannot_inherit_summary_success) ... ok
+test_preflight_failures_are_not_fast_completions_and_reanalysis_is_retrospective (test_phase15_metrics.MetricIntegrationTests.test_preflight_failures_are_not_fast_completions_and_reanalysis_is_retrospective) ... ok
+test_running_manifest_not_appended_to_batch_still_gets_evaluated (test_phase15_metrics.MetricIntegrationTests.test_running_manifest_not_appended_to_batch_still_gets_evaluated) ... ok
+test_truncated_last_jsonl_record_keeps_earlier_records_and_flags_evidence (test_phase15_metrics.MetricIntegrationTests.test_truncated_last_jsonl_record_keeps_earlier_records_and_flags_evidence) ... ok
+test_communication_counts_broadcast_retries_expiry_and_future_egress (test_phase15_metrics.MetricUnitTests.test_communication_counts_broadcast_retries_expiry_and_future_egress) ... ok
+test_components_require_real_observations_or_initialized_sensors (test_phase15_metrics.MetricUnitTests.test_components_require_real_observations_or_initialized_sensors) ... ok
+test_continuity_is_paired_and_zero_reference_is_undefined (test_phase15_metrics.MetricUnitTests.test_continuity_is_paired_and_zero_reference_is_undefined) ... ok
+test_distance_and_simulated_battery_do_not_become_joules (test_phase15_metrics.MetricUnitTests.test_distance_and_simulated_battery_do_not_become_joules) ... ok
+test_fault_with_no_owned_task_is_not_instant_recovery (test_phase15_metrics.MetricUnitTests.test_fault_with_no_owned_task_is_not_instant_recovery) ... ok
+test_initialized_sensor_can_report_genuine_zero (test_phase15_metrics.MetricUnitTests.test_initialized_sensor_can_report_genuine_zero) ... ok
+test_orphaned_tasks_use_complete_live_owner_snapshots_and_keep_conflicts (test_phase15_metrics.MetricUnitTests.test_orphaned_tasks_use_complete_live_owner_snapshots_and_keep_conflicts) ... ok
+test_partial_usage_is_not_estimated_and_oscillations_are_only_candidates (test_phase15_metrics.MetricUnitTests.test_partial_usage_is_not_estimated_and_oscillations_are_only_candidates) ... ok
+test_partition_resumption_requires_previously_active_motion_interruption (test_phase15_metrics.MetricUnitTests.test_partition_resumption_requires_previously_active_motion_interruption) ... ok
+test_recovery_filters_peer_acknowledgments_and_repeated_work (test_phase15_metrics.MetricUnitTests.test_recovery_filters_peer_acknowledgments_and_repeated_work) ... ok
+test_reported_usage_hook_preserves_provider_response_and_ignores_late_writes (test_phase15_metrics.MetricUnitTests.test_reported_usage_hook_preserves_provider_response_and_ignores_late_writes) ... ok
+test_restricted_zone_crossing_and_absent_sensors_are_not_conflated (test_phase15_metrics.MetricUnitTests.test_restricted_zone_crossing_and_absent_sensors_are_not_conflated) ... ok
+test_safety_counts_samples_episodes_and_routine_modifications_separately (test_phase15_metrics.MetricUnitTests.test_safety_counts_samples_episodes_and_routine_modifications_separately) ... ok
+test_unique_work_duplicate_work_and_zero_denominator (test_phase15_metrics.MetricUnitTests.test_unique_work_duplicate_work_and_zero_denominator) ... ok
+test_unsupported_metric_modes_and_invalid_windows_are_rejected (test_phase15_metrics.MetricUnitTests.test_unsupported_metric_modes_and_invalid_windows_are_rejected) ... ok
+test_unverifiable_peer_state_is_not_counted_as_proven_unsafe_proposal (test_phase15_metrics.MetricUnitTests.test_unverifiable_peer_state_is_not_counted_as_proven_unsafe_proposal) ... ok
+test_configured_targets_and_injected_fault_schedule_repeat (test_phase16_verification.DeterminismTests.test_configured_targets_and_injected_fault_schedule_repeat) ... ok
+test_deterministic_execution_repeats_across_process_hash_seeds (test_phase16_verification.DeterminismTests.test_deterministic_execution_repeats_across_process_hash_seeds) ... ok
+test_adapter_exception_retains_error_and_cleanup (test_phase16_verification.FlightRegressionTests.test_adapter_exception_retains_error_and_cleanup) ... ok
+test_all_five_cases_use_observed_motion_and_guarded_effects (test_phase16_verification.FlightRegressionTests.test_all_five_cases_use_observed_motion_and_guarded_effects) ... ok
+test_injection_after_completion_is_not_credited_as_recovery (test_phase16_verification.FlightRegressionTests.test_injection_after_completion_is_not_credited_as_recovery) ... ok
+test_live_cannot_start_accidentally_and_output_is_not_overwritten (test_phase16_verification.FlightRegressionTests.test_live_cannot_start_accidentally_and_output_is_not_overwritten) ... ok
+test_timeout_preserves_partial_evidence_and_fails (test_phase16_verification.FlightRegressionTests.test_timeout_preserves_partial_evidence_and_fails) ... ok
+test_delayed_competing_claims_converge_to_lower_valid_bid (test_phase16_verification.TransportIntegrationTests.test_delayed_competing_claims_converge_to_lower_valid_bid) ... ok
+test_partition_prevents_cross_group_receipt_until_link_restored (test_phase16_verification.TransportIntegrationTests.test_partition_prevents_cross_group_receipt_until_link_restored) ... ok
+test_four_airborne_agents_and_addressed_beliefs (test_phase7_live.LiveHarnessTests.test_four_airborne_agents_and_addressed_beliefs) ... {
+  "mode": "perfect_communication_airsim_protocol",
+  "completed": true,
+  "error": null,
+  "agents": [
+    "Drone1",
+    "Drone2",
+    "Drone3",
+    "Drone4"
+  ],
+  "ticks": 3,
+  "exit_criterion_passed": true,
+  "message_types": [
+    "HEARTBEAT",
+    "STATUS_UPDATE",
+    "TASK_ANNOUNCEMENT",
+    "TASK_BID",
+    "TASK_AWARD",
+    "TASK_ACCEPT",
+    "TASK_RELEASE",
+    "TASK_COMPLETE",
+    "INTENT_UPDATE",
+    "TARGET_FOUND",
+    "HELP_REQUEST",
+    "ROLE_CHANGE",
+    "MISSION_UPDATE"
+  ],
+  "recipient_deliveries": 111,
+  "delivered": 111,
+  "cleanup_errors": [],
+  "limitations": [
+    "Configured separated spawns/clear route required; no collision avoidance is provided",
+    "Agent isolation is an API convention, not a security sandbox",
+    "Task/role message probes do not implement auctions or negotiation",
+    "AirSim integration requires live validation; passing mock tests is not flight evidence"
+  ]
+}
+ok
+test_telemetry_failure_never_passes_exit (test_phase7_live.LiveHarnessTests.test_telemetry_failure_never_passes_exit) ... {
+  "mode": "perfect_communication_airsim_protocol",
+  "completed": false,
+  "error": "RuntimeError('telemetry unavailable')",
+  "agents": [
+    "Drone1",
+    "Drone2",
+    "Drone3",
+    "Drone4"
+  ],
+  "ticks": 3,
+  "exit_criterion_passed": false,
+  "message_types": [
+    "HEARTBEAT",
+    "STATUS_UPDATE",
+    "TASK_ANNOUNCEMENT",
+    "TASK_BID",
+    "TASK_AWARD",
+    "TASK_ACCEPT",
+    "TASK_RELEASE",
+    "TASK_COMPLETE",
+    "INTENT_UPDATE",
+    "TARGET_FOUND",
+    "HELP_REQUEST",
+    "ROLE_CHANGE",
+    "MISSION_UPDATE"
+  ],
+  "recipient_deliveries": 87,
+  "delivered": 87,
+  "cleanup_errors": [
+    "Drone1: RuntimeError('telemetry unavailable')",
+    "Drone2: RuntimeError('telemetry unavailable')",
+    "Drone3: RuntimeError('telemetry unavailable')",
+    "Drone4: RuntimeError('telemetry unavailable')"
+  ],
+  "limitations": [
+    "Configured separated spawns/clear route required; no collision avoidance is provided",
+    "Agent isolation is an API convention, not a security sandbox",
+    "Task/role message probes do not implement auctions or negotiation",
+    "AirSim integration requires live validation; passing mock tests is not flight evidence"
+  ]
+}
+ok
+test_render_saved_mock_and_live_schema (test_phase7_plots.Phase7Plots.test_render_saved_mock_and_live_schema) ... {
+  "mode": "perfect_communication_mock_protocol",
+  "agents": 4,
+  "ticks": 3,
+  "message_types": [
+    "HEARTBEAT",
+    "STATUS_UPDATE",
+    "TASK_ANNOUNCEMENT",
+    "TASK_BID",
+    "TASK_AWARD",
+    "TASK_ACCEPT",
+    "TASK_RELEASE",
+    "TASK_COMPLETE",
+    "INTENT_UPDATE",
+    "TARGET_FOUND",
+    "HELP_REQUEST",
+    "ROLE_CHANGE",
+    "MISSION_UPDATE"
+  ],
+  "message_instances": 37,
+  "recipient_deliveries": 111,
+  "delivered": 111,
+  "all_peer_beliefs_present": true,
+  "limitations": [
+    "Mock kinematics only; live four-drone flight remains unvalidated",
+    "All 13 envelopes exercised; task auctions, leases, role negotiation are not implemented here",
+    "Legacy RF bus and Experiment D are separate; no automatic protocol migration",
+    "Endpoint isolation is an API design convention, not an adversarial process sandbox"
+  ]
+}
+{
+  "mode": "perfect_communication_mock_protocol",
+  "agents": 4,
+  "ticks": 3,
+  "message_types": [
+    "HEARTBEAT",
+    "STATUS_UPDATE",
+    "TASK_ANNOUNCEMENT",
+    "TASK_BID",
+    "TASK_AWARD",
+    "TASK_ACCEPT",
+    "TASK_RELEASE",
+    "TASK_COMPLETE",
+    "INTENT_UPDATE",
+    "TARGET_FOUND",
+    "HELP_REQUEST",
+    "ROLE_CHANGE",
+    "MISSION_UPDATE"
+  ],
+  "message_instances": 37,
+  "recipient_deliveries": 111,
+  "delivered": 111,
+  "all_peer_beliefs_present": true,
+  "limitations": [
+    "Mock kinematics only; live four-drone flight remains unvalidated",
+    "All 13 envelopes exercised; task auctions, leases, role negotiation are not implemented here",
+    "Legacy RF bus and Experiment D are separate; no automatic protocol migration",
+    "Endpoint isolation is an API design convention, not an adversarial process sandbox"
+  ]
+}
+ok
+test_unique_send_is_not_recipient_count (test_phase7_plots.Phase7Plots.test_unique_send_is_not_recipient_count) ... ok
+test_all_types_round_trip (test_phase7_protocol.ProtocolTests.test_all_types_round_trip) ... ok
+test_beliefs_wait_for_receipt (test_phase7_protocol.ProtocolTests.test_beliefs_wait_for_receipt) ... ok
+test_delivered_decision_logging (test_phase7_protocol.ProtocolTests.test_delivered_decision_logging) ... ok
+test_endpoint_has_only_two_public_methods (test_phase7_protocol.ProtocolTests.test_endpoint_has_only_two_public_methods) ... ok
+test_expiry_and_log_fields (test_phase7_protocol.ProtocolTests.test_expiry_and_log_fields) ... ok
+test_four_agent_exit_demo (test_phase7_protocol.ProtocolTests.test_four_agent_exit_demo) ... {
+  "mode": "perfect_communication_mock_protocol",
+  "agents": 4,
+  "ticks": 3,
+  "message_types": [
+    "HEARTBEAT",
+    "STATUS_UPDATE",
+    "TASK_ANNOUNCEMENT",
+    "TASK_BID",
+    "TASK_AWARD",
+    "TASK_ACCEPT",
+    "TASK_RELEASE",
+    "TASK_COMPLETE",
+    "INTENT_UPDATE",
+    "TARGET_FOUND",
+    "HELP_REQUEST",
+    "ROLE_CHANGE",
+    "MISSION_UPDATE"
+  ],
+  "message_instances": 37,
+  "recipient_deliveries": 111,
+  "delivered": 111,
+  "all_peer_beliefs_present": true,
+  "limitations": [
+    "Mock kinematics only; live four-drone flight remains unvalidated",
+    "All 13 envelopes exercised; task auctions, leases, role negotiation are not implemented here",
+    "Legacy RF bus and Experiment D are separate; no automatic protocol migration",
+    "Endpoint isolation is an API design convention, not an adversarial process sandbox"
+  ]
+}
+ok
+test_impersonation_unknown_recipient_and_duplicates (test_phase7_protocol.ProtocolTests.test_impersonation_unknown_recipient_and_duplicates) ... ok
+test_recipient_isolation_and_snapshot (test_phase7_protocol.ProtocolTests.test_recipient_isolation_and_snapshot) ... ok
+test_validation (test_phase7_protocol.ProtocolTests.test_validation) ... ok
+test_claim_order_independent (test_phase8_allocation.AllocationTests.test_claim_order_independent) ... ok
+test_cost_components_and_ineligibility (test_phase8_allocation.AllocationTests.test_cost_components_and_ineligibility) ... ok
+test_expired_lease_not_revived_by_late_progress (test_phase8_allocation.AllocationTests.test_expired_lease_not_revived_by_late_progress) ... ok
+test_mock_exit_and_repeatability (test_phase8_allocation.AllocationTests.test_mock_exit_and_repeatability) ... {
+  "mode": "phase8_decentralized_contract_net_mock",
+  "llm": false,
+  "mission_complete": true,
+  "time_s": 4.8,
+  "completed_task_ids": [
+    "SEARCH_SECTOR_A",
+    "SEARCH_SECTOR_B",
+    "SEARCH_SECTOR_C",
+    "SEARCH_SECTOR_D"
+  ],
+  "completions_by_agent": {
+    "Drone1": 1,
+    "Drone2": 1,
+    "Drone3": 1,
+    "Drone4": 1
+  },
+  "duplicate_task_completions": 0,
+  "conflict_corrections": 3,
+  "lease_expirations": 0,
+  "local_lease_expiration_events": 0,
+  "fail_agent": null,
+  "fail_at_s": null,
+  "message_instances": 284,
+  "recipient_records": 852,
+  "limitations": [
+    "Mock task work and positions; not physical sector coverage or live flight",
+    "Known team membership, perfect transport, trusted deterministic peers",
+    "Silent-agent suspicion uses heartbeat age; not distributed consensus under network partitions",
+    "Task progress renews leases via INTENT_UPDATE; protocol has no TASK_PROGRESS type"
+  ]
+}
+{
+  "mode": "phase8_decentralized_contract_net_mock",
+  "llm": false,
+  "mission_complete": true,
+  "time_s": 4.8,
+  "completed_task_ids": [
+    "SEARCH_SECTOR_A",
+    "SEARCH_SECTOR_B",
+    "SEARCH_SECTOR_C",
+    "SEARCH_SECTOR_D"
+  ],
+  "completions_by_agent": {
+    "Drone1": 1,
+    "Drone2": 1,
+    "Drone3": 1,
+    "Drone4": 1
+  },
+  "duplicate_task_completions": 0,
+  "conflict_corrections": 3,
+  "lease_expirations": 0,
+  "local_lease_expiration_events": 0,
+  "fail_agent": null,
+  "fail_at_s": null,
+  "message_instances": 284,
+  "recipient_records": 852,
+  "limitations": [
+    "Mock task work and positions; not physical sector coverage or live flight",
+    "Known team membership, perfect transport, trusted deterministic peers",
+    "Silent-agent suspicion uses heartbeat age; not distributed consensus under network partitions",
+    "Task progress renews leases via INTENT_UPDATE; protocol has no TASK_PROGRESS type"
+  ]
+}
+ok
+test_progress_from_nonowner_ignored (test_phase8_allocation.AllocationTests.test_progress_from_nonowner_ignored) ... ok
+test_silent_owner_reassigned (test_phase8_allocation.AllocationTests.test_silent_owner_reassigned) ... {
+  "mode": "phase8_decentralized_contract_net_mock",
+  "llm": false,
+  "mission_complete": true,
+  "time_s": 7.4,
+  "completed_task_ids": [
+    "SEARCH_SECTOR_A",
+    "SEARCH_SECTOR_B",
+    "SEARCH_SECTOR_C",
+    "SEARCH_SECTOR_D"
+  ],
+  "completions_by_agent": {
+    "Drone1": 0,
+    "Drone2": 1,
+    "Drone3": 1,
+    "Drone4": 2
+  },
+  "duplicate_task_completions": 0,
+  "conflict_corrections": 3,
+  "lease_expirations": 2,
+  "local_lease_expiration_events": 4,
+  "fail_agent": "Drone1",
+  "fail_at_s": 1.5,
+  "message_instances": 345,
+  "recipient_records": 1035,
+  "limitations": [
+    "Mock task work and positions; not physical sector coverage or live flight",
+    "Known team membership, perfect transport, trusted deterministic peers",
+    "Silent-agent suspicion uses heartbeat age; not distributed consensus under network partitions",
+    "Task progress renews leases via INTENT_UPDATE; protocol has no TASK_PROGRESS type"
+  ]
+}
+ok
+test_stale_progress_cannot_renew_new_epoch (test_phase8_allocation.AllocationTests.test_stale_progress_cannot_renew_new_epoch) ... ok
+test_task_roundtrip (test_phase8_allocation.AllocationTests.test_task_roundtrip) ... ok
+test_voluntary_release_reannounces (test_phase8_allocation.AllocationTests.test_voluntary_release_reannounces) ... ok
+test_complete_requires_every_waypoint (test_phase8_flight.ExecutorTests.test_complete_requires_every_waypoint) ... ok
+test_observed_arrivals_and_revocation (test_phase8_flight.ExecutorTests.test_observed_arrivals_and_revocation) ... ok
+test_stalled_vehicle_does_not_complete_or_renew (test_phase8_flight.ExecutorTests.test_stalled_vehicle_does_not_complete_or_renew) ... ok
+test_failed_agent_holds_and_survivors_finish (test_phase8_flight.LiveIntegrationTests.test_failed_agent_holds_and_survivors_finish) ... [Phase8] SEARCH_SECTOR_A: shared NED targets (meters)
+  WP1: X=2.0, Y=0.0, Z=25.0
+  WP2: X=6.0, Y=0.0, Z=25.0
+  WP3: X=6.0, Y=1.0, Z=25.0
+  WP4: X=2.0, Y=1.0, Z=25.0
+[Phase8] SEARCH_SECTOR_B: shared NED targets (meters)
+  WP1: X=2.0, Y=5.0, Z=25.0
+  WP2: X=6.0, Y=5.0, Z=25.0
+  WP3: X=6.0, Y=6.0, Z=25.0
+  WP4: X=2.0, Y=6.0, Z=25.0
+[Phase8] SEARCH_SECTOR_C: shared NED targets (meters)
+  WP1: X=2.0, Y=10.0, Z=25.0
+  WP2: X=6.0, Y=10.0, Z=25.0
+  WP3: X=6.0, Y=11.0, Z=25.0
+  WP4: X=2.0, Y=11.0, Z=25.0
+[Phase8] SEARCH_SECTOR_D: shared NED targets (meters)
+  WP1: X=2.0, Y=15.0, Z=25.0
+  WP2: X=6.0, Y=15.0, Z=25.0
+  WP3: X=6.0, Y=16.0, Z=25.0
+  WP4: X=2.0, Y=16.0, Z=25.0
+[Phase8] 0.0s Drone1: {'action': 'hold', 'revoked': False}
+[Phase8] 0.0s Drone2: {'action': 'hold', 'revoked': False}
+[Phase8] 0.0s Drone3: {'action': 'hold', 'revoked': False}
+[Phase8] 0.0s Drone4: {'action': 'hold', 'revoked': False}
+[Phase8] 0.6s Drone1: {'action': 'move', 'target': [2.0, 0.0, 25], 'task_id': 'SEARCH_SECTOR_A', 'version': 1, 'index': 0, 'xy_error_m': 2.0, 'z_error_m': 0.0, 'retry': 0}
+[Phase8] 0.7s Drone1: {'action': 'move', 'target': [6.0, 0.0, 25], 'task_id': 'SEARCH_SECTOR_A', 'version': 1, 'index': 1, 'xy_error_m': 4.0, 'z_error_m': 0, 'retry': 0}
+[Phase8] 0.9s Drone2: {'action': 'move', 'target': [2.0, 5.0, 25], 'task_id': 'SEARCH_SECTOR_B', 'version': 1, 'index': 0, 'xy_error_m': 2.0, 'z_error_m': 0.0, 'retry': 0}
+[Phase8] 1.0s Drone2: {'action': 'move', 'target': [6.0, 5.0, 25], 'task_id': 'SEARCH_SECTOR_B', 'version': 1, 'index': 1, 'xy_error_m': 4.0, 'z_error_m': 0, 'retry': 0}
+[Phase8] 1.1s Drone2: {'action': 'move', 'target': [6.0, 6.0, 25], 'task_id': 'SEARCH_SECTOR_B', 'version': 1, 'index': 2, 'xy_error_m': 1.0, 'z_error_m': 0, 'retry': 0}
+[Phase8] 1.2s Drone2: {'action': 'move', 'target': [2.0, 6.0, 25], 'task_id': 'SEARCH_SECTOR_B', 'version': 1, 'index': 3, 'xy_error_m': 4.0, 'z_error_m': 0, 'retry': 0}
+[Phase8] 1.3s Drone2: {'action': 'hold', 'complete': True}
+[Phase8] 2.2s Drone3: {'action': 'move', 'target': [2.0, 10.0, 25], 'task_id': 'SEARCH_SECTOR_C', 'version': 1, 'index': 0, 'xy_error_m': 2.0, 'z_error_m': 0.0, 'retry': 0}
+[Phase8] 2.2s Drone4: {'action': 'move', 'target': [2.0, 15.0, 25], 'task_id': 'SEARCH_SECTOR_D', 'version': 1, 'index': 0, 'xy_error_m': 2.0, 'z_error_m': 0.0, 'retry': 0}
+[Phase8] 2.3s Drone3: {'action': 'move', 'target': [6.0, 10.0, 25], 'task_id': 'SEARCH_SECTOR_C', 'version': 1, 'index': 1, 'xy_error_m': 4.0, 'z_error_m': 0, 'retry': 0}
+[Phase8] 2.3s Drone4: {'action': 'move', 'target': [6.0, 15.0, 25], 'task_id': 'SEARCH_SECTOR_D', 'version': 1, 'index': 1, 'xy_error_m': 4.0, 'z_error_m': 0, 'retry': 0}
+[Phase8] 2.4s Drone3: {'action': 'move', 'target': [6.0, 11.0, 25], 'task_id': 'SEARCH_SECTOR_C', 'version': 1, 'index': 2, 'xy_error_m': 1.0, 'z_error_m': 0, 'retry': 0}
+[Phase8] 2.4s Drone4: {'action': 'move', 'target': [6.0, 16.0, 25], 'task_id': 'SEARCH_SECTOR_D', 'version': 1, 'index': 2, 'xy_error_m': 1.0, 'z_error_m': 0, 'retry': 0}
+[Phase8] 2.5s Drone3: {'action': 'move', 'target': [2.0, 11.0, 25], 'task_id': 'SEARCH_SECTOR_C', 'version': 1, 'index': 3, 'xy_error_m': 4.0, 'z_error_m': 0, 'retry': 0}
+[Phase8] 2.5s Drone4: {'action': 'move', 'target': [2.0, 16.0, 25], 'task_id': 'SEARCH_SECTOR_D', 'version': 1, 'index': 3, 'xy_error_m': 4.0, 'z_error_m': 0, 'retry': 0}
+[Phase8] 2.6s Drone3: {'action': 'hold', 'complete': True}
+[Phase8] 2.6s Drone4: {'action': 'hold', 'complete': True}
+[Phase8] 2.8s Drone2: {'action': 'move', 'target': [6.0, 0.0, 25], 'task_id': 'SEARCH_SECTOR_A', 'version': 2, 'index': 1, 'xy_error_m': 7.211102550927978, 'z_error_m': 0, 'retry': 0}
+[Phase8] 2.9s Drone2: {'action': 'move', 'target': [6.0, 1.0, 25], 'task_id': 'SEARCH_SECTOR_A', 'version': 2, 'index': 2, 'xy_error_m': 1.0, 'z_error_m': 0, 'retry': 0}
+[Phase8] 3.0s Drone2: {'action': 'move', 'target': [2.0, 1.0, 25], 'task_id': 'SEARCH_SECTOR_A', 'version': 2, 'index': 3, 'xy_error_m': 4.0, 'z_error_m': 0, 'retry': 0}
+[Phase8] 3.1s Drone2: {'action': 'hold', 'complete': True}
+{
+  "mode": "phase8_decentralized_contract_net_airsim",
+  "llm": false,
+  "mission_complete": true,
+  "error": null,
+  "ticks": 33,
+  "time_s": 3.2,
+  "completed_task_ids": [
+    "SEARCH_SECTOR_A",
+    "SEARCH_SECTOR_B",
+    "SEARCH_SECTOR_C",
+    "SEARCH_SECTOR_D"
+  ],
+  "completions_by_agent": {
+    "Drone1": 0,
+    "Drone2": 2,
+    "Drone3": 1,
+    "Drone4": 1
+  },
+  "duplicate_task_completions": 0,
+  "conflict_corrections": 3,
+  "lease_expirations": 1,
+  "waypoint_command_retries": 0,
+  "xy_arrival_tolerance_m": 0.1,
+  "z_arrival_tolerance_m": 0.6,
+  "failed_agents": [
+    "Drone1"
+  ],
+  "cleanup_errors": [],
+  "mission_config": {
+    "note": "Calibrate offsets and routes for your map. Shared position = API NED position + frame_offset_m. Example offsets assume API positions are vehicle-local.",
+    "vehicles": {
+      "Drone1": {
+        "frame_offset_m": [
+          0,
+          0,
+          0
+        ]
+      },
+      "Drone2": {
+        "frame_offset_m": [
+          0,
+          5,
+          0
+        ]
+      },
+      "Drone3": {
+        "frame_offset_m": [
+          0,
+          10,
+          0
+        ]
+      },
+      "Drone4": {
+        "frame_offset_m": [
+          0,
+          15,
+          0
+        ]
+      }
+    },
+    "tasks": [
+      {
+        "task_id": "SEARCH_SECTOR_A",
+        "waypoints": [
+          [
+            2.0,
+            0.0,
+            25
+          ],
+          [
+            6.0,
+            0.0,
+            25
+          ],
+          [
+            6.0,
+            1.0,
+            25
+          ],
+          [
+            2.0,
+            1.0,
+            25
+          ]
+        ],
+        "priority": 1
+      },
+      {
+        "task_id": "SEARCH_SECTOR_B",
+        "waypoints": [
+          [
+            2.0,
+            5.0,
+            25
+          ],
+          [
+            6.0,
+            5.0,
+            25
+          ],
+          [
+            6.0,
+            6.0,
+            25
+          ],
+          [
+            2.0,
+            6.0,
+            25
+          ]
+        ],
+        "priority": 1
+      },
+      {
+        "task_id": "SEARCH_SECTOR_C",
+        "waypoints": [
+          [
+            2.0,
+            10.0,
+            25
+          ],
+          [
+            6.0,
+            10.0,
+            25
+          ],
+          [
+            6.0,
+            11.0,
+            25
+          ],
+          [
+            2.0,
+            11.0,
+            25
+          ]
+        ],
+        "priority": 1
+      },
+      {
+        "task_id": "SEARCH_SECTOR_D",
+        "waypoints": [
+          [
+            2.0,
+            15.0,
+            25
+          ],
+          [
+            6.0,
+            15.0,
+            25
+          ],
+          [
+            6.0,
+            16.0,
+            25
+          ],
+          [
+            2.0,
+            16.0,
+            25
+          ]
+        ],
+        "priority": 1
+      }
+    ]
+  },
+  "route_scale": 1.0,
+  "overview_camera_location": null,
+  "verified_checkpoints": {
+    "Drone1": {
+      "SEARCH_SECTOR_A": 1
+    },
+    "Drone2": {
+      "SEARCH_SECTOR_A": 4,
+      "SEARCH_SECTOR_B": 4,
+      "SEARCH_SECTOR_C": 3,
+      "SEARCH_SECTOR_D": 3
+    },
+    "Drone3": {
+      "SEARCH_SECTOR_A": 3,
+      "SEARCH_SECTOR_B": 3,
+      "SEARCH_SECTOR_C": 4,
+      "SEARCH_SECTOR_D": 3
+    },
+    "Drone4": {
+      "SEARCH_SECTOR_A": 3,
+      "SEARCH_SECTOR_B": 3,
+      "SEARCH_SECTOR_D": 4,
+      "SEARCH_SECTOR_C": 3
+    }
+  },
+  "stall_timeout_s": 4.0,
+  "max_waypoint_retries": 2,
+  "limitations": [
+    "Observed ordered waypoint visits, not sensor-confirmed search coverage",
+    "No collision avoidance; scene and frame-offset calibration required",
+    "Silent-agent injection commands physical hover; peers infer failure only from missing messages",
+    "No network partition/rejoin fencing; perfect communication among surviving agents"
+  ]
+}
+ok
+test_live_dispatch_and_completion (test_phase8_flight.LiveIntegrationTests.test_live_dispatch_and_completion) ... [Phase8] SEARCH_SECTOR_A: shared NED targets (meters)
+  WP1: X=2.0, Y=0.0, Z=25.0
+  WP2: X=6.0, Y=0.0, Z=25.0
+  WP3: X=6.0, Y=1.0, Z=25.0
+  WP4: X=2.0, Y=1.0, Z=25.0
+[Phase8] SEARCH_SECTOR_B: shared NED targets (meters)
+  WP1: X=2.0, Y=5.0, Z=25.0
+  WP2: X=6.0, Y=5.0, Z=25.0
+  WP3: X=6.0, Y=6.0, Z=25.0
+  WP4: X=2.0, Y=6.0, Z=25.0
+[Phase8] SEARCH_SECTOR_C: shared NED targets (meters)
+  WP1: X=2.0, Y=10.0, Z=25.0
+  WP2: X=6.0, Y=10.0, Z=25.0
+  WP3: X=6.0, Y=11.0, Z=25.0
+  WP4: X=2.0, Y=11.0, Z=25.0
+[Phase8] SEARCH_SECTOR_D: shared NED targets (meters)
+  WP1: X=2.0, Y=15.0, Z=25.0
+  WP2: X=6.0, Y=15.0, Z=25.0
+  WP3: X=6.0, Y=16.0, Z=25.0
+  WP4: X=2.0, Y=16.0, Z=25.0
+[Phase8] 0.0s Drone1: {'action': 'hold', 'revoked': False}
+[Phase8] 0.0s Drone2: {'action': 'hold', 'revoked': False}
+[Phase8] 0.0s Drone3: {'action': 'hold', 'revoked': False}
+[Phase8] 0.0s Drone4: {'action': 'hold', 'revoked': False}
+[Phase8] 0.6s Drone1: {'action': 'move', 'target': [2.0, 0.0, 25], 'task_id': 'SEARCH_SECTOR_A', 'version': 1, 'index': 0, 'xy_error_m': 2.0, 'z_error_m': 0.0, 'retry': 0}
+[Phase8] 0.7s Drone1: {'action': 'move', 'target': [6.0, 0.0, 25], 'task_id': 'SEARCH_SECTOR_A', 'version': 1, 'index': 1, 'xy_error_m': 4.0, 'z_error_m': 0, 'retry': 0}
+[Phase8] 0.8s Drone1: {'action': 'move', 'target': [6.0, 1.0, 25], 'task_id': 'SEARCH_SECTOR_A', 'version': 1, 'index': 2, 'xy_error_m': 1.0, 'z_error_m': 0, 'retry': 0}
+[Phase8] 0.9s Drone1: {'action': 'move', 'target': [2.0, 1.0, 25], 'task_id': 'SEARCH_SECTOR_A', 'version': 1, 'index': 3, 'xy_error_m': 4.0, 'z_error_m': 0, 'retry': 0}
+[Phase8] 0.9s Drone2: {'action': 'move', 'target': [2.0, 5.0, 25], 'task_id': 'SEARCH_SECTOR_B', 'version': 1, 'index': 0, 'xy_error_m': 2.0, 'z_error_m': 0.0, 'retry': 0}
+[Phase8] 1.0s Drone1: {'action': 'hold', 'complete': True}
+[Phase8] 1.0s Drone2: {'action': 'move', 'target': [6.0, 5.0, 25], 'task_id': 'SEARCH_SECTOR_B', 'version': 1, 'index': 1, 'xy_error_m': 4.0, 'z_error_m': 0, 'retry': 0}
+[Phase8] 1.1s Drone2: {'action': 'move', 'target': [6.0, 6.0, 25], 'task_id': 'SEARCH_SECTOR_B', 'version': 1, 'index': 2, 'xy_error_m': 1.0, 'z_error_m': 0, 'retry': 0}
+[Phase8] 1.1s Drone3: {'action': 'move', 'target': [2.0, 10.0, 25], 'task_id': 'SEARCH_SECTOR_C', 'version': 1, 'index': 0, 'xy_error_m': 2.0, 'z_error_m': 0.0, 'retry': 0}
+[Phase8] 1.2s Drone2: {'action': 'move', 'target': [2.0, 6.0, 25], 'task_id': 'SEARCH_SECTOR_B', 'version': 1, 'index': 3, 'xy_error_m': 4.0, 'z_error_m': 0, 'retry': 0}
+[Phase8] 1.2s Drone3: {'action': 'move', 'target': [6.0, 10.0, 25], 'task_id': 'SEARCH_SECTOR_C', 'version': 1, 'index': 1, 'xy_error_m': 4.0, 'z_error_m': 0, 'retry': 0}
+[Phase8] 1.3s Drone2: {'action': 'hold', 'complete': True}
+[Phase8] 1.3s Drone3: {'action': 'move', 'target': [6.0, 11.0, 25], 'task_id': 'SEARCH_SECTOR_C', 'version': 1, 'index': 2, 'xy_error_m': 1.0, 'z_error_m': 0, 'retry': 0}
+[Phase8] 1.4s Drone3: {'action': 'move', 'target': [2.0, 11.0, 25], 'task_id': 'SEARCH_SECTOR_C', 'version': 1, 'index': 3, 'xy_error_m': 4.0, 'z_error_m': 0, 'retry': 0}
+[Phase8] 1.4s Drone4: {'action': 'move', 'target': [2.0, 15.0, 25], 'task_id': 'SEARCH_SECTOR_D', 'version': 1, 'index': 0, 'xy_error_m': 2.0, 'z_error_m': 0.0, 'retry': 0}
+[Phase8] 1.5s Drone3: {'action': 'hold', 'complete': True}
+[Phase8] 1.5s Drone4: {'action': 'move', 'target': [6.0, 15.0, 25], 'task_id': 'SEARCH_SECTOR_D', 'version': 1, 'index': 1, 'xy_error_m': 4.0, 'z_error_m': 0, 'retry': 0}
+[Phase8] 1.6s Drone4: {'action': 'move', 'target': [6.0, 16.0, 25], 'task_id': 'SEARCH_SECTOR_D', 'version': 1, 'index': 2, 'xy_error_m': 1.0, 'z_error_m': 0, 'retry': 0}
+[Phase8] 1.7s Drone4: {'action': 'move', 'target': [2.0, 16.0, 25], 'task_id': 'SEARCH_SECTOR_D', 'version': 1, 'index': 3, 'xy_error_m': 4.0, 'z_error_m': 0, 'retry': 0}
+[Phase8] 1.8s Drone4: {'action': 'hold', 'complete': True}
+{
+  "mode": "phase8_decentralized_contract_net_airsim",
+  "llm": false,
+  "mission_complete": true,
+  "error": null,
+  "ticks": 20,
+  "time_s": 1.9000000000000001,
+  "completed_task_ids": [
+    "SEARCH_SECTOR_A",
+    "SEARCH_SECTOR_B",
+    "SEARCH_SECTOR_C",
+    "SEARCH_SECTOR_D"
+  ],
+  "completions_by_agent": {
+    "Drone1": 1,
+    "Drone2": 1,
+    "Drone3": 1,
+    "Drone4": 1
+  },
+  "duplicate_task_completions": 0,
+  "conflict_corrections": 3,
+  "lease_expirations": 0,
+  "waypoint_command_retries": 0,
+  "xy_arrival_tolerance_m": 0.1,
+  "z_arrival_tolerance_m": 0.6,
+  "failed_agents": [],
+  "cleanup_errors": [],
+  "mission_config": {
+    "note": "Calibrate offsets and routes for your map. Shared position = API NED position + frame_offset_m. Example offsets assume API positions are vehicle-local.",
+    "vehicles": {
+      "Drone1": {
+        "frame_offset_m": [
+          0,
+          0,
+          0
+        ]
+      },
+      "Drone2": {
+        "frame_offset_m": [
+          0,
+          5,
+          0
+        ]
+      },
+      "Drone3": {
+        "frame_offset_m": [
+          0,
+          10,
+          0
+        ]
+      },
+      "Drone4": {
+        "frame_offset_m": [
+          0,
+          15,
+          0
+        ]
+      }
+    },
+    "tasks": [
+      {
+        "task_id": "SEARCH_SECTOR_A",
+        "waypoints": [
+          [
+            2.0,
+            0.0,
+            25
+          ],
+          [
+            6.0,
+            0.0,
+            25
+          ],
+          [
+            6.0,
+            1.0,
+            25
+          ],
+          [
+            2.0,
+            1.0,
+            25
+          ]
+        ],
+        "priority": 1
+      },
+      {
+        "task_id": "SEARCH_SECTOR_B",
+        "waypoints": [
+          [
+            2.0,
+            5.0,
+            25
+          ],
+          [
+            6.0,
+            5.0,
+            25
+          ],
+          [
+            6.0,
+            6.0,
+            25
+          ],
+          [
+            2.0,
+            6.0,
+            25
+          ]
+        ],
+        "priority": 1
+      },
+      {
+        "task_id": "SEARCH_SECTOR_C",
+        "waypoints": [
+          [
+            2.0,
+            10.0,
+            25
+          ],
+          [
+            6.0,
+            10.0,
+            25
+          ],
+          [
+            6.0,
+            11.0,
+            25
+          ],
+          [
+            2.0,
+            11.0,
+            25
+          ]
+        ],
+        "priority": 1
+      },
+      {
+        "task_id": "SEARCH_SECTOR_D",
+        "waypoints": [
+          [
+            2.0,
+            15.0,
+            25
+          ],
+          [
+            6.0,
+            15.0,
+            25
+          ],
+          [
+            6.0,
+            16.0,
+            25
+          ],
+          [
+            2.0,
+            16.0,
+            25
+          ]
+        ],
+        "priority": 1
+      }
+    ]
+  },
+  "route_scale": 1.0,
+  "overview_camera_location": null,
+  "verified_checkpoints": {
+    "Drone1": {
+      "SEARCH_SECTOR_A": 4,
+      "SEARCH_SECTOR_B": 3,
+      "SEARCH_SECTOR_C": 3,
+      "SEARCH_SECTOR_D": 3
+    },
+    "Drone2": {
+      "SEARCH_SECTOR_A": 3,
+      "SEARCH_SECTOR_B": 4,
+      "SEARCH_SECTOR_C": 3,
+      "SEARCH_SECTOR_D": 3
+    },
+    "Drone3": {
+      "SEARCH_SECTOR_A": 3,
+      "SEARCH_SECTOR_B": 3,
+      "SEARCH_SECTOR_C": 4,
+      "SEARCH_SECTOR_D": 3
+    },
+    "Drone4": {
+      "SEARCH_SECTOR_A": 3,
+      "SEARCH_SECTOR_B": 3,
+      "SEARCH_SECTOR_C": 3,
+      "SEARCH_SECTOR_D": 4
+    }
+  },
+  "stall_timeout_s": 4.0,
+  "max_waypoint_retries": 2,
+  "limitations": [
+    "Observed ordered waypoint visits, not sensor-confirmed search coverage",
+    "No collision avoidance; scene and frame-offset calibration required",
+    "Silent-agent injection commands physical hover; peers infer failure only from missing messages",
+    "No network partition/rejoin fencing; perfect communication among surviving agents"
+  ]
+}
+ok
+test_failure_during_long_leg_resumes_observed_checkpoint (test_phase8_recovery.RecoveryRegressionTests.test_failure_during_long_leg_resumes_observed_checkpoint) ... ok
+test_long_leg_and_height_bias_do_not_expire_healthy_owner (test_phase8_recovery.RecoveryRegressionTests.test_long_leg_and_height_bias_do_not_expire_healthy_owner) ... ok
+test_retries_are_bounded_and_do_not_keep_stalled_lease_alive (test_phase8_recovery.RecoveryRegressionTests.test_retries_are_bounded_and_do_not_keep_stalled_lease_alive) ... ok
+test_separate_xy_z_acceptance (test_phase8_recovery.RecoveryRegressionTests.test_separate_xy_z_acceptance) ... ok
+test_stale_owner_cannot_advance_checkpoint (test_phase8_recovery.RecoveryRegressionTests.test_stale_owner_cannot_advance_checkpoint) ... ok
+test_camera_frames_route_and_starting_points (test_phase8_view.ViewTests.test_camera_frames_route_and_starting_points) ... ok
+test_route_map_render (test_phase8_view.ViewTests.test_route_map_render) ... ok
+test_scale_preserves_altitude_offsets_and_original (test_phase8_view.ViewTests.test_scale_preserves_altitude_offsets_and_original) ... ok
+test_spectator_and_debug_labels (test_phase8_view.ViewTests.test_spectator_and_debug_labels) ... ok
+test_confirmed_failure_and_recovered_state (test_phase9_roles.HealthTests.test_confirmed_failure_and_recovered_state) ... ok
+test_short_gap_recovers_without_failure (test_phase9_roles.HealthTests.test_short_gap_recovers_without_failure) ... ok
+test_silence_never_means_confirmed_failure (test_phase9_roles.HealthTests.test_silence_never_means_confirmed_failure) ... ok
+test_delivered_target_discovery_activates_reserve (test_phase9_roles.RoleTests.test_delivered_target_discovery_activates_reserve) ... {
+  "mode": "phase9_dynamic_roles_mock",
+  "llm": false,
+  "mission_complete": true,
+  "time_s": 17.9,
+  "failed_agent_injection": null,
+  "fail_at_s": null,
+  "initial_roles": {
+    "Drone1": "SCOUT",
+    "Drone2": "SCOUT",
+    "Drone3": "RELAY",
+    "Drone4": "RESERVE"
+  },
+  "final_roles": {
+    "Drone1": "SCOUT",
+    "Drone2": "SCOUT",
+    "Drone3": "RELAY",
+    "Drone4": "SCOUT"
+  },
+  "completions_by_agent": {
+    "Drone1": 2,
+    "Drone2": 2,
+    "Drone3": 0,
+    "Drone4": 1
+  },
+  "duplicate_task_completions": 0,
+  "role_changes": 1,
+  "health_transitions": 0,
+  "lease_expirations": 0,
+  "final_peer_health": {
+    "Drone1": {
+      "Drone2": "HEALTHY",
+      "Drone3": "HEALTHY",
+      "Drone4": "HEALTHY"
+    },
+    "Drone2": {
+      "Drone1": "HEALTHY",
+      "Drone3": "HEALTHY",
+      "Drone4": "HEALTHY"
+    },
+    "Drone3": {
+      "Drone1": "HEALTHY",
+      "Drone2": "HEALTHY",
+      "Drone4": "HEALTHY"
+    },
+    "Drone4": {
+      "Drone1": "HEALTHY",
+      "Drone2": "HEALTHY",
+      "Drone3": "HEALTHY"
+    }
+  },
+  "limitations": [
+    "Mock role positioning/task work only; live four-drone execution not integrated",
+    "Relay election maintains a designated role; no RF reachability/throughput improvement is measured",
+    "Silence becomes UNREACHABLE, never confirmed FAILED without supervisor evidence",
+    "Health RECOVERED does not authorize safe rejoin of old task epochs; rejoin execution not supported",
+    "Fixed membership and trusted perfect messaging; not partition consensus"
+  ]
+}
+ok
+test_low_battery_releases_and_reserve_activates (test_phase9_roles.RoleTests.test_low_battery_releases_and_reserve_activates) ... {
+  "mode": "phase9_dynamic_roles_mock",
+  "llm": false,
+  "mission_complete": true,
+  "time_s": 18.1,
+  "failed_agent_injection": null,
+  "fail_at_s": null,
+  "initial_roles": {
+    "Drone1": "SCOUT",
+    "Drone2": "SCOUT",
+    "Drone3": "RELAY",
+    "Drone4": "RESERVE"
+  },
+  "final_roles": {
+    "Drone1": "RESERVE",
+    "Drone2": "SCOUT",
+    "Drone3": "RELAY",
+    "Drone4": "SCOUT"
+  },
+  "completions_by_agent": {
+    "Drone1": 0,
+    "Drone2": 2,
+    "Drone3": 0,
+    "Drone4": 2
+  },
+  "duplicate_task_completions": 0,
+  "role_changes": 2,
+  "health_transitions": 0,
+  "lease_expirations": 0,
+  "final_peer_health": {
+    "Drone1": {
+      "Drone2": "HEALTHY",
+      "Drone3": "HEALTHY",
+      "Drone4": "HEALTHY"
+    },
+    "Drone2": {
+      "Drone1": "HEALTHY",
+      "Drone3": "HEALTHY",
+      "Drone4": "HEALTHY"
+    },
+    "Drone3": {
+      "Drone1": "HEALTHY",
+      "Drone2": "HEALTHY",
+      "Drone4": "HEALTHY"
+    },
+    "Drone4": {
+      "Drone1": "HEALTHY",
+      "Drone2": "HEALTHY",
+      "Drone3": "HEALTHY"
+    }
+  },
+  "limitations": [
+    "Mock role positioning/task work only; live four-drone execution not integrated",
+    "Relay election maintains a designated role; no RF reachability/throughput improvement is measured",
+    "Silence becomes UNREACHABLE, never confirmed FAILED without supervisor evidence",
+    "Health RECOVERED does not authorize safe rejoin of old task epochs; rejoin execution not supported",
+    "Fixed membership and trusted perfect messaging; not partition consensus"
+  ]
+}
+ok
+test_only_trusted_supervisor_can_confirm_failure (test_phase9_roles.RoleTests.test_only_trusted_supervisor_can_confirm_failure) ... ok
+test_relay_loss_elects_reserve (test_phase9_roles.RoleTests.test_relay_loss_elects_reserve) ... {
+  "mode": "phase9_dynamic_roles_mock",
+  "llm": false,
+  "mission_complete": true,
+  "time_s": 18.1,
+  "failed_agent_injection": "Drone3",
+  "fail_at_s": 2.0,
+  "initial_roles": {
+    "Drone1": "SCOUT",
+    "Drone2": "SCOUT",
+    "Drone3": "RELAY",
+    "Drone4": "RESERVE"
+  },
+  "final_roles": {
+    "Drone1": "SCOUT",
+    "Drone2": "SCOUT",
+    "Drone4": "RELAY"
+  },
+  "completions_by_agent": {
+    "Drone1": 2,
+    "Drone2": 2,
+    "Drone3": 0,
+    "Drone4": 0
+  },
+  "duplicate_task_completions": 0,
+  "role_changes": 1,
+  "health_transitions": 6,
+  "lease_expirations": 0,
+  "final_peer_health": {
+    "Drone1": {
+      "Drone2": "HEALTHY",
+      "Drone3": "UNREACHABLE",
+      "Drone4": "HEALTHY"
+    },
+    "Drone2": {
+      "Drone1": "HEALTHY",
+      "Drone3": "UNREACHABLE",
+      "Drone4": "HEALTHY"
+    },
+    "Drone4": {
+      "Drone1": "HEALTHY",
+      "Drone2": "HEALTHY",
+      "Drone3": "UNREACHABLE"
+    }
+  },
+  "limitations": [
+    "Mock role positioning/task work only; live four-drone execution not integrated",
+    "Relay election maintains a designated role; no RF reachability/throughput improvement is measured",
+    "Silence becomes UNREACHABLE, never confirmed FAILED without supervisor evidence",
+    "Health RECOVERED does not authorize safe rejoin of old task epochs; rejoin execution not supported",
+    "Fixed membership and trusted perfect messaging; not partition consensus"
+  ]
+}
+ok
+test_scout_can_become_relay_and_reprioritize (test_phase9_roles.RoleTests.test_scout_can_become_relay_and_reprioritize) ... ok
+test_scout_loss_activates_reserve_and_recovers_task (test_phase9_roles.RoleTests.test_scout_loss_activates_reserve_and_recovers_task) ... {
+  "mode": "phase9_dynamic_roles_mock",
+  "llm": false,
+  "mission_complete": true,
+  "time_s": 18.1,
+  "failed_agent_injection": "Drone1",
+  "fail_at_s": 2.0,
+  "initial_roles": {
+    "Drone1": "SCOUT",
+    "Drone2": "SCOUT",
+    "Drone3": "RELAY",
+    "Drone4": "RESERVE"
+  },
+  "final_roles": {
+    "Drone2": "SCOUT",
+    "Drone3": "RELAY",
+    "Drone4": "SCOUT"
+  },
+  "completions_by_agent": {
+    "Drone1": 0,
+    "Drone2": 2,
+    "Drone3": 0,
+    "Drone4": 2
+  },
+  "duplicate_task_completions": 0,
+  "role_changes": 1,
+  "health_transitions": 6,
+  "lease_expirations": 1,
+  "final_peer_health": {
+    "Drone2": {
+      "Drone1": "UNREACHABLE",
+      "Drone3": "HEALTHY",
+      "Drone4": "HEALTHY"
+    },
+    "Drone3": {
+      "Drone1": "UNREACHABLE",
+      "Drone2": "HEALTHY",
+      "Drone4": "HEALTHY"
+    },
+    "Drone4": {
+      "Drone1": "UNREACHABLE",
+      "Drone2": "HEALTHY",
+      "Drone3": "HEALTHY"
+    }
+  },
+  "limitations": [
+    "Mock role positioning/task work only; live four-drone execution not integrated",
+    "Relay election maintains a designated role; no RF reachability/throughput improvement is measured",
+    "Silence becomes UNREACHABLE, never confirmed FAILED without supervisor evidence",
+    "Health RECOVERED does not authorize safe rejoin of old task epochs; rejoin execution not supported",
+    "Fixed membership and trusted perfect messaging; not partition consensus"
+  ]
+}
+ok
+
+----------------------------------------------------------------------
+Ran 236 tests in 56.917s
+
+OK
