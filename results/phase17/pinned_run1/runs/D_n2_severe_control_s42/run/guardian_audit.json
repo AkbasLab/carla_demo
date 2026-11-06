@@ -1,0 +1,5439 @@
+[
+  {
+    "time_s": 16.800097518018447,
+    "vehicle_id": "Drone1",
+    "observed_state": {
+      "vehicle_id": "Drone1",
+      "position": [
+        0,
+        0,
+        -3
+      ],
+      "observed_at": 16.800097518018447,
+      "battery_percent": 80.0,
+      "home": [
+        0,
+        0,
+        -3
+      ],
+      "peers": {
+        "Drone2": {
+          "position": [
+            0,
+            8,
+            -3
+          ],
+          "velocity": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "observed_at": 15.000094205955975
+        }
+      },
+      "expected_peers": [
+        "Drone2"
+      ],
+      "flight_phase": "AIRBORNE",
+      "communication": "HEALTHY",
+      "belief_confidence": 1.0
+    },
+    "proposed_action": {
+      "command_id": "policy:Drone1:1:16.800097518018447",
+      "vehicle_id": "Drone1",
+      "kind": "HOLD",
+      "issued_at": 16.800097518018447,
+      "valid_until": 46.80009751801845,
+      "waypoints": [],
+      "speed_mps": 1,
+      "duration_s": 1.0,
+      "source": "llm"
+    },
+    "outcome": "REJECT_AND_REPLAN",
+    "reasons": [
+      "peer_reachable_region_conflict"
+    ],
+    "selected_action": null,
+    "fallback": null,
+    "fallback_rejections": [],
+    "mission_effect": {
+      "executed": false,
+      "status": "replan_required"
+    }
+  },
+  {
+    "time_s": 28.400097838020884,
+    "vehicle_id": "Drone1",
+    "observed_state": {
+      "vehicle_id": "Drone1",
+      "position": [
+        0,
+        0,
+        -3
+      ],
+      "observed_at": 28.400097838020884,
+      "battery_percent": 80.0,
+      "home": [
+        0,
+        0,
+        -3
+      ],
+      "peers": {
+        "Drone2": {
+          "position": [
+            0,
+            8,
+            -3
+          ],
+          "velocity": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "observed_at": 27.600083261961117
+        }
+      },
+      "expected_peers": [
+        "Drone2"
+      ],
+      "flight_phase": "AIRBORNE",
+      "communication": "HEALTHY",
+      "belief_confidence": 1.0
+    },
+    "proposed_action": {
+      "command_id": "policy:Drone1:2:28.400097838020884",
+      "vehicle_id": "Drone1",
+      "kind": "HOLD",
+      "issued_at": 28.400097838020884,
+      "valid_until": 58.40009783802088,
+      "waypoints": [],
+      "speed_mps": 1,
+      "duration_s": 2.0,
+      "source": "llm"
+    },
+    "outcome": "APPROVE_WITH_MODIFICATION",
+    "reasons": [
+      "bounded_motion_segment"
+    ],
+    "selected_action": {
+      "command_id": "policy:Drone1:2:28.400097838020884",
+      "vehicle_id": "Drone1",
+      "kind": "HOLD",
+      "issued_at": 28.400097838020884,
+      "valid_until": 58.40009783802088,
+      "waypoints": [],
+      "speed_mps": 1,
+      "duration_s": 1.0,
+      "source": "llm"
+    },
+    "fallback": null,
+    "fallback_rejections": [],
+    "mission_effect": {
+      "executed": true,
+      "completed": false,
+      "status": "mock_active"
+    }
+  },
+  {
+    "time_s": 28.60012097400613,
+    "vehicle_id": "Drone1",
+    "observed_state": {
+      "vehicle_id": "Drone1",
+      "position": [
+        0,
+        0,
+        -3
+      ],
+      "observed_at": 28.60012097400613,
+      "battery_percent": 80.0,
+      "home": [
+        0,
+        0,
+        -3
+      ],
+      "peers": {
+        "Drone2": {
+          "position": [
+            0,
+            8,
+            -3
+          ],
+          "velocity": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "observed_at": 27.600083261961117
+        }
+      },
+      "expected_peers": [
+        "Drone2"
+      ],
+      "flight_phase": "AIRBORNE",
+      "communication": "HEALTHY",
+      "belief_confidence": 1.0
+    },
+    "proposed_action": {
+      "command_id": "policy:Drone1:2:28.400097838020884",
+      "vehicle_id": "Drone1",
+      "kind": "HOLD",
+      "issued_at": 28.400097838020884,
+      "valid_until": 58.40009783802088,
+      "waypoints": [],
+      "speed_mps": 1,
+      "duration_s": 1.0,
+      "source": "llm"
+    },
+    "outcome": "REJECT_AND_REPLAN",
+    "reasons": [
+      "runtime_timeout_or_state_violation",
+      "no_verified_safe_fallback"
+    ],
+    "selected_action": null,
+    "fallback": null,
+    "fallback_rejections": [
+      {
+        "fallback": "HOLD_POSITION",
+        "reasons": [
+          "peer_reachable_region_conflict"
+        ]
+      }
+    ],
+    "mission_effect": {
+      "executed": false,
+      "status": "no_verified_safe_fallback"
+    }
+  },
+  {
+    "time_s": 53.40008060506079,
+    "vehicle_id": "Drone2",
+    "observed_state": {
+      "vehicle_id": "Drone2",
+      "position": [
+        0,
+        8,
+        -3
+      ],
+      "observed_at": 53.40008060506079,
+      "battery_percent": 80.0,
+      "home": [
+        0,
+        8,
+        -3
+      ],
+      "peers": {
+        "Drone1": {
+          "position": [
+            0,
+            0,
+            -3
+          ],
+          "velocity": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "observed_at": 52.20009404304437
+        }
+      },
+      "expected_peers": [
+        "Drone1"
+      ],
+      "flight_phase": "AIRBORNE",
+      "communication": "HEALTHY",
+      "belief_confidence": 1.0
+    },
+    "proposed_action": {
+      "command_id": "policy:Drone2:1:53.40008060506079",
+      "vehicle_id": "Drone2",
+      "kind": "HOLD",
+      "issued_at": 53.40008060506079,
+      "valid_until": 83.4000806050608,
+      "waypoints": [],
+      "speed_mps": 1,
+      "duration_s": 1.0,
+      "source": "llm"
+    },
+    "outcome": "APPROVE_WITH_MODIFICATION",
+    "reasons": [
+      "bounded_motion_segment"
+    ],
+    "selected_action": {
+      "command_id": "policy:Drone2:1:53.40008060506079",
+      "vehicle_id": "Drone2",
+      "kind": "HOLD",
+      "issued_at": 53.40008060506079,
+      "valid_until": 83.4000806050608,
+      "waypoints": [],
+      "speed_mps": 1,
+      "duration_s": 0.5,
+      "source": "llm"
+    },
+    "fallback": null,
+    "fallback_rejections": [],
+    "mission_effect": {
+      "executed": true,
+      "completed": false,
+      "status": "mock_active"
+    }
+  },
+  {
+    "time_s": 66.00008269003592,
+    "vehicle_id": "Drone1",
+    "observed_state": {
+      "vehicle_id": "Drone1",
+      "position": [
+        0,
+        0,
+        -3
+      ],
+      "observed_at": 66.00008269003592,
+      "battery_percent": 80.0,
+      "home": [
+        0,
+        0,
+        -3
+      ],
+      "peers": {
+        "Drone2": {
+          "position": [
+            0,
+            8,
+            -3
+          ],
+          "velocity": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "observed_at": 65.40009416104294
+        }
+      },
+      "expected_peers": [
+        "Drone2"
+      ],
+      "flight_phase": "AIRBORNE",
+      "communication": "HEALTHY",
+      "belief_confidence": 1.0
+    },
+    "proposed_action": {
+      "command_id": "policy:Drone1:4:66.00008269003592",
+      "vehicle_id": "Drone1",
+      "kind": "HOLD",
+      "issued_at": 66.00008269003592,
+      "valid_until": 96.00008269003592,
+      "waypoints": [],
+      "speed_mps": 1,
+      "duration_s": 2.0,
+      "source": "llm"
+    },
+    "outcome": "APPROVE_WITH_MODIFICATION",
+    "reasons": [
+      "bounded_motion_segment"
+    ],
+    "selected_action": {
+      "command_id": "policy:Drone1:4:66.00008269003592",
+      "vehicle_id": "Drone1",
+      "kind": "HOLD",
+      "issued_at": 66.00008269003592,
+      "valid_until": 96.00008269003592,
+      "waypoints": [],
+      "speed_mps": 1,
+      "duration_s": 1.0,
+      "source": "llm"
+    },
+    "fallback": null,
+    "fallback_rejections": [],
+    "mission_effect": {
+      "executed": true,
+      "completed": false,
+      "status": "mock_active"
+    }
+  },
+  {
+    "time_s": 79.00009672995657,
+    "vehicle_id": "Drone1",
+    "observed_state": {
+      "vehicle_id": "Drone1",
+      "position": [
+        0,
+        0,
+        -3
+      ],
+      "observed_at": 79.00009672995657,
+      "battery_percent": 80.0,
+      "home": [
+        0,
+        0,
+        -3
+      ],
+      "peers": {
+        "Drone2": {
+          "position": [
+            0,
+            8,
+            -3
+          ],
+          "velocity": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "observed_at": 78.00009848899208
+        }
+      },
+      "expected_peers": [
+        "Drone2"
+      ],
+      "flight_phase": "AIRBORNE",
+      "communication": "HEALTHY",
+      "belief_confidence": 1.0
+    },
+    "proposed_action": {
+      "command_id": "policy:Drone1:5:79.00009672995657",
+      "vehicle_id": "Drone1",
+      "kind": "MOVE",
+      "issued_at": 79.00009672995657,
+      "valid_until": 109.00009672995657,
+      "waypoints": [
+        [
+          6,
+          0,
+          -3
+        ]
+      ],
+      "speed_mps": 1.0,
+      "duration_s": 1.0,
+      "source": "llm"
+    },
+    "outcome": "APPROVE_WITH_MODIFICATION",
+    "reasons": [
+      "bounded_motion_segment"
+    ],
+    "selected_action": {
+      "command_id": "policy:Drone1:5:79.00009672995657",
+      "vehicle_id": "Drone1",
+      "kind": "MOVE",
+      "issued_at": 79.00009672995657,
+      "valid_until": 109.00009672995657,
+      "waypoints": [
+        [
+          1.0,
+          0.0,
+          -3.0
+        ]
+      ],
+      "speed_mps": 1.0,
+      "duration_s": 1.0,
+      "source": "llm"
+    },
+    "fallback": null,
+    "fallback_rejections": [],
+    "mission_effect": {
+      "executed": true,
+      "completed": false,
+      "status": "mock_active"
+    }
+  },
+  {
+    "time_s": 80.20008957805112,
+    "vehicle_id": "Drone1",
+    "observed_state": {
+      "vehicle_id": "Drone1",
+      "position": [
+        1.0,
+        0.0,
+        -3.0
+      ],
+      "observed_at": 80.20008957805112,
+      "battery_percent": 79.99000000000001,
+      "home": [
+        0,
+        0,
+        -3
+      ],
+      "peers": {
+        "Drone2": {
+          "position": [
+            0,
+            8,
+            -3
+          ],
+          "velocity": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "observed_at": 79.80009297805373
+        }
+      },
+      "expected_peers": [
+        "Drone2"
+      ],
+      "flight_phase": "AIRBORNE",
+      "communication": "HEALTHY",
+      "belief_confidence": 1.0
+    },
+    "proposed_action": {
+      "command_id": "executor:Drone1:80.20008957805112",
+      "vehicle_id": "Drone1",
+      "kind": "MOVE",
+      "issued_at": 80.20008957805112,
+      "valid_until": 110.20008957805112,
+      "waypoints": [
+        [
+          6,
+          0,
+          -3
+        ]
+      ],
+      "speed_mps": 1.0,
+      "duration_s": 1.0,
+      "source": "rule_policy"
+    },
+    "outcome": "APPROVE_WITH_MODIFICATION",
+    "reasons": [
+      "bounded_motion_segment"
+    ],
+    "selected_action": {
+      "command_id": "executor:Drone1:80.20008957805112",
+      "vehicle_id": "Drone1",
+      "kind": "MOVE",
+      "issued_at": 80.20008957805112,
+      "valid_until": 110.20008957805112,
+      "waypoints": [
+        [
+          2.0,
+          0.0,
+          -3.0
+        ]
+      ],
+      "speed_mps": 1.0,
+      "duration_s": 1.0,
+      "source": "rule_policy"
+    },
+    "fallback": null,
+    "fallback_rejections": [],
+    "mission_effect": {
+      "executed": true,
+      "completed": false,
+      "status": "mock_active"
+    }
+  },
+  {
+    "time_s": 81.20009192498401,
+    "vehicle_id": "Drone1",
+    "observed_state": {
+      "vehicle_id": "Drone1",
+      "position": [
+        2.0,
+        0.0,
+        -3.0
+      ],
+      "observed_at": 81.20009192498401,
+      "battery_percent": 79.98000000000002,
+      "home": [
+        0,
+        0,
+        -3
+      ],
+      "peers": {
+        "Drone2": {
+          "position": [
+            0,
+            8,
+            -3
+          ],
+          "velocity": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "observed_at": 80.40010226203594
+        }
+      },
+      "expected_peers": [
+        "Drone2"
+      ],
+      "flight_phase": "AIRBORNE",
+      "communication": "HEALTHY",
+      "belief_confidence": 1.0
+    },
+    "proposed_action": {
+      "command_id": "executor:Drone1:81.20009192498401",
+      "vehicle_id": "Drone1",
+      "kind": "MOVE",
+      "issued_at": 81.20009192498401,
+      "valid_until": 111.20009192498401,
+      "waypoints": [
+        [
+          6,
+          0,
+          -3
+        ]
+      ],
+      "speed_mps": 1.0,
+      "duration_s": 1.0,
+      "source": "rule_policy"
+    },
+    "outcome": "APPROVE_WITH_MODIFICATION",
+    "reasons": [
+      "bounded_motion_segment"
+    ],
+    "selected_action": {
+      "command_id": "executor:Drone1:81.20009192498401",
+      "vehicle_id": "Drone1",
+      "kind": "MOVE",
+      "issued_at": 81.20009192498401,
+      "valid_until": 111.20009192498401,
+      "waypoints": [
+        [
+          3.0,
+          0.0,
+          -3.0
+        ]
+      ],
+      "speed_mps": 1.0,
+      "duration_s": 1.0,
+      "source": "rule_policy"
+    },
+    "fallback": null,
+    "fallback_rejections": [],
+    "mission_effect": {
+      "executed": true,
+      "completed": false,
+      "status": "mock_active"
+    }
+  },
+  {
+    "time_s": 82.20009837602265,
+    "vehicle_id": "Drone1",
+    "observed_state": {
+      "vehicle_id": "Drone1",
+      "position": [
+        3.0,
+        0.0,
+        -3.0
+      ],
+      "observed_at": 82.20009837602265,
+      "battery_percent": 79.97000000000003,
+      "home": [
+        0,
+        0,
+        -3
+      ],
+      "peers": {
+        "Drone2": {
+          "position": [
+            0,
+            8,
+            -3
+          ],
+          "velocity": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "observed_at": 81.00009283795953
+        }
+      },
+      "expected_peers": [
+        "Drone2"
+      ],
+      "flight_phase": "AIRBORNE",
+      "communication": "HEALTHY",
+      "belief_confidence": 1.0
+    },
+    "proposed_action": {
+      "command_id": "executor:Drone1:82.20009837602265",
+      "vehicle_id": "Drone1",
+      "kind": "MOVE",
+      "issued_at": 82.20009837602265,
+      "valid_until": 112.20009837602265,
+      "waypoints": [
+        [
+          6,
+          0,
+          -3
+        ]
+      ],
+      "speed_mps": 1.0,
+      "duration_s": 1.0,
+      "source": "rule_policy"
+    },
+    "outcome": "APPROVE_WITH_MODIFICATION",
+    "reasons": [
+      "bounded_motion_segment"
+    ],
+    "selected_action": {
+      "command_id": "executor:Drone1:82.20009837602265",
+      "vehicle_id": "Drone1",
+      "kind": "MOVE",
+      "issued_at": 82.20009837602265,
+      "valid_until": 112.20009837602265,
+      "waypoints": [
+        [
+          3.5,
+          0.0,
+          -3.0
+        ]
+      ],
+      "speed_mps": 1.0,
+      "duration_s": 1.0,
+      "source": "rule_policy"
+    },
+    "fallback": null,
+    "fallback_rejections": [],
+    "mission_effect": {
+      "executed": true,
+      "completed": false,
+      "status": "mock_active"
+    }
+  },
+  {
+    "time_s": 82.80011174303945,
+    "vehicle_id": "Drone1",
+    "observed_state": {
+      "vehicle_id": "Drone1",
+      "position": [
+        3.5,
+        0.0,
+        -3.0
+      ],
+      "observed_at": 82.80011174303945,
+      "battery_percent": 79.96500000000003,
+      "home": [
+        0,
+        0,
+        -3
+      ],
+      "peers": {
+        "Drone2": {
+          "position": [
+            0,
+            8,
+            -3
+          ],
+          "velocity": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "observed_at": 82.20009837602265
+        }
+      },
+      "expected_peers": [
+        "Drone2"
+      ],
+      "flight_phase": "AIRBORNE",
+      "communication": "HEALTHY",
+      "belief_confidence": 1.0
+    },
+    "proposed_action": {
+      "command_id": "executor:Drone1:82.80011174303945",
+      "vehicle_id": "Drone1",
+      "kind": "MOVE",
+      "issued_at": 82.80011174303945,
+      "valid_until": 112.80011174303945,
+      "waypoints": [
+        [
+          6,
+          0,
+          -3
+        ]
+      ],
+      "speed_mps": 1.0,
+      "duration_s": 1.0,
+      "source": "rule_policy"
+    },
+    "outcome": "APPROVE_WITH_MODIFICATION",
+    "reasons": [
+      "bounded_motion_segment"
+    ],
+    "selected_action": {
+      "command_id": "executor:Drone1:82.80011174303945",
+      "vehicle_id": "Drone1",
+      "kind": "MOVE",
+      "issued_at": 82.80011174303945,
+      "valid_until": 112.80011174303945,
+      "waypoints": [
+        [
+          4.5,
+          0.0,
+          -3.0
+        ]
+      ],
+      "speed_mps": 1.0,
+      "duration_s": 1.0,
+      "source": "rule_policy"
+    },
+    "fallback": null,
+    "fallback_rejections": [],
+    "mission_effect": {
+      "executed": true,
+      "completed": false,
+      "status": "mock_active"
+    }
+  },
+  {
+    "time_s": 84.00009139603935,
+    "vehicle_id": "Drone1",
+    "observed_state": {
+      "vehicle_id": "Drone1",
+      "position": [
+        4.5,
+        0.0,
+        -3.0
+      ],
+      "observed_at": 84.00009139603935,
+      "battery_percent": 79.95500000000003,
+      "home": [
+        0,
+        0,
+        -3
+      ],
+      "peers": {
+        "Drone2": {
+          "position": [
+            0,
+            8,
+            -3
+          ],
+          "velocity": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "observed_at": 83.40009180596098
+        }
+      },
+      "expected_peers": [
+        "Drone2"
+      ],
+      "flight_phase": "AIRBORNE",
+      "communication": "HEALTHY",
+      "belief_confidence": 1.0
+    },
+    "proposed_action": {
+      "command_id": "executor:Drone1:84.00009139603935",
+      "vehicle_id": "Drone1",
+      "kind": "MOVE",
+      "issued_at": 84.00009139603935,
+      "valid_until": 114.00009139603935,
+      "waypoints": [
+        [
+          6,
+          0,
+          -3
+        ]
+      ],
+      "speed_mps": 1.0,
+      "duration_s": 1.0,
+      "source": "rule_policy"
+    },
+    "outcome": "APPROVE_WITH_MODIFICATION",
+    "reasons": [
+      "bounded_motion_segment"
+    ],
+    "selected_action": {
+      "command_id": "executor:Drone1:84.00009139603935",
+      "vehicle_id": "Drone1",
+      "kind": "MOVE",
+      "issued_at": 84.00009139603935,
+      "valid_until": 114.00009139603935,
+      "waypoints": [
+        [
+          5.5,
+          0.0,
+          -3.0
+        ]
+      ],
+      "speed_mps": 1.0,
+      "duration_s": 1.0,
+      "source": "rule_policy"
+    },
+    "fallback": null,
+    "fallback_rejections": [],
+    "mission_effect": {
+      "executed": true,
+      "completed": false,
+      "status": "mock_active"
+    }
+  },
+  {
+    "time_s": 85.20009232498705,
+    "vehicle_id": "Drone1",
+    "observed_state": {
+      "vehicle_id": "Drone1",
+      "position": [
+        5.5,
+        0.0,
+        -3.0
+      ],
+      "observed_at": 85.20009232498705,
+      "battery_percent": 79.94500000000004,
+      "home": [
+        0,
+        0,
+        -3
+      ],
+      "peers": {
+        "Drone2": {
+          "position": [
+            0,
+            8,
+            -3
+          ],
+          "velocity": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "observed_at": 84.00009139603935
+        }
+      },
+      "expected_peers": [
+        "Drone2"
+      ],
+      "flight_phase": "AIRBORNE",
+      "communication": "DEGRADED",
+      "belief_confidence": 1.0
+    },
+    "proposed_action": {
+      "command_id": "executor:Drone1:85.20009232498705",
+      "vehicle_id": "Drone1",
+      "kind": "MOVE",
+      "issued_at": 85.20009232498705,
+      "valid_until": 115.20009232498705,
+      "waypoints": [
+        [
+          6,
+          0,
+          -3
+        ]
+      ],
+      "speed_mps": 1.0,
+      "duration_s": 1.0,
+      "source": "rule_policy"
+    },
+    "outcome": "APPROVE",
+    "reasons": [],
+    "selected_action": {
+      "command_id": "executor:Drone1:85.20009232498705",
+      "vehicle_id": "Drone1",
+      "kind": "MOVE",
+      "issued_at": 85.20009232498705,
+      "valid_until": 115.20009232498705,
+      "waypoints": [
+        [
+          6,
+          0,
+          -3
+        ]
+      ],
+      "speed_mps": 1.0,
+      "duration_s": 1.0,
+      "source": "rule_policy"
+    },
+    "fallback": null,
+    "fallback_rejections": [],
+    "mission_effect": {
+      "executed": true,
+      "completed": false,
+      "status": "mock_active"
+    }
+  },
+  {
+    "time_s": 85.80008662701584,
+    "vehicle_id": "Drone1",
+    "observed_state": {
+      "vehicle_id": "Drone1",
+      "position": [
+        6.0,
+        0.0,
+        -3.0
+      ],
+      "observed_at": 85.80008662701584,
+      "battery_percent": 79.94000000000004,
+      "home": [
+        0,
+        0,
+        -3
+      ],
+      "peers": {
+        "Drone2": {
+          "position": [
+            0,
+            8,
+            -3
+          ],
+          "velocity": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "observed_at": 85.20009232498705
+        }
+      },
+      "expected_peers": [
+        "Drone2"
+      ],
+      "flight_phase": "AIRBORNE",
+      "communication": "HEALTHY",
+      "belief_confidence": 1.0
+    },
+    "proposed_action": {
+      "command_id": "executor:Drone1:85.80008662701584",
+      "vehicle_id": "Drone1",
+      "kind": "MOVE",
+      "issued_at": 85.80008662701584,
+      "valid_until": 115.80008662701584,
+      "waypoints": [
+        [
+          12,
+          0,
+          -3
+        ]
+      ],
+      "speed_mps": 1.0,
+      "duration_s": 1.0,
+      "source": "rule_policy"
+    },
+    "outcome": "APPROVE_WITH_MODIFICATION",
+    "reasons": [
+      "bounded_motion_segment"
+    ],
+    "selected_action": {
+      "command_id": "executor:Drone1:85.80008662701584",
+      "vehicle_id": "Drone1",
+      "kind": "MOVE",
+      "issued_at": 85.80008662701584,
+      "valid_until": 115.80008662701584,
+      "waypoints": [
+        [
+          7.0,
+          0.0,
+          -3.0
+        ]
+      ],
+      "speed_mps": 1.0,
+      "duration_s": 1.0,
+      "source": "rule_policy"
+    },
+    "fallback": null,
+    "fallback_rejections": [],
+    "mission_effect": {
+      "executed": true,
+      "completed": false,
+      "status": "mock_active"
+    }
+  },
+  {
+    "time_s": 86.80009471497033,
+    "vehicle_id": "Drone1",
+    "observed_state": {
+      "vehicle_id": "Drone1",
+      "position": [
+        7.0,
+        0.0,
+        -3.0
+      ],
+      "observed_at": 86.80009471497033,
+      "battery_percent": 79.93000000000004,
+      "home": [
+        0,
+        0,
+        -3
+      ],
+      "peers": {
+        "Drone2": {
+          "position": [
+            0,
+            8,
+            -3
+          ],
+          "velocity": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "observed_at": 86.40009557199664
+        }
+      },
+      "expected_peers": [
+        "Drone2"
+      ],
+      "flight_phase": "AIRBORNE",
+      "communication": "HEALTHY",
+      "belief_confidence": 1.0
+    },
+    "proposed_action": {
+      "command_id": "executor:Drone1:86.80009471497033",
+      "vehicle_id": "Drone1",
+      "kind": "MOVE",
+      "issued_at": 86.80009471497033,
+      "valid_until": 116.80009471497033,
+      "waypoints": [
+        [
+          12,
+          0,
+          -3
+        ]
+      ],
+      "speed_mps": 1.0,
+      "duration_s": 1.0,
+      "source": "rule_policy"
+    },
+    "outcome": "APPROVE_WITH_MODIFICATION",
+    "reasons": [
+      "bounded_motion_segment"
+    ],
+    "selected_action": {
+      "command_id": "executor:Drone1:86.80009471497033",
+      "vehicle_id": "Drone1",
+      "kind": "MOVE",
+      "issued_at": 86.80009471497033,
+      "valid_until": 116.80009471497033,
+      "waypoints": [
+        [
+          8.0,
+          0.0,
+          -3.0
+        ]
+      ],
+      "speed_mps": 1.0,
+      "duration_s": 1.0,
+      "source": "rule_policy"
+    },
+    "fallback": null,
+    "fallback_rejections": [],
+    "mission_effect": {
+      "executed": true,
+      "completed": false,
+      "status": "mock_active"
+    }
+  },
+  {
+    "time_s": 87.80009712895844,
+    "vehicle_id": "Drone1",
+    "observed_state": {
+      "vehicle_id": "Drone1",
+      "position": [
+        8.0,
+        0.0,
+        -3.0
+      ],
+      "observed_at": 87.80009712895844,
+      "battery_percent": 79.92000000000003,
+      "home": [
+        0,
+        0,
+        -3
+      ],
+      "peers": {
+        "Drone2": {
+          "position": [
+            0,
+            8,
+            -3
+          ],
+          "velocity": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "observed_at": 87.0000874970574
+        }
+      },
+      "expected_peers": [
+        "Drone2"
+      ],
+      "flight_phase": "AIRBORNE",
+      "communication": "HEALTHY",
+      "belief_confidence": 1.0
+    },
+    "proposed_action": {
+      "command_id": "executor:Drone1:87.80009712895844",
+      "vehicle_id": "Drone1",
+      "kind": "MOVE",
+      "issued_at": 87.80009712895844,
+      "valid_until": 117.80009712895844,
+      "waypoints": [
+        [
+          12,
+          0,
+          -3
+        ]
+      ],
+      "speed_mps": 1.0,
+      "duration_s": 1.0,
+      "source": "rule_policy"
+    },
+    "outcome": "APPROVE_WITH_MODIFICATION",
+    "reasons": [
+      "bounded_motion_segment"
+    ],
+    "selected_action": {
+      "command_id": "executor:Drone1:87.80009712895844",
+      "vehicle_id": "Drone1",
+      "kind": "MOVE",
+      "issued_at": 87.80009712895844,
+      "valid_until": 117.80009712895844,
+      "waypoints": [
+        [
+          9.0,
+          0.0,
+          -3.0
+        ]
+      ],
+      "speed_mps": 1.0,
+      "duration_s": 1.0,
+      "source": "rule_policy"
+    },
+    "fallback": null,
+    "fallback_rejections": [],
+    "mission_effect": {
+      "executed": true,
+      "completed": false,
+      "status": "mock_active"
+    }
+  },
+  {
+    "time_s": 89.00009309698362,
+    "vehicle_id": "Drone1",
+    "observed_state": {
+      "vehicle_id": "Drone1",
+      "position": [
+        9.0,
+        0.0,
+        -3.0
+      ],
+      "observed_at": 89.00009309698362,
+      "battery_percent": 79.91000000000004,
+      "home": [
+        0,
+        0,
+        -3
+      ],
+      "peers": {
+        "Drone2": {
+          "position": [
+            0,
+            8,
+            -3
+          ],
+          "velocity": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "observed_at": 88.20011951006018
+        }
+      },
+      "expected_peers": [
+        "Drone2"
+      ],
+      "flight_phase": "AIRBORNE",
+      "communication": "HEALTHY",
+      "belief_confidence": 1.0
+    },
+    "proposed_action": {
+      "command_id": "executor:Drone1:89.00009309698362",
+      "vehicle_id": "Drone1",
+      "kind": "MOVE",
+      "issued_at": 89.00009309698362,
+      "valid_until": 119.00009309698362,
+      "waypoints": [
+        [
+          12,
+          0,
+          -3
+        ]
+      ],
+      "speed_mps": 1.0,
+      "duration_s": 1.0,
+      "source": "rule_policy"
+    },
+    "outcome": "APPROVE_WITH_MODIFICATION",
+    "reasons": [
+      "bounded_motion_segment"
+    ],
+    "selected_action": {
+      "command_id": "executor:Drone1:89.00009309698362",
+      "vehicle_id": "Drone1",
+      "kind": "MOVE",
+      "issued_at": 89.00009309698362,
+      "valid_until": 119.00009309698362,
+      "waypoints": [
+        [
+          10.0,
+          0.0,
+          -3.0
+        ]
+      ],
+      "speed_mps": 1.0,
+      "duration_s": 1.0,
+      "source": "rule_policy"
+    },
+    "fallback": null,
+    "fallback_rejections": [],
+    "mission_effect": {
+      "executed": true,
+      "completed": false,
+      "status": "mock_active"
+    }
+  },
+  {
+    "time_s": 90.001961766975,
+    "vehicle_id": "Drone1",
+    "observed_state": {
+      "vehicle_id": "Drone1",
+      "position": [
+        10.0,
+        0.0,
+        -3.0
+      ],
+      "observed_at": 90.001961766975,
+      "battery_percent": 79.90000000000003,
+      "home": [
+        0,
+        0,
+        -3
+      ],
+      "peers": {
+        "Drone2": {
+          "position": [
+            0,
+            8,
+            -3
+          ],
+          "velocity": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "observed_at": 89.40096312202513
+        }
+      },
+      "expected_peers": [
+        "Drone2"
+      ],
+      "flight_phase": "AIRBORNE",
+      "communication": "HEALTHY",
+      "belief_confidence": 1.0
+    },
+    "proposed_action": {
+      "command_id": "executor:Drone1:90.001961766975",
+      "vehicle_id": "Drone1",
+      "kind": "MOVE",
+      "issued_at": 90.001961766975,
+      "valid_until": 120.001961766975,
+      "waypoints": [
+        [
+          12,
+          0,
+          -3
+        ]
+      ],
+      "speed_mps": 1.0,
+      "duration_s": 1.0,
+      "source": "rule_policy"
+    },
+    "outcome": "APPROVE_WITH_MODIFICATION",
+    "reasons": [
+      "bounded_motion_segment"
+    ],
+    "selected_action": {
+      "command_id": "executor:Drone1:90.001961766975",
+      "vehicle_id": "Drone1",
+      "kind": "MOVE",
+      "issued_at": 90.001961766975,
+      "valid_until": 120.001961766975,
+      "waypoints": [
+        [
+          11.0,
+          0.0,
+          -3.0
+        ]
+      ],
+      "speed_mps": 1.0,
+      "duration_s": 1.0,
+      "source": "rule_policy"
+    },
+    "fallback": null,
+    "fallback_rejections": [],
+    "mission_effect": {
+      "executed": true,
+      "completed": false,
+      "status": "mock_active"
+    }
+  },
+  {
+    "time_s": 91.20009368099272,
+    "vehicle_id": "Drone1",
+    "observed_state": {
+      "vehicle_id": "Drone1",
+      "position": [
+        11.0,
+        0.0,
+        -3.0
+      ],
+      "observed_at": 91.20009368099272,
+      "battery_percent": 79.89000000000004,
+      "home": [
+        0,
+        0,
+        -3
+      ],
+      "peers": {
+        "Drone2": {
+          "position": [
+            0,
+            8,
+            -3
+          ],
+          "velocity": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "observed_at": 90.001961766975
+        }
+      },
+      "expected_peers": [
+        "Drone2"
+      ],
+      "flight_phase": "AIRBORNE",
+      "communication": "HEALTHY",
+      "belief_confidence": 1.0
+    },
+    "proposed_action": {
+      "command_id": "executor:Drone1:91.20009368099272",
+      "vehicle_id": "Drone1",
+      "kind": "MOVE",
+      "issued_at": 91.20009368099272,
+      "valid_until": 121.20009368099272,
+      "waypoints": [
+        [
+          12,
+          0,
+          -3
+        ]
+      ],
+      "speed_mps": 1.0,
+      "duration_s": 1.0,
+      "source": "rule_policy"
+    },
+    "outcome": "APPROVE",
+    "reasons": [],
+    "selected_action": {
+      "command_id": "executor:Drone1:91.20009368099272",
+      "vehicle_id": "Drone1",
+      "kind": "MOVE",
+      "issued_at": 91.20009368099272,
+      "valid_until": 121.20009368099272,
+      "waypoints": [
+        [
+          12,
+          0,
+          -3
+        ]
+      ],
+      "speed_mps": 1.0,
+      "duration_s": 1.0,
+      "source": "rule_policy"
+    },
+    "fallback": null,
+    "fallback_rejections": [],
+    "mission_effect": {
+      "executed": true,
+      "completed": false,
+      "status": "mock_active"
+    }
+  },
+  {
+    "time_s": 92.4000938499812,
+    "vehicle_id": "Drone1",
+    "observed_state": {
+      "vehicle_id": "Drone1",
+      "position": [
+        12.0,
+        0.0,
+        -3.0
+      ],
+      "observed_at": 92.4000938499812,
+      "battery_percent": 79.88000000000004,
+      "home": [
+        0,
+        0,
+        -3
+      ],
+      "peers": {
+        "Drone2": {
+          "position": [
+            0,
+            8,
+            -3
+          ],
+          "velocity": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "observed_at": 91.80009026301559
+        }
+      },
+      "expected_peers": [
+        "Drone2"
+      ],
+      "flight_phase": "AIRBORNE",
+      "communication": "HEALTHY",
+      "belief_confidence": 1.0
+    },
+    "proposed_action": {
+      "command_id": "executor:Drone1:92.4000938499812",
+      "vehicle_id": "Drone1",
+      "kind": "MOVE",
+      "issued_at": 92.4000938499812,
+      "valid_until": 122.4000938499812,
+      "waypoints": [
+        [
+          12,
+          3,
+          -3
+        ]
+      ],
+      "speed_mps": 1.0,
+      "duration_s": 1.0,
+      "source": "rule_policy"
+    },
+    "outcome": "APPROVE_WITH_MODIFICATION",
+    "reasons": [
+      "bounded_motion_segment"
+    ],
+    "selected_action": {
+      "command_id": "executor:Drone1:92.4000938499812",
+      "vehicle_id": "Drone1",
+      "kind": "MOVE",
+      "issued_at": 92.4000938499812,
+      "valid_until": 122.4000938499812,
+      "waypoints": [
+        [
+          12.0,
+          1.0,
+          -3.0
+        ]
+      ],
+      "speed_mps": 1.0,
+      "duration_s": 1.0,
+      "source": "rule_policy"
+    },
+    "fallback": null,
+    "fallback_rejections": [],
+    "mission_effect": {
+      "executed": true,
+      "completed": false,
+      "status": "mock_active"
+    }
+  },
+  {
+    "time_s": 93.00008058804087,
+    "vehicle_id": "Drone2",
+    "observed_state": {
+      "vehicle_id": "Drone2",
+      "position": [
+        0,
+        8,
+        -3
+      ],
+      "observed_at": 93.00008058804087,
+      "battery_percent": 80.0,
+      "home": [
+        0,
+        8,
+        -3
+      ],
+      "peers": {
+        "Drone1": {
+          "position": [
+            12.0,
+            0.0,
+            -3.0
+          ],
+          "velocity": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "observed_at": 92.4000938499812
+        }
+      },
+      "expected_peers": [
+        "Drone1"
+      ],
+      "flight_phase": "AIRBORNE",
+      "communication": "HEALTHY",
+      "belief_confidence": 1.0
+    },
+    "proposed_action": {
+      "command_id": "policy:Drone2:2:93.00008058804087",
+      "vehicle_id": "Drone2",
+      "kind": "HOLD",
+      "issued_at": 93.00008058804087,
+      "valid_until": 123.00008058804087,
+      "waypoints": [],
+      "speed_mps": 1,
+      "duration_s": 2.0,
+      "source": "llm"
+    },
+    "outcome": "APPROVE_WITH_MODIFICATION",
+    "reasons": [
+      "bounded_motion_segment"
+    ],
+    "selected_action": {
+      "command_id": "policy:Drone2:2:93.00008058804087",
+      "vehicle_id": "Drone2",
+      "kind": "HOLD",
+      "issued_at": 93.00008058804087,
+      "valid_until": 123.00008058804087,
+      "waypoints": [],
+      "speed_mps": 1,
+      "duration_s": 1.0,
+      "source": "llm"
+    },
+    "fallback": null,
+    "fallback_rejections": [],
+    "mission_effect": {
+      "executed": true,
+      "completed": false,
+      "status": "mock_active"
+    }
+  },
+  {
+    "time_s": 93.40009392797947,
+    "vehicle_id": "Drone1",
+    "observed_state": {
+      "vehicle_id": "Drone1",
+      "position": [
+        12.0,
+        1.0,
+        -3.0
+      ],
+      "observed_at": 93.40009392797947,
+      "battery_percent": 79.87000000000005,
+      "home": [
+        0,
+        0,
+        -3
+      ],
+      "peers": {
+        "Drone2": {
+          "position": [
+            0,
+            8,
+            -3
+          ],
+          "velocity": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "observed_at": 92.4000938499812
+        }
+      },
+      "expected_peers": [
+        "Drone2"
+      ],
+      "flight_phase": "AIRBORNE",
+      "communication": "HEALTHY",
+      "belief_confidence": 1.0
+    },
+    "proposed_action": {
+      "command_id": "executor:Drone1:93.40009392797947",
+      "vehicle_id": "Drone1",
+      "kind": "MOVE",
+      "issued_at": 93.40009392797947,
+      "valid_until": 123.40009392797947,
+      "waypoints": [
+        [
+          12,
+          3,
+          -3
+        ]
+      ],
+      "speed_mps": 1.0,
+      "duration_s": 1.0,
+      "source": "rule_policy"
+    },
+    "outcome": "APPROVE_WITH_MODIFICATION",
+    "reasons": [
+      "bounded_motion_segment"
+    ],
+    "selected_action": {
+      "command_id": "executor:Drone1:93.40009392797947",
+      "vehicle_id": "Drone1",
+      "kind": "MOVE",
+      "issued_at": 93.40009392797947,
+      "valid_until": 123.40009392797947,
+      "waypoints": [
+        [
+          12.0,
+          2.0,
+          -3.0
+        ]
+      ],
+      "speed_mps": 1.0,
+      "duration_s": 1.0,
+      "source": "rule_policy"
+    },
+    "fallback": null,
+    "fallback_rejections": [],
+    "mission_effect": {
+      "executed": true,
+      "completed": false,
+      "status": "mock_active"
+    }
+  },
+  {
+    "time_s": 94.40009414998349,
+    "vehicle_id": "Drone1",
+    "observed_state": {
+      "vehicle_id": "Drone1",
+      "position": [
+        12.0,
+        2.0,
+        -3.0
+      ],
+      "observed_at": 94.40009414998349,
+      "battery_percent": 79.86000000000006,
+      "home": [
+        0,
+        0,
+        -3
+      ],
+      "peers": {
+        "Drone2": {
+          "position": [
+            0,
+            8,
+            -3
+          ],
+          "velocity": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "observed_at": 93.00008058804087
+        }
+      },
+      "expected_peers": [
+        "Drone2"
+      ],
+      "flight_phase": "AIRBORNE",
+      "communication": "DEGRADED",
+      "belief_confidence": 1.0
+    },
+    "proposed_action": {
+      "command_id": "executor:Drone1:94.40009414998349",
+      "vehicle_id": "Drone1",
+      "kind": "MOVE",
+      "issued_at": 94.40009414998349,
+      "valid_until": 124.40009414998349,
+      "waypoints": [
+        [
+          12,
+          3,
+          -3
+        ]
+      ],
+      "speed_mps": 1.0,
+      "duration_s": 1.0,
+      "source": "rule_policy"
+    },
+    "outcome": "APPROVE",
+    "reasons": [],
+    "selected_action": {
+      "command_id": "executor:Drone1:94.40009414998349",
+      "vehicle_id": "Drone1",
+      "kind": "MOVE",
+      "issued_at": 94.40009414998349,
+      "valid_until": 124.40009414998349,
+      "waypoints": [
+        [
+          12,
+          3,
+          -3
+        ]
+      ],
+      "speed_mps": 1.0,
+      "duration_s": 1.0,
+      "source": "rule_policy"
+    },
+    "fallback": null,
+    "fallback_rejections": [],
+    "mission_effect": {
+      "executed": true,
+      "completed": false,
+      "status": "mock_active"
+    }
+  },
+  {
+    "time_s": 95.40009930904489,
+    "vehicle_id": "Drone1",
+    "observed_state": {
+      "vehicle_id": "Drone1",
+      "position": [
+        12.0,
+        3.0,
+        -3.0
+      ],
+      "observed_at": 95.40009930904489,
+      "battery_percent": 79.85000000000005,
+      "home": [
+        0,
+        0,
+        -3
+      ],
+      "peers": {
+        "Drone2": {
+          "position": [
+            0,
+            8,
+            -3
+          ],
+          "velocity": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "observed_at": 94.80008871201426
+        }
+      },
+      "expected_peers": [
+        "Drone2"
+      ],
+      "flight_phase": "AIRBORNE",
+      "communication": "HEALTHY",
+      "belief_confidence": 1.0
+    },
+    "proposed_action": {
+      "command_id": "executor:Drone1:95.40009930904489",
+      "vehicle_id": "Drone1",
+      "kind": "MOVE",
+      "issued_at": 95.40009930904489,
+      "valid_until": 125.40009930904489,
+      "waypoints": [
+        [
+          6,
+          3,
+          -3
+        ]
+      ],
+      "speed_mps": 1.0,
+      "duration_s": 1.0,
+      "source": "rule_policy"
+    },
+    "outcome": "APPROVE_WITH_MODIFICATION",
+    "reasons": [
+      "bounded_motion_segment"
+    ],
+    "selected_action": {
+      "command_id": "executor:Drone1:95.40009930904489",
+      "vehicle_id": "Drone1",
+      "kind": "MOVE",
+      "issued_at": 95.40009930904489,
+      "valid_until": 125.40009930904489,
+      "waypoints": [
+        [
+          11.0,
+          3.0,
+          -3.0
+        ]
+      ],
+      "speed_mps": 1.0,
+      "duration_s": 1.0,
+      "source": "rule_policy"
+    },
+    "fallback": null,
+    "fallback_rejections": [],
+    "mission_effect": {
+      "executed": true,
+      "completed": false,
+      "status": "mock_active"
+    }
+  },
+  {
+    "time_s": 96.60009274096228,
+    "vehicle_id": "Drone1",
+    "observed_state": {
+      "vehicle_id": "Drone1",
+      "position": [
+        11.0,
+        3.0,
+        -3.0
+      ],
+      "observed_at": 96.60009274096228,
+      "battery_percent": 79.84000000000007,
+      "home": [
+        0,
+        0,
+        -3
+      ],
+      "peers": {
+        "Drone2": {
+          "position": [
+            0,
+            8,
+            -3
+          ],
+          "velocity": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "observed_at": 96.00008906098083
+        }
+      },
+      "expected_peers": [
+        "Drone2"
+      ],
+      "flight_phase": "AIRBORNE",
+      "communication": "HEALTHY",
+      "belief_confidence": 1.0
+    },
+    "proposed_action": {
+      "command_id": "executor:Drone1:96.60009274096228",
+      "vehicle_id": "Drone1",
+      "kind": "MOVE",
+      "issued_at": 96.60009274096228,
+      "valid_until": 126.60009274096228,
+      "waypoints": [
+        [
+          6,
+          3,
+          -3
+        ]
+      ],
+      "speed_mps": 1.0,
+      "duration_s": 1.0,
+      "source": "rule_policy"
+    },
+    "outcome": "APPROVE_WITH_MODIFICATION",
+    "reasons": [
+      "bounded_motion_segment"
+    ],
+    "selected_action": {
+      "command_id": "executor:Drone1:96.60009274096228",
+      "vehicle_id": "Drone1",
+      "kind": "MOVE",
+      "issued_at": 96.60009274096228,
+      "valid_until": 126.60009274096228,
+      "waypoints": [
+        [
+          10.0,
+          3.0,
+          -3.0
+        ]
+      ],
+      "speed_mps": 1.0,
+      "duration_s": 1.0,
+      "source": "rule_policy"
+    },
+    "fallback": null,
+    "fallback_rejections": [],
+    "mission_effect": {
+      "executed": true,
+      "completed": false,
+      "status": "mock_active"
+    }
+  },
+  {
+    "time_s": 97.80008637101855,
+    "vehicle_id": "Drone1",
+    "observed_state": {
+      "vehicle_id": "Drone1",
+      "position": [
+        10.0,
+        3.0,
+        -3.0
+      ],
+      "observed_at": 97.80008637101855,
+      "battery_percent": 79.83000000000006,
+      "home": [
+        0,
+        0,
+        -3
+      ],
+      "peers": {
+        "Drone2": {
+          "position": [
+            0,
+            8,
+            -3
+          ],
+          "velocity": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "observed_at": 97.20009210100397
+        }
+      },
+      "expected_peers": [
+        "Drone2"
+      ],
+      "flight_phase": "AIRBORNE",
+      "communication": "HEALTHY",
+      "belief_confidence": 1.0
+    },
+    "proposed_action": {
+      "command_id": "executor:Drone1:97.80008637101855",
+      "vehicle_id": "Drone1",
+      "kind": "MOVE",
+      "issued_at": 97.80008637101855,
+      "valid_until": 127.80008637101855,
+      "waypoints": [
+        [
+          6,
+          3,
+          -3
+        ]
+      ],
+      "speed_mps": 1.0,
+      "duration_s": 1.0,
+      "source": "rule_policy"
+    },
+    "outcome": "APPROVE_WITH_MODIFICATION",
+    "reasons": [
+      "bounded_motion_segment"
+    ],
+    "selected_action": {
+      "command_id": "executor:Drone1:97.80008637101855",
+      "vehicle_id": "Drone1",
+      "kind": "MOVE",
+      "issued_at": 97.80008637101855,
+      "valid_until": 127.80008637101855,
+      "waypoints": [
+        [
+          9.0,
+          3.0,
+          -3.0
+        ]
+      ],
+      "speed_mps": 1.0,
+      "duration_s": 1.0,
+      "source": "rule_policy"
+    },
+    "fallback": null,
+    "fallback_rejections": [],
+    "mission_effect": {
+      "executed": true,
+      "completed": false,
+      "status": "mock_active"
+    }
+  },
+  {
+    "time_s": 98.80009389598854,
+    "vehicle_id": "Drone1",
+    "observed_state": {
+      "vehicle_id": "Drone1",
+      "position": [
+        9.0,
+        3.0,
+        -3.0
+      ],
+      "observed_at": 98.80009389598854,
+      "battery_percent": 79.82000000000005,
+      "home": [
+        0,
+        0,
+        -3
+      ],
+      "peers": {
+        "Drone2": {
+          "position": [
+            0,
+            8,
+            -3
+          ],
+          "velocity": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "observed_at": 97.80008637101855
+        }
+      },
+      "expected_peers": [
+        "Drone2"
+      ],
+      "flight_phase": "AIRBORNE",
+      "communication": "HEALTHY",
+      "belief_confidence": 1.0
+    },
+    "proposed_action": {
+      "command_id": "executor:Drone1:98.80009389598854",
+      "vehicle_id": "Drone1",
+      "kind": "MOVE",
+      "issued_at": 98.80009389598854,
+      "valid_until": 128.80009389598854,
+      "waypoints": [
+        [
+          6,
+          3,
+          -3
+        ]
+      ],
+      "speed_mps": 1.0,
+      "duration_s": 1.0,
+      "source": "rule_policy"
+    },
+    "outcome": "APPROVE_WITH_MODIFICATION",
+    "reasons": [
+      "bounded_motion_segment"
+    ],
+    "selected_action": {
+      "command_id": "executor:Drone1:98.80009389598854",
+      "vehicle_id": "Drone1",
+      "kind": "MOVE",
+      "issued_at": 98.80009389598854,
+      "valid_until": 128.80009389598854,
+      "waypoints": [
+        [
+          8.0,
+          3.0,
+          -3.0
+        ]
+      ],
+      "speed_mps": 1.0,
+      "duration_s": 1.0,
+      "source": "rule_policy"
+    },
+    "fallback": null,
+    "fallback_rejections": [],
+    "mission_effect": {
+      "executed": true,
+      "completed": false,
+      "status": "mock_active"
+    }
+  },
+  {
+    "time_s": 99.80009891302325,
+    "vehicle_id": "Drone1",
+    "observed_state": {
+      "vehicle_id": "Drone1",
+      "position": [
+        8.0,
+        3.0,
+        -3.0
+      ],
+      "observed_at": 99.80009891302325,
+      "battery_percent": 79.81000000000004,
+      "home": [
+        0,
+        0,
+        -3
+      ],
+      "peers": {
+        "Drone2": {
+          "position": [
+            0,
+            8,
+            -3
+          ],
+          "velocity": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "observed_at": 99.00008879299276
+        }
+      },
+      "expected_peers": [
+        "Drone2"
+      ],
+      "flight_phase": "AIRBORNE",
+      "communication": "HEALTHY",
+      "belief_confidence": 1.0
+    },
+    "proposed_action": {
+      "command_id": "executor:Drone1:99.80009891302325",
+      "vehicle_id": "Drone1",
+      "kind": "MOVE",
+      "issued_at": 99.80009891302325,
+      "valid_until": 129.80009891302325,
+      "waypoints": [
+        [
+          6,
+          3,
+          -3
+        ]
+      ],
+      "speed_mps": 1.0,
+      "duration_s": 1.0,
+      "source": "rule_policy"
+    },
+    "outcome": "APPROVE_WITH_MODIFICATION",
+    "reasons": [
+      "bounded_motion_segment"
+    ],
+    "selected_action": {
+      "command_id": "executor:Drone1:99.80009891302325",
+      "vehicle_id": "Drone1",
+      "kind": "MOVE",
+      "issued_at": 99.80009891302325,
+      "valid_until": 129.80009891302325,
+      "waypoints": [
+        [
+          7.0,
+          3.0,
+          -3.0
+        ]
+      ],
+      "speed_mps": 1.0,
+      "duration_s": 1.0,
+      "source": "rule_policy"
+    },
+    "fallback": null,
+    "fallback_rejections": [],
+    "mission_effect": {
+      "executed": true,
+      "completed": false,
+      "status": "mock_active"
+    }
+  },
+  {
+    "time_s": 106.80009833502118,
+    "vehicle_id": "Drone2",
+    "observed_state": {
+      "vehicle_id": "Drone2",
+      "position": [
+        0,
+        8,
+        -3
+      ],
+      "observed_at": 106.80009833502118,
+      "battery_percent": 80.0,
+      "home": [
+        0,
+        8,
+        -3
+      ],
+      "peers": {
+        "Drone1": {
+          "position": [
+            7.0,
+            3.0,
+            -3.0
+          ],
+          "velocity": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "observed_at": 105.60009531700052
+        }
+      },
+      "expected_peers": [
+        "Drone1"
+      ],
+      "flight_phase": "AIRBORNE",
+      "communication": "HEALTHY",
+      "belief_confidence": 1.0
+    },
+    "proposed_action": {
+      "command_id": "policy:Drone2:3:106.80009833502118",
+      "vehicle_id": "Drone2",
+      "kind": "MOVE",
+      "issued_at": 106.80009833502118,
+      "valid_until": 136.80009833502118,
+      "waypoints": [
+        [
+          6,
+          8,
+          -3
+        ]
+      ],
+      "speed_mps": 1.0,
+      "duration_s": 1.0,
+      "source": "llm"
+    },
+    "outcome": "APPROVE_WITH_MODIFICATION",
+    "reasons": [
+      "bounded_motion_segment"
+    ],
+    "selected_action": {
+      "command_id": "policy:Drone2:3:106.80009833502118",
+      "vehicle_id": "Drone2",
+      "kind": "MOVE",
+      "issued_at": 106.80009833502118,
+      "valid_until": 136.80009833502118,
+      "waypoints": [
+        [
+          0.5,
+          8.0,
+          -3.0
+        ]
+      ],
+      "speed_mps": 1.0,
+      "duration_s": 1.0,
+      "source": "llm"
+    },
+    "fallback": null,
+    "fallback_rejections": [],
+    "mission_effect": {
+      "executed": true,
+      "completed": false,
+      "status": "mock_active"
+    }
+  },
+  {
+    "time_s": 107.40009479504079,
+    "vehicle_id": "Drone2",
+    "observed_state": {
+      "vehicle_id": "Drone2",
+      "position": [
+        0.5,
+        8.0,
+        -3.0
+      ],
+      "observed_at": 107.40009479504079,
+      "battery_percent": 79.995,
+      "home": [
+        0,
+        8,
+        -3
+      ],
+      "peers": {
+        "Drone1": {
+          "position": [
+            7.0,
+            3.0,
+            -3.0
+          ],
+          "velocity": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "observed_at": 106.80009833502118
+        }
+      },
+      "expected_peers": [
+        "Drone1"
+      ],
+      "flight_phase": "AIRBORNE",
+      "communication": "HEALTHY",
+      "belief_confidence": 1.0
+    },
+    "proposed_action": {
+      "command_id": "executor:Drone2:107.40009479504079",
+      "vehicle_id": "Drone2",
+      "kind": "MOVE",
+      "issued_at": 107.40009479504079,
+      "valid_until": 137.4000947950408,
+      "waypoints": [
+        [
+          6,
+          8,
+          -3
+        ]
+      ],
+      "speed_mps": 1.0,
+      "duration_s": 1.0,
+      "source": "rule_policy"
+    },
+    "outcome": "APPROVE_WITH_MODIFICATION",
+    "reasons": [
+      "bounded_motion_segment"
+    ],
+    "selected_action": {
+      "command_id": "executor:Drone2:107.40009479504079",
+      "vehicle_id": "Drone2",
+      "kind": "MOVE",
+      "issued_at": 107.40009479504079,
+      "valid_until": 137.4000947950408,
+      "waypoints": [
+        [
+          1.5,
+          8.0,
+          -3.0
+        ]
+      ],
+      "speed_mps": 1.0,
+      "duration_s": 1.0,
+      "source": "rule_policy"
+    },
+    "fallback": null,
+    "fallback_rejections": [],
+    "mission_effect": {
+      "executed": true,
+      "completed": false,
+      "status": "mock_active"
+    }
+  },
+  {
+    "time_s": 108.60008386499248,
+    "vehicle_id": "Drone2",
+    "observed_state": {
+      "vehicle_id": "Drone2",
+      "position": [
+        1.5,
+        8.0,
+        -3.0
+      ],
+      "observed_at": 108.60008386499248,
+      "battery_percent": 79.98500000000001,
+      "home": [
+        0,
+        8,
+        -3
+      ],
+      "peers": {
+        "Drone1": {
+          "position": [
+            7.0,
+            3.0,
+            -3.0
+          ],
+          "velocity": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "observed_at": 108.00008327804971
+        }
+      },
+      "expected_peers": [
+        "Drone1"
+      ],
+      "flight_phase": "AIRBORNE",
+      "communication": "HEALTHY",
+      "belief_confidence": 1.0
+    },
+    "proposed_action": {
+      "command_id": "executor:Drone2:108.60008386499248",
+      "vehicle_id": "Drone2",
+      "kind": "MOVE",
+      "issued_at": 108.60008386499248,
+      "valid_until": 138.60008386499248,
+      "waypoints": [
+        [
+          6,
+          8,
+          -3
+        ]
+      ],
+      "speed_mps": 1.0,
+      "duration_s": 1.0,
+      "source": "rule_policy"
+    },
+    "outcome": "APPROVE_WITH_MODIFICATION",
+    "reasons": [
+      "bounded_motion_segment"
+    ],
+    "selected_action": {
+      "command_id": "executor:Drone2:108.60008386499248",
+      "vehicle_id": "Drone2",
+      "kind": "MOVE",
+      "issued_at": 108.60008386499248,
+      "valid_until": 138.60008386499248,
+      "waypoints": [
+        [
+          2.0,
+          8.0,
+          -3.0
+        ]
+      ],
+      "speed_mps": 1.0,
+      "duration_s": 1.0,
+      "source": "rule_policy"
+    },
+    "fallback": null,
+    "fallback_rejections": [],
+    "mission_effect": {
+      "executed": true,
+      "completed": false,
+      "status": "mock_active"
+    }
+  },
+  {
+    "time_s": 109.20009351999033,
+    "vehicle_id": "Drone2",
+    "observed_state": {
+      "vehicle_id": "Drone2",
+      "position": [
+        2.0,
+        8.0,
+        -3.0
+      ],
+      "observed_at": 109.20009351999033,
+      "battery_percent": 79.98,
+      "home": [
+        0,
+        8,
+        -3
+      ],
+      "peers": {
+        "Drone1": {
+          "position": [
+            7.0,
+            3.0,
+            -3.0
+          ],
+          "velocity": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "observed_at": 108.60008386499248
+        }
+      },
+      "expected_peers": [
+        "Drone1"
+      ],
+      "flight_phase": "AIRBORNE",
+      "communication": "HEALTHY",
+      "belief_confidence": 1.0
+    },
+    "proposed_action": {
+      "command_id": "executor:Drone2:109.20009351999033",
+      "vehicle_id": "Drone2",
+      "kind": "MOVE",
+      "issued_at": 109.20009351999033,
+      "valid_until": 139.20009351999033,
+      "waypoints": [
+        [
+          6,
+          8,
+          -3
+        ]
+      ],
+      "speed_mps": 1.0,
+      "duration_s": 1.0,
+      "source": "rule_policy"
+    },
+    "outcome": "APPROVE_WITH_MODIFICATION",
+    "reasons": [
+      "bounded_motion_segment"
+    ],
+    "selected_action": {
+      "command_id": "executor:Drone2:109.20009351999033",
+      "vehicle_id": "Drone2",
+      "kind": "MOVE",
+      "issued_at": 109.20009351999033,
+      "valid_until": 139.20009351999033,
+      "waypoints": [
+        [
+          2.5,
+          8.0,
+          -3.0
+        ]
+      ],
+      "speed_mps": 1.0,
+      "duration_s": 1.0,
+      "source": "rule_policy"
+    },
+    "fallback": null,
+    "fallback_rejections": [],
+    "mission_effect": {
+      "executed": true,
+      "completed": false,
+      "status": "mock_active"
+    }
+  },
+  {
+    "time_s": 109.80009009200148,
+    "vehicle_id": "Drone2",
+    "observed_state": {
+      "vehicle_id": "Drone2",
+      "position": [
+        2.5,
+        8.0,
+        -3.0
+      ],
+      "observed_at": 109.80009009200148,
+      "battery_percent": 79.97500000000001,
+      "home": [
+        0,
+        8,
+        -3
+      ],
+      "peers": {
+        "Drone1": {
+          "position": [
+            7.0,
+            3.0,
+            -3.0
+          ],
+          "velocity": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "observed_at": 108.60008386499248
+        }
+      },
+      "expected_peers": [
+        "Drone1"
+      ],
+      "flight_phase": "AIRBORNE",
+      "communication": "DEGRADED",
+      "belief_confidence": 1.0
+    },
+    "proposed_action": {
+      "command_id": "executor:Drone2:109.80009009200148",
+      "vehicle_id": "Drone2",
+      "kind": "MOVE",
+      "issued_at": 109.80009009200148,
+      "valid_until": 139.80009009200148,
+      "waypoints": [
+        [
+          6,
+          8,
+          -3
+        ]
+      ],
+      "speed_mps": 1.0,
+      "duration_s": 1.0,
+      "source": "rule_policy"
+    },
+    "outcome": "APPROVE_WITH_MODIFICATION",
+    "reasons": [
+      "bounded_motion_segment"
+    ],
+    "selected_action": {
+      "command_id": "executor:Drone2:109.80009009200148",
+      "vehicle_id": "Drone2",
+      "kind": "MOVE",
+      "issued_at": 109.80009009200148,
+      "valid_until": 139.80009009200148,
+      "waypoints": [
+        [
+          2.75,
+          8.0,
+          -3.0
+        ]
+      ],
+      "speed_mps": 1.0,
+      "duration_s": 1.0,
+      "source": "rule_policy"
+    },
+    "fallback": null,
+    "fallback_rejections": [],
+    "mission_effect": {
+      "executed": true,
+      "completed": false,
+      "status": "mock_active"
+    }
+  },
+  {
+    "time_s": 110.00009512598626,
+    "vehicle_id": "Drone2",
+    "observed_state": {
+      "vehicle_id": "Drone2",
+      "position": [
+        2.7000050339847803,
+        8.0,
+        -3.0
+      ],
+      "observed_at": 110.00009512598626,
+      "battery_percent": 79.97299994966016,
+      "home": [
+        0,
+        8,
+        -3
+      ],
+      "peers": {
+        "Drone1": {
+          "position": [
+            7.0,
+            3.0,
+            -3.0
+          ],
+          "velocity": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "observed_at": 108.60008386499248
+        }
+      },
+      "expected_peers": [
+        "Drone1"
+      ],
+      "flight_phase": "AIRBORNE",
+      "communication": "DEGRADED",
+      "belief_confidence": 1.0
+    },
+    "proposed_action": {
+      "command_id": "executor:Drone2:109.80009009200148",
+      "vehicle_id": "Drone2",
+      "kind": "MOVE",
+      "issued_at": 109.80009009200148,
+      "valid_until": 139.80009009200148,
+      "waypoints": [
+        [
+          2.75,
+          8.0,
+          -3.0
+        ]
+      ],
+      "speed_mps": 1.0,
+      "duration_s": 1.0,
+      "source": "rule_policy"
+    },
+    "outcome": "REJECT_AND_REPLAN",
+    "reasons": [
+      "runtime_timeout_or_state_violation",
+      "no_verified_safe_fallback"
+    ],
+    "selected_action": null,
+    "fallback": null,
+    "fallback_rejections": [
+      {
+        "fallback": "HOLD_POSITION",
+        "reasons": [
+          "peer_reachable_region_conflict"
+        ]
+      }
+    ],
+    "mission_effect": {
+      "executed": false,
+      "status": "no_verified_safe_fallback"
+    }
+  },
+  {
+    "time_s": 119.00008710601833,
+    "vehicle_id": "Drone1",
+    "observed_state": {
+      "vehicle_id": "Drone1",
+      "position": [
+        7.0,
+        3.0,
+        -3.0
+      ],
+      "observed_at": 119.00008710601833,
+      "battery_percent": 79.80000000000004,
+      "home": [
+        0,
+        0,
+        -3
+      ],
+      "peers": {
+        "Drone2": {
+          "position": [
+            2.7000050339847803,
+            8.0,
+            -3.0
+          ],
+          "velocity": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "observed_at": 118.20010475802701
+        }
+      },
+      "expected_peers": [
+        "Drone2"
+      ],
+      "flight_phase": "AIRBORNE",
+      "communication": "HEALTHY",
+      "belief_confidence": 1.0
+    },
+    "proposed_action": {
+      "command_id": "policy:Drone1:6:119.00008710601833",
+      "vehicle_id": "Drone1",
+      "kind": "MOVE",
+      "issued_at": 119.00008710601833,
+      "valid_until": 149.00008710601833,
+      "waypoints": [
+        [
+          6,
+          3,
+          -3
+        ]
+      ],
+      "speed_mps": 1.0,
+      "duration_s": 1.0,
+      "source": "llm"
+    },
+    "outcome": "APPROVE_WITH_MODIFICATION",
+    "reasons": [
+      "bounded_motion_segment"
+    ],
+    "selected_action": {
+      "command_id": "policy:Drone1:6:119.00008710601833",
+      "vehicle_id": "Drone1",
+      "kind": "MOVE",
+      "issued_at": 119.00008710601833,
+      "valid_until": 149.00008710601833,
+      "waypoints": [
+        [
+          6.5,
+          3.0,
+          -3.0
+        ]
+      ],
+      "speed_mps": 1.0,
+      "duration_s": 1.0,
+      "source": "llm"
+    },
+    "fallback": null,
+    "fallback_rejections": [],
+    "mission_effect": {
+      "executed": true,
+      "completed": false,
+      "status": "mock_active"
+    }
+  },
+  {
+    "time_s": 119.60008377803024,
+    "vehicle_id": "Drone1",
+    "observed_state": {
+      "vehicle_id": "Drone1",
+      "position": [
+        6.5,
+        3.0,
+        -3.0
+      ],
+      "observed_at": 119.60008377803024,
+      "battery_percent": 79.79500000000004,
+      "home": [
+        0,
+        0,
+        -3
+      ],
+      "peers": {
+        "Drone2": {
+          "position": [
+            2.7000050339847803,
+            8.0,
+            -3.0
+          ],
+          "velocity": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "observed_at": 118.80009335104842
+        }
+      },
+      "expected_peers": [
+        "Drone2"
+      ],
+      "flight_phase": "AIRBORNE",
+      "communication": "HEALTHY",
+      "belief_confidence": 1.0
+    },
+    "proposed_action": {
+      "command_id": "executor:Drone1:119.60008377803024",
+      "vehicle_id": "Drone1",
+      "kind": "MOVE",
+      "issued_at": 119.60008377803024,
+      "valid_until": 149.60008377803024,
+      "waypoints": [
+        [
+          6,
+          3,
+          -3
+        ]
+      ],
+      "speed_mps": 1.0,
+      "duration_s": 1.0,
+      "source": "rule_policy"
+    },
+    "outcome": "APPROVE",
+    "reasons": [],
+    "selected_action": {
+      "command_id": "executor:Drone1:119.60008377803024",
+      "vehicle_id": "Drone1",
+      "kind": "MOVE",
+      "issued_at": 119.60008377803024,
+      "valid_until": 149.60008377803024,
+      "waypoints": [
+        [
+          6,
+          3,
+          -3
+        ]
+      ],
+      "speed_mps": 1.0,
+      "duration_s": 1.0,
+      "source": "rule_policy"
+    },
+    "fallback": null,
+    "fallback_rejections": [],
+    "mission_effect": {
+      "executed": true,
+      "completed": false,
+      "status": "mock_active"
+    }
+  },
+  {
+    "time_s": 134.20009785494767,
+    "vehicle_id": "Drone2",
+    "observed_state": {
+      "vehicle_id": "Drone2",
+      "position": [
+        2.7000050339847803,
+        8.0,
+        -3.0
+      ],
+      "observed_at": 134.20009785494767,
+      "battery_percent": 79.97299994966016,
+      "home": [
+        0,
+        8,
+        -3
+      ],
+      "peers": {
+        "Drone1": {
+          "position": [
+            6.0,
+            3.0,
+            -3.0
+          ],
+          "velocity": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "observed_at": 133.80008871399332
+        }
+      },
+      "expected_peers": [
+        "Drone1"
+      ],
+      "flight_phase": "AIRBORNE",
+      "communication": "HEALTHY",
+      "belief_confidence": 1.0
+    },
+    "proposed_action": {
+      "command_id": "policy:Drone2:4:134.20009785494767",
+      "vehicle_id": "Drone2",
+      "kind": "MOVE",
+      "issued_at": 134.20009785494767,
+      "valid_until": 164.20009785494767,
+      "waypoints": [
+        [
+          6,
+          8,
+          -3
+        ]
+      ],
+      "speed_mps": 1.0,
+      "duration_s": 1.0,
+      "source": "llm"
+    },
+    "outcome": "APPROVE_WITH_MODIFICATION",
+    "reasons": [
+      "bounded_motion_segment"
+    ],
+    "selected_action": {
+      "command_id": "policy:Drone2:4:134.20009785494767",
+      "vehicle_id": "Drone2",
+      "kind": "MOVE",
+      "issued_at": 134.20009785494767,
+      "valid_until": 164.20009785494767,
+      "waypoints": [
+        [
+          3.2000050339847803,
+          8.0,
+          -3.0
+        ]
+      ],
+      "speed_mps": 1.0,
+      "duration_s": 1.0,
+      "source": "llm"
+    },
+    "fallback": null,
+    "fallback_rejections": [],
+    "mission_effect": {
+      "executed": true,
+      "completed": false,
+      "status": "mock_active"
+    }
+  },
+  {
+    "time_s": 134.8000901970081,
+    "vehicle_id": "Drone2",
+    "observed_state": {
+      "vehicle_id": "Drone2",
+      "position": [
+        3.2000050339847803,
+        8.0,
+        -3.0
+      ],
+      "observed_at": 134.8000901970081,
+      "battery_percent": 79.96799994966017,
+      "home": [
+        0,
+        8,
+        -3
+      ],
+      "peers": {
+        "Drone1": {
+          "position": [
+            6.0,
+            3.0,
+            -3.0
+          ],
+          "velocity": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "observed_at": 133.80008871399332
+        }
+      },
+      "expected_peers": [
+        "Drone1"
+      ],
+      "flight_phase": "AIRBORNE",
+      "communication": "DEGRADED",
+      "belief_confidence": 1.0
+    },
+    "proposed_action": {
+      "command_id": "executor:Drone2:134.8000901970081",
+      "vehicle_id": "Drone2",
+      "kind": "MOVE",
+      "issued_at": 134.8000901970081,
+      "valid_until": 164.8000901970081,
+      "waypoints": [
+        [
+          6,
+          8,
+          -3
+        ]
+      ],
+      "speed_mps": 1.0,
+      "duration_s": 1.0,
+      "source": "rule_policy"
+    },
+    "outcome": "APPROVE_WITH_MODIFICATION",
+    "reasons": [
+      "bounded_motion_segment"
+    ],
+    "selected_action": {
+      "command_id": "executor:Drone2:134.8000901970081",
+      "vehicle_id": "Drone2",
+      "kind": "MOVE",
+      "issued_at": 134.8000901970081,
+      "valid_until": 164.8000901970081,
+      "waypoints": [
+        [
+          3.4000050339847805,
+          8.0,
+          -3.0
+        ]
+      ],
+      "speed_mps": 1.0,
+      "duration_s": 1.0,
+      "source": "rule_policy"
+    },
+    "fallback": null,
+    "fallback_rejections": [],
+    "mission_effect": {
+      "executed": true,
+      "completed": false,
+      "status": "mock_active"
+    }
+  },
+  {
+    "time_s": 135.00008650601376,
+    "vehicle_id": "Drone2",
+    "observed_state": {
+      "vehicle_id": "Drone2",
+      "position": [
+        3.4000013429904357,
+        8.0,
+        -3.0
+      ],
+      "observed_at": 135.00008650601376,
+      "battery_percent": 79.96599998657011,
+      "home": [
+        0,
+        8,
+        -3
+      ],
+      "peers": {
+        "Drone1": {
+          "position": [
+            6.0,
+            3.0,
+            -3.0
+          ],
+          "velocity": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "observed_at": 133.80008871399332
+        }
+      },
+      "expected_peers": [
+        "Drone1"
+      ],
+      "flight_phase": "AIRBORNE",
+      "communication": "DEGRADED",
+      "belief_confidence": 1.0
+    },
+    "proposed_action": {
+      "command_id": "executor:Drone2:134.8000901970081",
+      "vehicle_id": "Drone2",
+      "kind": "MOVE",
+      "issued_at": 134.8000901970081,
+      "valid_until": 164.8000901970081,
+      "waypoints": [
+        [
+          3.4000050339847805,
+          8.0,
+          -3.0
+        ]
+      ],
+      "speed_mps": 1.0,
+      "duration_s": 1.0,
+      "source": "rule_policy"
+    },
+    "outcome": "REJECT_AND_REPLAN",
+    "reasons": [
+      "runtime_timeout_or_state_violation",
+      "no_verified_safe_fallback"
+    ],
+    "selected_action": null,
+    "fallback": null,
+    "fallback_rejections": [
+      {
+        "fallback": "HOLD_POSITION",
+        "reasons": [
+          "peer_reachable_region_conflict"
+        ]
+      }
+    ],
+    "mission_effect": {
+      "executed": false,
+      "status": "no_verified_safe_fallback"
+    }
+  },
+  {
+    "time_s": 174.2000896759564,
+    "vehicle_id": "Drone2",
+    "observed_state": {
+      "vehicle_id": "Drone2",
+      "position": [
+        3.4000013429904357,
+        8.0,
+        -3.0
+      ],
+      "observed_at": 174.2000896759564,
+      "battery_percent": 79.96599998657011,
+      "home": [
+        0,
+        8,
+        -3
+      ],
+      "peers": {
+        "Drone1": {
+          "position": [
+            6.0,
+            3.0,
+            -3.0
+          ],
+          "velocity": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "observed_at": 173.40009906305932
+        }
+      },
+      "expected_peers": [
+        "Drone1"
+      ],
+      "flight_phase": "AIRBORNE",
+      "communication": "HEALTHY",
+      "belief_confidence": 1.0
+    },
+    "proposed_action": {
+      "command_id": "policy:Drone2:5:174.2000896759564",
+      "vehicle_id": "Drone2",
+      "kind": "MOVE",
+      "issued_at": 174.2000896759564,
+      "valid_until": 204.2000896759564,
+      "waypoints": [
+        [
+          6,
+          8,
+          -3
+        ]
+      ],
+      "speed_mps": 1.0,
+      "duration_s": 1.0,
+      "source": "llm"
+    },
+    "outcome": "APPROVE_WITH_MODIFICATION",
+    "reasons": [
+      "bounded_motion_segment"
+    ],
+    "selected_action": {
+      "command_id": "policy:Drone2:5:174.2000896759564",
+      "vehicle_id": "Drone2",
+      "kind": "MOVE",
+      "issued_at": 174.2000896759564,
+      "valid_until": 204.2000896759564,
+      "waypoints": [
+        [
+          3.6500013429904357,
+          8.0,
+          -3.0
+        ]
+      ],
+      "speed_mps": 1.0,
+      "duration_s": 1.0,
+      "source": "llm"
+    },
+    "fallback": null,
+    "fallback_rejections": [],
+    "mission_effect": {
+      "executed": true,
+      "completed": false,
+      "status": "mock_active"
+    }
+  },
+  {
+    "time_s": 174.40008131996728,
+    "vehicle_id": "Drone2",
+    "observed_state": {
+      "vehicle_id": "Drone2",
+      "position": [
+        3.5999929870013148,
+        8.0,
+        -3.0
+      ],
+      "observed_at": 174.40008131996728,
+      "battery_percent": 79.96400007013,
+      "home": [
+        0,
+        8,
+        -3
+      ],
+      "peers": {
+        "Drone1": {
+          "position": [
+            6.0,
+            3.0,
+            -3.0
+          ],
+          "velocity": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "observed_at": 173.40009906305932
+        }
+      },
+      "expected_peers": [
+        "Drone1"
+      ],
+      "flight_phase": "AIRBORNE",
+      "communication": "HEALTHY",
+      "belief_confidence": 1.0
+    },
+    "proposed_action": {
+      "command_id": "policy:Drone2:5:174.2000896759564",
+      "vehicle_id": "Drone2",
+      "kind": "MOVE",
+      "issued_at": 174.2000896759564,
+      "valid_until": 204.2000896759564,
+      "waypoints": [
+        [
+          3.6500013429904357,
+          8.0,
+          -3.0
+        ]
+      ],
+      "speed_mps": 1.0,
+      "duration_s": 1.0,
+      "source": "llm"
+    },
+    "outcome": "REJECT_AND_REPLAN",
+    "reasons": [
+      "runtime_timeout_or_state_violation",
+      "no_verified_safe_fallback"
+    ],
+    "selected_action": null,
+    "fallback": null,
+    "fallback_rejections": [
+      {
+        "fallback": "HOLD_POSITION",
+        "reasons": [
+          "peer_reachable_region_conflict"
+        ]
+      }
+    ],
+    "mission_effect": {
+      "executed": false,
+      "status": "no_verified_safe_fallback"
+    }
+  },
+  {
+    "time_s": 190.6001031510532,
+    "vehicle_id": "Drone1",
+    "observed_state": {
+      "vehicle_id": "Drone1",
+      "position": [
+        6.0,
+        3.0,
+        -3.0
+      ],
+      "observed_at": 190.6001031510532,
+      "battery_percent": 79.79000000000005,
+      "home": [
+        0,
+        0,
+        -3
+      ],
+      "peers": {
+        "Drone2": {
+          "position": [
+            3.5999929870013148,
+            8.0,
+            -3.0
+          ],
+          "velocity": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "observed_at": 190.2000820490066
+        }
+      },
+      "expected_peers": [
+        "Drone2"
+      ],
+      "flight_phase": "AIRBORNE",
+      "communication": "HEALTHY",
+      "belief_confidence": 1.0
+    },
+    "proposed_action": {
+      "command_id": "policy:Drone1:9:190.6001031510532",
+      "vehicle_id": "Drone1",
+      "kind": "MOVE",
+      "issued_at": 190.6001031510532,
+      "valid_until": 220.6001031510532,
+      "waypoints": [
+        [
+          6,
+          16,
+          -3
+        ]
+      ],
+      "speed_mps": 1.0,
+      "duration_s": 1.0,
+      "source": "llm"
+    },
+    "outcome": "APPROVE_WITH_MODIFICATION",
+    "reasons": [
+      "bounded_motion_segment"
+    ],
+    "selected_action": {
+      "command_id": "policy:Drone1:9:190.6001031510532",
+      "vehicle_id": "Drone1",
+      "kind": "MOVE",
+      "issued_at": 190.6001031510532,
+      "valid_until": 220.6001031510532,
+      "waypoints": [
+        [
+          6.0,
+          3.5,
+          -3.0
+        ]
+      ],
+      "speed_mps": 1.0,
+      "duration_s": 1.0,
+      "source": "llm"
+    },
+    "fallback": null,
+    "fallback_rejections": [],
+    "mission_effect": {
+      "executed": true,
+      "completed": false,
+      "status": "mock_active"
+    }
+  },
+  {
+    "time_s": 204.40008252696134,
+    "vehicle_id": "Drone2",
+    "observed_state": {
+      "vehicle_id": "Drone2",
+      "position": [
+        3.5999929870013148,
+        8.0,
+        -3.0
+      ],
+      "observed_at": 204.40008252696134,
+      "battery_percent": 79.96400007013,
+      "home": [
+        0,
+        8,
+        -3
+      ],
+      "peers": {
+        "Drone1": {
+          "position": [
+            6.0,
+            3.5,
+            -3.0
+          ],
+          "velocity": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "observed_at": 204.0001014439622
+        }
+      },
+      "expected_peers": [
+        "Drone1"
+      ],
+      "flight_phase": "AIRBORNE",
+      "communication": "HEALTHY",
+      "belief_confidence": 1.0
+    },
+    "proposed_action": {
+      "command_id": "policy:Drone2:6:204.40008252696134",
+      "vehicle_id": "Drone2",
+      "kind": "MOVE",
+      "issued_at": 204.40008252696134,
+      "valid_until": 234.40008252696134,
+      "waypoints": [
+        [
+          6,
+          8,
+          -3
+        ]
+      ],
+      "speed_mps": 1.0,
+      "duration_s": 1.0,
+      "source": "llm"
+    },
+    "outcome": "APPROVE_WITH_MODIFICATION",
+    "reasons": [
+      "bounded_motion_segment"
+    ],
+    "selected_action": {
+      "command_id": "policy:Drone2:6:204.40008252696134",
+      "vehicle_id": "Drone2",
+      "kind": "MOVE",
+      "issued_at": 204.40008252696134,
+      "valid_until": 234.40008252696134,
+      "waypoints": [
+        [
+          4.099992987001315,
+          8.0,
+          -3.0
+        ]
+      ],
+      "speed_mps": 1.0,
+      "duration_s": 1.0,
+      "source": "llm"
+    },
+    "fallback": null,
+    "fallback_rejections": [],
+    "mission_effect": {
+      "executed": true,
+      "completed": false,
+      "status": "mock_active"
+    }
+  },
+  {
+    "time_s": 204.80009225395042,
+    "vehicle_id": "Drone2",
+    "observed_state": {
+      "vehicle_id": "Drone2",
+      "position": [
+        4.000002713990398,
+        8.0,
+        -3.0
+      ],
+      "observed_at": 204.80009225395042,
+      "battery_percent": 79.9599999728601,
+      "home": [
+        0,
+        8,
+        -3
+      ],
+      "peers": {
+        "Drone1": {
+          "position": [
+            6.0,
+            3.5,
+            -3.0
+          ],
+          "velocity": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "observed_at": 204.0001014439622
+        }
+      },
+      "expected_peers": [
+        "Drone1"
+      ],
+      "flight_phase": "AIRBORNE",
+      "communication": "HEALTHY",
+      "belief_confidence": 1.0
+    },
+    "proposed_action": {
+      "command_id": "policy:Drone2:6:204.40008252696134",
+      "vehicle_id": "Drone2",
+      "kind": "MOVE",
+      "issued_at": 204.40008252696134,
+      "valid_until": 234.40008252696134,
+      "waypoints": [
+        [
+          4.099992987001315,
+          8.0,
+          -3.0
+        ]
+      ],
+      "speed_mps": 1.0,
+      "duration_s": 1.0,
+      "source": "llm"
+    },
+    "outcome": "REJECT_AND_REPLAN",
+    "reasons": [
+      "runtime_timeout_or_state_violation",
+      "no_verified_safe_fallback"
+    ],
+    "selected_action": null,
+    "fallback": null,
+    "fallback_rejections": [
+      {
+        "fallback": "HOLD_POSITION",
+        "reasons": [
+          "peer_reachable_region_conflict"
+        ]
+      }
+    ],
+    "mission_effect": {
+      "executed": false,
+      "status": "no_verified_safe_fallback"
+    }
+  },
+  {
+    "time_s": 217.20009013602976,
+    "vehicle_id": "Drone1",
+    "observed_state": {
+      "vehicle_id": "Drone1",
+      "position": [
+        6.0,
+        3.5,
+        -3.0
+      ],
+      "observed_at": 217.20009013602976,
+      "battery_percent": 79.78500000000005,
+      "home": [
+        0,
+        0,
+        -3
+      ],
+      "peers": {
+        "Drone2": {
+          "position": [
+            4.000002713990398,
+            8.0,
+            -3.0
+          ],
+          "velocity": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "observed_at": 216.00008826097474
+        }
+      },
+      "expected_peers": [
+        "Drone2"
+      ],
+      "flight_phase": "AIRBORNE",
+      "communication": "HEALTHY",
+      "belief_confidence": 1.0
+    },
+    "proposed_action": {
+      "command_id": "policy:Drone1:10:217.20009013602976",
+      "vehicle_id": "Drone1",
+      "kind": "HOLD",
+      "issued_at": 217.20009013602976,
+      "valid_until": 247.20009013602976,
+      "waypoints": [],
+      "speed_mps": 1,
+      "duration_s": 2.0,
+      "source": "llm"
+    },
+    "outcome": "REJECT_AND_REPLAN",
+    "reasons": [
+      "peer_reachable_region_conflict"
+    ],
+    "selected_action": null,
+    "fallback": null,
+    "fallback_rejections": [],
+    "mission_effect": {
+      "executed": false,
+      "status": "replan_required"
+    }
+  },
+  {
+    "time_s": 232.20009354199283,
+    "vehicle_id": "Drone1",
+    "observed_state": {
+      "vehicle_id": "Drone1",
+      "position": [
+        6.0,
+        3.5,
+        -3.0
+      ],
+      "observed_at": 232.20009354199283,
+      "battery_percent": 79.78500000000005,
+      "home": [
+        0,
+        0,
+        -3
+      ],
+      "peers": {
+        "Drone2": {
+          "position": [
+            4.000002713990398,
+            8.0,
+            -3.0
+          ],
+          "velocity": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "observed_at": 231.00084507104475
+        }
+      },
+      "expected_peers": [
+        "Drone2"
+      ],
+      "flight_phase": "AIRBORNE",
+      "communication": "DEGRADED",
+      "belief_confidence": 1.0
+    },
+    "proposed_action": {
+      "command_id": "policy:Drone1:11:232.20009354199283",
+      "vehicle_id": "Drone1",
+      "kind": "HOLD",
+      "issued_at": 232.20009354199283,
+      "valid_until": 262.2000935419928,
+      "waypoints": [],
+      "speed_mps": 1,
+      "duration_s": 2.0,
+      "source": "llm"
+    },
+    "outcome": "REJECT_AND_REPLAN",
+    "reasons": [
+      "peer_reachable_region_conflict"
+    ],
+    "selected_action": null,
+    "fallback": null,
+    "fallback_rejections": [],
+    "mission_effect": {
+      "executed": false,
+      "status": "replan_required"
+    }
+  },
+  {
+    "time_s": 232.20009354199283,
+    "vehicle_id": "Drone1",
+    "observed_state": {
+      "vehicle_id": "Drone1",
+      "position": [
+        6.0,
+        3.5,
+        -3.0
+      ],
+      "observed_at": 232.20009354199283,
+      "battery_percent": 79.78500000000005,
+      "home": [
+        0,
+        0,
+        -3
+      ],
+      "peers": {
+        "Drone2": {
+          "position": [
+            4.000002713990398,
+            8.0,
+            -3.0
+          ],
+          "velocity": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "observed_at": 231.00084507104475
+        }
+      },
+      "expected_peers": [
+        "Drone2"
+      ],
+      "flight_phase": "AIRBORNE",
+      "communication": "DEGRADED",
+      "belief_confidence": 1.0
+    },
+    "proposed_action": {
+      "command_id": "fallback:Drone1:232.20009354199283",
+      "vehicle_id": "Drone1",
+      "kind": "HOLD",
+      "issued_at": 232.20009354199283,
+      "valid_until": 235.20009354199283,
+      "waypoints": [],
+      "speed_mps": 1,
+      "duration_s": 1,
+      "source": "rule_policy"
+    },
+    "outcome": "REJECT_AND_REPLAN",
+    "reasons": [
+      "peer_reachable_region_conflict"
+    ],
+    "selected_action": null,
+    "fallback": null,
+    "fallback_rejections": [],
+    "mission_effect": {
+      "executed": false,
+      "status": "replan_required"
+    }
+  },
+  {
+    "time_s": 266.8000898780301,
+    "vehicle_id": "Drone2",
+    "observed_state": {
+      "vehicle_id": "Drone2",
+      "position": [
+        4.000002713990398,
+        8.0,
+        -3.0
+      ],
+      "observed_at": 266.8000898780301,
+      "battery_percent": 79.9599999728601,
+      "home": [
+        0,
+        8,
+        -3
+      ],
+      "peers": {
+        "Drone1": {
+          "position": [
+            6.0,
+            3.5,
+            -3.0
+          ],
+          "velocity": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "observed_at": 265.80012033495586
+        }
+      },
+      "expected_peers": [
+        "Drone1"
+      ],
+      "flight_phase": "AIRBORNE",
+      "communication": "HEALTHY",
+      "belief_confidence": 1.0
+    },
+    "proposed_action": {
+      "command_id": "fallback:Drone2:266.8000898780301",
+      "vehicle_id": "Drone2",
+      "kind": "HOLD",
+      "issued_at": 266.8000898780301,
+      "valid_until": 269.8000898780301,
+      "waypoints": [],
+      "speed_mps": 1,
+      "duration_s": 1,
+      "source": "rule_policy"
+    },
+    "outcome": "REJECT_AND_REPLAN",
+    "reasons": [
+      "peer_reachable_region_conflict"
+    ],
+    "selected_action": null,
+    "fallback": null,
+    "fallback_rejections": [],
+    "mission_effect": {
+      "executed": false,
+      "status": "replan_required"
+    }
+  },
+  {
+    "time_s": 280.4000870200107,
+    "vehicle_id": "Drone1",
+    "observed_state": {
+      "vehicle_id": "Drone1",
+      "position": [
+        6.0,
+        3.5,
+        -3.0
+      ],
+      "observed_at": 280.4000870200107,
+      "battery_percent": 79.78500000000005,
+      "home": [
+        0,
+        0,
+        -3
+      ],
+      "peers": {
+        "Drone2": {
+          "position": [
+            4.000002713990398,
+            8.0,
+            -3.0
+          ],
+          "velocity": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "observed_at": 279.6000917550409
+        }
+      },
+      "expected_peers": [
+        "Drone2"
+      ],
+      "flight_phase": "AIRBORNE",
+      "communication": "HEALTHY",
+      "belief_confidence": 1.0
+    },
+    "proposed_action": {
+      "command_id": "policy:Drone1:12:280.4000870200107",
+      "vehicle_id": "Drone1",
+      "kind": "HOLD",
+      "issued_at": 280.4000870200107,
+      "valid_until": 310.4000870200107,
+      "waypoints": [],
+      "speed_mps": 1,
+      "duration_s": 2.0,
+      "source": "llm"
+    },
+    "outcome": "REJECT_AND_REPLAN",
+    "reasons": [
+      "peer_reachable_region_conflict"
+    ],
+    "selected_action": null,
+    "fallback": null,
+    "fallback_rejections": [],
+    "mission_effect": {
+      "executed": false,
+      "status": "replan_required"
+    }
+  },
+  {
+    "time_s": 296.00008954596706,
+    "vehicle_id": "Drone1",
+    "observed_state": {
+      "vehicle_id": "Drone1",
+      "position": [
+        6.0,
+        3.5,
+        -3.0
+      ],
+      "observed_at": 296.00008954596706,
+      "battery_percent": 79.78500000000005,
+      "home": [
+        0,
+        0,
+        -3
+      ],
+      "peers": {
+        "Drone2": {
+          "position": [
+            4.000002713990398,
+            8.0,
+            -3.0
+          ],
+          "velocity": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "observed_at": 295.20009385503363
+        }
+      },
+      "expected_peers": [
+        "Drone2"
+      ],
+      "flight_phase": "AIRBORNE",
+      "communication": "HEALTHY",
+      "belief_confidence": 1.0
+    },
+    "proposed_action": {
+      "command_id": "policy:Drone1:13:296.00008954596706",
+      "vehicle_id": "Drone1",
+      "kind": "HOLD",
+      "issued_at": 296.00008954596706,
+      "valid_until": 326.00008954596706,
+      "waypoints": [],
+      "speed_mps": 1,
+      "duration_s": 2.0,
+      "source": "llm"
+    },
+    "outcome": "REJECT_AND_REPLAN",
+    "reasons": [
+      "peer_reachable_region_conflict"
+    ],
+    "selected_action": null,
+    "fallback": null,
+    "fallback_rejections": [],
+    "mission_effect": {
+      "executed": false,
+      "status": "replan_required"
+    }
+  },
+  {
+    "time_s": 296.00008954596706,
+    "vehicle_id": "Drone1",
+    "observed_state": {
+      "vehicle_id": "Drone1",
+      "position": [
+        6.0,
+        3.5,
+        -3.0
+      ],
+      "observed_at": 296.00008954596706,
+      "battery_percent": 79.78500000000005,
+      "home": [
+        0,
+        0,
+        -3
+      ],
+      "peers": {
+        "Drone2": {
+          "position": [
+            4.000002713990398,
+            8.0,
+            -3.0
+          ],
+          "velocity": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "observed_at": 295.20009385503363
+        }
+      },
+      "expected_peers": [
+        "Drone2"
+      ],
+      "flight_phase": "AIRBORNE",
+      "communication": "HEALTHY",
+      "belief_confidence": 1.0
+    },
+    "proposed_action": {
+      "command_id": "fallback:Drone1:296.00008954596706",
+      "vehicle_id": "Drone1",
+      "kind": "HOLD",
+      "issued_at": 296.00008954596706,
+      "valid_until": 299.00008954596706,
+      "waypoints": [],
+      "speed_mps": 1,
+      "duration_s": 1,
+      "source": "rule_policy"
+    },
+    "outcome": "REJECT_AND_REPLAN",
+    "reasons": [
+      "peer_reachable_region_conflict"
+    ],
+    "selected_action": null,
+    "fallback": null,
+    "fallback_rejections": [],
+    "mission_effect": {
+      "executed": false,
+      "status": "replan_required"
+    }
+  },
+  {
+    "time_s": 309.00008915597573,
+    "vehicle_id": "Drone1",
+    "observed_state": {
+      "vehicle_id": "Drone1",
+      "position": [
+        6.0,
+        3.5,
+        -3.0
+      ],
+      "observed_at": 309.00008915597573,
+      "battery_percent": 79.78500000000005,
+      "home": [
+        0,
+        0,
+        -3
+      ],
+      "peers": {
+        "Drone2": {
+          "position": [
+            4.000002713990398,
+            8.0,
+            -3.0
+          ],
+          "velocity": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "observed_at": 308.4001020960277
+        }
+      },
+      "expected_peers": [
+        "Drone2"
+      ],
+      "flight_phase": "AIRBORNE",
+      "communication": "HEALTHY",
+      "belief_confidence": 1.0
+    },
+    "proposed_action": {
+      "command_id": "policy:Drone1:14:309.00008915597573",
+      "vehicle_id": "Drone1",
+      "kind": "HOLD",
+      "issued_at": 309.00008915597573,
+      "valid_until": 339.00008915597573,
+      "waypoints": [],
+      "speed_mps": 1,
+      "duration_s": 2.0,
+      "source": "llm"
+    },
+    "outcome": "APPROVE_WITH_MODIFICATION",
+    "reasons": [
+      "bounded_motion_segment"
+    ],
+    "selected_action": {
+      "command_id": "policy:Drone1:14:309.00008915597573",
+      "vehicle_id": "Drone1",
+      "kind": "HOLD",
+      "issued_at": 309.00008915597573,
+      "valid_until": 339.00008915597573,
+      "waypoints": [],
+      "speed_mps": 1,
+      "duration_s": 0.25,
+      "source": "llm"
+    },
+    "fallback": null,
+    "fallback_rejections": [],
+    "mission_effect": {
+      "executed": true,
+      "completed": false,
+      "status": "mock_active"
+    }
+  },
+  {
+    "time_s": 309.2000885020243,
+    "vehicle_id": "Drone1",
+    "observed_state": {
+      "vehicle_id": "Drone1",
+      "position": [
+        6.0,
+        3.5,
+        -3.0
+      ],
+      "observed_at": 309.2000885020243,
+      "battery_percent": 79.78500000000005,
+      "home": [
+        0,
+        0,
+        -3
+      ],
+      "peers": {
+        "Drone2": {
+          "position": [
+            4.000002713990398,
+            8.0,
+            -3.0
+          ],
+          "velocity": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "observed_at": 308.4001020960277
+        }
+      },
+      "expected_peers": [
+        "Drone2"
+      ],
+      "flight_phase": "AIRBORNE",
+      "communication": "HEALTHY",
+      "belief_confidence": 1.0
+    },
+    "proposed_action": {
+      "command_id": "policy:Drone1:14:309.00008915597573",
+      "vehicle_id": "Drone1",
+      "kind": "HOLD",
+      "issued_at": 309.00008915597573,
+      "valid_until": 339.00008915597573,
+      "waypoints": [],
+      "speed_mps": 1,
+      "duration_s": 0.25,
+      "source": "llm"
+    },
+    "outcome": "REJECT_AND_REPLAN",
+    "reasons": [
+      "runtime_timeout_or_state_violation",
+      "no_verified_safe_fallback"
+    ],
+    "selected_action": null,
+    "fallback": null,
+    "fallback_rejections": [
+      {
+        "fallback": "HOLD_POSITION",
+        "reasons": [
+          "peer_reachable_region_conflict"
+        ]
+      }
+    ],
+    "mission_effect": {
+      "executed": false,
+      "status": "no_verified_safe_fallback"
+    }
+  },
+  {
+    "time_s": 337.8000841740286,
+    "vehicle_id": "Drone2",
+    "observed_state": {
+      "vehicle_id": "Drone2",
+      "position": [
+        4.000002713990398,
+        8.0,
+        -3.0
+      ],
+      "observed_at": 337.8000841740286,
+      "battery_percent": 79.9599999728601,
+      "home": [
+        0,
+        8,
+        -3
+      ],
+      "peers": {
+        "Drone1": {
+          "position": [
+            6.0,
+            3.5,
+            -3.0
+          ],
+          "velocity": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "observed_at": 336.60008886805736
+        }
+      },
+      "expected_peers": [
+        "Drone1"
+      ],
+      "flight_phase": "AIRBORNE",
+      "communication": "HEALTHY",
+      "belief_confidence": 1.0
+    },
+    "proposed_action": {
+      "command_id": "policy:Drone2:9:337.8000841740286",
+      "vehicle_id": "Drone2",
+      "kind": "HOLD",
+      "issued_at": 337.8000841740286,
+      "valid_until": 367.8000841740286,
+      "waypoints": [],
+      "speed_mps": 1,
+      "duration_s": 2.0,
+      "source": "llm"
+    },
+    "outcome": "REJECT_AND_REPLAN",
+    "reasons": [
+      "peer_reachable_region_conflict"
+    ],
+    "selected_action": null,
+    "fallback": null,
+    "fallback_rejections": [],
+    "mission_effect": {
+      "executed": false,
+      "status": "replan_required"
+    }
+  },
+  {
+    "time_s": 351.80008520395495,
+    "vehicle_id": "Drone2",
+    "observed_state": {
+      "vehicle_id": "Drone2",
+      "position": [
+        4.000002713990398,
+        8.0,
+        -3.0
+      ],
+      "observed_at": 351.80008520395495,
+      "battery_percent": 79.9599999728601,
+      "home": [
+        0,
+        8,
+        -3
+      ],
+      "peers": {
+        "Drone1": {
+          "position": [
+            6.0,
+            3.5,
+            -3.0
+          ],
+          "velocity": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "observed_at": 351.00009322701953
+        }
+      },
+      "expected_peers": [
+        "Drone1"
+      ],
+      "flight_phase": "AIRBORNE",
+      "communication": "HEALTHY",
+      "belief_confidence": 1.0
+    },
+    "proposed_action": {
+      "command_id": "policy:Drone2:10:351.80008520395495",
+      "vehicle_id": "Drone2",
+      "kind": "HOLD",
+      "issued_at": 351.80008520395495,
+      "valid_until": 381.80008520395495,
+      "waypoints": [],
+      "speed_mps": 1,
+      "duration_s": 1.0,
+      "source": "llm"
+    },
+    "outcome": "REJECT_AND_REPLAN",
+    "reasons": [
+      "peer_reachable_region_conflict"
+    ],
+    "selected_action": null,
+    "fallback": null,
+    "fallback_rejections": [],
+    "mission_effect": {
+      "executed": false,
+      "status": "replan_required"
+    }
+  },
+  {
+    "time_s": 351.80008520395495,
+    "vehicle_id": "Drone2",
+    "observed_state": {
+      "vehicle_id": "Drone2",
+      "position": [
+        4.000002713990398,
+        8.0,
+        -3.0
+      ],
+      "observed_at": 351.80008520395495,
+      "battery_percent": 79.9599999728601,
+      "home": [
+        0,
+        8,
+        -3
+      ],
+      "peers": {
+        "Drone1": {
+          "position": [
+            6.0,
+            3.5,
+            -3.0
+          ],
+          "velocity": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "observed_at": 351.00009322701953
+        }
+      },
+      "expected_peers": [
+        "Drone1"
+      ],
+      "flight_phase": "AIRBORNE",
+      "communication": "HEALTHY",
+      "belief_confidence": 1.0
+    },
+    "proposed_action": {
+      "command_id": "fallback:Drone2:351.80008520395495",
+      "vehicle_id": "Drone2",
+      "kind": "HOLD",
+      "issued_at": 351.80008520395495,
+      "valid_until": 354.80008520395495,
+      "waypoints": [],
+      "speed_mps": 1,
+      "duration_s": 1,
+      "source": "rule_policy"
+    },
+    "outcome": "REJECT_AND_REPLAN",
+    "reasons": [
+      "peer_reachable_region_conflict"
+    ],
+    "selected_action": null,
+    "fallback": null,
+    "fallback_rejections": [],
+    "mission_effect": {
+      "executed": false,
+      "status": "replan_required"
+    }
+  },
+  {
+    "time_s": 366.400079973042,
+    "vehicle_id": "Drone2",
+    "observed_state": {
+      "vehicle_id": "Drone2",
+      "position": [
+        4.000002713990398,
+        8.0,
+        -3.0
+      ],
+      "observed_at": 366.400079973042,
+      "battery_percent": 79.9599999728601,
+      "home": [
+        0,
+        8,
+        -3
+      ],
+      "peers": {
+        "Drone1": {
+          "position": [
+            6.0,
+            3.5,
+            -3.0
+          ],
+          "velocity": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "observed_at": 366.0000921559986
+        }
+      },
+      "expected_peers": [
+        "Drone1"
+      ],
+      "flight_phase": "AIRBORNE",
+      "communication": "HEALTHY",
+      "belief_confidence": 1.0
+    },
+    "proposed_action": {
+      "command_id": "policy:Drone2:11:366.400079973042",
+      "vehicle_id": "Drone2",
+      "kind": "HOLD",
+      "issued_at": 366.400079973042,
+      "valid_until": 396.400079973042,
+      "waypoints": [],
+      "speed_mps": 1,
+      "duration_s": 1.0,
+      "source": "llm"
+    },
+    "outcome": "APPROVE_WITH_MODIFICATION",
+    "reasons": [
+      "bounded_motion_segment"
+    ],
+    "selected_action": {
+      "command_id": "policy:Drone2:11:366.400079973042",
+      "vehicle_id": "Drone2",
+      "kind": "HOLD",
+      "issued_at": 366.400079973042,
+      "valid_until": 396.400079973042,
+      "waypoints": [],
+      "speed_mps": 1,
+      "duration_s": 0.5,
+      "source": "llm"
+    },
+    "fallback": null,
+    "fallback_rejections": [],
+    "mission_effect": {
+      "executed": true,
+      "completed": false,
+      "status": "mock_active"
+    }
+  },
+  {
+    "time_s": 366.6000952250324,
+    "vehicle_id": "Drone2",
+    "observed_state": {
+      "vehicle_id": "Drone2",
+      "position": [
+        4.000002713990398,
+        8.0,
+        -3.0
+      ],
+      "observed_at": 366.6000952250324,
+      "battery_percent": 79.9599999728601,
+      "home": [
+        0,
+        8,
+        -3
+      ],
+      "peers": {
+        "Drone1": {
+          "position": [
+            6.0,
+            3.5,
+            -3.0
+          ],
+          "velocity": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "observed_at": 366.0000921559986
+        }
+      },
+      "expected_peers": [
+        "Drone1"
+      ],
+      "flight_phase": "AIRBORNE",
+      "communication": "HEALTHY",
+      "belief_confidence": 1.0
+    },
+    "proposed_action": {
+      "command_id": "policy:Drone2:11:366.400079973042",
+      "vehicle_id": "Drone2",
+      "kind": "HOLD",
+      "issued_at": 366.400079973042,
+      "valid_until": 396.400079973042,
+      "waypoints": [],
+      "speed_mps": 1,
+      "duration_s": 0.5,
+      "source": "llm"
+    },
+    "outcome": "REJECT_AND_REPLAN",
+    "reasons": [
+      "runtime_timeout_or_state_violation",
+      "no_verified_safe_fallback"
+    ],
+    "selected_action": null,
+    "fallback": null,
+    "fallback_rejections": [
+      {
+        "fallback": "HOLD_POSITION",
+        "reasons": [
+          "peer_reachable_region_conflict"
+        ]
+      }
+    ],
+    "mission_effect": {
+      "executed": false,
+      "status": "no_verified_safe_fallback"
+    }
+  },
+  {
+    "time_s": 399.00008820102084,
+    "vehicle_id": "Drone2",
+    "observed_state": {
+      "vehicle_id": "Drone2",
+      "position": [
+        4.000002713990398,
+        8.0,
+        -3.0
+      ],
+      "observed_at": 399.00008820102084,
+      "battery_percent": 79.9599999728601,
+      "home": [
+        0,
+        8,
+        -3
+      ],
+      "peers": {
+        "Drone1": {
+          "position": [
+            6.0,
+            3.5,
+            -3.0
+          ],
+          "velocity": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "observed_at": 398.4000905440189
+        }
+      },
+      "expected_peers": [
+        "Drone1"
+      ],
+      "flight_phase": "AIRBORNE",
+      "communication": "HEALTHY",
+      "belief_confidence": 1.0
+    },
+    "proposed_action": {
+      "command_id": "policy:Drone2:13:399.00008820102084",
+      "vehicle_id": "Drone2",
+      "kind": "HOLD",
+      "issued_at": 399.00008820102084,
+      "valid_until": 429.00008820102084,
+      "waypoints": [],
+      "speed_mps": 1,
+      "duration_s": 1.0,
+      "source": "llm"
+    },
+    "outcome": "APPROVE_WITH_MODIFICATION",
+    "reasons": [
+      "bounded_motion_segment"
+    ],
+    "selected_action": {
+      "command_id": "policy:Drone2:13:399.00008820102084",
+      "vehicle_id": "Drone2",
+      "kind": "HOLD",
+      "issued_at": 399.00008820102084,
+      "valid_until": 429.00008820102084,
+      "waypoints": [],
+      "speed_mps": 1,
+      "duration_s": 0.25,
+      "source": "llm"
+    },
+    "fallback": null,
+    "fallback_rejections": [],
+    "mission_effect": {
+      "executed": true,
+      "completed": false,
+      "status": "mock_active"
+    }
+  },
+  {
+    "time_s": 399.200095018954,
+    "vehicle_id": "Drone2",
+    "observed_state": {
+      "vehicle_id": "Drone2",
+      "position": [
+        4.000002713990398,
+        8.0,
+        -3.0
+      ],
+      "observed_at": 399.200095018954,
+      "battery_percent": 79.9599999728601,
+      "home": [
+        0,
+        8,
+        -3
+      ],
+      "peers": {
+        "Drone1": {
+          "position": [
+            6.0,
+            3.5,
+            -3.0
+          ],
+          "velocity": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "observed_at": 398.4000905440189
+        }
+      },
+      "expected_peers": [
+        "Drone1"
+      ],
+      "flight_phase": "AIRBORNE",
+      "communication": "HEALTHY",
+      "belief_confidence": 1.0
+    },
+    "proposed_action": {
+      "command_id": "policy:Drone2:13:399.00008820102084",
+      "vehicle_id": "Drone2",
+      "kind": "HOLD",
+      "issued_at": 399.00008820102084,
+      "valid_until": 429.00008820102084,
+      "waypoints": [],
+      "speed_mps": 1,
+      "duration_s": 0.25,
+      "source": "llm"
+    },
+    "outcome": "REJECT_AND_REPLAN",
+    "reasons": [
+      "runtime_timeout_or_state_violation",
+      "no_verified_safe_fallback"
+    ],
+    "selected_action": null,
+    "fallback": null,
+    "fallback_rejections": [
+      {
+        "fallback": "HOLD_POSITION",
+        "reasons": [
+          "peer_reachable_region_conflict"
+        ]
+      }
+    ],
+    "mission_effect": {
+      "executed": false,
+      "status": "no_verified_safe_fallback"
+    }
+  },
+  {
+    "time_s": 432.0000855140388,
+    "vehicle_id": "Drone2",
+    "observed_state": {
+      "vehicle_id": "Drone2",
+      "position": [
+        4.000002713990398,
+        8.0,
+        -3.0
+      ],
+      "observed_at": 432.0000855140388,
+      "battery_percent": 79.9599999728601,
+      "home": [
+        0,
+        8,
+        -3
+      ],
+      "peers": {
+        "Drone1": {
+          "position": [
+            6.0,
+            3.5,
+            -3.0
+          ],
+          "velocity": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "observed_at": 430.8000898420578
+        }
+      },
+      "expected_peers": [
+        "Drone1"
+      ],
+      "flight_phase": "AIRBORNE",
+      "communication": "DEGRADED",
+      "belief_confidence": 1.0
+    },
+    "proposed_action": {
+      "command_id": "policy:Drone2:15:432.0000855140388",
+      "vehicle_id": "Drone2",
+      "kind": "HOLD",
+      "issued_at": 432.0000855140388,
+      "valid_until": 462.0000855140388,
+      "waypoints": [],
+      "speed_mps": 1,
+      "duration_s": 1.0,
+      "source": "llm"
+    },
+    "outcome": "REJECT_AND_REPLAN",
+    "reasons": [
+      "peer_reachable_region_conflict"
+    ],
+    "selected_action": null,
+    "fallback": null,
+    "fallback_rejections": [],
+    "mission_effect": {
+      "executed": false,
+      "status": "replan_required"
+    }
+  },
+  {
+    "time_s": 432.0000855140388,
+    "vehicle_id": "Drone2",
+    "observed_state": {
+      "vehicle_id": "Drone2",
+      "position": [
+        4.000002713990398,
+        8.0,
+        -3.0
+      ],
+      "observed_at": 432.0000855140388,
+      "battery_percent": 79.9599999728601,
+      "home": [
+        0,
+        8,
+        -3
+      ],
+      "peers": {
+        "Drone1": {
+          "position": [
+            6.0,
+            3.5,
+            -3.0
+          ],
+          "velocity": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "observed_at": 430.8000898420578
+        }
+      },
+      "expected_peers": [
+        "Drone1"
+      ],
+      "flight_phase": "AIRBORNE",
+      "communication": "DEGRADED",
+      "belief_confidence": 1.0
+    },
+    "proposed_action": {
+      "command_id": "fallback:Drone2:432.0000855140388",
+      "vehicle_id": "Drone2",
+      "kind": "HOLD",
+      "issued_at": 432.0000855140388,
+      "valid_until": 435.0000855140388,
+      "waypoints": [],
+      "speed_mps": 1,
+      "duration_s": 1,
+      "source": "rule_policy"
+    },
+    "outcome": "REJECT_AND_REPLAN",
+    "reasons": [
+      "peer_reachable_region_conflict"
+    ],
+    "selected_action": null,
+    "fallback": null,
+    "fallback_rejections": [],
+    "mission_effect": {
+      "executed": false,
+      "status": "replan_required"
+    }
+  },
+  {
+    "time_s": 449.00009036797564,
+    "vehicle_id": "Drone2",
+    "observed_state": {
+      "vehicle_id": "Drone2",
+      "position": [
+        4.000002713990398,
+        8.0,
+        -3.0
+      ],
+      "observed_at": 449.00009036797564,
+      "battery_percent": 79.9599999728601,
+      "home": [
+        0,
+        8,
+        -3
+      ],
+      "peers": {
+        "Drone1": {
+          "position": [
+            6.0,
+            3.5,
+            -3.0
+          ],
+          "velocity": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "observed_at": 448.2000887299655
+        }
+      },
+      "expected_peers": [
+        "Drone1"
+      ],
+      "flight_phase": "AIRBORNE",
+      "communication": "HEALTHY",
+      "belief_confidence": 1.0
+    },
+    "proposed_action": {
+      "command_id": "policy:Drone2:16:449.00009036797564",
+      "vehicle_id": "Drone2",
+      "kind": "HOLD",
+      "issued_at": 449.00009036797564,
+      "valid_until": 479.00009036797564,
+      "waypoints": [],
+      "speed_mps": 1,
+      "duration_s": 1.0,
+      "source": "llm"
+    },
+    "outcome": "REJECT_AND_REPLAN",
+    "reasons": [
+      "peer_reachable_region_conflict"
+    ],
+    "selected_action": null,
+    "fallback": null,
+    "fallback_rejections": [],
+    "mission_effect": {
+      "executed": false,
+      "status": "replan_required"
+    }
+  },
+  {
+    "time_s": 464.0001028859988,
+    "vehicle_id": "Drone2",
+    "observed_state": {
+      "vehicle_id": "Drone2",
+      "position": [
+        4.000002713990398,
+        8.0,
+        -3.0
+      ],
+      "observed_at": 464.0001028859988,
+      "battery_percent": 79.9599999728601,
+      "home": [
+        0,
+        8,
+        -3
+      ],
+      "peers": {
+        "Drone1": {
+          "position": [
+            6.0,
+            3.5,
+            -3.0
+          ],
+          "velocity": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "observed_at": 463.2000929530477
+        }
+      },
+      "expected_peers": [
+        "Drone1"
+      ],
+      "flight_phase": "AIRBORNE",
+      "communication": "HEALTHY",
+      "belief_confidence": 1.0
+    },
+    "proposed_action": {
+      "command_id": "policy:Drone2:17:464.0001028859988",
+      "vehicle_id": "Drone2",
+      "kind": "HOLD",
+      "issued_at": 464.0001028859988,
+      "valid_until": 494.0001028859988,
+      "waypoints": [],
+      "speed_mps": 1,
+      "duration_s": 1.0,
+      "source": "llm"
+    },
+    "outcome": "REJECT_AND_REPLAN",
+    "reasons": [
+      "peer_reachable_region_conflict"
+    ],
+    "selected_action": null,
+    "fallback": null,
+    "fallback_rejections": [],
+    "mission_effect": {
+      "executed": false,
+      "status": "replan_required"
+    }
+  },
+  {
+    "time_s": 464.0001028859988,
+    "vehicle_id": "Drone2",
+    "observed_state": {
+      "vehicle_id": "Drone2",
+      "position": [
+        4.000002713990398,
+        8.0,
+        -3.0
+      ],
+      "observed_at": 464.0001028859988,
+      "battery_percent": 79.9599999728601,
+      "home": [
+        0,
+        8,
+        -3
+      ],
+      "peers": {
+        "Drone1": {
+          "position": [
+            6.0,
+            3.5,
+            -3.0
+          ],
+          "velocity": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "observed_at": 463.2000929530477
+        }
+      },
+      "expected_peers": [
+        "Drone1"
+      ],
+      "flight_phase": "AIRBORNE",
+      "communication": "HEALTHY",
+      "belief_confidence": 1.0
+    },
+    "proposed_action": {
+      "command_id": "fallback:Drone2:464.0001028859988",
+      "vehicle_id": "Drone2",
+      "kind": "HOLD",
+      "issued_at": 464.0001028859988,
+      "valid_until": 467.0001028859988,
+      "waypoints": [],
+      "speed_mps": 1,
+      "duration_s": 1,
+      "source": "rule_policy"
+    },
+    "outcome": "REJECT_AND_REPLAN",
+    "reasons": [
+      "peer_reachable_region_conflict"
+    ],
+    "selected_action": null,
+    "fallback": null,
+    "fallback_rejections": [],
+    "mission_effect": {
+      "executed": false,
+      "status": "replan_required"
+    }
+  },
+  {
+    "time_s": 497.0000853469828,
+    "vehicle_id": "Drone2",
+    "observed_state": {
+      "vehicle_id": "Drone2",
+      "position": [
+        4.000002713990398,
+        8.0,
+        -3.0
+      ],
+      "observed_at": 497.0000853469828,
+      "battery_percent": 79.9599999728601,
+      "home": [
+        0,
+        8,
+        -3
+      ],
+      "peers": {
+        "Drone1": {
+          "position": [
+            6.0,
+            3.5,
+            -3.0
+          ],
+          "velocity": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "observed_at": 496.20054397697095
+        }
+      },
+      "expected_peers": [
+        "Drone1"
+      ],
+      "flight_phase": "AIRBORNE",
+      "communication": "HEALTHY",
+      "belief_confidence": 1.0
+    },
+    "proposed_action": {
+      "command_id": "fallback:Drone2:497.0000853469828",
+      "vehicle_id": "Drone2",
+      "kind": "HOLD",
+      "issued_at": 497.0000853469828,
+      "valid_until": 500.0000853469828,
+      "waypoints": [],
+      "speed_mps": 1,
+      "duration_s": 1,
+      "source": "rule_policy"
+    },
+    "outcome": "REJECT_AND_REPLAN",
+    "reasons": [
+      "peer_reachable_region_conflict"
+    ],
+    "selected_action": null,
+    "fallback": null,
+    "fallback_rejections": [],
+    "mission_effect": {
+      "executed": false,
+      "status": "replan_required"
+    }
+  },
+  {
+    "time_s": 511.8000986799598,
+    "vehicle_id": "Drone2",
+    "observed_state": {
+      "vehicle_id": "Drone2",
+      "position": [
+        4.000002713990398,
+        8.0,
+        -3.0
+      ],
+      "observed_at": 511.8000986799598,
+      "battery_percent": 79.9599999728601,
+      "home": [
+        0,
+        8,
+        -3
+      ],
+      "peers": {
+        "Drone1": {
+          "position": [
+            6.0,
+            3.5,
+            -3.0
+          ],
+          "velocity": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "observed_at": 511.20009014499374
+        }
+      },
+      "expected_peers": [
+        "Drone1"
+      ],
+      "flight_phase": "AIRBORNE",
+      "communication": "HEALTHY",
+      "belief_confidence": 1.0
+    },
+    "proposed_action": {
+      "command_id": "policy:Drone2:20:511.8000986799598",
+      "vehicle_id": "Drone2",
+      "kind": "HOLD",
+      "issued_at": 511.8000986799598,
+      "valid_until": 541.8000986799598,
+      "waypoints": [],
+      "speed_mps": 1,
+      "duration_s": 1.0,
+      "source": "llm"
+    },
+    "outcome": "APPROVE_WITH_MODIFICATION",
+    "reasons": [
+      "bounded_motion_segment"
+    ],
+    "selected_action": {
+      "command_id": "policy:Drone2:20:511.8000986799598",
+      "vehicle_id": "Drone2",
+      "kind": "HOLD",
+      "issued_at": 511.8000986799598,
+      "valid_until": 541.8000986799598,
+      "waypoints": [],
+      "speed_mps": 1,
+      "duration_s": 0.25,
+      "source": "llm"
+    },
+    "fallback": null,
+    "fallback_rejections": [],
+    "mission_effect": {
+      "executed": true,
+      "completed": false,
+      "status": "mock_active"
+    }
+  },
+  {
+    "time_s": 512.0000979959732,
+    "vehicle_id": "Drone2",
+    "observed_state": {
+      "vehicle_id": "Drone2",
+      "position": [
+        4.000002713990398,
+        8.0,
+        -3.0
+      ],
+      "observed_at": 512.0000979959732,
+      "battery_percent": 79.9599999728601,
+      "home": [
+        0,
+        8,
+        -3
+      ],
+      "peers": {
+        "Drone1": {
+          "position": [
+            6.0,
+            3.5,
+            -3.0
+          ],
+          "velocity": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "observed_at": 511.20009014499374
+        }
+      },
+      "expected_peers": [
+        "Drone1"
+      ],
+      "flight_phase": "AIRBORNE",
+      "communication": "HEALTHY",
+      "belief_confidence": 1.0
+    },
+    "proposed_action": {
+      "command_id": "policy:Drone2:20:511.8000986799598",
+      "vehicle_id": "Drone2",
+      "kind": "HOLD",
+      "issued_at": 511.8000986799598,
+      "valid_until": 541.8000986799598,
+      "waypoints": [],
+      "speed_mps": 1,
+      "duration_s": 0.25,
+      "source": "llm"
+    },
+    "outcome": "REJECT_AND_REPLAN",
+    "reasons": [
+      "runtime_timeout_or_state_violation",
+      "no_verified_safe_fallback"
+    ],
+    "selected_action": null,
+    "fallback": null,
+    "fallback_rejections": [
+      {
+        "fallback": "HOLD_POSITION",
+        "reasons": [
+          "peer_reachable_region_conflict"
+        ]
+      }
+    ],
+    "mission_effect": {
+      "executed": false,
+      "status": "no_verified_safe_fallback"
+    }
+  },
+  {
+    "time_s": 544.800101874047,
+    "vehicle_id": "Drone2",
+    "observed_state": {
+      "vehicle_id": "Drone2",
+      "position": [
+        4.000002713990398,
+        8.0,
+        -3.0
+      ],
+      "observed_at": 544.800101874047,
+      "battery_percent": 79.9599999728601,
+      "home": [
+        0,
+        8,
+        -3
+      ],
+      "peers": {
+        "Drone1": {
+          "position": [
+            6.0,
+            3.5,
+            -3.0
+          ],
+          "velocity": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "observed_at": 544.200087848003
+        }
+      },
+      "expected_peers": [
+        "Drone1"
+      ],
+      "flight_phase": "AIRBORNE",
+      "communication": "HEALTHY",
+      "belief_confidence": 1.0
+    },
+    "proposed_action": {
+      "command_id": "policy:Drone2:22:544.800101874047",
+      "vehicle_id": "Drone2",
+      "kind": "HOLD",
+      "issued_at": 544.800101874047,
+      "valid_until": 574.800101874047,
+      "waypoints": [],
+      "speed_mps": 1,
+      "duration_s": 1.0,
+      "source": "llm"
+    },
+    "outcome": "APPROVE_WITH_MODIFICATION",
+    "reasons": [
+      "bounded_motion_segment"
+    ],
+    "selected_action": {
+      "command_id": "policy:Drone2:22:544.800101874047",
+      "vehicle_id": "Drone2",
+      "kind": "HOLD",
+      "issued_at": 544.800101874047,
+      "valid_until": 574.800101874047,
+      "waypoints": [],
+      "speed_mps": 1,
+      "duration_s": 0.25,
+      "source": "llm"
+    },
+    "fallback": null,
+    "fallback_rejections": [],
+    "mission_effect": {
+      "executed": true,
+      "completed": false,
+      "status": "mock_active"
+    }
+  },
+  {
+    "time_s": 545.0000903289765,
+    "vehicle_id": "Drone2",
+    "observed_state": {
+      "vehicle_id": "Drone2",
+      "position": [
+        4.000002713990398,
+        8.0,
+        -3.0
+      ],
+      "observed_at": 545.0000903289765,
+      "battery_percent": 79.9599999728601,
+      "home": [
+        0,
+        8,
+        -3
+      ],
+      "peers": {
+        "Drone1": {
+          "position": [
+            6.0,
+            3.5,
+            -3.0
+          ],
+          "velocity": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "observed_at": 544.200087848003
+        }
+      },
+      "expected_peers": [
+        "Drone1"
+      ],
+      "flight_phase": "AIRBORNE",
+      "communication": "HEALTHY",
+      "belief_confidence": 1.0
+    },
+    "proposed_action": {
+      "command_id": "policy:Drone2:22:544.800101874047",
+      "vehicle_id": "Drone2",
+      "kind": "HOLD",
+      "issued_at": 544.800101874047,
+      "valid_until": 574.800101874047,
+      "waypoints": [],
+      "speed_mps": 1,
+      "duration_s": 0.25,
+      "source": "llm"
+    },
+    "outcome": "REJECT_AND_REPLAN",
+    "reasons": [
+      "runtime_timeout_or_state_violation",
+      "no_verified_safe_fallback"
+    ],
+    "selected_action": null,
+    "fallback": null,
+    "fallback_rejections": [
+      {
+        "fallback": "HOLD_POSITION",
+        "reasons": [
+          "peer_reachable_region_conflict"
+        ]
+      }
+    ],
+    "mission_effect": {
+      "executed": false,
+      "status": "no_verified_safe_fallback"
+    }
+  },
+  {
+    "time_s": 559.400084280991,
+    "vehicle_id": "Drone2",
+    "observed_state": {
+      "vehicle_id": "Drone2",
+      "position": [
+        4.000002713990398,
+        8.0,
+        -3.0
+      ],
+      "observed_at": 559.400084280991,
+      "battery_percent": 79.9599999728601,
+      "home": [
+        0,
+        8,
+        -3
+      ],
+      "peers": {
+        "Drone1": {
+          "position": [
+            6.0,
+            3.5,
+            -3.0
+          ],
+          "velocity": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "observed_at": 558.6000975529896
+        }
+      },
+      "expected_peers": [
+        "Drone1"
+      ],
+      "flight_phase": "AIRBORNE",
+      "communication": "HEALTHY",
+      "belief_confidence": 1.0
+    },
+    "proposed_action": {
+      "command_id": "policy:Drone2:23:559.400084280991",
+      "vehicle_id": "Drone2",
+      "kind": "HOLD",
+      "issued_at": 559.400084280991,
+      "valid_until": 589.400084280991,
+      "waypoints": [],
+      "speed_mps": 1,
+      "duration_s": 1.0,
+      "source": "llm"
+    },
+    "outcome": "REJECT_AND_REPLAN",
+    "reasons": [
+      "peer_reachable_region_conflict"
+    ],
+    "selected_action": null,
+    "fallback": null,
+    "fallback_rejections": [],
+    "mission_effect": {
+      "executed": false,
+      "status": "replan_required"
+    }
+  },
+  {
+    "time_s": 573.6000923110405,
+    "vehicle_id": "Drone2",
+    "observed_state": {
+      "vehicle_id": "Drone2",
+      "position": [
+        4.000002713990398,
+        8.0,
+        -3.0
+      ],
+      "observed_at": 573.6000923110405,
+      "battery_percent": 79.9599999728601,
+      "home": [
+        0,
+        8,
+        -3
+      ],
+      "peers": {
+        "Drone1": {
+          "position": [
+            6.0,
+            3.5,
+            -3.0
+          ],
+          "velocity": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "observed_at": 573.0000879090512
+        }
+      },
+      "expected_peers": [
+        "Drone1"
+      ],
+      "flight_phase": "AIRBORNE",
+      "communication": "HEALTHY",
+      "belief_confidence": 1.0
+    },
+    "proposed_action": {
+      "command_id": "policy:Drone2:24:573.6000923110405",
+      "vehicle_id": "Drone2",
+      "kind": "HOLD",
+      "issued_at": 573.6000923110405,
+      "valid_until": 603.6000923110405,
+      "waypoints": [],
+      "speed_mps": 1,
+      "duration_s": 1.0,
+      "source": "llm"
+    },
+    "outcome": "APPROVE_WITH_MODIFICATION",
+    "reasons": [
+      "bounded_motion_segment"
+    ],
+    "selected_action": {
+      "command_id": "policy:Drone2:24:573.6000923110405",
+      "vehicle_id": "Drone2",
+      "kind": "HOLD",
+      "issued_at": 573.6000923110405,
+      "valid_until": 603.6000923110405,
+      "waypoints": [],
+      "speed_mps": 1,
+      "duration_s": 0.25,
+      "source": "llm"
+    },
+    "fallback": null,
+    "fallback_rejections": [],
+    "mission_effect": {
+      "executed": true,
+      "completed": false,
+      "status": "mock_active"
+    }
+  },
+  {
+    "time_s": 573.8000917780446,
+    "vehicle_id": "Drone2",
+    "observed_state": {
+      "vehicle_id": "Drone2",
+      "position": [
+        4.000002713990398,
+        8.0,
+        -3.0
+      ],
+      "observed_at": 573.8000917780446,
+      "battery_percent": 79.9599999728601,
+      "home": [
+        0,
+        8,
+        -3
+      ],
+      "peers": {
+        "Drone1": {
+          "position": [
+            6.0,
+            3.5,
+            -3.0
+          ],
+          "velocity": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "observed_at": 573.0000879090512
+        }
+      },
+      "expected_peers": [
+        "Drone1"
+      ],
+      "flight_phase": "AIRBORNE",
+      "communication": "HEALTHY",
+      "belief_confidence": 1.0
+    },
+    "proposed_action": {
+      "command_id": "policy:Drone2:24:573.6000923110405",
+      "vehicle_id": "Drone2",
+      "kind": "HOLD",
+      "issued_at": 573.6000923110405,
+      "valid_until": 603.6000923110405,
+      "waypoints": [],
+      "speed_mps": 1,
+      "duration_s": 0.25,
+      "source": "llm"
+    },
+    "outcome": "REJECT_AND_REPLAN",
+    "reasons": [
+      "runtime_timeout_or_state_violation",
+      "no_verified_safe_fallback"
+    ],
+    "selected_action": null,
+    "fallback": null,
+    "fallback_rejections": [
+      {
+        "fallback": "HOLD_POSITION",
+        "reasons": [
+          "peer_reachable_region_conflict"
+        ]
+      }
+    ],
+    "mission_effect": {
+      "executed": false,
+      "status": "no_verified_safe_fallback"
+    }
+  }
+]

@@ -1,0 +1,187 @@
+{
+  "agent_id": "Drone2",
+  "memory": [
+    {
+      "time_s": 41.40008899802342,
+      "selected_tool": "send_bid",
+      "parameters": {
+        "task_id": "SEARCH_SECTOR_B",
+        "task_version": 1
+      },
+      "result": {
+        "task_id": "SEARCH_SECTOR_B",
+        "task_version": 1,
+        "computed_at": 41.40008899802342,
+        "distance_m": 21.0,
+        "distance_to_entry_m": 6.0,
+        "travel_time_s": 21.0,
+        "bid": {
+          "score": 11.124112773829665,
+          "components": {
+            "distance": 9.12414379544733,
+            "battery": 0.19999999999999996,
+            "workload": 0.0,
+            "communication": 0.19999379567646733,
+            "mismatch": 0.0
+          }
+        },
+        "battery_sufficient": true,
+        "communication_reachability": {
+          "Drone1": "recent_contact"
+        },
+        "route_feasible": true,
+        "separation_risk": false,
+        "guardian_reasons": [
+          "bounded_motion_segment"
+        ],
+        "full_route_static_feasible": true,
+        "immediate_segment_feasible": true,
+        "future_segments_require_revalidation": true
+      }
+    },
+    {
+      "time_s": 103.80008867697325,
+      "selected_tool": "start_search",
+      "parameters": {
+        "task_id": "SEARCH_SECTOR_B",
+        "task_version": 1
+      },
+      "result": {
+        "status": "search_authorized",
+        "task_id": "SEARCH_SECTOR_B",
+        "version": 1
+      }
+    },
+    {
+      "time_s": 140.60008802998345,
+      "selected_tool": "send_bid",
+      "parameters": {
+        "task_id": "SEARCH_SECTOR_D",
+        "task_version": 1
+      },
+      "result": {
+        "task_id": "SEARCH_SECTOR_D",
+        "task_version": 1,
+        "computed_at": 140.60008802998345,
+        "distance_m": 28.0,
+        "distance_to_entry_m": 13.0,
+        "travel_time_s": 28.0,
+        "bid": {
+          "score": 16.150923866537738,
+          "components": {
+            "distance": 14.807092894960848,
+            "battery": 0.2020999999999995,
+            "workload": 0.0,
+            "communication": 0.06666619431537886,
+            "mismatch": 0.0
+          }
+        },
+        "battery_sufficient": true,
+        "communication_reachability": {
+          "Drone1": "recent_contact"
+        },
+        "route_feasible": true,
+        "separation_risk": false,
+        "guardian_reasons": [
+          "bounded_motion_segment"
+        ],
+        "full_route_static_feasible": true,
+        "immediate_segment_feasible": true,
+        "future_segments_require_revalidation": true
+      }
+    },
+    {
+      "time_s": 222.40009701403324,
+      "selected_tool": "hold",
+      "parameters": {
+        "duration_s": 2.0
+      },
+      "result": {
+        "status": "guarded_skill_dispatched",
+        "kind": "HOLD"
+      }
+    },
+    {
+      "time_s": 251.80009316606447,
+      "selected_tool": "start_search",
+      "parameters": {
+        "task_id": "SEARCH_SECTOR_D",
+        "task_version": 1
+      },
+      "result": {
+        "status": "search_authorized",
+        "task_id": "SEARCH_SECTOR_D",
+        "version": 1
+      }
+    },
+    {
+      "time_s": 281.2001012120163,
+      "selected_tool": "start_search",
+      "parameters": {
+        "task_id": "SEARCH_SECTOR_D",
+        "task_version": 1
+      },
+      "result": {
+        "status": "search_authorized",
+        "task_id": "SEARCH_SECTOR_D",
+        "version": 1
+      }
+    },
+    {
+      "time_s": 335.00008498399984,
+      "selected_tool": "hold",
+      "parameters": {
+        "duration_s": 2.0
+      },
+      "result": {
+        "status": "guarded_skill_dispatched",
+        "kind": "HOLD"
+      }
+    },
+    {
+      "time_s": 425.4006825359538,
+      "selected_tool": "deterministic_fallback",
+      "result": {
+        "status": "deterministic_fallback",
+        "reason_code": "unsafe_action:peer_reachable_region_conflict"
+      }
+    },
+    {
+      "time_s": 441.8000949959969,
+      "selected_tool": "hold",
+      "parameters": {
+        "duration_s": 1.0
+      },
+      "result": {
+        "status": "guarded_skill_dispatched",
+        "kind": "HOLD"
+      }
+    },
+    {
+      "time_s": 457.6000883219531,
+      "selected_tool": "start_search",
+      "parameters": {
+        "task_id": "SEARCH_SECTOR_C",
+        "task_version": 2
+      },
+      "result": {
+        "status": "search_authorized",
+        "task_id": "SEARCH_SECTOR_C",
+        "version": 2
+      }
+    },
+    {
+      "time_s": 498.00009437906556,
+      "selected_tool": "start_search",
+      "parameters": {
+        "task_id": "SEARCH_SECTOR_D",
+        "task_version": 2
+      },
+      "result": {
+        "status": "search_authorized",
+        "task_id": "SEARCH_SECTOR_D",
+        "version": 2
+      }
+    }
+  ]
+}

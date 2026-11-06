@@ -1,0 +1,53 @@
+{
+  "agent_id": "Drone1",
+  "memory": [
+    {
+      "time_s": 13.800098292995244,
+      "selected_tool": "compute_task_cost",
+      "parameters": {
+        "task_id": "SEARCH_SECTOR_A"
+      },
+      "result": {
+        "task_id": "SEARCH_SECTOR_A",
+        "task_version": 1,
+        "computed_at": 13.800098292995244,
+        "distance_m": 21.0,
+        "distance_to_entry_m": 6.0,
+        "travel_time_s": 21.0,
+        "bid": {
+          "score": 13.124155398834091,
+          "components": {
+            "distance": 9.12414379544733,
+            "battery": 0.19999999999999996,
+            "workload": 0.0,
+            "communication": 0.6000023206773525,
+            "mismatch": 0.0
+          }
+        },
+        "battery_sufficient": true,
+        "communication_reachability": {
+          "Drone2": "recent_contact"
+        },
+        "route_feasible": true,
+        "separation_risk": false,
+        "guardian_reasons": [
+          "bounded_motion_segment"
+        ],
+        "full_route_static_feasible": true,
+        "immediate_segment_feasible": true,
+        "future_segments_require_revalidation": true
+      }
+    },
+    {
+      "time_s": 54.6001163990004,
+      "selected_tool": "hold",
+      "parameters": {
+        "duration_s": 2.0
+      },
+      "result": {
+        "status": "guarded_skill_dispatched",
+        "kind": "HOLD"
+      }
+    }
+  ]
+}

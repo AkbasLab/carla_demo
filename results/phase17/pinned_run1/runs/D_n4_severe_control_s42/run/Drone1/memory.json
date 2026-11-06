@@ -1,0 +1,83 @@
+{
+  "agent_id": "Drone1",
+  "memory": [
+    {
+      "time_s": 12.400097562000155,
+      "selected_tool": "hold",
+      "parameters": {
+        "duration_s": 1.0
+      },
+      "result": {
+        "status": "guarded_skill_dispatched",
+        "kind": "HOLD"
+      }
+    },
+    {
+      "time_s": 36.000086916959845,
+      "selected_tool": "hold",
+      "parameters": {
+        "duration_s": 2.0
+      },
+      "result": {
+        "status": "guarded_skill_dispatched",
+        "kind": "HOLD"
+      }
+    },
+    {
+      "time_s": 93.40008247795049,
+      "selected_tool": "start_search",
+      "parameters": {
+        "task_id": "SEARCH_SECTOR_A",
+        "task_version": 1
+      },
+      "result": {
+        "status": "search_authorized",
+        "task_id": "SEARCH_SECTOR_A",
+        "version": 1
+      }
+    },
+    {
+      "time_s": 161.60008364298847,
+      "selected_tool": "start_search",
+      "parameters": {
+        "task_id": "SEARCH_SECTOR_A",
+        "task_version": 1
+      },
+      "result": {
+        "status": "search_authorized",
+        "task_id": "SEARCH_SECTOR_A",
+        "version": 1
+      }
+    },
+    {
+      "time_s": 250.0000940989703,
+      "selected_tool": "hold",
+      "parameters": {
+        "duration_s": 2.0
+      },
+      "result": {
+        "status": "guarded_skill_dispatched",
+        "kind": "HOLD"
+      }
+    },
+    {
+      "time_s": 398.800085515948,
+      "selected_tool": "deterministic_fallback",
+      "result": {
+        "status": "deterministic_fallback",
+        "reason_code": "message_tool_mismatch"
+      }
+    },
+    {
+      "time_s": 491.20009352604393,
+      "selected_tool": "hold",
+      "parameters": {
+        "duration_s": 1.0
+      },
+      "result": {
+        "status": "guarded_skill_dispatched",
+        "kind": "HOLD"
+      }
+    }
+  ]
+}

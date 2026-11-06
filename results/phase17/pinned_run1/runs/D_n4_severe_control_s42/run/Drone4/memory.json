@@ -1,0 +1,144 @@
+{
+  "agent_id": "Drone4",
+  "memory": [
+    {
+      "time_s": 79.20009156200103,
+      "selected_tool": "compute_task_cost",
+      "parameters": {
+        "task_id": "SEARCH_SECTOR_C"
+      },
+      "result": {
+        "task_id": "SEARCH_SECTOR_C",
+        "task_version": 1,
+        "computed_at": 79.20009156200103,
+        "distance_m": 25.0,
+        "distance_to_entry_m": 10.0,
+        "travel_time_s": 25.0,
+        "bid": {
+          "score": 14.101794557279426,
+          "components": {
+            "distance": 11.10180165558726,
+            "battery": 0.19999999999999996,
+            "workload": 0.0,
+            "communication": 0.3999985803384334,
+            "mismatch": 0.0
+          }
+        },
+        "battery_sufficient": true,
+        "communication_reachability": {
+          "Drone1": "recent_contact",
+          "Drone2": "recent_contact",
+          "Drone3": "recent_contact"
+        },
+        "route_feasible": true,
+        "separation_risk": false,
+        "guardian_reasons": [
+          "bounded_motion_segment"
+        ],
+        "full_route_static_feasible": true,
+        "immediate_segment_feasible": true,
+        "future_segments_require_revalidation": true
+      }
+    },
+    {
+      "time_s": 149.00008193904068,
+      "selected_tool": "hold",
+      "parameters": {
+        "duration_s": 2.0
+      },
+      "result": {
+        "status": "guarded_skill_dispatched",
+        "kind": "HOLD"
+      }
+    },
+    {
+      "time_s": 225.40009041095618,
+      "selected_tool": "start_search",
+      "parameters": {
+        "task_id": "SEARCH_SECTOR_D",
+        "task_version": 1
+      },
+      "result": {
+        "status": "search_authorized",
+        "task_id": "SEARCH_SECTOR_D",
+        "version": 1
+      }
+    },
+    {
+      "time_s": 329.8000939319609,
+      "selected_tool": "compute_task_cost",
+      "parameters": {
+        "task_id": "SEARCH_SECTOR_D"
+      },
+      "result": {
+        "task_id": "SEARCH_SECTOR_D",
+        "task_version": 2,
+        "computed_at": 329.8000939319609,
+        "distance_m": 15.75,
+        "distance_to_entry_m": 0.75,
+        "travel_time_s": 15.75,
+        "bid": {
+          "score": 7.708152993654748,
+          "components": {
+            "distance": 4.038873605350878,
+            "battery": 0.2005250000000003,
+            "workload": 0.0,
+            "communication": 0.5333308776607737,
+            "mismatch": 0.0
+          }
+        },
+        "battery_sufficient": true,
+        "communication_reachability": {
+          "Drone1": "unknown",
+          "Drone2": "recent_contact",
+          "Drone3": "recent_contact"
+        },
+        "route_feasible": true,
+        "separation_risk": false,
+        "guardian_reasons": [
+          "bounded_motion_segment"
+        ],
+        "full_route_static_feasible": true,
+        "immediate_segment_feasible": true,
+        "future_segments_require_revalidation": true
+      }
+    },
+    {
+      "time_s": 415.600084339967,
+      "selected_tool": "hold",
+      "parameters": {
+        "duration_s": 1.0
+      },
+      "result": {
+        "status": "guarded_skill_dispatched",
+        "kind": "HOLD"
+      }
+    },
+    {
+      "time_s": 508.80008649197407,
+      "selected_tool": "start_search",
+      "parameters": {
+        "task_id": "SEARCH_SECTOR_D",
+        "task_version": 2
+      },
+      "result": {
+        "status": "search_authorized",
+        "task_id": "SEARCH_SECTOR_D",
+        "version": 2
+      }
+    },
+    {
+      "time_s": 575.800084532937,
+      "selected_tool": "start_search",
+      "parameters": {
+        "task_id": "SEARCH_SECTOR_D",
+        "task_version": 2
+      },
+      "result": {
+        "status": "search_authorized",
+        "task_id": "SEARCH_SECTOR_D",
+        "version": 2
+      }
+    }
+  ]
+}

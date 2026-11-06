@@ -1,0 +1,93 @@
+{
+  "agent_id": "Drone2",
+  "memory": [
+    {
+      "time_s": 42.80003944598138,
+      "selected_tool": "send_bid",
+      "parameters": {
+        "task_id": "SEARCH_SECTOR_B",
+        "task_version": 1
+      },
+      "result": {
+        "task_id": "SEARCH_SECTOR_B",
+        "task_version": 1,
+        "computed_at": 42.80003944598138,
+        "distance_m": 21.0,
+        "distance_to_entry_m": 6.0,
+        "travel_time_s": 21.0,
+        "bid": {
+          "score": 10.457443510286415,
+          "components": {
+            "distance": 9.12414379544733,
+            "battery": 0.19999999999999996,
+            "workload": 0.0,
+            "communication": 0.06665994296781719,
+            "mismatch": 0.0
+          }
+        },
+        "battery_sufficient": true,
+        "communication_reachability": {
+          "Drone1": "recent_contact",
+          "Drone3": "recent_contact",
+          "Drone4": "recent_contact"
+        },
+        "route_feasible": true,
+        "separation_risk": false,
+        "guardian_reasons": [
+          "bounded_motion_segment"
+        ],
+        "full_route_static_feasible": true,
+        "immediate_segment_feasible": true,
+        "future_segments_require_revalidation": true
+      }
+    },
+    {
+      "time_s": 152.6001235450385,
+      "selected_tool": "deterministic_fallback",
+      "result": {
+        "status": "deterministic_fallback",
+        "reason_code": "unsafe_action:stale_or_future_peer_belief"
+      }
+    },
+    {
+      "time_s": 231.80006438307464,
+      "selected_tool": "deterministic_fallback",
+      "result": {
+        "status": "deterministic_fallback",
+        "reason_code": "unsafe_action:stale_or_future_peer_belief"
+      }
+    },
+    {
+      "time_s": 311.8000878280727,
+      "selected_tool": "deterministic_fallback",
+      "result": {
+        "status": "deterministic_fallback",
+        "reason_code": "unsafe_action:stale_or_future_peer_belief"
+      }
+    },
+    {
+      "time_s": 393.0000920459861,
+      "selected_tool": "deterministic_fallback",
+      "result": {
+        "status": "deterministic_fallback",
+        "reason_code": "unsafe_action:stale_or_future_peer_belief"
+      }
+    },
+    {
+      "time_s": 472.8000599599909,
+      "selected_tool": "deterministic_fallback",
+      "result": {
+        "status": "deterministic_fallback",
+        "reason_code": "unsafe_action:stale_or_future_peer_belief"
+      }
+    },
+    {
+      "time_s": 558.6000509590376,
+      "selected_tool": "deterministic_fallback",
+      "result": {
+        "status": "deterministic_fallback",
+        "reason_code": "unsafe_action:stale_or_future_peer_belief"
+      }
+    }
+  ]
+}

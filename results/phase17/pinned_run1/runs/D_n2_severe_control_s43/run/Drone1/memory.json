@@ -1,0 +1,164 @@
+{
+  "agent_id": "Drone1",
+  "memory": [
+    {
+      "time_s": 25.000089517910965,
+      "selected_tool": "compute_task_cost",
+      "parameters": {
+        "task_id": "SEARCH_SECTOR_A"
+      },
+      "result": {
+        "task_id": "SEARCH_SECTOR_A",
+        "task_version": 1,
+        "computed_at": 25.000089517910965,
+        "distance_m": 21.0,
+        "distance_to_entry_m": 6.0,
+        "travel_time_s": 21.0,
+        "bid": {
+          "score": 13.79079479195199,
+          "components": {
+            "distance": 9.12414379544733,
+            "battery": 0.19999999999999996,
+            "workload": 0.0,
+            "communication": 0.7333301993009324,
+            "mismatch": 0.0
+          }
+        },
+        "battery_sufficient": true,
+        "communication_reachability": {
+          "Drone2": "recent_contact"
+        },
+        "route_feasible": true,
+        "separation_risk": false,
+        "guardian_reasons": [
+          "bounded_motion_segment"
+        ],
+        "full_route_static_feasible": true,
+        "immediate_segment_feasible": true,
+        "future_segments_require_revalidation": true
+      }
+    },
+    {
+      "time_s": 81.40009909600485,
+      "selected_tool": "start_search",
+      "parameters": {
+        "task_id": "SEARCH_SECTOR_A",
+        "task_version": 1
+      },
+      "result": {
+        "status": "search_authorized",
+        "task_id": "SEARCH_SECTOR_A",
+        "version": 1
+      }
+    },
+    {
+      "time_s": 141.20008893799968,
+      "selected_tool": "deterministic_fallback",
+      "result": {
+        "status": "deterministic_fallback",
+        "reason_code": "cancellation_unconfirmed"
+      }
+    },
+    {
+      "time_s": 180.00009200093336,
+      "selected_tool": "compute_task_cost",
+      "parameters": {
+        "task_id": "SEARCH_SECTOR_C"
+      },
+      "result": {
+        "task_id": "SEARCH_SECTOR_C",
+        "task_version": 1,
+        "computed_at": 180.00009200093336,
+        "distance_m": 28.002403623945845,
+        "distance_to_entry_m": 13.002403623945844,
+        "travel_time_s": 28.002403623945845,
+        "bid": {
+          "score": 36.76883317967086,
+          "components": {
+            "distance": 14.758472143145442,
+            "battery": 0.20207499999999923,
+            "workload": 1.0,
+            "communication": 0.19999720730508366,
+            "mismatch": 0.0
+          }
+        },
+        "battery_sufficient": true,
+        "communication_reachability": {
+          "Drone2": "unknown"
+        },
+        "route_feasible": false,
+        "separation_risk": true,
+        "guardian_reasons": [
+          "peer_reachable_region_conflict"
+        ],
+        "full_route_static_feasible": true,
+        "immediate_segment_feasible": false,
+        "future_segments_require_revalidation": true
+      }
+    },
+    {
+      "time_s": 228.00008402299136,
+      "selected_tool": "start_search",
+      "parameters": {
+        "task_id": "SEARCH_SECTOR_C",
+        "task_version": 1
+      },
+      "result": {
+        "status": "search_authorized",
+        "task_id": "SEARCH_SECTOR_C",
+        "version": 1
+      }
+    },
+    {
+      "time_s": 288.6000991439214,
+      "selected_tool": "hold",
+      "parameters": {
+        "duration_s": 2.0
+      },
+      "result": {
+        "status": "guarded_skill_dispatched",
+        "kind": "HOLD"
+      }
+    },
+    {
+      "time_s": 347.4001010740176,
+      "selected_tool": "deterministic_fallback",
+      "result": {
+        "status": "deterministic_fallback",
+        "reason_code": "unsafe_action:peer_reachable_region_conflict"
+      }
+    },
+    {
+      "time_s": 391.4000727200182,
+      "selected_tool": "deterministic_fallback",
+      "result": {
+        "status": "deterministic_fallback",
+        "reason_code": "unsafe_action:peer_reachable_region_conflict"
+      }
+    },
+    {
+      "time_s": 522.2000908619957,
+      "selected_tool": "deterministic_fallback",
+      "result": {
+        "status": "deterministic_fallback",
+        "reason_code": "unsafe_action:peer_reachable_region_conflict"
+      }
+    },
+    {
+      "time_s": 552.6000806429656,
+      "selected_tool": "deterministic_fallback",
+      "result": {
+        "status": "deterministic_fallback",
+        "reason_code": "unsafe_action:peer_reachable_region_conflict"
+      }
+    },
+    {
+      "time_s": 582.8000935919117,
+      "selected_tool": "deterministic_fallback",
+      "result": {
+        "status": "deterministic_fallback",
+        "reason_code": "unsafe_action:peer_reachable_region_conflict"
+      }
+    }
+  ]
+}

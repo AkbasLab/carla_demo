@@ -1,0 +1,121 @@
+{
+  "agent_id": "Drone2",
+  "memory": [
+    {
+      "time_s": 25.400087696965784,
+      "selected_tool": "compute_task_cost",
+      "parameters": {
+        "task_id": "SEARCH_SECTOR_A"
+      },
+      "result": {
+        "task_id": "SEARCH_SECTOR_A",
+        "task_version": 1,
+        "computed_at": 25.400087696965784,
+        "distance_m": 25.0,
+        "distance_to_entry_m": 10.0,
+        "travel_time_s": 25.0,
+        "bid": {
+          "score": 13.43513041717449,
+          "components": {
+            "distance": 11.10180165558726,
+            "battery": 0.19999999999999996,
+            "workload": 0.0,
+            "communication": 0.266665752317446,
+            "mismatch": 0.0
+          }
+        },
+        "battery_sufficient": true,
+        "communication_reachability": {
+          "Drone1": "recent_contact",
+          "Drone3": "recent_contact",
+          "Drone4": "recent_contact"
+        },
+        "route_feasible": true,
+        "separation_risk": false,
+        "guardian_reasons": [
+          "bounded_motion_segment"
+        ],
+        "full_route_static_feasible": true,
+        "immediate_segment_feasible": true,
+        "future_segments_require_revalidation": true
+      }
+    },
+    {
+      "time_s": 64.80009924795013,
+      "selected_tool": "hold",
+      "parameters": {
+        "duration_s": 2.0
+      },
+      "result": {
+        "status": "guarded_skill_dispatched",
+        "kind": "HOLD"
+      }
+    },
+    {
+      "time_s": 107.60008813394234,
+      "selected_tool": "start_search",
+      "parameters": {
+        "task_id": "SEARCH_SECTOR_B",
+        "task_version": 1
+      },
+      "result": {
+        "status": "search_authorized",
+        "task_id": "SEARCH_SECTOR_B",
+        "version": 1
+      }
+    },
+    {
+      "time_s": 195.20009360695258,
+      "selected_tool": "deterministic_fallback",
+      "result": {
+        "status": "deterministic_fallback",
+        "reason_code": "unsafe_action:peer_reachable_region_conflict"
+      }
+    },
+    {
+      "time_s": 268.0000921540195,
+      "selected_tool": "start_search",
+      "parameters": {
+        "task_id": "SEARCH_SECTOR_B",
+        "task_version": 1
+      },
+      "result": {
+        "status": "search_authorized",
+        "task_id": "SEARCH_SECTOR_B",
+        "version": 1
+      }
+    },
+    {
+      "time_s": 347.6000860820059,
+      "selected_tool": "start_search",
+      "parameters": {
+        "task_id": "SEARCH_SECTOR_B",
+        "task_version": 1
+      },
+      "result": {
+        "status": "search_authorized",
+        "task_id": "SEARCH_SECTOR_B",
+        "version": 1
+      }
+    },
+    {
+      "time_s": 445.80010547093116,
+      "selected_tool": "hold",
+      "parameters": {
+        "duration_s": 2.0
+      },
+      "result": {
+        "status": "guarded_skill_dispatched",
+        "kind": "HOLD"
+      }
+    },
+    {
+      "time_s": 539.2000948259374,
+      "selected_tool": "deterministic_fallback",
+      "result": {
+        "status": "deterministic_fallback",
+        "reason_code": "unsafe_action:peer_reachable_region_conflict"
+      }
+    }
+  ]
+}

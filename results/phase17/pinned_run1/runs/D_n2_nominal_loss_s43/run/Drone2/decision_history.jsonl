@@ -1,0 +1,97 @@
+{"time_s": 0.20008311502169818, "agent_id": "Drone2", "event": "deadline_bid_submitted", "task_id": "SEARCH_SECTOR_A", "version": 1, "deadline": 30.00006953801494, "remaining_s": 29.799986422993243, "estimated_admission_s": 30.0, "estimated_inference_s": 30.0, "source": "deterministic_deadline_guard"}
+{"time_s": 30.200083369971253, "agent_id": "Drone2", "event": "delivered_bid_evidence_reconciled", "task_id": "SEARCH_SECTOR_A", "version": 1, "message_id": "phase8:Drone1:105:tx:115"}
+{"time_s": 30.400081226951443, "agent_id": "Drone2", "event": "deadline_bid_submitted", "task_id": "SEARCH_SECTOR_B", "version": 1, "deadline": 60.20008336997125, "remaining_s": 29.80000214301981, "estimated_admission_s": 0.0, "estimated_inference_s": 30.0, "source": "deterministic_deadline_guard"}
+{"time_s": 31.2000856900122, "agent_id": "Drone2", "event": "delivered_bid_evidence_reconciled", "task_id": "SEARCH_SECTOR_A", "version": 1, "message_id": "phase8:Drone1:105:tx:120"}
+{"time_s": 32.20008037798107, "agent_id": "Drone2", "event": "delivered_bid_evidence_reconciled", "task_id": "SEARCH_SECTOR_A", "version": 1, "message_id": "phase8:Drone1:105:tx:127"}
+{"time_s": 33.400100862956606, "agent_id": "Drone2", "event": "delivered_bid_evidence_reconciled", "task_id": "SEARCH_SECTOR_A", "version": 1, "message_id": "phase8:Drone1:105:tx:134"}
+{"time_s": 34.60008954303339, "agent_id": "Drone2", "event": "delivered_bid_evidence_reconciled", "task_id": "SEARCH_SECTOR_A", "version": 1, "message_id": "phase8:Drone1:105:tx:141"}
+{"time_s": 35.800084465998225, "agent_id": "Drone2", "event": "delivered_bid_evidence_reconciled", "task_id": "SEARCH_SECTOR_A", "version": 1, "message_id": "phase8:Drone1:105:tx:148"}
+{"time_s": 41.80009369296022, "agent_id": "Drone2", "event": "policy_decision_applied", "request_id": "Drone2:1", "decision": {"situation_assessment": {"mission_progress": "partial", "communication_status": "nominal", "current_risk": "low"}, "selected_tool": "send_bid", "parameters": {"task_id": "SEARCH_SECTOR_B", "task_version": 1}, "outgoing_messages": [], "confidence": 0.8}, "tool_result": {"task_id": "SEARCH_SECTOR_B", "task_version": 1, "computed_at": 41.80009369296022, "distance_m": 21.0, "distance_to_entry_m": 6.0, "travel_time_s": 21.0, "bid": {"score": 10.790826885444329, "components": {"distance": 9.12414379544733, "battery": 0.19999999999999996, "workload": 0.0, "communication": 0.1333366179993997, "mismatch": 0.0}}, "battery_sufficient": true, "communication_reachability": {"Drone1": "recent_contact"}, "route_feasible": true, "separation_risk": false, "guardian_reasons": ["bounded_motion_segment"], "full_route_static_feasible": true, "immediate_segment_feasible": true, "future_segments_require_revalidation": true}, "source": "llm", "flight_phase": "AIRBORNE"}
+{"time_s": 73.80008374503814, "agent_id": "Drone2", "event": "peer_health_changed", "peer": "Drone1", "previous": "HEALTHY", "state": "SUSPECTED"}
+{"time_s": 75.80010579596274, "agent_id": "Drone2", "event": "peer_health_changed", "peer": "Drone1", "previous": "SUSPECTED", "state": "UNREACHABLE"}
+{"time_s": 85.80009363498539, "agent_id": "Drone2", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 0, "validation_details": null}
+{"time_s": 85.80009363498539, "agent_id": "Drone2", "event": "structured_correction_requested", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 97.80008917802479, "agent_id": "Drone2", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 1, "validation_details": null}
+{"time_s": 97.80008917802479, "agent_id": "Drone2", "event": "deterministic_fallback", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 97.80008917802479, "agent_id": "Drone2", "event": "temporary_approach_wait", "task_id": "SEARCH_SECTOR_B", "version": 1, "reasons": ["stale_or_future_peer_belief"]}
+{"time_s": 109.80010688200127, "agent_id": "Drone2", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 0, "validation_details": null}
+{"time_s": 109.80010688200127, "agent_id": "Drone2", "event": "structured_correction_requested", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 122.60007164801937, "agent_id": "Drone2", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 1, "validation_details": null}
+{"time_s": 122.60007164801937, "agent_id": "Drone2", "event": "deterministic_fallback", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 122.60007164801937, "agent_id": "Drone2", "event": "temporary_approach_wait", "task_id": "SEARCH_SECTOR_B", "version": 1, "reasons": ["stale_or_future_peer_belief"]}
+{"time_s": 134.60008313599974, "agent_id": "Drone2", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 0, "validation_details": null}
+{"time_s": 134.60008313599974, "agent_id": "Drone2", "event": "structured_correction_requested", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 146.60010072903242, "agent_id": "Drone2", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 1, "validation_details": null}
+{"time_s": 146.60010072903242, "agent_id": "Drone2", "event": "deterministic_fallback", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 146.60010072903242, "agent_id": "Drone2", "event": "temporary_approach_wait", "task_id": "SEARCH_SECTOR_B", "version": 1, "reasons": ["stale_or_future_peer_belief"]}
+{"time_s": 159.20030891499482, "agent_id": "Drone2", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 0, "validation_details": null}
+{"time_s": 159.20030891499482, "agent_id": "Drone2", "event": "structured_correction_requested", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 171.6000902230153, "agent_id": "Drone2", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 1, "validation_details": null}
+{"time_s": 171.6000902230153, "agent_id": "Drone2", "event": "deterministic_fallback", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 171.6000902230153, "agent_id": "Drone2", "event": "temporary_approach_wait", "task_id": "SEARCH_SECTOR_B", "version": 1, "reasons": ["stale_or_future_peer_belief"]}
+{"time_s": 185.20008052501362, "agent_id": "Drone2", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 0, "validation_details": null}
+{"time_s": 185.20008052501362, "agent_id": "Drone2", "event": "structured_correction_requested", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 198.60009670304134, "agent_id": "Drone2", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 1, "validation_details": null}
+{"time_s": 198.60009670304134, "agent_id": "Drone2", "event": "deterministic_fallback", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 198.60009670304134, "agent_id": "Drone2", "event": "temporary_approach_wait", "task_id": "SEARCH_SECTOR_B", "version": 1, "reasons": ["stale_or_future_peer_belief"]}
+{"time_s": 212.6000929189613, "agent_id": "Drone2", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 0, "validation_details": null}
+{"time_s": 212.6000929189613, "agent_id": "Drone2", "event": "structured_correction_requested", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 225.80007953196764, "agent_id": "Drone2", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 1, "validation_details": null}
+{"time_s": 225.80007953196764, "agent_id": "Drone2", "event": "deterministic_fallback", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 225.80007953196764, "agent_id": "Drone2", "event": "temporary_approach_wait", "task_id": "SEARCH_SECTOR_B", "version": 1, "reasons": ["stale_or_future_peer_belief"]}
+{"time_s": 239.00009064003825, "agent_id": "Drone2", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 0, "validation_details": null}
+{"time_s": 239.00009064003825, "agent_id": "Drone2", "event": "structured_correction_requested", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 251.8000874769641, "agent_id": "Drone2", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 1, "validation_details": null}
+{"time_s": 251.8000874769641, "agent_id": "Drone2", "event": "deterministic_fallback", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 265.00009716302156, "agent_id": "Drone2", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 0, "validation_details": null}
+{"time_s": 265.00009716302156, "agent_id": "Drone2", "event": "structured_correction_requested", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 278.00008985504974, "agent_id": "Drone2", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 1, "validation_details": null}
+{"time_s": 278.00008985504974, "agent_id": "Drone2", "event": "deterministic_fallback", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 290.6000885879621, "agent_id": "Drone2", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 0, "validation_details": null}
+{"time_s": 290.6000885879621, "agent_id": "Drone2", "event": "structured_correction_requested", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 303.8000930190319, "agent_id": "Drone2", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 1, "validation_details": null}
+{"time_s": 303.8000930190319, "agent_id": "Drone2", "event": "deterministic_fallback", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 317.4000887280563, "agent_id": "Drone2", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 0, "validation_details": null}
+{"time_s": 317.4000887280563, "agent_id": "Drone2", "event": "structured_correction_requested", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 329.80008914496284, "agent_id": "Drone2", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 1, "validation_details": null}
+{"time_s": 329.80008914496284, "agent_id": "Drone2", "event": "deterministic_fallback", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 342.4000920030521, "agent_id": "Drone2", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 0, "validation_details": null}
+{"time_s": 342.4000920030521, "agent_id": "Drone2", "event": "structured_correction_requested", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 355.4001071470557, "agent_id": "Drone2", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 1, "validation_details": null}
+{"time_s": 355.4001071470557, "agent_id": "Drone2", "event": "deterministic_fallback", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 369.0000899620354, "agent_id": "Drone2", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 0, "validation_details": null}
+{"time_s": 369.0000899620354, "agent_id": "Drone2", "event": "structured_correction_requested", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 381.60008788399864, "agent_id": "Drone2", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 1, "validation_details": null}
+{"time_s": 381.60008788399864, "agent_id": "Drone2", "event": "deterministic_fallback", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 394.2000940430444, "agent_id": "Drone2", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 0, "validation_details": null}
+{"time_s": 394.2000940430444, "agent_id": "Drone2", "event": "structured_correction_requested", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 407.0000839730492, "agent_id": "Drone2", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 1, "validation_details": null}
+{"time_s": 407.0000839730492, "agent_id": "Drone2", "event": "deterministic_fallback", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 420.40008266305085, "agent_id": "Drone2", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 0, "validation_details": null}
+{"time_s": 420.40008266305085, "agent_id": "Drone2", "event": "structured_correction_requested", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 432.8000900800107, "agent_id": "Drone2", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 1, "validation_details": null}
+{"time_s": 432.8000900800107, "agent_id": "Drone2", "event": "deterministic_fallback", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 445.40008524397854, "agent_id": "Drone2", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 0, "validation_details": null}
+{"time_s": 445.40008524397854, "agent_id": "Drone2", "event": "structured_correction_requested", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 458.40009843802545, "agent_id": "Drone2", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 1, "validation_details": null}
+{"time_s": 458.40009843802545, "agent_id": "Drone2", "event": "deterministic_fallback", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 472.0000868770294, "agent_id": "Drone2", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 0, "validation_details": null}
+{"time_s": 472.0000868770294, "agent_id": "Drone2", "event": "structured_correction_requested", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 484.40004329697695, "agent_id": "Drone2", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 1, "validation_details": null}
+{"time_s": 484.40004329697695, "agent_id": "Drone2", "event": "deterministic_fallback", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 496.6000866780523, "agent_id": "Drone2", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 0, "validation_details": null}
+{"time_s": 496.6000866780523, "agent_id": "Drone2", "event": "structured_correction_requested", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 509.6000909040449, "agent_id": "Drone2", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 1, "validation_details": null}
+{"time_s": 509.6000909040449, "agent_id": "Drone2", "event": "deterministic_fallback", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 523.2000761049567, "agent_id": "Drone2", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 0, "validation_details": null}
+{"time_s": 523.2000761049567, "agent_id": "Drone2", "event": "structured_correction_requested", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 535.8000899980543, "agent_id": "Drone2", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 1, "validation_details": null}
+{"time_s": 535.8000899980543, "agent_id": "Drone2", "event": "deterministic_fallback", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 548.8000989280408, "agent_id": "Drone2", "event": "policy_decision_applied", "request_id": "Drone2:38", "decision": {"situation_assessment": {"mission_progress": "partial", "communication_status": "nominal", "current_risk": "low"}, "selected_tool": "compute_task_cost", "parameters": {"task_id": "SEARCH_SECTOR_A"}, "outgoing_messages": [], "confidence": 0.8}, "tool_result": {"task_id": "SEARCH_SECTOR_A", "task_version": 2, "computed_at": 548.8000989280408, "distance_m": 25.0, "distance_to_entry_m": 10.0, "travel_time_s": 25.0, "bid": {"score": 17.10180165558726, "components": {"distance": 11.10180165558726, "battery": 0.19999999999999996, "workload": 0.0, "communication": 1.0, "mismatch": 0.0}}, "battery_sufficient": true, "communication_reachability": {"Drone1": "unknown"}, "route_feasible": false, "separation_risk": false, "guardian_reasons": ["stale_or_future_peer_belief"], "full_route_static_feasible": true, "immediate_segment_feasible": false, "future_segments_require_revalidation": true}, "source": "llm", "flight_phase": "AIRBORNE"}
+{"time_s": 562.4000891239848, "agent_id": "Drone2", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 0, "validation_details": null}
+{"time_s": 562.4000891239848, "agent_id": "Drone2", "event": "structured_correction_requested", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 577.2000915480312, "agent_id": "Drone2", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 1, "validation_details": null}
+{"time_s": 577.2000915480312, "agent_id": "Drone2", "event": "deterministic_fallback", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 589.8000856420258, "agent_id": "Drone2", "event": "policy_error", "reason_code": "unsafe_action:stale_or_future_peer_belief", "correction_attempt": 0, "validation_details": null}
+{"time_s": 589.8000856420258, "agent_id": "Drone2", "event": "structured_correction_requested", "reason_code": "unsafe_action:stale_or_future_peer_belief"}
+{"time_s": 599.8012177050114, "agent_id": "Drone2", "event": "inference_abandoned_at_shutdown", "request_id": "Drone2:42"}

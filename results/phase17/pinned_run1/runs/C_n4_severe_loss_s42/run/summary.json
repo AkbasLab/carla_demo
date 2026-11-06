@@ -1,0 +1,156 @@
+{
+  "mode": "phase13_shared_architecture_comparison",
+  "architecture": "C",
+  "backend": "mock",
+  "seed": 42,
+  "condition": "severe",
+  "provider": "deterministic",
+  "llm_inference": false,
+  "mission_complete": false,
+  "time_s": 599.8000888089882,
+  "error": null,
+  "mission_execution_success": false,
+  "decentralized_coordination_enabled": true,
+  "completed_task_ids": [],
+  "duplicate_task_completions": 0,
+  "completions_by_agent": {
+    "Drone1": 0,
+    "Drone2": 0,
+    "Drone3": 0,
+    "Drone4": 0
+  },
+  "decisions_by_agent": {
+    "Drone1": 46,
+    "Drone2": 55,
+    "Drone3": 66,
+    "Drone4": 62
+  },
+  "fallbacks_by_agent": {
+    "Drone1": 6,
+    "Drone2": 665,
+    "Drone3": 662,
+    "Drone4": 658
+  },
+  "final_roles": {
+    "Drone2": "SCOUT",
+    "Drone3": "SCOUT",
+    "Drone4": "SCOUT"
+  },
+  "role_changes": 0,
+  "lease_expirations": 3,
+  "all_dispatched_actions_guarded": true,
+  "guardian_outcomes": {
+    "APPROVE": 116,
+    "APPROVE_WITH_MODIFICATION": 121,
+    "REJECT_AND_REPLAN": 6140,
+    "EXECUTE_SAFE_FALLBACK": 5
+  },
+  "network_outcomes": {
+    "delivered": 9984,
+    "dropped": 5809,
+    "queued": 3773
+  },
+  "network_drop_reasons": {
+    "independent_loss": 5809
+  },
+  "architecture_selected_from_configuration": true,
+  "ablations": {
+    "persistent_memory": true,
+    "task_leases": true,
+    "dynamic_roles": true,
+    "perfect_communication": false,
+    "fallback_policy": false
+  },
+  "shared_inputs_sha256": "0d4ddce3ee018575946ddf94327fe22c355547ebff401e65201185e5eff0b9eb",
+  "llm_integration_observed": false,
+  "llm_exit_criterion_observed": false,
+  "live_exit_criterion_observed": false,
+  "productive_decisions_by_agent": {
+    "Drone1": 1,
+    "Drone2": 0,
+    "Drone3": 0,
+    "Drone4": 0
+  },
+  "llm_productive_decisions_by_agent": {
+    "Drone1": 0,
+    "Drone2": 0,
+    "Drone3": 0,
+    "Drone4": 0
+  },
+  "observed_progress_sources_by_agent": {
+    "Drone1": {
+      "deterministic_policy": 1
+    },
+    "Drone2": {},
+    "Drone3": {},
+    "Drone4": {}
+  },
+  "policy_tools_by_agent": {
+    "Drone1": {
+      "hold": 45,
+      "start_search": 1
+    },
+    "Drone2": {
+      "hold": 54,
+      "send_bid": 1
+    },
+    "Drone3": {
+      "hold": 66
+    },
+    "Drone4": {
+      "hold": 61,
+      "send_bid": 1
+    }
+  },
+  "policy_errors_by_agent": {
+    "Drone1": {
+      "unsafe_action:peer_reachable_region_conflict": 13
+    },
+    "Drone2": {
+      "unsafe_action:peer_reachable_region_conflict": 22,
+      "unsafe_action:communication_or_belief_uncertainty,no_verified_safe_fallback": 2,
+      "unsafe_action:stale_or_future_peer_belief": 1174,
+      "unsafe_action:stale_or_future_peer_belief,stale_or_future_peer_belief": 132,
+      "unsafe_action:stale_or_future_peer_belief,stale_or_future_peer_belief,stale_or_future_peer_belief": 3
+    },
+    "Drone3": {
+      "unsafe_action:peer_reachable_region_conflict": 17,
+      "unsafe_action:communication_or_belief_uncertainty,no_verified_safe_fallback": 5,
+      "unsafe_action:communication_or_belief_uncertainty": 1,
+      "unsafe_action:stale_or_future_peer_belief": 1202,
+      "unsafe_action:stale_or_future_peer_belief,stale_or_future_peer_belief": 97,
+      "unsafe_action:stale_or_future_peer_belief,stale_or_future_peer_belief,stale_or_future_peer_belief": 6
+    },
+    "Drone4": {
+      "unsafe_action:peer_reachable_region_conflict": 10,
+      "unsafe_action:communication_or_belief_uncertainty": 3,
+      "unsafe_action:communication_or_belief_uncertainty,no_verified_safe_fallback": 2,
+      "unsafe_action:stale_or_future_peer_belief": 1177,
+      "unsafe_action:stale_or_future_peer_belief,stale_or_future_peer_belief": 118,
+      "unsafe_action:stale_or_future_peer_belief,stale_or_future_peer_belief,stale_or_future_peer_belief": 10
+    }
+  },
+  "deadline_bids_by_agent": {
+    "Drone1": 1,
+    "Drone2": 2,
+    "Drone3": 2,
+    "Drone4": 1
+  },
+  "blocked_task_releases_by_agent": {
+    "Drone1": 0,
+    "Drone2": 0,
+    "Drone3": 0,
+    "Drone4": 0
+  },
+  "llm_supported_execution_success": false,
+  "limitations": [
+    "Kinematic mock flight and application-level network; no live AirSim comparison or calibrated RF evidence",
+    "C and D retain fail-closed guardian checks on stale peer state; reassignment does not guarantee executable recovery under a partition",
+    "B initial assignments are reliable pre-mission briefing; B never negotiates or reassigns them",
+    "Deadline bids and rule-policy replacement are deterministic support, not LLM coordination evidence",
+    "Nominal replay fixtures verify architecture wiring; actual pinned-model and repeated matched trials remain necessary",
+    "Physical route completion is the common stop criterion; undelivered completion reports and pending packets at stop are censored",
+    "Persistent-memory ablation removes episodic prompt memory, not required identity, local beliefs, inboxes or audit history",
+    "Relay changes are role/position rules; no RF reachability benefit is claimed"
+  ]
+}

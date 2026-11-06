@@ -1,0 +1,130 @@
+{
+  "agent_id": "Drone2",
+  "memory": [
+    {
+      "time_s": 305.4000870339805,
+      "selected_tool": "deterministic_fallback",
+      "result": {
+        "status": "deterministic_fallback",
+        "reason_code": "unsafe_action:stale_or_future_peer_belief"
+      }
+    },
+    {
+      "time_s": 331.400092736003,
+      "selected_tool": "deterministic_fallback",
+      "result": {
+        "status": "deterministic_fallback",
+        "reason_code": "unsafe_action:stale_or_future_peer_belief"
+      }
+    },
+    {
+      "time_s": 357.0000912619289,
+      "selected_tool": "deterministic_fallback",
+      "result": {
+        "status": "deterministic_fallback",
+        "reason_code": "unsafe_action:stale_or_future_peer_belief"
+      }
+    },
+    {
+      "time_s": 382.80008432094473,
+      "selected_tool": "deterministic_fallback",
+      "result": {
+        "status": "deterministic_fallback",
+        "reason_code": "unsafe_action:stale_or_future_peer_belief"
+      }
+    },
+    {
+      "time_s": 408.4000883810222,
+      "selected_tool": "deterministic_fallback",
+      "result": {
+        "status": "deterministic_fallback",
+        "reason_code": "unsafe_action:stale_or_future_peer_belief"
+      }
+    },
+    {
+      "time_s": 434.0000879719155,
+      "selected_tool": "deterministic_fallback",
+      "result": {
+        "status": "deterministic_fallback",
+        "reason_code": "unsafe_action:stale_or_future_peer_belief"
+      }
+    },
+    {
+      "time_s": 447.6000889770221,
+      "selected_tool": "compute_task_cost",
+      "parameters": {
+        "task_id": "SEARCH_SECTOR_A"
+      },
+      "result": {
+        "task_id": "SEARCH_SECTOR_A",
+        "task_version": 2,
+        "computed_at": 447.6000889770221,
+        "distance_m": 25.0,
+        "distance_to_entry_m": 10.0,
+        "travel_time_s": 25.0,
+        "bid": {
+          "score": 17.10180165558726,
+          "components": {
+            "distance": 11.10180165558726,
+            "battery": 0.19999999999999996,
+            "workload": 0.0,
+            "communication": 1.0,
+            "mismatch": 0.0
+          }
+        },
+        "battery_sufficient": true,
+        "communication_reachability": {
+          "Drone1": "unknown"
+        },
+        "route_feasible": false,
+        "separation_risk": false,
+        "guardian_reasons": [
+          "stale_or_future_peer_belief"
+        ],
+        "full_route_static_feasible": true,
+        "immediate_segment_feasible": false,
+        "future_segments_require_revalidation": true
+      }
+    },
+    {
+      "time_s": 475.2000819449313,
+      "selected_tool": "deterministic_fallback",
+      "result": {
+        "status": "deterministic_fallback",
+        "reason_code": "unsafe_action:stale_or_future_peer_belief"
+      }
+    },
+    {
+      "time_s": 501.60009108297527,
+      "selected_tool": "deterministic_fallback",
+      "result": {
+        "status": "deterministic_fallback",
+        "reason_code": "unsafe_action:stale_or_future_peer_belief"
+      }
+    },
+    {
+      "time_s": 528.600089091924,
+      "selected_tool": "deterministic_fallback",
+      "result": {
+        "status": "deterministic_fallback",
+        "reason_code": "unsafe_action:stale_or_future_peer_belief"
+      }
+    },
+    {
+      "time_s": 555.8000952160219,
+      "selected_tool": "deterministic_fallback",
+      "result": {
+        "status": "deterministic_fallback",
+        "reason_code": "hold_duration_exceeds_policy_limit"
+      }
+    },
+    {
+      "time_s": 583.0000862670131,
+      "selected_tool": "deterministic_fallback",
+      "result": {
+        "status": "deterministic_fallback",
+        "reason_code": "unsafe_action:stale_or_future_peer_belief"
+      }
+    }
+  ]
+}
