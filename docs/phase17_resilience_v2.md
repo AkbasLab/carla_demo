@@ -114,4 +114,4 @@ The deterministic offline checks demonstrate the mechanism under the new assumpt
 
 Any accepted final configuration must be calibrated again, with its source version, fault semantics, telemetry architecture and seed pools recorded. Existing source-hash locks become stale after these implementation changes; do not bypass that protection.
 
-The final offline verification passed 269 tests. Detailed validation findings and generated experiment artifacts are retained locally; they are not included with this implementation-only publication.
+The final offline verification passed 269 tests. See [the validation observations](phase17_resilience_v2_validation.md) for small-batch outcomes, recovery latencies, storage measurements and limits. The approved validation summaries, figures and lossless ZIP evidence are published with those observations.
