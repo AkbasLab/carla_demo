@@ -1,0 +1,613 @@
+{
+  "schema_version": 1,
+  "stage": "draft_not_authorized_for_held_out_execution",
+  "design_sha256": "1d2c3e18ec560b5d45313b051aa58a2627355368cbce419fca095d14bd6f7c0a",
+  "cells": [
+    {
+      "architecture": "A",
+      "team_size": 2,
+      "network_profile": "nominal",
+      "failure_profile": "none"
+    },
+    {
+      "architecture": "A",
+      "team_size": 2,
+      "network_profile": "nominal",
+      "failure_profile": "drone_failure_midmission"
+    },
+    {
+      "architecture": "A",
+      "team_size": 2,
+      "network_profile": "moderate",
+      "failure_profile": "none"
+    },
+    {
+      "architecture": "A",
+      "team_size": 2,
+      "network_profile": "moderate",
+      "failure_profile": "drone_failure_midmission"
+    },
+    {
+      "architecture": "A",
+      "team_size": 2,
+      "network_profile": "severe",
+      "failure_profile": "none"
+    },
+    {
+      "architecture": "A",
+      "team_size": 2,
+      "network_profile": "severe",
+      "failure_profile": "drone_failure_midmission"
+    },
+    {
+      "architecture": "A",
+      "team_size": 2,
+      "network_profile": "partitioned",
+      "failure_profile": "none"
+    },
+    {
+      "architecture": "A",
+      "team_size": 2,
+      "network_profile": "partitioned",
+      "failure_profile": "drone_failure_midmission"
+    },
+    {
+      "architecture": "A",
+      "team_size": 4,
+      "network_profile": "nominal",
+      "failure_profile": "none"
+    },
+    {
+      "architecture": "A",
+      "team_size": 4,
+      "network_profile": "nominal",
+      "failure_profile": "drone_failure_midmission"
+    },
+    {
+      "architecture": "A",
+      "team_size": 4,
+      "network_profile": "moderate",
+      "failure_profile": "none"
+    },
+    {
+      "architecture": "A",
+      "team_size": 4,
+      "network_profile": "moderate",
+      "failure_profile": "drone_failure_midmission"
+    },
+    {
+      "architecture": "A",
+      "team_size": 4,
+      "network_profile": "severe",
+      "failure_profile": "none"
+    },
+    {
+      "architecture": "A",
+      "team_size": 4,
+      "network_profile": "severe",
+      "failure_profile": "drone_failure_midmission"
+    },
+    {
+      "architecture": "A",
+      "team_size": 4,
+      "network_profile": "partitioned",
+      "failure_profile": "none"
+    },
+    {
+      "architecture": "A",
+      "team_size": 4,
+      "network_profile": "partitioned",
+      "failure_profile": "drone_failure_midmission"
+    },
+    {
+      "architecture": "A",
+      "team_size": 8,
+      "network_profile": "nominal",
+      "failure_profile": "none"
+    },
+    {
+      "architecture": "A",
+      "team_size": 8,
+      "network_profile": "nominal",
+      "failure_profile": "drone_failure_midmission"
+    },
+    {
+      "architecture": "A",
+      "team_size": 8,
+      "network_profile": "moderate",
+      "failure_profile": "none"
+    },
+    {
+      "architecture": "A",
+      "team_size": 8,
+      "network_profile": "moderate",
+      "failure_profile": "drone_failure_midmission"
+    },
+    {
+      "architecture": "A",
+      "team_size": 8,
+      "network_profile": "severe",
+      "failure_profile": "none"
+    },
+    {
+      "architecture": "A",
+      "team_size": 8,
+      "network_profile": "severe",
+      "failure_profile": "drone_failure_midmission"
+    },
+    {
+      "architecture": "A",
+      "team_size": 8,
+      "network_profile": "partitioned",
+      "failure_profile": "none"
+    },
+    {
+      "architecture": "A",
+      "team_size": 8,
+      "network_profile": "partitioned",
+      "failure_profile": "drone_failure_midmission"
+    },
+    {
+      "architecture": "B",
+      "team_size": 2,
+      "network_profile": "nominal",
+      "failure_profile": "none"
+    },
+    {
+      "architecture": "B",
+      "team_size": 2,
+      "network_profile": "nominal",
+      "failure_profile": "drone_failure_midmission"
+    },
+    {
+      "architecture": "B",
+      "team_size": 2,
+      "network_profile": "moderate",
+      "failure_profile": "none"
+    },
+    {
+      "architecture": "B",
+      "team_size": 2,
+      "network_profile": "moderate",
+      "failure_profile": "drone_failure_midmission"
+    },
+    {
+      "architecture": "B",
+      "team_size": 2,
+      "network_profile": "severe",
+      "failure_profile": "none"
+    },
+    {
+      "architecture": "B",
+      "team_size": 2,
+      "network_profile": "severe",
+      "failure_profile": "drone_failure_midmission"
+    },
+    {
+      "architecture": "B",
+      "team_size": 2,
+      "network_profile": "partitioned",
+      "failure_profile": "none"
+    },
+    {
+      "architecture": "B",
+      "team_size": 2,
+      "network_profile": "partitioned",
+      "failure_profile": "drone_failure_midmission"
+    },
+    {
+      "architecture": "B",
+      "team_size": 4,
+      "network_profile": "nominal",
+      "failure_profile": "none"
+    },
+    {
+      "architecture": "B",
+      "team_size": 4,
+      "network_profile": "nominal",
+      "failure_profile": "drone_failure_midmission"
+    },
+    {
+      "architecture": "B",
+      "team_size": 4,
+      "network_profile": "moderate",
+      "failure_profile": "none"
+    },
+    {
+      "architecture": "B",
+      "team_size": 4,
+      "network_profile": "moderate",
+      "failure_profile": "drone_failure_midmission"
+    },
+    {
+      "architecture": "B",
+      "team_size": 4,
+      "network_profile": "severe",
+      "failure_profile": "none"
+    },
+    {
+      "architecture": "B",
+      "team_size": 4,
+      "network_profile": "severe",
+      "failure_profile": "drone_failure_midmission"
+    },
+    {
+      "architecture": "B",
+      "team_size": 4,
+      "network_profile": "partitioned",
+      "failure_profile": "none"
+    },
+    {
+      "architecture": "B",
+      "team_size": 4,
+      "network_profile": "partitioned",
+      "failure_profile": "drone_failure_midmission"
+    },
+    {
+      "architecture": "B",
+      "team_size": 8,
+      "network_profile": "nominal",
+      "failure_profile": "none"
+    },
+    {
+      "architecture": "B",
+      "team_size": 8,
+      "network_profile": "nominal",
+      "failure_profile": "drone_failure_midmission"
+    },
+    {
+      "architecture": "B",
+      "team_size": 8,
+      "network_profile": "moderate",
+      "failure_profile": "none"
+    },
+    {
+      "architecture": "B",
+      "team_size": 8,
+      "network_profile": "moderate",
+      "failure_profile": "drone_failure_midmission"
+    },
+    {
+      "architecture": "B",
+      "team_size": 8,
+      "network_profile": "severe",
+      "failure_profile": "none"
+    },
+    {
+      "architecture": "B",
+      "team_size": 8,
+      "network_profile": "severe",
+      "failure_profile": "drone_failure_midmission"
+    },
+    {
+      "architecture": "B",
+      "team_size": 8,
+      "network_profile": "partitioned",
+      "failure_profile": "none"
+    },
+    {
+      "architecture": "B",
+      "team_size": 8,
+      "network_profile": "partitioned",
+      "failure_profile": "drone_failure_midmission"
+    },
+    {
+      "architecture": "C",
+      "team_size": 2,
+      "network_profile": "nominal",
+      "failure_profile": "none"
+    },
+    {
+      "architecture": "C",
+      "team_size": 2,
+      "network_profile": "nominal",
+      "failure_profile": "drone_failure_midmission"
+    },
+    {
+      "architecture": "C",
+      "team_size": 2,
+      "network_profile": "moderate",
+      "failure_profile": "none"
+    },
+    {
+      "architecture": "C",
+      "team_size": 2,
+      "network_profile": "moderate",
+      "failure_profile": "drone_failure_midmission"
+    },
+    {
+      "architecture": "C",
+      "team_size": 2,
+      "network_profile": "severe",
+      "failure_profile": "none"
+    },
+    {
+      "architecture": "C",
+      "team_size": 2,
+      "network_profile": "severe",
+      "failure_profile": "drone_failure_midmission"
+    },
+    {
+      "architecture": "C",
+      "team_size": 2,
+      "network_profile": "partitioned",
+      "failure_profile": "none"
+    },
+    {
+      "architecture": "C",
+      "team_size": 2,
+      "network_profile": "partitioned",
+      "failure_profile": "drone_failure_midmission"
+    },
+    {
+      "architecture": "C",
+      "team_size": 4,
+      "network_profile": "nominal",
+      "failure_profile": "none"
+    },
+    {
+      "architecture": "C",
+      "team_size": 4,
+      "network_profile": "nominal",
+      "failure_profile": "drone_failure_midmission"
+    },
+    {
+      "architecture": "C",
+      "team_size": 4,
+      "network_profile": "moderate",
+      "failure_profile": "none"
+    },
+    {
+      "architecture": "C",
+      "team_size": 4,
+      "network_profile": "moderate",
+      "failure_profile": "drone_failure_midmission"
+    },
+    {
+      "architecture": "C",
+      "team_size": 4,
+      "network_profile": "severe",
+      "failure_profile": "none"
+    },
+    {
+      "architecture": "C",
+      "team_size": 4,
+      "network_profile": "severe",
+      "failure_profile": "drone_failure_midmission"
+    },
+    {
+      "architecture": "C",
+      "team_size": 4,
+      "network_profile": "partitioned",
+      "failure_profile": "none"
+    },
+    {
+      "architecture": "C",
+      "team_size": 4,
+      "network_profile": "partitioned",
+      "failure_profile": "drone_failure_midmission"
+    },
+    {
+      "architecture": "C",
+      "team_size": 8,
+      "network_profile": "nominal",
+      "failure_profile": "none"
+    },
+    {
+      "architecture": "C",
+      "team_size": 8,
+      "network_profile": "nominal",
+      "failure_profile": "drone_failure_midmission"
+    },
+    {
+      "architecture": "C",
+      "team_size": 8,
+      "network_profile": "moderate",
+      "failure_profile": "none"
+    },
+    {
+      "architecture": "C",
+      "team_size": 8,
+      "network_profile": "moderate",
+      "failure_profile": "drone_failure_midmission"
+    },
+    {
+      "architecture": "C",
+      "team_size": 8,
+      "network_profile": "severe",
+      "failure_profile": "none"
+    },
+    {
+      "architecture": "C",
+      "team_size": 8,
+      "network_profile": "severe",
+      "failure_profile": "drone_failure_midmission"
+    },
+    {
+      "architecture": "C",
+      "team_size": 8,
+      "network_profile": "partitioned",
+      "failure_profile": "none"
+    },
+    {
+      "architecture": "C",
+      "team_size": 8,
+      "network_profile": "partitioned",
+      "failure_profile": "drone_failure_midmission"
+    },
+    {
+      "architecture": "D",
+      "team_size": 2,
+      "network_profile": "nominal",
+      "failure_profile": "none"
+    },
+    {
+      "architecture": "D",
+      "team_size": 2,
+      "network_profile": "nominal",
+      "failure_profile": "drone_failure_midmission"
+    },
+    {
+      "architecture": "D",
+      "team_size": 2,
+      "network_profile": "moderate",
+      "failure_profile": "none"
+    },
+    {
+      "architecture": "D",
+      "team_size": 2,
+      "network_profile": "moderate",
+      "failure_profile": "drone_failure_midmission"
+    },
+    {
+      "architecture": "D",
+      "team_size": 2,
+      "network_profile": "severe",
+      "failure_profile": "none"
+    },
+    {
+      "architecture": "D",
+      "team_size": 2,
+      "network_profile": "severe",
+      "failure_profile": "drone_failure_midmission"
+    },
+    {
+      "architecture": "D",
+      "team_size": 2,
+      "network_profile": "partitioned",
+      "failure_profile": "none"
+    },
+    {
+      "architecture": "D",
+      "team_size": 2,
+      "network_profile": "partitioned",
+      "failure_profile": "drone_failure_midmission"
+    },
+    {
+      "architecture": "D",
+      "team_size": 4,
+      "network_profile": "nominal",
+      "failure_profile": "none"
+    },
+    {
+      "architecture": "D",
+      "team_size": 4,
+      "network_profile": "nominal",
+      "failure_profile": "drone_failure_midmission"
+    },
+    {
+      "architecture": "D",
+      "team_size": 4,
+      "network_profile": "moderate",
+      "failure_profile": "none"
+    },
+    {
+      "architecture": "D",
+      "team_size": 4,
+      "network_profile": "moderate",
+      "failure_profile": "drone_failure_midmission"
+    },
+    {
+      "architecture": "D",
+      "team_size": 4,
+      "network_profile": "severe",
+      "failure_profile": "none"
+    },
+    {
+      "architecture": "D",
+      "team_size": 4,
+      "network_profile": "severe",
+      "failure_profile": "drone_failure_midmission"
+    },
+    {
+      "architecture": "D",
+      "team_size": 4,
+      "network_profile": "partitioned",
+      "failure_profile": "none"
+    },
+    {
+      "architecture": "D",
+      "team_size": 4,
+      "network_profile": "partitioned",
+      "failure_profile": "drone_failure_midmission"
+    },
+    {
+      "architecture": "D",
+      "team_size": 8,
+      "network_profile": "nominal",
+      "failure_profile": "none"
+    },
+    {
+      "architecture": "D",
+      "team_size": 8,
+      "network_profile": "nominal",
+      "failure_profile": "drone_failure_midmission"
+    },
+    {
+      "architecture": "D",
+      "team_size": 8,
+      "network_profile": "moderate",
+      "failure_profile": "none"
+    },
+    {
+      "architecture": "D",
+      "team_size": 8,
+      "network_profile": "moderate",
+      "failure_profile": "drone_failure_midmission"
+    },
+    {
+      "architecture": "D",
+      "team_size": 8,
+      "network_profile": "severe",
+      "failure_profile": "none"
+    },
+    {
+      "architecture": "D",
+      "team_size": 8,
+      "network_profile": "severe",
+      "failure_profile": "drone_failure_midmission"
+    },
+    {
+      "architecture": "D",
+      "team_size": 8,
+      "network_profile": "partitioned",
+      "failure_profile": "none"
+    },
+    {
+      "architecture": "D",
+      "team_size": 8,
+      "network_profile": "partitioned",
+      "failure_profile": "drone_failure_midmission"
+    }
+  ],
+  "cell_count": 96,
+  "replications": 20,
+  "planned_runs": 1920,
+  "maximum_attempts": 3840,
+  "prerequisites": [
+    "verified Phase 17 pinned calibration lock",
+    "matching extension validation on disjoint seeds",
+    "pinned local model and unchanged source/metric hashes"
+  ],
+  "technical_exclusions": [
+    "not_started",
+    "runtime_error_or_interruption",
+    "missing_or_corrupt_artifacts",
+    "configuration_or_provenance_mismatch",
+    "model_identity_mismatch",
+    "inconsistent_metric_evidence",
+    "incomplete_decision_audit"
+  ],
+  "valid_unfavorable_outcomes": [
+    "mission_timeout",
+    "incomplete_work",
+    "failed_recovery",
+    "safety_violation",
+    "guardian_rejection",
+    "handled_invalid_llm_output",
+    "inference_timeout",
+    "fallback_use",
+    "no_productive_llm_decisions",
+    "mission_finished_before_fault"
+  ]
+}

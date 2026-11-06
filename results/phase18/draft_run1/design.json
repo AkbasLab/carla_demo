@@ -1,0 +1,139 @@
+{
+  "schema_version": 1,
+  "architectures": [
+    "A",
+    "B",
+    "C",
+    "D"
+  ],
+  "team_sizes": [
+    2,
+    4
+  ],
+  "conditions": [
+    "nominal",
+    "moderate",
+    "severe",
+    "partitioned"
+  ],
+  "failure_profiles": [
+    "none",
+    "drone_failure_midmission"
+  ],
+  "test_seeds": [
+    101,
+    102,
+    103,
+    104,
+    105,
+    106,
+    107,
+    108,
+    109,
+    110,
+    111,
+    112,
+    113,
+    114,
+    115,
+    116,
+    117,
+    118,
+    119,
+    120
+  ],
+  "development_seeds": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    41,
+    42,
+    43
+  ],
+  "validation_seeds": [
+    44,
+    45,
+    46
+  ],
+  "replications": 20,
+  "max_attempts_per_seed": 2,
+  "order_seed": 2026,
+  "network_profiles": {
+    "nominal": {
+      "latency_ms_mean": 10,
+      "latency_ms_jitter": 2,
+      "packet_loss_probability": 0,
+      "message_rate_limit": null,
+      "bandwidth_bytes_per_second": null,
+      "communication_range_m": null,
+      "partitions": []
+    },
+    "moderate": {
+      "latency_ms_mean": 100,
+      "latency_ms_jitter": 50,
+      "packet_loss_probability": 0.1,
+      "message_rate_limit": null,
+      "bandwidth_bytes_per_second": null,
+      "communication_range_m": null,
+      "partitions": []
+    },
+    "severe": {
+      "latency_ms_mean": 400,
+      "latency_ms_jitter": 200,
+      "packet_loss_probability": 0.3,
+      "message_rate_limit": 60,
+      "bandwidth_bytes_per_second": 50000,
+      "communication_range_m": null,
+      "partitions": []
+    },
+    "partitioned": {
+      "latency_ms_mean": 10,
+      "latency_ms_jitter": 2,
+      "packet_loss_probability": 0,
+      "message_rate_limit": null,
+      "bandwidth_bytes_per_second": null,
+      "communication_range_m": null,
+      "partitions": []
+    }
+  },
+  "partition_interval_s": [
+    60,
+    90
+  ],
+  "validation_nominal_success_floor": 0.8,
+  "rationale": {
+    "nominal": "Low application latency and no intentional drops provide the prospective efficiency reference.",
+    "moderate": "Ten percent independent loss and moderate jitter are candidate settings to validate before the main experiment.",
+    "severe": "Thirty percent independent loss plus rate and bandwidth constraints inherit the pinned pilot calibration, subject to verification.",
+    "partitioned": "A temporary thirty-second split isolates half the team from the other half and the fleet controller; usefulness requires validation.",
+    "scenario_family": "The same four frozen waypoint routes and safety geometry are used across architectures; this benchmark measures route work, not sensed area coverage.",
+    "selection_reason": "Begin with all architecture, communication and failure combinations for two and four drones; validate eight drones as a separately frozen extension."
+  }
+}

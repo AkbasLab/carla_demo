@@ -72,14 +72,16 @@ def effective_network(c,ids):
 
 
 def run_comparison(values,provider=None):
-    c=configuration(values);m,guard_config,tasks,routes=load_mission(c['mission_config'],allowed_team_sizes=(2,4))
+    c=configuration(values);m,guard_config,tasks,routes=load_mission(c['mission_config'],allowed_team_sizes=(2,4,8))
     ids=list(m['vehicles']);architecture=c['architecture'];horizon=c['ticks']*c['dt']
     if CONTROLLER in ids:raise ValueError('Reserved controller identity')
     fail=c['scenario']['fail_agent']
     if fail is not None and fail not in ids:raise ValueError('Unknown failure agent')
     if set(c['initial_assignments'])!=set(ids):raise ValueError('Provide initial assignments for the mission vehicle IDs')
+    if any(not isinstance(v,list) for v in c['initial_assignments'].values()):
+        raise ValueError('Initial assignments must be lists; idle agents may have empty lists')
     assigned=[tid for tids in c['initial_assignments'].values() for tid in tids]
-    if any(not isinstance(v,list) or not v for v in c['initial_assignments'].values()) or len(assigned)!=len(set(assigned)) or set(assigned)!=set(routes):
+    if any(not isinstance(tid,str) for tid in assigned) or len(assigned)!=len(set(assigned)) or set(assigned)!=set(routes):
         raise ValueError('Initial assignments must cover every task once without duplicates')
     out=Path(c['output_dir'])
     if out.exists() and any(out.iterdir()):raise ValueError('Use an empty output directory')

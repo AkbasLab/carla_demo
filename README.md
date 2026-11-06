@@ -449,3 +449,15 @@ python scripts/run_phase17_pilots.py run \
 ```
 
 Pilot seeds 41–43 are separate from reserved held-out seeds 101–110. Final freezing requires actual model evidence, meaningful calibrated levels and written rationale; it locks prompts/rules/metrics/network/scenarios and prepares a separate held-out batch. Replay success is not an LLM result or completion of the Phase 17 exit criterion. See the [Phase 17 guide](docs/phase17_pilot_experiments.md) for planning, analysis, calibration and freeze commands.
+
+## Phase 18: prospective factorial experiments
+
+The main-experiment runner defines A/B/C/D × two/four drones × four communication profiles × two fault conditions: **64 cells and 1,280 runs with 20 common held-out seeds**. An eight-drone extension gives 96 cells / 1,920 runs after smaller-case validation. It reuses the mock-flight comparison, pinned local model, shared guardian and registered Phase 15 metrics.
+
+```bash
+python -u scripts/run_phase18_factorial.py plan \
+  --config configs/phase18/factorial.example.json \
+  --output-dir results/phase18/draft_local_run1
+```
+
+Held-out execution requires a verified actual-model Phase 17 calibration lock and separate extension validation. The runner freezes inputs, resumes without overwriting attempts, retains technically valid mission failures, and reports replication coverage separately from mission success. Technical retries use the same seed; unsuccessful missions are never retried for a better outcome. The supplied examples are prospective candidates, not completed main experiments. See the [Phase 18 guide](docs/phase18_factorial_experiments.md) for calibration prerequisites, pinned-model validation, freeze/run/resume commands and exclusion rules.
