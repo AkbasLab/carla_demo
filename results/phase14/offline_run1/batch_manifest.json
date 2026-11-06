@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "started_at_utc": "2026-11-06T02:16:12.517031+00:00",
+  "finished_at_utc": "2026-11-06T02:16:15.992409+00:00",
+  "status": "finished",
+  "planned_experiments": 3,
+  "runs": [
+    {
+      "experiment_id": "nominal_rules",
+      "status": "completed",
+      "run_completed": true,
+      "mission_complete": true,
+      "error": null,
+      "result_dir": "results/phase14/offline_run1/nominal_rules"
+    },
+    {
+      "experiment_id": "moderate_centralized",
+      "status": "completed",
+      "run_completed": true,
+      "mission_complete": true,
+      "error": null,
+      "result_dir": "results/phase14/offline_run1/moderate_centralized"
+    },
+    {
+      "experiment_id": "failure_replay",
+      "status": "incomplete",
+      "run_completed": true,
+      "mission_complete": false,
+      "error": null,
+      "result_dir": "results/phase14/offline_run1/failure_replay"
+    }
+  ],
+  "finished_runs": 3,
+  "successful_missions": 2,
+  "errors": 0
+}

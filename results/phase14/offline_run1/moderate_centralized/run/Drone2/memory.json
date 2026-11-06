@@ -1,0 +1,79 @@
+{
+  "agent_id": "Drone2",
+  "memory": [
+    {
+      "time_s": 0.8,
+      "selected_tool": "start_search",
+      "parameters": {
+        "task_id": "SEARCH_SECTOR_C",
+        "task_version": 1
+      },
+      "result": {
+        "status": "search_authorized",
+        "task_id": "SEARCH_SECTOR_C",
+        "version": 1
+      }
+    },
+    {
+      "time_s": 5.2,
+      "selected_tool": "release_task",
+      "parameters": {
+        "reason_code": "SAFETY_ROUTE_BLOCKED",
+        "task_id": "SEARCH_SECTOR_C",
+        "task_version": 1
+      },
+      "result": {
+        "status": "released_or_declined"
+      }
+    },
+    {
+      "time_s": 6.0,
+      "selected_tool": "start_search",
+      "parameters": {
+        "task_id": "SEARCH_SECTOR_C",
+        "task_version": 2
+      },
+      "result": {
+        "status": "search_authorized",
+        "task_id": "SEARCH_SECTOR_C",
+        "version": 2
+      }
+    },
+    {
+      "time_s": 7.2,
+      "selected_tool": "release_task",
+      "parameters": {
+        "reason_code": "SAFETY_ROUTE_BLOCKED",
+        "task_id": "SEARCH_SECTOR_C",
+        "task_version": 2
+      },
+      "result": {
+        "status": "released_or_declined"
+      }
+    },
+    {
+      "time_s": 13.2,
+      "selected_tool": "hold",
+      "parameters": {
+        "duration_s": 1.0
+      },
+      "result": {
+        "status": "guarded_skill_dispatched",
+        "kind": "HOLD"
+      }
+    },
+    {
+      "time_s": 19.5,
+      "selected_tool": "start_search",
+      "parameters": {
+        "task_id": "SEARCH_SECTOR_B",
+        "task_version": 7
+      },
+      "result": {
+        "status": "search_authorized",
+        "task_id": "SEARCH_SECTOR_B",
+        "version": 7
+      }
+    }
+  ]
+}

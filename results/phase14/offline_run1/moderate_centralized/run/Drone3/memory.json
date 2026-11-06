@@ -1,0 +1,99 @@
+{
+  "agent_id": "Drone3",
+  "memory": [
+    {
+      "time_s": 0.9,
+      "selected_tool": "release_task",
+      "parameters": {
+        "reason_code": "SAFETY_ROUTE_BLOCKED",
+        "task_id": "SEARCH_SECTOR_A",
+        "task_version": 1
+      },
+      "result": {
+        "status": "released_or_declined"
+      }
+    },
+    {
+      "time_s": 2.3,
+      "selected_tool": "release_task",
+      "parameters": {
+        "reason_code": "SAFETY_ROUTE_BLOCKED",
+        "task_id": "SEARCH_SECTOR_B",
+        "task_version": 3
+      },
+      "result": {
+        "status": "released_or_declined"
+      }
+    },
+    {
+      "time_s": 3.1,
+      "selected_tool": "release_task",
+      "parameters": {
+        "reason_code": "SAFETY_ROUTE_BLOCKED",
+        "task_id": "SEARCH_SECTOR_B",
+        "task_version": 4
+      },
+      "result": {
+        "status": "released_or_declined"
+      }
+    },
+    {
+      "time_s": 4.0,
+      "selected_tool": "release_task",
+      "parameters": {
+        "reason_code": "SAFETY_ROUTE_BLOCKED",
+        "task_id": "SEARCH_SECTOR_B",
+        "task_version": 5
+      },
+      "result": {
+        "status": "released_or_declined"
+      }
+    },
+    {
+      "time_s": 5.7,
+      "selected_tool": "hold",
+      "parameters": {
+        "duration_s": 1.0
+      },
+      "result": {
+        "status": "guarded_skill_dispatched",
+        "kind": "HOLD"
+      }
+    },
+    {
+      "time_s": 9.7,
+      "selected_tool": "hold",
+      "parameters": {
+        "duration_s": 1.0
+      },
+      "result": {
+        "status": "guarded_skill_dispatched",
+        "kind": "HOLD"
+      }
+    },
+    {
+      "time_s": 15.7,
+      "selected_tool": "hold",
+      "parameters": {
+        "duration_s": 1.0
+      },
+      "result": {
+        "status": "guarded_skill_dispatched",
+        "kind": "HOLD"
+      }
+    },
+    {
+      "time_s": 16.2,
+      "selected_tool": "start_search",
+      "parameters": {
+        "task_id": "SEARCH_SECTOR_C",
+        "task_version": 3
+      },
+      "result": {
+        "status": "search_authorized",
+        "task_id": "SEARCH_SECTOR_C",
+        "version": 3
+      }
+    }
+  ]
+}

@@ -1,0 +1,122 @@
+{
+  "agent_id": "Drone1",
+  "memory": [
+    {
+      "time_s": 0.7,
+      "selected_tool": "release_task",
+      "parameters": {
+        "reason_code": "SAFETY_ROUTE_BLOCKED",
+        "task_id": "SEARCH_SECTOR_D",
+        "task_version": 1
+      },
+      "result": {
+        "status": "released_or_declined"
+      }
+    },
+    {
+      "time_s": 1.2,
+      "selected_tool": "release_task",
+      "parameters": {
+        "reason_code": "SAFETY_ROUTE_BLOCKED",
+        "task_id": "SEARCH_SECTOR_B",
+        "task_version": 2
+      },
+      "result": {
+        "status": "released_or_declined"
+      }
+    },
+    {
+      "time_s": 1.7,
+      "selected_tool": "start_search",
+      "parameters": {
+        "task_id": "SEARCH_SECTOR_A",
+        "task_version": 2
+      },
+      "result": {
+        "status": "search_authorized",
+        "task_id": "SEARCH_SECTOR_A",
+        "version": 2
+      }
+    },
+    {
+      "time_s": 10.2,
+      "selected_tool": "hold",
+      "parameters": {
+        "duration_s": 1.0
+      },
+      "result": {
+        "status": "guarded_skill_dispatched",
+        "kind": "HOLD"
+      }
+    },
+    {
+      "time_s": 13.2,
+      "selected_tool": "hold",
+      "parameters": {
+        "duration_s": 1.0
+      },
+      "result": {
+        "status": "guarded_skill_dispatched",
+        "kind": "HOLD"
+      }
+    },
+    {
+      "time_s": 14.0,
+      "selected_tool": "start_search",
+      "parameters": {
+        "task_id": "SEARCH_SECTOR_B",
+        "task_version": 6
+      },
+      "result": {
+        "status": "search_authorized",
+        "task_id": "SEARCH_SECTOR_B",
+        "version": 6
+      }
+    },
+    {
+      "time_s": 18.7,
+      "selected_tool": "release_task",
+      "parameters": {
+        "reason_code": "SAFETY_ROUTE_BLOCKED",
+        "task_id": "SEARCH_SECTOR_B",
+        "task_version": 6
+      },
+      "result": {
+        "status": "released_or_declined"
+      }
+    },
+    {
+      "time_s": 19.7,
+      "selected_tool": "hold",
+      "parameters": {
+        "duration_s": 1.0
+      },
+      "result": {
+        "status": "guarded_skill_dispatched",
+        "kind": "HOLD"
+      }
+    },
+    {
+      "time_s": 24.7,
+      "selected_tool": "hold",
+      "parameters": {
+        "duration_s": 1.0
+      },
+      "result": {
+        "status": "guarded_skill_dispatched",
+        "kind": "HOLD"
+      }
+    },
+    {
+      "time_s": 26.2,
+      "selected_tool": "hold",
+      "parameters": {
+        "duration_s": 1.0
+      },
+      "result": {
+        "status": "guarded_skill_dispatched",
+        "kind": "HOLD"
+      }
+    }
+  ]
+}
