@@ -1,0 +1,802 @@
+{
+  "source_commit": "cc0e371dc716be4eb02b82926edf55494a71e5e7",
+  "inspected_files": [
+    {
+      "path": "results/phase17/pinned_run1/analysis/calibration_report.json",
+      "git_blob_sha": "ae16f4dec7bb2152c817b82a7369d91d7aadb433",
+      "size_bytes": 383454
+    },
+    {
+      "path": "results/phase17/pinned_run1/pilot_batch.json",
+      "git_blob_sha": "2c6a51fd6bf2be076c41bbbf61df49cacc471ab2",
+      "size_bytes": 84865
+    },
+    {
+      "path": "results/phase17/pinned_run1/pilot_config.json",
+      "git_blob_sha": "bb3e6b49a8095865c0938d9f3a4c44504265d13f",
+      "size_bytes": 1767
+    },
+    {
+      "path": "results/phase17/pinned_run1/pilot_plan.json",
+      "git_blob_sha": "657d8b24e92818015993b0316cf5bdf6455615d5",
+      "size_bytes": 1030
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/C_n2_nominal_control_s41/run/scenario_events.json",
+      "git_blob_sha": "fe51488c7066f6687ef680d6bfaa4f7768ef205c",
+      "size_bytes": 3
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/C_n2_nominal_control_s41/run/summary.json",
+      "git_blob_sha": "2c1eed3301c5957f95771dbe6c16f5cf12690ce8",
+      "size_bytes": 3361
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/C_n2_nominal_control_s41/run/waypoint_arrivals.json",
+      "git_blob_sha": "27155f353c6a0c421b390329844224eeb8419f8a",
+      "size_bytes": 6637
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/C_n2_nominal_control_s42/run/scenario_events.json",
+      "git_blob_sha": "fe51488c7066f6687ef680d6bfaa4f7768ef205c",
+      "size_bytes": 3
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/C_n2_nominal_control_s42/run/summary.json",
+      "git_blob_sha": "3d002133dd47bf110ede2109dd12c5858e90695d",
+      "size_bytes": 3200
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/C_n2_nominal_control_s42/run/waypoint_arrivals.json",
+      "git_blob_sha": "7116a9334c09994584e46e1bb044b968316eee05",
+      "size_bytes": 6622
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/C_n2_nominal_control_s43/run/scenario_events.json",
+      "git_blob_sha": "fe51488c7066f6687ef680d6bfaa4f7768ef205c",
+      "size_bytes": 3
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/C_n2_nominal_control_s43/run/summary.json",
+      "git_blob_sha": "3257abf06191c462cc82136331b741413cb0ad1a",
+      "size_bytes": 3201
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/C_n2_nominal_control_s43/run/waypoint_arrivals.json",
+      "git_blob_sha": "90b8c03c60f096b19257a9f9ca94e2b85105b066",
+      "size_bytes": 6621
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/C_n2_nominal_loss_s41/run/scenario_events.json",
+      "git_blob_sha": "57e4a0c6ae7d4130c4476084e9cc4b8e8d63fa2c",
+      "size_bytes": 228
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/C_n2_nominal_loss_s41/run/summary.json",
+      "git_blob_sha": "6b5efbcbf9003d344babd5cf7d32f2aba3b6d3ff",
+      "size_bytes": 3175
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/C_n2_nominal_loss_s41/run/waypoint_arrivals.json",
+      "git_blob_sha": "9b134f061d727a1cf7871efebc19fe56ee4a9e43",
+      "size_bytes": 410
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/C_n2_nominal_loss_s42/run/scenario_events.json",
+      "git_blob_sha": "0470d94d173740738036e4f7fababe5a48921a5e",
+      "size_bytes": 228
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/C_n2_nominal_loss_s42/run/summary.json",
+      "git_blob_sha": "3cc6421da3b1f15eb88c445ddd3c27cf1b7aa075",
+      "size_bytes": 3175
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/C_n2_nominal_loss_s42/run/waypoint_arrivals.json",
+      "git_blob_sha": "942d7921c10ffe23d903a58e619a7e21f9823eee",
+      "size_bytes": 408
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/C_n2_nominal_loss_s43/run/scenario_events.json",
+      "git_blob_sha": "6df7e104ace7962addba331c0229c0fb4f169ecf",
+      "size_bytes": 228
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/C_n2_nominal_loss_s43/run/summary.json",
+      "git_blob_sha": "ab5b03492e387a8de436257ce54d69a622cacbb6",
+      "size_bytes": 3174
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/C_n2_nominal_loss_s43/run/waypoint_arrivals.json",
+      "git_blob_sha": "75b7b46878bc6611ab8e81bf2c7c1215224aa4da",
+      "size_bytes": 410
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/C_n2_severe_control_s41/run/scenario_events.json",
+      "git_blob_sha": "fe51488c7066f6687ef680d6bfaa4f7768ef205c",
+      "size_bytes": 3
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/C_n2_severe_control_s41/run/summary.json",
+      "git_blob_sha": "7b23078a07a9d96651fffd581f4efe027320e8b5",
+      "size_bytes": 3392
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/C_n2_severe_control_s41/run/waypoint_arrivals.json",
+      "git_blob_sha": "134bfa7ccbfafc116ccba4b315021b40872e1250",
+      "size_bytes": 2884
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/C_n2_severe_control_s42/run/scenario_events.json",
+      "git_blob_sha": "fe51488c7066f6687ef680d6bfaa4f7768ef205c",
+      "size_bytes": 3
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/C_n2_severe_control_s42/run/summary.json",
+      "git_blob_sha": "2fc0f86b30d7527183d268d2f060e9342c7ea0bb",
+      "size_bytes": 3375
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/C_n2_severe_control_s42/run/waypoint_arrivals.json",
+      "git_blob_sha": "cc695c0fcfb90fc009e1acabd6a804762ad35a28",
+      "size_bytes": 2882
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/C_n2_severe_control_s43/run/scenario_events.json",
+      "git_blob_sha": "fe51488c7066f6687ef680d6bfaa4f7768ef205c",
+      "size_bytes": 3
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/C_n2_severe_control_s43/run/summary.json",
+      "git_blob_sha": "540487af31b091df6505656e048423cd682f0c10",
+      "size_bytes": 3423
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/C_n2_severe_control_s43/run/waypoint_arrivals.json",
+      "git_blob_sha": "57f0f9b03258654221ddfa24c931bb64eff0967e",
+      "size_bytes": 2876
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/C_n2_severe_loss_s41/run/scenario_events.json",
+      "git_blob_sha": "a6f1b8026990350b68c03bf54e3b6b0fc47a9e6c",
+      "size_bytes": 228
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/C_n2_severe_loss_s41/run/summary.json",
+      "git_blob_sha": "a81c022009144178d83c894604a7ba5a44af9b79",
+      "size_bytes": 3364
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/C_n2_severe_loss_s41/run/waypoint_arrivals.json",
+      "git_blob_sha": "b6b1bff9114a14c656e56b7a442eb39cf2220c87",
+      "size_bytes": 411
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/C_n2_severe_loss_s42/run/scenario_events.json",
+      "git_blob_sha": "292a4eae41e80eedf7bf74fe3de561d0a8adfb49",
+      "size_bytes": 228
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/C_n2_severe_loss_s42/run/summary.json",
+      "git_blob_sha": "b3ba7a0c0cdeeca98077aafec9671b353916f2f6",
+      "size_bytes": 3366
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/C_n2_severe_loss_s42/run/waypoint_arrivals.json",
+      "git_blob_sha": "8df2dab23f09fba50173e47befb60b2751a39839",
+      "size_bytes": 410
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/C_n2_severe_loss_s43/run/scenario_events.json",
+      "git_blob_sha": "3af7aa901103301e0ce15d9498ba9c0b0f45c895",
+      "size_bytes": 226
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/C_n2_severe_loss_s43/run/summary.json",
+      "git_blob_sha": "8fe64388bf062dcec4fcebc6105093c8f2b08375",
+      "size_bytes": 3345
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/C_n2_severe_loss_s43/run/waypoint_arrivals.json",
+      "git_blob_sha": "8ec67b27982c1cf82af75bf1ae1053f6c3d4c44d",
+      "size_bytes": 411
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/C_n4_nominal_control_s41/run/scenario_events.json",
+      "git_blob_sha": "fe51488c7066f6687ef680d6bfaa4f7768ef205c",
+      "size_bytes": 3
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/C_n4_nominal_control_s41/run/summary.json",
+      "git_blob_sha": "5080e81b1cffbf4b79bfca0c48baa20a018908e2",
+      "size_bytes": 3719
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/C_n4_nominal_control_s41/run/waypoint_arrivals.json",
+      "git_blob_sha": "d07b19f1f86a456f1a2aaf86c7dd396af49f8e14",
+      "size_bytes": 6604
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/C_n4_nominal_control_s42/run/scenario_events.json",
+      "git_blob_sha": "fe51488c7066f6687ef680d6bfaa4f7768ef205c",
+      "size_bytes": 3
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/C_n4_nominal_control_s42/run/summary.json",
+      "git_blob_sha": "9f52f50201bce05a5b4c6728cec4a578ea9ec105",
+      "size_bytes": 3719
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/C_n4_nominal_control_s42/run/waypoint_arrivals.json",
+      "git_blob_sha": "d6c4ba81e7e5a18382ba6ba77604d05259f91660",
+      "size_bytes": 6579
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/C_n4_nominal_control_s43/run/scenario_events.json",
+      "git_blob_sha": "fe51488c7066f6687ef680d6bfaa4f7768ef205c",
+      "size_bytes": 3
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/C_n4_nominal_control_s43/run/summary.json",
+      "git_blob_sha": "4808dcc0ae99a4263ca65c0be72f8494c8a33de6",
+      "size_bytes": 3719
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/C_n4_nominal_control_s43/run/waypoint_arrivals.json",
+      "git_blob_sha": "e93aa53ab3157be6ad3985016a65fec0167bb3b2",
+      "size_bytes": 6550
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/C_n4_nominal_loss_s41/run/Drone2/decision_history.jsonl",
+      "git_blob_sha": "a7d04cf61b82c6da0381b7cdf49f8f2decea3963",
+      "size_bytes": 487431
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/C_n4_nominal_loss_s41/run/manifest.json",
+      "git_blob_sha": "e619242171e1fac99b6f940e9fd5638380e0d81c",
+      "size_bytes": 11037
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/C_n4_nominal_loss_s41/run/protocol_events.json",
+      "git_blob_sha": "bfbcccb03266aeec89ea20884b3e7ff970b8ef9c",
+      "size_bytes": 9426
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/C_n4_nominal_loss_s41/run/scenario_events.json",
+      "git_blob_sha": "ba2bdd2220fb502dbad7a9abd7dc747f325edf9d",
+      "size_bytes": 228
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/C_n4_nominal_loss_s41/run/summary.json",
+      "git_blob_sha": "c48a0b1c15b776e0e0bd38397bd0892fd2af14cd",
+      "size_bytes": 3812
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/C_n4_nominal_loss_s41/run/waypoint_arrivals.json",
+      "git_blob_sha": "92453c6f50c9119feb3e9c700a002cce2cde7093",
+      "size_bytes": 410
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/C_n4_nominal_loss_s42/run/scenario_events.json",
+      "git_blob_sha": "7d7268bce0f914a6813ca2ad3c326f220d24bda8",
+      "size_bytes": 228
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/C_n4_nominal_loss_s42/run/summary.json",
+      "git_blob_sha": "99f4f4c9b2547b2b02b2388b7e1091382f02875f",
+      "size_bytes": 3812
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/C_n4_nominal_loss_s42/run/waypoint_arrivals.json",
+      "git_blob_sha": "22bd0ee9cc7edf9c95a5fb9f89d6a86ae57d4c62",
+      "size_bytes": 409
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/C_n4_nominal_loss_s43/run/scenario_events.json",
+      "git_blob_sha": "765a195147ac9ada24c65f2cf4e0776fbec992d3",
+      "size_bytes": 228
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/C_n4_nominal_loss_s43/run/summary.json",
+      "git_blob_sha": "16743930f7e884fc6d63489a04506a2ca5eb8057",
+      "size_bytes": 3900
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/C_n4_nominal_loss_s43/run/waypoint_arrivals.json",
+      "git_blob_sha": "5a97df16e3f308f6522cc3c438451f14e014c819",
+      "size_bytes": 409
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/C_n4_severe_control_s41/run/Drone2/decision_history.jsonl",
+      "git_blob_sha": "26e496495dd1fe01956fad554931809842918ebe",
+      "size_bytes": 270837
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/C_n4_severe_control_s41/run/scenario_events.json",
+      "git_blob_sha": "fe51488c7066f6687ef680d6bfaa4f7768ef205c",
+      "size_bytes": 3
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/C_n4_severe_control_s41/run/summary.json",
+      "git_blob_sha": "db35435d48a76f2297e7855acd34901b865039ec",
+      "size_bytes": 4100
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/C_n4_severe_control_s41/run/waypoint_arrivals.json",
+      "git_blob_sha": "13e7362d7dcb31fcb9cc107f56dd2e0abe95b86e",
+      "size_bytes": 6603
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/C_n4_severe_control_s42/run/scenario_events.json",
+      "git_blob_sha": "fe51488c7066f6687ef680d6bfaa4f7768ef205c",
+      "size_bytes": 3
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/C_n4_severe_control_s42/run/summary.json",
+      "git_blob_sha": "4b4b7963e8bf61be54440cf71595d76188e37f56",
+      "size_bytes": 4215
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/C_n4_severe_control_s42/run/waypoint_arrivals.json",
+      "git_blob_sha": "0353c11adec10119535e5a6c1528cd5561e6cd9c",
+      "size_bytes": 6603
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/C_n4_severe_control_s43/run/scenario_events.json",
+      "git_blob_sha": "fe51488c7066f6687ef680d6bfaa4f7768ef205c",
+      "size_bytes": 3
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/C_n4_severe_control_s43/run/summary.json",
+      "git_blob_sha": "d049b689ca3c150a5541496603664e941522dace",
+      "size_bytes": 4041
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/C_n4_severe_control_s43/run/waypoint_arrivals.json",
+      "git_blob_sha": "444b5304cd45829fef64687a9d3016de9a92d1c2",
+      "size_bytes": 6662
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/C_n4_severe_loss_s41/run/scenario_events.json",
+      "git_blob_sha": "336e0bf47d37ab033813e0a8b3125445e3f5206a",
+      "size_bytes": 228
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/C_n4_severe_loss_s41/run/summary.json",
+      "git_blob_sha": "094ad4c77d3c32f8833c0a6a14d914597840e1be",
+      "size_bytes": 4904
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/C_n4_severe_loss_s41/run/waypoint_arrivals.json",
+      "git_blob_sha": "6a1fe8ce2320a37133b1dffc3b946bf740bf4b49",
+      "size_bytes": 411
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/C_n4_severe_loss_s42/run/scenario_events.json",
+      "git_blob_sha": "c20deec6d6839ee65fcc1783f4f58cc20e2234d1",
+      "size_bytes": 228
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/C_n4_severe_loss_s42/run/summary.json",
+      "git_blob_sha": "1065da306446cfb68eccd34ac395cfcef78db546",
+      "size_bytes": 4987
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/C_n4_severe_loss_s42/run/waypoint_arrivals.json",
+      "git_blob_sha": "7c71deaf326cc2b095f955a241e8a0a876382d96",
+      "size_bytes": 411
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/C_n4_severe_loss_s43/run/scenario_events.json",
+      "git_blob_sha": "861d1d3c496a38742bfbc7c0a002570ebd33fd0c",
+      "size_bytes": 226
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/C_n4_severe_loss_s43/run/summary.json",
+      "git_blob_sha": "a8e584c51d1a5a1bd80c342e4caab5650a74218e",
+      "size_bytes": 4817
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/C_n4_severe_loss_s43/run/waypoint_arrivals.json",
+      "git_blob_sha": "b8f1ed3b9dec6cf5bdba11eb8b722b36534e07de",
+      "size_bytes": 409
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/D_n2_nominal_control_s41/run/scenario_events.json",
+      "git_blob_sha": "fe51488c7066f6687ef680d6bfaa4f7768ef205c",
+      "size_bytes": 3
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/D_n2_nominal_control_s41/run/summary.json",
+      "git_blob_sha": "4b371027890261fe9f67352d25de24fc775b46f8",
+      "size_bytes": 3215
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/D_n2_nominal_control_s41/run/waypoint_arrivals.json",
+      "git_blob_sha": "bceb5c021367d92df63bf858be379cf92c2734d8",
+      "size_bytes": 6290
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/D_n2_nominal_control_s42/manifest.json",
+      "git_blob_sha": "b8d318166dbbe6171a25039fd9bef2997e3318e2",
+      "size_bytes": 13507
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/D_n2_nominal_control_s42/run/scenario_events.json",
+      "git_blob_sha": "fe51488c7066f6687ef680d6bfaa4f7768ef205c",
+      "size_bytes": 3
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/D_n2_nominal_control_s42/run/summary.json",
+      "git_blob_sha": "9d222b2a5ee5dc555982b52b35fb9862f29f26b6",
+      "size_bytes": 3488
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/D_n2_nominal_control_s42/run/waypoint_arrivals.json",
+      "git_blob_sha": "d795cfa0eb1aeedc727cb66015362f99c468bfd4",
+      "size_bytes": 6310
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/D_n2_nominal_control_s43/run/scenario_events.json",
+      "git_blob_sha": "fe51488c7066f6687ef680d6bfaa4f7768ef205c",
+      "size_bytes": 3
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/D_n2_nominal_control_s43/run/summary.json",
+      "git_blob_sha": "572e1cad41c390675e939f06fb730052e131fc4c",
+      "size_bytes": 3394
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/D_n2_nominal_control_s43/run/waypoint_arrivals.json",
+      "git_blob_sha": "554da0e2ce6f911585252b5715845d60675f6177",
+      "size_bytes": 6282
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/D_n2_nominal_loss_s41/run/scenario_events.json",
+      "git_blob_sha": "7334fa985929de36ca73d3c62f14e762d15f2582",
+      "size_bytes": 228
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/D_n2_nominal_loss_s41/run/summary.json",
+      "git_blob_sha": "2969806d9894c8ea15a7937f4c35b59b37dad0d2",
+      "size_bytes": 3001
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/D_n2_nominal_loss_s41/run/waypoint_arrivals.json",
+      "git_blob_sha": "fe51488c7066f6687ef680d6bfaa4f7768ef205c",
+      "size_bytes": 3
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/D_n2_nominal_loss_s42/run/scenario_events.json",
+      "git_blob_sha": "c044b78266f35935ee21e94e35effc9045597064",
+      "size_bytes": 228
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/D_n2_nominal_loss_s42/run/summary.json",
+      "git_blob_sha": "95730a80ba4ab8fd10a4fc94da64371ecf51e496",
+      "size_bytes": 3065
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/D_n2_nominal_loss_s42/run/waypoint_arrivals.json",
+      "git_blob_sha": "fe51488c7066f6687ef680d6bfaa4f7768ef205c",
+      "size_bytes": 3
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/D_n2_nominal_loss_s43/run/scenario_events.json",
+      "git_blob_sha": "b83993646e8fa4cf3a2dccaa86cee3b409a3123d",
+      "size_bytes": 228
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/D_n2_nominal_loss_s43/run/summary.json",
+      "git_blob_sha": "d162b4cdd70356f7f6a6302fa2336a844d59191f",
+      "size_bytes": 3048
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/D_n2_nominal_loss_s43/run/waypoint_arrivals.json",
+      "git_blob_sha": "fe51488c7066f6687ef680d6bfaa4f7768ef205c",
+      "size_bytes": 3
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/D_n2_severe_control_s41/run/scenario_events.json",
+      "git_blob_sha": "fe51488c7066f6687ef680d6bfaa4f7768ef205c",
+      "size_bytes": 3
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/D_n2_severe_control_s41/run/summary.json",
+      "git_blob_sha": "f54c0e8149ae4c32f345b7f1272ad44e8147241e",
+      "size_bytes": 3298
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/D_n2_severe_control_s41/run/waypoint_arrivals.json",
+      "git_blob_sha": "80bf1ec03587d2dc6986635a9e94cfb5b334a2ec",
+      "size_bytes": 6286
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/D_n2_severe_control_s42/run/scenario_events.json",
+      "git_blob_sha": "fe51488c7066f6687ef680d6bfaa4f7768ef205c",
+      "size_bytes": 3
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/D_n2_severe_control_s42/run/summary.json",
+      "git_blob_sha": "b5d623e426d24a29addfc74c9f5dd3120aed5564",
+      "size_bytes": 3437
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/D_n2_severe_control_s42/run/waypoint_arrivals.json",
+      "git_blob_sha": "bc25f0fc268fb97c8737d5592b03f3a148a98f7f",
+      "size_bytes": 1563
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/D_n2_severe_control_s43/run/scenario_events.json",
+      "git_blob_sha": "fe51488c7066f6687ef680d6bfaa4f7768ef205c",
+      "size_bytes": 3
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/D_n2_severe_control_s43/run/summary.json",
+      "git_blob_sha": "8125aaa68b1a4fcfc2a11df63260bd9d3e7aae19",
+      "size_bytes": 3403
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/D_n2_severe_control_s43/run/waypoint_arrivals.json",
+      "git_blob_sha": "e6a325fa7f8d7ba1576f15c1880c08f86791ea74",
+      "size_bytes": 1578
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/D_n2_severe_loss_s41/run/scenario_events.json",
+      "git_blob_sha": "406dff391c00e24e34a9e4b1a87867d0442de138",
+      "size_bytes": 228
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/D_n2_severe_loss_s41/run/summary.json",
+      "git_blob_sha": "b6872062f3a336f0b12b5977e992e9f96cacd2bb",
+      "size_bytes": 3194
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/D_n2_severe_loss_s41/run/waypoint_arrivals.json",
+      "git_blob_sha": "fe51488c7066f6687ef680d6bfaa4f7768ef205c",
+      "size_bytes": 3
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/D_n2_severe_loss_s42/run/scenario_events.json",
+      "git_blob_sha": "8b956794ec80965b026f466e8e9f9ecc00d24c10",
+      "size_bytes": 228
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/D_n2_severe_loss_s42/run/summary.json",
+      "git_blob_sha": "6a6152bb1903ca7fd691fe6a23b2ace9368e4331",
+      "size_bytes": 3161
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/D_n2_severe_loss_s42/run/waypoint_arrivals.json",
+      "git_blob_sha": "fe51488c7066f6687ef680d6bfaa4f7768ef205c",
+      "size_bytes": 3
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/D_n2_severe_loss_s43/run/scenario_events.json",
+      "git_blob_sha": "431ae6d7bd702a2f54f152c4c0a8583ebbf4fe03",
+      "size_bytes": 228
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/D_n2_severe_loss_s43/run/summary.json",
+      "git_blob_sha": "85337681acf47563bd838c72a40e63b878461dc4",
+      "size_bytes": 3136
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/D_n2_severe_loss_s43/run/waypoint_arrivals.json",
+      "git_blob_sha": "fe51488c7066f6687ef680d6bfaa4f7768ef205c",
+      "size_bytes": 3
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/D_n4_nominal_control_s41/run/scenario_events.json",
+      "git_blob_sha": "fe51488c7066f6687ef680d6bfaa4f7768ef205c",
+      "size_bytes": 3
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/D_n4_nominal_control_s41/run/summary.json",
+      "git_blob_sha": "3ad15bf222c5fa7d7bf319fe66ae52d954e69317",
+      "size_bytes": 3598
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/D_n4_nominal_control_s41/run/waypoint_arrivals.json",
+      "git_blob_sha": "c8541e505428b62535324f12f64a26f3b0c11e0b",
+      "size_bytes": 6340
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/D_n4_nominal_control_s42/run/scenario_events.json",
+      "git_blob_sha": "fe51488c7066f6687ef680d6bfaa4f7768ef205c",
+      "size_bytes": 3
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/D_n4_nominal_control_s42/run/summary.json",
+      "git_blob_sha": "7ef71db74c02b300e72c15c5942ab0136ac886f0",
+      "size_bytes": 3598
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/D_n4_nominal_control_s42/run/waypoint_arrivals.json",
+      "git_blob_sha": "7c3d5c51deeb44140354fe4c44ff24abd44f4f51",
+      "size_bytes": 6305
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/D_n4_nominal_control_s43/run/scenario_events.json",
+      "git_blob_sha": "fe51488c7066f6687ef680d6bfaa4f7768ef205c",
+      "size_bytes": 3
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/D_n4_nominal_control_s43/run/summary.json",
+      "git_blob_sha": "d030415912a9840a7168477dd98a152238ebb51d",
+      "size_bytes": 3598
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/D_n4_nominal_control_s43/run/waypoint_arrivals.json",
+      "git_blob_sha": "3b67f42be7e567a3310855ee8878ca042ebcdbb9",
+      "size_bytes": 6333
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/D_n4_nominal_loss_s41/run/Drone2/decision_history.jsonl",
+      "git_blob_sha": "df28ec0381fd95d1f65d331e8600e4d6d57830eb",
+      "size_bytes": 8696
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/D_n4_nominal_loss_s41/run/protocol_events.json",
+      "git_blob_sha": "66ff9f97bbefe54f6317eea7538d71d9e416bdce",
+      "size_bytes": 7684
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/D_n4_nominal_loss_s41/run/scenario_events.json",
+      "git_blob_sha": "81f6ea0517197cc1a1c752b90867d50ba064df39",
+      "size_bytes": 228
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/D_n4_nominal_loss_s41/run/summary.json",
+      "git_blob_sha": "215d093de4c0ea98f8e2ec64afa73b06df09e1cc",
+      "size_bytes": 3559
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/D_n4_nominal_loss_s41/run/waypoint_arrivals.json",
+      "git_blob_sha": "fe51488c7066f6687ef680d6bfaa4f7768ef205c",
+      "size_bytes": 3
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/D_n4_nominal_loss_s42/run/scenario_events.json",
+      "git_blob_sha": "0ba1180a4c242ee537b4010422c73b966e564c3b",
+      "size_bytes": 228
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/D_n4_nominal_loss_s42/run/summary.json",
+      "git_blob_sha": "3a09b9f9a3eff233c402b26fffe796cd2743ff57",
+      "size_bytes": 3545
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/D_n4_nominal_loss_s42/run/waypoint_arrivals.json",
+      "git_blob_sha": "fe51488c7066f6687ef680d6bfaa4f7768ef205c",
+      "size_bytes": 3
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/D_n4_nominal_loss_s43/run/scenario_events.json",
+      "git_blob_sha": "f697f57604f5a61db12847c7000e1980c97eedea",
+      "size_bytes": 228
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/D_n4_nominal_loss_s43/run/summary.json",
+      "git_blob_sha": "b36ed30564c615a408634445d2c8c7d823c7cb3d",
+      "size_bytes": 3563
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/D_n4_nominal_loss_s43/run/waypoint_arrivals.json",
+      "git_blob_sha": "fe51488c7066f6687ef680d6bfaa4f7768ef205c",
+      "size_bytes": 3
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/D_n4_severe_control_s41/run/Drone2/decision_history.jsonl",
+      "git_blob_sha": "fb8175d8c1afd295825e36f5907dddef325f1883",
+      "size_bytes": 403211
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/D_n4_severe_control_s41/run/scenario_events.json",
+      "git_blob_sha": "fe51488c7066f6687ef680d6bfaa4f7768ef205c",
+      "size_bytes": 3
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/D_n4_severe_control_s41/run/summary.json",
+      "git_blob_sha": "854d16e8da91ab4f5b7c0f1a737bd586bd26baf1",
+      "size_bytes": 4034
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/D_n4_severe_control_s41/run/waypoint_arrivals.json",
+      "git_blob_sha": "120cb186febcca5f75b6f4cba94e1ca7e4975f1e",
+      "size_bytes": 3136
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/D_n4_severe_control_s42/run/scenario_events.json",
+      "git_blob_sha": "fe51488c7066f6687ef680d6bfaa4f7768ef205c",
+      "size_bytes": 3
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/D_n4_severe_control_s42/run/summary.json",
+      "git_blob_sha": "43f5eeb4a34bbd5ce0ea8a2b77c894bb0cdb6516",
+      "size_bytes": 4026
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/D_n4_severe_control_s42/run/waypoint_arrivals.json",
+      "git_blob_sha": "c9e4dd548be5f3ab2b2012ea021db3efa957b7c0",
+      "size_bytes": 2355
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/D_n4_severe_control_s43/run/scenario_events.json",
+      "git_blob_sha": "fe51488c7066f6687ef680d6bfaa4f7768ef205c",
+      "size_bytes": 3
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/D_n4_severe_control_s43/run/summary.json",
+      "git_blob_sha": "a905d9b77b986a04b7e154f4faf0422aeaff532b",
+      "size_bytes": 4117
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/D_n4_severe_control_s43/run/waypoint_arrivals.json",
+      "git_blob_sha": "dd8d9bb94245f6de43580f1ab35c88fd6bcddd0a",
+      "size_bytes": 4711
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/D_n4_severe_loss_s41/run/scenario_events.json",
+      "git_blob_sha": "36896e0632daab3fd1b1ac22e6dbb9f46158bd0f",
+      "size_bytes": 228
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/D_n4_severe_loss_s41/run/summary.json",
+      "git_blob_sha": "cfd916dca683dcefdd371041429418207474289e",
+      "size_bytes": 3939
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/D_n4_severe_loss_s41/run/waypoint_arrivals.json",
+      "git_blob_sha": "fe51488c7066f6687ef680d6bfaa4f7768ef205c",
+      "size_bytes": 3
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/D_n4_severe_loss_s42/run/scenario_events.json",
+      "git_blob_sha": "b0c9d6c1f4701657ee9b454a5e6b23cadca27a5f",
+      "size_bytes": 228
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/D_n4_severe_loss_s42/run/summary.json",
+      "git_blob_sha": "81c42d482434c2b280a2772cedf1a751ed61e2b7",
+      "size_bytes": 3917
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/D_n4_severe_loss_s42/run/waypoint_arrivals.json",
+      "git_blob_sha": "fe51488c7066f6687ef680d6bfaa4f7768ef205c",
+      "size_bytes": 3
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/D_n4_severe_loss_s43/run/scenario_events.json",
+      "git_blob_sha": "d93ed6a38ed5d9217c8e77d1c360e0d6a1bc118e",
+      "size_bytes": 228
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/D_n4_severe_loss_s43/run/summary.json",
+      "git_blob_sha": "eb98916e111652ce630e894f49a05efe6646b782",
+      "size_bytes": 3606
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/D_n4_severe_loss_s43/run/waypoint_arrivals.json",
+      "git_blob_sha": "fe51488c7066f6687ef680d6bfaa4f7768ef205c",
+      "size_bytes": 3
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/batch_manifest.json",
+      "git_blob_sha": "0983bca98c76aa1801396080b7516465d7f139a0",
+      "size_bytes": 13884
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/metrics/evaluation_summary.json",
+      "git_blob_sha": "2595ee85abfea75d65f81e8ef34b8b76d26a9953",
+      "size_bytes": 678
+    },
+    {
+      "path": "results/phase17/pinned_run1/runs/metrics/metrics.json",
+      "git_blob_sha": "65cb6b409d1254215d5eca90399cbd9af9a0652e",
+      "size_bytes": 268916
+    }
+  ],
+  "tracked_dataset_bytes": 2476022072,
+  "existing_individual_timeline_figures": 48
+}

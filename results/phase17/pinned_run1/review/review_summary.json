@@ -1,0 +1,914 @@
+{
+  "source_commit": "cc0e371dc716be4eb02b82926edf55494a71e5e7",
+  "source_dataset": "results/phase17/pinned_run1",
+  "runs": 48,
+  "successes": 16,
+  "runtime_errors": 0,
+  "censored": 32,
+  "nominal_controls": {
+    "successes": 12,
+    "runs": 12
+  },
+  "severe_controls": {
+    "successes": 4,
+    "runs": 12
+  },
+  "fault_runs": {
+    "runs": 24,
+    "successes": 0,
+    "observed": 24,
+    "owned": 24,
+    "moving": 14,
+    "replacement_acceptances": 0,
+    "productive_resumptions": 0
+  },
+  "llm": {
+    "runs": 24,
+    "calls": 810,
+    "productive_decisions": 42,
+    "invalid_outputs": 5,
+    "fallback_policy_invocations": 249
+  },
+  "safety": {
+    "all_runs_dispatched_actions_guarded": true,
+    "collisions": "not_observed_by_this_sensor_setup",
+    "sampled_separation_violations": 0,
+    "restricted_zone_entries_sampled": 0,
+    "corrective_guardian_interventions": 58651,
+    "unverifiable_state_rejections": 47680
+  },
+  "eligible_for_freeze": false,
+  "freeze_blockers": [
+    "fault_did_not_interrupt_owned_moving_work"
+  ],
+  "source_hash_sets": 1,
+  "configuration": {
+    "schema_version": 1,
+    "pilot_seeds": [
+      41,
+      42,
+      43
+    ],
+    "held_out_seeds": [
+      101,
+      102,
+      103,
+      104,
+      105,
+      106,
+      107,
+      108,
+      109,
+      110
+    ],
+    "architectures": [
+      "C",
+      "D"
+    ],
+    "team_sizes": [
+      2,
+      4
+    ],
+    "conditions": [
+      "nominal",
+      "severe"
+    ],
+    "failure_profiles": [
+      "none",
+      "drone_failure_midmission"
+    ],
+    "mission_source": "configs/phase12/mission.example.json",
+    "network_profiles": {
+      "nominal": {
+        "latency_ms_mean": 10,
+        "latency_ms_jitter": 2,
+        "packet_loss_probability": 0,
+        "message_rate_limit": null,
+        "bandwidth_bytes_per_second": null,
+        "communication_range_m": null,
+        "partitions": []
+      },
+      "severe": {
+        "latency_ms_mean": 400,
+        "latency_ms_jitter": 200,
+        "packet_loss_probability": 0.3,
+        "message_rate_limit": 60,
+        "bandwidth_bytes_per_second": 50000,
+        "communication_range_m": null,
+        "partitions": []
+      }
+    },
+    "settings": {
+      "dt": 0.2,
+      "lease_seconds": 180.0,
+      "bid_window": 30.0,
+      "decision_interval": 0.5,
+      "inference_timeout": 30.0,
+      "max_context_age": 35.0,
+      "inference_parallelism": 1,
+      "progress_timeout": 60.0,
+      "beacon_interval_s": 0.5,
+      "command_timeout_s": 3.0,
+      "state_timeout_s": 2.0,
+      "resilience": {
+        "enabled": true
+      }
+    },
+    "duration_s": 600.0,
+    "fail_at_s": 73.0,
+    "model": {
+      "provider": "ollama",
+      "model": "phase12-agent:pinned",
+      "model_digest": "46e0c10c039e019119339687c3c1757cc81b9da49709a3b3924863ba87ca666e",
+      "ollama_url": "http://localhost:11434"
+    },
+    "calibration": {
+      "min_seeds": 3,
+      "min_severe_resolved_delivery_fraction": 0.1,
+      "max_severe_to_nominal_delivery_ratio": 0.95
+    }
+  },
+  "calibration": {
+    "nominal_control_success_rate": 1.0,
+    "severe_control_success_rate": 0.3333333333333333,
+    "nominal_mean_resolved_delivery_fraction": 1.0,
+    "severe_mean_resolved_delivery_fraction": 0.7037797713453927,
+    "network_profiles": {
+      "nominal": {
+        "latency_ms_mean": 10,
+        "latency_ms_jitter": 2,
+        "packet_loss_probability": 0,
+        "message_rate_limit": null,
+        "bandwidth_bytes_per_second": null,
+        "communication_range_m": null,
+        "partitions": []
+      },
+      "severe": {
+        "latency_ms_mean": 400,
+        "latency_ms_jitter": 200,
+        "packet_loss_probability": 0.3,
+        "message_rate_limit": 60,
+        "bandwidth_bytes_per_second": 50000,
+        "communication_range_m": null,
+        "partitions": []
+      }
+    },
+    "thresholds": {
+      "min_seeds": 3,
+      "min_severe_resolved_delivery_fraction": 0.1,
+      "max_severe_to_nominal_delivery_ratio": 0.95
+    }
+  },
+  "cells": [
+    {
+      "architecture": "C",
+      "team_size": 2,
+      "condition": "nominal",
+      "failure": "none",
+      "runs": 3,
+      "successes": 3,
+      "median_successful_time_s": 183.60024617693853
+    },
+    {
+      "architecture": "C",
+      "team_size": 2,
+      "condition": "nominal",
+      "failure": "drone_failure_midmission",
+      "runs": 3,
+      "successes": 0,
+      "median_successful_time_s": null
+    },
+    {
+      "architecture": "C",
+      "team_size": 2,
+      "condition": "severe",
+      "failure": "none",
+      "runs": 3,
+      "successes": 0,
+      "median_successful_time_s": null
+    },
+    {
+      "architecture": "C",
+      "team_size": 2,
+      "condition": "severe",
+      "failure": "drone_failure_midmission",
+      "runs": 3,
+      "successes": 0,
+      "median_successful_time_s": null
+    },
+    {
+      "architecture": "C",
+      "team_size": 4,
+      "condition": "nominal",
+      "failure": "none",
+      "runs": 3,
+      "successes": 3,
+      "median_successful_time_s": 175.00008156802505
+    },
+    {
+      "architecture": "C",
+      "team_size": 4,
+      "condition": "nominal",
+      "failure": "drone_failure_midmission",
+      "runs": 3,
+      "successes": 0,
+      "median_successful_time_s": null
+    },
+    {
+      "architecture": "C",
+      "team_size": 4,
+      "condition": "severe",
+      "failure": "none",
+      "runs": 3,
+      "successes": 3,
+      "median_successful_time_s": 214.80008743098006
+    },
+    {
+      "architecture": "C",
+      "team_size": 4,
+      "condition": "severe",
+      "failure": "drone_failure_midmission",
+      "runs": 3,
+      "successes": 0,
+      "median_successful_time_s": null
+    },
+    {
+      "architecture": "D",
+      "team_size": 2,
+      "condition": "nominal",
+      "failure": "none",
+      "runs": 3,
+      "successes": 3,
+      "median_successful_time_s": 518.2001049370738
+    },
+    {
+      "architecture": "D",
+      "team_size": 2,
+      "condition": "nominal",
+      "failure": "drone_failure_midmission",
+      "runs": 3,
+      "successes": 0,
+      "median_successful_time_s": null
+    },
+    {
+      "architecture": "D",
+      "team_size": 2,
+      "condition": "severe",
+      "failure": "none",
+      "runs": 3,
+      "successes": 1,
+      "median_successful_time_s": 325.4000863760011
+    },
+    {
+      "architecture": "D",
+      "team_size": 2,
+      "condition": "severe",
+      "failure": "drone_failure_midmission",
+      "runs": 3,
+      "successes": 0,
+      "median_successful_time_s": null
+    },
+    {
+      "architecture": "D",
+      "team_size": 4,
+      "condition": "nominal",
+      "failure": "none",
+      "runs": 3,
+      "successes": 3,
+      "median_successful_time_s": 190.2000859400723
+    },
+    {
+      "architecture": "D",
+      "team_size": 4,
+      "condition": "nominal",
+      "failure": "drone_failure_midmission",
+      "runs": 3,
+      "successes": 0,
+      "median_successful_time_s": null
+    },
+    {
+      "architecture": "D",
+      "team_size": 4,
+      "condition": "severe",
+      "failure": "none",
+      "runs": 3,
+      "successes": 0,
+      "median_successful_time_s": null
+    },
+    {
+      "architecture": "D",
+      "team_size": 4,
+      "condition": "severe",
+      "failure": "drone_failure_midmission",
+      "runs": 3,
+      "successes": 0,
+      "median_successful_time_s": null
+    }
+  ],
+  "independent_checks": [
+    {
+      "experiment_id": "C_n2_nominal_control_s41",
+      "checks": {
+        "summary_matches_metric_success": true,
+        "report_matches_summary": true,
+        "waypoint_units_match": true,
+        "successful_time_matches": true,
+        "fault_observation_matches": true,
+        "no_metric_evidence_issues": true
+      }
+    },
+    {
+      "experiment_id": "C_n2_nominal_loss_s41",
+      "checks": {
+        "summary_matches_metric_success": true,
+        "report_matches_summary": true,
+        "waypoint_units_match": true,
+        "successful_time_matches": true,
+        "fault_observation_matches": true,
+        "no_metric_evidence_issues": true
+      }
+    },
+    {
+      "experiment_id": "C_n2_severe_control_s41",
+      "checks": {
+        "summary_matches_metric_success": true,
+        "report_matches_summary": true,
+        "waypoint_units_match": true,
+        "successful_time_matches": true,
+        "fault_observation_matches": true,
+        "no_metric_evidence_issues": true
+      }
+    },
+    {
+      "experiment_id": "C_n2_severe_loss_s41",
+      "checks": {
+        "summary_matches_metric_success": true,
+        "report_matches_summary": true,
+        "waypoint_units_match": true,
+        "successful_time_matches": true,
+        "fault_observation_matches": true,
+        "no_metric_evidence_issues": true
+      }
+    },
+    {
+      "experiment_id": "C_n4_nominal_control_s41",
+      "checks": {
+        "summary_matches_metric_success": true,
+        "report_matches_summary": true,
+        "waypoint_units_match": true,
+        "successful_time_matches": true,
+        "fault_observation_matches": true,
+        "no_metric_evidence_issues": true
+      }
+    },
+    {
+      "experiment_id": "C_n4_nominal_loss_s41",
+      "checks": {
+        "summary_matches_metric_success": true,
+        "report_matches_summary": true,
+        "waypoint_units_match": true,
+        "successful_time_matches": true,
+        "fault_observation_matches": true,
+        "no_metric_evidence_issues": true
+      }
+    },
+    {
+      "experiment_id": "C_n4_severe_control_s41",
+      "checks": {
+        "summary_matches_metric_success": true,
+        "report_matches_summary": true,
+        "waypoint_units_match": true,
+        "successful_time_matches": true,
+        "fault_observation_matches": true,
+        "no_metric_evidence_issues": true
+      }
+    },
+    {
+      "experiment_id": "C_n4_severe_loss_s41",
+      "checks": {
+        "summary_matches_metric_success": true,
+        "report_matches_summary": true,
+        "waypoint_units_match": true,
+        "successful_time_matches": true,
+        "fault_observation_matches": true,
+        "no_metric_evidence_issues": true
+      }
+    },
+    {
+      "experiment_id": "D_n2_nominal_control_s41",
+      "checks": {
+        "summary_matches_metric_success": true,
+        "report_matches_summary": true,
+        "waypoint_units_match": true,
+        "successful_time_matches": true,
+        "fault_observation_matches": true,
+        "no_metric_evidence_issues": true
+      }
+    },
+    {
+      "experiment_id": "D_n2_nominal_loss_s41",
+      "checks": {
+        "summary_matches_metric_success": true,
+        "report_matches_summary": true,
+        "waypoint_units_match": true,
+        "successful_time_matches": true,
+        "fault_observation_matches": true,
+        "no_metric_evidence_issues": true
+      }
+    },
+    {
+      "experiment_id": "D_n2_severe_control_s41",
+      "checks": {
+        "summary_matches_metric_success": true,
+        "report_matches_summary": true,
+        "waypoint_units_match": true,
+        "successful_time_matches": true,
+        "fault_observation_matches": true,
+        "no_metric_evidence_issues": true
+      }
+    },
+    {
+      "experiment_id": "D_n2_severe_loss_s41",
+      "checks": {
+        "summary_matches_metric_success": true,
+        "report_matches_summary": true,
+        "waypoint_units_match": true,
+        "successful_time_matches": true,
+        "fault_observation_matches": true,
+        "no_metric_evidence_issues": true
+      }
+    },
+    {
+      "experiment_id": "D_n4_nominal_control_s41",
+      "checks": {
+        "summary_matches_metric_success": true,
+        "report_matches_summary": true,
+        "waypoint_units_match": true,
+        "successful_time_matches": true,
+        "fault_observation_matches": true,
+        "no_metric_evidence_issues": true
+      }
+    },
+    {
+      "experiment_id": "D_n4_nominal_loss_s41",
+      "checks": {
+        "summary_matches_metric_success": true,
+        "report_matches_summary": true,
+        "waypoint_units_match": true,
+        "successful_time_matches": true,
+        "fault_observation_matches": true,
+        "no_metric_evidence_issues": true
+      }
+    },
+    {
+      "experiment_id": "D_n4_severe_control_s41",
+      "checks": {
+        "summary_matches_metric_success": true,
+        "report_matches_summary": true,
+        "waypoint_units_match": true,
+        "successful_time_matches": true,
+        "fault_observation_matches": true,
+        "no_metric_evidence_issues": true
+      }
+    },
+    {
+      "experiment_id": "D_n4_severe_loss_s41",
+      "checks": {
+        "summary_matches_metric_success": true,
+        "report_matches_summary": true,
+        "waypoint_units_match": true,
+        "successful_time_matches": true,
+        "fault_observation_matches": true,
+        "no_metric_evidence_issues": true
+      }
+    },
+    {
+      "experiment_id": "C_n2_nominal_control_s42",
+      "checks": {
+        "summary_matches_metric_success": true,
+        "report_matches_summary": true,
+        "waypoint_units_match": true,
+        "successful_time_matches": true,
+        "fault_observation_matches": true,
+        "no_metric_evidence_issues": true
+      }
+    },
+    {
+      "experiment_id": "C_n2_nominal_loss_s42",
+      "checks": {
+        "summary_matches_metric_success": true,
+        "report_matches_summary": true,
+        "waypoint_units_match": true,
+        "successful_time_matches": true,
+        "fault_observation_matches": true,
+        "no_metric_evidence_issues": true
+      }
+    },
+    {
+      "experiment_id": "C_n2_severe_control_s42",
+      "checks": {
+        "summary_matches_metric_success": true,
+        "report_matches_summary": true,
+        "waypoint_units_match": true,
+        "successful_time_matches": true,
+        "fault_observation_matches": true,
+        "no_metric_evidence_issues": true
+      }
+    },
+    {
+      "experiment_id": "C_n2_severe_loss_s42",
+      "checks": {
+        "summary_matches_metric_success": true,
+        "report_matches_summary": true,
+        "waypoint_units_match": true,
+        "successful_time_matches": true,
+        "fault_observation_matches": true,
+        "no_metric_evidence_issues": true
+      }
+    },
+    {
+      "experiment_id": "C_n4_nominal_control_s42",
+      "checks": {
+        "summary_matches_metric_success": true,
+        "report_matches_summary": true,
+        "waypoint_units_match": true,
+        "successful_time_matches": true,
+        "fault_observation_matches": true,
+        "no_metric_evidence_issues": true
+      }
+    },
+    {
+      "experiment_id": "C_n4_nominal_loss_s42",
+      "checks": {
+        "summary_matches_metric_success": true,
+        "report_matches_summary": true,
+        "waypoint_units_match": true,
+        "successful_time_matches": true,
+        "fault_observation_matches": true,
+        "no_metric_evidence_issues": true
+      }
+    },
+    {
+      "experiment_id": "C_n4_severe_control_s42",
+      "checks": {
+        "summary_matches_metric_success": true,
+        "report_matches_summary": true,
+        "waypoint_units_match": true,
+        "successful_time_matches": true,
+        "fault_observation_matches": true,
+        "no_metric_evidence_issues": true
+      }
+    },
+    {
+      "experiment_id": "C_n4_severe_loss_s42",
+      "checks": {
+        "summary_matches_metric_success": true,
+        "report_matches_summary": true,
+        "waypoint_units_match": true,
+        "successful_time_matches": true,
+        "fault_observation_matches": true,
+        "no_metric_evidence_issues": true
+      }
+    },
+    {
+      "experiment_id": "D_n2_nominal_control_s42",
+      "checks": {
+        "summary_matches_metric_success": true,
+        "report_matches_summary": true,
+        "waypoint_units_match": true,
+        "successful_time_matches": true,
+        "fault_observation_matches": true,
+        "no_metric_evidence_issues": true
+      }
+    },
+    {
+      "experiment_id": "D_n2_nominal_loss_s42",
+      "checks": {
+        "summary_matches_metric_success": true,
+        "report_matches_summary": true,
+        "waypoint_units_match": true,
+        "successful_time_matches": true,
+        "fault_observation_matches": true,
+        "no_metric_evidence_issues": true
+      }
+    },
+    {
+      "experiment_id": "D_n2_severe_control_s42",
+      "checks": {
+        "summary_matches_metric_success": true,
+        "report_matches_summary": true,
+        "waypoint_units_match": true,
+        "successful_time_matches": true,
+        "fault_observation_matches": true,
+        "no_metric_evidence_issues": true
+      }
+    },
+    {
+      "experiment_id": "D_n2_severe_loss_s42",
+      "checks": {
+        "summary_matches_metric_success": true,
+        "report_matches_summary": true,
+        "waypoint_units_match": true,
+        "successful_time_matches": true,
+        "fault_observation_matches": true,
+        "no_metric_evidence_issues": true
+      }
+    },
+    {
+      "experiment_id": "D_n4_nominal_control_s42",
+      "checks": {
+        "summary_matches_metric_success": true,
+        "report_matches_summary": true,
+        "waypoint_units_match": true,
+        "successful_time_matches": true,
+        "fault_observation_matches": true,
+        "no_metric_evidence_issues": true
+      }
+    },
+    {
+      "experiment_id": "D_n4_nominal_loss_s42",
+      "checks": {
+        "summary_matches_metric_success": true,
+        "report_matches_summary": true,
+        "waypoint_units_match": true,
+        "successful_time_matches": true,
+        "fault_observation_matches": true,
+        "no_metric_evidence_issues": true
+      }
+    },
+    {
+      "experiment_id": "D_n4_severe_control_s42",
+      "checks": {
+        "summary_matches_metric_success": true,
+        "report_matches_summary": true,
+        "waypoint_units_match": true,
+        "successful_time_matches": true,
+        "fault_observation_matches": true,
+        "no_metric_evidence_issues": true
+      }
+    },
+    {
+      "experiment_id": "D_n4_severe_loss_s42",
+      "checks": {
+        "summary_matches_metric_success": true,
+        "report_matches_summary": true,
+        "waypoint_units_match": true,
+        "successful_time_matches": true,
+        "fault_observation_matches": true,
+        "no_metric_evidence_issues": true
+      }
+    },
+    {
+      "experiment_id": "C_n2_nominal_control_s43",
+      "checks": {
+        "summary_matches_metric_success": true,
+        "report_matches_summary": true,
+        "waypoint_units_match": true,
+        "successful_time_matches": true,
+        "fault_observation_matches": true,
+        "no_metric_evidence_issues": true
+      }
+    },
+    {
+      "experiment_id": "C_n2_nominal_loss_s43",
+      "checks": {
+        "summary_matches_metric_success": true,
+        "report_matches_summary": true,
+        "waypoint_units_match": true,
+        "successful_time_matches": true,
+        "fault_observation_matches": true,
+        "no_metric_evidence_issues": true
+      }
+    },
+    {
+      "experiment_id": "C_n2_severe_control_s43",
+      "checks": {
+        "summary_matches_metric_success": true,
+        "report_matches_summary": true,
+        "waypoint_units_match": true,
+        "successful_time_matches": true,
+        "fault_observation_matches": true,
+        "no_metric_evidence_issues": true
+      }
+    },
+    {
+      "experiment_id": "C_n2_severe_loss_s43",
+      "checks": {
+        "summary_matches_metric_success": true,
+        "report_matches_summary": true,
+        "waypoint_units_match": true,
+        "successful_time_matches": true,
+        "fault_observation_matches": true,
+        "no_metric_evidence_issues": true
+      }
+    },
+    {
+      "experiment_id": "C_n4_nominal_control_s43",
+      "checks": {
+        "summary_matches_metric_success": true,
+        "report_matches_summary": true,
+        "waypoint_units_match": true,
+        "successful_time_matches": true,
+        "fault_observation_matches": true,
+        "no_metric_evidence_issues": true
+      }
+    },
+    {
+      "experiment_id": "C_n4_nominal_loss_s43",
+      "checks": {
+        "summary_matches_metric_success": true,
+        "report_matches_summary": true,
+        "waypoint_units_match": true,
+        "successful_time_matches": true,
+        "fault_observation_matches": true,
+        "no_metric_evidence_issues": true
+      }
+    },
+    {
+      "experiment_id": "C_n4_severe_control_s43",
+      "checks": {
+        "summary_matches_metric_success": true,
+        "report_matches_summary": true,
+        "waypoint_units_match": true,
+        "successful_time_matches": true,
+        "fault_observation_matches": true,
+        "no_metric_evidence_issues": true
+      }
+    },
+    {
+      "experiment_id": "C_n4_severe_loss_s43",
+      "checks": {
+        "summary_matches_metric_success": true,
+        "report_matches_summary": true,
+        "waypoint_units_match": true,
+        "successful_time_matches": true,
+        "fault_observation_matches": true,
+        "no_metric_evidence_issues": true
+      }
+    },
+    {
+      "experiment_id": "D_n2_nominal_control_s43",
+      "checks": {
+        "summary_matches_metric_success": true,
+        "report_matches_summary": true,
+        "waypoint_units_match": true,
+        "successful_time_matches": true,
+        "fault_observation_matches": true,
+        "no_metric_evidence_issues": true
+      }
+    },
+    {
+      "experiment_id": "D_n2_nominal_loss_s43",
+      "checks": {
+        "summary_matches_metric_success": true,
+        "report_matches_summary": true,
+        "waypoint_units_match": true,
+        "successful_time_matches": true,
+        "fault_observation_matches": true,
+        "no_metric_evidence_issues": true
+      }
+    },
+    {
+      "experiment_id": "D_n2_severe_control_s43",
+      "checks": {
+        "summary_matches_metric_success": true,
+        "report_matches_summary": true,
+        "waypoint_units_match": true,
+        "successful_time_matches": true,
+        "fault_observation_matches": true,
+        "no_metric_evidence_issues": true
+      }
+    },
+    {
+      "experiment_id": "D_n2_severe_loss_s43",
+      "checks": {
+        "summary_matches_metric_success": true,
+        "report_matches_summary": true,
+        "waypoint_units_match": true,
+        "successful_time_matches": true,
+        "fault_observation_matches": true,
+        "no_metric_evidence_issues": true
+      }
+    },
+    {
+      "experiment_id": "D_n4_nominal_control_s43",
+      "checks": {
+        "summary_matches_metric_success": true,
+        "report_matches_summary": true,
+        "waypoint_units_match": true,
+        "successful_time_matches": true,
+        "fault_observation_matches": true,
+        "no_metric_evidence_issues": true
+      }
+    },
+    {
+      "experiment_id": "D_n4_nominal_loss_s43",
+      "checks": {
+        "summary_matches_metric_success": true,
+        "report_matches_summary": true,
+        "waypoint_units_match": true,
+        "successful_time_matches": true,
+        "fault_observation_matches": true,
+        "no_metric_evidence_issues": true
+      }
+    },
+    {
+      "experiment_id": "D_n4_severe_control_s43",
+      "checks": {
+        "summary_matches_metric_success": true,
+        "report_matches_summary": true,
+        "waypoint_units_match": true,
+        "successful_time_matches": true,
+        "fault_observation_matches": true,
+        "no_metric_evidence_issues": true
+      }
+    },
+    {
+      "experiment_id": "D_n4_severe_loss_s43",
+      "checks": {
+        "summary_matches_metric_success": true,
+        "report_matches_summary": true,
+        "waypoint_units_match": true,
+        "successful_time_matches": true,
+        "fault_observation_matches": true,
+        "no_metric_evidence_issues": true
+      }
+    }
+  ],
+  "review_scope": "All 48 stored summaries, metric records, waypoint-arrival lists, fault-event lists and calibration rows; selected raw histories/protocol logs inspected separately. Not a full re-evaluation of every large trace.",
+  "raw_history_spot_checks": {
+    "C_n4_nominal_loss_s41": {
+      "agent_id": "Drone2",
+      "policy_event_counts": {
+        "deadline_bid_submitted": 2,
+        "delivered_bid_evidence_reconciled": 12,
+        "policy_decision_applied": 3,
+        "peer_health_changed": 2,
+        "policy_error": 1311,
+        "structured_correction_requested": 656,
+        "deterministic_fallback": 655,
+        "temporary_approach_wait": 187,
+        "inference_abandoned_at_shutdown": 1
+      },
+      "policy_error_reason_counts": {
+        "unsafe_action:communication_or_belief_uncertainty,no_verified_safe_fallback": 5,
+        "unsafe_action:stale_or_future_peer_belief": 1306
+      }
+    },
+    "D_n4_nominal_loss_s41": {
+      "agent_id": "Drone2",
+      "policy_event_counts": {
+        "deadline_bid_submitted": 2,
+        "delivered_bid_evidence_reconciled": 12,
+        "policy_decision_applied": 1,
+        "peer_health_changed": 2,
+        "policy_error": 12,
+        "structured_correction_requested": 6,
+        "deterministic_fallback": 6,
+        "temporary_approach_wait": 2
+      },
+      "policy_error_reason_counts": {
+        "unsafe_action:stale_or_future_peer_belief": 11,
+        "hold_duration_exceeds_policy_limit": 1
+      }
+    },
+    "C_n4_severe_control_s41": {
+      "agent_id": "Drone2",
+      "policy_event_counts": {
+        "peer_health_changed": 906,
+        "deadline_bid_submitted": 2,
+        "policy_decision_applied": 152,
+        "policy_error": 95,
+        "structured_correction_requested": 55,
+        "deterministic_fallback": 40,
+        "delivered_bid_evidence_reconciled": 13,
+        "approach_revalidated": 27,
+        "search_authorized": 24,
+        "execution_guardian_intervention": 23,
+        "temporary_approach_wait": 45,
+        "policy_progress_observed": 4
+      },
+      "policy_error_reason_counts": {
+        "unsafe_action:peer_reachable_region_conflict": 95
+      }
+    },
+    "D_n4_severe_control_s41": {
+      "agent_id": "Drone2",
+      "policy_event_counts": {
+        "peer_health_changed": 2658,
+        "deadline_bid_submitted": 4,
+        "delivered_bid_evidence_reconciled": 20,
+        "policy_decision_applied": 9,
+        "approach_revalidated": 2,
+        "search_authorized": 2,
+        "execution_guardian_intervention": 2,
+        "temporary_approach_wait": 2,
+        "policy_error": 1,
+        "structured_correction_requested": 1
+      },
+      "policy_error_reason_counts": {
+        "unsafe_action:peer_reachable_region_conflict": 1
+      }
+    }
+  }
+}
