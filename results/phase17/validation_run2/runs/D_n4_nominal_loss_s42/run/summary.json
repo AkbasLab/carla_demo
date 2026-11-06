@@ -1,0 +1,141 @@
+{
+  "mode": "phase13_shared_architecture_comparison",
+  "architecture": "D",
+  "backend": "mock",
+  "seed": 42,
+  "condition": "nominal",
+  "provider": "replay",
+  "llm_inference": false,
+  "mission_complete": false,
+  "time_s": 119.5,
+  "error": null,
+  "mission_execution_success": false,
+  "decentralized_coordination_enabled": true,
+  "completed_task_ids": [],
+  "duplicate_task_completions": 0,
+  "completions_by_agent": {
+    "Drone1": 0,
+    "Drone2": 0,
+    "Drone3": 0,
+    "Drone4": 0
+  },
+  "decisions_by_agent": {
+    "Drone1": 2,
+    "Drone2": 3,
+    "Drone3": 40,
+    "Drone4": 38
+  },
+  "fallbacks_by_agent": {
+    "Drone1": 0,
+    "Drone2": 114,
+    "Drone3": 95,
+    "Drone4": 95
+  },
+  "final_roles": {
+    "Drone2": "SCOUT",
+    "Drone3": "SCOUT",
+    "Drone4": "SCOUT"
+  },
+  "role_changes": 0,
+  "lease_expirations": 6,
+  "all_dispatched_actions_guarded": true,
+  "guardian_outcomes": {
+    "APPROVE_WITH_MODIFICATION": 2,
+    "APPROVE": 2,
+    "REJECT_AND_REPLAN": 348
+  },
+  "network_outcomes": {
+    "delivered": 3607,
+    "queued": 1637
+  },
+  "network_drop_reasons": {},
+  "architecture_selected_from_configuration": true,
+  "ablations": {
+    "persistent_memory": true,
+    "task_leases": true,
+    "dynamic_roles": true,
+    "perfect_communication": false,
+    "fallback_policy": false
+  },
+  "shared_inputs_sha256": "00e8dbc610dcbdae9f8bc8a52553d46478201352e07f363a4c6e822fd2891907",
+  "llm_integration_observed": false,
+  "llm_exit_criterion_observed": false,
+  "live_exit_criterion_observed": false,
+  "productive_decisions_by_agent": {
+    "Drone1": 0,
+    "Drone2": 0,
+    "Drone3": 0,
+    "Drone4": 0
+  },
+  "llm_productive_decisions_by_agent": {
+    "Drone1": 0,
+    "Drone2": 0,
+    "Drone3": 0,
+    "Drone4": 0
+  },
+  "observed_progress_sources_by_agent": {
+    "Drone1": {},
+    "Drone2": {},
+    "Drone3": {},
+    "Drone4": {}
+  },
+  "policy_tools_by_agent": {
+    "Drone1": {
+      "send_bid": 1,
+      "start_search": 1
+    },
+    "Drone2": {
+      "send_bid": 2,
+      "start_search": 1
+    },
+    "Drone3": {
+      "send_bid": 2,
+      "compute_task_cost": 38
+    },
+    "Drone4": {
+      "send_bid": 2,
+      "hold": 1,
+      "compute_task_cost": 35
+    }
+  },
+  "policy_errors_by_agent": {
+    "Drone1": {},
+    "Drone2": {
+      "unsafe_action:peer_reachable_region_conflict": 2,
+      "unsafe_action:communication_or_belief_uncertainty,no_verified_safe_fallback": 4,
+      "unsafe_action:stale_or_future_peer_belief": 33,
+      "tool_not_offered_in_request": 189
+    },
+    "Drone3": {
+      "unsafe_action:stale_or_future_peer_belief": 1,
+      "tool_not_offered_in_request": 190
+    },
+    "Drone4": {
+      "unsafe_action:stale_or_future_peer_belief": 4,
+      "tool_not_offered_in_request": 187
+    }
+  },
+  "deadline_bids_by_agent": {
+    "Drone1": 0,
+    "Drone2": 0,
+    "Drone3": 0,
+    "Drone4": 0
+  },
+  "blocked_task_releases_by_agent": {
+    "Drone1": 0,
+    "Drone2": 0,
+    "Drone3": 0,
+    "Drone4": 0
+  },
+  "llm_supported_execution_success": false,
+  "limitations": [
+    "Kinematic mock flight and application-level network; no live AirSim comparison or calibrated RF evidence",
+    "C and D retain fail-closed guardian checks on stale peer state; reassignment does not guarantee executable recovery under a partition",
+    "B initial assignments are reliable pre-mission briefing; B never negotiates or reassigns them",
+    "Deadline bids and rule-policy replacement are deterministic support, not LLM coordination evidence",
+    "Nominal replay fixtures verify architecture wiring; actual pinned-model and repeated matched trials remain necessary",
+    "Physical route completion is the common stop criterion; undelivered completion reports and pending packets at stop are censored",
+    "Persistent-memory ablation removes episodic prompt memory, not required identity, local beliefs, inboxes or audit history",
+    "Relay changes are role/position rules; no RF reachability benefit is claimed"
+  ]
+}

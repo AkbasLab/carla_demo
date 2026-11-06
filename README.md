@@ -4,7 +4,7 @@ A modular multi-UAV research framework for search-and-relay operations using CAR
 
 LLM benchmarks and command-generation experiments are separate from the deterministic coordination baselines: **Phases 7–11 do not require an LLM**. Mock task completion, live waypoint execution, communication delivery, and flight safety are distinct measurements.
 
-## Project phases: 1–16
+## Project phases: 1–17
 
 | Phase | Focus | Main entry point | Execution / evidence |
 |---|---|---|---|
@@ -24,6 +24,7 @@ LLM benchmarks and command-generation experiments are separate from the determin
 | 14 | Automatic experiment batches and complete logging | `scripts/run_phase14_experiments.py` | Per-run provenance, JSONL events and retained unsuccessful runs; validated on mock flight |
 | 15 | Predefined evaluation metrics and evidence checks | `scripts/evaluate_phase15_metrics.py` or Phase 14 `--evaluate` | Pre-run metric registration; validated definitions, censoring, matched references and missing-data handling |
 | 16 | Unit, mock integration, determinism and flight regressions | `scripts/run_phase16_verification.py` | Simulator-free requirement map and PR CI; five opt-in AirSim regression cases remain separately validated |
+| 17 | Repeated pilot matrix, individual timelines and final configuration locking | `scripts/run_phase17_pilots.py` | C/D, two/four drones, nominal/severe, one fault type plus controls; actual pinned pilots required before final selection |
 
 ### Phase 1: environment setup, foundation, and LLM baseline
 
@@ -430,3 +431,21 @@ python scripts/run_phase16_verification.py \
 Five observed-flight regressions use the existing allocator, waypoint executor, adapters and guardian: single drone, two drones, four-drone search, task takeover and return-home fallback. They can run with the kinematic mock or manually against calibrated AirSim using `scripts/run_phase16_regression.py`. The regression safety observer retains telemetry for a stopped drone; this reliable-observation test does not resolve the degraded-belief recovery limitation reported in Phase 15.
 
 The GitHub Actions workflow runs simulator-free tests on pull requests and `main` pushes for Python 3.11/3.12. Live tests require an explicit manual command and remain separate from CI and physical safety claims. See the [Phase 16 guide and live commands](docs/phase16_verification.md) and [executable requirement map](configs/phase16/coverage.json).
+
+## Phase 17: methodology pilots
+
+The pilot runner generates a 48-case repeated-seed matrix for C/D, two/four drones, nominal/severe networking and one Drone1-loss condition plus no-failure controls. It preserves the same four-task workload, uses Phase 14 logging and registered Phase 15 metrics, and produces nine-panel timelines per complete run. Calibration reports flag trivial network levels and faults that did not interrupt actual work.
+
+```bash
+# Fast replay validation: no simulator or model server; 120 simulated seconds/case
+python scripts/run_phase17_pilots.py run \
+  --config configs/phase17/pilot.validation.json --profile validation \
+  --output-dir results/phase17/validation_run3
+
+# Real pinned-model pilots: mock flight, 600 wall-clock seconds/case
+python scripts/run_phase17_pilots.py run \
+  --config configs/phase17/pilot.example.json --profile pinned \
+  --output-dir results/phase17/pinned_run1
+```
+
+Pilot seeds 41–43 are separate from reserved held-out seeds 101–110. Final freezing requires actual model evidence, meaningful calibrated levels and written rationale; it locks prompts/rules/metrics/network/scenarios and prepares a separate held-out batch. Replay success is not an LLM result or completion of the Phase 17 exit criterion. See the [Phase 17 guide](docs/phase17_pilot_experiments.md) for planning, analysis, calibration and freeze commands.

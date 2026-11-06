@@ -72,12 +72,12 @@ def effective_network(c,ids):
 
 
 def run_comparison(values,provider=None):
-    c=configuration(values);m,guard_config,tasks,routes=load_mission(c['mission_config'])
+    c=configuration(values);m,guard_config,tasks,routes=load_mission(c['mission_config'],allowed_team_sizes=(2,4))
     ids=list(m['vehicles']);architecture=c['architecture'];horizon=c['ticks']*c['dt']
     if CONTROLLER in ids:raise ValueError('Reserved controller identity')
     fail=c['scenario']['fail_agent']
     if fail is not None and fail not in ids:raise ValueError('Unknown failure agent')
-    if set(c['initial_assignments'])!=set(ids):raise ValueError('Provide initial assignments for exactly four drones')
+    if set(c['initial_assignments'])!=set(ids):raise ValueError('Provide initial assignments for the mission vehicle IDs')
     assigned=[tid for tids in c['initial_assignments'].values() for tid in tids]
     if any(not isinstance(v,list) or not v for v in c['initial_assignments'].values()) or len(assigned)!=len(set(assigned)) or set(assigned)!=set(routes):
         raise ValueError('Initial assignments must cover every task once without duplicates')
@@ -188,6 +188,10 @@ def run_comparison(values,provider=None):
             for a in agents:
                 trace.append(dict(time_s=now,agent_id=a.agent_id,position=list(a.position),velocity=list(a.velocity),
                     active=a.agent_id not in scenario.stopped,role=a.role,communication_estimate=endpoints[a.agent_id].estimates(),
+                    owned_tasks=[dict(task_id=t.task_id,version=t.version,lease_expires_at=t.lease_expires_at)
+                                 for t in a.tasks.values() if t.status.value=='assigned' and t.assigned_agent==a.agent_id],
+                    execution_task_id=a.executor.key[0] if a.executor.key else None,
+                    active_command_kind=gate.active[a.agent_id].kind if a.agent_id in gate.active else None,
                     peer_health={p:h.state.value for p,h in a.peer_health.items()}))
             completed={e['task_id'] for a in agents for e in a.events if e['event']=='work_completed'}
             if set(routes)<=completed:complete=True;break

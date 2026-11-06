@@ -7,11 +7,11 @@ from agentic_uav.control.runtime_guardian import Config
 from agentic_uav.coordination.contract_net import MissionTask,TaskType,TaskStatus,Geometry
 
 
-def load_mission(path):
+def load_mission(path, *, allowed_team_sizes=(4,)):
     m=json.loads(Path(path).read_text());config=Config(**m['guardian'])
     def vector(v):return isinstance(v,list) and len(v)==3 and all(type(x) in (int,float) and math.isfinite(x) for x in v)
     if not isinstance(m['mission'],str) or not 0<len(m['mission'])<=4000:raise ValueError('Mission text required')
-    if not isinstance(m['vehicles'],dict) or len(m['vehicles'])!=4:raise ValueError('Exactly four identified vehicles required')
+    if not isinstance(m['vehicles'],dict) or len(m['vehicles']) not in allowed_team_sizes:raise ValueError('Unsupported mission team size: '+str(allowed_team_sizes))
     for a,v in m['vehicles'].items():
         if not re.fullmatch('[A-Za-z0-9_-]{1,64}',a) or v['role'] not in ('SCOUT','RELAY','RESERVE') or not all(vector(v[k]) for k in ['start_position','home','frame_offset_m']):raise ValueError('Invalid vehicle configuration')
     if not vector(m['relay_point']):raise ValueError('Invalid relay point')
