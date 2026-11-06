@@ -1,0 +1,86 @@
+{
+  "verification": {
+    "verification_run2": {
+      "tests": 236,
+      "passed": true,
+      "layer": "all",
+      "duration_s": 90.344333,
+      "python": "3.12.13",
+      "git_commit": "aac8e234558f66b8b2db2859543939b3e7838d1a",
+      "source_hashes": 119,
+      "matching_local_source_hashes": 119,
+      "uploaded_unittest_log": false
+    },
+    "unit_run1": {
+      "tests": 14,
+      "passed": true,
+      "layer": "unit",
+      "duration_s": 3.949577,
+      "python": "3.12.13",
+      "git_commit": "aac8e234558f66b8b2db2859543939b3e7838d1a",
+      "source_hashes": 119,
+      "matching_local_source_hashes": 119,
+      "uploaded_unittest_log": false
+    },
+    "integration_run1": {
+      "tests": 8,
+      "passed": true,
+      "layer": "integration",
+      "duration_s": 2.250521,
+      "python": "3.12.13",
+      "git_commit": "aac8e234558f66b8b2db2859543939b3e7838d1a",
+      "source_hashes": 119,
+      "matching_local_source_hashes": 119,
+      "uploaded_unittest_log": false
+    },
+    "determinism_run1": {
+      "tests": 6,
+      "passed": true,
+      "layer": "determinism",
+      "duration_s": 32.373151,
+      "python": "3.12.13",
+      "git_commit": "aac8e234558f66b8b2db2859543939b3e7838d1a",
+      "source_hashes": 119,
+      "matching_local_source_hashes": 119,
+      "uploaded_unittest_log": false
+    }
+  },
+  "mock_reassignment": {
+    "fault_time_s": 1.0,
+    "first_movement_s": 21.0,
+    "lease_expired_s": 20.6,
+    "replacement_claim_s": 29.6,
+    "replacement_execution_started_s": 30.1,
+    "replacement_first_arrival_s": 38.7,
+    "replacement_final_arrival_s": 42.8,
+    "final_observation_s": 43.1,
+    "arrivals": 8,
+    "completed_tasks": 4,
+    "guarded_effects": 8,
+    "minimum_sampled_separation_m": 4.0,
+    "stopped_actor_kept_in_guardian": true,
+    "failed_actor_moved": false,
+    "max_xy_error_m": 0.39999999999999813
+  },
+  "live_attempts": {
+    "airsim_single_run1": {
+      "status": "environment_error_before_flight",
+      "error": {
+        "type": "ModuleNotFoundError",
+        "message": "No module named 'airsim'"
+      },
+      "executed_actions": 0,
+      "arrivals": 0
+    },
+    "airsim_single_run2": {
+      "status": "environment_error_before_flight",
+      "error": {
+        "type": "ModuleNotFoundError",
+        "message": "No module named 'airsim'"
+      },
+      "executed_actions": 0,
+      "arrivals": 0
+    }
+  },
+  "checks_passed": true
+}
