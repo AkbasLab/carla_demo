@@ -1,0 +1,261 @@
+{
+  "mode": "phase16_simulator_free_verification",
+  "layer": "determinism",
+  "started_at_utc": "2026-11-06T03:52:05.373915+00:00",
+  "finished_at_utc": "2026-11-06T03:52:37.747066+00:00",
+  "python": "3.12.13",
+  "git_commit": "aac8e234558f66b8b2db2859543939b3e7838d1a",
+  "tests_run": 6,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "passed": true,
+  "source_sha256": {
+    "agentic_uav/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "agentic_uav/comm/bus.py": "b387f7dff411cb23ef8ccad22e05abbed7a88494009d66ffd3ee5aef12c2f5f1",
+    "agentic_uav/comm/degraded.py": "e6c91b6b6357e64123c108ca482dd11db794682b4ebff2acfb30b8e17eec0e6d",
+    "agentic_uav/comm/llm_commands.py": "808c69f3b31e876f36f011603238fedc0227e945c834bf7af9d4d8208fc79c8a",
+    "agentic_uav/comm/phase7_demo.py": "33a735c2f0daa4c5d22a250f70d78b64742a2a78d84f50341995af7a4ecfc0bd",
+    "agentic_uav/comm/phase7_live.py": "1fdab4a4fbf7fd2a7cedfd4a756d1289597f6564ab908abefa7c66625e2381b7",
+    "agentic_uav/comm/protocol.py": "565f9cdaba420fb97a164073b18f0a4c877babc15f3279e09d5bebd7f533a856",
+    "agentic_uav/comm/rf_model.py": "d1e8a5f6c4f145699cc29ebab6f2e93c757e5c8a04d09f52595955a83b4a65dc",
+    "agentic_uav/control/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "agentic_uav/control/failsafe.py": "7b2484e5a3b1ec9e4ae9869ae30f969a5250766614bc03384d04c44cf132d74f",
+    "agentic_uav/control/oba_recovery.py": "3e105cbf7d46f1ca1242852664b8df9add720ae42ccacf839808f0c7782089e1",
+    "agentic_uav/control/orchestrator.py": "bae79d942a98d40e7d9a97affd2182bb961e5a2bd1a0f5a8f5ff1fc35c5f746a",
+    "agentic_uav/control/planner.py": "167e685b1bd8f928daf7d1aa76172ee337001e9771fa1ae797737d26cd228b92",
+    "agentic_uav/control/reactive_relay.py": "035d208d089fc4ddd8255f7157aee86afd8ed9daff77e78f8f1e6b5c9aa05bbe",
+    "agentic_uav/control/runtime_guardian.py": "1c51979284ed8fd4b8165e9041997ca006d8c0de3bc26794922614dbc98f66d0",
+    "agentic_uav/control/scenario_manager.py": "0c3eaecad7da354a7c33954b3f90e4f02f6a91675db9eecb94cb317d43bda943",
+    "agentic_uav/control/skill_engine.py": "b9562f374705368b9bf4101feb6d1afa45fdd0b5cffa11c27bdfa7a7653efe18",
+    "agentic_uav/coordination/__init__.py": "3e3f38b4e3c0bac51eb2f97df6079bcd74fe4e97b05bd51b44ea2c7622f22738",
+    "agentic_uav/coordination/contract_net.py": "044b09220547f33db76446ef9ba8b8cc136150ab3011795c4c6c491ea686e269",
+    "agentic_uav/coordination/dynamic_roles.py": "d7efea49410688c98d3178e5b3b53f7a6148d3d94461c410862d45acd9db25b4",
+    "agentic_uav/coordination/flight_executor.py": "34b057b31aa55825ab326004f6bc29dd20fb0de6db725eeca5adc2f74bf582fd",
+    "agentic_uav/coordination/mission_view.py": "28c042178994670aafa2e7121229e2b2846a4c4c8e5f968c4a8d77d4af2ffc4f",
+    "agentic_uav/coordination/phase8_live.py": "cd6f94def1ab331c001cff61979da1afae0624f8d0c24a1b4dc281330c25e56a",
+    "agentic_uav/core/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "agentic_uav/core/models.py": "1801a2cf071d03a5a76249f7bbbf861896166b2e2e3e43e6ec9bd9153dfae2f1",
+    "agentic_uav/core/planner_models.py": "1d54f1870b874fb5896c9606173bdb724a639c1805d0dfb82b540eee7713e472",
+    "agentic_uav/experiments/__init__.py": "44e681a43c63a4dc989a6e719d381f82abb52de6d104558e6566cfa56cf569a4",
+    "agentic_uav/experiments/architectures.py": "831ef0a7ace84dc862516c30061ea65bc6ed9199c984ae1211fc8e910cafd148",
+    "agentic_uav/experiments/comparison.py": "8c8bb7b4dca3fd2e3f59963292cc74e1a0dc2545758724c441da1331a88d04aa",
+    "agentic_uav/experiments/event_logging.py": "ab7a369f4ab4a2469079e9ca7df1a0cc2f424a9705eac01e74a04c5672eceac2",
+    "agentic_uav/experiments/followup.py": "fd8d06963f153beb9a58a1bbbf30793c9419e0f9cb432717a3617b98ebdfb5bc",
+    "agentic_uav/experiments/metrics.py": "90c96d19d9d8b13391d66138dc53ce30b5461b68352b36dc79f2632a11821a92",
+    "agentic_uav/experiments/regression.py": "1e1a499cc58bcdde33867dc628d60ddbde3cba42afd3b22b37776f52acb00bc3",
+    "agentic_uav/experiments/resilience.py": "653328a71f7f02dafd4e3151569fded131eb374411b690faa6a6c2374afe2b8b",
+    "agentic_uav/experiments/runner.py": "263c01fecaef6669cc856bbaf8c217c38ad162f2d59f81b87d329f4269947fb3",
+    "agentic_uav/experiments/suite.py": "d17d953b838d00818b45889e5309824c6787d86df12ee12cdcad51e9cf44b87e",
+    "agentic_uav/planners/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "agentic_uav/planners/base_planner.py": "9d76eb15b9930159aa4fc92fc91d263595695bab3fafb4e9285caa8fc765c799",
+    "agentic_uav/planners/llama_planner.py": "3d570a7e30c08736c2e6c3c58a228dfa5970087f815c457e3ff0113145350f6b",
+    "agentic_uav/policy/__init__.py": "ac57c6d71031f589d9db3da0cc48117f8ff438b2fdb5380d73b045d8df5e646e",
+    "agentic_uav/policy/backends.py": "13c232ef6a6889abf640a1c3eff0e4067659af78f09cc75f75980efbff0b1cb0",
+    "agentic_uav/policy/evidence.py": "c0cb02067270bb2196f2e6a1e9878eaf321ff1b9cc6a9d217abab174838638ac",
+    "agentic_uav/policy/mission.py": "df3d9e569f9f1fa596f234c50f503ccc3956657a113a8e4cf3010ef40014a4ca",
+    "agentic_uav/policy/persistent.py": "35d5692d97648d3fa4d24c29d44b1af4decb6e1648910bee4e17082060338c69",
+    "agentic_uav/policy/structured.py": "34bf9449c8fe65bf8d4c0541649fb308c29cf52a3da38ab0f5541a1f396a07df",
+    "agentic_uav/simulator/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "agentic_uav/simulator/airsim_adapter.py": "abfc3f1eb5f3ee1ad0b58fac85990405af33a5e397bc1d69cd2306b8f4ecd36d",
+    "agentic_uav/simulator/base_adapter.py": "4d4fcae0053712dabdb48419de624669f40f71570ba1e1568133266028584fec",
+    "agentic_uav/simulator/mock_adapter.py": "bacacb936593162a2cfc7f2ba8e99d728922fc84bdd99c2de760e94e264d9e48",
+    "configs/phase16/coverage.json": "7c526f44810c67cfe4e2388cdfb07f452cea1d1d825ee596c5396244ab70a561",
+    "scripts/analyze_phase13_suite.py": "8acc52bc20de032527adba3caa116915933a77451f793a3c7da2c7479d3445ab",
+    "scripts/evaluate_phase15_metrics.py": "157a63ddac4a27cb9292e0265476ca8001b976cc3b47f9e9b84a5bdf3e024b8e",
+    "scripts/modular_mission.py": "ce7d46cddff04f4c6af32f5abe734d76f16cad66e7b4d146d82fa36af5accaa6",
+    "scripts/plot_experiment_d_resilience.py": "72414a6db38c3c98e77e079ea35d506966989df6b29b4a1577d1583ae0b728f2",
+    "scripts/plot_phase10_sweep.py": "8abaa8b470b3e39f9836539fdd151a4def44eb2417ce6750b2f16b194c58468e",
+    "scripts/plot_phase13_completion_times.py": "d6884d7f29b08e79b4d687c40e98582f396d171da5891b489878950737f1b20e",
+    "scripts/plot_phase7_protocol.py": "bf00a66838bfad11b0d1e3e8ea715ab3aed3751f0ddf314bdbb5917de6c4c8a8",
+    "scripts/run_experiment_b_tracking.py": "99898d8d5f695815e094770b6f8aab40ad564a7643f66e007153fd21a3b9d76a",
+    "scripts/run_experiment_d_resilience.py": "8c34e1e677c033a1a1366587c8dbee0e3b7abc2d7af0e92bb350fccd1a75ca82",
+    "scripts/run_oba_ac_benchmark.py": "b2546c68bcc5c18d9ee7adf38f4578429d2a84a46bdd7918a86441b7f35f8e0e",
+    "scripts/run_phase10_network.py": "8d2b28ac2576d43c44eb73b792c41886db46e4b92144959ba79780f306facf1f",
+    "scripts/run_phase10_sweep.py": "08ad88d29aa115ce73a67a03e92f28f55caff2e77d173af6f1712721aec25615",
+    "scripts/run_phase11_guardian.py": "4cf027706d847e39914e595d60e505ceb4c4670af2073d16a1eb668063de6136",
+    "scripts/run_phase12_agents.py": "e3795f1ff32781223721690e0b0e3f96d820f4b60c67a9d72b5d049e0348b9f7",
+    "scripts/run_phase13_comparison.py": "53e051e3c96640bc92d1f8767f26a24e7724f1b9462f80cf083a314c9777a230",
+    "scripts/run_phase13_followup.py": "07e95937681228a77dbef6e30d10da21a0cda4dedccdc4cbe695efccd90ca846",
+    "scripts/run_phase13_resilience_validation.py": "7a4e99180a692a2721600e824a3cb1b6d89315f7d3f9e89bbb6add0a0023ccbf",
+    "scripts/run_phase13_suite.py": "5e079ee6baa12bfa5ecd9d8765727a6bf8774f5f55c4ecdc566b3fd08be4fa77",
+    "scripts/run_phase14_experiments.py": "de0902ff3721e80b012dae5a86d7c35c530e4bc7232d4a1f94d22781de5528e2",
+    "scripts/run_phase16_regression.py": "7b41cc373a97dbc07e463aada7064693897fcd89ee7e222c0e188cac34e2a9c3",
+    "scripts/run_phase16_verification.py": "f38e418653cfaf89b45e27b2db9cd27b2ebcec3ce916866829e5197387e151c6",
+    "scripts/run_phase1_latency_gpt.py": "53181cb6b3d9d34caec2aa95fbd52075bc0bae54ea0ef2288b92c6c698b3a074",
+    "scripts/run_phase1_latency_groq.py": "c6469eee133f30b7dc3bc122cbc6323ccf193e28618190858fb2bf160ac49c52",
+    "scripts/run_phase1_llm_latency.py": "8be47b52ff7c9deb53a93b89fc32aa48d06c4112e779a476063f3c2e4d5e990e",
+    "scripts/run_phase1_pedestrian.py": "395f3b10204d86ccb592f2464321ebc7f23cb2ef665686d1ef0f9574c2a25f40",
+    "scripts/run_phase2_batch_tasks.py": "1d999d0f1a7849d4185af23e022b5864b7addf07840fa5ca3dbae9e0c9c362ee",
+    "scripts/run_phase2_batch_tasks_gpt.py": "4a2d48ccfe5f7988109d11de59d09b187c3b04b1984d4976349187bcd76a7886",
+    "scripts/run_phase2_batch_tasks_groq.py": "319e1dd24a801af1dfb63c6922f478af3f8fa642d62860cadb6d4b8d3b7bc562",
+    "scripts/run_phase3_skills.py": "5eac29e9824296050a92535921123f47bc1a6e1cd5ef929bebe0af71c7bdb898",
+    "scripts/run_phase3_skills_gpt.py": "98c8154c213d62c340d8a6e4df808bd6fd2744d358c62c7237d9dfaddec6b9c4",
+    "scripts/run_phase3_skills_groq.py": "b56744b7aba1d228f50404578a6ea517b19b91022088c625ebd05e6ec105f4be",
+    "scripts/run_phase4_scenario.py": "8d8a82979e6aa55463396bb047dc7ad4bf4ed1a9c4c88a762a8e8986fbe3afbb",
+    "scripts/run_phase5_planner.py": "ca88786067076d07ce8cfbaecf0f557b2e4fe40b65a5ebc03a08b4ef5cd81558",
+    "scripts/run_phase6_decentralized.py": "03e75b8a597995a07b4b4bb0e84fafdc3a9b541a91e617edd164d94d6e34bc9b",
+    "scripts/run_phase6_decentralized_metric_collection.py": "19bbed042466438d2a7f51913a59377acc482e50d634726e02248092a5e6b05f",
+    "scripts/run_phase6_oba_guardrail.py": "a8a6c59d5635b438c1eae23e7651e7ba206b25f307c1647db2f58a578cde958d",
+    "scripts/run_phase6_p_tracking_llm.py": "42eb15f5a7d3dbcf653b859702bcb206b0718f8d4a3676b19331f40def0559ad",
+    "scripts/run_phase6_p_tracking_plotting.py": "d6cd233b5a77be2b142da16ce00473c71580fd8708dd0f39c72ce271ec4ca30d",
+    "scripts/run_phase6_p_tracking_zigzag.py": "480197ea5e24e93991da54c37da1d20339198377adfacfcd23d58d0fc9067b60",
+    "scripts/run_phase6_p_tracking_zigzag_long.py": "09ec9a884159a7ec705c5e9b7c0573371cb89436e418c9f9c7788f080ae9649e",
+    "scripts/run_phase7_resilience.py": "bbe34c5d6f025e539bdb6c98d7b1cd06c7be7584eb84fe4cf74f70367723bf5b",
+    "scripts/run_phase8_allocation.py": "66cada49f05fe5ac2d4690bc5e30b4232880fd9ed1ecf8fc8d7aedb1ed7c21ed",
+    "scripts/run_phase9_roles.py": "4f204a4de943987da22bc5cb071fac84e12d2250b0d276b7469a52bbe3ac54c7",
+    "scripts/validate_phase10_network.py": "2b215a4d567ec835152e3343414986ed7653ac7dd8a0e218bf4515b0e15c9ea2",
+    "tests/test_experiment_d_plots.py": "93d59f1636c020fd6fc34664563b4168c5faf1e55a7c4d23b9e4b62a0db9be88",
+    "tests/test_experiment_d_recovery.py": "b0155d6bbae0b92afbc54d9485eae582100faf3619162ea87c21ba1c5fe22d2b",
+    "tests/test_llm_commands.py": "e156f2b56e2d42f4f6097b14394023275ff07fcbb7b23da58ca8a255f6b47c4f",
+    "tests/test_phase10_network.py": "718fb8bb804355b92f58bb7ae8e97780b647cf45635579098f34512cc735b920",
+    "tests/test_phase10_sweep.py": "6903a6121773d85dd11d6cecb59ebe400d48d088e2984e8f685279fa865590b9",
+    "tests/test_phase11_guardian.py": "d45b3f24a55921306ba8b49317b71aa2a69a054c6f12643ca91728e896ca8388",
+    "tests/test_phase12_agents.py": "ed85a70c0ba8c226306cf00eb4b33c550189676446ad488547afaf38e2c90e8f",
+    "tests/test_phase12_progress.py": "7b2dfc0ad7b37be9d20cb60f7bebf3e2f155070439403fcb826c4f0f5ad1bcb3",
+    "tests/test_phase12_recovery.py": "df2cb07d0cfc6e93a2a9ccaa4d411713aa1854fdb67e611834701f41570c94d6",
+    "tests/test_phase13_analysis.py": "f48f672b7ba2636fd2e833c36f99b538ef9a2eb35288627e5a214f6568a35d4c",
+    "tests/test_phase13_comparison.py": "1975cd9ed86084257db86846c8027ed1f3c2587ca615988a259c257137d49e90",
+    "tests/test_phase13_followup.py": "09f9a539f77cfce707351e9cbaeb19177a4a98eb16f24a4f92d83210ad09b755",
+    "tests/test_phase13_resilience.py": "001f324e098baaed0fc53414c80fb87a40075cbeda281e440ad57dc149b7de19",
+    "tests/test_phase13_suite.py": "e468064bf138544f98938e4488ded708dc98cfca5c1e620d904de23e25e7cf3d",
+    "tests/test_phase14_runner.py": "ffc28c70ce29c4453244ce6298548536f21f3fa43f76d2c53be4f7175ba147a6",
+    "tests/test_phase15_metrics.py": "39aaf8dbd2278e4e396d913bc2204af827db70ab3e8bc540580d196786155863",
+    "tests/test_phase16_verification.py": "66aa9628d9ac05adcd07f45aec80be22470532770ece1f596f7e8cfcecfd94b0",
+    "tests/test_phase7_live.py": "6b871171511daf3eb4771b9fdf5ed219f4423987ba7e495d46b74c1ba8977d08",
+    "tests/test_phase7_plots.py": "4948a4ad304b60bad06c23532de2557d5b80f05d828b5e8ce155d0005a754015",
+    "tests/test_phase7_protocol.py": "ca7f846c30a840e3277c4eed6cac1e6c9c0e6a94379b8c6efff456a223c93592",
+    "tests/test_phase8_allocation.py": "942ac4bfe15492e219386573af69ce97d91feabcad783e82cb2b75e825387c34",
+    "tests/test_phase8_flight.py": "af2509e2cda1780a3f3d64831d7a615619c76657748405241b05d9ca3131efd5",
+    "tests/test_phase8_recovery.py": "a17bd528f7606cdeeb15038ede7e82d84dd21737268c4c7130190fd214f73a42",
+    "tests/test_phase8_view.py": "0061b2d5da15c1a8c7ab3ef40f0d1934f45aad460689e3e291d3c51b671126cd",
+    "tests/test_phase9_roles.py": "ae93ad41cd0ab330d838e854b419bdaf65d83a547556c15c4574f006179f1a72"
+  },
+  "source_changed_during_run": false,
+  "tests": [
+    {
+      "test_id": "test_phase10_network.NetworkTests.test_mission_replay_all_conditions",
+      "status": "passed",
+      "detail": null
+    },
+    {
+      "test_id": "test_phase10_network.NetworkTests.test_statistical_loss_latency_and_reproducibility",
+      "status": "passed",
+      "detail": null
+    },
+    {
+      "test_id": "test_phase10_network.NetworkTests.test_target_and_failure_scenario_replay",
+      "status": "passed",
+      "detail": null
+    },
+    {
+      "test_id": "test_phase13_comparison.ComparisonTests.test_seeded_network_replay_reproduces_actual_message_outcomes",
+      "status": "passed",
+      "detail": null
+    },
+    {
+      "test_id": "test_phase16_verification.DeterminismTests.test_configured_targets_and_injected_fault_schedule_repeat",
+      "status": "passed",
+      "detail": null
+    },
+    {
+      "test_id": "test_phase16_verification.DeterminismTests.test_deterministic_execution_repeats_across_process_hash_seeds",
+      "status": "passed",
+      "detail": null
+    }
+  ],
+  "coverage": {
+    "unit": {
+      "task_cost": {
+        "test_phase8_allocation.AllocationTests.test_cost_components_and_ineligibility": "not_run"
+      },
+      "tie_breaking": {
+        "test_phase8_allocation.AllocationTests.test_claim_order_independent": "not_run"
+      },
+      "lease_expiration": {
+        "test_phase8_allocation.AllocationTests.test_expired_lease_not_revived_by_late_progress": "not_run"
+      },
+      "message_serialization": {
+        "test_phase7_protocol.ProtocolTests.test_all_types_round_trip": "not_run"
+      },
+      "message_expiration": {
+        "test_phase7_protocol.ProtocolTests.test_expiry_and_log_fields": "not_run"
+      },
+      "packet_loss_sampling": {
+        "test_phase10_network.NetworkTests.test_statistical_loss_latency_and_reproducibility": "passed"
+      },
+      "latency_scheduling": {
+        "test_phase10_network.NetworkTests.test_scheduled_delivery_and_expiration": "not_run",
+        "test_phase10_network.NetworkTests.test_jitter_reorders_by_network_arrival": "not_run"
+      },
+      "role_transitions": {
+        "test_phase9_roles.RoleTests.test_scout_can_become_relay_and_reprioritize": "not_run"
+      },
+      "belief_aging": {
+        "test_phase9_roles.HealthTests.test_silence_never_means_confirmed_failure": "not_run",
+        "test_phase11_guardian.GuardianTests.test_stale_missing_beliefs_and_low_confidence": "not_run"
+      },
+      "geofence": {
+        "test_phase11_guardian.GuardianTests.test_all_waypoints_and_segments": "not_run"
+      },
+      "battery": {
+        "test_phase11_guardian.GuardianTests.test_battery_fallbacks_and_energy_budget": "not_run"
+      },
+      "invalid_llm_output": {
+        "test_phase12_agents.AgentTests.test_schema_blocks_code_unknown_tools_extra_params_and_nan": "not_run"
+      }
+    },
+    "integration": {
+      "two_agents_two_tasks": {
+        "test_phase16_verification.FlightRegressionTests.test_all_five_cases_use_observed_motion_and_guarded_effects": "not_run"
+      },
+      "four_agents_four_tasks": {
+        "test_phase8_allocation.AllocationTests.test_mock_exit_and_repeatability": "not_run",
+        "test_phase16_verification.FlightRegressionTests.test_all_five_cases_use_observed_motion_and_guarded_effects": "not_run"
+      },
+      "disappearance_and_reassignment": {
+        "test_phase8_allocation.AllocationTests.test_silent_owner_reassigned": "not_run",
+        "test_phase16_verification.FlightRegressionTests.test_all_five_cases_use_observed_motion_and_guarded_effects": "not_run"
+      },
+      "partition": {
+        "test_phase16_verification.TransportIntegrationTests.test_partition_prevents_cross_group_receipt_until_link_restored": "not_run",
+        "test_phase13_comparison.ComparisonTests.test_partitioned_controller_reports_are_not_hidden_global_state": "not_run"
+      },
+      "delayed_claim_conflict": {
+        "test_phase16_verification.TransportIntegrationTests.test_delayed_competing_claims_converge_to_lower_valid_bid": "not_run"
+      },
+      "relay_replacement": {
+        "test_phase9_roles.RoleTests.test_relay_loss_elects_reserve": "not_run"
+      },
+      "malformed_llm_fallback": {
+        "test_phase12_agents.AgentTests.test_one_correction_then_deterministic_fallback": "not_run"
+      }
+    },
+    "determinism": {
+      "network_events": {
+        "test_phase10_network.NetworkTests.test_statistical_loss_latency_and_reproducibility": "passed",
+        "test_phase13_comparison.ComparisonTests.test_seeded_network_replay_reproduces_actual_message_outcomes": "passed"
+      },
+      "targets_and_faults": {
+        "test_phase16_verification.DeterminismTests.test_configured_targets_and_injected_fault_schedule_repeat": "passed",
+        "test_phase10_network.NetworkTests.test_target_and_failure_scenario_replay": "passed"
+      },
+      "policies_and_motion": {
+        "test_phase16_verification.DeterminismTests.test_deterministic_execution_repeats_across_process_hash_seeds": "passed",
+        "test_phase10_network.NetworkTests.test_mission_replay_all_conditions": "passed"
+      }
+    }
+  },
+  "live_airsim_regressions": {
+    "single_waypoint": "not_run",
+    "two_nonconflicting": "not_run",
+    "four_search": "not_run",
+    "reassignment": "not_run",
+    "return_home": "not_run"
+  },
+  "limitations": [
+    "Simulator-free success does not establish AirSim flight or physical safety",
+    "Fixed configured targets, not a randomized target placer",
+    "Actual-model residual variability is outside deterministic replay tests"
+  ]
+}

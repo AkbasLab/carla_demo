@@ -1,0 +1,21 @@
+{
+  "case": "single_waypoint",
+  "backend": "airsim",
+  "passed": false,
+  "mission_complete": false,
+  "error": {
+    "type": "ModuleNotFoundError",
+    "message": "No module named 'airsim'"
+  },
+  "duplicate_completions": 0,
+  "failed_agent": null,
+  "affected_tasks": [],
+  "recovered_tasks": [],
+  "return_home_observed": false,
+  "cleanup_warnings": [],
+  "limitations": [
+    "Kinematic mock is not live evidence",
+    "Perfect transport and shared safety observer; not decentralized safety estimation",
+    "Live cleanup requests hover and retains API control; no landing verification"
+  ]
+}

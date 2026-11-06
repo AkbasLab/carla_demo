@@ -1,0 +1,199 @@
+{
+  "case": "single_waypoint",
+  "backend": "airsim",
+  "controlled_vehicles": [
+    "Drone1"
+  ],
+  "mission": {
+    "mission": "Four drones cooperatively complete all four configured search routes. Use local beliefs and delivered messages; obey task ownership and runtime safety.",
+    "guardian": {
+      "flight_bounds": {
+        "x_min": -10,
+        "x_max": 25,
+        "y_min": -10,
+        "y_max": 40,
+        "z_min": 0,
+        "z_max": 30
+      },
+      "keepouts": [],
+      "landing_site": {
+        "x": 0,
+        "y": 0,
+        "ground_z": 28,
+        "radius_m": 1,
+        "surveyed_clear": false
+      },
+      "ground_z": 28,
+      "min_height_m": 2,
+      "max_height_m": 15,
+      "max_speed_mps": 3,
+      "max_state_age_s": 2,
+      "max_peer_age_s": 2
+    },
+    "vehicles": {
+      "Drone1": {
+        "role": "SCOUT",
+        "start_position": [
+          0,
+          0,
+          25
+        ],
+        "home": [
+          0,
+          0,
+          25
+        ],
+        "frame_offset_m": [
+          0,
+          0,
+          0
+        ],
+        "assumed_battery_percent": 80
+      },
+      "Drone2": {
+        "role": "SCOUT",
+        "start_position": [
+          0,
+          5,
+          25
+        ],
+        "home": [
+          0,
+          5,
+          25
+        ],
+        "frame_offset_m": [
+          0,
+          5,
+          0
+        ],
+        "assumed_battery_percent": 80
+      },
+      "Drone3": {
+        "role": "SCOUT",
+        "start_position": [
+          0,
+          10,
+          25
+        ],
+        "home": [
+          0,
+          10,
+          25
+        ],
+        "frame_offset_m": [
+          0,
+          10,
+          0
+        ],
+        "assumed_battery_percent": 80
+      },
+      "Drone4": {
+        "role": "SCOUT",
+        "start_position": [
+          0,
+          15,
+          25
+        ],
+        "home": [
+          0,
+          15,
+          25
+        ],
+        "frame_offset_m": [
+          0,
+          15,
+          0
+        ],
+        "assumed_battery_percent": 80
+      }
+    },
+    "relay_point": [
+      0,
+      25,
+      25
+    ],
+    "tasks": [
+      {
+        "task_id": "SEARCH_SECTOR_A",
+        "waypoints": [
+          [
+            4,
+            0,
+            25
+          ],
+          [
+            8,
+            0,
+            25
+          ]
+        ],
+        "priority": 1
+      },
+      {
+        "task_id": "SEARCH_SECTOR_B",
+        "waypoints": [
+          [
+            4,
+            5,
+            25
+          ],
+          [
+            8,
+            5,
+            25
+          ]
+        ],
+        "priority": 1
+      },
+      {
+        "task_id": "SEARCH_SECTOR_C",
+        "waypoints": [
+          [
+            4,
+            10,
+            25
+          ],
+          [
+            8,
+            10,
+            25
+          ]
+        ],
+        "priority": 1
+      },
+      {
+        "task_id": "SEARCH_SECTOR_D",
+        "waypoints": [
+          [
+            4,
+            15,
+            25
+          ],
+          [
+            8,
+            15,
+            25
+          ]
+        ],
+        "priority": 1
+      }
+    ],
+    "note": "Calibrate against your actual CARLAAir map. Example assumes shared ground NED Z=28 and API-local vehicle frames with Y offsets 0/5/10/15. Battery values below are explicit test assumptions, not measured telemetry. Landing-site clearance is not asserted."
+  },
+  "mission_sha256": "45a2d974382537055a5bf8b8156ab8d64cb4614e276afcdddf96bde4f96276ca",
+  "duration_s": 180.0,
+  "dt": 0.1,
+  "speed": 1.0,
+  "lease_seconds": 20.0,
+  "fail_at_s": 1.0,
+  "safety_observation": "all configured vehicle RPC telemetry, including stopped actors",
+  "started_at_utc": "2026-11-06T03:56:05Z",
+  "status": "error",
+  "finished_at_utc": "2026-11-06T03:56:05Z",
+  "error": {
+    "type": "ModuleNotFoundError",
+    "message": "No module named 'airsim'"
+  },
+  "source_sha256": "1e1a499cc58bcdde33867dc628d60ddbde3cba42afd3b22b37776f52acb00bc3"
+}
