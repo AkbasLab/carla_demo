@@ -19,6 +19,7 @@ from agentic_uav.policy.mission import load_mission
 from agentic_uav.policy.structured import OllamaProvider,ReplayProvider
 from agentic_uav.policy.evidence import admit_requests,policy_evidence
 from .resilience import settings as resilience_settings, RetryingEndpoint, ReachablePeerGuardian
+from .pilot_resilience_v2 import settings as pilot_v2_settings, OwnVehicleTelemetry, owned_motion_trigger, agent_class as pilot_v2_agent_class
 from .architectures import ComparisonAgent,FixedTaskAgent,FleetController,RulePolicy,CONTROLLER,BID_WEIGHTS
 
 DEFAULTS=dict(schema_version=1,architecture='C',backend='mock',mission_config='configs/phase12/mission.example.json',
@@ -26,7 +27,7 @@ DEFAULTS=dict(schema_version=1,architecture='C',backend='mock',mission_config='c
     lease_seconds=180.,bid_window=30.,decision_interval=.5,inference_timeout=30.,max_context_age=35.,
     inference_parallelism=1,progress_timeout=60.,beacon_interval_s=.5,command_timeout_s=3.,state_timeout_s=2.,
     policy=dict(provider='replay',model=None,model_digest=None,ollama_url='http://localhost:11434'),
-    resilience=resilience_settings(),
+    resilience=resilience_settings(),pilot_resilience_v2=pilot_v2_settings(),
     scenario=dict(fail_agent=None,fail_at_s=8.),
     initial_assignments=dict(Drone1=['SEARCH_SECTOR_A'],Drone2=['SEARCH_SECTOR_B'],Drone3=['SEARCH_SECTOR_C'],Drone4=['SEARCH_SECTOR_D']),
     ablations=dict(persistent_memory=True,task_leases=True,dynamic_roles=True,perfect_communication=False,fallback_policy=False),
@@ -39,11 +40,14 @@ def configuration(values=None):
     c=copy.deepcopy(DEFAULTS)
     for key,value in values.items():
         if key=='resilience':c[key]=resilience_settings(value)
+        elif key=='pilot_resilience_v2':c[key]=pilot_v2_settings(value)
         elif key in ('policy','scenario','ablations'):
             if not isinstance(value,dict) or set(value)-set(DEFAULTS[key]):raise ValueError('Invalid '+key+' settings')
             c[key].update(value)
         else:c[key]=copy.deepcopy(value)
     if c['schema_version']!=1 or c['architecture'] not in ('A','B','C','D'):raise ValueError('Choose architecture A, B, C or D')
+    if c['pilot_resilience_v2']['enabled'] and (c['architecture'] not in ('C','D') or not c['resilience']['enabled']):
+        raise ValueError('Phase 17 V2 requires C/D and bounded-horizon resilience')
     if c['backend']!='mock':raise ValueError('Phase 13 initial comparison supports mock flight only; live comparison is not validated')
     if c['condition'] not in ('nominal','moderate','severe','partitioned'):raise ValueError('Unknown network condition')
     for key in ('dt','lease_seconds','bid_window','decision_interval','inference_timeout','max_context_age','progress_timeout','beacon_interval_s','command_timeout_s','state_timeout_s'):
@@ -111,11 +115,12 @@ def run_comparison(values,provider=None):
     guardian=ReachablePeerGuardian(guard_config,c['resilience'],c['dt']) if c['resilience']['enabled'] else RuntimeGuardian(guard_config);gate=GuardedExecutor(guardian,backend.execute,backend.cancel)
     settings=dict(persistent_memory=c['ablations']['persistent_memory'],dynamic_roles=c['ablations']['dynamic_roles'],task_leases=c['ablations']['task_leases'],
         beacon_interval_s=c['beacon_interval_s'],command_timeout_s=c['command_timeout_s'],state_timeout_s=c['state_timeout_s'],
-        resilience=c['resilience'],horizon_s=horizon,lease_seconds=c['lease_seconds'],bid_window=c['bid_window'],minimum_battery_percent=guard_config.min_battery_reserve_percent)
+        resilience=c['resilience'],pilot_resilience_v2=c['pilot_resilience_v2'],horizon_s=horizon,lease_seconds=c['lease_seconds'],bid_window=c['bid_window'],minimum_battery_percent=guard_config.min_battery_reserve_percent)
     lease=c['lease_seconds']  # Ablation changes expiry, never heartbeat eligibility or packet TTL.
     initial_roles={a:v['role'] for a,v in m['vehicles'].items()};agents=[]
     for aid,v in m['vehicles'].items():
         cls=FixedTaskAgent if architecture in ('A','B') else ComparisonAgent
+        if c['pilot_resilience_v2']['enabled']:cls=pilot_v2_agent_class(cls)
         extra=dict(initial_task_ids=c['initial_assignments'][aid] if architecture=='B' else (),horizon=horizon) if cls==FixedTaskAgent else {}
         agent=cls(aid,[p for p in ids if p!=aid],endpoints[aid],tasks,v['start_position'],role=v['role'],routes=routes,
             home=v['home'],relay_point=m['relay_point'],guardian=guardian,output_dir=out,provider=provider,mission=m['mission'],
@@ -123,13 +128,20 @@ def run_comparison(values,provider=None):
             decision_interval=c['decision_interval'],inference_timeout=c['inference_timeout'],max_context_age=c['max_context_age'],
             progress_timeout=c['progress_timeout'],deadline_bidding=architecture in ('C','D'),inference_capacity=c['inference_parallelism'],**extra)
         agents.append(agent)
+    telemetry={}
+    if c['pilot_resilience_v2']['enabled']:
+        if c['pilot_resilience_v2']['independent_telemetry']:
+            telemetry={a.agent_id:OwnVehicleTelemetry(a.emit,a.peers,c['pilot_resilience_v2']['telemetry_interval_s']) for a in agents}
+        if fail and c['pilot_resilience_v2']['fault_mode']=='owned_motion':
+            actor=next(a for a in agents if a.agent_id==fail)
+            scenario.trigger=owned_motion_trigger(actor,gate,c['pilot_resilience_v2'],tuple(actor.position))
     controller=FleetController(endpoints[CONTROLLER],tasks,ids,settings) if architecture=='A' else None
     shared=dict(mission=m,network=asdict(network_config),scenario=c['scenario'],seed=c['seed'],dt=c['dt'],ticks=c['ticks'],
         lease_seconds=c['lease_seconds'],bid_window=c['bid_window'],beacon_interval_s=c['beacon_interval_s'],
         command_timeout_s=c['command_timeout_s'],state_timeout_s=c['state_timeout_s'],backend=c['backend'],bid_weights=BID_WEIGHTS,
         decision_interval=c['decision_interval'],inference_timeout=c['inference_timeout'],max_context_age=c['max_context_age'],
         progress_timeout=c['progress_timeout'],inference_parallelism=c['inference_parallelism'],clock_mode=c['clock_mode'],
-        resilience=c['resilience'],primary_policy_configuration=c['policy'],initial_assignments=c['initial_assignments'])
+        resilience=c['resilience'],pilot_resilience_v2=c['pilot_resilience_v2'],primary_policy_configuration=c['policy'],initial_assignments=c['initial_assignments'])
     sources=list(Path('agentic_uav/experiments').glob('*.py'))+list(Path('agentic_uav/policy').glob('*.py'))+[
         Path('agentic_uav/comm/degraded.py'),Path('agentic_uav/comm/protocol.py'),Path('agentic_uav/control/runtime_guardian.py'),
         Path('agentic_uav/control/scenario_manager.py'),Path('agentic_uav/coordination/contract_net.py'),Path('agentic_uav/coordination/flight_executor.py'),
@@ -139,7 +151,7 @@ def run_comparison(values,provider=None):
         effective_clock='wall' if wall else 'simulated',effective_provider=identity,effective_task_lease_seconds=None if expiry_disabled else lease,
         task_lease_expiry_disabled=expiry_disabled,lease_deadline_when_disabled_s=horizon+1 if expiry_disabled else None,
         agent_class=type(agents[0]).__name__,skills='Phase12 WaypointExecutor + MockFlight',guardian=('ReachablePeerGuardian' if c['resilience']['enabled'] else 'Phase11 RuntimeGuardian')+' + GuardedExecutor',
-        benchmark_version='resilience_v2' if c['resilience']['enabled'] else 'pilot_v1',
+        benchmark_version='phase17_resilience_v2' if c['pilot_resilience_v2']['enabled'] else 'resilience_v2' if c['resilience']['enabled'] else 'pilot_v1',
         uncertainty_assumptions='Every peer speed <= guardian maximum speed; reachable balls include observation age and segment horizon' if c['resilience']['enabled'] else 'legacy constant-velocity peer prediction',
         allocation_authority='FleetController delivered inbox' if controller else 'operator fixed initial assignments' if architecture=='B' else 'local delivered-message contract net',
         communication_health_inputs='ObservedEndpoint heartbeat/sequence/ack/RTT + local staged peer health',
@@ -161,6 +173,8 @@ def run_comparison(values,provider=None):
             for a in agents:
                 state=backend.sample(a.agent_id);a.position=list(state['position']);a.velocity=tuple(state['velocity'])
                 a.battery=state['battery'];a.phase=state['phase'];a.state_time=now
+                if a.agent_id in telemetry:
+                    telemetry[a.agent_id].tick(now,position=a.position,velocity=a.velocity,battery=a.battery,role=a.role,observed_at=a.state_time)
             if c['resilience']['enabled']:
                 for aid,endpoint in endpoints.items():
                     if aid not in scenario.stopped:endpoint.tick()

@@ -450,6 +450,18 @@ python scripts/run_phase17_pilots.py run \
 
 Pilot seeds 41–43 are separate from reserved held-out seeds 101–110. Final freezing requires actual model evidence, meaningful calibrated levels and written rationale; it locks prompts/rules/metrics/network/scenarios and prepares a separate held-out batch. Replay success is not an LLM result or completion of the Phase 17 exit criterion. See the [Phase 17 guide](docs/phase17_pilot_experiments.md) for planning, analysis, calibration and freeze commands.
 
+### Small recovery diagnostics: Phase 17 resilience V2
+
+The opt-in V2 runner starts with two deterministic smoke cases or four pinned-model cases, one development seed/team size at a time, with a 240-second horizon. It corrects whole-route deadline calculations, bounds repeated blocking/rebidding, and stores verified lossless ZIP evidence. The new default scenario explicitly stops a task policy while its independent physical telemetry service continues over the same degraded bus; full-silence and fixed-time options remain available. It preserves stale-peer safety checks and does not retroactively replace the original pilot results.
+
+```bash
+python -u scripts/run_phase17_resilience_v2.py run \
+  --stage smoke --team-size 4 --seed 7 \
+  --output-dir results/phase17/v2_smoke_local1
+```
+
+Inspect the report before running `--stage focused --profile pinned` or a separate `--stage severe` batch. See [the V2 guide](docs/phase17_resilience_v2.md) for model settings, explicit fault/telemetry assumptions, small-batch commands and archive restoration. These diagnostic sets do not create a final calibration lock.
+
 ## Phase 18: prospective factorial experiments
 
 The main-experiment runner defines A/B/C/D × two/four drones × four communication profiles × two fault conditions: **64 cells and 1,280 runs with 20 common held-out seeds**. An eight-drone extension gives 96 cells / 1,920 runs after smaller-case validation. It reuses the mock-flight comparison, pinned local model, shared guardian and registered Phase 15 metrics.

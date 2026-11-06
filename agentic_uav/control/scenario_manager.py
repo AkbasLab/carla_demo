@@ -13,11 +13,11 @@ class ExperimentSchedule:
     """
     def __init__(self,fail_agent=None,fail_at_s=8.):
         if not math.isfinite(fail_at_s) or fail_at_s<0:raise ValueError('Invalid failure time')
-        self.fail_agent=fail_agent;self.fail_at_s=fail_at_s;self.stopped=set();self.events=[]
+        self.fail_agent=fail_agent;self.fail_at_s=fail_at_s;self.stopped=set();self.events=[];self.trigger=None
 
     def advance(self,now):
         newly=[]
-        if self.fail_agent and now>=self.fail_at_s and self.fail_agent not in self.stopped:
+        if self.fail_agent and now>=self.fail_at_s and self.fail_agent not in self.stopped and (self.trigger is None or self.trigger(now)):
             self.stopped.add(self.fail_agent);newly.append(self.fail_agent)
             self.events.append(dict(event='actor_silenced',time_s=now,agent_id=self.fail_agent))
         return newly
