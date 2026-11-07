@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "run_id": "76ac714495c04baab29217abf585e4b6",
+  "run_id": "900d8789438646a79a6c213561ee2d43",
   "experiment_id": "D_n2_nominal_loss_s41",
   "requested_configuration": {
     "experiment_id": "D_n2_nominal_loss_s41",
@@ -63,20 +63,17 @@
   "architecture": "D",
   "scenario_id": "phase17_four_routes",
   "random_seed": 41,
-  "started_at_utc": "2026-11-07T15:18:01.091981+00:00",
-  "finished_at_utc": "2026-11-07T15:18:31.224437+00:00",
-  "status": "error",
-  "run_completed": false,
-  "mission_complete": null,
-  "error": {
-    "type": "TimeoutError",
-    "message": "timed out"
-  },
+  "started_at_utc": "2026-11-07T18:58:10.979568+00:00",
+  "finished_at_utc": "2026-11-07T19:08:24.060539+00:00",
+  "status": "incomplete",
+  "run_completed": true,
+  "mission_complete": false,
+  "error": null,
   "configuration_files": [
     {
-      "source_path": "/opt/carla_demo/results/phase17/main_calibration_run1/pilot_batch.json",
-      "snapshot_path": "configuration_files/e2e7e2eb6f0f_pilot_batch.json",
-      "sha256": "e2e7e2eb6f0f8c3eff1917dd579285237ecc10f9d3af81ea7ea54b3370184dd8"
+      "source_path": "/opt/carla_demo/configs/phase17/retry_three.local.json",
+      "snapshot_path": "configuration_files/e4ed2c12fba4_retry_three.local.json",
+      "sha256": "e4ed2c12fba4bfac3ca2789526733e4ce9bcde8037a0ccfb4730930f61122f63"
     },
     {
       "source_path": "/opt/carla_demo/results/phase17/main_calibration_run1/fixtures/team_2.json",
@@ -85,8 +82,8 @@
     }
   ],
   "provenance": {
-    "git_commit_sha": "7a26e8ba49945ff0bc75faf18d8552104f87e9df",
-    "git_tracked_dirty": false,
+    "git_commit_sha": "17a3befea808ffb090aaa7ba570653fe7188cb75",
+    "git_tracked_dirty": true,
     "source_sha256": {
       "agentic_uav/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "agentic_uav/comm/bus.py": "b387f7dff411cb23ef8ccad22e05abbed7a88494009d66ffd3ee5aef12c2f5f1",
@@ -157,11 +154,11 @@
       }
     }
   },
-  "model_identity_verified": false,
+  "model_identity_verified": true,
   "instrumentation": "phase14_phase15_observers_v2",
   "metric_registration": {
     "definition_id": "phase15.route_metrics.v1",
-    "registered_at_utc": "2026-11-07T14:11:24.658476+00:00",
+    "registered_at_utc": "2026-11-07T18:58:10.951428+00:00",
     "contract_sha256": "dfe5187fff88c4b7cd7f485708a14a16e87be70d68e47ea49b584825af36cef5",
     "evaluator_source_sha256": "90c96d19d9d8b13391d66138dc53ce30b5461b68352b36dc79f2632a11821a92",
     "definitions_sha256": "61e807cb0a2d1fcef7ed95825dbd1603a2357132f5869d601a7c745f44490222"
@@ -239,7 +236,7 @@
       "perfect_communication": false,
       "fallback_policy": false
     },
-    "output_dir": "/opt/carla_demo/results/phase17/main_calibration_run1/runs/D_n2_nominal_loss_s41/run"
+    "output_dir": "results/phase17/main_calibration_repair2/D_n2_nominal_loss_s41/run"
   },
   "team_size": 2,
   "network_profile": "nominal",
@@ -252,32 +249,79 @@
     "ollama_url": "http://localhost:11434"
   },
   "budget_s": 600.0,
+  "effective_provider": {
+    "provider": "ollama",
+    "model": "phase12-agent:pinned",
+    "digest": "46e0c10c039e019119339687c3c1757cc81b9da49709a3b3924863ba87ca666e",
+    "options": {
+      "temperature": 0,
+      "seed": 41,
+      "num_predict": 512,
+      "num_ctx": 8192
+    },
+    "server": "http://localhost:11434",
+    "server_version": "0.32.1",
+    "details": {
+      "parent_model": "",
+      "format": "gguf",
+      "family": "llama",
+      "families": [
+        "llama"
+      ],
+      "parameter_size": "8.0B",
+      "quantization_level": "Q4_K_M",
+      "context_length": 131072,
+      "embedding_length": 4096
+    },
+    "warmup": {
+      "performed": true,
+      "latency_s": 12.875179043010576
+    }
+  },
   "source_changed_during_run": false,
   "event_counts": {
     "RUN_STARTED": 1,
-    "RUN_FAILED": 1,
+    "MISSION_STARTED": 1,
+    "OBSERVATION_RECEIVED": 6246,
+    "MESSAGE_SENT": 2359,
+    "TASK_ANNOUNCED": 8,
+    "MESSAGE_RECEIVED": 591,
+    "BELIEF_UPDATED": 244,
+    "TASK_BID": 3,
+    "TASK_ASSIGNED": 4,
+    "LLM_CALLED": 65,
+    "POLICY_EVENT": 94,
+    "SKILL_STARTED": 6,
+    "SKILL_COMPLETED": 5,
+    "LLM_USAGE": 63,
+    "DECISION_PROPOSED": 63,
+    "GUARDIAN_INTERVENED": 93,
+    "TASK_STATE_SNAPSHOT": 3,
+    "FAULT_INJECTED": 1,
+    "SKILL_CANCELLED": 1,
+    "MISSION_INCOMPLETE": 1,
     "RUN_FINISHED": 1
   },
   "event_coverage": {
-    "MISSION_STARTED": 0,
-    "OBSERVATION_RECEIVED": 0,
-    "BELIEF_UPDATED": 0,
-    "MESSAGE_SENT": 0,
+    "MISSION_STARTED": 1,
+    "OBSERVATION_RECEIVED": 6246,
+    "BELIEF_UPDATED": 244,
+    "MESSAGE_SENT": 2359,
     "MESSAGE_DROPPED": 0,
-    "MESSAGE_RECEIVED": 0,
-    "TASK_ANNOUNCED": 0,
-    "TASK_BID": 0,
-    "TASK_ASSIGNED": 0,
+    "MESSAGE_RECEIVED": 591,
+    "TASK_ANNOUNCED": 8,
+    "TASK_BID": 3,
+    "TASK_ASSIGNED": 4,
     "TASK_RELEASED": 0,
     "ROLE_CHANGED": 0,
-    "LLM_CALLED": 0,
-    "DECISION_PROPOSED": 0,
-    "GUARDIAN_INTERVENED": 0,
-    "SKILL_STARTED": 0,
-    "SKILL_COMPLETED": 0,
+    "LLM_CALLED": 65,
+    "DECISION_PROPOSED": 63,
+    "GUARDIAN_INTERVENED": 93,
+    "SKILL_STARTED": 6,
+    "SKILL_COMPLETED": 5,
     "TARGET_FOUND": 0,
-    "FAULT_INJECTED": 0,
+    "FAULT_INJECTED": 1,
     "MISSION_COMPLETED": 0
   },
-  "failure_observed": false
+  "failure_observed": true
 }

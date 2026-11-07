@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "started_at_utc": "2026-11-07T20:15:08.060500+00:00",
+  "finished_at_utc": "2026-11-07T20:45:22.224658+00:00",
+  "status": "finished",
+  "planned_experiments": 3,
+  "runs": [
+    {
+      "experiment_id": "D_n2_nominal_loss_s41",
+      "status": "incomplete",
+      "run_completed": true,
+      "mission_complete": false,
+      "error": null,
+      "result_dir": "results/phase17/main_calibration_repair2/D_n2_nominal_loss_s41"
+    },
+    {
+      "experiment_id": "D_n2_severe_control_s41",
+      "status": "incomplete",
+      "run_completed": true,
+      "mission_complete": false,
+      "error": null,
+      "result_dir": "results/phase17/main_calibration_repair2/D_n2_severe_control_s41"
+    },
+    {
+      "experiment_id": "D_n2_severe_loss_s41",
+      "status": "incomplete",
+      "run_completed": true,
+      "mission_complete": false,
+      "error": null,
+      "result_dir": "results/phase17/main_calibration_repair2/D_n2_severe_loss_s41"
+    }
+  ],
+  "finished_runs": 3,
+  "successful_missions": 0,
+  "errors": 0,
+  "evaluation": {
+    "definition_id": "phase15.route_metrics.v1",
+    "prespecified": true,
+    "evaluation_type": "predeclared",
+    "evaluator_source_sha256": "90c96d19d9d8b13391d66138dc53ce30b5461b68352b36dc79f2632a11821a92",
+    "experiments_evaluated": 3,
+    "mission_successes": 0,
+    "not_started": 0,
+    "censored_missions": 3,
+    "evidence_issues": 0,
+    "limitations": [
+      "Route waypoint work is not area coverage",
+      "Absent collision/target/return sensing is not a zero measurement",
+      "Recovery acceptance is local ownership, not consensus or safe execution",
+      "Physical/between-sample safety is not certified",
+      "Retrospective analysis does not establish preregistration"
+    ]
+  }
+}
