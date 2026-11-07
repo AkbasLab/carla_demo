@@ -1,8 +1,6 @@
 {
   "schema_version": 1,
-  "started_at_utc": "2026-11-07T14:11:24.662226+00:00",
-  "finished_at_utc": "2026-11-07T16:28:06.228976+00:00",
-  "status": "interrupted",
+  "status": "partial",
   "planned_experiments": 48,
   "runs": [
     {
@@ -11,7 +9,7 @@
       "run_completed": true,
       "mission_complete": true,
       "error": null,
-      "result_dir": "/opt/carla_demo/results/phase17/main_calibration_run1/runs/C_n2_nominal_control_s41"
+      "result_dir": "results/phase17/main_calibration_run1/runs/C_n2_nominal_control_s41"
     },
     {
       "experiment_id": "C_n2_nominal_loss_s41",
@@ -19,7 +17,7 @@
       "run_completed": true,
       "mission_complete": false,
       "error": null,
-      "result_dir": "/opt/carla_demo/results/phase17/main_calibration_run1/runs/C_n2_nominal_loss_s41"
+      "result_dir": "results/phase17/main_calibration_run1/runs/C_n2_nominal_loss_s41"
     },
     {
       "experiment_id": "C_n2_severe_control_s41",
@@ -27,7 +25,7 @@
       "run_completed": true,
       "mission_complete": false,
       "error": null,
-      "result_dir": "/opt/carla_demo/results/phase17/main_calibration_run1/runs/C_n2_severe_control_s41"
+      "result_dir": "results/phase17/main_calibration_run1/runs/C_n2_severe_control_s41"
     },
     {
       "experiment_id": "C_n2_severe_loss_s41",
@@ -35,7 +33,7 @@
       "run_completed": true,
       "mission_complete": false,
       "error": null,
-      "result_dir": "/opt/carla_demo/results/phase17/main_calibration_run1/runs/C_n2_severe_loss_s41"
+      "result_dir": "results/phase17/main_calibration_run1/runs/C_n2_severe_loss_s41"
     },
     {
       "experiment_id": "C_n4_nominal_control_s41",
@@ -43,7 +41,7 @@
       "run_completed": true,
       "mission_complete": true,
       "error": null,
-      "result_dir": "/opt/carla_demo/results/phase17/main_calibration_run1/runs/C_n4_nominal_control_s41"
+      "result_dir": "results/phase17/main_calibration_run1/runs/C_n4_nominal_control_s41"
     },
     {
       "experiment_id": "C_n4_nominal_loss_s41",
@@ -51,7 +49,7 @@
       "run_completed": true,
       "mission_complete": false,
       "error": null,
-      "result_dir": "/opt/carla_demo/results/phase17/main_calibration_run1/runs/C_n4_nominal_loss_s41"
+      "result_dir": "results/phase17/main_calibration_run1/runs/C_n4_nominal_loss_s41"
     },
     {
       "experiment_id": "C_n4_severe_control_s41",
@@ -59,7 +57,7 @@
       "run_completed": true,
       "mission_complete": false,
       "error": null,
-      "result_dir": "/opt/carla_demo/results/phase17/main_calibration_run1/runs/C_n4_severe_control_s41"
+      "result_dir": "results/phase17/main_calibration_run1/runs/C_n4_severe_control_s41"
     },
     {
       "experiment_id": "C_n4_severe_loss_s41",
@@ -67,51 +65,39 @@
       "run_completed": true,
       "mission_complete": false,
       "error": null,
-      "result_dir": "/opt/carla_demo/results/phase17/main_calibration_run1/runs/C_n4_severe_loss_s41"
+      "result_dir": "results/phase17/main_calibration_run1/runs/C_n4_severe_loss_s41"
     },
     {
       "experiment_id": "D_n2_nominal_control_s41",
-      "status": "error",
-      "run_completed": false,
-      "mission_complete": null,
-      "error": {
-        "type": "TimeoutError",
-        "message": "timed out"
-      },
-      "result_dir": "/opt/carla_demo/results/phase17/main_calibration_run1/runs/D_n2_nominal_control_s41"
+      "status": "completed",
+      "run_completed": true,
+      "mission_complete": true,
+      "error": null,
+      "result_dir": "results/phase17/main_calibration_run1/runs/D_n2_nominal_control_s41"
     },
     {
       "experiment_id": "D_n2_nominal_loss_s41",
-      "status": "error",
-      "run_completed": false,
-      "mission_complete": null,
-      "error": {
-        "type": "TimeoutError",
-        "message": "timed out"
-      },
-      "result_dir": "/opt/carla_demo/results/phase17/main_calibration_run1/runs/D_n2_nominal_loss_s41"
+      "status": "incomplete",
+      "run_completed": true,
+      "mission_complete": false,
+      "error": null,
+      "result_dir": "results/phase17/main_calibration_run1/runs/D_n2_nominal_loss_s41"
     },
     {
       "experiment_id": "D_n2_severe_control_s41",
-      "status": "error",
-      "run_completed": false,
-      "mission_complete": null,
-      "error": {
-        "type": "TimeoutError",
-        "message": "timed out"
-      },
-      "result_dir": "/opt/carla_demo/results/phase17/main_calibration_run1/runs/D_n2_severe_control_s41"
+      "status": "incomplete",
+      "run_completed": true,
+      "mission_complete": false,
+      "error": null,
+      "result_dir": "results/phase17/main_calibration_run1/runs/D_n2_severe_control_s41"
     },
     {
       "experiment_id": "D_n2_severe_loss_s41",
-      "status": "error",
-      "run_completed": false,
-      "mission_complete": null,
-      "error": {
-        "type": "TimeoutError",
-        "message": "timed out"
-      },
-      "result_dir": "/opt/carla_demo/results/phase17/main_calibration_run1/runs/D_n2_severe_loss_s41"
+      "status": "incomplete",
+      "run_completed": true,
+      "mission_complete": false,
+      "error": null,
+      "result_dir": "results/phase17/main_calibration_run1/runs/D_n2_severe_loss_s41"
     },
     {
       "experiment_id": "D_n4_nominal_control_s41",
@@ -119,7 +105,7 @@
       "run_completed": true,
       "mission_complete": true,
       "error": null,
-      "result_dir": "/opt/carla_demo/results/phase17/main_calibration_run1/runs/D_n4_nominal_control_s41"
+      "result_dir": "results/phase17/main_calibration_run1/runs/D_n4_nominal_control_s41"
     },
     {
       "experiment_id": "D_n4_nominal_loss_s41",
@@ -127,7 +113,7 @@
       "run_completed": true,
       "mission_complete": false,
       "error": null,
-      "result_dir": "/opt/carla_demo/results/phase17/main_calibration_run1/runs/D_n4_nominal_loss_s41"
+      "result_dir": "results/phase17/main_calibration_run1/runs/D_n4_nominal_loss_s41"
     },
     {
       "experiment_id": "D_n4_severe_control_s41",
@@ -135,7 +121,7 @@
       "run_completed": true,
       "mission_complete": false,
       "error": null,
-      "result_dir": "/opt/carla_demo/results/phase17/main_calibration_run1/runs/D_n4_severe_control_s41"
+      "result_dir": "results/phase17/main_calibration_run1/runs/D_n4_severe_control_s41"
     },
     {
       "experiment_id": "D_n4_severe_loss_s41",
@@ -143,7 +129,7 @@
       "run_completed": true,
       "mission_complete": false,
       "error": null,
-      "result_dir": "/opt/carla_demo/results/phase17/main_calibration_run1/runs/D_n4_severe_loss_s41"
+      "result_dir": "results/phase17/main_calibration_run1/runs/D_n4_severe_loss_s41"
     },
     {
       "experiment_id": "C_n2_nominal_control_s42",
@@ -151,7 +137,7 @@
       "run_completed": true,
       "mission_complete": true,
       "error": null,
-      "result_dir": "/opt/carla_demo/results/phase17/main_calibration_run1/runs/C_n2_nominal_control_s42"
+      "result_dir": "results/phase17/main_calibration_run1/runs/C_n2_nominal_control_s42"
     },
     {
       "experiment_id": "C_n2_nominal_loss_s42",
@@ -159,7 +145,7 @@
       "run_completed": true,
       "mission_complete": false,
       "error": null,
-      "result_dir": "/opt/carla_demo/results/phase17/main_calibration_run1/runs/C_n2_nominal_loss_s42"
+      "result_dir": "results/phase17/main_calibration_run1/runs/C_n2_nominal_loss_s42"
     },
     {
       "experiment_id": "C_n2_severe_control_s42",
@@ -167,7 +153,7 @@
       "run_completed": true,
       "mission_complete": false,
       "error": null,
-      "result_dir": "/opt/carla_demo/results/phase17/main_calibration_run1/runs/C_n2_severe_control_s42"
+      "result_dir": "results/phase17/main_calibration_run1/runs/C_n2_severe_control_s42"
     },
     {
       "experiment_id": "C_n2_severe_loss_s42",
@@ -175,7 +161,7 @@
       "run_completed": true,
       "mission_complete": false,
       "error": null,
-      "result_dir": "/opt/carla_demo/results/phase17/main_calibration_run1/runs/C_n2_severe_loss_s42"
+      "result_dir": "results/phase17/main_calibration_run1/runs/C_n2_severe_loss_s42"
     },
     {
       "experiment_id": "C_n4_nominal_control_s42",
@@ -186,21 +172,22 @@
         "type": "KeyboardInterrupt",
         "message": ""
       },
-      "result_dir": "/opt/carla_demo/results/phase17/main_calibration_run1/runs/C_n4_nominal_control_s42"
+      "result_dir": "results/phase17/main_calibration_run1/runs/C_n4_nominal_control_s42"
     }
   ],
-  "finished_runs": 16,
-  "successful_missions": 4,
-  "errors": 4,
+  "finished_runs": 20,
+  "successful_missions": 5,
+  "errors": 1,
+  "consolidation_note": "Earliest complete compatible attempt; unsuccessful outcomes retained; no new missions executed.",
   "evaluation": {
     "definition_id": "phase15.route_metrics.v1",
     "prespecified": true,
-    "evaluation_type": "predeclared",
+    "evaluation_type": "recomputed_from_individual_pre_run_registrations",
     "evaluator_source_sha256": "90c96d19d9d8b13391d66138dc53ce30b5461b68352b36dc79f2632a11821a92",
     "experiments_evaluated": 21,
-    "mission_successes": 4,
-    "not_started": 4,
-    "censored_missions": 13,
+    "mission_successes": 5,
+    "not_started": 0,
+    "censored_missions": 16,
     "evidence_issues": 0,
     "limitations": [
       "Route waypoint work is not area coverage",
@@ -208,6 +195,7 @@
       "Recovery acceptance is local ownership, not consensus or safe execution",
       "Physical/between-sample safety is not certified",
       "Retrospective analysis does not establish preregistration"
-    ]
+    ],
+    "registration_audit": "../../consolidation.json"
   }
 }
