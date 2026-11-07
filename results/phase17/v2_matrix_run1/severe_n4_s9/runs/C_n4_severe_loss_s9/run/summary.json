@@ -1,0 +1,146 @@
+{
+  "mode": "phase13_shared_architecture_comparison",
+  "architecture": "C",
+  "backend": "mock",
+  "seed": 9,
+  "condition": "severe",
+  "provider": "deterministic",
+  "llm_inference": false,
+  "mission_complete": false,
+  "time_s": 239.80010216706432,
+  "error": null,
+  "mission_execution_success": false,
+  "decentralized_coordination_enabled": true,
+  "completed_task_ids": [
+    "SEARCH_SECTOR_C"
+  ],
+  "duplicate_task_completions": 0,
+  "completions_by_agent": {
+    "Drone1": 0,
+    "Drone2": 0,
+    "Drone3": 1,
+    "Drone4": 0
+  },
+  "decisions_by_agent": {
+    "Drone1": 6,
+    "Drone2": 55,
+    "Drone3": 44,
+    "Drone4": 54
+  },
+  "fallbacks_by_agent": {
+    "Drone1": 0,
+    "Drone2": 21,
+    "Drone3": 26,
+    "Drone4": 19
+  },
+  "final_roles": {
+    "Drone2": "SCOUT",
+    "Drone3": "SCOUT",
+    "Drone4": "SCOUT"
+  },
+  "role_changes": 0,
+  "lease_expirations": 9,
+  "all_dispatched_actions_guarded": true,
+  "guardian_outcomes": {
+    "APPROVE_WITH_MODIFICATION": 201,
+    "REJECT_AND_REPLAN": 176,
+    "APPROVE": 54,
+    "EXECUTE_SAFE_FALLBACK": 2
+  },
+  "network_outcomes": {
+    "delivered": 5251,
+    "dropped": 3086,
+    "queued": 1947
+  },
+  "network_drop_reasons": {
+    "independent_loss": 3086
+  },
+  "architecture_selected_from_configuration": true,
+  "ablations": {
+    "persistent_memory": true,
+    "task_leases": true,
+    "dynamic_roles": true,
+    "perfect_communication": false,
+    "fallback_policy": false
+  },
+  "shared_inputs_sha256": "ad26f6035923f97abd5eac7db65e6afcc83a13d3d3fc19d3050a1b7e605fa6a9",
+  "llm_integration_observed": false,
+  "llm_exit_criterion_observed": false,
+  "live_exit_criterion_observed": false,
+  "productive_decisions_by_agent": {
+    "Drone1": 0,
+    "Drone2": 0,
+    "Drone3": 1,
+    "Drone4": 1
+  },
+  "llm_productive_decisions_by_agent": {
+    "Drone1": 0,
+    "Drone2": 0,
+    "Drone3": 0,
+    "Drone4": 0
+  },
+  "observed_progress_sources_by_agent": {
+    "Drone1": {},
+    "Drone2": {},
+    "Drone3": {
+      "deterministic_policy": 4
+    },
+    "Drone4": {
+      "deterministic_policy": 3
+    }
+  },
+  "policy_tools_by_agent": {
+    "Drone1": {
+      "hold": 5,
+      "start_search": 1
+    },
+    "Drone2": {
+      "hold": 41,
+      "start_search": 14
+    },
+    "Drone3": {
+      "hold": 31,
+      "start_search": 13
+    },
+    "Drone4": {
+      "hold": 38,
+      "send_bid": 1,
+      "start_search": 15
+    }
+  },
+  "policy_errors_by_agent": {
+    "Drone1": {},
+    "Drone2": {
+      "unsafe_action:peer_reachable_region_conflict": 45
+    },
+    "Drone3": {
+      "unsafe_action:peer_reachable_region_conflict": 57
+    },
+    "Drone4": {
+      "unsafe_action:peer_reachable_region_conflict": 44
+    }
+  },
+  "deadline_bids_by_agent": {
+    "Drone1": 1,
+    "Drone2": 7,
+    "Drone3": 7,
+    "Drone4": 6
+  },
+  "blocked_task_releases_by_agent": {
+    "Drone1": 0,
+    "Drone2": 0,
+    "Drone3": 0,
+    "Drone4": 0
+  },
+  "llm_supported_execution_success": false,
+  "limitations": [
+    "Kinematic mock flight and application-level network; no live AirSim comparison or calibrated RF evidence",
+    "C and D retain fail-closed guardian checks on stale peer state; reassignment does not guarantee executable recovery under a partition",
+    "B initial assignments are reliable pre-mission briefing; B never negotiates or reassigns them",
+    "Deadline bids and rule-policy replacement are deterministic support, not LLM coordination evidence",
+    "Nominal replay fixtures verify architecture wiring; actual pinned-model and repeated matched trials remain necessary",
+    "Physical route completion is the common stop criterion; undelivered completion reports and pending packets at stop are censored",
+    "Persistent-memory ablation removes episodic prompt memory, not required identity, local beliefs, inboxes or audit history",
+    "Relay changes are role/position rules; no RF reachability benefit is claimed"
+  ]
+}

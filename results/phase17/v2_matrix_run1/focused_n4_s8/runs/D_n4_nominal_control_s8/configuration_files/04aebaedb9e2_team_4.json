@@ -1,0 +1,212 @@
+{
+  "mission": "4 drones complete the same four search routes using local beliefs and delivered messages.",
+  "guardian": {
+    "flight_bounds": {
+      "x_min": -10,
+      "x_max": 25,
+      "y_min": -10,
+      "y_max": 40,
+      "z_min": -20,
+      "z_max": 1
+    },
+    "keepouts": [],
+    "landing_site": {
+      "x": 0,
+      "y": 0,
+      "ground_z": 0,
+      "radius_m": 1,
+      "surveyed_clear": true
+    },
+    "ground_z": 0,
+    "min_height_m": 2,
+    "max_height_m": 15,
+    "max_speed_mps": 3,
+    "max_state_age_s": 2,
+    "max_peer_age_s": 2
+  },
+  "vehicles": {
+    "Drone1": {
+      "role": "SCOUT",
+      "start_position": [
+        0,
+        0,
+        -3
+      ],
+      "home": [
+        0,
+        0,
+        -3
+      ],
+      "frame_offset_m": [
+        0,
+        0,
+        0
+      ]
+    },
+    "Drone2": {
+      "role": "SCOUT",
+      "start_position": [
+        0,
+        8,
+        -3
+      ],
+      "home": [
+        0,
+        8,
+        -3
+      ],
+      "frame_offset_m": [
+        0,
+        8,
+        0
+      ]
+    },
+    "Drone3": {
+      "role": "SCOUT",
+      "start_position": [
+        0,
+        16,
+        -3
+      ],
+      "home": [
+        0,
+        16,
+        -3
+      ],
+      "frame_offset_m": [
+        0,
+        16,
+        0
+      ]
+    },
+    "Drone4": {
+      "role": "SCOUT",
+      "start_position": [
+        0,
+        24,
+        -3
+      ],
+      "home": [
+        0,
+        24,
+        -3
+      ],
+      "frame_offset_m": [
+        0,
+        24,
+        0
+      ]
+    }
+  },
+  "relay_point": [
+    0,
+    32,
+    -3
+  ],
+  "tasks": [
+    {
+      "task_id": "SEARCH_SECTOR_A",
+      "waypoints": [
+        [
+          6,
+          0,
+          -3
+        ],
+        [
+          12,
+          0,
+          -3
+        ],
+        [
+          12,
+          3,
+          -3
+        ],
+        [
+          6,
+          3,
+          -3
+        ]
+      ],
+      "priority": 1
+    },
+    {
+      "task_id": "SEARCH_SECTOR_B",
+      "waypoints": [
+        [
+          6,
+          8,
+          -3
+        ],
+        [
+          12,
+          8,
+          -3
+        ],
+        [
+          12,
+          11,
+          -3
+        ],
+        [
+          6,
+          11,
+          -3
+        ]
+      ],
+      "priority": 1
+    },
+    {
+      "task_id": "SEARCH_SECTOR_C",
+      "waypoints": [
+        [
+          6,
+          16,
+          -3
+        ],
+        [
+          12,
+          16,
+          -3
+        ],
+        [
+          12,
+          19,
+          -3
+        ],
+        [
+          6,
+          19,
+          -3
+        ]
+      ],
+      "priority": 1
+    },
+    {
+      "task_id": "SEARCH_SECTOR_D",
+      "waypoints": [
+        [
+          6,
+          24,
+          -3
+        ],
+        [
+          12,
+          24,
+          -3
+        ],
+        [
+          12,
+          27,
+          -3
+        ],
+        [
+          6,
+          27,
+          -3
+        ]
+      ],
+      "priority": 1
+    }
+  ]
+}

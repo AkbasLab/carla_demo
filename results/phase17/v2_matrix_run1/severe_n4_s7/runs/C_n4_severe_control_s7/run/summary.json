@@ -1,0 +1,147 @@
+{
+  "mode": "phase13_shared_architecture_comparison",
+  "architecture": "C",
+  "backend": "mock",
+  "seed": 7,
+  "condition": "severe",
+  "provider": "deterministic",
+  "llm_inference": false,
+  "mission_complete": false,
+  "time_s": 239.80009215208702,
+  "error": null,
+  "mission_execution_success": false,
+  "decentralized_coordination_enabled": true,
+  "completed_task_ids": [
+    "SEARCH_SECTOR_A"
+  ],
+  "duplicate_task_completions": 0,
+  "completions_by_agent": {
+    "Drone1": 1,
+    "Drone2": 0,
+    "Drone3": 0,
+    "Drone4": 0
+  },
+  "decisions_by_agent": {
+    "Drone1": 44,
+    "Drone2": 22,
+    "Drone3": 14,
+    "Drone4": 42
+  },
+  "fallbacks_by_agent": {
+    "Drone1": 18,
+    "Drone2": 55,
+    "Drone3": 52,
+    "Drone4": 24
+  },
+  "final_roles": {
+    "Drone1": "SCOUT",
+    "Drone2": "SCOUT",
+    "Drone3": "SCOUT",
+    "Drone4": "SCOUT"
+  },
+  "role_changes": 0,
+  "lease_expirations": 9,
+  "all_dispatched_actions_guarded": true,
+  "guardian_outcomes": {
+    "APPROVE_WITH_MODIFICATION": 162,
+    "REJECT_AND_REPLAN": 441,
+    "APPROVE": 35
+  },
+  "network_outcomes": {
+    "delivered": 11534,
+    "dropped": 4946,
+    "queued": 17
+  },
+  "network_drop_reasons": {
+    "independent_loss": 4946
+  },
+  "architecture_selected_from_configuration": true,
+  "ablations": {
+    "persistent_memory": true,
+    "task_leases": true,
+    "dynamic_roles": true,
+    "perfect_communication": false,
+    "fallback_policy": false
+  },
+  "shared_inputs_sha256": "025ac5028378511d97f59e7259af554ed647ced0078c30cef2702c3bd10e905c",
+  "llm_integration_observed": false,
+  "llm_exit_criterion_observed": false,
+  "live_exit_criterion_observed": false,
+  "productive_decisions_by_agent": {
+    "Drone1": 3,
+    "Drone2": 0,
+    "Drone3": 0,
+    "Drone4": 0
+  },
+  "llm_productive_decisions_by_agent": {
+    "Drone1": 0,
+    "Drone2": 0,
+    "Drone3": 0,
+    "Drone4": 0
+  },
+  "observed_progress_sources_by_agent": {
+    "Drone1": {
+      "deterministic_policy": 7
+    },
+    "Drone2": {},
+    "Drone3": {},
+    "Drone4": {}
+  },
+  "policy_tools_by_agent": {
+    "Drone1": {
+      "hold": 24,
+      "start_search": 20
+    },
+    "Drone2": {
+      "hold": 19,
+      "start_search": 3
+    },
+    "Drone3": {
+      "hold": 6,
+      "start_search": 8
+    },
+    "Drone4": {
+      "hold": 23,
+      "start_search": 19
+    }
+  },
+  "policy_errors_by_agent": {
+    "Drone1": {
+      "unsafe_action:peer_reachable_region_conflict": 46
+    },
+    "Drone2": {
+      "unsafe_action:peer_reachable_region_conflict": 118,
+      "stale_task_version": 1
+    },
+    "Drone3": {
+      "unsafe_action:peer_reachable_region_conflict": 106,
+      "bid_not_feasible_or_deadline_passed": 1
+    },
+    "Drone4": {
+      "unsafe_action:peer_reachable_region_conflict": 56
+    }
+  },
+  "deadline_bids_by_agent": {
+    "Drone1": 6,
+    "Drone2": 11,
+    "Drone3": 5,
+    "Drone4": 8
+  },
+  "blocked_task_releases_by_agent": {
+    "Drone1": 0,
+    "Drone2": 0,
+    "Drone3": 1,
+    "Drone4": 3
+  },
+  "llm_supported_execution_success": false,
+  "limitations": [
+    "Kinematic mock flight and application-level network; no live AirSim comparison or calibrated RF evidence",
+    "C and D retain fail-closed guardian checks on stale peer state; reassignment does not guarantee executable recovery under a partition",
+    "B initial assignments are reliable pre-mission briefing; B never negotiates or reassigns them",
+    "Deadline bids and rule-policy replacement are deterministic support, not LLM coordination evidence",
+    "Nominal replay fixtures verify architecture wiring; actual pinned-model and repeated matched trials remain necessary",
+    "Physical route completion is the common stop criterion; undelivered completion reports and pending packets at stop are censored",
+    "Persistent-memory ablation removes episodic prompt memory, not required identity, local beliefs, inboxes or audit history",
+    "Relay changes are role/position rules; no RF reachability benefit is claimed"
+  ]
+}
