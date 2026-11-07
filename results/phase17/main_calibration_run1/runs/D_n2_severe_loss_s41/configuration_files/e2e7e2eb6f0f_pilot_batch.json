@@ -1,0 +1,2885 @@
+{
+  "schema_version": 1,
+  "experiments": [
+    {
+      "experiment_id": "C_n2_nominal_control_s41",
+      "architecture": "C",
+      "scenario": "phase17_four_routes",
+      "team_size": 2,
+      "network_profile": "nominal",
+      "failure_profile": "none",
+      "random_seed": 41,
+      "planner": "deterministic",
+      "settings": {
+        "dt": 0.2,
+        "lease_seconds": 180.0,
+        "bid_window": 30.0,
+        "decision_interval": 0.5,
+        "inference_timeout": 30.0,
+        "max_context_age": 35.0,
+        "inference_parallelism": 1,
+        "progress_timeout": 60.0,
+        "beacon_interval_s": 0.5,
+        "command_timeout_s": 3.0,
+        "state_timeout_s": 2.0,
+        "resilience": {
+          "enabled": true
+        },
+        "mission_config": "results/phase17/main_calibration_run1/fixtures/team_2.json",
+        "initial_assignments": {
+          "Drone1": [
+            "SEARCH_SECTOR_A",
+            "SEARCH_SECTOR_C"
+          ],
+          "Drone2": [
+            "SEARCH_SECTOR_B",
+            "SEARCH_SECTOR_D"
+          ]
+        },
+        "network": {
+          "latency_ms_mean": 10,
+          "latency_ms_jitter": 2,
+          "packet_loss_probability": 0,
+          "message_rate_limit": null,
+          "bandwidth_bytes_per_second": null,
+          "communication_range_m": null,
+          "partitions": []
+        },
+        "policy": {
+          "provider": "ollama",
+          "model": "phase12-agent:pinned",
+          "model_digest": "46e0c10c039e019119339687c3c1757cc81b9da49709a3b3924863ba87ca666e",
+          "ollama_url": "http://localhost:11434"
+        },
+        "clock_mode": "wall",
+        "ticks": 3000,
+        "scenario": {
+          "fail_agent": null,
+          "fail_at_s": 73.0
+        }
+      }
+    },
+    {
+      "experiment_id": "C_n2_nominal_loss_s41",
+      "architecture": "C",
+      "scenario": "phase17_four_routes",
+      "team_size": 2,
+      "network_profile": "nominal",
+      "failure_profile": "drone_failure_midmission",
+      "random_seed": 41,
+      "planner": "deterministic",
+      "settings": {
+        "dt": 0.2,
+        "lease_seconds": 180.0,
+        "bid_window": 30.0,
+        "decision_interval": 0.5,
+        "inference_timeout": 30.0,
+        "max_context_age": 35.0,
+        "inference_parallelism": 1,
+        "progress_timeout": 60.0,
+        "beacon_interval_s": 0.5,
+        "command_timeout_s": 3.0,
+        "state_timeout_s": 2.0,
+        "resilience": {
+          "enabled": true
+        },
+        "mission_config": "results/phase17/main_calibration_run1/fixtures/team_2.json",
+        "initial_assignments": {
+          "Drone1": [
+            "SEARCH_SECTOR_A",
+            "SEARCH_SECTOR_C"
+          ],
+          "Drone2": [
+            "SEARCH_SECTOR_B",
+            "SEARCH_SECTOR_D"
+          ]
+        },
+        "network": {
+          "latency_ms_mean": 10,
+          "latency_ms_jitter": 2,
+          "packet_loss_probability": 0,
+          "message_rate_limit": null,
+          "bandwidth_bytes_per_second": null,
+          "communication_range_m": null,
+          "partitions": []
+        },
+        "policy": {
+          "provider": "ollama",
+          "model": "phase12-agent:pinned",
+          "model_digest": "46e0c10c039e019119339687c3c1757cc81b9da49709a3b3924863ba87ca666e",
+          "ollama_url": "http://localhost:11434"
+        },
+        "clock_mode": "wall",
+        "ticks": 3000,
+        "scenario": {
+          "fail_agent": "Drone1",
+          "fail_at_s": 73.0
+        }
+      }
+    },
+    {
+      "experiment_id": "C_n2_severe_control_s41",
+      "architecture": "C",
+      "scenario": "phase17_four_routes",
+      "team_size": 2,
+      "network_profile": "severe",
+      "failure_profile": "none",
+      "random_seed": 41,
+      "planner": "deterministic",
+      "settings": {
+        "dt": 0.2,
+        "lease_seconds": 180.0,
+        "bid_window": 30.0,
+        "decision_interval": 0.5,
+        "inference_timeout": 30.0,
+        "max_context_age": 35.0,
+        "inference_parallelism": 1,
+        "progress_timeout": 60.0,
+        "beacon_interval_s": 0.5,
+        "command_timeout_s": 3.0,
+        "state_timeout_s": 2.0,
+        "resilience": {
+          "enabled": true
+        },
+        "mission_config": "results/phase17/main_calibration_run1/fixtures/team_2.json",
+        "initial_assignments": {
+          "Drone1": [
+            "SEARCH_SECTOR_A",
+            "SEARCH_SECTOR_C"
+          ],
+          "Drone2": [
+            "SEARCH_SECTOR_B",
+            "SEARCH_SECTOR_D"
+          ]
+        },
+        "network": {
+          "latency_ms_mean": 400,
+          "latency_ms_jitter": 200,
+          "packet_loss_probability": 0.3,
+          "message_rate_limit": 60,
+          "bandwidth_bytes_per_second": 50000,
+          "communication_range_m": null,
+          "partitions": []
+        },
+        "policy": {
+          "provider": "ollama",
+          "model": "phase12-agent:pinned",
+          "model_digest": "46e0c10c039e019119339687c3c1757cc81b9da49709a3b3924863ba87ca666e",
+          "ollama_url": "http://localhost:11434"
+        },
+        "clock_mode": "wall",
+        "ticks": 3000,
+        "scenario": {
+          "fail_agent": null,
+          "fail_at_s": 73.0
+        }
+      }
+    },
+    {
+      "experiment_id": "C_n2_severe_loss_s41",
+      "architecture": "C",
+      "scenario": "phase17_four_routes",
+      "team_size": 2,
+      "network_profile": "severe",
+      "failure_profile": "drone_failure_midmission",
+      "random_seed": 41,
+      "planner": "deterministic",
+      "settings": {
+        "dt": 0.2,
+        "lease_seconds": 180.0,
+        "bid_window": 30.0,
+        "decision_interval": 0.5,
+        "inference_timeout": 30.0,
+        "max_context_age": 35.0,
+        "inference_parallelism": 1,
+        "progress_timeout": 60.0,
+        "beacon_interval_s": 0.5,
+        "command_timeout_s": 3.0,
+        "state_timeout_s": 2.0,
+        "resilience": {
+          "enabled": true
+        },
+        "mission_config": "results/phase17/main_calibration_run1/fixtures/team_2.json",
+        "initial_assignments": {
+          "Drone1": [
+            "SEARCH_SECTOR_A",
+            "SEARCH_SECTOR_C"
+          ],
+          "Drone2": [
+            "SEARCH_SECTOR_B",
+            "SEARCH_SECTOR_D"
+          ]
+        },
+        "network": {
+          "latency_ms_mean": 400,
+          "latency_ms_jitter": 200,
+          "packet_loss_probability": 0.3,
+          "message_rate_limit": 60,
+          "bandwidth_bytes_per_second": 50000,
+          "communication_range_m": null,
+          "partitions": []
+        },
+        "policy": {
+          "provider": "ollama",
+          "model": "phase12-agent:pinned",
+          "model_digest": "46e0c10c039e019119339687c3c1757cc81b9da49709a3b3924863ba87ca666e",
+          "ollama_url": "http://localhost:11434"
+        },
+        "clock_mode": "wall",
+        "ticks": 3000,
+        "scenario": {
+          "fail_agent": "Drone1",
+          "fail_at_s": 73.0
+        }
+      }
+    },
+    {
+      "experiment_id": "C_n4_nominal_control_s41",
+      "architecture": "C",
+      "scenario": "phase17_four_routes",
+      "team_size": 4,
+      "network_profile": "nominal",
+      "failure_profile": "none",
+      "random_seed": 41,
+      "planner": "deterministic",
+      "settings": {
+        "dt": 0.2,
+        "lease_seconds": 180.0,
+        "bid_window": 30.0,
+        "decision_interval": 0.5,
+        "inference_timeout": 30.0,
+        "max_context_age": 35.0,
+        "inference_parallelism": 1,
+        "progress_timeout": 60.0,
+        "beacon_interval_s": 0.5,
+        "command_timeout_s": 3.0,
+        "state_timeout_s": 2.0,
+        "resilience": {
+          "enabled": true
+        },
+        "mission_config": "results/phase17/main_calibration_run1/fixtures/team_4.json",
+        "initial_assignments": {
+          "Drone1": [
+            "SEARCH_SECTOR_A"
+          ],
+          "Drone2": [
+            "SEARCH_SECTOR_B"
+          ],
+          "Drone3": [
+            "SEARCH_SECTOR_C"
+          ],
+          "Drone4": [
+            "SEARCH_SECTOR_D"
+          ]
+        },
+        "network": {
+          "latency_ms_mean": 10,
+          "latency_ms_jitter": 2,
+          "packet_loss_probability": 0,
+          "message_rate_limit": null,
+          "bandwidth_bytes_per_second": null,
+          "communication_range_m": null,
+          "partitions": []
+        },
+        "policy": {
+          "provider": "ollama",
+          "model": "phase12-agent:pinned",
+          "model_digest": "46e0c10c039e019119339687c3c1757cc81b9da49709a3b3924863ba87ca666e",
+          "ollama_url": "http://localhost:11434"
+        },
+        "clock_mode": "wall",
+        "ticks": 3000,
+        "scenario": {
+          "fail_agent": null,
+          "fail_at_s": 73.0
+        }
+      }
+    },
+    {
+      "experiment_id": "C_n4_nominal_loss_s41",
+      "architecture": "C",
+      "scenario": "phase17_four_routes",
+      "team_size": 4,
+      "network_profile": "nominal",
+      "failure_profile": "drone_failure_midmission",
+      "random_seed": 41,
+      "planner": "deterministic",
+      "settings": {
+        "dt": 0.2,
+        "lease_seconds": 180.0,
+        "bid_window": 30.0,
+        "decision_interval": 0.5,
+        "inference_timeout": 30.0,
+        "max_context_age": 35.0,
+        "inference_parallelism": 1,
+        "progress_timeout": 60.0,
+        "beacon_interval_s": 0.5,
+        "command_timeout_s": 3.0,
+        "state_timeout_s": 2.0,
+        "resilience": {
+          "enabled": true
+        },
+        "mission_config": "results/phase17/main_calibration_run1/fixtures/team_4.json",
+        "initial_assignments": {
+          "Drone1": [
+            "SEARCH_SECTOR_A"
+          ],
+          "Drone2": [
+            "SEARCH_SECTOR_B"
+          ],
+          "Drone3": [
+            "SEARCH_SECTOR_C"
+          ],
+          "Drone4": [
+            "SEARCH_SECTOR_D"
+          ]
+        },
+        "network": {
+          "latency_ms_mean": 10,
+          "latency_ms_jitter": 2,
+          "packet_loss_probability": 0,
+          "message_rate_limit": null,
+          "bandwidth_bytes_per_second": null,
+          "communication_range_m": null,
+          "partitions": []
+        },
+        "policy": {
+          "provider": "ollama",
+          "model": "phase12-agent:pinned",
+          "model_digest": "46e0c10c039e019119339687c3c1757cc81b9da49709a3b3924863ba87ca666e",
+          "ollama_url": "http://localhost:11434"
+        },
+        "clock_mode": "wall",
+        "ticks": 3000,
+        "scenario": {
+          "fail_agent": "Drone1",
+          "fail_at_s": 73.0
+        }
+      }
+    },
+    {
+      "experiment_id": "C_n4_severe_control_s41",
+      "architecture": "C",
+      "scenario": "phase17_four_routes",
+      "team_size": 4,
+      "network_profile": "severe",
+      "failure_profile": "none",
+      "random_seed": 41,
+      "planner": "deterministic",
+      "settings": {
+        "dt": 0.2,
+        "lease_seconds": 180.0,
+        "bid_window": 30.0,
+        "decision_interval": 0.5,
+        "inference_timeout": 30.0,
+        "max_context_age": 35.0,
+        "inference_parallelism": 1,
+        "progress_timeout": 60.0,
+        "beacon_interval_s": 0.5,
+        "command_timeout_s": 3.0,
+        "state_timeout_s": 2.0,
+        "resilience": {
+          "enabled": true
+        },
+        "mission_config": "results/phase17/main_calibration_run1/fixtures/team_4.json",
+        "initial_assignments": {
+          "Drone1": [
+            "SEARCH_SECTOR_A"
+          ],
+          "Drone2": [
+            "SEARCH_SECTOR_B"
+          ],
+          "Drone3": [
+            "SEARCH_SECTOR_C"
+          ],
+          "Drone4": [
+            "SEARCH_SECTOR_D"
+          ]
+        },
+        "network": {
+          "latency_ms_mean": 400,
+          "latency_ms_jitter": 200,
+          "packet_loss_probability": 0.3,
+          "message_rate_limit": 60,
+          "bandwidth_bytes_per_second": 50000,
+          "communication_range_m": null,
+          "partitions": []
+        },
+        "policy": {
+          "provider": "ollama",
+          "model": "phase12-agent:pinned",
+          "model_digest": "46e0c10c039e019119339687c3c1757cc81b9da49709a3b3924863ba87ca666e",
+          "ollama_url": "http://localhost:11434"
+        },
+        "clock_mode": "wall",
+        "ticks": 3000,
+        "scenario": {
+          "fail_agent": null,
+          "fail_at_s": 73.0
+        }
+      }
+    },
+    {
+      "experiment_id": "C_n4_severe_loss_s41",
+      "architecture": "C",
+      "scenario": "phase17_four_routes",
+      "team_size": 4,
+      "network_profile": "severe",
+      "failure_profile": "drone_failure_midmission",
+      "random_seed": 41,
+      "planner": "deterministic",
+      "settings": {
+        "dt": 0.2,
+        "lease_seconds": 180.0,
+        "bid_window": 30.0,
+        "decision_interval": 0.5,
+        "inference_timeout": 30.0,
+        "max_context_age": 35.0,
+        "inference_parallelism": 1,
+        "progress_timeout": 60.0,
+        "beacon_interval_s": 0.5,
+        "command_timeout_s": 3.0,
+        "state_timeout_s": 2.0,
+        "resilience": {
+          "enabled": true
+        },
+        "mission_config": "results/phase17/main_calibration_run1/fixtures/team_4.json",
+        "initial_assignments": {
+          "Drone1": [
+            "SEARCH_SECTOR_A"
+          ],
+          "Drone2": [
+            "SEARCH_SECTOR_B"
+          ],
+          "Drone3": [
+            "SEARCH_SECTOR_C"
+          ],
+          "Drone4": [
+            "SEARCH_SECTOR_D"
+          ]
+        },
+        "network": {
+          "latency_ms_mean": 400,
+          "latency_ms_jitter": 200,
+          "packet_loss_probability": 0.3,
+          "message_rate_limit": 60,
+          "bandwidth_bytes_per_second": 50000,
+          "communication_range_m": null,
+          "partitions": []
+        },
+        "policy": {
+          "provider": "ollama",
+          "model": "phase12-agent:pinned",
+          "model_digest": "46e0c10c039e019119339687c3c1757cc81b9da49709a3b3924863ba87ca666e",
+          "ollama_url": "http://localhost:11434"
+        },
+        "clock_mode": "wall",
+        "ticks": 3000,
+        "scenario": {
+          "fail_agent": "Drone1",
+          "fail_at_s": 73.0
+        }
+      }
+    },
+    {
+      "experiment_id": "D_n2_nominal_control_s41",
+      "architecture": "D",
+      "scenario": "phase17_four_routes",
+      "team_size": 2,
+      "network_profile": "nominal",
+      "failure_profile": "none",
+      "random_seed": 41,
+      "planner": "phase12-agent:pinned",
+      "settings": {
+        "dt": 0.2,
+        "lease_seconds": 180.0,
+        "bid_window": 30.0,
+        "decision_interval": 0.5,
+        "inference_timeout": 30.0,
+        "max_context_age": 35.0,
+        "inference_parallelism": 1,
+        "progress_timeout": 60.0,
+        "beacon_interval_s": 0.5,
+        "command_timeout_s": 3.0,
+        "state_timeout_s": 2.0,
+        "resilience": {
+          "enabled": true
+        },
+        "mission_config": "results/phase17/main_calibration_run1/fixtures/team_2.json",
+        "initial_assignments": {
+          "Drone1": [
+            "SEARCH_SECTOR_A",
+            "SEARCH_SECTOR_C"
+          ],
+          "Drone2": [
+            "SEARCH_SECTOR_B",
+            "SEARCH_SECTOR_D"
+          ]
+        },
+        "network": {
+          "latency_ms_mean": 10,
+          "latency_ms_jitter": 2,
+          "packet_loss_probability": 0,
+          "message_rate_limit": null,
+          "bandwidth_bytes_per_second": null,
+          "communication_range_m": null,
+          "partitions": []
+        },
+        "policy": {
+          "provider": "ollama",
+          "model": "phase12-agent:pinned",
+          "model_digest": "46e0c10c039e019119339687c3c1757cc81b9da49709a3b3924863ba87ca666e",
+          "ollama_url": "http://localhost:11434"
+        },
+        "clock_mode": "wall",
+        "ticks": 3000,
+        "scenario": {
+          "fail_agent": null,
+          "fail_at_s": 73.0
+        }
+      }
+    },
+    {
+      "experiment_id": "D_n2_nominal_loss_s41",
+      "architecture": "D",
+      "scenario": "phase17_four_routes",
+      "team_size": 2,
+      "network_profile": "nominal",
+      "failure_profile": "drone_failure_midmission",
+      "random_seed": 41,
+      "planner": "phase12-agent:pinned",
+      "settings": {
+        "dt": 0.2,
+        "lease_seconds": 180.0,
+        "bid_window": 30.0,
+        "decision_interval": 0.5,
+        "inference_timeout": 30.0,
+        "max_context_age": 35.0,
+        "inference_parallelism": 1,
+        "progress_timeout": 60.0,
+        "beacon_interval_s": 0.5,
+        "command_timeout_s": 3.0,
+        "state_timeout_s": 2.0,
+        "resilience": {
+          "enabled": true
+        },
+        "mission_config": "results/phase17/main_calibration_run1/fixtures/team_2.json",
+        "initial_assignments": {
+          "Drone1": [
+            "SEARCH_SECTOR_A",
+            "SEARCH_SECTOR_C"
+          ],
+          "Drone2": [
+            "SEARCH_SECTOR_B",
+            "SEARCH_SECTOR_D"
+          ]
+        },
+        "network": {
+          "latency_ms_mean": 10,
+          "latency_ms_jitter": 2,
+          "packet_loss_probability": 0,
+          "message_rate_limit": null,
+          "bandwidth_bytes_per_second": null,
+          "communication_range_m": null,
+          "partitions": []
+        },
+        "policy": {
+          "provider": "ollama",
+          "model": "phase12-agent:pinned",
+          "model_digest": "46e0c10c039e019119339687c3c1757cc81b9da49709a3b3924863ba87ca666e",
+          "ollama_url": "http://localhost:11434"
+        },
+        "clock_mode": "wall",
+        "ticks": 3000,
+        "scenario": {
+          "fail_agent": "Drone1",
+          "fail_at_s": 73.0
+        }
+      }
+    },
+    {
+      "experiment_id": "D_n2_severe_control_s41",
+      "architecture": "D",
+      "scenario": "phase17_four_routes",
+      "team_size": 2,
+      "network_profile": "severe",
+      "failure_profile": "none",
+      "random_seed": 41,
+      "planner": "phase12-agent:pinned",
+      "settings": {
+        "dt": 0.2,
+        "lease_seconds": 180.0,
+        "bid_window": 30.0,
+        "decision_interval": 0.5,
+        "inference_timeout": 30.0,
+        "max_context_age": 35.0,
+        "inference_parallelism": 1,
+        "progress_timeout": 60.0,
+        "beacon_interval_s": 0.5,
+        "command_timeout_s": 3.0,
+        "state_timeout_s": 2.0,
+        "resilience": {
+          "enabled": true
+        },
+        "mission_config": "results/phase17/main_calibration_run1/fixtures/team_2.json",
+        "initial_assignments": {
+          "Drone1": [
+            "SEARCH_SECTOR_A",
+            "SEARCH_SECTOR_C"
+          ],
+          "Drone2": [
+            "SEARCH_SECTOR_B",
+            "SEARCH_SECTOR_D"
+          ]
+        },
+        "network": {
+          "latency_ms_mean": 400,
+          "latency_ms_jitter": 200,
+          "packet_loss_probability": 0.3,
+          "message_rate_limit": 60,
+          "bandwidth_bytes_per_second": 50000,
+          "communication_range_m": null,
+          "partitions": []
+        },
+        "policy": {
+          "provider": "ollama",
+          "model": "phase12-agent:pinned",
+          "model_digest": "46e0c10c039e019119339687c3c1757cc81b9da49709a3b3924863ba87ca666e",
+          "ollama_url": "http://localhost:11434"
+        },
+        "clock_mode": "wall",
+        "ticks": 3000,
+        "scenario": {
+          "fail_agent": null,
+          "fail_at_s": 73.0
+        }
+      }
+    },
+    {
+      "experiment_id": "D_n2_severe_loss_s41",
+      "architecture": "D",
+      "scenario": "phase17_four_routes",
+      "team_size": 2,
+      "network_profile": "severe",
+      "failure_profile": "drone_failure_midmission",
+      "random_seed": 41,
+      "planner": "phase12-agent:pinned",
+      "settings": {
+        "dt": 0.2,
+        "lease_seconds": 180.0,
+        "bid_window": 30.0,
+        "decision_interval": 0.5,
+        "inference_timeout": 30.0,
+        "max_context_age": 35.0,
+        "inference_parallelism": 1,
+        "progress_timeout": 60.0,
+        "beacon_interval_s": 0.5,
+        "command_timeout_s": 3.0,
+        "state_timeout_s": 2.0,
+        "resilience": {
+          "enabled": true
+        },
+        "mission_config": "results/phase17/main_calibration_run1/fixtures/team_2.json",
+        "initial_assignments": {
+          "Drone1": [
+            "SEARCH_SECTOR_A",
+            "SEARCH_SECTOR_C"
+          ],
+          "Drone2": [
+            "SEARCH_SECTOR_B",
+            "SEARCH_SECTOR_D"
+          ]
+        },
+        "network": {
+          "latency_ms_mean": 400,
+          "latency_ms_jitter": 200,
+          "packet_loss_probability": 0.3,
+          "message_rate_limit": 60,
+          "bandwidth_bytes_per_second": 50000,
+          "communication_range_m": null,
+          "partitions": []
+        },
+        "policy": {
+          "provider": "ollama",
+          "model": "phase12-agent:pinned",
+          "model_digest": "46e0c10c039e019119339687c3c1757cc81b9da49709a3b3924863ba87ca666e",
+          "ollama_url": "http://localhost:11434"
+        },
+        "clock_mode": "wall",
+        "ticks": 3000,
+        "scenario": {
+          "fail_agent": "Drone1",
+          "fail_at_s": 73.0
+        }
+      }
+    },
+    {
+      "experiment_id": "D_n4_nominal_control_s41",
+      "architecture": "D",
+      "scenario": "phase17_four_routes",
+      "team_size": 4,
+      "network_profile": "nominal",
+      "failure_profile": "none",
+      "random_seed": 41,
+      "planner": "phase12-agent:pinned",
+      "settings": {
+        "dt": 0.2,
+        "lease_seconds": 180.0,
+        "bid_window": 30.0,
+        "decision_interval": 0.5,
+        "inference_timeout": 30.0,
+        "max_context_age": 35.0,
+        "inference_parallelism": 1,
+        "progress_timeout": 60.0,
+        "beacon_interval_s": 0.5,
+        "command_timeout_s": 3.0,
+        "state_timeout_s": 2.0,
+        "resilience": {
+          "enabled": true
+        },
+        "mission_config": "results/phase17/main_calibration_run1/fixtures/team_4.json",
+        "initial_assignments": {
+          "Drone1": [
+            "SEARCH_SECTOR_A"
+          ],
+          "Drone2": [
+            "SEARCH_SECTOR_B"
+          ],
+          "Drone3": [
+            "SEARCH_SECTOR_C"
+          ],
+          "Drone4": [
+            "SEARCH_SECTOR_D"
+          ]
+        },
+        "network": {
+          "latency_ms_mean": 10,
+          "latency_ms_jitter": 2,
+          "packet_loss_probability": 0,
+          "message_rate_limit": null,
+          "bandwidth_bytes_per_second": null,
+          "communication_range_m": null,
+          "partitions": []
+        },
+        "policy": {
+          "provider": "ollama",
+          "model": "phase12-agent:pinned",
+          "model_digest": "46e0c10c039e019119339687c3c1757cc81b9da49709a3b3924863ba87ca666e",
+          "ollama_url": "http://localhost:11434"
+        },
+        "clock_mode": "wall",
+        "ticks": 3000,
+        "scenario": {
+          "fail_agent": null,
+          "fail_at_s": 73.0
+        }
+      }
+    },
+    {
+      "experiment_id": "D_n4_nominal_loss_s41",
+      "architecture": "D",
+      "scenario": "phase17_four_routes",
+      "team_size": 4,
+      "network_profile": "nominal",
+      "failure_profile": "drone_failure_midmission",
+      "random_seed": 41,
+      "planner": "phase12-agent:pinned",
+      "settings": {
+        "dt": 0.2,
+        "lease_seconds": 180.0,
+        "bid_window": 30.0,
+        "decision_interval": 0.5,
+        "inference_timeout": 30.0,
+        "max_context_age": 35.0,
+        "inference_parallelism": 1,
+        "progress_timeout": 60.0,
+        "beacon_interval_s": 0.5,
+        "command_timeout_s": 3.0,
+        "state_timeout_s": 2.0,
+        "resilience": {
+          "enabled": true
+        },
+        "mission_config": "results/phase17/main_calibration_run1/fixtures/team_4.json",
+        "initial_assignments": {
+          "Drone1": [
+            "SEARCH_SECTOR_A"
+          ],
+          "Drone2": [
+            "SEARCH_SECTOR_B"
+          ],
+          "Drone3": [
+            "SEARCH_SECTOR_C"
+          ],
+          "Drone4": [
+            "SEARCH_SECTOR_D"
+          ]
+        },
+        "network": {
+          "latency_ms_mean": 10,
+          "latency_ms_jitter": 2,
+          "packet_loss_probability": 0,
+          "message_rate_limit": null,
+          "bandwidth_bytes_per_second": null,
+          "communication_range_m": null,
+          "partitions": []
+        },
+        "policy": {
+          "provider": "ollama",
+          "model": "phase12-agent:pinned",
+          "model_digest": "46e0c10c039e019119339687c3c1757cc81b9da49709a3b3924863ba87ca666e",
+          "ollama_url": "http://localhost:11434"
+        },
+        "clock_mode": "wall",
+        "ticks": 3000,
+        "scenario": {
+          "fail_agent": "Drone1",
+          "fail_at_s": 73.0
+        }
+      }
+    },
+    {
+      "experiment_id": "D_n4_severe_control_s41",
+      "architecture": "D",
+      "scenario": "phase17_four_routes",
+      "team_size": 4,
+      "network_profile": "severe",
+      "failure_profile": "none",
+      "random_seed": 41,
+      "planner": "phase12-agent:pinned",
+      "settings": {
+        "dt": 0.2,
+        "lease_seconds": 180.0,
+        "bid_window": 30.0,
+        "decision_interval": 0.5,
+        "inference_timeout": 30.0,
+        "max_context_age": 35.0,
+        "inference_parallelism": 1,
+        "progress_timeout": 60.0,
+        "beacon_interval_s": 0.5,
+        "command_timeout_s": 3.0,
+        "state_timeout_s": 2.0,
+        "resilience": {
+          "enabled": true
+        },
+        "mission_config": "results/phase17/main_calibration_run1/fixtures/team_4.json",
+        "initial_assignments": {
+          "Drone1": [
+            "SEARCH_SECTOR_A"
+          ],
+          "Drone2": [
+            "SEARCH_SECTOR_B"
+          ],
+          "Drone3": [
+            "SEARCH_SECTOR_C"
+          ],
+          "Drone4": [
+            "SEARCH_SECTOR_D"
+          ]
+        },
+        "network": {
+          "latency_ms_mean": 400,
+          "latency_ms_jitter": 200,
+          "packet_loss_probability": 0.3,
+          "message_rate_limit": 60,
+          "bandwidth_bytes_per_second": 50000,
+          "communication_range_m": null,
+          "partitions": []
+        },
+        "policy": {
+          "provider": "ollama",
+          "model": "phase12-agent:pinned",
+          "model_digest": "46e0c10c039e019119339687c3c1757cc81b9da49709a3b3924863ba87ca666e",
+          "ollama_url": "http://localhost:11434"
+        },
+        "clock_mode": "wall",
+        "ticks": 3000,
+        "scenario": {
+          "fail_agent": null,
+          "fail_at_s": 73.0
+        }
+      }
+    },
+    {
+      "experiment_id": "D_n4_severe_loss_s41",
+      "architecture": "D",
+      "scenario": "phase17_four_routes",
+      "team_size": 4,
+      "network_profile": "severe",
+      "failure_profile": "drone_failure_midmission",
+      "random_seed": 41,
+      "planner": "phase12-agent:pinned",
+      "settings": {
+        "dt": 0.2,
+        "lease_seconds": 180.0,
+        "bid_window": 30.0,
+        "decision_interval": 0.5,
+        "inference_timeout": 30.0,
+        "max_context_age": 35.0,
+        "inference_parallelism": 1,
+        "progress_timeout": 60.0,
+        "beacon_interval_s": 0.5,
+        "command_timeout_s": 3.0,
+        "state_timeout_s": 2.0,
+        "resilience": {
+          "enabled": true
+        },
+        "mission_config": "results/phase17/main_calibration_run1/fixtures/team_4.json",
+        "initial_assignments": {
+          "Drone1": [
+            "SEARCH_SECTOR_A"
+          ],
+          "Drone2": [
+            "SEARCH_SECTOR_B"
+          ],
+          "Drone3": [
+            "SEARCH_SECTOR_C"
+          ],
+          "Drone4": [
+            "SEARCH_SECTOR_D"
+          ]
+        },
+        "network": {
+          "latency_ms_mean": 400,
+          "latency_ms_jitter": 200,
+          "packet_loss_probability": 0.3,
+          "message_rate_limit": 60,
+          "bandwidth_bytes_per_second": 50000,
+          "communication_range_m": null,
+          "partitions": []
+        },
+        "policy": {
+          "provider": "ollama",
+          "model": "phase12-agent:pinned",
+          "model_digest": "46e0c10c039e019119339687c3c1757cc81b9da49709a3b3924863ba87ca666e",
+          "ollama_url": "http://localhost:11434"
+        },
+        "clock_mode": "wall",
+        "ticks": 3000,
+        "scenario": {
+          "fail_agent": "Drone1",
+          "fail_at_s": 73.0
+        }
+      }
+    },
+    {
+      "experiment_id": "C_n2_nominal_control_s42",
+      "architecture": "C",
+      "scenario": "phase17_four_routes",
+      "team_size": 2,
+      "network_profile": "nominal",
+      "failure_profile": "none",
+      "random_seed": 42,
+      "planner": "deterministic",
+      "settings": {
+        "dt": 0.2,
+        "lease_seconds": 180.0,
+        "bid_window": 30.0,
+        "decision_interval": 0.5,
+        "inference_timeout": 30.0,
+        "max_context_age": 35.0,
+        "inference_parallelism": 1,
+        "progress_timeout": 60.0,
+        "beacon_interval_s": 0.5,
+        "command_timeout_s": 3.0,
+        "state_timeout_s": 2.0,
+        "resilience": {
+          "enabled": true
+        },
+        "mission_config": "results/phase17/main_calibration_run1/fixtures/team_2.json",
+        "initial_assignments": {
+          "Drone1": [
+            "SEARCH_SECTOR_A",
+            "SEARCH_SECTOR_C"
+          ],
+          "Drone2": [
+            "SEARCH_SECTOR_B",
+            "SEARCH_SECTOR_D"
+          ]
+        },
+        "network": {
+          "latency_ms_mean": 10,
+          "latency_ms_jitter": 2,
+          "packet_loss_probability": 0,
+          "message_rate_limit": null,
+          "bandwidth_bytes_per_second": null,
+          "communication_range_m": null,
+          "partitions": []
+        },
+        "policy": {
+          "provider": "ollama",
+          "model": "phase12-agent:pinned",
+          "model_digest": "46e0c10c039e019119339687c3c1757cc81b9da49709a3b3924863ba87ca666e",
+          "ollama_url": "http://localhost:11434"
+        },
+        "clock_mode": "wall",
+        "ticks": 3000,
+        "scenario": {
+          "fail_agent": null,
+          "fail_at_s": 73.0
+        }
+      }
+    },
+    {
+      "experiment_id": "C_n2_nominal_loss_s42",
+      "architecture": "C",
+      "scenario": "phase17_four_routes",
+      "team_size": 2,
+      "network_profile": "nominal",
+      "failure_profile": "drone_failure_midmission",
+      "random_seed": 42,
+      "planner": "deterministic",
+      "settings": {
+        "dt": 0.2,
+        "lease_seconds": 180.0,
+        "bid_window": 30.0,
+        "decision_interval": 0.5,
+        "inference_timeout": 30.0,
+        "max_context_age": 35.0,
+        "inference_parallelism": 1,
+        "progress_timeout": 60.0,
+        "beacon_interval_s": 0.5,
+        "command_timeout_s": 3.0,
+        "state_timeout_s": 2.0,
+        "resilience": {
+          "enabled": true
+        },
+        "mission_config": "results/phase17/main_calibration_run1/fixtures/team_2.json",
+        "initial_assignments": {
+          "Drone1": [
+            "SEARCH_SECTOR_A",
+            "SEARCH_SECTOR_C"
+          ],
+          "Drone2": [
+            "SEARCH_SECTOR_B",
+            "SEARCH_SECTOR_D"
+          ]
+        },
+        "network": {
+          "latency_ms_mean": 10,
+          "latency_ms_jitter": 2,
+          "packet_loss_probability": 0,
+          "message_rate_limit": null,
+          "bandwidth_bytes_per_second": null,
+          "communication_range_m": null,
+          "partitions": []
+        },
+        "policy": {
+          "provider": "ollama",
+          "model": "phase12-agent:pinned",
+          "model_digest": "46e0c10c039e019119339687c3c1757cc81b9da49709a3b3924863ba87ca666e",
+          "ollama_url": "http://localhost:11434"
+        },
+        "clock_mode": "wall",
+        "ticks": 3000,
+        "scenario": {
+          "fail_agent": "Drone1",
+          "fail_at_s": 73.0
+        }
+      }
+    },
+    {
+      "experiment_id": "C_n2_severe_control_s42",
+      "architecture": "C",
+      "scenario": "phase17_four_routes",
+      "team_size": 2,
+      "network_profile": "severe",
+      "failure_profile": "none",
+      "random_seed": 42,
+      "planner": "deterministic",
+      "settings": {
+        "dt": 0.2,
+        "lease_seconds": 180.0,
+        "bid_window": 30.0,
+        "decision_interval": 0.5,
+        "inference_timeout": 30.0,
+        "max_context_age": 35.0,
+        "inference_parallelism": 1,
+        "progress_timeout": 60.0,
+        "beacon_interval_s": 0.5,
+        "command_timeout_s": 3.0,
+        "state_timeout_s": 2.0,
+        "resilience": {
+          "enabled": true
+        },
+        "mission_config": "results/phase17/main_calibration_run1/fixtures/team_2.json",
+        "initial_assignments": {
+          "Drone1": [
+            "SEARCH_SECTOR_A",
+            "SEARCH_SECTOR_C"
+          ],
+          "Drone2": [
+            "SEARCH_SECTOR_B",
+            "SEARCH_SECTOR_D"
+          ]
+        },
+        "network": {
+          "latency_ms_mean": 400,
+          "latency_ms_jitter": 200,
+          "packet_loss_probability": 0.3,
+          "message_rate_limit": 60,
+          "bandwidth_bytes_per_second": 50000,
+          "communication_range_m": null,
+          "partitions": []
+        },
+        "policy": {
+          "provider": "ollama",
+          "model": "phase12-agent:pinned",
+          "model_digest": "46e0c10c039e019119339687c3c1757cc81b9da49709a3b3924863ba87ca666e",
+          "ollama_url": "http://localhost:11434"
+        },
+        "clock_mode": "wall",
+        "ticks": 3000,
+        "scenario": {
+          "fail_agent": null,
+          "fail_at_s": 73.0
+        }
+      }
+    },
+    {
+      "experiment_id": "C_n2_severe_loss_s42",
+      "architecture": "C",
+      "scenario": "phase17_four_routes",
+      "team_size": 2,
+      "network_profile": "severe",
+      "failure_profile": "drone_failure_midmission",
+      "random_seed": 42,
+      "planner": "deterministic",
+      "settings": {
+        "dt": 0.2,
+        "lease_seconds": 180.0,
+        "bid_window": 30.0,
+        "decision_interval": 0.5,
+        "inference_timeout": 30.0,
+        "max_context_age": 35.0,
+        "inference_parallelism": 1,
+        "progress_timeout": 60.0,
+        "beacon_interval_s": 0.5,
+        "command_timeout_s": 3.0,
+        "state_timeout_s": 2.0,
+        "resilience": {
+          "enabled": true
+        },
+        "mission_config": "results/phase17/main_calibration_run1/fixtures/team_2.json",
+        "initial_assignments": {
+          "Drone1": [
+            "SEARCH_SECTOR_A",
+            "SEARCH_SECTOR_C"
+          ],
+          "Drone2": [
+            "SEARCH_SECTOR_B",
+            "SEARCH_SECTOR_D"
+          ]
+        },
+        "network": {
+          "latency_ms_mean": 400,
+          "latency_ms_jitter": 200,
+          "packet_loss_probability": 0.3,
+          "message_rate_limit": 60,
+          "bandwidth_bytes_per_second": 50000,
+          "communication_range_m": null,
+          "partitions": []
+        },
+        "policy": {
+          "provider": "ollama",
+          "model": "phase12-agent:pinned",
+          "model_digest": "46e0c10c039e019119339687c3c1757cc81b9da49709a3b3924863ba87ca666e",
+          "ollama_url": "http://localhost:11434"
+        },
+        "clock_mode": "wall",
+        "ticks": 3000,
+        "scenario": {
+          "fail_agent": "Drone1",
+          "fail_at_s": 73.0
+        }
+      }
+    },
+    {
+      "experiment_id": "C_n4_nominal_control_s42",
+      "architecture": "C",
+      "scenario": "phase17_four_routes",
+      "team_size": 4,
+      "network_profile": "nominal",
+      "failure_profile": "none",
+      "random_seed": 42,
+      "planner": "deterministic",
+      "settings": {
+        "dt": 0.2,
+        "lease_seconds": 180.0,
+        "bid_window": 30.0,
+        "decision_interval": 0.5,
+        "inference_timeout": 30.0,
+        "max_context_age": 35.0,
+        "inference_parallelism": 1,
+        "progress_timeout": 60.0,
+        "beacon_interval_s": 0.5,
+        "command_timeout_s": 3.0,
+        "state_timeout_s": 2.0,
+        "resilience": {
+          "enabled": true
+        },
+        "mission_config": "results/phase17/main_calibration_run1/fixtures/team_4.json",
+        "initial_assignments": {
+          "Drone1": [
+            "SEARCH_SECTOR_A"
+          ],
+          "Drone2": [
+            "SEARCH_SECTOR_B"
+          ],
+          "Drone3": [
+            "SEARCH_SECTOR_C"
+          ],
+          "Drone4": [
+            "SEARCH_SECTOR_D"
+          ]
+        },
+        "network": {
+          "latency_ms_mean": 10,
+          "latency_ms_jitter": 2,
+          "packet_loss_probability": 0,
+          "message_rate_limit": null,
+          "bandwidth_bytes_per_second": null,
+          "communication_range_m": null,
+          "partitions": []
+        },
+        "policy": {
+          "provider": "ollama",
+          "model": "phase12-agent:pinned",
+          "model_digest": "46e0c10c039e019119339687c3c1757cc81b9da49709a3b3924863ba87ca666e",
+          "ollama_url": "http://localhost:11434"
+        },
+        "clock_mode": "wall",
+        "ticks": 3000,
+        "scenario": {
+          "fail_agent": null,
+          "fail_at_s": 73.0
+        }
+      }
+    },
+    {
+      "experiment_id": "C_n4_nominal_loss_s42",
+      "architecture": "C",
+      "scenario": "phase17_four_routes",
+      "team_size": 4,
+      "network_profile": "nominal",
+      "failure_profile": "drone_failure_midmission",
+      "random_seed": 42,
+      "planner": "deterministic",
+      "settings": {
+        "dt": 0.2,
+        "lease_seconds": 180.0,
+        "bid_window": 30.0,
+        "decision_interval": 0.5,
+        "inference_timeout": 30.0,
+        "max_context_age": 35.0,
+        "inference_parallelism": 1,
+        "progress_timeout": 60.0,
+        "beacon_interval_s": 0.5,
+        "command_timeout_s": 3.0,
+        "state_timeout_s": 2.0,
+        "resilience": {
+          "enabled": true
+        },
+        "mission_config": "results/phase17/main_calibration_run1/fixtures/team_4.json",
+        "initial_assignments": {
+          "Drone1": [
+            "SEARCH_SECTOR_A"
+          ],
+          "Drone2": [
+            "SEARCH_SECTOR_B"
+          ],
+          "Drone3": [
+            "SEARCH_SECTOR_C"
+          ],
+          "Drone4": [
+            "SEARCH_SECTOR_D"
+          ]
+        },
+        "network": {
+          "latency_ms_mean": 10,
+          "latency_ms_jitter": 2,
+          "packet_loss_probability": 0,
+          "message_rate_limit": null,
+          "bandwidth_bytes_per_second": null,
+          "communication_range_m": null,
+          "partitions": []
+        },
+        "policy": {
+          "provider": "ollama",
+          "model": "phase12-agent:pinned",
+          "model_digest": "46e0c10c039e019119339687c3c1757cc81b9da49709a3b3924863ba87ca666e",
+          "ollama_url": "http://localhost:11434"
+        },
+        "clock_mode": "wall",
+        "ticks": 3000,
+        "scenario": {
+          "fail_agent": "Drone1",
+          "fail_at_s": 73.0
+        }
+      }
+    },
+    {
+      "experiment_id": "C_n4_severe_control_s42",
+      "architecture": "C",
+      "scenario": "phase17_four_routes",
+      "team_size": 4,
+      "network_profile": "severe",
+      "failure_profile": "none",
+      "random_seed": 42,
+      "planner": "deterministic",
+      "settings": {
+        "dt": 0.2,
+        "lease_seconds": 180.0,
+        "bid_window": 30.0,
+        "decision_interval": 0.5,
+        "inference_timeout": 30.0,
+        "max_context_age": 35.0,
+        "inference_parallelism": 1,
+        "progress_timeout": 60.0,
+        "beacon_interval_s": 0.5,
+        "command_timeout_s": 3.0,
+        "state_timeout_s": 2.0,
+        "resilience": {
+          "enabled": true
+        },
+        "mission_config": "results/phase17/main_calibration_run1/fixtures/team_4.json",
+        "initial_assignments": {
+          "Drone1": [
+            "SEARCH_SECTOR_A"
+          ],
+          "Drone2": [
+            "SEARCH_SECTOR_B"
+          ],
+          "Drone3": [
+            "SEARCH_SECTOR_C"
+          ],
+          "Drone4": [
+            "SEARCH_SECTOR_D"
+          ]
+        },
+        "network": {
+          "latency_ms_mean": 400,
+          "latency_ms_jitter": 200,
+          "packet_loss_probability": 0.3,
+          "message_rate_limit": 60,
+          "bandwidth_bytes_per_second": 50000,
+          "communication_range_m": null,
+          "partitions": []
+        },
+        "policy": {
+          "provider": "ollama",
+          "model": "phase12-agent:pinned",
+          "model_digest": "46e0c10c039e019119339687c3c1757cc81b9da49709a3b3924863ba87ca666e",
+          "ollama_url": "http://localhost:11434"
+        },
+        "clock_mode": "wall",
+        "ticks": 3000,
+        "scenario": {
+          "fail_agent": null,
+          "fail_at_s": 73.0
+        }
+      }
+    },
+    {
+      "experiment_id": "C_n4_severe_loss_s42",
+      "architecture": "C",
+      "scenario": "phase17_four_routes",
+      "team_size": 4,
+      "network_profile": "severe",
+      "failure_profile": "drone_failure_midmission",
+      "random_seed": 42,
+      "planner": "deterministic",
+      "settings": {
+        "dt": 0.2,
+        "lease_seconds": 180.0,
+        "bid_window": 30.0,
+        "decision_interval": 0.5,
+        "inference_timeout": 30.0,
+        "max_context_age": 35.0,
+        "inference_parallelism": 1,
+        "progress_timeout": 60.0,
+        "beacon_interval_s": 0.5,
+        "command_timeout_s": 3.0,
+        "state_timeout_s": 2.0,
+        "resilience": {
+          "enabled": true
+        },
+        "mission_config": "results/phase17/main_calibration_run1/fixtures/team_4.json",
+        "initial_assignments": {
+          "Drone1": [
+            "SEARCH_SECTOR_A"
+          ],
+          "Drone2": [
+            "SEARCH_SECTOR_B"
+          ],
+          "Drone3": [
+            "SEARCH_SECTOR_C"
+          ],
+          "Drone4": [
+            "SEARCH_SECTOR_D"
+          ]
+        },
+        "network": {
+          "latency_ms_mean": 400,
+          "latency_ms_jitter": 200,
+          "packet_loss_probability": 0.3,
+          "message_rate_limit": 60,
+          "bandwidth_bytes_per_second": 50000,
+          "communication_range_m": null,
+          "partitions": []
+        },
+        "policy": {
+          "provider": "ollama",
+          "model": "phase12-agent:pinned",
+          "model_digest": "46e0c10c039e019119339687c3c1757cc81b9da49709a3b3924863ba87ca666e",
+          "ollama_url": "http://localhost:11434"
+        },
+        "clock_mode": "wall",
+        "ticks": 3000,
+        "scenario": {
+          "fail_agent": "Drone1",
+          "fail_at_s": 73.0
+        }
+      }
+    },
+    {
+      "experiment_id": "D_n2_nominal_control_s42",
+      "architecture": "D",
+      "scenario": "phase17_four_routes",
+      "team_size": 2,
+      "network_profile": "nominal",
+      "failure_profile": "none",
+      "random_seed": 42,
+      "planner": "phase12-agent:pinned",
+      "settings": {
+        "dt": 0.2,
+        "lease_seconds": 180.0,
+        "bid_window": 30.0,
+        "decision_interval": 0.5,
+        "inference_timeout": 30.0,
+        "max_context_age": 35.0,
+        "inference_parallelism": 1,
+        "progress_timeout": 60.0,
+        "beacon_interval_s": 0.5,
+        "command_timeout_s": 3.0,
+        "state_timeout_s": 2.0,
+        "resilience": {
+          "enabled": true
+        },
+        "mission_config": "results/phase17/main_calibration_run1/fixtures/team_2.json",
+        "initial_assignments": {
+          "Drone1": [
+            "SEARCH_SECTOR_A",
+            "SEARCH_SECTOR_C"
+          ],
+          "Drone2": [
+            "SEARCH_SECTOR_B",
+            "SEARCH_SECTOR_D"
+          ]
+        },
+        "network": {
+          "latency_ms_mean": 10,
+          "latency_ms_jitter": 2,
+          "packet_loss_probability": 0,
+          "message_rate_limit": null,
+          "bandwidth_bytes_per_second": null,
+          "communication_range_m": null,
+          "partitions": []
+        },
+        "policy": {
+          "provider": "ollama",
+          "model": "phase12-agent:pinned",
+          "model_digest": "46e0c10c039e019119339687c3c1757cc81b9da49709a3b3924863ba87ca666e",
+          "ollama_url": "http://localhost:11434"
+        },
+        "clock_mode": "wall",
+        "ticks": 3000,
+        "scenario": {
+          "fail_agent": null,
+          "fail_at_s": 73.0
+        }
+      }
+    },
+    {
+      "experiment_id": "D_n2_nominal_loss_s42",
+      "architecture": "D",
+      "scenario": "phase17_four_routes",
+      "team_size": 2,
+      "network_profile": "nominal",
+      "failure_profile": "drone_failure_midmission",
+      "random_seed": 42,
+      "planner": "phase12-agent:pinned",
+      "settings": {
+        "dt": 0.2,
+        "lease_seconds": 180.0,
+        "bid_window": 30.0,
+        "decision_interval": 0.5,
+        "inference_timeout": 30.0,
+        "max_context_age": 35.0,
+        "inference_parallelism": 1,
+        "progress_timeout": 60.0,
+        "beacon_interval_s": 0.5,
+        "command_timeout_s": 3.0,
+        "state_timeout_s": 2.0,
+        "resilience": {
+          "enabled": true
+        },
+        "mission_config": "results/phase17/main_calibration_run1/fixtures/team_2.json",
+        "initial_assignments": {
+          "Drone1": [
+            "SEARCH_SECTOR_A",
+            "SEARCH_SECTOR_C"
+          ],
+          "Drone2": [
+            "SEARCH_SECTOR_B",
+            "SEARCH_SECTOR_D"
+          ]
+        },
+        "network": {
+          "latency_ms_mean": 10,
+          "latency_ms_jitter": 2,
+          "packet_loss_probability": 0,
+          "message_rate_limit": null,
+          "bandwidth_bytes_per_second": null,
+          "communication_range_m": null,
+          "partitions": []
+        },
+        "policy": {
+          "provider": "ollama",
+          "model": "phase12-agent:pinned",
+          "model_digest": "46e0c10c039e019119339687c3c1757cc81b9da49709a3b3924863ba87ca666e",
+          "ollama_url": "http://localhost:11434"
+        },
+        "clock_mode": "wall",
+        "ticks": 3000,
+        "scenario": {
+          "fail_agent": "Drone1",
+          "fail_at_s": 73.0
+        }
+      }
+    },
+    {
+      "experiment_id": "D_n2_severe_control_s42",
+      "architecture": "D",
+      "scenario": "phase17_four_routes",
+      "team_size": 2,
+      "network_profile": "severe",
+      "failure_profile": "none",
+      "random_seed": 42,
+      "planner": "phase12-agent:pinned",
+      "settings": {
+        "dt": 0.2,
+        "lease_seconds": 180.0,
+        "bid_window": 30.0,
+        "decision_interval": 0.5,
+        "inference_timeout": 30.0,
+        "max_context_age": 35.0,
+        "inference_parallelism": 1,
+        "progress_timeout": 60.0,
+        "beacon_interval_s": 0.5,
+        "command_timeout_s": 3.0,
+        "state_timeout_s": 2.0,
+        "resilience": {
+          "enabled": true
+        },
+        "mission_config": "results/phase17/main_calibration_run1/fixtures/team_2.json",
+        "initial_assignments": {
+          "Drone1": [
+            "SEARCH_SECTOR_A",
+            "SEARCH_SECTOR_C"
+          ],
+          "Drone2": [
+            "SEARCH_SECTOR_B",
+            "SEARCH_SECTOR_D"
+          ]
+        },
+        "network": {
+          "latency_ms_mean": 400,
+          "latency_ms_jitter": 200,
+          "packet_loss_probability": 0.3,
+          "message_rate_limit": 60,
+          "bandwidth_bytes_per_second": 50000,
+          "communication_range_m": null,
+          "partitions": []
+        },
+        "policy": {
+          "provider": "ollama",
+          "model": "phase12-agent:pinned",
+          "model_digest": "46e0c10c039e019119339687c3c1757cc81b9da49709a3b3924863ba87ca666e",
+          "ollama_url": "http://localhost:11434"
+        },
+        "clock_mode": "wall",
+        "ticks": 3000,
+        "scenario": {
+          "fail_agent": null,
+          "fail_at_s": 73.0
+        }
+      }
+    },
+    {
+      "experiment_id": "D_n2_severe_loss_s42",
+      "architecture": "D",
+      "scenario": "phase17_four_routes",
+      "team_size": 2,
+      "network_profile": "severe",
+      "failure_profile": "drone_failure_midmission",
+      "random_seed": 42,
+      "planner": "phase12-agent:pinned",
+      "settings": {
+        "dt": 0.2,
+        "lease_seconds": 180.0,
+        "bid_window": 30.0,
+        "decision_interval": 0.5,
+        "inference_timeout": 30.0,
+        "max_context_age": 35.0,
+        "inference_parallelism": 1,
+        "progress_timeout": 60.0,
+        "beacon_interval_s": 0.5,
+        "command_timeout_s": 3.0,
+        "state_timeout_s": 2.0,
+        "resilience": {
+          "enabled": true
+        },
+        "mission_config": "results/phase17/main_calibration_run1/fixtures/team_2.json",
+        "initial_assignments": {
+          "Drone1": [
+            "SEARCH_SECTOR_A",
+            "SEARCH_SECTOR_C"
+          ],
+          "Drone2": [
+            "SEARCH_SECTOR_B",
+            "SEARCH_SECTOR_D"
+          ]
+        },
+        "network": {
+          "latency_ms_mean": 400,
+          "latency_ms_jitter": 200,
+          "packet_loss_probability": 0.3,
+          "message_rate_limit": 60,
+          "bandwidth_bytes_per_second": 50000,
+          "communication_range_m": null,
+          "partitions": []
+        },
+        "policy": {
+          "provider": "ollama",
+          "model": "phase12-agent:pinned",
+          "model_digest": "46e0c10c039e019119339687c3c1757cc81b9da49709a3b3924863ba87ca666e",
+          "ollama_url": "http://localhost:11434"
+        },
+        "clock_mode": "wall",
+        "ticks": 3000,
+        "scenario": {
+          "fail_agent": "Drone1",
+          "fail_at_s": 73.0
+        }
+      }
+    },
+    {
+      "experiment_id": "D_n4_nominal_control_s42",
+      "architecture": "D",
+      "scenario": "phase17_four_routes",
+      "team_size": 4,
+      "network_profile": "nominal",
+      "failure_profile": "none",
+      "random_seed": 42,
+      "planner": "phase12-agent:pinned",
+      "settings": {
+        "dt": 0.2,
+        "lease_seconds": 180.0,
+        "bid_window": 30.0,
+        "decision_interval": 0.5,
+        "inference_timeout": 30.0,
+        "max_context_age": 35.0,
+        "inference_parallelism": 1,
+        "progress_timeout": 60.0,
+        "beacon_interval_s": 0.5,
+        "command_timeout_s": 3.0,
+        "state_timeout_s": 2.0,
+        "resilience": {
+          "enabled": true
+        },
+        "mission_config": "results/phase17/main_calibration_run1/fixtures/team_4.json",
+        "initial_assignments": {
+          "Drone1": [
+            "SEARCH_SECTOR_A"
+          ],
+          "Drone2": [
+            "SEARCH_SECTOR_B"
+          ],
+          "Drone3": [
+            "SEARCH_SECTOR_C"
+          ],
+          "Drone4": [
+            "SEARCH_SECTOR_D"
+          ]
+        },
+        "network": {
+          "latency_ms_mean": 10,
+          "latency_ms_jitter": 2,
+          "packet_loss_probability": 0,
+          "message_rate_limit": null,
+          "bandwidth_bytes_per_second": null,
+          "communication_range_m": null,
+          "partitions": []
+        },
+        "policy": {
+          "provider": "ollama",
+          "model": "phase12-agent:pinned",
+          "model_digest": "46e0c10c039e019119339687c3c1757cc81b9da49709a3b3924863ba87ca666e",
+          "ollama_url": "http://localhost:11434"
+        },
+        "clock_mode": "wall",
+        "ticks": 3000,
+        "scenario": {
+          "fail_agent": null,
+          "fail_at_s": 73.0
+        }
+      }
+    },
+    {
+      "experiment_id": "D_n4_nominal_loss_s42",
+      "architecture": "D",
+      "scenario": "phase17_four_routes",
+      "team_size": 4,
+      "network_profile": "nominal",
+      "failure_profile": "drone_failure_midmission",
+      "random_seed": 42,
+      "planner": "phase12-agent:pinned",
+      "settings": {
+        "dt": 0.2,
+        "lease_seconds": 180.0,
+        "bid_window": 30.0,
+        "decision_interval": 0.5,
+        "inference_timeout": 30.0,
+        "max_context_age": 35.0,
+        "inference_parallelism": 1,
+        "progress_timeout": 60.0,
+        "beacon_interval_s": 0.5,
+        "command_timeout_s": 3.0,
+        "state_timeout_s": 2.0,
+        "resilience": {
+          "enabled": true
+        },
+        "mission_config": "results/phase17/main_calibration_run1/fixtures/team_4.json",
+        "initial_assignments": {
+          "Drone1": [
+            "SEARCH_SECTOR_A"
+          ],
+          "Drone2": [
+            "SEARCH_SECTOR_B"
+          ],
+          "Drone3": [
+            "SEARCH_SECTOR_C"
+          ],
+          "Drone4": [
+            "SEARCH_SECTOR_D"
+          ]
+        },
+        "network": {
+          "latency_ms_mean": 10,
+          "latency_ms_jitter": 2,
+          "packet_loss_probability": 0,
+          "message_rate_limit": null,
+          "bandwidth_bytes_per_second": null,
+          "communication_range_m": null,
+          "partitions": []
+        },
+        "policy": {
+          "provider": "ollama",
+          "model": "phase12-agent:pinned",
+          "model_digest": "46e0c10c039e019119339687c3c1757cc81b9da49709a3b3924863ba87ca666e",
+          "ollama_url": "http://localhost:11434"
+        },
+        "clock_mode": "wall",
+        "ticks": 3000,
+        "scenario": {
+          "fail_agent": "Drone1",
+          "fail_at_s": 73.0
+        }
+      }
+    },
+    {
+      "experiment_id": "D_n4_severe_control_s42",
+      "architecture": "D",
+      "scenario": "phase17_four_routes",
+      "team_size": 4,
+      "network_profile": "severe",
+      "failure_profile": "none",
+      "random_seed": 42,
+      "planner": "phase12-agent:pinned",
+      "settings": {
+        "dt": 0.2,
+        "lease_seconds": 180.0,
+        "bid_window": 30.0,
+        "decision_interval": 0.5,
+        "inference_timeout": 30.0,
+        "max_context_age": 35.0,
+        "inference_parallelism": 1,
+        "progress_timeout": 60.0,
+        "beacon_interval_s": 0.5,
+        "command_timeout_s": 3.0,
+        "state_timeout_s": 2.0,
+        "resilience": {
+          "enabled": true
+        },
+        "mission_config": "results/phase17/main_calibration_run1/fixtures/team_4.json",
+        "initial_assignments": {
+          "Drone1": [
+            "SEARCH_SECTOR_A"
+          ],
+          "Drone2": [
+            "SEARCH_SECTOR_B"
+          ],
+          "Drone3": [
+            "SEARCH_SECTOR_C"
+          ],
+          "Drone4": [
+            "SEARCH_SECTOR_D"
+          ]
+        },
+        "network": {
+          "latency_ms_mean": 400,
+          "latency_ms_jitter": 200,
+          "packet_loss_probability": 0.3,
+          "message_rate_limit": 60,
+          "bandwidth_bytes_per_second": 50000,
+          "communication_range_m": null,
+          "partitions": []
+        },
+        "policy": {
+          "provider": "ollama",
+          "model": "phase12-agent:pinned",
+          "model_digest": "46e0c10c039e019119339687c3c1757cc81b9da49709a3b3924863ba87ca666e",
+          "ollama_url": "http://localhost:11434"
+        },
+        "clock_mode": "wall",
+        "ticks": 3000,
+        "scenario": {
+          "fail_agent": null,
+          "fail_at_s": 73.0
+        }
+      }
+    },
+    {
+      "experiment_id": "D_n4_severe_loss_s42",
+      "architecture": "D",
+      "scenario": "phase17_four_routes",
+      "team_size": 4,
+      "network_profile": "severe",
+      "failure_profile": "drone_failure_midmission",
+      "random_seed": 42,
+      "planner": "phase12-agent:pinned",
+      "settings": {
+        "dt": 0.2,
+        "lease_seconds": 180.0,
+        "bid_window": 30.0,
+        "decision_interval": 0.5,
+        "inference_timeout": 30.0,
+        "max_context_age": 35.0,
+        "inference_parallelism": 1,
+        "progress_timeout": 60.0,
+        "beacon_interval_s": 0.5,
+        "command_timeout_s": 3.0,
+        "state_timeout_s": 2.0,
+        "resilience": {
+          "enabled": true
+        },
+        "mission_config": "results/phase17/main_calibration_run1/fixtures/team_4.json",
+        "initial_assignments": {
+          "Drone1": [
+            "SEARCH_SECTOR_A"
+          ],
+          "Drone2": [
+            "SEARCH_SECTOR_B"
+          ],
+          "Drone3": [
+            "SEARCH_SECTOR_C"
+          ],
+          "Drone4": [
+            "SEARCH_SECTOR_D"
+          ]
+        },
+        "network": {
+          "latency_ms_mean": 400,
+          "latency_ms_jitter": 200,
+          "packet_loss_probability": 0.3,
+          "message_rate_limit": 60,
+          "bandwidth_bytes_per_second": 50000,
+          "communication_range_m": null,
+          "partitions": []
+        },
+        "policy": {
+          "provider": "ollama",
+          "model": "phase12-agent:pinned",
+          "model_digest": "46e0c10c039e019119339687c3c1757cc81b9da49709a3b3924863ba87ca666e",
+          "ollama_url": "http://localhost:11434"
+        },
+        "clock_mode": "wall",
+        "ticks": 3000,
+        "scenario": {
+          "fail_agent": "Drone1",
+          "fail_at_s": 73.0
+        }
+      }
+    },
+    {
+      "experiment_id": "C_n2_nominal_control_s43",
+      "architecture": "C",
+      "scenario": "phase17_four_routes",
+      "team_size": 2,
+      "network_profile": "nominal",
+      "failure_profile": "none",
+      "random_seed": 43,
+      "planner": "deterministic",
+      "settings": {
+        "dt": 0.2,
+        "lease_seconds": 180.0,
+        "bid_window": 30.0,
+        "decision_interval": 0.5,
+        "inference_timeout": 30.0,
+        "max_context_age": 35.0,
+        "inference_parallelism": 1,
+        "progress_timeout": 60.0,
+        "beacon_interval_s": 0.5,
+        "command_timeout_s": 3.0,
+        "state_timeout_s": 2.0,
+        "resilience": {
+          "enabled": true
+        },
+        "mission_config": "results/phase17/main_calibration_run1/fixtures/team_2.json",
+        "initial_assignments": {
+          "Drone1": [
+            "SEARCH_SECTOR_A",
+            "SEARCH_SECTOR_C"
+          ],
+          "Drone2": [
+            "SEARCH_SECTOR_B",
+            "SEARCH_SECTOR_D"
+          ]
+        },
+        "network": {
+          "latency_ms_mean": 10,
+          "latency_ms_jitter": 2,
+          "packet_loss_probability": 0,
+          "message_rate_limit": null,
+          "bandwidth_bytes_per_second": null,
+          "communication_range_m": null,
+          "partitions": []
+        },
+        "policy": {
+          "provider": "ollama",
+          "model": "phase12-agent:pinned",
+          "model_digest": "46e0c10c039e019119339687c3c1757cc81b9da49709a3b3924863ba87ca666e",
+          "ollama_url": "http://localhost:11434"
+        },
+        "clock_mode": "wall",
+        "ticks": 3000,
+        "scenario": {
+          "fail_agent": null,
+          "fail_at_s": 73.0
+        }
+      }
+    },
+    {
+      "experiment_id": "C_n2_nominal_loss_s43",
+      "architecture": "C",
+      "scenario": "phase17_four_routes",
+      "team_size": 2,
+      "network_profile": "nominal",
+      "failure_profile": "drone_failure_midmission",
+      "random_seed": 43,
+      "planner": "deterministic",
+      "settings": {
+        "dt": 0.2,
+        "lease_seconds": 180.0,
+        "bid_window": 30.0,
+        "decision_interval": 0.5,
+        "inference_timeout": 30.0,
+        "max_context_age": 35.0,
+        "inference_parallelism": 1,
+        "progress_timeout": 60.0,
+        "beacon_interval_s": 0.5,
+        "command_timeout_s": 3.0,
+        "state_timeout_s": 2.0,
+        "resilience": {
+          "enabled": true
+        },
+        "mission_config": "results/phase17/main_calibration_run1/fixtures/team_2.json",
+        "initial_assignments": {
+          "Drone1": [
+            "SEARCH_SECTOR_A",
+            "SEARCH_SECTOR_C"
+          ],
+          "Drone2": [
+            "SEARCH_SECTOR_B",
+            "SEARCH_SECTOR_D"
+          ]
+        },
+        "network": {
+          "latency_ms_mean": 10,
+          "latency_ms_jitter": 2,
+          "packet_loss_probability": 0,
+          "message_rate_limit": null,
+          "bandwidth_bytes_per_second": null,
+          "communication_range_m": null,
+          "partitions": []
+        },
+        "policy": {
+          "provider": "ollama",
+          "model": "phase12-agent:pinned",
+          "model_digest": "46e0c10c039e019119339687c3c1757cc81b9da49709a3b3924863ba87ca666e",
+          "ollama_url": "http://localhost:11434"
+        },
+        "clock_mode": "wall",
+        "ticks": 3000,
+        "scenario": {
+          "fail_agent": "Drone1",
+          "fail_at_s": 73.0
+        }
+      }
+    },
+    {
+      "experiment_id": "C_n2_severe_control_s43",
+      "architecture": "C",
+      "scenario": "phase17_four_routes",
+      "team_size": 2,
+      "network_profile": "severe",
+      "failure_profile": "none",
+      "random_seed": 43,
+      "planner": "deterministic",
+      "settings": {
+        "dt": 0.2,
+        "lease_seconds": 180.0,
+        "bid_window": 30.0,
+        "decision_interval": 0.5,
+        "inference_timeout": 30.0,
+        "max_context_age": 35.0,
+        "inference_parallelism": 1,
+        "progress_timeout": 60.0,
+        "beacon_interval_s": 0.5,
+        "command_timeout_s": 3.0,
+        "state_timeout_s": 2.0,
+        "resilience": {
+          "enabled": true
+        },
+        "mission_config": "results/phase17/main_calibration_run1/fixtures/team_2.json",
+        "initial_assignments": {
+          "Drone1": [
+            "SEARCH_SECTOR_A",
+            "SEARCH_SECTOR_C"
+          ],
+          "Drone2": [
+            "SEARCH_SECTOR_B",
+            "SEARCH_SECTOR_D"
+          ]
+        },
+        "network": {
+          "latency_ms_mean": 400,
+          "latency_ms_jitter": 200,
+          "packet_loss_probability": 0.3,
+          "message_rate_limit": 60,
+          "bandwidth_bytes_per_second": 50000,
+          "communication_range_m": null,
+          "partitions": []
+        },
+        "policy": {
+          "provider": "ollama",
+          "model": "phase12-agent:pinned",
+          "model_digest": "46e0c10c039e019119339687c3c1757cc81b9da49709a3b3924863ba87ca666e",
+          "ollama_url": "http://localhost:11434"
+        },
+        "clock_mode": "wall",
+        "ticks": 3000,
+        "scenario": {
+          "fail_agent": null,
+          "fail_at_s": 73.0
+        }
+      }
+    },
+    {
+      "experiment_id": "C_n2_severe_loss_s43",
+      "architecture": "C",
+      "scenario": "phase17_four_routes",
+      "team_size": 2,
+      "network_profile": "severe",
+      "failure_profile": "drone_failure_midmission",
+      "random_seed": 43,
+      "planner": "deterministic",
+      "settings": {
+        "dt": 0.2,
+        "lease_seconds": 180.0,
+        "bid_window": 30.0,
+        "decision_interval": 0.5,
+        "inference_timeout": 30.0,
+        "max_context_age": 35.0,
+        "inference_parallelism": 1,
+        "progress_timeout": 60.0,
+        "beacon_interval_s": 0.5,
+        "command_timeout_s": 3.0,
+        "state_timeout_s": 2.0,
+        "resilience": {
+          "enabled": true
+        },
+        "mission_config": "results/phase17/main_calibration_run1/fixtures/team_2.json",
+        "initial_assignments": {
+          "Drone1": [
+            "SEARCH_SECTOR_A",
+            "SEARCH_SECTOR_C"
+          ],
+          "Drone2": [
+            "SEARCH_SECTOR_B",
+            "SEARCH_SECTOR_D"
+          ]
+        },
+        "network": {
+          "latency_ms_mean": 400,
+          "latency_ms_jitter": 200,
+          "packet_loss_probability": 0.3,
+          "message_rate_limit": 60,
+          "bandwidth_bytes_per_second": 50000,
+          "communication_range_m": null,
+          "partitions": []
+        },
+        "policy": {
+          "provider": "ollama",
+          "model": "phase12-agent:pinned",
+          "model_digest": "46e0c10c039e019119339687c3c1757cc81b9da49709a3b3924863ba87ca666e",
+          "ollama_url": "http://localhost:11434"
+        },
+        "clock_mode": "wall",
+        "ticks": 3000,
+        "scenario": {
+          "fail_agent": "Drone1",
+          "fail_at_s": 73.0
+        }
+      }
+    },
+    {
+      "experiment_id": "C_n4_nominal_control_s43",
+      "architecture": "C",
+      "scenario": "phase17_four_routes",
+      "team_size": 4,
+      "network_profile": "nominal",
+      "failure_profile": "none",
+      "random_seed": 43,
+      "planner": "deterministic",
+      "settings": {
+        "dt": 0.2,
+        "lease_seconds": 180.0,
+        "bid_window": 30.0,
+        "decision_interval": 0.5,
+        "inference_timeout": 30.0,
+        "max_context_age": 35.0,
+        "inference_parallelism": 1,
+        "progress_timeout": 60.0,
+        "beacon_interval_s": 0.5,
+        "command_timeout_s": 3.0,
+        "state_timeout_s": 2.0,
+        "resilience": {
+          "enabled": true
+        },
+        "mission_config": "results/phase17/main_calibration_run1/fixtures/team_4.json",
+        "initial_assignments": {
+          "Drone1": [
+            "SEARCH_SECTOR_A"
+          ],
+          "Drone2": [
+            "SEARCH_SECTOR_B"
+          ],
+          "Drone3": [
+            "SEARCH_SECTOR_C"
+          ],
+          "Drone4": [
+            "SEARCH_SECTOR_D"
+          ]
+        },
+        "network": {
+          "latency_ms_mean": 10,
+          "latency_ms_jitter": 2,
+          "packet_loss_probability": 0,
+          "message_rate_limit": null,
+          "bandwidth_bytes_per_second": null,
+          "communication_range_m": null,
+          "partitions": []
+        },
+        "policy": {
+          "provider": "ollama",
+          "model": "phase12-agent:pinned",
+          "model_digest": "46e0c10c039e019119339687c3c1757cc81b9da49709a3b3924863ba87ca666e",
+          "ollama_url": "http://localhost:11434"
+        },
+        "clock_mode": "wall",
+        "ticks": 3000,
+        "scenario": {
+          "fail_agent": null,
+          "fail_at_s": 73.0
+        }
+      }
+    },
+    {
+      "experiment_id": "C_n4_nominal_loss_s43",
+      "architecture": "C",
+      "scenario": "phase17_four_routes",
+      "team_size": 4,
+      "network_profile": "nominal",
+      "failure_profile": "drone_failure_midmission",
+      "random_seed": 43,
+      "planner": "deterministic",
+      "settings": {
+        "dt": 0.2,
+        "lease_seconds": 180.0,
+        "bid_window": 30.0,
+        "decision_interval": 0.5,
+        "inference_timeout": 30.0,
+        "max_context_age": 35.0,
+        "inference_parallelism": 1,
+        "progress_timeout": 60.0,
+        "beacon_interval_s": 0.5,
+        "command_timeout_s": 3.0,
+        "state_timeout_s": 2.0,
+        "resilience": {
+          "enabled": true
+        },
+        "mission_config": "results/phase17/main_calibration_run1/fixtures/team_4.json",
+        "initial_assignments": {
+          "Drone1": [
+            "SEARCH_SECTOR_A"
+          ],
+          "Drone2": [
+            "SEARCH_SECTOR_B"
+          ],
+          "Drone3": [
+            "SEARCH_SECTOR_C"
+          ],
+          "Drone4": [
+            "SEARCH_SECTOR_D"
+          ]
+        },
+        "network": {
+          "latency_ms_mean": 10,
+          "latency_ms_jitter": 2,
+          "packet_loss_probability": 0,
+          "message_rate_limit": null,
+          "bandwidth_bytes_per_second": null,
+          "communication_range_m": null,
+          "partitions": []
+        },
+        "policy": {
+          "provider": "ollama",
+          "model": "phase12-agent:pinned",
+          "model_digest": "46e0c10c039e019119339687c3c1757cc81b9da49709a3b3924863ba87ca666e",
+          "ollama_url": "http://localhost:11434"
+        },
+        "clock_mode": "wall",
+        "ticks": 3000,
+        "scenario": {
+          "fail_agent": "Drone1",
+          "fail_at_s": 73.0
+        }
+      }
+    },
+    {
+      "experiment_id": "C_n4_severe_control_s43",
+      "architecture": "C",
+      "scenario": "phase17_four_routes",
+      "team_size": 4,
+      "network_profile": "severe",
+      "failure_profile": "none",
+      "random_seed": 43,
+      "planner": "deterministic",
+      "settings": {
+        "dt": 0.2,
+        "lease_seconds": 180.0,
+        "bid_window": 30.0,
+        "decision_interval": 0.5,
+        "inference_timeout": 30.0,
+        "max_context_age": 35.0,
+        "inference_parallelism": 1,
+        "progress_timeout": 60.0,
+        "beacon_interval_s": 0.5,
+        "command_timeout_s": 3.0,
+        "state_timeout_s": 2.0,
+        "resilience": {
+          "enabled": true
+        },
+        "mission_config": "results/phase17/main_calibration_run1/fixtures/team_4.json",
+        "initial_assignments": {
+          "Drone1": [
+            "SEARCH_SECTOR_A"
+          ],
+          "Drone2": [
+            "SEARCH_SECTOR_B"
+          ],
+          "Drone3": [
+            "SEARCH_SECTOR_C"
+          ],
+          "Drone4": [
+            "SEARCH_SECTOR_D"
+          ]
+        },
+        "network": {
+          "latency_ms_mean": 400,
+          "latency_ms_jitter": 200,
+          "packet_loss_probability": 0.3,
+          "message_rate_limit": 60,
+          "bandwidth_bytes_per_second": 50000,
+          "communication_range_m": null,
+          "partitions": []
+        },
+        "policy": {
+          "provider": "ollama",
+          "model": "phase12-agent:pinned",
+          "model_digest": "46e0c10c039e019119339687c3c1757cc81b9da49709a3b3924863ba87ca666e",
+          "ollama_url": "http://localhost:11434"
+        },
+        "clock_mode": "wall",
+        "ticks": 3000,
+        "scenario": {
+          "fail_agent": null,
+          "fail_at_s": 73.0
+        }
+      }
+    },
+    {
+      "experiment_id": "C_n4_severe_loss_s43",
+      "architecture": "C",
+      "scenario": "phase17_four_routes",
+      "team_size": 4,
+      "network_profile": "severe",
+      "failure_profile": "drone_failure_midmission",
+      "random_seed": 43,
+      "planner": "deterministic",
+      "settings": {
+        "dt": 0.2,
+        "lease_seconds": 180.0,
+        "bid_window": 30.0,
+        "decision_interval": 0.5,
+        "inference_timeout": 30.0,
+        "max_context_age": 35.0,
+        "inference_parallelism": 1,
+        "progress_timeout": 60.0,
+        "beacon_interval_s": 0.5,
+        "command_timeout_s": 3.0,
+        "state_timeout_s": 2.0,
+        "resilience": {
+          "enabled": true
+        },
+        "mission_config": "results/phase17/main_calibration_run1/fixtures/team_4.json",
+        "initial_assignments": {
+          "Drone1": [
+            "SEARCH_SECTOR_A"
+          ],
+          "Drone2": [
+            "SEARCH_SECTOR_B"
+          ],
+          "Drone3": [
+            "SEARCH_SECTOR_C"
+          ],
+          "Drone4": [
+            "SEARCH_SECTOR_D"
+          ]
+        },
+        "network": {
+          "latency_ms_mean": 400,
+          "latency_ms_jitter": 200,
+          "packet_loss_probability": 0.3,
+          "message_rate_limit": 60,
+          "bandwidth_bytes_per_second": 50000,
+          "communication_range_m": null,
+          "partitions": []
+        },
+        "policy": {
+          "provider": "ollama",
+          "model": "phase12-agent:pinned",
+          "model_digest": "46e0c10c039e019119339687c3c1757cc81b9da49709a3b3924863ba87ca666e",
+          "ollama_url": "http://localhost:11434"
+        },
+        "clock_mode": "wall",
+        "ticks": 3000,
+        "scenario": {
+          "fail_agent": "Drone1",
+          "fail_at_s": 73.0
+        }
+      }
+    },
+    {
+      "experiment_id": "D_n2_nominal_control_s43",
+      "architecture": "D",
+      "scenario": "phase17_four_routes",
+      "team_size": 2,
+      "network_profile": "nominal",
+      "failure_profile": "none",
+      "random_seed": 43,
+      "planner": "phase12-agent:pinned",
+      "settings": {
+        "dt": 0.2,
+        "lease_seconds": 180.0,
+        "bid_window": 30.0,
+        "decision_interval": 0.5,
+        "inference_timeout": 30.0,
+        "max_context_age": 35.0,
+        "inference_parallelism": 1,
+        "progress_timeout": 60.0,
+        "beacon_interval_s": 0.5,
+        "command_timeout_s": 3.0,
+        "state_timeout_s": 2.0,
+        "resilience": {
+          "enabled": true
+        },
+        "mission_config": "results/phase17/main_calibration_run1/fixtures/team_2.json",
+        "initial_assignments": {
+          "Drone1": [
+            "SEARCH_SECTOR_A",
+            "SEARCH_SECTOR_C"
+          ],
+          "Drone2": [
+            "SEARCH_SECTOR_B",
+            "SEARCH_SECTOR_D"
+          ]
+        },
+        "network": {
+          "latency_ms_mean": 10,
+          "latency_ms_jitter": 2,
+          "packet_loss_probability": 0,
+          "message_rate_limit": null,
+          "bandwidth_bytes_per_second": null,
+          "communication_range_m": null,
+          "partitions": []
+        },
+        "policy": {
+          "provider": "ollama",
+          "model": "phase12-agent:pinned",
+          "model_digest": "46e0c10c039e019119339687c3c1757cc81b9da49709a3b3924863ba87ca666e",
+          "ollama_url": "http://localhost:11434"
+        },
+        "clock_mode": "wall",
+        "ticks": 3000,
+        "scenario": {
+          "fail_agent": null,
+          "fail_at_s": 73.0
+        }
+      }
+    },
+    {
+      "experiment_id": "D_n2_nominal_loss_s43",
+      "architecture": "D",
+      "scenario": "phase17_four_routes",
+      "team_size": 2,
+      "network_profile": "nominal",
+      "failure_profile": "drone_failure_midmission",
+      "random_seed": 43,
+      "planner": "phase12-agent:pinned",
+      "settings": {
+        "dt": 0.2,
+        "lease_seconds": 180.0,
+        "bid_window": 30.0,
+        "decision_interval": 0.5,
+        "inference_timeout": 30.0,
+        "max_context_age": 35.0,
+        "inference_parallelism": 1,
+        "progress_timeout": 60.0,
+        "beacon_interval_s": 0.5,
+        "command_timeout_s": 3.0,
+        "state_timeout_s": 2.0,
+        "resilience": {
+          "enabled": true
+        },
+        "mission_config": "results/phase17/main_calibration_run1/fixtures/team_2.json",
+        "initial_assignments": {
+          "Drone1": [
+            "SEARCH_SECTOR_A",
+            "SEARCH_SECTOR_C"
+          ],
+          "Drone2": [
+            "SEARCH_SECTOR_B",
+            "SEARCH_SECTOR_D"
+          ]
+        },
+        "network": {
+          "latency_ms_mean": 10,
+          "latency_ms_jitter": 2,
+          "packet_loss_probability": 0,
+          "message_rate_limit": null,
+          "bandwidth_bytes_per_second": null,
+          "communication_range_m": null,
+          "partitions": []
+        },
+        "policy": {
+          "provider": "ollama",
+          "model": "phase12-agent:pinned",
+          "model_digest": "46e0c10c039e019119339687c3c1757cc81b9da49709a3b3924863ba87ca666e",
+          "ollama_url": "http://localhost:11434"
+        },
+        "clock_mode": "wall",
+        "ticks": 3000,
+        "scenario": {
+          "fail_agent": "Drone1",
+          "fail_at_s": 73.0
+        }
+      }
+    },
+    {
+      "experiment_id": "D_n2_severe_control_s43",
+      "architecture": "D",
+      "scenario": "phase17_four_routes",
+      "team_size": 2,
+      "network_profile": "severe",
+      "failure_profile": "none",
+      "random_seed": 43,
+      "planner": "phase12-agent:pinned",
+      "settings": {
+        "dt": 0.2,
+        "lease_seconds": 180.0,
+        "bid_window": 30.0,
+        "decision_interval": 0.5,
+        "inference_timeout": 30.0,
+        "max_context_age": 35.0,
+        "inference_parallelism": 1,
+        "progress_timeout": 60.0,
+        "beacon_interval_s": 0.5,
+        "command_timeout_s": 3.0,
+        "state_timeout_s": 2.0,
+        "resilience": {
+          "enabled": true
+        },
+        "mission_config": "results/phase17/main_calibration_run1/fixtures/team_2.json",
+        "initial_assignments": {
+          "Drone1": [
+            "SEARCH_SECTOR_A",
+            "SEARCH_SECTOR_C"
+          ],
+          "Drone2": [
+            "SEARCH_SECTOR_B",
+            "SEARCH_SECTOR_D"
+          ]
+        },
+        "network": {
+          "latency_ms_mean": 400,
+          "latency_ms_jitter": 200,
+          "packet_loss_probability": 0.3,
+          "message_rate_limit": 60,
+          "bandwidth_bytes_per_second": 50000,
+          "communication_range_m": null,
+          "partitions": []
+        },
+        "policy": {
+          "provider": "ollama",
+          "model": "phase12-agent:pinned",
+          "model_digest": "46e0c10c039e019119339687c3c1757cc81b9da49709a3b3924863ba87ca666e",
+          "ollama_url": "http://localhost:11434"
+        },
+        "clock_mode": "wall",
+        "ticks": 3000,
+        "scenario": {
+          "fail_agent": null,
+          "fail_at_s": 73.0
+        }
+      }
+    },
+    {
+      "experiment_id": "D_n2_severe_loss_s43",
+      "architecture": "D",
+      "scenario": "phase17_four_routes",
+      "team_size": 2,
+      "network_profile": "severe",
+      "failure_profile": "drone_failure_midmission",
+      "random_seed": 43,
+      "planner": "phase12-agent:pinned",
+      "settings": {
+        "dt": 0.2,
+        "lease_seconds": 180.0,
+        "bid_window": 30.0,
+        "decision_interval": 0.5,
+        "inference_timeout": 30.0,
+        "max_context_age": 35.0,
+        "inference_parallelism": 1,
+        "progress_timeout": 60.0,
+        "beacon_interval_s": 0.5,
+        "command_timeout_s": 3.0,
+        "state_timeout_s": 2.0,
+        "resilience": {
+          "enabled": true
+        },
+        "mission_config": "results/phase17/main_calibration_run1/fixtures/team_2.json",
+        "initial_assignments": {
+          "Drone1": [
+            "SEARCH_SECTOR_A",
+            "SEARCH_SECTOR_C"
+          ],
+          "Drone2": [
+            "SEARCH_SECTOR_B",
+            "SEARCH_SECTOR_D"
+          ]
+        },
+        "network": {
+          "latency_ms_mean": 400,
+          "latency_ms_jitter": 200,
+          "packet_loss_probability": 0.3,
+          "message_rate_limit": 60,
+          "bandwidth_bytes_per_second": 50000,
+          "communication_range_m": null,
+          "partitions": []
+        },
+        "policy": {
+          "provider": "ollama",
+          "model": "phase12-agent:pinned",
+          "model_digest": "46e0c10c039e019119339687c3c1757cc81b9da49709a3b3924863ba87ca666e",
+          "ollama_url": "http://localhost:11434"
+        },
+        "clock_mode": "wall",
+        "ticks": 3000,
+        "scenario": {
+          "fail_agent": "Drone1",
+          "fail_at_s": 73.0
+        }
+      }
+    },
+    {
+      "experiment_id": "D_n4_nominal_control_s43",
+      "architecture": "D",
+      "scenario": "phase17_four_routes",
+      "team_size": 4,
+      "network_profile": "nominal",
+      "failure_profile": "none",
+      "random_seed": 43,
+      "planner": "phase12-agent:pinned",
+      "settings": {
+        "dt": 0.2,
+        "lease_seconds": 180.0,
+        "bid_window": 30.0,
+        "decision_interval": 0.5,
+        "inference_timeout": 30.0,
+        "max_context_age": 35.0,
+        "inference_parallelism": 1,
+        "progress_timeout": 60.0,
+        "beacon_interval_s": 0.5,
+        "command_timeout_s": 3.0,
+        "state_timeout_s": 2.0,
+        "resilience": {
+          "enabled": true
+        },
+        "mission_config": "results/phase17/main_calibration_run1/fixtures/team_4.json",
+        "initial_assignments": {
+          "Drone1": [
+            "SEARCH_SECTOR_A"
+          ],
+          "Drone2": [
+            "SEARCH_SECTOR_B"
+          ],
+          "Drone3": [
+            "SEARCH_SECTOR_C"
+          ],
+          "Drone4": [
+            "SEARCH_SECTOR_D"
+          ]
+        },
+        "network": {
+          "latency_ms_mean": 10,
+          "latency_ms_jitter": 2,
+          "packet_loss_probability": 0,
+          "message_rate_limit": null,
+          "bandwidth_bytes_per_second": null,
+          "communication_range_m": null,
+          "partitions": []
+        },
+        "policy": {
+          "provider": "ollama",
+          "model": "phase12-agent:pinned",
+          "model_digest": "46e0c10c039e019119339687c3c1757cc81b9da49709a3b3924863ba87ca666e",
+          "ollama_url": "http://localhost:11434"
+        },
+        "clock_mode": "wall",
+        "ticks": 3000,
+        "scenario": {
+          "fail_agent": null,
+          "fail_at_s": 73.0
+        }
+      }
+    },
+    {
+      "experiment_id": "D_n4_nominal_loss_s43",
+      "architecture": "D",
+      "scenario": "phase17_four_routes",
+      "team_size": 4,
+      "network_profile": "nominal",
+      "failure_profile": "drone_failure_midmission",
+      "random_seed": 43,
+      "planner": "phase12-agent:pinned",
+      "settings": {
+        "dt": 0.2,
+        "lease_seconds": 180.0,
+        "bid_window": 30.0,
+        "decision_interval": 0.5,
+        "inference_timeout": 30.0,
+        "max_context_age": 35.0,
+        "inference_parallelism": 1,
+        "progress_timeout": 60.0,
+        "beacon_interval_s": 0.5,
+        "command_timeout_s": 3.0,
+        "state_timeout_s": 2.0,
+        "resilience": {
+          "enabled": true
+        },
+        "mission_config": "results/phase17/main_calibration_run1/fixtures/team_4.json",
+        "initial_assignments": {
+          "Drone1": [
+            "SEARCH_SECTOR_A"
+          ],
+          "Drone2": [
+            "SEARCH_SECTOR_B"
+          ],
+          "Drone3": [
+            "SEARCH_SECTOR_C"
+          ],
+          "Drone4": [
+            "SEARCH_SECTOR_D"
+          ]
+        },
+        "network": {
+          "latency_ms_mean": 10,
+          "latency_ms_jitter": 2,
+          "packet_loss_probability": 0,
+          "message_rate_limit": null,
+          "bandwidth_bytes_per_second": null,
+          "communication_range_m": null,
+          "partitions": []
+        },
+        "policy": {
+          "provider": "ollama",
+          "model": "phase12-agent:pinned",
+          "model_digest": "46e0c10c039e019119339687c3c1757cc81b9da49709a3b3924863ba87ca666e",
+          "ollama_url": "http://localhost:11434"
+        },
+        "clock_mode": "wall",
+        "ticks": 3000,
+        "scenario": {
+          "fail_agent": "Drone1",
+          "fail_at_s": 73.0
+        }
+      }
+    },
+    {
+      "experiment_id": "D_n4_severe_control_s43",
+      "architecture": "D",
+      "scenario": "phase17_four_routes",
+      "team_size": 4,
+      "network_profile": "severe",
+      "failure_profile": "none",
+      "random_seed": 43,
+      "planner": "phase12-agent:pinned",
+      "settings": {
+        "dt": 0.2,
+        "lease_seconds": 180.0,
+        "bid_window": 30.0,
+        "decision_interval": 0.5,
+        "inference_timeout": 30.0,
+        "max_context_age": 35.0,
+        "inference_parallelism": 1,
+        "progress_timeout": 60.0,
+        "beacon_interval_s": 0.5,
+        "command_timeout_s": 3.0,
+        "state_timeout_s": 2.0,
+        "resilience": {
+          "enabled": true
+        },
+        "mission_config": "results/phase17/main_calibration_run1/fixtures/team_4.json",
+        "initial_assignments": {
+          "Drone1": [
+            "SEARCH_SECTOR_A"
+          ],
+          "Drone2": [
+            "SEARCH_SECTOR_B"
+          ],
+          "Drone3": [
+            "SEARCH_SECTOR_C"
+          ],
+          "Drone4": [
+            "SEARCH_SECTOR_D"
+          ]
+        },
+        "network": {
+          "latency_ms_mean": 400,
+          "latency_ms_jitter": 200,
+          "packet_loss_probability": 0.3,
+          "message_rate_limit": 60,
+          "bandwidth_bytes_per_second": 50000,
+          "communication_range_m": null,
+          "partitions": []
+        },
+        "policy": {
+          "provider": "ollama",
+          "model": "phase12-agent:pinned",
+          "model_digest": "46e0c10c039e019119339687c3c1757cc81b9da49709a3b3924863ba87ca666e",
+          "ollama_url": "http://localhost:11434"
+        },
+        "clock_mode": "wall",
+        "ticks": 3000,
+        "scenario": {
+          "fail_agent": null,
+          "fail_at_s": 73.0
+        }
+      }
+    },
+    {
+      "experiment_id": "D_n4_severe_loss_s43",
+      "architecture": "D",
+      "scenario": "phase17_four_routes",
+      "team_size": 4,
+      "network_profile": "severe",
+      "failure_profile": "drone_failure_midmission",
+      "random_seed": 43,
+      "planner": "phase12-agent:pinned",
+      "settings": {
+        "dt": 0.2,
+        "lease_seconds": 180.0,
+        "bid_window": 30.0,
+        "decision_interval": 0.5,
+        "inference_timeout": 30.0,
+        "max_context_age": 35.0,
+        "inference_parallelism": 1,
+        "progress_timeout": 60.0,
+        "beacon_interval_s": 0.5,
+        "command_timeout_s": 3.0,
+        "state_timeout_s": 2.0,
+        "resilience": {
+          "enabled": true
+        },
+        "mission_config": "results/phase17/main_calibration_run1/fixtures/team_4.json",
+        "initial_assignments": {
+          "Drone1": [
+            "SEARCH_SECTOR_A"
+          ],
+          "Drone2": [
+            "SEARCH_SECTOR_B"
+          ],
+          "Drone3": [
+            "SEARCH_SECTOR_C"
+          ],
+          "Drone4": [
+            "SEARCH_SECTOR_D"
+          ]
+        },
+        "network": {
+          "latency_ms_mean": 400,
+          "latency_ms_jitter": 200,
+          "packet_loss_probability": 0.3,
+          "message_rate_limit": 60,
+          "bandwidth_bytes_per_second": 50000,
+          "communication_range_m": null,
+          "partitions": []
+        },
+        "policy": {
+          "provider": "ollama",
+          "model": "phase12-agent:pinned",
+          "model_digest": "46e0c10c039e019119339687c3c1757cc81b9da49709a3b3924863ba87ca666e",
+          "ollama_url": "http://localhost:11434"
+        },
+        "clock_mode": "wall",
+        "ticks": 3000,
+        "scenario": {
+          "fail_agent": "Drone1",
+          "fail_at_s": 73.0
+        }
+      }
+    }
+  ]
+}

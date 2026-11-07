@@ -1,0 +1,5 @@
+{
+  "type": "KeyboardInterrupt",
+  "message": "",
+  "traceback": "Traceback (most recent call last):\n  File \"/opt/carla_demo/agentic_uav/experiments/runner.py\", line 101, in run_experiment\n    with instrument(comparison,log):summary=comparison.run_comparison(c)\n                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/carla_demo/agentic_uav/experiments/comparison.py\", line 164, in run_comparison\n    time.sleep(max(0,start+tick*c['dt']-time.monotonic()));clock[0]=time.monotonic()-start\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nKeyboardInterrupt\n"
+}

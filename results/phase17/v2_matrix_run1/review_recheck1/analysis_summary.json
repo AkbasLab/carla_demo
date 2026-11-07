@@ -1,0 +1,625 @@
+{
+  "source_commit": "adb11a97c2faefb25250a182bd68b5f57c5f1313",
+  "runs": 48,
+  "batches": 12,
+  "successes": 19,
+  "architecture_successes": {
+    "C": 16,
+    "D": 3
+  },
+  "fault": {
+    "runs": 24,
+    "owned_moving": 24,
+    "accepted": 24,
+    "productive": 11,
+    "completed": 8
+  },
+  "llm": {
+    "calls": 171,
+    "timeouts": 151,
+    "http_errors": 1,
+    "applied_decisions": 2,
+    "productive_decisions": 1,
+    "fallback_invocations": 154,
+    "successful_runs_with_applied_llm_decisions": 0
+  },
+  "safety": {
+    "guarded_runs": 48,
+    "separation_violation_samples": 0,
+    "restricted_zone_entries": 0,
+    "collisions": null,
+    "collision_reason": "not_collected",
+    "unverifiable_state_rejections": 0,
+    "corrective_interventions": 1953
+  },
+  "peer_region_policy_errors_C": 1350,
+  "stored_bytes": 66426166,
+  "raw_case_bytes": 1119017417,
+  "elapsed_span_s": 9804.454529,
+  "mission_time_sum_s": 9486.807261244161,
+  "all_batch_checks_passed": false,
+  "cross_checks": [
+    {
+      "experiment_id": "C_n2_nominal_control_s7",
+      "checks": {
+        "success_agrees": true,
+        "task_count_agrees": true,
+        "work_agrees": true,
+        "inference_calls_agree": true,
+        "productive_decisions_agree": true,
+        "no_top_level_error": true,
+        "no_metric_issues": true
+      }
+    },
+    {
+      "experiment_id": "C_n2_nominal_loss_s7",
+      "checks": {
+        "success_agrees": true,
+        "task_count_agrees": true,
+        "work_agrees": true,
+        "inference_calls_agree": true,
+        "productive_decisions_agree": true,
+        "no_top_level_error": true,
+        "no_metric_issues": true
+      }
+    },
+    {
+      "experiment_id": "D_n2_nominal_control_s7",
+      "checks": {
+        "success_agrees": true,
+        "task_count_agrees": true,
+        "work_agrees": true,
+        "inference_calls_agree": true,
+        "productive_decisions_agree": true,
+        "no_top_level_error": true,
+        "no_metric_issues": true
+      }
+    },
+    {
+      "experiment_id": "D_n2_nominal_loss_s7",
+      "checks": {
+        "success_agrees": true,
+        "task_count_agrees": true,
+        "work_agrees": true,
+        "inference_calls_agree": true,
+        "productive_decisions_agree": true,
+        "no_top_level_error": true,
+        "no_metric_issues": true
+      }
+    },
+    {
+      "experiment_id": "C_n2_nominal_control_s8",
+      "checks": {
+        "success_agrees": true,
+        "task_count_agrees": true,
+        "work_agrees": true,
+        "inference_calls_agree": true,
+        "productive_decisions_agree": true,
+        "no_top_level_error": true,
+        "no_metric_issues": true
+      }
+    },
+    {
+      "experiment_id": "C_n2_nominal_loss_s8",
+      "checks": {
+        "success_agrees": true,
+        "task_count_agrees": true,
+        "work_agrees": true,
+        "inference_calls_agree": true,
+        "productive_decisions_agree": true,
+        "no_top_level_error": true,
+        "no_metric_issues": true
+      }
+    },
+    {
+      "experiment_id": "D_n2_nominal_control_s8",
+      "checks": {
+        "success_agrees": true,
+        "task_count_agrees": true,
+        "work_agrees": true,
+        "inference_calls_agree": true,
+        "productive_decisions_agree": true,
+        "no_top_level_error": true,
+        "no_metric_issues": true
+      }
+    },
+    {
+      "experiment_id": "D_n2_nominal_loss_s8",
+      "checks": {
+        "success_agrees": true,
+        "task_count_agrees": true,
+        "work_agrees": true,
+        "inference_calls_agree": true,
+        "productive_decisions_agree": true,
+        "no_top_level_error": true,
+        "no_metric_issues": true
+      }
+    },
+    {
+      "experiment_id": "C_n2_nominal_control_s9",
+      "checks": {
+        "success_agrees": true,
+        "task_count_agrees": true,
+        "work_agrees": true,
+        "inference_calls_agree": true,
+        "productive_decisions_agree": true,
+        "no_top_level_error": true,
+        "no_metric_issues": true
+      }
+    },
+    {
+      "experiment_id": "C_n2_nominal_loss_s9",
+      "checks": {
+        "success_agrees": true,
+        "task_count_agrees": true,
+        "work_agrees": true,
+        "inference_calls_agree": true,
+        "productive_decisions_agree": true,
+        "no_top_level_error": true,
+        "no_metric_issues": true
+      }
+    },
+    {
+      "experiment_id": "D_n2_nominal_control_s9",
+      "checks": {
+        "success_agrees": true,
+        "task_count_agrees": true,
+        "work_agrees": true,
+        "inference_calls_agree": true,
+        "productive_decisions_agree": true,
+        "no_top_level_error": true,
+        "no_metric_issues": true
+      }
+    },
+    {
+      "experiment_id": "D_n2_nominal_loss_s9",
+      "checks": {
+        "success_agrees": true,
+        "task_count_agrees": true,
+        "work_agrees": true,
+        "inference_calls_agree": true,
+        "productive_decisions_agree": true,
+        "no_top_level_error": true,
+        "no_metric_issues": true
+      }
+    },
+    {
+      "experiment_id": "C_n4_nominal_control_s7",
+      "checks": {
+        "success_agrees": true,
+        "task_count_agrees": true,
+        "work_agrees": true,
+        "inference_calls_agree": true,
+        "productive_decisions_agree": true,
+        "no_top_level_error": true,
+        "no_metric_issues": true
+      }
+    },
+    {
+      "experiment_id": "C_n4_nominal_loss_s7",
+      "checks": {
+        "success_agrees": true,
+        "task_count_agrees": true,
+        "work_agrees": true,
+        "inference_calls_agree": true,
+        "productive_decisions_agree": true,
+        "no_top_level_error": true,
+        "no_metric_issues": true
+      }
+    },
+    {
+      "experiment_id": "D_n4_nominal_control_s7",
+      "checks": {
+        "success_agrees": true,
+        "task_count_agrees": true,
+        "work_agrees": true,
+        "inference_calls_agree": true,
+        "productive_decisions_agree": true,
+        "no_top_level_error": true,
+        "no_metric_issues": true
+      }
+    },
+    {
+      "experiment_id": "D_n4_nominal_loss_s7",
+      "checks": {
+        "success_agrees": true,
+        "task_count_agrees": true,
+        "work_agrees": true,
+        "inference_calls_agree": true,
+        "productive_decisions_agree": true,
+        "no_top_level_error": true,
+        "no_metric_issues": true
+      }
+    },
+    {
+      "experiment_id": "C_n4_nominal_control_s8",
+      "checks": {
+        "success_agrees": true,
+        "task_count_agrees": true,
+        "work_agrees": true,
+        "inference_calls_agree": true,
+        "productive_decisions_agree": true,
+        "no_top_level_error": true,
+        "no_metric_issues": true
+      }
+    },
+    {
+      "experiment_id": "C_n4_nominal_loss_s8",
+      "checks": {
+        "success_agrees": true,
+        "task_count_agrees": true,
+        "work_agrees": true,
+        "inference_calls_agree": true,
+        "productive_decisions_agree": true,
+        "no_top_level_error": true,
+        "no_metric_issues": true
+      }
+    },
+    {
+      "experiment_id": "D_n4_nominal_control_s8",
+      "checks": {
+        "success_agrees": true,
+        "task_count_agrees": true,
+        "work_agrees": true,
+        "inference_calls_agree": true,
+        "productive_decisions_agree": true,
+        "no_top_level_error": true,
+        "no_metric_issues": true
+      }
+    },
+    {
+      "experiment_id": "D_n4_nominal_loss_s8",
+      "checks": {
+        "success_agrees": true,
+        "task_count_agrees": true,
+        "work_agrees": true,
+        "inference_calls_agree": true,
+        "productive_decisions_agree": true,
+        "no_top_level_error": true,
+        "no_metric_issues": true
+      }
+    },
+    {
+      "experiment_id": "C_n4_nominal_control_s9",
+      "checks": {
+        "success_agrees": true,
+        "task_count_agrees": true,
+        "work_agrees": true,
+        "inference_calls_agree": true,
+        "productive_decisions_agree": true,
+        "no_top_level_error": true,
+        "no_metric_issues": true
+      }
+    },
+    {
+      "experiment_id": "C_n4_nominal_loss_s9",
+      "checks": {
+        "success_agrees": true,
+        "task_count_agrees": true,
+        "work_agrees": true,
+        "inference_calls_agree": true,
+        "productive_decisions_agree": true,
+        "no_top_level_error": true,
+        "no_metric_issues": true
+      }
+    },
+    {
+      "experiment_id": "D_n4_nominal_control_s9",
+      "checks": {
+        "success_agrees": true,
+        "task_count_agrees": true,
+        "work_agrees": true,
+        "inference_calls_agree": true,
+        "productive_decisions_agree": true,
+        "no_top_level_error": true,
+        "no_metric_issues": true
+      }
+    },
+    {
+      "experiment_id": "D_n4_nominal_loss_s9",
+      "checks": {
+        "success_agrees": true,
+        "task_count_agrees": true,
+        "work_agrees": true,
+        "inference_calls_agree": true,
+        "productive_decisions_agree": true,
+        "no_top_level_error": true,
+        "no_metric_issues": true
+      }
+    },
+    {
+      "experiment_id": "C_n2_severe_control_s7",
+      "checks": {
+        "success_agrees": true,
+        "task_count_agrees": true,
+        "work_agrees": true,
+        "inference_calls_agree": true,
+        "productive_decisions_agree": true,
+        "no_top_level_error": true,
+        "no_metric_issues": true
+      }
+    },
+    {
+      "experiment_id": "C_n2_severe_loss_s7",
+      "checks": {
+        "success_agrees": true,
+        "task_count_agrees": true,
+        "work_agrees": true,
+        "inference_calls_agree": true,
+        "productive_decisions_agree": true,
+        "no_top_level_error": true,
+        "no_metric_issues": true
+      }
+    },
+    {
+      "experiment_id": "D_n2_severe_control_s7",
+      "checks": {
+        "success_agrees": true,
+        "task_count_agrees": true,
+        "work_agrees": true,
+        "inference_calls_agree": true,
+        "productive_decisions_agree": true,
+        "no_top_level_error": true,
+        "no_metric_issues": true
+      }
+    },
+    {
+      "experiment_id": "D_n2_severe_loss_s7",
+      "checks": {
+        "success_agrees": true,
+        "task_count_agrees": true,
+        "work_agrees": true,
+        "inference_calls_agree": true,
+        "productive_decisions_agree": true,
+        "no_top_level_error": true,
+        "no_metric_issues": true
+      }
+    },
+    {
+      "experiment_id": "C_n2_severe_control_s8",
+      "checks": {
+        "success_agrees": true,
+        "task_count_agrees": true,
+        "work_agrees": true,
+        "inference_calls_agree": true,
+        "productive_decisions_agree": true,
+        "no_top_level_error": true,
+        "no_metric_issues": true
+      }
+    },
+    {
+      "experiment_id": "C_n2_severe_loss_s8",
+      "checks": {
+        "success_agrees": true,
+        "task_count_agrees": true,
+        "work_agrees": true,
+        "inference_calls_agree": true,
+        "productive_decisions_agree": true,
+        "no_top_level_error": true,
+        "no_metric_issues": true
+      }
+    },
+    {
+      "experiment_id": "D_n2_severe_control_s8",
+      "checks": {
+        "success_agrees": true,
+        "task_count_agrees": true,
+        "work_agrees": true,
+        "inference_calls_agree": true,
+        "productive_decisions_agree": true,
+        "no_top_level_error": true,
+        "no_metric_issues": true
+      }
+    },
+    {
+      "experiment_id": "D_n2_severe_loss_s8",
+      "checks": {
+        "success_agrees": true,
+        "task_count_agrees": true,
+        "work_agrees": true,
+        "inference_calls_agree": true,
+        "productive_decisions_agree": true,
+        "no_top_level_error": true,
+        "no_metric_issues": true
+      }
+    },
+    {
+      "experiment_id": "C_n2_severe_control_s9",
+      "checks": {
+        "success_agrees": true,
+        "task_count_agrees": true,
+        "work_agrees": true,
+        "inference_calls_agree": true,
+        "productive_decisions_agree": true,
+        "no_top_level_error": true,
+        "no_metric_issues": true
+      }
+    },
+    {
+      "experiment_id": "C_n2_severe_loss_s9",
+      "checks": {
+        "success_agrees": true,
+        "task_count_agrees": true,
+        "work_agrees": true,
+        "inference_calls_agree": true,
+        "productive_decisions_agree": true,
+        "no_top_level_error": true,
+        "no_metric_issues": true
+      }
+    },
+    {
+      "experiment_id": "D_n2_severe_control_s9",
+      "checks": {
+        "success_agrees": true,
+        "task_count_agrees": true,
+        "work_agrees": true,
+        "inference_calls_agree": true,
+        "productive_decisions_agree": true,
+        "no_top_level_error": true,
+        "no_metric_issues": true
+      }
+    },
+    {
+      "experiment_id": "D_n2_severe_loss_s9",
+      "checks": {
+        "success_agrees": true,
+        "task_count_agrees": true,
+        "work_agrees": true,
+        "inference_calls_agree": true,
+        "productive_decisions_agree": true,
+        "no_top_level_error": true,
+        "no_metric_issues": true
+      }
+    },
+    {
+      "experiment_id": "C_n4_severe_control_s7",
+      "checks": {
+        "success_agrees": true,
+        "task_count_agrees": true,
+        "work_agrees": true,
+        "inference_calls_agree": true,
+        "productive_decisions_agree": true,
+        "no_top_level_error": true,
+        "no_metric_issues": true
+      }
+    },
+    {
+      "experiment_id": "C_n4_severe_loss_s7",
+      "checks": {
+        "success_agrees": true,
+        "task_count_agrees": true,
+        "work_agrees": true,
+        "inference_calls_agree": true,
+        "productive_decisions_agree": true,
+        "no_top_level_error": true,
+        "no_metric_issues": true
+      }
+    },
+    {
+      "experiment_id": "D_n4_severe_control_s7",
+      "checks": {
+        "success_agrees": true,
+        "task_count_agrees": true,
+        "work_agrees": true,
+        "inference_calls_agree": true,
+        "productive_decisions_agree": true,
+        "no_top_level_error": true,
+        "no_metric_issues": true
+      }
+    },
+    {
+      "experiment_id": "D_n4_severe_loss_s7",
+      "checks": {
+        "success_agrees": true,
+        "task_count_agrees": true,
+        "work_agrees": true,
+        "inference_calls_agree": true,
+        "productive_decisions_agree": true,
+        "no_top_level_error": true,
+        "no_metric_issues": true
+      }
+    },
+    {
+      "experiment_id": "C_n4_severe_control_s8",
+      "checks": {
+        "success_agrees": true,
+        "task_count_agrees": true,
+        "work_agrees": true,
+        "inference_calls_agree": true,
+        "productive_decisions_agree": true,
+        "no_top_level_error": true,
+        "no_metric_issues": true
+      }
+    },
+    {
+      "experiment_id": "C_n4_severe_loss_s8",
+      "checks": {
+        "success_agrees": true,
+        "task_count_agrees": true,
+        "work_agrees": true,
+        "inference_calls_agree": true,
+        "productive_decisions_agree": true,
+        "no_top_level_error": true,
+        "no_metric_issues": true
+      }
+    },
+    {
+      "experiment_id": "D_n4_severe_control_s8",
+      "checks": {
+        "success_agrees": true,
+        "task_count_agrees": true,
+        "work_agrees": true,
+        "inference_calls_agree": true,
+        "productive_decisions_agree": true,
+        "no_top_level_error": true,
+        "no_metric_issues": true
+      }
+    },
+    {
+      "experiment_id": "D_n4_severe_loss_s8",
+      "checks": {
+        "success_agrees": true,
+        "task_count_agrees": true,
+        "work_agrees": true,
+        "inference_calls_agree": true,
+        "productive_decisions_agree": true,
+        "no_top_level_error": true,
+        "no_metric_issues": true
+      }
+    },
+    {
+      "experiment_id": "C_n4_severe_control_s9",
+      "checks": {
+        "success_agrees": true,
+        "task_count_agrees": true,
+        "work_agrees": true,
+        "inference_calls_agree": true,
+        "productive_decisions_agree": true,
+        "no_top_level_error": true,
+        "no_metric_issues": true
+      }
+    },
+    {
+      "experiment_id": "C_n4_severe_loss_s9",
+      "checks": {
+        "success_agrees": true,
+        "task_count_agrees": true,
+        "work_agrees": true,
+        "inference_calls_agree": true,
+        "productive_decisions_agree": true,
+        "no_top_level_error": true,
+        "no_metric_issues": true
+      }
+    },
+    {
+      "experiment_id": "D_n4_severe_control_s9",
+      "checks": {
+        "success_agrees": true,
+        "task_count_agrees": true,
+        "work_agrees": true,
+        "inference_calls_agree": true,
+        "productive_decisions_agree": true,
+        "no_top_level_error": true,
+        "no_metric_issues": true
+      }
+    },
+    {
+      "experiment_id": "D_n4_severe_loss_s9",
+      "checks": {
+        "success_agrees": true,
+        "task_count_agrees": true,
+        "work_agrees": true,
+        "inference_calls_agree": true,
+        "productive_decisions_agree": true,
+        "no_top_level_error": true,
+        "no_metric_issues": true
+      }
+    }
+  ],
+  "limitations": [
+    "Pilot evidence, three seeds per cell; not a final architecture ranking",
+    "V1/V2 have different seeds, fault/telemetry semantics and time budgets",
+    "Summaries/metrics cross-checked for all cases; raw responses inspected only in selected archives",
+    "Storage totals are manifest snapshots, not a full recomputation of Git repository size"
+  ]
+}
