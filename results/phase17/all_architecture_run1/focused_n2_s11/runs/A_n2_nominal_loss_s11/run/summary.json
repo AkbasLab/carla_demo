@@ -7,7 +7,7 @@
   "provider": "deterministic",
   "llm_inference": false,
   "mission_complete": false,
-  "time_s": 239.80008398499922,
+  "time_s": 239.8000794579857,
   "error": null,
   "mission_execution_success": false,
   "decentralized_coordination_enabled": false,
@@ -23,26 +23,26 @@
   },
   "decisions_by_agent": {
     "Drone1": 2,
-    "Drone2": 44
+    "Drone2": 69
   },
   "fallbacks_by_agent": {
     "Drone1": 1,
-    "Drone2": 79
+    "Drone2": 70
   },
   "final_roles": {
     "Drone2": "SCOUT"
   },
   "role_changes": 0,
-  "lease_expirations": 1,
+  "lease_expirations": 2,
   "all_dispatched_actions_guarded": true,
   "guardian_outcomes": {
-    "APPROVE_WITH_MODIFICATION": 138,
-    "APPROVE": 43,
-    "REJECT_AND_REPLAN": 32
+    "APPROVE_WITH_MODIFICATION": 167,
+    "APPROVE": 61,
+    "REJECT_AND_REPLAN": 31
   },
   "network_outcomes": {
-    "delivered": 2486,
-    "queued": 1192
+    "delivered": 2490,
+    "queued": 1189
   },
   "network_drop_reasons": {},
   "architecture_selected_from_configuration": true,
@@ -59,7 +59,7 @@
   "live_exit_criterion_observed": false,
   "productive_decisions_by_agent": {
     "Drone1": 0,
-    "Drone2": 10
+    "Drone2": 11
   },
   "llm_productive_decisions_by_agent": {
     "Drone1": 0,
@@ -76,15 +76,15 @@
       "start_search": 2
     },
     "Drone2": {
-      "start_search": 43,
-      "hold": 1
+      "start_search": 67,
+      "hold": 2
     }
   },
   "policy_errors_by_agent": {
     "Drone1": {},
     "Drone2": {
-      "task_not_executable": 1,
-      "unsafe_action:peer_reachable_region_conflict": 42
+      "unsafe_action:peer_reachable_region_conflict": 18,
+      "task_not_executable": 5
     }
   },
   "deadline_bids_by_agent": {
@@ -93,7 +93,7 @@
   },
   "blocked_task_releases_by_agent": {
     "Drone1": 0,
-    "Drone2": 4
+    "Drone2": 0
   },
   "llm_supported_execution_success": false,
   "limitations": [

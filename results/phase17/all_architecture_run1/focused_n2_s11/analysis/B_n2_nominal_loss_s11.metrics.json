@@ -2,22 +2,22 @@
   "schema_version": 1,
   "definition_id": "phase15.route_metrics.v1",
   "experiment_id": "B_n2_nominal_loss_s11",
-  "run_id": "d1fd9b7cee704af38b5fc804adb9b474",
+  "run_id": "699f00d1b57640979596f6fcabdb3ce4",
   "architecture": "B",
   "scenario_id": "phase17_v2_policy_stop_telemetry_alive_owned_motion",
   "network_profile": "nominal",
   "random_seed": 11,
-  "match_key": "f84c81ef7a0f487d45d7d35cbc1ea5783c372e98e1bcc7bf338810f226be5cad",
+  "match_key": "39276fa8fed23d92e9f2f16c648b80dd1c44392f25ae805e36c54ba0c2d19aee",
   "evidence_issues": [],
   "primary": {
     "mission": {
       "success": false,
       "mission_score": 0,
       "required_tasks": 4,
-      "completed_tasks": 1,
+      "completed_tasks": 2,
       "guarded_effects_verified": true,
       "components": {
-        "route_work_fraction": 0.25,
+        "route_work_fraction": 0.5,
         "area_coverage_fraction": null,
         "redundant_cell_observations": null,
         "target_detection_fraction": null,
@@ -32,7 +32,7 @@
     "completion_time": {
       "value_s": null,
       "status": "timeout",
-      "observation_time_s": 239.80009183599032,
+      "observation_time_s": 239.80008651400567,
       "timeout_budget_s": 240.0,
       "censored": true,
       "clock": "wall"
@@ -46,7 +46,7 @@
       {
         "kind": "actor_failure",
         "agent_id": "Drone1",
-        "onset_s": 8.20007990099839,
+        "onset_s": 8.000088964996394,
         "affected_tasks": [
           "SEARCH_SECTOR_A",
           "SEARCH_SECTOR_C"
@@ -59,7 +59,7 @@
             "productive_resume_time_s": null,
             "acceptance_censored": true,
             "productive_resume_censored": true,
-            "observed_until_s": 239.80009183599032
+            "observed_until_s": 239.80008651400567
           },
           {
             "task_id": "SEARCH_SECTOR_C",
@@ -68,7 +68,7 @@
             "productive_resume_time_s": null,
             "acceptance_censored": true,
             "productive_resume_censored": true,
-            "observed_until_s": 239.80009183599032
+            "observed_until_s": 239.80008651400567
           }
         ],
         "ownership_evidence": "fault_onset_snapshot",
@@ -83,19 +83,19 @@
       "minimum_sampled_separation_m": 8.0,
       "restricted_zone_entries_sampled": 0,
       "restricted_zone_crossings_inferred": 0,
-      "guardian_interventions": 32,
+      "guardian_interventions": 42,
       "unsafe_proposal_evaluations": 0,
       "guardian_fallbacks": 0,
       "emergency_fallbacks": 0,
       "sampled_pair_observations": 1200,
       "separation_threshold_m": 2.0,
-      "guardian_evaluations": 34,
-      "routine_segment_modifications": 32,
+      "guardian_evaluations": 51,
+      "routine_segment_modifications": 42,
       "corrective_guardian_interventions": 0,
-      "intervention_rate": 0.9411764705882353,
+      "intervention_rate": 0.8235294117647058,
       "outcomes": {
-        "APPROVE_WITH_MODIFICATION": 32,
-        "APPROVE": 2
+        "APPROVE_WITH_MODIFICATION": 42,
+        "APPROVE": 9
       },
       "unverifiable_state_rejections": 0,
       "fallback_types": {},
@@ -103,16 +103,16 @@
     },
     "communication": {
       "available": true,
-      "unique_message_sends": 1518,
-      "recipient_packet_attempts": 1518,
-      "attempted_bytes": 792660,
-      "bytes_transmitted": 792660,
-      "messages_per_completed_task": 1518.0,
+      "unique_message_sends": 1552,
+      "recipient_packet_attempts": 1552,
+      "attempted_bytes": 847499,
+      "bytes_transmitted": 847499,
+      "messages_per_completed_task": 776.0,
       "retry_message_sends": 0,
       "duplicate_transport_deliveries": 0,
       "expired_messages": 0,
       "dropped_messages": 0,
-      "pending_messages": 1076,
+      "pending_messages": 1110,
       "delivered_messages": 442,
       "not_yet_transmitted_packets": 0,
       "semantic_duplicate_messages": null,
@@ -120,14 +120,14 @@
     }
   },
   "diagnostic": {
-    "unique_productive_work": 4,
-    "total_work": 4,
+    "unique_productive_work": 8,
+    "total_work": 8,
     "repeated_required_work": 0,
-    "route_work_fraction": 0.25,
+    "route_work_fraction": 0.5,
     "coordination_efficiency": 1.0,
     "task_reassignments": 0,
     "same_owner_restarts": 0,
-    "orphaned_tasks_at_end": 3,
+    "orphaned_tasks_at_end": 2,
     "multiple_self_declared_owners_at_end": 0,
     "orphan_reason": null,
     "role_changes": 0,
@@ -137,13 +137,13 @@
     "invalid_structured_outputs": 0,
     "stale_context_or_version_rejections": 0,
     "llm_calls": 3,
-    "llm_response_latency_mean_s": 7.487393824660103,
-    "llm_response_latency_p95_s": 7.560404577094596,
+    "llm_response_latency_mean_s": 7.011632875655778,
+    "llm_response_latency_p95_s": 7.211601080285618,
     "response_errors": 0,
     "token_usage": {
-      "input_tokens": 5634,
+      "input_tokens": 5740,
       "output_tokens": 216,
-      "reported_input_token_subtotal": 5634,
+      "reported_input_token_subtotal": 5740,
       "reported_output_token_subtotal": 216,
       "complete": true,
       "calls_with_usage": 3,
@@ -152,14 +152,14 @@
     "fallback_policy_invocations": 0,
     "role_deadline_fallbacks": 0,
     "fallback_replacement_enabled": false,
-    "distance_travelled_m": 32.59999841673932,
+    "distance_travelled_m": 49.79999535199022,
     "distance_by_agent_m": {
-      "Drone1": 0.6000046240078518,
-      "Drone2": 31.999993792731466
+      "Drone1": 0.7999953519902192,
+      "Drone2": 49.0
     },
     "battery_decrease_percent_by_agent": {
-      "Drone1": 0.006000046240089318,
-      "Drone2": 0.3199999379273777
+      "Drone1": 0.007999953519885139,
+      "Drone2": 0.4900000000000517
     },
     "energy_joules": null,
     "conflicting_claim_corrections": 0,

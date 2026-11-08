@@ -2,12 +2,12 @@
   "schema_version": 1,
   "definition_id": "phase15.route_metrics.v1",
   "experiment_id": "C_n4_nominal_control_s11",
-  "run_id": "95f3de02bcf746d3a8cae4d93ed44d40",
+  "run_id": "5bd9a74d98ae4dbdb00f835fd9cc72b4",
   "architecture": "C",
   "scenario_id": "phase17_v2_policy_stop_telemetry_alive_owned_motion",
   "network_profile": "nominal",
   "random_seed": 11,
-  "match_key": "f63d4ce3dc7f0677ee75395d35a0ffb8c713053fdedfd18fad25faaf3c4289eb",
+  "match_key": "979f0d1e6e621392aff80dc87f5f85f3b2e2414adc7d17e51838269597d86583",
   "evidence_issues": [],
   "primary": {
     "mission": {
@@ -30,9 +30,9 @@
       }
     },
     "completion_time": {
-      "value_s": 54.40009157601162,
+      "value_s": 54.20008264199714,
       "status": "completed",
-      "observation_time_s": 54.40009157601162,
+      "observation_time_s": 54.20008264199714,
       "timeout_budget_s": 240.0,
       "censored": false,
       "clock": "wall"
@@ -51,19 +51,19 @@
       "minimum_sampled_separation_m": 5.0,
       "restricted_zone_entries_sampled": 0,
       "restricted_zone_crossings_inferred": 0,
-      "guardian_interventions": 88,
+      "guardian_interventions": 90,
       "unsafe_proposal_evaluations": 0,
       "guardian_fallbacks": 0,
       "emergency_fallbacks": 0,
-      "sampled_pair_observations": 1638,
+      "sampled_pair_observations": 1632,
       "separation_threshold_m": 2.0,
-      "guardian_evaluations": 104,
-      "routine_segment_modifications": 88,
+      "guardian_evaluations": 105,
+      "routine_segment_modifications": 90,
       "corrective_guardian_interventions": 0,
-      "intervention_rate": 0.8461538461538461,
+      "intervention_rate": 0.8571428571428571,
       "outcomes": {
-        "APPROVE_WITH_MODIFICATION": 88,
-        "APPROVE": 16
+        "APPROVE_WITH_MODIFICATION": 90,
+        "APPROVE": 15
       },
       "unverifiable_state_rejections": 0,
       "fallback_types": {},
@@ -71,17 +71,17 @@
     },
     "communication": {
       "available": true,
-      "unique_message_sends": 1199,
-      "recipient_packet_attempts": 3597,
-      "attempted_bytes": 2327901,
-      "bytes_transmitted": 2327901,
-      "messages_per_completed_task": 299.75,
-      "retry_message_sends": 275,
-      "duplicate_transport_deliveries": 825,
+      "unique_message_sends": 1235,
+      "recipient_packet_attempts": 3705,
+      "attempted_bytes": 2392218,
+      "bytes_transmitted": 2392218,
+      "messages_per_completed_task": 308.75,
+      "retry_message_sends": 305,
+      "duplicate_transport_deliveries": 915,
       "expired_messages": 0,
       "dropped_messages": 0,
       "pending_messages": 3,
-      "delivered_messages": 3594,
+      "delivered_messages": 3702,
       "not_yet_transmitted_packets": 0,
       "semantic_duplicate_messages": null,
       "semantic_duplicate_reason": "no_stable_business_id_for_recreated_transactions"
@@ -120,18 +120,18 @@
     "fallback_policy_invocations": 0,
     "role_deadline_fallbacks": 0,
     "fallback_replacement_enabled": false,
-    "distance_travelled_m": 83.80000520200701,
+    "distance_travelled_m": 83.36039909368868,
     "distance_by_agent_m": {
       "Drone1": 21.0,
       "Drone2": 21.0,
-      "Drone3": 21.0,
-      "Drone4": 20.800005202007014
+      "Drone3": 20.760398644698075,
+      "Drone4": 20.600000448990613
     },
     "battery_decrease_percent_by_agent": {
-      "Drone1": 0.20999999999990848,
-      "Drone2": 0.20999999999999375,
-      "Drone3": 0.21000000000003638,
-      "Drone4": 0.20800005202009686
+      "Drone1": 0.21000000000000796,
+      "Drone2": 0.2100000000000648,
+      "Drone3": 0.2076039864469834,
+      "Drone4": 0.20600000448992262
     },
     "energy_joules": null,
     "conflicting_claim_corrections": 0,

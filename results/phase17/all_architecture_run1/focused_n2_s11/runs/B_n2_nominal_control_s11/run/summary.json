@@ -6,23 +6,25 @@
   "condition": "nominal",
   "provider": "ollama",
   "llm_inference": true,
-  "mission_complete": false,
-  "time_s": 239.80008442200779,
+  "mission_complete": true,
+  "time_s": 106.00008522599819,
   "error": null,
-  "mission_execution_success": false,
+  "mission_execution_success": true,
   "decentralized_coordination_enabled": false,
   "completed_task_ids": [
+    "SEARCH_SECTOR_A",
+    "SEARCH_SECTOR_B",
     "SEARCH_SECTOR_C",
     "SEARCH_SECTOR_D"
   ],
   "duplicate_task_completions": 0,
   "completions_by_agent": {
-    "Drone1": 1,
-    "Drone2": 1
+    "Drone1": 2,
+    "Drone2": 2
   },
   "decisions_by_agent": {
-    "Drone1": 1,
-    "Drone2": 1
+    "Drone1": 2,
+    "Drone2": 2
   },
   "fallbacks_by_agent": {
     "Drone1": 0,
@@ -36,11 +38,12 @@
   "lease_expirations": 0,
   "all_dispatched_actions_guarded": true,
   "guardian_outcomes": {
-    "APPROVE_WITH_MODIFICATION": 74,
-    "APPROVE": 4
+    "APPROVE_WITH_MODIFICATION": 102,
+    "APPROVE": 18
   },
   "network_outcomes": {
-    "delivered": 2118
+    "delivered": 878,
+    "queued": 2
   },
   "network_drop_reasons": {},
   "architecture_selected_from_configuration": true,
@@ -56,33 +59,31 @@
   "llm_exit_criterion_observed": true,
   "live_exit_criterion_observed": false,
   "productive_decisions_by_agent": {
-    "Drone1": 1,
-    "Drone2": 1
+    "Drone1": 2,
+    "Drone2": 2
   },
   "llm_productive_decisions_by_agent": {
-    "Drone1": 1,
-    "Drone2": 1
+    "Drone1": 2,
+    "Drone2": 2
   },
   "observed_progress_sources_by_agent": {
     "Drone1": {
-      "llm": 4
+      "llm": 8
     },
     "Drone2": {
-      "llm": 4
+      "llm": 8
     }
   },
   "policy_tools_by_agent": {
     "Drone1": {
-      "start_search": 1
+      "start_search": 2
     },
     "Drone2": {
-      "start_search": 1
+      "start_search": 2
     }
   },
   "policy_errors_by_agent": {
-    "Drone1": {
-      "task_context_changed": 1
-    },
+    "Drone1": {},
     "Drone2": {}
   },
   "deadline_bids_by_agent": {
@@ -90,10 +91,10 @@
     "Drone2": 0
   },
   "blocked_task_releases_by_agent": {
-    "Drone1": 1,
-    "Drone2": 1
+    "Drone1": 0,
+    "Drone2": 0
   },
-  "llm_supported_execution_success": false,
+  "llm_supported_execution_success": true,
   "limitations": [
     "Kinematic mock flight and application-level network; no live AirSim comparison or calibrated RF evidence",
     "C and D retain fail-closed guardian checks on stale peer state; reassignment does not guarantee executable recovery under a partition",

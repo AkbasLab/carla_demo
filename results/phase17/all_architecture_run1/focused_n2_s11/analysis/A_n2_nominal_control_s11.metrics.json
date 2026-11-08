@@ -2,12 +2,12 @@
   "schema_version": 1,
   "definition_id": "phase15.route_metrics.v1",
   "experiment_id": "A_n2_nominal_control_s11",
-  "run_id": "fcd64ec22dc44102a12b56244605b729",
+  "run_id": "b9e94bf8a81e4e39966d03faf8b16c07",
   "architecture": "A",
   "scenario_id": "phase17_v2_policy_stop_telemetry_alive_owned_motion",
   "network_profile": "nominal",
   "random_seed": 11,
-  "match_key": "757ece73fb96ffae03e710ad31ffc68ac2c55dd34882401a98c244627a544536",
+  "match_key": "3b2939f4ceb6d4b5d39944796c22fa32d1a92595cd459ca3a8e0cd53d97c858d",
   "evidence_issues": [],
   "primary": {
     "mission": {
@@ -30,9 +30,9 @@
       }
     },
     "completion_time": {
-      "value_s": 117.60007714400126,
+      "value_s": 114.800083626993,
       "status": "completed",
-      "observation_time_s": 117.60007714400126,
+      "observation_time_s": 114.800083626993,
       "timeout_budget_s": 240.0,
       "censored": false,
       "clock": "wall"
@@ -48,22 +48,23 @@
       "collision_reason": "collision_observations_not_collected",
       "sampled_separation_violations": 0,
       "separation_violation_episodes": 0,
-      "minimum_sampled_separation_m": 5.011842175394122,
+      "minimum_sampled_separation_m": 4.9999999999957705,
       "restricted_zone_entries_sampled": 0,
       "restricted_zone_crossings_inferred": 0,
       "guardian_interventions": 118,
       "unsafe_proposal_evaluations": 0,
       "guardian_fallbacks": 0,
       "emergency_fallbacks": 0,
-      "sampled_pair_observations": 589,
+      "sampled_pair_observations": 575,
       "separation_threshold_m": 2.0,
-      "guardian_evaluations": 175,
-      "routine_segment_modifications": 118,
-      "corrective_guardian_interventions": 0,
-      "intervention_rate": 0.6742857142857143,
+      "guardian_evaluations": 181,
+      "routine_segment_modifications": 117,
+      "corrective_guardian_interventions": 1,
+      "intervention_rate": 0.6519337016574586,
       "outcomes": {
-        "APPROVE_WITH_MODIFICATION": 118,
-        "APPROVE": 57
+        "APPROVE_WITH_MODIFICATION": 117,
+        "APPROVE": 63,
+        "REJECT_AND_REPLAN": 1
       },
       "unverifiable_state_rejections": 0,
       "fallback_types": {},
@@ -71,17 +72,17 @@
     },
     "communication": {
       "available": true,
-      "unique_message_sends": 2147,
-      "recipient_packet_attempts": 2541,
-      "attempted_bytes": 1597538,
-      "bytes_transmitted": 1597538,
-      "messages_per_completed_task": 536.75,
-      "retry_message_sends": 288,
-      "duplicate_transport_deliveries": 288,
+      "unique_message_sends": 2100,
+      "recipient_packet_attempts": 2484,
+      "attempted_bytes": 1541745,
+      "bytes_transmitted": 1541745,
+      "messages_per_completed_task": 525.0,
+      "retry_message_sends": 287,
+      "duplicate_transport_deliveries": 287,
       "expired_messages": 0,
       "dropped_messages": 0,
-      "pending_messages": 9,
-      "delivered_messages": 2532,
+      "pending_messages": 5,
+      "delivered_messages": 2479,
       "not_yet_transmitted_packets": 0,
       "semantic_duplicate_messages": null,
       "semantic_duplicate_reason": "no_stable_business_id_for_recreated_transactions"
@@ -117,17 +118,17 @@
       "calls_with_usage": 0,
       "reason": null
     },
-    "fallback_policy_invocations": 46,
+    "fallback_policy_invocations": 45,
     "role_deadline_fallbacks": 0,
     "fallback_replacement_enabled": false,
-    "distance_travelled_m": 110.00082010909276,
+    "distance_travelled_m": 110.39991692910583,
     "distance_by_agent_m": {
-      "Drone1": 69.20097532295851,
-      "Drone2": 40.79984478613424
+      "Drone1": 69.39991692910583,
+      "Drone2": 41.0
     },
     "battery_decrease_percent_by_agent": {
-      "Drone1": 0.6920097532296978,
-      "Drone2": 0.4079984478614307
+      "Drone1": 0.6939991692910468,
+      "Drone2": 0.410000000000025
     },
     "energy_joules": null,
     "conflicting_claim_corrections": 0,

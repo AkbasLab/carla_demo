@@ -7,7 +7,7 @@
   "provider": "ollama",
   "llm_inference": true,
   "mission_complete": true,
-  "time_s": 222.0001054530003,
+  "time_s": 201.80008421099046,
   "error": null,
   "mission_execution_success": true,
   "decentralized_coordination_enabled": true,
@@ -37,12 +37,12 @@
   "lease_expirations": 1,
   "all_dispatched_actions_guarded": true,
   "guardian_outcomes": {
-    "APPROVE_WITH_MODIFICATION": 103,
+    "APPROVE_WITH_MODIFICATION": 93,
     "APPROVE": 17
   },
   "network_outcomes": {
-    "delivered": 578,
-    "queued": 1057
+    "delivered": 543,
+    "queued": 962
   },
   "network_drop_reasons": {},
   "architecture_selected_from_configuration": true,
@@ -82,7 +82,8 @@
   "policy_errors_by_agent": {
     "Drone1": {},
     "Drone2": {
-      "task_context_changed": 2
+      "task_context_changed": 1,
+      "not_eligible_to_bid": 1
     }
   },
   "deadline_bids_by_agent": {

@@ -7,7 +7,7 @@
   "provider": "deterministic",
   "llm_inference": false,
   "mission_complete": false,
-  "time_s": 239.80008495098446,
+  "time_s": 239.80007846502122,
   "error": null,
   "mission_execution_success": false,
   "decentralized_coordination_enabled": false,
@@ -25,15 +25,15 @@
   },
   "decisions_by_agent": {
     "Drone1": 2,
-    "Drone2": 19,
-    "Drone3": 18,
-    "Drone4": 10
+    "Drone2": 64,
+    "Drone3": 11,
+    "Drone4": 11
   },
   "fallbacks_by_agent": {
     "Drone1": 1,
-    "Drone2": 56,
-    "Drone3": 51,
-    "Drone4": 10
+    "Drone2": 64,
+    "Drone3": 11,
+    "Drone4": 11
   },
   "final_roles": {
     "Drone2": "SCOUT",
@@ -41,16 +41,16 @@
     "Drone4": "SCOUT"
   },
   "role_changes": 0,
-  "lease_expirations": 1,
+  "lease_expirations": 3,
   "all_dispatched_actions_guarded": true,
   "guardian_outcomes": {
-    "APPROVE_WITH_MODIFICATION": 179,
-    "APPROVE": 51,
-    "REJECT_AND_REPLAN": 59
+    "APPROVE_WITH_MODIFICATION": 188,
+    "APPROVE": 76,
+    "REJECT_AND_REPLAN": 46
   },
   "network_outcomes": {
-    "delivered": 12607,
-    "queued": 3436
+    "delivered": 12519,
+    "queued": 3427
   },
   "network_drop_reasons": {},
   "architecture_selected_from_configuration": true,
@@ -67,9 +67,9 @@
   "live_exit_criterion_observed": false,
   "productive_decisions_by_agent": {
     "Drone1": 0,
-    "Drone2": 4,
-    "Drone3": 4,
-    "Drone4": 4
+    "Drone2": 3,
+    "Drone3": 3,
+    "Drone4": 3
   },
   "llm_productive_decisions_by_agent": {
     "Drone1": 0,
@@ -94,25 +94,24 @@
       "start_search": 2
     },
     "Drone2": {
-      "start_search": 18,
-      "hold": 1
+      "start_search": 60,
+      "hold": 4
     },
     "Drone3": {
-      "start_search": 18
+      "start_search": 11
     },
     "Drone4": {
-      "start_search": 10
+      "start_search": 11
     }
   },
   "policy_errors_by_agent": {
     "Drone1": {},
     "Drone2": {
-      "task_not_executable": 1,
-      "unsafe_action:peer_reachable_region_conflict": 40
+      "unsafe_action:peer_reachable_region_conflict": 17,
+      "task_not_executable": 7,
+      "task_context_changed": 1
     },
-    "Drone3": {
-      "unsafe_action:peer_reachable_region_conflict": 35
-    },
+    "Drone3": {},
     "Drone4": {}
   },
   "deadline_bids_by_agent": {
@@ -123,8 +122,8 @@
   },
   "blocked_task_releases_by_agent": {
     "Drone1": 0,
-    "Drone2": 4,
-    "Drone3": 3,
+    "Drone2": 0,
+    "Drone3": 0,
     "Drone4": 0
   },
   "llm_supported_execution_success": false,

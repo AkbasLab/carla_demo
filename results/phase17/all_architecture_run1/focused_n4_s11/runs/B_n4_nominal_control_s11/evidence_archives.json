@@ -3,32 +3,41 @@
   "archives": [
     {
       "archive": "traces.zip",
-      "sha256": "7bf54962ba0b9a2c87d57d090d78c2c6506b50e793ec30f83b9b26cf5843309d",
+      "sha256": "abdab88e60e607d2e5bf7160c238aa07bf0596e12107d82707d5d521c8026452",
       "members_sha256": {
-        "events.jsonl": "b5fe16b7270717b995db56faf1aa5910d8b3e6c5fd5a1cc5c106a8b102d1db26"
+        "events.jsonl": "5d904f48ec158d92c28f9625a1e10fc9cfbb792b7e89478a6dd1f5a0810f7e3f"
       },
-      "uncompressed_bytes": 23524304,
-      "compressed_bytes": 647398
+      "uncompressed_bytes": 6381275,
+      "compressed_bytes": 221445
     },
     {
       "archive": "run/traces.zip",
-      "sha256": "1e7e4c8f93835d4228967d3202bfa866ec8b11db87bb4acc5c3522cde0582fbd",
+      "sha256": "15447a90114fd3c7d39dac9ace2109a1292e9b5f1f526dc5ef4638e1e5b236b1",
       "members_sha256": {
-        "flight_trace.json": "3b03d80da1ccf4c09ff2da3ba43be2f9d4e72168fe78bc0a1afce79aee956d17",
-        "messages.json": "3d689dd8dc376f8a96ee530b6e359d93cdaa8adda59718f35dab692c8145d5f4",
-        "guardian_audit.json": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
-        "executed_actions.json": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+        "flight_trace.json": "93a2b5e89bf4e0006ab2e0bcc74929eaab139221eeca99dea1acb851bc7fcbe7",
+        "messages.json": "3c6a1c50fcdcef03d5294511ef33014cc8774bda2e65a9e90c575cc8d16dfc7c",
+        "guardian_audit.json": "fe31a3e8f035be67a7cc64931b7be403c0a72f8f3220f7197d7e897c6f1bf4b3",
+        "executed_actions.json": "21d8b7e281214ab3e521b0170ce128a4af94e0182d5392d60a9a3664ce96a831",
         "retry_events.json": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
-        "Drone2/decision_history.jsonl": "6b5ed106bd13753a743e8e92e9665b8ff435c68be3f3905f37c9c1e9150020ba",
-        "Drone3/decision_history.jsonl": "9603197be9ba9824933c8a9fbcc7066660850222eb5618170f0a44b5c42d3046",
-        "Drone1/request_specs.jsonl": "8397d90c3844a7044e7f90c3a79a0dd0e75ff8032a50dc18a43c4e8d8ed328e3",
-        "Drone1/prompts.jsonl": "b7ab9acdf9dc91515e6b78c374660053fad1368f102b44bb44025af1d3753c13",
-        "Drone1/decision_history.jsonl": "b721dedffd5151e463f6c61aed5e28526fdf029baa6b5544386c578303faa3e2",
-        "Drone1/responses.jsonl": "d05ff6013546d11aa18085d4fce39c914bdbc91a07ee80b6ede5a6c2dd22beac",
-        "Drone4/decision_history.jsonl": "fd8b4b45a57baf8feec223dcf2e74a6350f032184e3110873ec3d10738218663"
+        "Drone2/request_specs.jsonl": "be62f7ea57bb54aef045d55bd4f517be2a6e1744495dcc7e30d2e75b50d75e5c",
+        "Drone2/prompts.jsonl": "38f98003bc1825043a5fc91661eda7516f2bf6ba8e09a97a7dd73aadc7a8b22e",
+        "Drone2/decision_history.jsonl": "1983a1ae72638e9203bf454fe43c509f797ca8ec92c22fbb0343be7bcbffffc7",
+        "Drone2/responses.jsonl": "9d17f1c18db6a5b3b8ca53813aeab56feed5abc578b4cdec2d90eaed4b3dcb5c",
+        "Drone3/request_specs.jsonl": "98c467d10fa24597fea69efb61d80eb3f8182ceb7c71c918e6a799c648f4332c",
+        "Drone3/prompts.jsonl": "c657a2814e220a03abed03b2428a3e32408d09136122364308ccbb5a6430df50",
+        "Drone3/decision_history.jsonl": "2009f0b353dbfc9d61b1c007da9bd6ad83f5ab22634fe42498c6a74a48050c8c",
+        "Drone3/responses.jsonl": "2ad7cfb136b133f055ccc536c5837ec11bad112bdcac71c08228a1288fd34d59",
+        "Drone1/request_specs.jsonl": "0c3fea103a097d5e1738f8bfd0f16ae9c2130fcdeead18cd312e150100f16389",
+        "Drone1/prompts.jsonl": "306aabfb8ab57f539df91868e4dd781ea52e3464bd0a147ccc16f340d0cb26e5",
+        "Drone1/decision_history.jsonl": "be89801ee472215caff3fdb8a2aea565fc29377864f657a3d4c0c268c7a8ef98",
+        "Drone1/responses.jsonl": "b5bfffb4a3c991151266820fde36da1152d6fe2053ecc5b789b3683c62f97195",
+        "Drone4/request_specs.jsonl": "4b97711adf270d99cb844b59e789aad68a4b5137dd0b2f0d1e5f3bdbc49c398f",
+        "Drone4/prompts.jsonl": "5416fbfeaefd1e7a72ff1a577bc515a17728f74d067d324fa68e658aa91d9ca2",
+        "Drone4/decision_history.jsonl": "ee460d073ecdeff28e610b1c60d74e3c80644704bebb350c3bb86b0881ef2131",
+        "Drone4/responses.jsonl": "b7881d0477091cf2077762b7156430e1b6a5a176d9214828bd4719d130902d6c"
       },
-      "uncompressed_bytes": 13022303,
-      "compressed_bytes": 555307
+      "uncompressed_bytes": 3605172,
+      "compressed_bytes": 177038
     }
   ]
 }
