@@ -128,10 +128,13 @@ class PersistentAgent(AllocationAgent):
         if speed is None:speed=min(1.,self.guardian.config.max_speed_mps)
         index=self.executor.index if self.executor.key==(task.task_id,task.version) else self.checkpoints.get(task.task_id,0)
         if index>=len(self.routes[task.task_id]):raise PolicyError('waypoint_out_of_order')
-        target=tuple(self.routes[task.task_id][index])
+        target=self._motion_target(task,index,now,speed)
         action=Action(f'approach:{self.agent_id}:{now}',self.agent_id,'MOVE',now,now+30,(target,),speed)
         check=self.guardian.evaluate(action,self.safety_state(now),now)
         return index,target,check
+
+    def _motion_target(self,task,index,now,speed):
+        return tuple(self.routes[task.task_id][index])
 
     def _note_blocked(self,task,index,reasons,now):
         key=(task.task_id,task.version,index);reasons=tuple(sorted(set(reasons)))
@@ -321,6 +324,8 @@ class PersistentAgent(AllocationAgent):
         context=self.context(now);prompt=json.dumps(context,allow_nan=False,sort_keys=True)
         self.request_number+=1;token=f'{self.agent_id}:{self.request_number}';self.last_request=now
         self.pending=dict(token=token,offered_tools=list(context['available_tools']),context_time=now,wall_start=time.monotonic(),correction_attempt=self.correction_attempt)
+        self.pending['task_snapshot']={t['task_id']:(t['version'],t['status'],t['owner']) for t in context['tasks']}
+        self.pending['tool_candidates']=copy.deepcopy(context['tool_candidates'])
         self._save('prompts',dict(request_id=token,simulation_time_s=now,prompt=prompt,correction_attempt=self.correction_attempt,admission_wait_s=0. if self.request_waiting_since is None else now-self.request_waiting_since))
         self.request_waiting_since=None
         if isinstance(self.provider,OllamaProvider):
@@ -386,6 +391,23 @@ class PersistentAgent(AllocationAgent):
                 decision=validate_decision(result['raw'],self.peers)
                 if decision['confidence']<.5:raise PolicyError('low_policy_confidence')
                 if decision['selected_tool'] not in pending['offered_tools']:raise PolicyError('tool_not_offered_in_request')
+                params=decision['parameters'];tid=params.get('task_id');task=self.tasks.get(tid)
+                snapshot=pending.get('task_snapshot',{}).get(tid)
+                current=(task.version,task.status.value,task.assigned_agent) if task is not None else None
+                if snapshot is not None and (current!=snapshot or
+                        (task.lease_expires_at is not None and now>=task.lease_expires_at)):
+                    # A valid response can become obsolete while the model runs.
+                    # Start a fresh decision, never rewrite its version or execute it.
+                    self.record('policy_error',now,request_id=result['token'],reason_code='task_context_changed',
+                                correction_attempt=pending['correction_attempt'],disposition='refresh_without_execution')
+                    self.record('decision_superseded',now,request_id=result['token'],task_id=tid,
+                                previous=snapshot,current=current)
+                    self.correction=None;self.correction_attempt=0;self.last_request=-math.inf
+                    return
+                if tid is not None and 'task_version' in params:
+                    offered=pending.get('tool_candidates',{}).get(decision['selected_tool'],[])
+                    if offered and not any(p.get('task_id')==tid and p.get('task_version')==params['task_version'] for p in offered):
+                        raise PolicyError('task_parameters_not_offered')
                 self._check_progress(decision,now,gate)
                 tool_result=self.apply(decision,now,gate)
             except (PolicyError,ValueError,KeyError,TypeError) as error:
@@ -458,7 +480,7 @@ class PersistentAgent(AllocationAgent):
             return self._cost(task,now)
         if tool=='claim_task':
             task=self._task(p,now);offers=self.bids.get(task.task_id,{})
-            if self.workload() or self.role!='SCOUT' or self.battery<self.guardian.config.min_battery_reserve_percent:raise PolicyError('not_eligible_to_claim')
+            if not self.can_claim(task) or self.role!='SCOUT' or self.battery<self.guardian.config.min_battery_reserve_percent:raise PolicyError('not_eligible_to_claim')
             if task.status!=TaskStatus.BIDDING or now<self.auction_end.get(task.task_id,math.inf) or not offers:raise PolicyError('auction_not_ready')
             winner=min(offers.values(),key=lambda b:(b['score'],b['agent_id']))
             if winner['agent_id']!=self.agent_id:raise PolicyError('not_best_valid_bid')
@@ -579,7 +601,7 @@ class PersistentAgent(AllocationAgent):
             self.authorized=None;self.single_index=None;self.motion_key=None;return
         key=(action['task_id'],action['version'],action['index'])
         if self.agent_id in gate.active:return
-        target=tuple(action['target'])
+        target=self._motion_target(task,action['index'],now,min(1.,self.guardian.config.max_speed_mps))
         proposed=Action(f'executor:{self.agent_id}:{now}',self.agent_id,'MOVE',now,now+30,(target,),min(1.,self.guardian.config.max_speed_mps),source='rule_policy')
         decision=gate.dispatch(proposed,self.safety_state(now),now)
         self.motion_key=key
