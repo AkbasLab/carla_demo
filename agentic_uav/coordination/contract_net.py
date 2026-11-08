@@ -123,6 +123,14 @@ class AllocationAgent:
     def workload(self):
         return sum(t.status==TaskStatus.ASSIGNED and t.assigned_agent==self.agent_id for t in self.tasks.values())
 
+    def coordination_peers(self,now):
+        """Protocol eligibility only; this never changes physical peer beliefs."""
+        return {p for p in self.peers if now-self.last_heartbeat.get(p,now)<=self.lease_s}
+
+    def can_claim(self,task):
+        return not any(t.task_id!=task.task_id and t.status==TaskStatus.ASSIGNED
+                       and t.assigned_agent==self.agent_id for t in self.tasks.values())
+
     def announce(self,task,now,version):
         task.version=version;task.status=TaskStatus.BIDDING
         task.assigned_agent=None;task.lease_expires_at=None
@@ -144,6 +152,9 @@ class AllocationAgent:
 
     def adopt(self,task,claim,now):
         if task.status==TaskStatus.COMPLETE or claim['version']!=task.version:return False
+        if claim['owner']==self.agent_id and not self.can_claim(task):
+            self.log('claim_capacity_rejected',now,task_id=task.task_id,version=task.version)
+            return False
         current=self.claims.get(task.task_id)
         winner=claim if current is None else preferred_claim(current,claim)
         if current is not None and winner['owner']!=current['owner']:
@@ -182,7 +193,9 @@ class AllocationAgent:
             if msg.message_type==MT.TASK_ANNOUNCEMENT and version>task.version:
                 self.announce(task,now,version);used=True
             elif version==task.version:
-                if msg.message_type==MT.TASK_BID and task.status==TaskStatus.BIDDING and msg.sender_id==p.get('agent_id') and math.isfinite(p.get('score',float('nan'))) and p['score']>=0:
+                if msg.message_type==MT.TASK_RELEASE and p.get('reason')=='bid_withdrawn':
+                    self.bids.get(task.task_id,{}).pop(msg.sender_id,None);used=True
+                elif msg.message_type==MT.TASK_BID and task.status==TaskStatus.BIDDING and msg.sender_id==p.get('agent_id') and math.isfinite(p.get('score',float('nan'))) and p['score']>=0:
                     self.bids.setdefault(task.task_id,{})[msg.sender_id]=p;used=True
                 elif msg.message_type==MT.TASK_AWARD and p.get('owner')==msg.sender_id:
                     known=self.bids.get(task.task_id,{}).get(msg.sender_id)
@@ -218,12 +231,16 @@ class AllocationAgent:
             if opened:self.announce(opened[0],now,opened[0].version+1)
         for task in self.tasks.values():
             if task.status==TaskStatus.BIDDING and now>=self.auction_end[task.task_id]:
+                if self.agent_id in self.bids.get(task.task_id,{}) and not self.can_claim(task):
+                    self.bids[task.task_id].pop(self.agent_id)
+                    self.send(MT.TASK_RELEASE,dict(task_id=task.task_id,version=task.version,reason='bid_withdrawn'),now)
+                    self.log('capacity_bid_withdrawn',now,task_id=task.task_id,version=task.version)
                 offers=self.bids.get(task.task_id,{})
                 if not offers:
                     # No eligible idle bidder: reopen later instead of assigning an incapable agent.
                     self.auction_end[task.task_id]=now+self.bid_window
                     self.offer(task,now);continue
-                offers={agent:b for agent,b in offers.items() if agent==self.agent_id or now-self.last_heartbeat.get(agent,now)<=self.lease_s}
+                offers={agent:b for agent,b in offers.items() if agent==self.agent_id or agent in self.coordination_peers(now)}
                 if not offers:
                     self.auction_end[task.task_id]=now+self.bid_window
                     self.offer(task,now);continue
@@ -240,7 +257,7 @@ class AllocationAgent:
         for task in self.tasks.values():
             if task.status!=TaskStatus.ASSIGNED or task.assigned_agent!=self.agent_id:continue
             # Only execute after every peer has acknowledged the current winning claim.
-            active_peers={peer for peer in self.peers if now-self.last_heartbeat.get(peer,now)<=self.lease_s}
+            active_peers=self.coordination_peers(now)
             if not active_peers<=self.acks.get(task.task_id,set()):continue
             if now-self.claim_time[task.task_id]<self.bid_window:continue
             done=self.progress.get((task.task_id,task.version),0.)+dt*self.work_rate
@@ -259,7 +276,7 @@ class AllocationAgent:
         for task in self.tasks.values():
             if task.status!=TaskStatus.ASSIGNED or task.assigned_agent!=self.agent_id or now>=task.lease_expires_at:
                 continue
-            active={p for p in self.peers if now-self.last_heartbeat.get(p,now)<=self.lease_s}
+            active=self.coordination_peers(now)
             if active<=self.acks.get(task.task_id,set()) and now-self.claim_time[task.task_id]>=self.bid_window:
                 return task
         return None
