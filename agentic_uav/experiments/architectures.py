@@ -44,6 +44,9 @@ class ComparisonAgent(PersistentAgent):
         if self.settings.get('resilience',{}).get('enabled') and kind==MT.STATUS_UPDATE:
             payload=dict(payload,completed_tasks=list(self.completed_facts.values()))
         super().send(kind,payload,now)
+        if (self.architecture=='A' and kind==MT.HEARTBEAT and
+                self.settings.get('pilot_resilience_v2',{}).get('enabled')):
+            self.emit(kind,payload,now,[CONTROLLER])
         if self.architecture=='A' and kind==MT.STATUS_UPDATE:
             reports=[dict(task_id=t.task_id,version=t.version,status=t.status.value,completed_waypoints=self.checkpoints.get(t.task_id,0))
                 for t in self.tasks.values() if t.assigned_agent==self.agent_id or t.status==TaskStatus.COMPLETE]
@@ -429,6 +432,7 @@ class FleetController:
         self.endpoint=endpoint;self.tasks={t.task_id:copy.deepcopy(t) for t in tasks}
         self.vehicle_ids=list(vehicle_ids);self.settings=settings;self.states={};self.sequence=0
         self.checkpoints={};self.last_send={};self.events=[];self.cooldowns={};self.decisions=[];self.bootstrap_ready=False
+        self.policy_heartbeats={}
 
     def send_assignment(self,task,now):
         self.sequence+=1
@@ -443,7 +447,11 @@ class FleetController:
         for message in self.endpoint.receive_available():
             if message.sender_id not in self.vehicle_ids or message.mission_id!='phase8':continue
             p=message.payload;used=False
-            if message.message_type==MT.STATUS_UPDATE:
+            if message.message_type==MT.HEARTBEAT:
+                if 0<=message.timestamp<=now:
+                    self.policy_heartbeats[message.sender_id]=max(message.timestamp,self.policy_heartbeats.get(message.sender_id,-math.inf))
+                    used=True
+            elif message.message_type==MT.STATUS_UPDATE:
                 v=p.get('position');observed=p.get('observed_at',message.timestamp)
                 if not isinstance(v,list) or len(v)!=3 or not all(type(x) in (int,float) and math.isfinite(x) for x in v):continue
                 if type(observed) not in (int,float) or not math.isfinite(observed) or not 0<=observed<=message.timestamp:continue
@@ -485,6 +493,8 @@ class FleetController:
                 candidates=[]
                 for aid,state in self.states.items():
                     if aid in busy or state['role']!='SCOUT' or now-state['observed_at']>self.settings['state_timeout_s'] or now<self.cooldowns.get((aid,task.task_id),0):continue
+                    v2=self.settings.get('pilot_resilience_v2',{})
+                    if v2.get('enabled') and now-self.policy_heartbeats.get(aid,-math.inf)>v2['coordination_timeout_s']:continue
                     if state['battery']<self.settings.get('minimum_battery_percent',20):continue
                     risk=min(1.,max(0.,now-state['observed_at'])/3)
                     score=bid_cost(task,state['position'],state['battery'],0,risk,{'search','inspect'},BID_WEIGHTS,'searcher')

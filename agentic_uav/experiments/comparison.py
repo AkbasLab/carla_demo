@@ -46,8 +46,8 @@ def configuration(values=None):
             c[key].update(value)
         else:c[key]=copy.deepcopy(value)
     if c['schema_version']!=1 or c['architecture'] not in ('A','B','C','D'):raise ValueError('Choose architecture A, B, C or D')
-    if c['pilot_resilience_v2']['enabled'] and (c['architecture'] not in ('C','D') or not c['resilience']['enabled']):
-        raise ValueError('Phase 17 V2 requires C/D and bounded-horizon resilience')
+    if c['pilot_resilience_v2']['enabled'] and not c['resilience']['enabled']:
+        raise ValueError('Phase 17 V2 requires bounded-horizon resilience')
     if c['backend']!='mock':raise ValueError('Phase 13 initial comparison supports mock flight only; live comparison is not validated')
     if c['condition'] not in ('nominal','moderate','severe','partitioned'):raise ValueError('Unknown network condition')
     for key in ('dt','lease_seconds','bid_window','decision_interval','inference_timeout','max_context_age','progress_timeout','beacon_interval_s','command_timeout_s','state_timeout_s'):
@@ -121,7 +121,7 @@ def run_comparison(values,provider=None):
     for aid,v in m['vehicles'].items():
         cls=FixedTaskAgent if architecture in ('A','B') else ComparisonAgent
         if c['pilot_resilience_v2']['enabled']:cls=pilot_v2_agent_class(cls)
-        extra=dict(initial_task_ids=c['initial_assignments'][aid] if architecture=='B' else (),horizon=horizon) if cls==FixedTaskAgent else {}
+        extra=dict(initial_task_ids=c['initial_assignments'][aid] if architecture=='B' else (),horizon=horizon) if architecture in ('A','B') else {}
         agent=cls(aid,[p for p in ids if p!=aid],endpoints[aid],tasks,v['start_position'],role=v['role'],routes=routes,
             home=v['home'],relay_point=m['relay_point'],guardian=guardian,output_dir=out,provider=provider,mission=m['mission'],
             architecture=architecture,settings=settings,initial_roles=initial_roles,lease_s=lease,bid_window=c['bid_window'],weights=BID_WEIGHTS,
@@ -131,7 +131,8 @@ def run_comparison(values,provider=None):
     telemetry={}
     if c['pilot_resilience_v2']['enabled']:
         if c['pilot_resilience_v2']['independent_telemetry']:
-            telemetry={a.agent_id:OwnVehicleTelemetry(a.emit,a.peers,c['pilot_resilience_v2']['telemetry_interval_s']) for a in agents}
+            telemetry={a.agent_id:OwnVehicleTelemetry(a.emit,a.peers+([CONTROLLER] if architecture=='A' else []),
+                c['pilot_resilience_v2']['telemetry_interval_s']) for a in agents}
         if fail and c['pilot_resilience_v2']['fault_mode']=='owned_motion':
             actor=next(a for a in agents if a.agent_id==fail)
             scenario.trigger=owned_motion_trigger(actor,gate,c['pilot_resilience_v2'],tuple(actor.position))

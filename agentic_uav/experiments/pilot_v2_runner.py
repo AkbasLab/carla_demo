@@ -73,17 +73,28 @@ def restore_evidence(folder):
     return dict(restored_files=restored,archives_retained=True)
 
 
-def build(config,root,stage,team_size,seed,profile,telemetry,fault_mode):
+def selected_architectures(config,stage,architectures=None):
+    values=architectures if architectures is not None else config.get('architectures', ['C'] if stage=='smoke' else ['C','D'])
+    if (not isinstance(values,(list,tuple)) or not values or any(a not in ('A','B','C','D') for a in values)
+            or len(set(values))!=len(values)):
+        raise ValueError('Select a nonempty unique subset of A/B/C/D')
+    if stage=='smoke' and any(a in ('B','D') for a in values):
+        raise ValueError('Smoke supports deterministic A/C; use focused or severe for B/D')
+    return [a for a in 'ABCD' if a in values]
+
+
+def build(config,root,stage,team_size,seed,profile,telemetry,fault_mode,architectures=None):
     if stage not in ('smoke','focused','severe') or team_size not in (2,4):raise ValueError('Invalid stage/team size')
     if type(seed) is not int or seed<0 or seed in config['protected_seeds']:raise ValueError('Use a development seed outside the old pilot and held-out pools')
     if profile not in ('replay','pinned') or telemetry not in ('alive','silent') or fault_mode not in ('owned_motion','fixed_time'):raise ValueError('Invalid V2 profile')
+    architectures=selected_architectures(config,stage,architectures)
     c=copy.deepcopy(config['pilot_template']);c['team_sizes']=[team_size]
     paths=materialize_missions(c,root)
     mission=read(resolve(paths[team_size]));ids=list(mission['vehicles']);assignments={a:[] for a in ids}
     for i,t in enumerate(mission['tasks']):assignments[ids[i%team_size]].append(t['task_id'])
     policy=c['model'] if profile=='pinned' else dict(provider='replay',model=None,model_digest=None,ollama_url=c['model']['ollama_url'])
     condition='severe' if stage=='severe' else 'nominal';entries=[]
-    for arch in ('C',) if stage=='smoke' else ('C','D'):
+    for arch in architectures:
         for fault in (False,True):
             settings=copy.deepcopy(config['settings'])
             settings.update(mission_config=paths[team_size],initial_assignments=assignments,policy=policy,
@@ -96,7 +107,7 @@ def build(config,root,stage,team_size,seed,profile,telemetry,fault_mode):
             entries.append(dict(experiment_id=f'{arch}_n{team_size}_{condition}_{"loss" if fault else "control"}_s{seed}',
                 architecture=arch,scenario=scenario,team_size=team_size,network_profile=condition,
                 failure_profile='drone_failure_midmission' if fault else 'none',random_seed=seed,
-                planner='deterministic' if arch=='C' else policy['model'] if profile=='pinned' else 'replay',settings=settings))
+                planner='deterministic' if arch in ('A','C') else policy['model'] if profile=='pinned' else 'replay',settings=settings))
     return dict(schema_version=1,experiments=entries)
 
 
@@ -124,19 +135,20 @@ def overview(rows,path):
     fig.savefig(path,dpi=140,bbox_inches='tight');plt.close(fig)
 
 
-def execute(config_path,output_dir,*,stage='smoke',team_size=4,seed=7,profile='pinned',telemetry='alive',fault_mode='owned_motion',compress=True):
+def execute(config_path,output_dir,*,stage='smoke',team_size=4,seed=7,profile='pinned',telemetry='alive',fault_mode='owned_motion',compress=True,architectures=None):
     config=read(resolve(config_path));root=Path(output_dir).resolve();root.mkdir(parents=True,exist_ok=False)
     if config['schema_version']!=1 or not 60<=config['duration_s']<=600:raise ValueError('Invalid V2 budget')
-    batch=build(config,root,stage,team_size,seed,profile,telemetry,fault_mode)
+    chosen=selected_architectures(config,stage,architectures)
+    batch=build(config,root,stage,team_size,seed,profile,telemetry,fault_mode,chosen)
     write_json(root/'configuration.json',config);write_json(root/'batch.json',batch)
-    if stage!='smoke' and profile=='pinned':
+    if profile=='pinned' and any(a in ('B','D') for a in chosen):
         m=config['pilot_template']['model']
         try:identity=OllamaProvider(m['model'],m['model_digest'],m['ollama_url'],seed=seed).verify()
         except Exception as exc:
             write_json(root/'preflight_error.json',dict(type=type(exc).__name__,message=str(exc)));raise
         write_json(root/'model_preflight.json',identity)
     (root/'runs').mkdir();(root/'analysis').mkdir();registration=metrics.register(root/'runs');rows=[];evaluations=[]
-    manifest=dict(schema_version=1,stage=stage,profile='deterministic_smoke' if stage=='smoke' else profile,
+    manifest=dict(schema_version=1,stage=stage,architectures=chosen,profile='deterministic_smoke' if stage=='smoke' else profile,
         started_at_utc=datetime.now(timezone.utc).isoformat(),finished_at_utc=None,status='running',planned_runs=len(batch['experiments']),
         completed_runs=0,source=provenance(),fault_trigger=fault_mode,telemetry=telemetry,
         data_budget_bytes=round(config['disk_budget_mb']*1024**2),rows=rows,
@@ -185,14 +197,18 @@ def execute(config_path,output_dir,*,stage='smoke',team_size=4,seed=7,profile='p
             manifest['status']='stopped_on_error';break
     else:manifest['status']='finished'
     if rows and all('completed_tasks' in r for r in rows):overview(rows,root/'analysis/overview.png')
+    manifest['all_runs_technically_valid']=len(rows)==manifest['planned_runs'] and all(not r.get('error') and not r.get('metric_issues') for r in rows)
+    manifest['all_missions_complete']=len(rows)==manifest['planned_runs'] and all(r.get('mission_complete') is True for r in rows)
     manifest['diagnostic_checks_passed']=len(rows)==manifest['planned_runs'] and all(
         not r.get('error') and not r.get('metric_issues') and r.get('mission_complete') is True and
         (not r.get('fault_requested') or (r.get('fault_observed') and r.get('fault_owned') and r.get('fault_during_move') and r.get('replacement_s') is not None and r.get('productive_resume_s') is not None)) for r in rows)
     manifest.update(finished_at_utc=datetime.now(timezone.utc).isoformat(),stored_bytes=size(root),successful_missions=sum(r.get('mission_complete') is True for r in rows))
     write_json(root/'v2_manifest.json',manifest)
     lines=['# Phase 17 resilience V2 diagnostic batch','',f"Stage: {stage}; {len(rows)}/{manifest['planned_runs']} runs; {manifest['successful_missions']} completed missions.",
+        f"Architectures: {', '.join(chosen)}. Each includes a control and a policy-failure case.",
         f"Stored size: {manifest['stored_bytes']/1024**2:.2f} MiB. Fault trigger: {fault_mode}. Telemetry: {telemetry}.",'',
         'This is a new declared scenario, not final calibration. Replay is not LLM inference. Successful state-triggered recovery does not validate full radio-loss recovery.','',
+        'B deliberately does not reassign failed-peer tasks. Its incomplete fault outcome is retained, not treated as a technical error. The all-mission diagnostic flag is separate from technical validity.','',
         '| Case | Completed tasks | Complete | Time (s) | Replacement accepted at (s) | Productive resume at (s) |','|---|---:|---|---:|---:|---:|']
     for r in rows:lines.append(f"| {r['experiment_id']} | {r.get('completed_tasks')} | {r.get('mission_complete')} | {r.get('time_s')} | {r.get('replacement_s')} | {r.get('productive_resume_s')} |")
     if (root/'analysis/overview.png').exists():lines+=['','![Overview](overview.png)']
