@@ -1,5 +1,7 @@
 # Phase 17 resilience V2 — small recovery diagnostics
 
+For matched **A/B/C/D** development batches, see [the all-architecture guide](phase17_all_architecture_testing.md). Use `--architectures A B C D`; old commands retain C/D defaults. B intentionally does not recover another agent's unfinished tasks.
+
 V2 investigates the recovery failures in [the original pilot report](phase17_results.md). The original `pinned_run1` and its 32 unfinished missions remain unchanged. V2 is opt-in through **`scripts/run_phase17_resilience_v2.py`**; the old pilot configuration does not enable its behavior.
 
 ## Changes and scientific scope
