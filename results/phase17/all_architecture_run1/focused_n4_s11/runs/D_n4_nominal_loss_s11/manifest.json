@@ -75,10 +75,10 @@
   "scenario_id": "phase17_v2_policy_stop_telemetry_alive_owned_motion",
   "random_seed": 11,
   "started_at_utc": "2026-11-08T19:51:53.545551+00:00",
-  "finished_at_utc": null,
-  "status": "running",
-  "run_completed": false,
-  "mission_complete": null,
+  "finished_at_utc": "2026-11-08T19:54:22.785916+00:00",
+  "status": "completed",
+  "run_completed": true,
+  "mission_complete": true,
   "error": null,
   "configuration_files": [
     {
@@ -167,7 +167,7 @@
       }
     }
   },
-  "model_identity_verified": false,
+  "model_identity_verified": true,
   "instrumentation": "phase14_phase15_observers_v2",
   "metric_registration": {
     "definition_id": "phase15.route_metrics.v1",
@@ -267,5 +267,82 @@
     "model_digest": "46e0c10c039e019119339687c3c1757cc81b9da49709a3b3924863ba87ca666e",
     "ollama_url": "http://localhost:11434"
   },
-  "budget_s": 240.0
+  "budget_s": 240.0,
+  "effective_provider": {
+    "provider": "ollama",
+    "model": "phase12-agent:pinned",
+    "digest": "46e0c10c039e019119339687c3c1757cc81b9da49709a3b3924863ba87ca666e",
+    "options": {
+      "temperature": 0,
+      "seed": 11,
+      "num_predict": 512,
+      "num_ctx": 8192
+    },
+    "server": "http://localhost:11434",
+    "server_version": "0.32.1",
+    "details": {
+      "parent_model": "",
+      "format": "gguf",
+      "family": "llama",
+      "families": [
+        "llama"
+      ],
+      "parameter_size": "8.0B",
+      "quantization_level": "Q4_K_M",
+      "context_length": 131072,
+      "embedding_length": 4096
+    },
+    "warmup": {
+      "performed": true,
+      "latency_s": 0.2667760729964357
+    }
+  },
+  "source_changed_during_run": false,
+  "event_counts": {
+    "RUN_STARTED": 1,
+    "MISSION_STARTED": 1,
+    "OBSERVATION_RECEIVED": 6261,
+    "MESSAGE_SENT": 2644,
+    "TASK_ANNOUNCED": 19,
+    "MESSAGE_RECEIVED": 6034,
+    "BELIEF_UPDATED": 3285,
+    "TASK_BID": 13,
+    "TASK_ASSIGNED": 18,
+    "LLM_CALLED": 7,
+    "LLM_USAGE": 7,
+    "POLICY_EVENT": 2,
+    "DECISION_PROPOSED": 5,
+    "SKILL_STARTED": 110,
+    "GUARDIAN_INTERVENED": 93,
+    "TASK_STATE_SNAPSHOT": 5,
+    "FAULT_INJECTED": 1,
+    "SKILL_CANCELLED": 2,
+    "SKILL_COMPLETED": 108,
+    "WAYPOINT_ARRIVED": 16,
+    "TASK_COMPLETED": 4,
+    "MISSION_COMPLETED": 1,
+    "RUN_FINISHED": 1
+  },
+  "event_coverage": {
+    "MISSION_STARTED": 1,
+    "OBSERVATION_RECEIVED": 6261,
+    "BELIEF_UPDATED": 3285,
+    "MESSAGE_SENT": 2644,
+    "MESSAGE_DROPPED": 0,
+    "MESSAGE_RECEIVED": 6034,
+    "TASK_ANNOUNCED": 19,
+    "TASK_BID": 13,
+    "TASK_ASSIGNED": 18,
+    "TASK_RELEASED": 0,
+    "ROLE_CHANGED": 0,
+    "LLM_CALLED": 7,
+    "DECISION_PROPOSED": 5,
+    "GUARDIAN_INTERVENED": 93,
+    "SKILL_STARTED": 110,
+    "SKILL_COMPLETED": 108,
+    "TARGET_FOUND": 0,
+    "FAULT_INJECTED": 1,
+    "MISSION_COMPLETED": 1
+  },
+  "failure_observed": true
 }

@@ -17,10 +17,10 @@
     "limitation": "Only cooperating Phase 17 runners are isolated; external VM/model workloads remain possible"
   },
   "started_at_utc": "2026-11-08T19:37:38.739443+00:00",
-  "finished_at_utc": null,
-  "status": "running",
+  "finished_at_utc": "2026-11-08T19:54:26.908917+00:00",
+  "status": "finished",
   "planned_runs": 8,
-  "completed_runs": 7,
+  "completed_runs": 8,
   "source": {
     "git_commit_sha": "d469d58111333ae40a25ce8ea2c4c62cbcf111d4",
     "git_tracked_dirty": true,
@@ -274,6 +274,31 @@
       "raw_bytes": 16986969,
       "stored_bytes": 754926,
       "evidence_losslessly_packed": true
+    },
+    {
+      "experiment_id": "D_n4_nominal_loss_s11",
+      "seed": 11,
+      "architecture": "D",
+      "fault_requested": true,
+      "mission_complete": true,
+      "completed_tasks": 4,
+      "time_s": 148.40007630499895,
+      "route_work_fraction": 1.0,
+      "fault_observed": true,
+      "fault_owned": true,
+      "fault_during_move": true,
+      "fault_s": 23.20009458999266,
+      "replacement_s": 104.20018424099544,
+      "productive_resume_s": 131.00008590999641,
+      "llm_calls": 7,
+      "productive_llm_decisions": 4,
+      "sampled_separation_violations": 0,
+      "all_dispatched_actions_guarded": true,
+      "metric_issues": [],
+      "error": null,
+      "raw_bytes": 27764162,
+      "stored_bytes": 1196413,
+      "evidence_losslessly_packed": true
     }
   ],
   "held_out": false,
@@ -285,5 +310,9 @@
     "One development seed and one team size per invocation; small batches are diagnostics, not final calibration or LLM superiority evidence",
     "No live CARLA-Air flight; silence never proves absence; collision sensing remains unavailable"
   ],
-  "stored_bytes": 9662730
+  "stored_bytes": 11183254,
+  "all_runs_technically_valid": true,
+  "all_missions_complete": false,
+  "diagnostic_checks_passed": false,
+  "successful_missions": 6
 }
