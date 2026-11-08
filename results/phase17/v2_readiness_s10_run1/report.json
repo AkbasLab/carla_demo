@@ -1,0 +1,97 @@
+{
+  "identity": {
+    "provider": "ollama",
+    "model": "phase12-agent:pinned",
+    "digest": "46e0c10c039e019119339687c3c1757cc81b9da49709a3b3924863ba87ca666e",
+    "options": {
+      "temperature": 0,
+      "seed": 10,
+      "num_predict": 512,
+      "num_ctx": 8192
+    },
+    "server": "http://localhost:11434",
+    "server_version": "0.32.1",
+    "details": {
+      "parent_model": "",
+      "format": "gguf",
+      "family": "llama",
+      "families": [
+        "llama"
+      ],
+      "parameter_size": "8.0B",
+      "quantization_level": "Q4_K_M",
+      "context_length": 131072,
+      "embedding_length": 4096
+    }
+  },
+  "warmup": {
+    "performed": true,
+    "latency_s": 13.173079929998494
+  },
+  "request_source": "results/phase17/main_calibration_run1/runs/D_n2_nominal_control_s41/run/Drone1/request_specs.jsonl",
+  "requests": [
+    {
+      "attempt": 1,
+      "latency_s": 29.727429345992277,
+      "response": {
+        "model": "phase12-agent:pinned",
+        "created_at": "2026-11-07T23:19:27.322768498Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"situation_assessment\": {\"mission_progress\": \"partial\", \"communication_status\": \"nominal\", \"current_risk\": \"low\"}, \"selected_tool\": \"start_search\", \"parameters\": {\"task_id\": \"SEARCH_SECTOR_A\", \"task_version\": 1}, \"outgoing_messages\": [], \"confidence\": 0.8}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 29726251357,
+        "load_duration": 240395956,
+        "prompt_eval_count": 2352,
+        "prompt_eval_duration": 24214235000,
+        "eval_count": 72,
+        "eval_duration": 5262115000
+      },
+      "valid": true
+    },
+    {
+      "attempt": 2,
+      "latency_s": 5.340438926999923,
+      "response": {
+        "model": "phase12-agent:pinned",
+        "created_at": "2026-11-07T23:19:32.72281378Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"situation_assessment\": {\"mission_progress\": \"partial\", \"communication_status\": \"nominal\", \"current_risk\": \"low\"}, \"selected_tool\": \"start_search\", \"parameters\": {\"task_id\": \"SEARCH_SECTOR_A\", \"task_version\": 1}, \"outgoing_messages\": [], \"confidence\": 0.8}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 5338989544,
+        "load_duration": 234609873,
+        "prompt_eval_count": 2352,
+        "prompt_eval_duration": 74150000,
+        "eval_count": 72,
+        "eval_duration": 5020104000
+      },
+      "valid": true
+    },
+    {
+      "attempt": 3,
+      "latency_s": 5.248045162996277,
+      "response": {
+        "model": "phase12-agent:pinned",
+        "created_at": "2026-11-07T23:19:38.030502917Z",
+        "message": {
+          "role": "assistant",
+          "content": "{\"situation_assessment\": {\"mission_progress\": \"partial\", \"communication_status\": \"nominal\", \"current_risk\": \"low\"}, \"selected_tool\": \"start_search\", \"parameters\": {\"task_id\": \"SEARCH_SECTOR_A\", \"task_version\": 1}, \"outgoing_messages\": [], \"confidence\": 0.8}"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 5246668458,
+        "load_duration": 222463698,
+        "prompt_eval_count": 2352,
+        "prompt_eval_duration": 61786000,
+        "eval_count": 72,
+        "eval_duration": 4952960000
+      },
+      "valid": true
+    }
+  ]
+}
