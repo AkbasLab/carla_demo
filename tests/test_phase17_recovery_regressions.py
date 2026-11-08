@@ -1,6 +1,7 @@
 """Regressions for observed seed-11/12 protocol waits and motion failures."""
 from dataclasses import replace
 import json
+import math
 import tempfile
 import unittest
 from unittest.mock import patch
@@ -136,12 +137,51 @@ class RecoveryRegressions(unittest.TestCase):
         with patch.object(ComparisonAgent,'execution_tick',return_value=None),patch.object(a,'_approach',return_value=(0,(6,0,-3),blocked)):
             a.execution_tick(0,self.gate)
         with patch.object(ComparisonAgent,'execution_tick',return_value=None),patch.object(a,'_approach',return_value=(0,(6,0,-3),approved)):
-            self.now[0]=10
+            self.now[0]=10;a.state_time=10;a.peer_beliefs['Drone2']['observed_at']=10
             a.execution_tick(10,self.gate)
             self.assertEqual(a.blocked_since[(t.task_id,1,0)]['first'],0)
-            self.now[0]=16;a.execution_tick(16,self.gate)
+            self.now[0]=16;a.state_time=16;a.peer_beliefs['Drone2']['observed_at']=16
+            a.execution_tick(16,self.gate)
+        self.assertEqual(a.blocked_since[(t.task_id,1,0)]['blocked_elapsed_s'],0)
+        self.assertEqual(t.status,TaskStatus.ASSIGNED)
+        with patch.object(ComparisonAgent,'execution_tick',return_value=None),patch.object(a,'_approach',return_value=(0,(6,0,-3),blocked)):
+            for now in (17,25,33):
+                self.now[0]=now;a.state_time=now;a.peer_beliefs['Drone2']['observed_at']=now
+                a.execution_tick(now,self.gate)
         self.assertFalse(t.status==TaskStatus.ASSIGNED and t.assigned_agent==a.agent_id)
         self.assertTrue(any(x['event']=='blocked_task_released' for x in a.events_policy))
+
+    def test_startup_telemetry_wait_does_not_release_task_while_model_is_queued(self):
+        a=self.agent();t=self.own(a);a.acks[t.task_id].add('Drone2');a.peer_beliefs={}
+        with patch.object(ComparisonAgent,'execution_tick',return_value=None):a.execution_tick(0,self.gate)
+        self.assertEqual(a.blocked_since[(t.task_id,1,0)]['kind'],'state_wait')
+        for now in (1,16,35):
+            self.now[0]=now;a.state_time=now;a.request_waiting_since=1
+            a.peer_beliefs['Drone2']=dict(position=[0,8,-3],velocity=[0,0,0],observed_at=now,role='SCOUT',battery=80)
+            with patch.object(ComparisonAgent,'execution_tick',return_value=None):a.execution_tick(now,self.gate)
+        self.assertEqual(t.status,TaskStatus.ASSIGNED)
+        self.assertFalse(any(x['event']=='blocked_task_released' for x in a.events_policy))
+        self.assertTrue(any(x['event']=='state_wait_resolved' for x in a.events_policy))
+
+    def test_geometric_timer_does_not_consume_inflight_decision_time(self):
+        a=self.agent();t=self.own(a);a.acks[t.task_id].add('Drone2')
+        blocked=Decision(Outcome.REJECT_AND_REPLAN,['peer_reachable_region_conflict'])
+        with patch.object(ComparisonAgent,'execution_tick',return_value=None),patch.object(a,'_approach',return_value=(0,(6,0,-3),blocked)):
+            a.execution_tick(0,self.gate)
+            a.pending={'token':'inflight'}
+            for now in (1,10,25):
+                self.now[0]=now;a.state_time=now;a.peer_beliefs['Drone2']['observed_at']=now
+                a.execution_tick(now,self.gate)
+        self.assertEqual(t.status,TaskStatus.ASSIGNED)
+        self.assertEqual(a.blocked_since[(t.task_id,1,0)]['blocked_elapsed_s'],0)
+
+    def test_arrival_region_is_not_enlarged_to_escape_peer_occupancy(self):
+        state=State('Drone1',(6,8,-3),0,80,(0,0,-3),{'Drone2':Peer((3,0,-3),(0,0,0),-.4)},('Drone2',))
+        plan=plan_approach(self.guardian,state,(6,0,-3),0,1,arrival_tolerance=.4)
+        self.assertIsNotNone(plan)
+        self.assertLessEqual(math.dist(plan['arrival_point'],(6,0,-3)),.4)
+        self.assertNotEqual(tuple(plan['arrival_point']),(6,0,-3))
+        self.assertEqual(tuple(plan['required_waypoint']),(6,0,-3))
 
     def test_rejection_cache_rebuilt_when_authorization_clears_it_within_log_interval(self):
         a=self.agent();t=self.own(a)

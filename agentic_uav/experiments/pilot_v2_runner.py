@@ -13,6 +13,7 @@ from .runner import run_experiment,write_json,provenance
 from agentic_uav.comm.degraded import preset
 from dataclasses import asdict
 from agentic_uav.policy.structured import OllamaProvider
+from .batch_isolation import batch_isolation
 
 
 def size(root):
@@ -135,7 +136,13 @@ def overview(rows,path):
     fig.savefig(path,dpi=140,bbox_inches='tight');plt.close(fig)
 
 
-def execute(config_path,output_dir,*,stage='smoke',team_size=4,seed=7,profile='pinned',telemetry='alive',fault_mode='owned_motion',compress=True,architectures=None):
+def execute(config_path,output_dir,*,stage='smoke',team_size=4,seed=7,profile='pinned',telemetry='alive',fault_mode='owned_motion',compress=True,architectures=None,allow_concurrent=False):
+    with batch_isolation(profile,stage,allow_concurrent) as isolation:
+        return _execute(config_path,output_dir,stage=stage,team_size=team_size,seed=seed,profile=profile,
+            telemetry=telemetry,fault_mode=fault_mode,compress=compress,architectures=architectures,isolation=isolation)
+
+
+def _execute(config_path,output_dir,*,stage,team_size,seed,profile,telemetry,fault_mode,compress,architectures,isolation):
     config=read(resolve(config_path));root=Path(output_dir).resolve();root.mkdir(parents=True,exist_ok=False)
     if config['schema_version']!=1 or not 60<=config['duration_s']<=600:raise ValueError('Invalid V2 budget')
     chosen=selected_architectures(config,stage,architectures)
@@ -149,6 +156,7 @@ def execute(config_path,output_dir,*,stage='smoke',team_size=4,seed=7,profile='p
         write_json(root/'model_preflight.json',identity)
     (root/'runs').mkdir();(root/'analysis').mkdir();registration=metrics.register(root/'runs');rows=[];evaluations=[]
     manifest=dict(schema_version=1,stage=stage,architectures=chosen,profile='deterministic_smoke' if stage=='smoke' else profile,
+        execution_isolation=isolation,
         started_at_utc=datetime.now(timezone.utc).isoformat(),finished_at_utc=None,status='running',planned_runs=len(batch['experiments']),
         completed_runs=0,source=provenance(),fault_trigger=fault_mode,telemetry=telemetry,
         data_budget_bytes=round(config['disk_budget_mb']*1024**2),rows=rows,

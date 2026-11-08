@@ -17,13 +17,15 @@ def main():
                    help='Select any subset; default C/D (C for smoke). Each architecture runs control and fault.')
     r.add_argument('--telemetry',choices=['alive','silent'],default='alive')
     r.add_argument('--fault-trigger',choices=['owned_motion','fixed_time'],default='owned_motion')
+    r.add_argument('--allow-concurrent',action='store_true',help='Record an explicit override of the pinned-batch VM isolation guard')
     r.add_argument('--no-compress',action='store_true');r.add_argument('--output-dir',required=True)
     r=sub.add_parser('restore');r.add_argument('--run-dir',required=True)
     a=p.parse_args()
     if a.command=='restore':result=restore_evidence(a.run_dir)
     else:
         result=execute(a.config,a.output_dir,stage=a.stage,team_size=a.team_size,seed=a.seed,profile=a.profile,
-            telemetry=a.telemetry,fault_mode=a.fault_trigger,compress=not a.no_compress,architectures=a.architectures)
+            telemetry=a.telemetry,fault_mode=a.fault_trigger,compress=not a.no_compress,architectures=a.architectures,
+            allow_concurrent=a.allow_concurrent)
         result={k:v for k,v in result.items() if k not in ('rows','source')}
     print(json.dumps(result,indent=2))
     return 1 if result.get('status') in ('interrupted','stopped_on_error','stopped_at_data_budget') else 0

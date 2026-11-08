@@ -7,6 +7,7 @@ from pathlib import Path
 import tempfile
 from types import SimpleNamespace
 import unittest
+from unittest.mock import patch
 
 from agentic_uav.experiments import pilot_v2_runner as runner
 from agentic_uav.experiments.comparison import run_comparison,configuration
@@ -103,3 +104,21 @@ class AllArchitectureTests(unittest.TestCase):
             summary=run_comparison(values)
             self.assertIsNone(summary['error'])
             self.assertTrue(summary['all_dispatched_actions_guarded'])
+
+    def test_model_admission_delay_does_not_abandon_b_prebriefed_work(self):
+        from agentic_uav.policy.evidence import admit_requests
+        entry=self.build(['B'],team=4)['experiments'][0]
+        def delayed(agents,now,capacity):
+            if now<30:
+                for agent in agents:
+                    if agent.request_waiting_since is None:agent.request_waiting_since=now
+                return []
+            return admit_requests(agents,now,capacity)
+        output=self.root/'delayed_b'
+        with patch('agentic_uav.experiments.comparison.admit_requests',side_effect=delayed):
+            summary=run_comparison(dict(entry['settings'],architecture='B',seed=11,output_dir=str(output)))
+        self.assertIsNone(summary['error']);self.assertTrue(summary['mission_complete'])
+        self.assertEqual(len(summary['completed_task_ids']),4)
+        for aid in ['Drone1','Drone2','Drone3','Drone4']:
+            history=Evidence(output).read(aid+'/decision_history.jsonl')
+            self.assertFalse(any(x['event']=='blocked_task_released' for x in history))

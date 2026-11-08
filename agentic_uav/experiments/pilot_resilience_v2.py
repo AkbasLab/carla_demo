@@ -89,7 +89,7 @@ def agent_class(base):
             obstructed=any(segment_distance(self.position,goal,p.position)<self.guardian.config.min_separation_m+
                 self.guardian.config.max_speed_mps*(now-p.observed_at)+.1 for p in state.peers.values())
             if 'peer_reachable_region_conflict' not in check.reasons and not obstructed:return goal
-            plan=plan_approach(self.guardian,state,goal,now,speed)
+            plan=plan_approach(self.guardian,state,goal,now,speed,self.executor.tolerance)
             if plan is not None:
                 self.approach_plans[key]=plan
                 self.record('alternative_approach_selected',now,task_id=task.task_id,version=task.version,
@@ -125,8 +125,14 @@ def agent_class(base):
 
         def _note_blocked(self,task,index,reasons,now):
             key=(task.task_id,task.version,index);previous=self.blocked_since.get(key)
+            state_wait=bool(self.guardian._state_errors(self.safety_state(now),now)) or bool(
+                set(reasons)&{'communication_or_belief_uncertainty','missing_peer_beliefs',
+                              'stale_or_future_peer_belief','stale_or_future_state'})
+            kind='state_wait' if state_wait else 'geometry'
+            if previous is not None and previous.get('kind','geometry')!=kind:previous=None
             if previous is None:self.blocked_since[key]=dict(first=now,last_log=-math.inf,
-                reasons=tuple(sorted(reasons)),position=tuple(self.position))
+                reasons=tuple(sorted(reasons)),position=tuple(self.position),kind=kind,
+                blocked_elapsed_s=0.,last_checked=now,last_blocked=not state_wait)
             record=self.blocked_since[key]
             record['reasons']=tuple(sorted(reasons))
             # Authorization clears the base rejection cache. Log throttling must
@@ -144,10 +150,28 @@ def agent_class(base):
                 # An approval or a new LLM authorization is not observed motion.
                 if record and math.dist(self.position,record['position'])>=.2:
                     self.blocked_since.pop(key,None)
-                if check.outcome not in (Outcome.APPROVE,Outcome.APPROVE_WITH_MODIFICATION):
+                rejected=check.outcome not in (Outcome.APPROVE,Outcome.APPROVE_WITH_MODIFICATION)
+                if rejected:
                     self._note_blocked(task,index,check.reasons,now)
                 record=self.blocked_since.get(key)
-                if record and now-record['first']>=self.v2['blocked_release_after_s']:
+                if record and not rejected and record.get('kind')=='state_wait':
+                    # Missing startup telemetry is not a permanently blocked route.
+                    self.record('state_wait_resolved',now,task_id=task.task_id,version=task.version,
+                                waited_s=now-record['first'])
+                    self.blocked_since.pop(key,None);self.blocked_approaches.pop(task.task_id,None)
+                    record=None
+                decision_wait=bool(self.pending or self.correction or (self.worker and self.worker.busy)
+                                   or self.request_waiting_since is not None)
+                if record:
+                    geometry_blocked=rejected and record.get('kind','geometry')=='geometry'
+                    # Charge sampled geometric blockage, not startup, shared-model
+                    # admission/inference, or intervals in which the route is clear.
+                    if geometry_blocked and record.get('last_blocked') and not decision_wait:
+                        record['blocked_elapsed_s']+=max(0.,now-record['last_checked'])
+                    record['last_checked']=now
+                    record['last_blocked']=geometry_blocked and not decision_wait
+                if (record and rejected and record.get('kind','geometry')=='geometry' and not decision_wait
+                        and record['blocked_elapsed_s']>=self.v2['blocked_release_after_s']):
                     # Base helper requires confirmed cancellation before release.
                     if PersistentAgent._release_blocked(self,task,now,gate,'v2_bounded_safety_wait'):
                         self.bid_blocked_until[task.task_id]=now+self.v2['rebid_cooldown_s']
