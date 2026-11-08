@@ -58,8 +58,14 @@ class RetryingEndpoint:
         m=AgentMessage.from_json(message.to_json())
         key=json.dumps([m.message_type.value,m.recipient_ids,m.payload],sort_keys=True)
         previous=self.pending.get(key)
+        # A newly issued controller renewal is a new authorization deadline,
+        # even when its assignment payload is unchanged. Supersede the old
+        # transaction instead of repeatedly delivering its almost-expired time.
+        # Retries of each individual issuance still retain its original TTL.
+        renewal=(m.message_type==MT.TASK_AWARD and m.sender_id=='FleetController'
+                 and previous and m.timestamp>previous['message'].timestamp)
         # Suppress repeated identical acknowledgments inside one retry interval.
-        if m.message_type in self.CRITICAL and previous and self.clock()-previous['last_send']<self.config['retry_interval_s']:
+        if m.message_type in self.CRITICAL and previous and not renewal and self.clock()-previous['last_send']<self.config['retry_interval_s']:
             return previous['last_id']
         item=dict(message=m,attempts=0,last_send=-math.inf)
         result=self._transmit(item)

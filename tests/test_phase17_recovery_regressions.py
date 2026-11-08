@@ -110,6 +110,13 @@ class RecoveryRegressions(unittest.TestCase):
         self.assertIsNone(plan_approach(guardian,state,(6,16,-3),0,1))
         self.assertIsNone(plan_approach(self.guardian,replace(state,observed_at=-10),(6,16,-3),0,1))
 
+    def test_physically_blocked_arrival_disk_is_not_declared_reachable(self):
+        # Observed A replay: even the far edge of the allowed .4 m disk
+        # cannot clear the stopped aircraft plus conservative uncertainty.
+        state=State('Drone2',(6,3.5,-3),10,80,(0,8,-3),
+            {'Drone1':Peer((4.4,0,-3),(0,0,0),9.8)},('Drone1',))
+        self.assertIsNone(plan_approach(self.guardian,state,(6,0,-3),10,1,.4))
+
     def test_guarded_detour_reaches_real_waypoint_without_counting_staging_points(self):
         a=self.agent();t=self.own(a);a.acks[t.task_id].add('Drone2')
         a.position=[6,3,-3];a.routes[t.task_id]=[[6,16,-3]]
@@ -174,6 +181,30 @@ class RecoveryRegressions(unittest.TestCase):
                 a.execution_tick(now,self.gate)
         self.assertEqual(t.status,TaskStatus.ASSIGNED)
         self.assertEqual(a.blocked_since[(t.task_id,1,0)]['blocked_elapsed_s'],0)
+
+    def test_idle_correction_does_not_prevent_bounded_geometric_release(self):
+        a=self.agent();t=self.own(a);a.acks[t.task_id].add('Drone2')
+        blocked=Decision(Outcome.REJECT_AND_REPLAN,['peer_reachable_region_conflict'])
+        a.correction={'reason':'unsafe_action'}  # No admitted or in-flight request.
+        with patch.object(ComparisonAgent,'execution_tick',return_value=None),patch.object(a,'_approach',return_value=(0,(6,0,-3),blocked)):
+            for now in (0,5,10,16):
+                self.now[0]=now
+                a.state_time=now;a.peer_beliefs['Drone2']['observed_at']=now
+                a.execution_tick(now,self.gate)
+        self.assertNotEqual(t.status,TaskStatus.ASSIGNED)
+        self.assertIn('Drone2',a.safety_state(16).peers)
+
+    def test_repeated_rejected_decisions_release_without_fabricating_work(self):
+        a=self.agent();t=self.own(a);a.acks[t.task_id].add('Drone2')
+        details=dict(task_id=t.task_id,task_version=1,index=0,reasons=['peer_reachable_region_conflict'])
+        with patch.object(ComparisonAgent,'_failure',return_value=None):
+            for now in (0,1,2):
+                self.now[0]=now;a.state_time=now;a.peer_beliefs['Drone2']['observed_at']=now
+                a._failure('unsafe_action:peer_reachable_region_conflict',now,self.gate,True,details)
+        self.assertNotEqual(t.status,TaskStatus.ASSIGNED)
+        self.assertFalse(any(e['event']=='work_completed' for e in a.events))
+        self.assertIn('Drone2',a.safety_state(2).peers)
+        self.assertTrue(any(e.get('source')=='v2_repeated_guardian_rejection' for e in a.events_policy))
 
     def test_arrival_region_is_not_enlarged_to_escape_peer_occupancy(self):
         state=State('Drone1',(6,8,-3),0,80,(0,0,-3),{'Drone2':Peer((3,0,-3),(0,0,0),-.4)},('Drone2',))

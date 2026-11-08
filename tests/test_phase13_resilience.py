@@ -61,6 +61,24 @@ class ResilienceTests(unittest.TestCase):
         self.clock[0]=2;endpoint.tick();self.clock[0]=3;endpoint.tick()
         self.assertEqual(len(self.bus.logs()),3)
 
+    def test_controller_renewal_supersedes_old_transaction_without_freshening_retries(self):
+        sent=[]
+        class Endpoint:
+            def send(inner,message):sent.append(message)
+        endpoint=RetryingEndpoint(Endpoint(),lambda:self.clock[0],settings())
+        def renewal(t,seq):
+            return AgentMessage(f'controller:{seq}',MT.TASK_AWARD,'FleetController',['Drone1'],
+                'phase8',t,seq,3,dict(task_id='A',version=2,owner='Drone1',lease_expires_at=75))
+        endpoint.send(renewal(0,1))
+        self.clock[0]=.6;endpoint.send(renewal(.6,2))
+        self.assertEqual([m.timestamp for m in sent],[0,.6])
+        self.clock[0]=1.6;endpoint.tick()
+        self.assertEqual(sent[-1].timestamp,.6)
+        self.assertEqual(sent[-1].timestamp+sent[-1].time_to_live_s,3.6)
+        self.assertEqual(len(endpoint.pending),1)
+        self.clock[0]=3.6;endpoint.tick()
+        self.assertEqual(len(sent),3)
+
     def test_short_motion_modification_and_far_stale_peer_are_spatially_checked(self):
         state=self.state(Peer((0,30,-3),(0,0,0),0))
         d=self.guard.evaluate(self.action(),state,1)

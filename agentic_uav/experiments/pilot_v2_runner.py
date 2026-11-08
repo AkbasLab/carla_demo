@@ -84,6 +84,28 @@ def selected_architectures(config,stage,architectures=None):
     return [a for a in 'ABCD' if a in values]
 
 
+def diagnostic_groups(rows,planned_runs):
+    """Keep baseline limitations separate from recovery-capable acceptance checks.
+
+    The legacy all-mission flag remains unchanged for old report consumers.
+    B's incomplete failed-peer work remains an outcome, never a fabricated pass.
+    """
+    controls=[r for r in rows if not r.get('fault_requested')]
+    recovery=[r for r in rows if r.get('fault_requested') and r.get('architecture')!='B']
+    baseline=[r for r in rows if r.get('fault_requested') and r.get('architecture')=='B']
+    valid=lambda r:not r.get('error') and not r.get('metric_issues')
+    recovered=lambda r:valid(r) and r.get('mission_complete') is True and all(
+        r.get(k) for k in ('fault_observed','fault_owned','fault_during_move')) and all(
+        r.get(k) is not None for k in ('replacement_s','productive_resume_s'))
+    return dict(batch_complete=len(rows)==planned_runs,
+        normal_operation=dict(cases=len(controls),passed=bool(controls) and all(valid(r) and r.get('mission_complete') is True for r in controls)),
+        recovery_capable=dict(cases=len(recovery),passed=all(recovered(r) for r in recovery) if recovery else None,
+            incomplete_cases=[r['experiment_id'] for r in recovery if not recovered(r)]),
+        independent_baseline=dict(cases=len(baseline),recovery_required=False,
+            completed_missions=sum(r.get('mission_complete') is True for r in baseline),
+            fault_observed_cases=sum(r.get('fault_observed') is True for r in baseline)))
+
+
 def build(config,root,stage,team_size,seed,profile,telemetry,fault_mode,architectures=None):
     if stage not in ('smoke','focused','severe') or team_size not in (2,4):raise ValueError('Invalid stage/team size')
     if type(seed) is not int or seed<0 or seed in config['protected_seeds']:raise ValueError('Use a development seed outside the old pilot and held-out pools')
@@ -207,6 +229,7 @@ def _execute(config_path,output_dir,*,stage,team_size,seed,profile,telemetry,fau
     if rows and all('completed_tasks' in r for r in rows):overview(rows,root/'analysis/overview.png')
     manifest['all_runs_technically_valid']=len(rows)==manifest['planned_runs'] and all(not r.get('error') and not r.get('metric_issues') for r in rows)
     manifest['all_missions_complete']=len(rows)==manifest['planned_runs'] and all(r.get('mission_complete') is True for r in rows)
+    manifest['diagnostic_groups']=diagnostic_groups(rows,manifest['planned_runs'])
     manifest['diagnostic_checks_passed']=len(rows)==manifest['planned_runs'] and all(
         not r.get('error') and not r.get('metric_issues') and r.get('mission_complete') is True and
         (not r.get('fault_requested') or (r.get('fault_observed') and r.get('fault_owned') and r.get('fault_during_move') and r.get('replacement_s') is not None and r.get('productive_resume_s') is not None)) for r in rows)
@@ -217,6 +240,7 @@ def _execute(config_path,output_dir,*,stage,team_size,seed,profile,telemetry,fau
         f"Stored size: {manifest['stored_bytes']/1024**2:.2f} MiB. Fault trigger: {fault_mode}. Telemetry: {telemetry}.",'',
         'This is a new declared scenario, not final calibration. Replay is not LLM inference. Successful state-triggered recovery does not validate full radio-loss recovery.','',
         'B deliberately does not reassign failed-peer tasks. Its incomplete fault outcome is retained, not treated as a technical error. The all-mission diagnostic flag is separate from technical validity.','',
+        'Normal-operation and recovery-capable checks are reported separately in v2_manifest.json diagnostic_groups. B fault cases are baseline outcomes, not required recovery passes.','',
         '| Case | Completed tasks | Complete | Time (s) | Replacement accepted at (s) | Productive resume at (s) |','|---|---:|---|---:|---:|---:|']
     for r in rows:lines.append(f"| {r['experiment_id']} | {r.get('completed_tasks')} | {r.get('mission_complete')} | {r.get('time_s')} | {r.get('replacement_s')} | {r.get('productive_resume_s')} |")
     if (root/'analysis/overview.png').exists():lines+=['','![Overview](overview.png)']

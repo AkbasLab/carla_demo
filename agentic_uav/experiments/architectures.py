@@ -396,7 +396,9 @@ class FixedTaskAgent(ComparisonAgent):
         task=self.tasks[task_id]
         if task.assigned_agent!=self.agent_id or task.status!=TaskStatus.ASSIGNED:raise ValueError('Not owned')
         self.refused_epochs.add((task_id,task.version))
-        self.send(MT.TASK_RELEASE,dict(task_id=task_id,version=task.version,owner=self.agent_id,reason='local_route_blocked'),now)
+        blocked=self.blocked_approaches.get(task_id,{})
+        self.send(MT.TASK_RELEASE,dict(task_id=task_id,version=task.version,owner=self.agent_id,
+            reason='local_route_blocked',reasons=list(blocked.get('reasons',()))),now)
         task.status=TaskStatus.UNASSIGNED;task.assigned_agent=None;task.lease_expires_at=None
         self.log('task_released',now,task_id=task_id,version=task.version)
 
@@ -433,6 +435,7 @@ class FleetController:
         self.vehicle_ids=list(vehicle_ids);self.settings=settings;self.states={};self.sequence=0
         self.checkpoints={};self.last_send={};self.events=[];self.cooldowns={};self.decisions=[];self.bootstrap_ready=False
         self.policy_heartbeats={}
+        self.blocked_assignments={}
 
     def send_assignment(self,task,now):
         self.sequence+=1
@@ -467,13 +470,27 @@ class FleetController:
     def progress(self,sender,p,now):
         task=self.tasks.get(p.get('task_id'))
         if task is None or task.assigned_agent!=sender or p.get('version')!=task.version or task.status!=TaskStatus.ASSIGNED:return False
+        if p.get('execution_status')=='approach_blocked':
+            self.events.append(dict(event='central_execution_blocked',time_s=now,task_id=task.task_id,
+                version=task.version,owner=sender,reasons=p.get('reasons',[]),target=p.get('target')))
+            if (self.settings.get('pilot_resilience_v2',{}).get('enabled') and
+                    'peer_reachable_region_conflict' in p.get('reasons',[])):
+                # Only delivered physical states are used. A policy timeout
+                # cannot clear this geometry; actual movement permits a recheck.
+                self.blocked_assignments[(sender,task.task_id)]={
+                    aid:tuple(state['position']) for aid,state in self.states.items()}
+            # A safety report is not observed productive work or a lease renewal.
+            return True
         index=p.get('completed_waypoints',self.checkpoints.get(task.task_id,0))
         if type(index) is not int or not 0<=index<=task.work_units:return False
         if index>self.checkpoints.get(task.task_id,0):
             self.checkpoints[task.task_id]=index;task.lease_expires_at=now+self.settings['lease_seconds']
         if p.get('status')=='complete':task.status=TaskStatus.COMPLETE;task.lease_expires_at=None
         elif p.get('status')=='released':
-            self.cooldowns[(sender,task.task_id)]=now+self.settings['bid_window']
+            wait=max(self.settings['bid_window'],self.settings.get('pilot_resilience_v2',{}).get('rebid_cooldown_s',0))
+            self.cooldowns[(sender,task.task_id)]=now+wait
+            self.events.append(dict(event='central_task_released',time_s=now,task_id=task.task_id,
+                version=task.version,owner=sender,reasons=p.get('reasons',[]),retry_after_s=wait))
             task.status=TaskStatus.UNASSIGNED;task.assigned_agent=None;task.lease_expires_at=None
         return True
 
@@ -493,6 +510,14 @@ class FleetController:
                 candidates=[]
                 for aid,state in self.states.items():
                     if aid in busy or state['role']!='SCOUT' or now-state['observed_at']>self.settings['state_timeout_s'] or now<self.cooldowns.get((aid,task.task_id),0):continue
+                    blocked=self.blocked_assignments.get((aid,task.task_id))
+                    if blocked is not None:
+                        changed=any(peer not in blocked or math.dist(v['position'],blocked[peer])>=.2
+                            for peer,v in self.states.items())
+                        if not changed:continue
+                        self.blocked_assignments.pop((aid,task.task_id),None)
+                        self.events.append(dict(event='central_approach_recheck',time_s=now,
+                            task_id=task.task_id,owner=aid,reason='delivered_geometry_changed'))
                     v2=self.settings.get('pilot_resilience_v2',{})
                     if v2.get('enabled') and now-self.policy_heartbeats.get(aid,-math.inf)>v2['coordination_timeout_s']:continue
                     if state['battery']<self.settings.get('minimum_battery_percent',20):continue

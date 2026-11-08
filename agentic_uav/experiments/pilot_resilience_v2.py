@@ -61,6 +61,7 @@ def agent_class(base):
             super().__init__(*args,**kwargs)
             self.v2=self.settings['pilot_resilience_v2'];self.blocked_since={};self.wait_logged_at=-math.inf
             self.approach_plans={};self._coordination_members=None
+            self.rejected_decisions={}
 
         def coordination_peers(self,now):
             timeout=min(self.lease_s,self.v2['coordination_timeout_s'])
@@ -141,6 +142,10 @@ def agent_class(base):
             if (cached is None or cached.get('key')!=key or
                     now-record['last_log']>=self.v2['rejection_log_interval_s']):
                 super()._note_blocked(task,index,reasons,now);record['last_log']=now
+                if self.architecture=='A':
+                    self.send(MT.INTENT_UPDATE,dict(task_id=task.task_id,version=task.version,
+                        owner=self.agent_id,execution_status='approach_blocked',index=index,
+                        reasons=list(reasons),target=list(self.routes[task.task_id][index])),now)
 
         def execution_tick(self,now,gate):
             task=self.executable_task(now)
@@ -160,7 +165,7 @@ def agent_class(base):
                                 waited_s=now-record['first'])
                     self.blocked_since.pop(key,None);self.blocked_approaches.pop(task.task_id,None)
                     record=None
-                decision_wait=bool(self.pending or self.correction or (self.worker and self.worker.busy)
+                decision_wait=bool(self.pending or (self.worker and self.worker.busy)
                                    or self.request_waiting_since is not None)
                 if record:
                     geometry_blocked=rejected and record.get('kind','geometry')=='geometry'
@@ -171,12 +176,34 @@ def agent_class(base):
                     record['last_checked']=now
                     record['last_blocked']=geometry_blocked and not decision_wait
                 if (record and rejected and record.get('kind','geometry')=='geometry' and not decision_wait
-                        and record['blocked_elapsed_s']>=self.v2['blocked_release_after_s']):
+                        and record['blocked_elapsed_s']+1e-8>=self.v2['blocked_release_after_s']):
                     # Base helper requires confirmed cancellation before release.
                     if PersistentAgent._release_blocked(self,task,now,gate,'v2_bounded_safety_wait'):
                         self.bid_blocked_until[task.task_id]=now+self.v2['rebid_cooldown_s']
                         self.blocked_since.pop(key,None);self.approach_plans.pop(key,None)
             return super().execution_tick(now,gate)
+
+        def _failure(self,reason,now,gate,correctable,details=None):
+            # Count actual rejected decisions, not previews or time waiting for
+            # inference. Intermittent short-segment approvals must not permit an
+            # endless correction loop against the same unchanged obstruction.
+            task=self.executable_task(now)
+            if (task is not None and reason.startswith('unsafe_action:') and
+                    not self.guardian._state_errors(self.safety_state(now),now) and
+                    isinstance(details,dict) and details.get('task_id')==task.task_id and
+                    details.get('task_version')==task.version):
+                key=(task.task_id,task.version,details.get('index'),reason)
+                old=self.rejected_decisions.get(key,{})
+                count=old.get('count',0)+1 if old and math.dist(self.position,old['position'])<.2 else 1
+                self.rejected_decisions={key:dict(count=count,position=tuple(self.position))}
+                if count>=self.safety_rejection_limit:
+                    self.record('policy_error',now,reason_code=reason,validation_details=details,
+                        correction_attempt=self.correction_attempt,disposition='release_after_repeated_rejection')
+                    if PersistentAgent._release_blocked(self,task,now,gate,'v2_repeated_guardian_rejection'):
+                        self.bid_blocked_until[task.task_id]=now+self.v2['rebid_cooldown_s']
+                        self.rejected_decisions.clear()
+                        return
+            return super()._failure(reason,now,gate,correctable,details)
 
         def needs_decision(self,now):
             # Do not spend repeated inference on a currently unverifiable motion
