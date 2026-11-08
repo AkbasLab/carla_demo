@@ -129,7 +129,11 @@ def agent_class(base):
                 reasons=tuple(sorted(reasons)),position=tuple(self.position))
             record=self.blocked_since[key]
             record['reasons']=tuple(sorted(reasons))
-            if now-record['last_log']>=self.v2['rejection_log_interval_s']:
+            # Authorization clears the base rejection cache. Log throttling must
+            # never suppress rebuilding bookkeeping used by execution_tick().
+            cached=self.blocked_approaches.get(task.task_id)
+            if (cached is None or cached.get('key')!=key or
+                    now-record['last_log']>=self.v2['rejection_log_interval_s']):
                 super()._note_blocked(task,index,reasons,now);record['last_log']=now
 
         def execution_tick(self,now,gate):

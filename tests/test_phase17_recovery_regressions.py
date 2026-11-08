@@ -143,5 +143,14 @@ class RecoveryRegressions(unittest.TestCase):
         self.assertFalse(t.status==TaskStatus.ASSIGNED and t.assigned_agent==a.agent_id)
         self.assertTrue(any(x['event']=='blocked_task_released' for x in a.events_policy))
 
+    def test_rejection_cache_rebuilt_when_authorization_clears_it_within_log_interval(self):
+        a=self.agent();t=self.own(a)
+        reasons=['peer_reachable_region_conflict']
+        a._note_blocked(t,0,reasons,0)
+        a.blocked_approaches.pop(t.task_id)  # Successful start_search clears this cache.
+        a._note_blocked(t,0,reasons,.2)
+        self.assertEqual(a.blocked_approaches[t.task_id]['key'],(t.task_id,1,0))
+        self.assertEqual(a.blocked_since[(t.task_id,1,0)]['first'],0)
+
 
 if __name__=='__main__':unittest.main()
