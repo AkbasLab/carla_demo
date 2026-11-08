@@ -10,10 +10,12 @@ from agentic_uav.comm.protocol import MessageType as MT
 from agentic_uav.control.runtime_guardian import Action, RuntimeGuardian, Outcome
 from agentic_uav.coordination.contract_net import TaskStatus
 from agentic_uav.policy.persistent import PersistentAgent
+from agentic_uav.coordination.approach_planner import plan_approach,segment_distance
 
 DEFAULTS=dict(enabled=False,independent_telemetry=True,telemetry_interval_s=.5,
               fault_mode='owned_motion',fault_displacement_m=.6,
-              blocked_release_after_s=15.,rejection_log_interval_s=5.,rebid_cooldown_s=15.)
+              blocked_release_after_s=15.,rejection_log_interval_s=5.,rebid_cooldown_s=15.,
+              coordination_timeout_s=3.,approach_detours=True)
 
 
 def settings(values=None):
@@ -21,10 +23,10 @@ def settings(values=None):
     if values is not None:
         if not isinstance(values,dict) or set(values)-set(result):raise ValueError('Unknown pilot_resilience_v2 setting')
         result.update(values)
-    for name in ('enabled','independent_telemetry'):
+    for name in ('enabled','independent_telemetry','approach_detours'):
         if type(result[name]) is not bool:raise ValueError('Expected boolean '+name)
     if result['fault_mode'] not in ('fixed_time','owned_motion'):raise ValueError('Invalid V2 fault mode')
-    for name in set(result)-{'enabled','independent_telemetry','fault_mode'}:
+    for name in set(result)-{'enabled','independent_telemetry','approach_detours','fault_mode'}:
         if type(result[name]) not in (int,float) or not math.isfinite(result[name]) or result[name]<=0:raise ValueError('Invalid '+name)
     return result
 
@@ -58,6 +60,42 @@ def agent_class(base):
         def __init__(self,*args,**kwargs):
             super().__init__(*args,**kwargs)
             self.v2=self.settings['pilot_resilience_v2'];self.blocked_since={};self.wait_logged_at=-math.inf
+            self.approach_plans={};self._coordination_members=None
+
+        def coordination_peers(self,now):
+            timeout=min(self.lease_s,self.v2['coordination_timeout_s'])
+            members={p for p in self.peers if now-self.last_heartbeat.get(p,0)<=timeout}
+            if members!=self._coordination_members:
+                self.record('coordination_membership_observed',now,eligible_peers=sorted(members),
+                    timeout_s=timeout,physical_peers_retained=sorted(self.peers),
+                    assumption='local_timeout_not_partition_consensus')
+                self._coordination_members=members
+            return members
+
+        def _motion_target(self,task,index,now,speed):
+            goal=tuple(self.routes[task.task_id][index]);key=(task.task_id,task.version,index)
+            if not self.v2['approach_detours']:return goal
+            self.approach_plans={k:v for k,v in self.approach_plans.items() if k==key}
+            plan=self.approach_plans.get(key)
+            if plan is not None:
+                while plan['waypoints'] and math.dist(self.position,plan['waypoints'][0])<=.4:
+                    plan['waypoints'].pop(0)
+                if plan['waypoints']:return tuple(plan['waypoints'][0])
+                self.approach_plans.pop(key,None)
+                return goal
+            state=self.safety_state(now)
+            check=self.guardian.evaluate(Action(f'v2_direct:{self.agent_id}:{now}',self.agent_id,
+                'MOVE',now,now+30,(goal,),speed),state,now)
+            obstructed=any(segment_distance(self.position,goal,p.position)<self.guardian.config.min_separation_m+
+                self.guardian.config.max_speed_mps*(now-p.observed_at)+.1 for p in state.peers.values())
+            if 'peer_reachable_region_conflict' not in check.reasons and not obstructed:return goal
+            plan=plan_approach(self.guardian,state,goal,now,speed)
+            if plan is not None:
+                self.approach_plans[key]=plan
+                self.record('alternative_approach_selected',now,task_id=task.task_id,version=task.version,
+                    index=index,mission_target=list(goal),**plan)
+                return tuple(plan['waypoints'][0])
+            return goal
 
         def send(self,kind,payload,now):
             # Physical beacons do not replace semantic completion gossip from
@@ -87,10 +125,10 @@ def agent_class(base):
 
         def _note_blocked(self,task,index,reasons,now):
             key=(task.task_id,task.version,index);previous=self.blocked_since.get(key)
-            if previous is None:self.blocked_since[key]=dict(first=now,last_log=-math.inf,reasons=tuple(sorted(reasons)))
-            elif previous['reasons']!=tuple(sorted(reasons)):
-                self.blocked_since[key]=dict(first=now,last_log=-math.inf,reasons=tuple(sorted(reasons)))
+            if previous is None:self.blocked_since[key]=dict(first=now,last_log=-math.inf,
+                reasons=tuple(sorted(reasons)),position=tuple(self.position))
             record=self.blocked_since[key]
+            record['reasons']=tuple(sorted(reasons))
             if now-record['last_log']>=self.v2['rejection_log_interval_s']:
                 super()._note_blocked(task,index,reasons,now);record['last_log']=now
 
@@ -98,14 +136,18 @@ def agent_class(base):
             task=self.executable_task(now)
             if task is not None:
                 index,_,check=self._approach(task,now);key=(task.task_id,task.version,index)
-                if check.outcome in (Outcome.APPROVE,Outcome.APPROVE_WITH_MODIFICATION):self.blocked_since.pop(key,None)
-                else:
+                record=self.blocked_since.get(key)
+                # An approval or a new LLM authorization is not observed motion.
+                if record and math.dist(self.position,record['position'])>=.2:
+                    self.blocked_since.pop(key,None)
+                if check.outcome not in (Outcome.APPROVE,Outcome.APPROVE_WITH_MODIFICATION):
                     self._note_blocked(task,index,check.reasons,now)
-                    if now-self.blocked_since[key]['first']>=self.v2['blocked_release_after_s']:
-                        # Base helper requires confirmed cancellation before release.
-                        if PersistentAgent._release_blocked(self,task,now,gate,'v2_bounded_safety_wait'):
-                            self.bid_blocked_until[task.task_id]=now+self.v2['rebid_cooldown_s']
-                            self.blocked_since.pop(key,None)
+                record=self.blocked_since.get(key)
+                if record and now-record['first']>=self.v2['blocked_release_after_s']:
+                    # Base helper requires confirmed cancellation before release.
+                    if PersistentAgent._release_blocked(self,task,now,gate,'v2_bounded_safety_wait'):
+                        self.bid_blocked_until[task.task_id]=now+self.v2['rebid_cooldown_s']
+                        self.blocked_since.pop(key,None);self.approach_plans.pop(key,None)
             return super().execution_tick(now,gate)
 
         def needs_decision(self,now):
