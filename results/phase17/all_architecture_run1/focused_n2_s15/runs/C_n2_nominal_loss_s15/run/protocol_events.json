@@ -1,0 +1,604 @@
+[
+  {
+    "task_id": "SEARCH_SECTOR_A",
+    "version": 1,
+    "event": "task_announced",
+    "time_s": 8.195999544113874e-05,
+    "agent_id": "Drone1"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_A",
+    "version": 1,
+    "agent_id": "Drone1",
+    "score": 10.457482572089475,
+    "components": {
+      "distance": 9.12414379544733,
+      "battery": 0.19999999999999996,
+      "workload": 0.0,
+      "communication": 0.06666775532842924,
+      "mismatch": 0.0
+    },
+    "event": "bid_computed",
+    "time_s": 0.20008522598072886
+  },
+  {
+    "task_id": "SEARCH_SECTOR_A",
+    "version": 1,
+    "owner": "Drone1",
+    "score": 10.457482572089475,
+    "event": "claim_sent",
+    "time_s": 6.000096317991847,
+    "agent_id": "Drone1"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_B",
+    "version": 1,
+    "event": "task_announced",
+    "time_s": 6.200085413001943,
+    "agent_id": "Drone1"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_C",
+    "version": 1,
+    "event": "task_announced",
+    "time_s": 12.400091452000197,
+    "agent_id": "Drone1"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_A",
+    "version": 1,
+    "progress": 0.0,
+    "source": "observed_motion",
+    "event": "progress_reported",
+    "time_s": 12.600077191978926,
+    "agent_id": "Drone1"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_A",
+    "version": 1,
+    "resume_index": 0,
+    "event": "execution_started",
+    "time_s": 12.600077191978926,
+    "agent_id": "Drone1"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_A",
+    "version": 1,
+    "event": "task_announced",
+    "time_s": 8.195999544113874e-05,
+    "agent_id": "Drone2"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_A",
+    "version": 1,
+    "agent_id": "Drone2",
+    "score": 12.435140432229405,
+    "components": {
+      "distance": 11.10180165558726,
+      "battery": 0.19999999999999996,
+      "workload": 0.0,
+      "communication": 0.06666775532842924,
+      "mismatch": 0.0
+    },
+    "event": "bid_computed",
+    "time_s": 0.20008522598072886
+  },
+  {
+    "task_id": "SEARCH_SECTOR_B",
+    "version": 1,
+    "event": "task_announced",
+    "time_s": 6.200085413001943,
+    "agent_id": "Drone2"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_B",
+    "version": 1,
+    "agent_id": "Drone2",
+    "score": 10.7907838037717,
+    "components": {
+      "distance": 9.12414379544733,
+      "battery": 0.19999999999999996,
+      "workload": 0.0,
+      "communication": 0.13332800166487382,
+      "mismatch": 0.0
+    },
+    "event": "bid_computed",
+    "time_s": 6.400080322986469
+  },
+  {
+    "task_id": "SEARCH_SECTOR_B",
+    "version": 1,
+    "owner": "Drone2",
+    "score": 10.7907838037717,
+    "event": "claim_sent",
+    "time_s": 12.200090250000358,
+    "agent_id": "Drone2"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_C",
+    "version": 1,
+    "event": "task_announced",
+    "time_s": 12.400091452000197,
+    "agent_id": "Drone2"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_A",
+    "owner": "Drone1",
+    "event": "lease_renewed",
+    "time_s": 12.800084703980247,
+    "agent_id": "Drone2"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_B",
+    "version": 1,
+    "progress": 0.0,
+    "source": "observed_motion",
+    "event": "progress_reported",
+    "time_s": 18.8000817479915,
+    "agent_id": "Drone2"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_B",
+    "version": 1,
+    "resume_index": 0,
+    "event": "execution_started",
+    "time_s": 18.8000817479915,
+    "agent_id": "Drone2"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_B",
+    "version": 1,
+    "index": 0,
+    "xy_error_m": 0.20000409800559282,
+    "z_error_m": 0.0,
+    "event": "waypoint_arrived",
+    "time_s": 24.600086752994685,
+    "agent_id": "Drone2"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_B",
+    "version": 1,
+    "progress": 0.25,
+    "source": "observed_motion",
+    "event": "progress_reported",
+    "time_s": 24.600086752994685,
+    "agent_id": "Drone2"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_B",
+    "version": 1,
+    "index": 1,
+    "xy_error_m": 0.20000244298717007,
+    "z_error_m": 0.0,
+    "event": "waypoint_arrived",
+    "time_s": 31.400081175990636,
+    "agent_id": "Drone2"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_B",
+    "version": 1,
+    "progress": 0.5,
+    "source": "observed_motion",
+    "event": "progress_reported",
+    "time_s": 31.400081175990636,
+    "agent_id": "Drone2"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_B",
+    "version": 1,
+    "index": 2,
+    "xy_error_m": 0.19997383299050853,
+    "z_error_m": 0.0,
+    "event": "waypoint_arrived",
+    "time_s": 34.800120562984375,
+    "agent_id": "Drone2"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_B",
+    "version": 1,
+    "progress": 0.75,
+    "source": "observed_motion",
+    "event": "progress_reported",
+    "time_s": 34.800120562984375,
+    "agent_id": "Drone2"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_B",
+    "version": 1,
+    "index": 3,
+    "xy_error_m": 0.3999922370130662,
+    "z_error_m": 0.0,
+    "event": "waypoint_arrived",
+    "time_s": 41.2000878029794,
+    "agent_id": "Drone2"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_B",
+    "version": 1,
+    "source": "observed_waypoint_arrivals",
+    "event": "work_completed",
+    "time_s": 41.2000878029794,
+    "agent_id": "Drone2"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_C",
+    "version": 1,
+    "agent_id": "Drone2",
+    "score": 13.087830803974907,
+    "components": {
+      "distance": 7.077430801586405,
+      "battery": 0.20208000047770047,
+      "workload": 0.0,
+      "communication": 1.0,
+      "mismatch": 0.0
+    },
+    "event": "bid_computed",
+    "time_s": 41.40008481699624
+  },
+  {
+    "task_id": "SEARCH_SECTOR_C",
+    "version": 1,
+    "owner": "Drone2",
+    "score": 13.087830803974907,
+    "event": "claim_sent",
+    "time_s": 43.00009190000128,
+    "agent_id": "Drone2"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_D",
+    "version": 1,
+    "event": "task_announced",
+    "time_s": 43.20008804497775,
+    "agent_id": "Drone2"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_C",
+    "version": 1,
+    "progress": 0.0,
+    "source": "observed_motion",
+    "event": "progress_reported",
+    "time_s": 49.60008595799445,
+    "agent_id": "Drone2"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_C",
+    "version": 1,
+    "resume_index": 0,
+    "event": "execution_started",
+    "time_s": 49.60008595799445,
+    "agent_id": "Drone2"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_C",
+    "version": 1,
+    "index": 0,
+    "xy_error_m": 0.19999981299042702,
+    "z_error_m": 0.0,
+    "event": "waypoint_arrived",
+    "time_s": 54.40008861199021,
+    "agent_id": "Drone2"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_C",
+    "version": 1,
+    "progress": 0.25,
+    "source": "observed_motion",
+    "event": "progress_reported",
+    "time_s": 54.40008861199021,
+    "agent_id": "Drone2"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_C",
+    "version": 1,
+    "index": 1,
+    "xy_error_m": 0.2000095509865787,
+    "z_error_m": 0.0,
+    "event": "waypoint_arrived",
+    "time_s": 61.00008027200238,
+    "agent_id": "Drone2"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_C",
+    "version": 1,
+    "progress": 0.5,
+    "source": "observed_motion",
+    "event": "progress_reported",
+    "time_s": 61.00008027200238,
+    "agent_id": "Drone2"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_C",
+    "version": 1,
+    "index": 2,
+    "xy_error_m": 0.20000456398702227,
+    "z_error_m": 0.0,
+    "event": "waypoint_arrived",
+    "time_s": 64.40009258399368,
+    "agent_id": "Drone2"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_C",
+    "version": 1,
+    "progress": 0.75,
+    "source": "observed_motion",
+    "event": "progress_reported",
+    "time_s": 64.40009258399368,
+    "agent_id": "Drone2"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_C",
+    "version": 1,
+    "index": 3,
+    "xy_error_m": 0.20001625799341127,
+    "z_error_m": 0.0,
+    "event": "waypoint_arrived",
+    "time_s": 71.00007797399303,
+    "agent_id": "Drone2"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_C",
+    "version": 1,
+    "source": "observed_waypoint_arrivals",
+    "event": "work_completed",
+    "time_s": 71.00007797399303,
+    "agent_id": "Drone2"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_D",
+    "version": 1,
+    "agent_id": "Drone2",
+    "score": 13.179407467194782,
+    "components": {
+      "distance": 7.158907470846772,
+      "battery": 0.20409999926960198,
+      "workload": 0.0,
+      "communication": 1.0,
+      "mismatch": 0.0
+    },
+    "event": "bid_computed",
+    "time_s": 71.20008692800184
+  },
+  {
+    "task_id": "SEARCH_SECTOR_D",
+    "version": 1,
+    "owner": "Drone2",
+    "score": 13.179407467194782,
+    "event": "claim_sent",
+    "time_s": 73.60008971998468,
+    "agent_id": "Drone2"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_D",
+    "version": 1,
+    "progress": 0.0,
+    "source": "observed_motion",
+    "event": "progress_reported",
+    "time_s": 80.20008727698587,
+    "agent_id": "Drone2"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_D",
+    "version": 1,
+    "resume_index": 0,
+    "event": "execution_started",
+    "time_s": 80.20008727698587,
+    "agent_id": "Drone2"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_D",
+    "version": 1,
+    "index": 0,
+    "xy_error_m": 0.2000118310097605,
+    "z_error_m": 0.0,
+    "event": "waypoint_arrived",
+    "time_s": 85.40007730398793,
+    "agent_id": "Drone2"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_D",
+    "version": 1,
+    "progress": 0.25,
+    "source": "observed_motion",
+    "event": "progress_reported",
+    "time_s": 85.40007730398793,
+    "agent_id": "Drone2"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_A",
+    "owner": "Drone1",
+    "version": 1,
+    "lease_deadline": 87.80008470398025,
+    "completed_waypoints": 0,
+    "event": "lease_expired",
+    "time_s": 88.00008286698721,
+    "agent_id": "Drone2"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_A",
+    "version": 2,
+    "event": "task_announced",
+    "time_s": 88.00008286698721,
+    "agent_id": "Drone2"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_D",
+    "version": 1,
+    "index": 1,
+    "xy_error_m": 0.39998351500253193,
+    "z_error_m": 0.0,
+    "event": "waypoint_arrived",
+    "time_s": 92.20009729999583,
+    "agent_id": "Drone2"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_D",
+    "version": 1,
+    "progress": 0.5,
+    "source": "observed_motion",
+    "event": "progress_reported",
+    "time_s": 92.20009729999583,
+    "agent_id": "Drone2"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_D",
+    "version": 1,
+    "index": 2,
+    "xy_error_m": 0.2000061929866206,
+    "z_error_m": 0.0,
+    "event": "waypoint_arrived",
+    "time_s": 95.80007886799285,
+    "agent_id": "Drone2"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_D",
+    "version": 1,
+    "progress": 0.75,
+    "source": "observed_motion",
+    "event": "progress_reported",
+    "time_s": 95.80007886799285,
+    "agent_id": "Drone2"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_D",
+    "version": 1,
+    "index": 3,
+    "xy_error_m": 0.2000118290015962,
+    "z_error_m": 0.0,
+    "event": "waypoint_arrived",
+    "time_s": 102.00008030899335,
+    "agent_id": "Drone2"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_D",
+    "version": 1,
+    "source": "observed_waypoint_arrivals",
+    "event": "work_completed",
+    "time_s": 102.00008030899335,
+    "agent_id": "Drone2"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_A",
+    "version": 2,
+    "agent_id": "Drone2",
+    "score": 31.706363338586783,
+    "components": {
+      "distance": 25.67586334205679,
+      "battery": 0.20609999930599843,
+      "workload": 0.0,
+      "communication": 1.0,
+      "mismatch": 0.0
+    },
+    "event": "bid_computed",
+    "time_s": 102.20008519798284
+  },
+  {
+    "task_id": "SEARCH_SECTOR_A",
+    "version": 2,
+    "owner": "Drone2",
+    "score": 31.706363338586783,
+    "event": "claim_sent",
+    "time_s": 106.0000886869966,
+    "agent_id": "Drone2"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_A",
+    "version": 2,
+    "progress": 0.0,
+    "source": "observed_motion",
+    "event": "progress_reported",
+    "time_s": 112.40008815500187,
+    "agent_id": "Drone2"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_A",
+    "version": 2,
+    "resume_index": 0,
+    "event": "execution_started",
+    "time_s": 112.40008815500187,
+    "agent_id": "Drone2"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_A",
+    "version": 2,
+    "progress": 0.0,
+    "source": "observed_motion",
+    "event": "progress_reported",
+    "time_s": 137.60008400899824,
+    "agent_id": "Drone2"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_A",
+    "version": 2,
+    "index": 0,
+    "xy_error_m": 0.34999421300017275,
+    "z_error_m": 0.0,
+    "event": "waypoint_arrived",
+    "time_s": 141.8000891249976,
+    "agent_id": "Drone2"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_A",
+    "version": 2,
+    "progress": 0.25,
+    "source": "observed_motion",
+    "event": "progress_reported",
+    "time_s": 141.8000891249976,
+    "agent_id": "Drone2"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_A",
+    "version": 2,
+    "index": 1,
+    "xy_error_m": 0.20519959873406798,
+    "z_error_m": 0.0,
+    "event": "waypoint_arrived",
+    "time_s": 148.600085070997,
+    "agent_id": "Drone2"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_A",
+    "version": 2,
+    "progress": 0.5,
+    "source": "observed_motion",
+    "event": "progress_reported",
+    "time_s": 148.600085070997,
+    "agent_id": "Drone2"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_A",
+    "version": 2,
+    "index": 2,
+    "xy_error_m": 0.39977598698290323,
+    "z_error_m": 0.0,
+    "event": "waypoint_arrived",
+    "time_s": 151.80008636898128,
+    "agent_id": "Drone2"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_A",
+    "version": 2,
+    "progress": 0.75,
+    "source": "observed_motion",
+    "event": "progress_reported",
+    "time_s": 151.80008636898128,
+    "agent_id": "Drone2"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_A",
+    "version": 2,
+    "index": 3,
+    "xy_error_m": 0.2999973520054482,
+    "z_error_m": 0.0,
+    "event": "waypoint_arrived",
+    "time_s": 158.60008355398895,
+    "agent_id": "Drone2"
+  },
+  {
+    "task_id": "SEARCH_SECTOR_A",
+    "version": 2,
+    "source": "observed_waypoint_arrivals",
+    "event": "work_completed",
+    "time_s": 158.60008355398895,
+    "agent_id": "Drone2"
+  }
+]
