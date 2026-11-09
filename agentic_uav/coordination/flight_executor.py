@@ -18,6 +18,7 @@ class WaypointExecutor:
         self.progress_distance=progress_distance;self.stall_timeout=stall_timeout;self.max_retries=max_retries
         self.key=None;self.index=0;self.last_report=-math.inf;self.arrivals=[]
         self.best_distance=None;self.last_improvement=0.;self.retry_time=0.;self.retries=0
+        self.progress_reference=None
 
     def update(self,agent,now):
         task=agent.executable_task(now)
@@ -44,6 +45,13 @@ class WaypointExecutor:
             self.key=None
             return dict(action='hold',complete=True)
         distance=math.dist(agent.position,route[self.index])
+        # Optional approach-aware progress: a guarded detour can initially move
+        # away from the mission waypoint. A changed plan resets the measurement
+        # baseline, never fabricates an improvement or renews a lease by itself.
+        if hasattr(agent,'waypoint_progress_metric'):
+            reference,distance=agent.waypoint_progress_metric(task,self.index)
+            if reference!=self.progress_reference:
+                self.progress_reference=reference;self.best_distance=distance
         improved=reached or self.best_distance-distance>=self.progress_distance
         if improved:
             self.best_distance=distance;self.last_improvement=now

@@ -10,7 +10,8 @@ from agentic_uav.comm.degraded import ObservedEndpoint
 from agentic_uav.coordination.contract_net import AllocationAgent, TaskStatus
 from agentic_uav.coordination.approach_planner import plan_approach,segment_distance
 from agentic_uav.experiments.architectures import ComparisonAgent, RulePolicy
-from agentic_uav.experiments.pilot_resilience_v2 import agent_class,settings
+from agentic_uav.experiments.pilot_resilience_v2 import agent_class,settings,StablePeerHealth
+from agentic_uav.coordination.dynamic_roles import Health
 from agentic_uav.experiments.resilience import ReachablePeerGuardian,settings as resilience_settings
 from agentic_uav.policy.mission import load_mission
 from agentic_uav.policy.structured import ReplayProvider,decision_example
@@ -116,6 +117,91 @@ class RecoveryRegressions(unittest.TestCase):
         state=State('Drone2',(6,3.5,-3),10,80,(0,8,-3),
             {'Drone1':Peer((4.4,0,-3),(0,0,0),9.8)},('Drone1',))
         self.assertIsNone(plan_approach(self.guardian,state,(6,0,-3),10,1,.4))
+
+    def test_observed_arrival_is_recorded_before_rejecting_next_motion(self):
+        a=self.agent();t=self.own(a);a.acks[t.task_id].add('Drone2')
+        a.executor.key=(t.task_id,t.version);a.executor.index=0
+        a._authorize(t,0,'deterministic_policy','start_search')
+        a.position=list(a.routes[t.task_id][0]);a.state_time=20;self.now[0]=20
+        # Telemetry is fresh for self, stale for a physical peer. This must
+        # prevent the NEXT command, not erase an already observed arrival.
+        a.execution_tick(20,self.gate)
+        self.assertEqual(len(a.executor.arrivals),1)
+        self.assertEqual(a.executor.arrivals[0]['index'],0)
+        self.assertEqual(a.checkpoints[t.task_id],1)
+        self.assertFalse(self.executed)
+        self.assertIn('Drone2',a.safety_state(20).peers)
+
+    def test_stale_own_observation_and_old_epoch_cannot_create_arrival(self):
+        for stale in (True,False):
+            a=self.agent();t=self.own(a);a.acks[t.task_id].add('Drone2')
+            a.executor.key=(t.task_id,t.version if stale else t.version-1);a.executor.index=0
+            a.position=list(a.routes[t.task_id][0]);a.state_time=0 if stale else 20
+            a.authorized=None;self.now[0]=20
+            a.execution_tick(20,self.gate)
+            self.assertEqual(a.executor.arrivals,[])
+
+    def test_cached_approach_is_replanned_when_delivered_peer_blocks_it(self):
+        a=self.agent();t=self.own(a);a.position=[6,3,-3];a.routes[t.task_id]=[[6,16,-3]]
+        a.peer_beliefs['Drone2']['position']=[6,5.7,-3]
+        a.approach_plans[(t.task_id,1,0)]=dict(waypoints=[[6,8,-3],[6,16,-3]])
+        target=a._motion_target(t,0,0,1)
+        self.assertNotEqual(target,(6,8,-3))
+        decision=self.guardian.evaluate(Action('replanned','Drone1','MOVE',0,30,(target,),1),a.safety_state(0),0)
+        self.assertIn(decision.outcome,(Outcome.APPROVE,Outcome.APPROVE_WITH_MODIFICATION))
+        self.assertTrue(any(e['event']=='alternative_approach_invalidated' for e in a.events_policy))
+
+    def test_suspect_health_needs_sustained_evidence_without_changing_timeout(self):
+        h=StablePeerHealth();self.assertEqual(h.tick(1.1),Health.SUSPECTED)
+        h.heartbeat(1.2);self.assertEqual(h.tick(1.3),Health.SUSPECTED)
+        h.heartbeat(1.7);self.assertEqual(h.tick(1.8),Health.SUSPECTED)
+        h.heartbeat(2.3);self.assertEqual(h.tick(2.4),Health.HEALTHY)
+        h.heartbeat(1.5);self.assertEqual(h.last_seen,2.3)  # Older packet cannot rejuvenate state.
+        self.assertEqual(h.tick(5.4),Health.UNREACHABLE)
+        h.heartbeat(5.5);self.assertEqual(h.tick(5.6),Health.RECOVERED)
+        h.heartbeat(6.6);self.assertEqual(h.tick(6.6),Health.HEALTHY)
+
+    def test_shorter_validated_detour_fits_energy_budget_without_relaxing_clearance(self):
+        state=State('Drone1',(6,3,-3),0,
+            self.cfg.min_battery_reserve_percent+22*self.cfg.battery_cost_percent_per_m,
+            (0,0,-3),{'Drone2':Peer((6,8,-3),(0,0,0),0)},('Drone2',))
+        plan=plan_approach(self.guardian,state,(6,16,-3),0,1)
+        self.assertIsNotNone(plan)
+        self.assertLessEqual(plan['distance_m'],22)
+        start=state.position
+        for end in plan['waypoints']:
+            self.assertGreaterEqual(segment_distance(start,end,(6,8,-3)),self.cfg.min_separation_m+.1)
+            start=end
+
+    def test_real_detour_motion_renews_lease_before_straight_line_distance_improves(self):
+        a=self.agent();t=self.own(a);a.acks[t.task_id].add('Drone2')
+        a.lease_s=6;t.lease_expires_at=6
+        a.position=[6,3,-3];a.routes[t.task_id]=[[6,16,-3]]
+        a.peer_beliefs['Drone2']['position']=[6,8,-3]
+        a._motion_target(t,0,0,1)
+        a.executor.update(a,0)
+        original=t.lease_expires_at
+        # Same selected plan and stationary observations must not renew a lease.
+        self.now[0]=2;a.state_time=2
+        a.executor.update(a,2);self.assertEqual(t.lease_expires_at,original)
+        # Measured lateral movement reduces remaining detour length while
+        # increasing straight-line distance to the actual mission waypoint.
+        first=a.approach_plans[(t.task_id,1,0)]['waypoints'][0]
+        a.position=[6+(first[0]-6)/abs(first[0]-6),3,-3]
+        self.now[0]=2.2;a.state_time=2.2
+        a.executor.update(a,2.2)
+        self.assertGreater(t.lease_expires_at,original)
+        self.assertEqual(a.checkpoints[t.task_id],0)
+        self.assertEqual(a.executor.arrivals,[])
+
+    def test_replanning_without_movement_does_not_renew_lease(self):
+        a=self.agent();t=self.own(a);a.acks[t.task_id].add('Drone2')
+        a.lease_s=6;t.lease_expires_at=6;a.position=[6,3,-3];a.routes[t.task_id]=[[6,16,-3]]
+        a.peer_beliefs['Drone2']['position']=[6,8,-3]
+        a._motion_target(t,0,0,1);a.executor.update(a,0)
+        a.approach_plans[(t.task_id,1,0)]['created_at']=2
+        self.now[0]=2;a.state_time=2;a.executor.update(a,2)
+        self.assertEqual(t.lease_expires_at,6)
 
     def test_guarded_detour_reaches_real_waypoint_without_counting_staging_points(self):
         a=self.agent();t=self.own(a);a.acks[t.task_id].add('Drone2')

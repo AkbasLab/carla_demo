@@ -39,7 +39,10 @@ def plan_approach(guardian,state,target,now,speed,arrival_tolerance=0.):
             angles.insert(0,math.atan2(target[1]-nearest.position[1],target[0]-nearest.position[0]))
         arrivals.extend((target[0]+radius*math.cos(a),target[1]+radius*math.sin(a),target[2]) for a in angles)
     for arrival in arrivals:
-        for factor in (1.,1.5):
+        # Try a shorter lateral corridor first. Every leg must still clear the
+        # same conservative occupancy screen and every live command the guardian.
+        # A large default sidestep needlessly traverses neighbouring task lanes.
+        for factor in (.5,1.,1.5):
             for side in (sign,-sign):
                 offset=tuple(side*factor*width*x for x in normal)
                 points=[tuple(start[i]+offset[i] for i in range(3)),

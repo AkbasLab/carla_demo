@@ -8,7 +8,7 @@ from pathlib import Path
 import time
 from agentic_uav.comm.protocol import MessageType as MT, AgentMessage
 from agentic_uav.coordination.contract_net import AllocationAgent, TaskStatus, TaskType, MissionTask, Geometry, bid_cost
-from agentic_uav.coordination.flight_executor import WaypointExecutor
+from agentic_uav.coordination.flight_executor import WaypointExecutor, within_waypoint
 from agentic_uav.control.runtime_guardian import Action, Outcome, Peer, State
 from .structured import TOOLS, PolicyError, AsyncWorker, ReplayProvider, validate_decision, decision_example, OllamaProvider
 
@@ -572,8 +572,30 @@ class PersistentAgent(AllocationAgent):
             return dict(status='guarded_skill_dispatched',kind=kind)
         raise PolicyError('unsupported_tool')
 
+    def reconcile_observed_arrival(self,task,now):
+        """Observe previously executed work independently of NEXT-command safety.
+
+        Only a current owned epoch with an existing executor and fresh own
+        telemetry qualifies. This grants no authority to dispatch another action.
+        """
+        if (self.executor.key!=(task.task_id,task.version) or
+                not 0<=now-self.state_time<=self.guardian.config.max_state_age_s):return False
+        index=self.executor.index
+        if index>=len(self.routes[task.task_id]) or not within_waypoint(
+                self.position,self.routes[task.task_id][index],self.executor.tolerance,self.executor.z_tolerance):return False
+        start=len(self.executor.arrivals)
+        result=self.executor.update(self,now)
+        self._observe_arrivals(start,now)
+        if result.get('complete'):
+            self.last_skill_result=dict(status='observed_search_completed',task_id=task.task_id,version=task.version)
+            self.authorized=None;self.motion_key=None
+        elif self.single_index is not None and self.executor.index>self.single_index:
+            self.authorized=None;self.single_index=None;self.motion_key=None
+        return len(self.executor.arrivals)>start
+
     def execution_tick(self,now,gate):
         task=self.executable_task(now)
+        if task is not None and self.reconcile_observed_arrival(task,now):task=self.executable_task(now)
         if self.authorized and (task is None or self.authorized!=(task.task_id,task.version)):
             # Revoke old epochs before any new action; cancellation must be confirmed.
             active=gate.active.get(self.agent_id)

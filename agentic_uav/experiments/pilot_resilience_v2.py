@@ -11,6 +11,7 @@ from agentic_uav.control.runtime_guardian import Action, RuntimeGuardian, Outcom
 from agentic_uav.coordination.contract_net import TaskStatus
 from agentic_uav.policy.persistent import PersistentAgent
 from agentic_uav.coordination.approach_planner import plan_approach,segment_distance
+from agentic_uav.coordination.dynamic_roles import PeerHealth,Health
 
 DEFAULTS=dict(enabled=False,independent_telemetry=True,telemetry_interval_s=.5,
               fault_mode='owned_motion',fault_displacement_m=.6,
@@ -54,6 +55,31 @@ def owned_motion_trigger(agent,gate,settings,start_position):
     return ready
 
 
+class StablePeerHealth(PeerHealth):
+    """V2 role-health hysteresis; raw heartbeat age still controls eligibility.
+
+    Suspect recovery requires a sustained sequence of fresh heartbeat evidence.
+    No timestamp is freshened and no physical peer is removed.
+    """
+    def __init__(self):
+        super().__init__();self.fresh_since=None
+
+    def heartbeat(self,now):
+        if now<=self.last_seen:return
+        if self.state==Health.SUSPECTED:
+            if self.fresh_since is None:self.fresh_since=now
+            self.last_seen=now
+            if now-self.fresh_since>=self.recovery_dwell:
+                self.state=Health.HEALTHY;self.fresh_since=None
+        else:
+            self.fresh_since=None;super().heartbeat(now)
+
+    def tick(self,now):
+        result=super().tick(now)
+        if now-self.last_seen>=self.suspect_after:self.fresh_since=None
+        return result
+
+
 def agent_class(base):
     """Compose with the Phase 14 instrumented class so all audits remain active."""
     class PilotResilienceAgent(base):
@@ -62,6 +88,7 @@ def agent_class(base):
             self.v2=self.settings['pilot_resilience_v2'];self.blocked_since={};self.wait_logged_at=-math.inf
             self.approach_plans={};self._coordination_members=None
             self.rejected_decisions={}
+            self.peer_health={peer:StablePeerHealth() for peer in self.peers}
 
         def coordination_peers(self,now):
             timeout=min(self.lease_s,self.v2['coordination_timeout_s'])
@@ -81,9 +108,20 @@ def agent_class(base):
             if plan is not None:
                 while plan['waypoints'] and math.dist(self.position,plan['waypoints'][0])<=.4:
                     plan['waypoints'].pop(0)
-                if plan['waypoints']:return tuple(plan['waypoints'][0])
-                self.approach_plans.pop(key,None)
-                return goal
+                if plan['waypoints']:
+                    target=tuple(plan['waypoints'][0])
+                    state=self.safety_state(now)
+                    check=self.guardian.evaluate(Action(f'v2_cached:{self.agent_id}:{now}',self.agent_id,
+                        'MOVE',now,now+30,(target,),speed),state,now)
+                    if ('peer_reachable_region_conflict' not in check.reasons or
+                            self.guardian._state_errors(state,now)):
+                        return target
+                    self.record('alternative_approach_invalidated',now,task_id=task.task_id,
+                        version=task.version,index=index,reasons=check.reasons)
+                    self.approach_plans.pop(key,None)
+                else:
+                    self.approach_plans.pop(key,None)
+                    return goal
             state=self.safety_state(now)
             check=self.guardian.evaluate(Action(f'v2_direct:{self.agent_id}:{now}',self.agent_id,
                 'MOVE',now,now+30,(goal,),speed),state,now)
@@ -103,6 +141,13 @@ def agent_class(base):
             # a still-running task policy. Keep previously verified facts visible.
             if kind==MT.STATUS_UPDATE and self.v2['independent_telemetry'] and not self.completed_facts:return
             return super().send(kind,payload,now)
+
+        def waypoint_progress_metric(self,task,index):
+            key=(task.task_id,task.version,index);plan=self.approach_plans.get(key)
+            if plan and plan['waypoints']:
+                points=[tuple(self.position)]+[tuple(p) for p in plan['waypoints']]
+                return (key,plan['created_at']),sum(math.dist(a,b) for a,b in zip(points,points[1:]))
+            return (key,'direct'),math.dist(self.position,self.routes[task.task_id][index])
 
         def _cost(self,task,now):
             # Runtime checks still validate every dispatched segment. Do not treat
@@ -149,6 +194,7 @@ def agent_class(base):
 
         def execution_tick(self,now,gate):
             task=self.executable_task(now)
+            if task is not None and self.reconcile_observed_arrival(task,now):task=self.executable_task(now)
             if task is not None:
                 index,_,check=self._approach(task,now);key=(task.task_id,task.version,index)
                 record=self.blocked_since.get(key)
