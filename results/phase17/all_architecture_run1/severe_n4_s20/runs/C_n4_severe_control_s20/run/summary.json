@@ -1,0 +1,153 @@
+{
+  "mode": "phase13_shared_architecture_comparison",
+  "architecture": "C",
+  "backend": "mock",
+  "seed": 20,
+  "condition": "severe",
+  "provider": "deterministic",
+  "llm_inference": false,
+  "mission_complete": false,
+  "time_s": 239.80007589800516,
+  "error": null,
+  "mission_execution_success": false,
+  "decentralized_coordination_enabled": true,
+  "completed_task_ids": [
+    "SEARCH_SECTOR_A",
+    "SEARCH_SECTOR_B",
+    "SEARCH_SECTOR_D"
+  ],
+  "duplicate_task_completions": 0,
+  "completions_by_agent": {
+    "Drone1": 2,
+    "Drone2": 0,
+    "Drone3": 0,
+    "Drone4": 1
+  },
+  "decisions_by_agent": {
+    "Drone1": 55,
+    "Drone2": 36,
+    "Drone3": 26,
+    "Drone4": 46
+  },
+  "fallbacks_by_agent": {
+    "Drone1": 3,
+    "Drone2": 39,
+    "Drone3": 46,
+    "Drone4": 18
+  },
+  "final_roles": {
+    "Drone1": "SCOUT",
+    "Drone2": "SCOUT",
+    "Drone3": "SCOUT",
+    "Drone4": "SCOUT"
+  },
+  "role_changes": 0,
+  "lease_expirations": 0,
+  "all_dispatched_actions_guarded": true,
+  "guardian_outcomes": {
+    "APPROVE_WITH_MODIFICATION": 304,
+    "APPROVE": 55,
+    "REJECT_AND_REPLAN": 379
+  },
+  "network_outcomes": {
+    "delivered": 10573,
+    "dropped": 4545,
+    "queued": 20
+  },
+  "network_drop_reasons": {
+    "independent_loss": 4545
+  },
+  "architecture_selected_from_configuration": true,
+  "ablations": {
+    "persistent_memory": true,
+    "task_leases": true,
+    "dynamic_roles": true,
+    "perfect_communication": false,
+    "fallback_policy": false
+  },
+  "shared_inputs_sha256": "79b40863aaa95ecc886d3abf128eac69ea3621e4afe8e47b590b0207215ae98e",
+  "llm_integration_observed": false,
+  "llm_exit_criterion_observed": false,
+  "live_exit_criterion_observed": false,
+  "productive_decisions_by_agent": {
+    "Drone1": 5,
+    "Drone2": 1,
+    "Drone3": 3,
+    "Drone4": 2
+  },
+  "llm_productive_decisions_by_agent": {
+    "Drone1": 0,
+    "Drone2": 0,
+    "Drone3": 0,
+    "Drone4": 0
+  },
+  "observed_progress_sources_by_agent": {
+    "Drone1": {
+      "deterministic_policy": 7
+    },
+    "Drone2": {
+      "deterministic_policy": 1
+    },
+    "Drone3": {
+      "deterministic_policy": 3
+    },
+    "Drone4": {
+      "deterministic_policy": 4
+    }
+  },
+  "policy_tools_by_agent": {
+    "Drone1": {
+      "hold": 46,
+      "start_search": 9
+    },
+    "Drone2": {
+      "hold": 18,
+      "start_search": 18
+    },
+    "Drone3": {
+      "hold": 13,
+      "start_search": 13
+    },
+    "Drone4": {
+      "hold": 30,
+      "start_search": 16
+    }
+  },
+  "policy_errors_by_agent": {
+    "Drone1": {
+      "unsafe_action:peer_reachable_region_conflict": 8
+    },
+    "Drone2": {
+      "unsafe_action:peer_reachable_region_conflict": 93
+    },
+    "Drone3": {
+      "unsafe_action:peer_reachable_region_conflict": 96
+    },
+    "Drone4": {
+      "unsafe_action:peer_reachable_region_conflict": 42
+    }
+  },
+  "deadline_bids_by_agent": {
+    "Drone1": 5,
+    "Drone2": 2,
+    "Drone3": 4,
+    "Drone4": 7
+  },
+  "blocked_task_releases_by_agent": {
+    "Drone1": 0,
+    "Drone2": 1,
+    "Drone3": 2,
+    "Drone4": 1
+  },
+  "llm_supported_execution_success": false,
+  "limitations": [
+    "Kinematic mock flight and application-level network; no live AirSim comparison or calibrated RF evidence",
+    "C and D retain fail-closed guardian checks on stale peer state; reassignment does not guarantee executable recovery under a partition",
+    "B initial assignments are reliable pre-mission briefing; B never negotiates or reassigns them",
+    "Deadline bids and rule-policy replacement are deterministic support, not LLM coordination evidence",
+    "Nominal replay fixtures verify architecture wiring; actual pinned-model and repeated matched trials remain necessary",
+    "Physical route completion is the common stop criterion; undelivered completion reports and pending packets at stop are censored",
+    "Persistent-memory ablation removes episodic prompt memory, not required identity, local beliefs, inboxes or audit history",
+    "Relay changes are role/position rules; no RF reachability benefit is claimed"
+  ]
+}
