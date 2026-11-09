@@ -1,0 +1,5 @@
+{"time_s": 7.234499207697809e-05, "agent_id": "Drone1", "event": "v2_policy_waiting_for_safe_context", "reasons": ["missing_peer_beliefs"]}
+{"time_s": 1.000083671999164, "agent_id": "Drone1", "event": "peer_health_changed", "peer": "Drone2", "previous": "HEALTHY", "state": "SUSPECTED"}
+{"time_s": 1.000083671999164, "agent_id": "Drone1", "event": "peer_health_changed", "peer": "Drone3", "previous": "HEALTHY", "state": "SUSPECTED"}
+{"time_s": 1.000083671999164, "agent_id": "Drone1", "event": "peer_health_changed", "peer": "Drone4", "previous": "HEALTHY", "state": "SUSPECTED"}
+{"time_s": 1.8000886820082087, "agent_id": "Drone1", "event": "policy_decision_applied", "request_id": "Drone1:1", "decision": {"confidence": 0.8, "outgoing_messages": [], "parameters": {"duration_s": 1.0}, "selected_tool": "hold", "situation_assessment": {"communication_status": "nominal", "current_risk": "low", "mission_progress": "partial"}}, "tool_result": {"status": "guarded_skill_dispatched", "kind": "HOLD"}, "source": "deterministic_policy", "flight_phase": "AIRBORNE"}
