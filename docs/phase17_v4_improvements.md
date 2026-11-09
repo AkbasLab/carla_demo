@@ -1,7 +1,8 @@
-# Phase 17: nominal recovery corrections
+# Phase 17 V4 improvements: nominal and severe communication
 
-Status: implemented. Development verification uses mock flight
-and replay policies. New pinned-Ollama measurements are still required.
+This report preserves the development checks and subsequent pinned validation.
+All flight results below use the mock adapter. Later sections distinguish
+observed improvements, regressions and remaining implementation work.
 
 ## Evidence and diagnosis
 
@@ -380,3 +381,150 @@ Long model admission delays and genuinely infeasible approaches may still cause
 incompletion. These changes do not enlarge leases merely because an LLM is
 waiting, delete uncertain physical peers, or guarantee every severe case will
 complete in 240 seconds. Pinned validation must establish the remaining effect.
+
+## Verified V4 results: D with two drones and C with four drones
+
+Commit `9176497` adds these batches:
+
+- `results/phase17/severe_recovery_v4_verified/severe_D_n2_s10`
+- `results/phase17/severe_recovery_v4_verified/severe_C_n4_s20`
+
+Both record clean source `dc696f4`. Their saved hashes for the four corrected
+source files match `f0b9e57`, confirming that the V4 corrections were active.
+Each batch contains a no-policy-failure control and a policy-failure case under
+severe communication. These are mock-flight development pilots, not live
+CARLA-Air or final held-out experiments.
+
+### Comparison with the preceding older-code batches
+
+The preceding references are `severe_recovery_v4/severe_D_n2_s10` and the C cases
+in `severe_recovery_v4/severe_cd_n4_s20`.
+
+| Case | Previous result | Corrected-code result |
+|---|---|---|
+| D, two drones, seed 10, control | 2/4 tasks; 9 waypoint arrivals | 3/4 tasks; 15 arrivals; timeout |
+| D, two drones, seed 10, failure | 2/4 tasks; 8 arrivals | 2/4 tasks; 8 arrivals; timeout |
+| C, four drones, seed 20, control | 3/4 tasks; 13 arrivals; timeout | 4/4 tasks; 16 arrivals; 138.4 s |
+| C, four drones, seed 20, failure | 4/4 tasks; 16 arrivals; 176.2 s | 3/4 tasks; 14 arrivals; timeout |
+
+Timeout observations end at approximately 239.8 s; they are not successful
+completion times. Across these four cases, completed-mission count remains one
+of four: C's control improves, while its failure case regresses. Single paired
+development observations cannot establish a general speed or architecture
+advantage. With an owned-motion trigger, changed execution can also change the
+failure time and physical exposure.
+
+### Visual comparison
+
+![Previous and corrected code: mission tasks, waypoint progress, health transitions and completion status](figures/phase17_v4/severe_comparison.png)
+
+**Figure 1.** Severe-network comparisons for D with two drones, seed 10, and C
+with four drones, seed 20. Grey denotes the preceding code and teal the corrected
+implementation. D's control completes more work, and C's control completes the
+mission, while C's failure case regresses. The peer-health panel uses a
+logarithmic axis and labels the raw counts. Circles are successful completion
+times; triangles are incomplete observations at the approximately 240-second
+horizon, not fast or successful completions. One paired development run per
+case is shown; these are not estimates of statistical significance.
+
+[Download Figure 1 as PDF](figures/phase17_v4/severe_comparison.pdf).
+
+### Mechanism-level evidence
+
+| Diagnostic | Previous | Corrected code |
+|---|---:|---:|
+| D control peer-health transitions | 648 | 134 |
+| D failure peer-health transitions | 80 | 15 |
+| C control peer-health transitions | 4,621 | 420 |
+| C failure peer-health transitions | 1,712 | 331 |
+| D control approach invalidations | 0 | 11 |
+| D failure approach invalidations | 0 | 6 |
+| C control approach invalidations | 0 | 2 |
+| C failure approach invalidations | 0 | 7 |
+
+Lower health-transition counts support the intended debounce mechanism.
+Approach-invalidations demonstrate that cached-route revalidation is active;
+more invalidations do not themselves establish better planning.
+
+All four corrected-code cases finish their allotted execution with no recorded
+runtime or metric errors. All dispatched actions are guarded and no sampled
+separation violation is reported. Collision sensing remains unavailable, so
+these records do not prove collision freedom.
+
+D uses actual pinned LLM inference. The inspected response records contain no
+inference errors and mean response latency is approximately 10.0 s in the
+control and 9.6 s in failure. Both cases record zero fallback-policy activations.
+Increasing the inference timeout is therefore not the first explanation or
+remedy for these incomplete missions.
+
+### Remaining execution problems
+
+**D control: late productive work.** Sector D is claimed at 80.8 s, but its first
+waypoint arrival occurs at 206.2 s. WP2 and WP3 follow at 231.8 s and 234.8 s.
+The run ends with three completed tasks and only Sector D's final waypoint
+missing. The additional observed work is meaningful, but the mission remains
+incomplete.
+
+**D failure: replacement accepted without productive resumption.** Sector A is
+claimed by the replacement at 130.6 s, but no replacement waypoint arrival is
+recorded before timeout. The remaining drone repeatedly selects approaches and
+receives search authorizations. At the end it is still assigned Sector A;
+Sector D also remains unfinished. Reassignment alone is not mission recovery.
+
+**C failure: repeated reclaiming of a blocked task.** Sector C records WP1 and
+WP2 at 32.8 s and 46.4 s, but WP3 and WP4 remain unfinished. The task advances
+through ten assignment versions as agents repeatedly claim and release it.
+Drone3 and Drone4 continue trading the task while the physical blockage
+persists. The run contains 237 guardian reason occurrences of
+`peer_reachable_region_conflict`, compared with 18 in the preceding successful
+failure case. These are intervention records, not counts of collisions.
+
+The corrected C failure still recovers the deliberately failed drone's Sector A
+and completes three sectors overall. Its remaining Sector C failure shows that
+failure-triggered reassignment and full mission recovery must be assessed
+separately.
+
+### Timelines of unfinished work
+
+![Task claims, releases and observed arrivals for three unfinished corrected-code tasks](figures/phase17_v4/remaining_task_timelines.png)
+
+**Figure 2.** Local protocol events explain why assignments alone are insufficient
+evidence of recovery. Top: D's replacement claims Sector A but records no required
+waypoint arrival. Middle: D's control claims Sector D early but records its three
+arrivals only near the horizon; WP4 remains missing. Bottom: C's failure case
+repeatedly trades Sector C across assignment versions after WP2, without reaching
+WP3 or WP4. Squares are local claims, crosses releases, green circles observed
+arrivals, and purple dotted lines the injected policy failure. The control panel
+has no injected fault. These event records are not continuous flight paths or a
+global ownership-consensus trace.
+
+[Download Figure 2 as PDF](figures/phase17_v4/remaining_task_timelines.pdf).
+
+Both figures read saved JSON and losslessly packed traces directly. Their
+numeric inputs and source folders are saved in
+[figure_data.json](figures/phase17_v4/figure_data.json). Regenerate them from the
+repository root with:
+
+```bash
+MPLCONFIGDIR=/tmp/phase17-mpl python scripts/plot_phase17_v4_improvements.py
+```
+
+### Recommended next source-code work
+
+1. Preserve rejected-approach knowledge across task versions and communicate
+   meaningful blockage evidence. Avoid rebidding for the same unchanged
+   obstruction simply because its assignment epoch advanced.
+2. Distinguish a temporarily unverifiable segment from materially changed
+   physical geometry. Wait safely for temporary uncertainty; replan when the
+   selected approach is genuinely invalid. Prevent repeated planning and
+   authorization cycles from undoing useful approach progress.
+3. Track cumulative approach effort and time since a required waypoint arrival,
+   separately from lease validity. Actual detour motion can legitimately renew
+   a lease without producing useful mission work. Bound unsuccessful effort and
+   invoke a validated help, yielding or release response when needed.
+
+These are recommendations, not additional implemented fixes. Any yielding
+movement must pass the same guardian and preserve conservative occupancy for
+silent peers. Inspect these representative traces before running another large
+matrix. The current evidence supports a stronger implementation foundation but
+does not yet demonstrate reliable severe recovery across C and D.
