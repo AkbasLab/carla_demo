@@ -1,0 +1,42 @@
+{
+  "agent_id": "Drone2",
+  "memory": [
+    {
+      "time_s": 46.60028172296006,
+      "selected_tool": "start_search",
+      "parameters": {
+        "task_id": "SEARCH_SECTOR_B",
+        "task_version": 1
+      },
+      "result": {
+        "status": "search_authorized",
+        "task_id": "SEARCH_SECTOR_B",
+        "version": 1
+      }
+    },
+    {
+      "time_s": 118.20025652006734,
+      "selected_tool": "start_search",
+      "parameters": {
+        "task_id": "SEARCH_SECTOR_A",
+        "task_version": 2
+      },
+      "result": {
+        "status": "search_authorized",
+        "task_id": "SEARCH_SECTOR_A",
+        "version": 2
+      }
+    },
+    {
+      "time_s": 210.00028197199572,
+      "selected_tool": "hold",
+      "parameters": {
+        "duration_s": 0.2
+      },
+      "result": {
+        "status": "guarded_skill_dispatched",
+        "kind": "HOLD"
+      }
+    }
+  ]
+}

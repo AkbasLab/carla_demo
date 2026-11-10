@@ -1,0 +1,149 @@
+{
+  "schema_version": 1,
+  "definition_id": "phase15.route_metrics.v1",
+  "experiment_id": "D_n4_severe_control_s13",
+  "run_id": "a57e8892f72249b99b8da2d55bc5c3a9",
+  "architecture": "D",
+  "scenario_id": "phase17_v2_policy_stop_telemetry_alive_owned_motion",
+  "network_profile": "severe",
+  "random_seed": 13,
+  "match_key": "215636445936acb95f8c84281d7661cbcf1b24209b77ece9080fa29bbf5b5b18",
+  "evidence_issues": [],
+  "primary": {
+    "mission": {
+      "success": false,
+      "mission_score": 0,
+      "required_tasks": 4,
+      "completed_tasks": 3,
+      "guarded_effects_verified": true,
+      "components": {
+        "route_work_fraction": 0.8125,
+        "area_coverage_fraction": null,
+        "redundant_cell_observations": null,
+        "target_detection_fraction": null,
+        "safe_return_fraction": null,
+        "unavailable_reasons": {
+          "area_coverage": "no_declared_cell_denominator_or_coverage_sensor",
+          "target_detection": "no_declared_targets_and_verified_detector",
+          "safe_return": "safe_return_not_required_or_verification_not_collected"
+        }
+      }
+    },
+    "completion_time": {
+      "value_s": null,
+      "status": "timeout",
+      "observation_time_s": 239.8002491509542,
+      "timeout_budget_s": 240.0,
+      "censored": true,
+      "clock": "wall"
+    },
+    "continuity_retention": {
+      "value": null,
+      "route_work_retention": null,
+      "reason": "nominal_reference_not_matched_yet"
+    },
+    "recovery": [],
+    "safety": {
+      "collisions": null,
+      "collision_reason": "collision_observations_not_collected",
+      "sampled_separation_violations": 0,
+      "separation_violation_episodes": 0,
+      "minimum_sampled_separation_m": 5.924795778631462,
+      "restricted_zone_entries_sampled": 0,
+      "restricted_zone_crossings_inferred": 0,
+      "guardian_interventions": 111,
+      "unsafe_proposal_evaluations": 0,
+      "guardian_fallbacks": 0,
+      "emergency_fallbacks": 0,
+      "sampled_pair_observations": 7200,
+      "separation_threshold_m": 2.0,
+      "guardian_evaluations": 126,
+      "routine_segment_modifications": 106,
+      "corrective_guardian_interventions": 5,
+      "intervention_rate": 0.8809523809523809,
+      "outcomes": {
+        "APPROVE": 15,
+        "REJECT_AND_REPLAN": 5,
+        "APPROVE_WITH_MODIFICATION": 106
+      },
+      "unverifiable_state_rejections": 0,
+      "fallback_types": {},
+      "stale_message_decisions": 0
+    },
+    "communication": {
+      "available": true,
+      "unique_message_sends": 4822,
+      "recipient_packet_attempts": 14466,
+      "attempted_bytes": 9954060,
+      "bytes_transmitted": 9950732,
+      "messages_per_completed_task": 1607.3333333333333,
+      "retry_message_sends": 459,
+      "duplicate_transport_deliveries": 872,
+      "expired_messages": 0,
+      "dropped_messages": 4365,
+      "pending_messages": 23,
+      "delivered_messages": 10078,
+      "not_yet_transmitted_packets": 4,
+      "semantic_duplicate_messages": null,
+      "semantic_duplicate_reason": "no_stable_business_id_for_recreated_transactions"
+    }
+  },
+  "diagnostic": {
+    "unique_productive_work": 13,
+    "total_work": 13,
+    "repeated_required_work": 0,
+    "route_work_fraction": 0.8125,
+    "coordination_efficiency": 1.0,
+    "task_reassignments": 2,
+    "same_owner_restarts": 2,
+    "orphaned_tasks_at_end": 0,
+    "multiple_self_declared_owners_at_end": 0,
+    "orphan_reason": null,
+    "role_changes": 0,
+    "role_oscillation_candidates": 0,
+    "unnecessary_role_oscillations": null,
+    "unnecessary_oscillation_reason": "mission_need_oracle_not_defined",
+    "invalid_structured_outputs": 0,
+    "stale_context_or_version_rejections": 0,
+    "llm_calls": 14,
+    "llm_response_latency_mean_s": 16.87045194484437,
+    "llm_response_latency_p95_s": 19.951312052155846,
+    "response_errors": 0,
+    "token_usage": {
+      "input_tokens": null,
+      "output_tokens": null,
+      "reported_input_token_subtotal": 39583,
+      "reported_output_token_subtotal": 909,
+      "complete": false,
+      "calls_with_usage": 13,
+      "reason": "missing_or_abandoned_provider_usage"
+    },
+    "fallback_policy_invocations": 0,
+    "role_deadline_fallbacks": 0,
+    "fallback_replacement_enabled": false,
+    "distance_travelled_m": 101.02915846183984,
+    "distance_by_agent_m": {
+      "Drone1": 21.0,
+      "Drone2": 32.729060787883064,
+      "Drone3": 21.0,
+      "Drone4": 26.30009767395677
+    },
+    "battery_decrease_percent_by_agent": {
+      "Drone1": 0.20999999999997954,
+      "Drone2": 0.3272906078788367,
+      "Drone3": 0.2099999999999369,
+      "Drone4": 0.2630009767395478
+    },
+    "energy_joules": null,
+    "conflicting_claim_corrections": 1,
+    "area_searched_percent": null,
+    "redundant_search_cell_observations": null,
+    "stale_message_decisions": 0,
+    "conflicting_task_claim_epochs": 1,
+    "competing_task_claims": 1
+  },
+  "unavailable_reasons": {
+    "energy_joules": "no_calibrated_energy_model",
+    "unnecessary_role_oscillations": "mission_need_oracle_not_defined"
+  }
+}
