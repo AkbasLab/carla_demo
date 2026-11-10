@@ -1,0 +1,182 @@
+{
+  "schema_version": 1,
+  "definition_id": "phase17_secondary_mechanisms_v1",
+  "evaluator_sha256": "2c8aefa6987bfa1e9190fbfb3c89e3e771ccafb2bfc36da4e043d834cd3117b9",
+  "collection_mode": "retrospective",
+  "experiment_id": "D_n4_severe_loss_s15",
+  "architecture": "D",
+  "mission_complete": false,
+  "waypoint_arrivals": {
+    "records": 9,
+    "unique_required_waypoints": 9
+  },
+  "progress_and_leases": {
+    "observed_progress_reports": 19,
+    "local_lease_expiration_events": 2,
+    "central_lease_expiration_events": 0,
+    "note": "Local reports/expirations can refer to the same task epoch; they are not consensus counts"
+  },
+  "task_lifecycle_complete": true,
+  "task_lifecycle": {
+    "SEARCH_SECTOR_A": {
+      "claim_events": 2,
+      "claimed_versions": [
+        1,
+        2
+      ],
+      "release_events": 0,
+      "central_release_observations": 0,
+      "unique_waypoint_arrivals": 1
+    },
+    "SEARCH_SECTOR_B": {
+      "claim_events": 1,
+      "claimed_versions": [
+        1
+      ],
+      "release_events": 0,
+      "central_release_observations": 0,
+      "unique_waypoint_arrivals": 4
+    },
+    "SEARCH_SECTOR_C": {
+      "claim_events": 2,
+      "claimed_versions": [
+        1,
+        2
+      ],
+      "release_events": 0,
+      "central_release_observations": 0,
+      "unique_waypoint_arrivals": 0
+    },
+    "SEARCH_SECTOR_D": {
+      "claim_events": 1,
+      "claimed_versions": [
+        1
+      ],
+      "release_events": 0,
+      "central_release_observations": 0,
+      "unique_waypoint_arrivals": 4
+    }
+  },
+  "recovery": [
+    {
+      "task_id": "SEARCH_SECTOR_A",
+      "fault_s": 26.600224856985733,
+      "replacement_agent": "Drone4",
+      "replacement_accepted_s": 90.60022553498857,
+      "replacement_version": 2,
+      "acceptance_episode_end_s": null,
+      "observed_until_s": 239.8002539089939,
+      "first_productive_arrival_s": 174.40023645598558,
+      "acceptance_to_arrival_s": 83.80001092099701,
+      "censored": false,
+      "unavailable_reason": null,
+      "definition": "Registered replacement acceptance to that agent/epoch's first globally unique required arrival, before release or superseding acceptance"
+    }
+  ],
+  "policy": {
+    "errors": {
+      "unsafe_action:peer_reachable_region_conflict": 1,
+      "task_context_changed": 1
+    },
+    "error_events": 2,
+    "fallback_activations": 0,
+    "peer_health_transitions": 267,
+    "approach_selections": 16,
+    "approach_invalidations": 15
+  },
+  "inference": {
+    "llm_inference": true,
+    "calls": 23,
+    "response_records": 22,
+    "failed_response_records": 0,
+    "latency_s": {
+      "mean": 10.224811784274856,
+      "p95": 13.002465048000158,
+      "maximum": 13.81978039900423,
+      "scope": "all_reported_responses_including_failures"
+    }
+  },
+  "guardian": {
+    "evaluations": 162,
+    "rejected_evaluations": 5,
+    "reason_occurrences": {
+      "bounded_motion_segment": 143,
+      "runtime_timeout_or_state_violation": 5,
+      "no_verified_safe_fallback": 5
+    },
+    "registered_safety_metrics": {
+      "collisions": null,
+      "collision_reason": "collision_observations_not_collected",
+      "sampled_separation_violations": 0,
+      "separation_violation_episodes": 0,
+      "minimum_sampled_separation_m": 5.673889437375312,
+      "restricted_zone_entries_sampled": 0,
+      "restricted_zone_crossings_inferred": 0,
+      "guardian_interventions": 148,
+      "unsafe_proposal_evaluations": 0,
+      "guardian_fallbacks": 0,
+      "emergency_fallbacks": 0,
+      "sampled_pair_observations": 7200,
+      "separation_threshold_m": 2.0,
+      "guardian_evaluations": 162,
+      "routine_segment_modifications": 143,
+      "corrective_guardian_interventions": 5,
+      "intervention_rate": 0.9135802469135802,
+      "outcomes": {
+        "APPROVE_WITH_MODIFICATION": 143,
+        "APPROVE": 14,
+        "REJECT_AND_REPLAN": 5
+      },
+      "unverifiable_state_rejections": 0,
+      "fallback_types": {},
+      "stale_message_decisions": 0
+    }
+  },
+  "sources": {
+    "result_directory": "/opt/carla_demo/results/phase17/severe_recovery_v4_verified/severe_C_D_n2_s15/runs/D_n4_severe_loss_s15",
+    "artifacts": [
+      "run/summary.json",
+      "run/waypoint_arrivals.json",
+      "run/protocol_events.json",
+      "run/controller_events.json",
+      "run/guardian_audit.json",
+      "run/<agent>/decision_history.jsonl",
+      "run/<agent>/responses.jsonl",
+      "run/manifest.json",
+      "events.jsonl"
+    ],
+    "measurement_sources": {
+      "waypoint_arrivals": [
+        "run/waypoint_arrivals.json",
+        "run/manifest.json"
+      ],
+      "progress_and_leases": [
+        "run/protocol_events.json",
+        "run/controller_events.json"
+      ],
+      "recovery": [
+        "events.jsonl",
+        "run/waypoint_arrivals.json",
+        "run/manifest.json"
+      ],
+      "policy": [
+        "run/<agent>/decision_history.jsonl"
+      ],
+      "inference": [
+        "run/<agent>/responses.jsonl",
+        "events.jsonl"
+      ],
+      "guardian": [
+        "run/guardian_audit.json"
+      ]
+    },
+    "packed_evidence_supported": true
+  },
+  "missing_artifacts": [],
+  "evidence_issues": [],
+  "limitations": [
+    "Secondary diagnostics do not replace or retroactively register primary metrics",
+    "Zero event count does not establish support for instrumentation in older source versions",
+    "Guardian reason occurrences are not unique physical incidents or collisions"
+  ]
+}

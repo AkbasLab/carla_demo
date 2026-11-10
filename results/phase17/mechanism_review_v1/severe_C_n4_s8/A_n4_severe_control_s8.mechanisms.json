@@ -1,0 +1,137 @@
+{
+  "schema_version": 1,
+  "definition_id": "phase17_secondary_mechanisms_v1",
+  "evaluator_sha256": "2c8aefa6987bfa1e9190fbfb3c89e3e771ccafb2bfc36da4e043d834cd3117b9",
+  "collection_mode": "retrospective",
+  "experiment_id": "A_n4_severe_control_s8",
+  "architecture": null,
+  "mission_complete": null,
+  "waypoint_arrivals": {
+    "records": null,
+    "unique_required_waypoints": null
+  },
+  "progress_and_leases": {
+    "observed_progress_reports": null,
+    "local_lease_expiration_events": null,
+    "central_lease_expiration_events": null,
+    "note": "Local reports/expirations can refer to the same task epoch; they are not consensus counts"
+  },
+  "task_lifecycle_complete": false,
+  "task_lifecycle": {
+    "SEARCH_SECTOR_A": {
+      "claim_events": 0,
+      "claimed_versions": [],
+      "release_events": 0,
+      "central_release_observations": 0,
+      "unique_waypoint_arrivals": null
+    },
+    "SEARCH_SECTOR_B": {
+      "claim_events": 0,
+      "claimed_versions": [],
+      "release_events": 0,
+      "central_release_observations": 0,
+      "unique_waypoint_arrivals": null
+    },
+    "SEARCH_SECTOR_C": {
+      "claim_events": 0,
+      "claimed_versions": [],
+      "release_events": 0,
+      "central_release_observations": 0,
+      "unique_waypoint_arrivals": null
+    },
+    "SEARCH_SECTOR_D": {
+      "claim_events": 0,
+      "claimed_versions": [],
+      "release_events": 0,
+      "central_release_observations": 0,
+      "unique_waypoint_arrivals": null
+    }
+  },
+  "recovery": [],
+  "policy": {
+    "errors": null,
+    "error_events": null,
+    "fallback_activations": null,
+    "peer_health_transitions": null,
+    "approach_selections": null,
+    "approach_invalidations": null
+  },
+  "inference": {
+    "llm_inference": null,
+    "calls": 0,
+    "response_records": null,
+    "failed_response_records": null,
+    "latency_s": null
+  },
+  "guardian": {
+    "evaluations": null,
+    "rejected_evaluations": null,
+    "reason_occurrences": null,
+    "registered_safety_metrics": {
+      "collisions": null,
+      "collision_reason": "collision_observations_not_collected",
+      "sampled_separation_violations": null,
+      "separation_violation_episodes": null,
+      "minimum_sampled_separation_m": null,
+      "restricted_zone_entries_sampled": null,
+      "restricted_zone_crossings_inferred": null,
+      "guardian_interventions": null,
+      "unsafe_proposal_evaluations": null,
+      "guardian_fallbacks": null,
+      "emergency_fallbacks": null,
+      "stale_message_decisions": null
+    }
+  },
+  "sources": {
+    "result_directory": "/opt/carla_demo/results/phase17/severe_recovery_v4_verified/severe_C_n4_s8/runs/A_n4_severe_control_s8",
+    "artifacts": [
+      "run/summary.json",
+      "run/waypoint_arrivals.json",
+      "run/protocol_events.json",
+      "run/controller_events.json",
+      "run/guardian_audit.json",
+      "run/<agent>/decision_history.jsonl",
+      "run/<agent>/responses.jsonl",
+      "run/manifest.json",
+      "events.jsonl"
+    ],
+    "measurement_sources": {
+      "waypoint_arrivals": [
+        "run/waypoint_arrivals.json",
+        "run/manifest.json"
+      ],
+      "progress_and_leases": [
+        "run/protocol_events.json",
+        "run/controller_events.json"
+      ],
+      "recovery": [
+        "events.jsonl",
+        "run/waypoint_arrivals.json",
+        "run/manifest.json"
+      ],
+      "policy": [
+        "run/<agent>/decision_history.jsonl"
+      ],
+      "inference": [
+        "run/<agent>/responses.jsonl",
+        "events.jsonl"
+      ],
+      "guardian": [
+        "run/guardian_audit.json"
+      ]
+    },
+    "packed_evidence_supported": true
+  },
+  "missing_artifacts": [
+    "summary.json",
+    "protocol_events.json",
+    "waypoint_arrivals.json",
+    "guardian_audit.json"
+  ],
+  "evidence_issues": [],
+  "limitations": [
+    "Secondary diagnostics do not replace or retroactively register primary metrics",
+    "Zero event count does not establish support for instrumentation in older source versions",
+    "Guardian reason occurrences are not unique physical incidents or collisions"
+  ]
+}
