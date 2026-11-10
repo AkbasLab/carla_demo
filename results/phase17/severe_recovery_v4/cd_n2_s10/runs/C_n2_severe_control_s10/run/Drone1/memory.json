@@ -1,0 +1,185 @@
+{
+  "agent_id": "Drone1",
+  "memory": [
+    {
+      "time_s": 17.600077821989544,
+      "selected_tool": "start_search",
+      "parameters": {
+        "task_id": "SEARCH_SECTOR_A",
+        "task_version": 1
+      },
+      "result": {
+        "status": "search_authorized",
+        "task_id": "SEARCH_SECTOR_A",
+        "version": 1
+      }
+    },
+    {
+      "time_s": 48.00008778698975,
+      "selected_tool": "send_bid",
+      "parameters": {
+        "task_id": "SEARCH_SECTOR_C",
+        "task_version": 1
+      },
+      "result": {
+        "task_id": "SEARCH_SECTOR_C",
+        "task_version": 1,
+        "computed_at": 48.00008778698975,
+        "distance_m": 28.35999999999997,
+        "distance_to_entry_m": 13.359999999999971,
+        "travel_time_s": 28.35999999999997,
+        "bid": {
+          "score": 17.175184648704835,
+          "components": {
+            "distance": 15.159802080895927,
+            "battery": 0.2030749778962273,
+            "workload": 0.0,
+            "communication": 0.20000153566555431,
+            "mismatch": 0.0
+          }
+        },
+        "battery_sufficient": true,
+        "communication_reachability": {
+          "Drone2": "recent_contact"
+        },
+        "route_feasible": true,
+        "separation_risk": false,
+        "guardian_reasons": [
+          "bounded_motion_segment"
+        ],
+        "full_route_static_feasible": true,
+        "immediate_segment_feasible": true,
+        "future_segments_require_revalidation": true,
+        "route_deadline_model": "separate_guarded_waypoint_commands"
+      }
+    },
+    {
+      "time_s": 54.40005396999186,
+      "selected_tool": "hold",
+      "parameters": {
+        "duration_s": 1.0
+      },
+      "result": {
+        "status": "guarded_skill_dispatched",
+        "kind": "HOLD"
+      }
+    },
+    {
+      "time_s": 56.60009307699511,
+      "selected_tool": "start_search",
+      "parameters": {
+        "task_id": "SEARCH_SECTOR_C",
+        "task_version": 1
+      },
+      "result": {
+        "status": "search_authorized",
+        "task_id": "SEARCH_SECTOR_C",
+        "version": 1
+      }
+    },
+    {
+      "time_s": 66.80008582700975,
+      "selected_tool": "start_search",
+      "parameters": {
+        "task_id": "SEARCH_SECTOR_C",
+        "task_version": 1
+      },
+      "result": {
+        "status": "search_authorized",
+        "task_id": "SEARCH_SECTOR_C",
+        "version": 1
+      }
+    },
+    {
+      "time_s": 79.20007899199845,
+      "selected_tool": "start_search",
+      "parameters": {
+        "task_id": "SEARCH_SECTOR_C",
+        "task_version": 1
+      },
+      "result": {
+        "status": "search_authorized",
+        "task_id": "SEARCH_SECTOR_C",
+        "version": 1
+      }
+    },
+    {
+      "time_s": 81.20009358902462,
+      "selected_tool": "start_search",
+      "parameters": {
+        "task_id": "SEARCH_SECTOR_C",
+        "task_version": 1
+      },
+      "result": {
+        "status": "search_authorized",
+        "task_id": "SEARCH_SECTOR_C",
+        "version": 1
+      }
+    },
+    {
+      "time_s": 83.20009078801377,
+      "selected_tool": "start_search",
+      "parameters": {
+        "task_id": "SEARCH_SECTOR_C",
+        "task_version": 1
+      },
+      "result": {
+        "status": "search_authorized",
+        "task_id": "SEARCH_SECTOR_C",
+        "version": 1
+      }
+    },
+    {
+      "time_s": 85.20008483703714,
+      "selected_tool": "start_search",
+      "parameters": {
+        "task_id": "SEARCH_SECTOR_C",
+        "task_version": 1
+      },
+      "result": {
+        "status": "search_authorized",
+        "task_id": "SEARCH_SECTOR_C",
+        "version": 1
+      }
+    },
+    {
+      "time_s": 87.4000841040397,
+      "selected_tool": "start_search",
+      "parameters": {
+        "task_id": "SEARCH_SECTOR_C",
+        "task_version": 1
+      },
+      "result": {
+        "status": "search_authorized",
+        "task_id": "SEARCH_SECTOR_C",
+        "version": 1
+      }
+    },
+    {
+      "time_s": 90.00008032703772,
+      "selected_tool": "start_search",
+      "parameters": {
+        "task_id": "SEARCH_SECTOR_C",
+        "task_version": 1
+      },
+      "result": {
+        "status": "search_authorized",
+        "task_id": "SEARCH_SECTOR_C",
+        "version": 1
+      }
+    },
+    {
+      "time_s": 92.20008942601271,
+      "selected_tool": "start_search",
+      "parameters": {
+        "task_id": "SEARCH_SECTOR_C",
+        "task_version": 1
+      },
+      "result": {
+        "status": "search_authorized",
+        "task_id": "SEARCH_SECTOR_C",
+        "version": 1
+      }
+    }
+  ]
+}
