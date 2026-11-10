@@ -773,3 +773,164 @@ The [figure source data](figures/phase17_mechanism_review/figure_sources.json)
 preserves review-folder identity so identically named cases in different attempts
 cannot silently merge. This report and its figures do not modify the original
 evidence or change primary metric definitions.
+
+## Additional A/B/C/D comparison: commit 34874ca
+
+C performs most consistently in the complete matched batches; D's recovery
+remains the weakest area. This section preserves the analysis of commit
+`34874ca` separately from the later C/D upload.
+
+The three full A/B/C/D batches use the same major settings: a 240-second budget,
+30% packet loss, 75-second leases, six-second bid windows, 30-second inference
+timeouts and one inference slot. Their core implementation hashes match the
+corrected code. Each table entry shows completed tasks, control → policy-failure
+case, out of four. Control still means severe communication, without an injected
+policy failure.
+
+| Scenario | A | B | C | D |
+|---|---:|---:|---:|---:|
+| 2 drones, seed 10 | 4 → 3 | 4 → 2 | 4 → 4 | 1 → 3 |
+| 2 drones, seed 12 | 0 → 0 | 4 → 2 | 4 → 4 | 4 → 2 |
+| 4 drones, seed 13 | 3 → 4 | 2 → 3 | 4 → 3 | 3 → 0 |
+| Completed missions | 2/6 | 2/6 | 5/6 | 1/6 |
+
+These are descriptive counts from three matched development batches, not final
+population success-rate estimates. Changing team size also changes seed in
+this selection, so a separate causal team-size effect cannot be inferred.
+
+![Matched severe A/B/C/D outcomes, including successful times and incomplete missions](figures/phase17_architecture_comparisons/matched_abcd_outcomes.png)
+
+**Figure 3.** The left panel has no injected policy failure and the right panel
+does. Networking is severe in both. Cell color measures completed tasks; times
+are shown only for completed missions. Incomplete missions remain incomplete at
+the observation horizon, not successful completions at 240 seconds.
+
+[PDF version](figures/phase17_architecture_comparisons/matched_abcd_outcomes.pdf).
+
+**A — Centralized:** recovery can succeed: the four-drone failure mission finishes
+in 144.6 s. However, seed 12 completes no task even without failure. Its control
+records 228 policy-error events, predominantly separation-related, and repeated
+assignment releases. Centralized allocation works, but safe execution remains
+sensitive to geometry and communication timing. A successful failure case beside
+an incomplete control does not establish that injecting failure improves the
+architecture; the executions and movement-triggered failure exposures differ.
+
+**B — Independent LLM:** both two-drone controls complete. Failure cases leave
+unfinished work, as expected because B cannot take over another agent's
+assignments. Its four-drone control completes only two tasks, so local execution
+still needs improvement independently of takeover.
+
+**C — Decentralized rules:** completes both two-drone recovery missions, in
+218.4 s and 200.0 s. The four-drone failure case remains incomplete, with 107
+policy-error events and repeated separation rejections. Reassignment must
+resolve the blocked approach rather than merely change ownership.
+
+**D — Decentralized LLM:** the strongest remaining problem is acceptance without
+timely productive execution. The four-drone failure case records 73 approach
+invalidations and six local lease-expiration events, yet completes no task. It
+does record four partial waypoint arrivals, so zero completed tasks does not
+mean no movement or no work. The inspected failure cases have no failed response
+records; this is not simply an inference-timeout problem.
+
+The additional C/D-only batches in the same upload provide supporting context:
+
+- C completes every mission in `abcd_n2_s5`, `cd_n2_s10` and `cd_n2_s20`.
+- D completes both controls in `cd_n2_s10` and `cd_n2_s20`, but neither failure
+  mission.
+- `abcd_n2_s5` contains only C and D, despite its name. It records a dirty working
+  tree, although the checked core implementation hashes match the corrected
+  files; it should not silently expand the fully matched A/B/C/D cohort.
+- D's separate seed-10 controls range from one completed task to full completion.
+  These are distinct attempts, not independent seeds, and reveal variability
+  requiring investigation.
+
+All new runs in this upload report guarded actions and zero sampled separation
+violations; that does not establish collision freedom. The next priorities remain
+approach stability, persistent blockage knowledge across task versions, and
+bounded approach effort. These results strengthen the case for targeted
+corrections, but do not demonstrate an LLM advantage over deterministic C or
+reliable severe recovery across all architectures.
+
+The full-batch sources are
+`results/phase17/severe_recovery_v4/abcd_n2_s10`, `abcd_n2_s12` and `abcd_n4_s13`.
+The supporting folders under the same root are `abcd_n2_s5`, `cd_n2_s10` and
+`cd_n2_s20`. These names identify particular attempts and must not be merged with
+the earlier similarly named verified runs.
+
+## Additional C/D experiments: commit a4e2143
+
+Commit `a4e2143` adds 12 completed executions across three C/D batches. C
+completes all six missions; D completes none. Each entry below is the number of
+completed tasks out of four.
+
+| Scenario | C control | C failure | D control | D failure |
+|---|---:|---:|---:|---:|
+| 2 drones, seed 15 | 4 | 4 | 3 | 2 |
+| 2 drones, seed 5 | 4 | 4 | 1 | 1 |
+| 4 drones, seed 20 | 4 | 4 | 0 | 1 |
+
+The runs use clean source `4be518b`, and core implementation hashes match the
+corrected code. These are further observations of the same implementation, not
+another software revision. They must not be pooled with repeated attempts as
+though every record had a distinct random seed.
+
+![Latest severe C/D task completion, waypoint progress, approach invalidations and local lease expirations](figures/phase17_architecture_comparisons/latest_cd_outcomes_and_churn.png)
+
+**Figure 4.** Top: successful mission times or incomplete required-work counts.
+Middle: approach invalidations. Bottom: local lease-expiration events, which can
+reflect differing local views of the same task epoch. A larger diagnostic count
+is not itself evidence of more productive work or more unique physical hazards.
+All cases use severe communication; each control/failure pair shares its declared
+team size and development seed.
+
+[PDF version](figures/phase17_architecture_comparisons/latest_cd_outcomes_and_churn.pdf).
+
+C's recovery is effective in these batches. Its failure missions finish in:
+
+- 184.8 s: two drones, seed 15.
+- 189.8 s: two drones, seed 5.
+- 170.6 s: four drones, seed 20.
+
+The four-drone seed-20 recovery previously finished only three tasks in one
+attempt. Its success here shows that the outcome is sensitive to execution
+conditions; it does not establish that the earlier blockage disappeared reliably.
+
+D's dominant problem remains unstable, inefficient execution rather than failed
+model requests:
+
+- The two-drone seed-5 control records 120 approach invalidations, six waypoint
+  arrivals and one completed task.
+- The four-drone seed-20 control records 69 invalidations and 14 local
+  lease-expiration events, with six arrivals but no completed task.
+- The four-drone seed-20 failure records 48 invalidations and seven local
+  lease-expiration events. Productive replacement work begins at 151.0 s, but
+  only one task finishes.
+- None of the inspected response records reports an inference error. Successful
+  responses do not eliminate the cumulative cost of model admission and service.
+
+This strengthens three priorities for further implementation work:
+
+1. Stabilize approaches: avoid rebuilding them repeatedly because of transient
+   telemetry uncertainty while retaining runtime checks on every command.
+2. Bound nonproductive approach effort: valid detour movement and lease renewal
+   must not permit prolonged motion without new required arrivals.
+3. Reduce assignment/execution churn: recheck whether an agent can realistically
+   start productive work before accepting or retaining a task.
+
+All 12 runs report guarded actions, no runtime or metric errors, and zero sampled
+separation violations. Collision freedom remains unverified. These pilots
+currently favor deterministic C over agentic D under severe communication, but
+do not establish a general statistical ranking or an LLM advantage.
+
+Sources are `results/phase17/severe_recovery_v4/cd_n2_s15`, `cd_n2_s5` and
+`cd_n4_s20`. Each contains its original V2 manifest and packed execution evidence.
+The two new figures read those records and the three full A/B/C/D batches
+directly, without changing saved outcomes. Their numeric inputs and source-folder
+identities are in
+[figure_data.json](figures/phase17_architecture_comparisons/figure_data.json).
+
+Regenerate the figures without CARLA-Air or Ollama:
+
+```bash
+MPLCONFIGDIR=/tmp/phase17-mpl python scripts/plot_phase17_architecture_comparisons.py
+```
