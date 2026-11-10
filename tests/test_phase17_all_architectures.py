@@ -65,8 +65,13 @@ class AllArchitectureTests(unittest.TestCase):
         self.assertEqual(result['completed_runs'],4)
         self.assertTrue(result['all_runs_technically_valid'])
         self.assertEqual(result['architectures'],['A','B'])
+        self.assertTrue((self.root/'ab/analysis/MECHANISMS.md').exists())
         for row in result['rows']:
             folder=self.root/'ab/runs'/row['experiment_id'];e=Evidence(folder/'run')
+            diagnostics=json.loads((self.root/'ab'/row['mechanism_diagnostics_file']).read_text())
+            self.assertEqual(diagnostics['collection_mode'],'during_batch')
+            self.assertEqual(diagnostics['waypoint_arrivals']['unique_required_waypoints'],
+                len({(r['task_id'],r['index']) for r in e.read('waypoint_arrivals.json')}))
             summary=e.read('summary.json');self.assertIsNone(summary['error'])
             self.assertTrue(summary['all_dispatched_actions_guarded'])
             self.assertEqual(row['sampled_separation_violations'],0)

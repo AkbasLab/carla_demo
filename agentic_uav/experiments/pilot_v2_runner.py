@@ -14,6 +14,7 @@ from agentic_uav.comm.degraded import preset
 from dataclasses import asdict
 from agentic_uav.policy.structured import OllamaProvider
 from .batch_isolation import batch_isolation
+from . import mechanism_diagnostics
 
 
 def size(root):
@@ -176,7 +177,7 @@ def _execute(config_path,output_dir,*,stage,team_size,seed,profile,telemetry,fau
         except Exception as exc:
             write_json(root/'preflight_error.json',dict(type=type(exc).__name__,message=str(exc)));raise
         write_json(root/'model_preflight.json',identity)
-    (root/'runs').mkdir();(root/'analysis').mkdir();registration=metrics.register(root/'runs');rows=[];evaluations=[]
+    (root/'runs').mkdir();(root/'analysis').mkdir();registration=metrics.register(root/'runs');rows=[];evaluations=[];mechanisms=[]
     manifest=dict(schema_version=1,stage=stage,architectures=chosen,profile='deterministic_smoke' if stage=='smoke' else profile,
         execution_isolation=isolation,
         started_at_utc=datetime.now(timezone.utc).isoformat(),finished_at_utc=None,status='running',planned_runs=len(batch['experiments']),
@@ -209,17 +210,25 @@ def _execute(config_path,output_dir,*,stage,team_size,seed,profile,telemetry,fau
                 all_dispatched_actions_guarded=summary['all_dispatched_actions_guarded'],metric_issues=ev['evidence_issues'],
                 error=outcome['error'])
             write_json(root/'analysis'/f"{entry['experiment_id']}.metrics.json",ev)
+            diagnostic=mechanism_diagnostics.analyse_run(folder,ev,mode='during_batch')
+            write_json(root/'analysis'/f"{entry['experiment_id']}.mechanisms.json",diagnostic)
+            mechanisms.append(diagnostic)
+            row['mechanism_diagnostics_file']=f"analysis/{entry['experiment_id']}.mechanisms.json"
             plot_run(folder,root/'analysis'/f"{entry['experiment_id']}.png")
             before=size(folder)
             if compress:pack_evidence(folder)
             # A byte-level archive check is not enough: verify metric compatibility.
             after=metrics.evaluate_run(folder)
             if after!=ev:raise ValueError('Metrics changed after packing')
+            if mechanism_diagnostics.analyse_run(folder,after,mode='during_batch')!=diagnostic:
+                raise ValueError('Mechanism diagnostics changed after packing')
             row.update(raw_bytes=before,stored_bytes=size(folder),evidence_losslessly_packed=compress)
             rows.append(row)
         except Exception as exc:
             rows.append(dict(experiment_id=entry['experiment_id'],error=dict(type=type(exc).__name__,message=str(exc))))
         metrics.match_continuity(evaluations);write_json(root/'analysis/metrics.json',evaluations)
+        write_json(root/'analysis/mechanisms.json',mechanisms)
+        (root/'analysis/MECHANISMS.md').write_text(mechanism_diagnostics.report(mechanisms))
         manifest['completed_runs']=len(rows);manifest['stored_bytes']=size(root);write_json(root/'v2_manifest.json',manifest)
         print(json.dumps(rows[-1],indent=2),flush=True)
         if outcome['status']=='interrupted':manifest['status']='interrupted';break

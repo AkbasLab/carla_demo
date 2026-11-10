@@ -528,3 +528,99 @@ movement must pass the same guardian and preserve conservative occupancy for
 silent peers. Inspect these representative traces before running another large
 matrix. The current evidence supports a stronger implementation foundation but
 does not yet demonstrate reliable severe recovery across C and D.
+
+## Automatic mechanism diagnostics
+
+The V2 runner now extracts the additional secondary diagnostics after each run,
+using the same evidence whether it is plain JSON or losslessly ZIP-packed.
+This change adds measurement and reporting; it does not change allocation,
+flight execution, network degradation, safety checks, primary metric definitions
+or success criteria.
+
+New batches automatically contain:
+
+- `analysis/<experiment_id>.mechanisms.json`: detailed measurements for one case.
+- `analysis/mechanisms.json`: all case measurements together.
+- `analysis/MECHANISMS.md`: readable summary, guardian/inference table, per-task
+  recovery intervals, task-version/release counts and evidence source folders.
+- A `mechanism_diagnostics_file` reference in each V2 manifest row.
+
+### Definitions and interpretation
+
+| Measurement | Definition |
+|---|---|
+| Arrival records | Number of recorded waypoint arrivals, including repeats |
+| Unique required waypoint arrivals | Distinct `(task_id, index)` pairs within the manifest's required mission geometry, across agents and task versions |
+| Observed progress reports | Logged `progress_reported` protocol events; not a count of uniquely completed work |
+| Lease expirations | Local `lease_expired` and central `central_lease_expired` event counts, reported separately |
+| Claims and versions | Local `claim_sent` or controller `central_assignment` records and distinct claimed versions per task |
+| Releases | Local release events per task; controller observations are separate, avoiding double counting the same release |
+| Acceptance-to-arrival interval | Registered replacement acceptance followed by that same agent and epoch's first globally unique required waypoint arrival, before release or a superseding assignment |
+| Peer-health transitions | Logged `peer_health_changed` events |
+| Approach selections/invalidations | Corresponding policy-history event counts; zero does not prove that older code supported the event |
+| Policy errors/fallbacks | `policy_error` events by reason and `deterministic_fallback` activations; separate from guardian fallback actions |
+| Guardian diagnostics | Evaluation and rejection counts, reason occurrences, and registered safety measurements including corrective interventions |
+| Model diagnostics | Recorded LLM calls, response records/errors and mean/P95/maximum response latency for actual inference, including failed responses with recorded latency |
+
+Missing evidence is reported as null/unavailable, not zero. If replacement
+acceptance or its productive arrival is absent, the acceptance-to-arrival
+interval is null and the missing arrival is marked censored. No affected failure
+task means no recovery-interval row. If the arrival artifact is missing, censoring
+is also unavailable. Another agent's arrival, an arrival before acceptance, or a
+repeat of previously completed work cannot establish this interval. This
+also excludes an arrival in a later assignment epoch or after release of the
+accepted assignment. Missing acceptance-epoch or required-geometry evidence
+makes the interval and its censoring status unavailable. This
+secondary interval leaves the registered primary recovery evaluator unchanged.
+It describes the first registered replacement-assignment episode. A later
+replacement may recover the mission even if this first episode is censored;
+consult the primary recovery results and task-lifecycle events for that outcome.
+Local expiration and claim records may
+reflect differing beliefs about the same task epoch; they do not establish
+global consensus. Guardian reason occurrences are not unique physical incidents.
+Routine short-segment modifications remain distinguishable from corrective
+interventions through the existing registered safety measurements.
+
+These additions are secondary diagnostics motivated by development observations.
+They must not be represented as primary metrics preregistered for old runs.
+Each diagnostic JSON records a definition identifier, evaluator source hash,
+collection mode, per-measurement source artifacts, missing artifacts and
+evidence-read issues. Freeze the selected
+diagnostic definitions before final held-out experiments.
+
+### Analyse existing results without repeating flight or inference
+
+The new `analyse` command requires neither CARLA-Air nor Ollama. Use a **new**
+output directory; it refuses to overwrite an existing directory and leaves the
+original manifests, archives and metric registration unchanged:
+
+```bash
+python scripts/run_phase17_resilience_v2.py analyse \
+  --batch-dir results/phase17/severe_recovery_v4_verified/severe_D_n2_s10 \
+  --output-dir results/phase17/mechanism_review_v1/severe_D_n2_s10
+
+python scripts/run_phase17_resilience_v2.py analyse \
+  --batch-dir results/phase17/severe_recovery_v4_verified/severe_C_n4_s20 \
+  --output-dir results/phase17/mechanism_review_v1/severe_C_n4_s20
+```
+
+These outputs are explicitly marked retrospective. Review `MECHANISMS.md` and
+the per-case JSON, particularly the censored recovery intervals and repeated
+versions/releases for blocked tasks. Existing `run` commands need no additional
+flag to generate diagnostics in future batches.
+
+Focused verification:
+
+```bash
+MPLCONFIGDIR=/tmp/phase17-mpl python -m unittest \
+  tests.test_phase17_mechanism_diagnostics \
+  tests.test_phase17_all_architectures -q
+```
+
+Tests check repeated waypoint deduplication, local-event counts, per-task
+censoring, actual-inference latency applicability, missing evidence, plain/ZIP
+equivalence, safe retrospective output creation and automatic batch integration.
+
+Validation: the full offline suite passes **319 tests**. Retrospective extraction
+was also checked against the saved verified D two-drone and C four-drone batches;
+no new flight or model-inference experiment is required for those measurements.

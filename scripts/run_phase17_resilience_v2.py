@@ -5,6 +5,7 @@ from pathlib import Path
 import sys
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
 from agentic_uav.experiments.pilot_v2_runner import execute,restore_evidence
+from agentic_uav.experiments.mechanism_diagnostics import analyse_batch
 
 
 def main():
@@ -20,8 +21,11 @@ def main():
     r.add_argument('--allow-concurrent',action='store_true',help='Record an explicit override of the pinned-batch VM isolation guard')
     r.add_argument('--no-compress',action='store_true');r.add_argument('--output-dir',required=True)
     r=sub.add_parser('restore');r.add_argument('--run-dir',required=True)
+    r=sub.add_parser('analyse');r.add_argument('--batch-dir',required=True)
+    r.add_argument('--output-dir',required=True,help='New directory for retrospective diagnostics; original results remain unchanged')
     a=p.parse_args()
     if a.command=='restore':result=restore_evidence(a.run_dir)
+    elif a.command=='analyse':result=analyse_batch(a.batch_dir,a.output_dir)
     else:
         result=execute(a.config,a.output_dir,stage=a.stage,team_size=a.team_size,seed=a.seed,profile=a.profile,
             telemetry=a.telemetry,fault_mode=a.fault_trigger,compress=not a.no_compress,architectures=a.architectures,
