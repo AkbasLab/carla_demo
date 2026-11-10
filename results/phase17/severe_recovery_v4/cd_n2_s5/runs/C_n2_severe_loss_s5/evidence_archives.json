@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "archives": [
+    {
+      "archive": "traces.zip",
+      "sha256": "b3267b66c86839291cd501b2db30925a8e87c09a4f9087ac7308ebb1ad4f171f",
+      "members_sha256": {
+        "events.jsonl": "e2819fb51bf4eda4363b8bdbc8beaec0e1def01c824e493bc2f9f0614c6ac23d"
+      },
+      "uncompressed_bytes": 3780878,
+      "compressed_bytes": 189434
+    },
+    {
+      "archive": "run/traces.zip",
+      "sha256": "124e66302d96b9f879c5953008e34efd8074dfc9210b7be0d8656743492f7972",
+      "members_sha256": {
+        "flight_trace.json": "7527480006cdf58cd4b9db3064df56c760c14fc8ad79720c0e01c0dfa7dbf1c8",
+        "messages.json": "91c2dea8c22eb133adff2cefb787a4ab07e8ebddfade45dd373bce3fb586ed69",
+        "guardian_audit.json": "3d8ad321aff7b1ae521f13884baf679844597018e0f09c8f0cd0cb6b022dde3c",
+        "executed_actions.json": "3fcb73a8563a494b4d281a674b787a1e057fefe03f1142acd48b7c04ebb72c2f",
+        "retry_events.json": "4f434e7e2363e1fdad5432dbca921a35c75dac7d97edbfce6ab1581d900f37b4",
+        "Drone1/responses.jsonl": "9dc1b0c4bcc4fe08ec5856e76c8ea1d8db1fa37c9cd6a1a3cc4bcdc1d91734f2",
+        "Drone1/decision_history.jsonl": "4631aacd375447bfa707a321c940c7460cf266bed4e814dcae3c1f15c6e5e6ab",
+        "Drone1/prompts.jsonl": "f283ee194cc4d782fe135cb9b15e034058b1ac8efe3c180d6d0cbf4953c5e3b0",
+        "Drone2/responses.jsonl": "68e3459941ff1ae52b7455f45447dfb74078e33e1a422664b4d8f880946192a9",
+        "Drone2/decision_history.jsonl": "d5d0571ea608f0aaf2dc30581ab5fa803925c7772c63a1c5a2a5c83535afae82",
+        "Drone2/prompts.jsonl": "d6eabaac7b40e90ca4bccb718710a02262fb3e77f2e0119b547a9ad43ee28e3d"
+      },
+      "uncompressed_bytes": 3258781,
+      "compressed_bytes": 192712
+    }
+  ]
+}
