@@ -1,3 +1,7 @@
+<img width="327" height="245" alt="Screenshot 2026-11-12 at 12 41 17" src="https://github.com/user-attachments/assets/3475632b-4673-4033-b13d-a19b9cdec4f2" />
+
+
+
 # Agentic UAV Simulation & Mission Framework
 
 A modular multi-UAV research framework for search-and-relay operations using CARLA–AirSim and Python mock environments. The project progresses from simulator adapters and deterministic skills to message-based task allocation, dynamic roles, reproducible degraded-communication experiments, and deterministic runtime safety checks.
