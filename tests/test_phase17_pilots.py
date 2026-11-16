@@ -49,6 +49,32 @@ class PilotTests(unittest.TestCase):
             self.assertEqual(result.outcome.value,'APPROVE')
             self.assertEqual(g.config.max_action_duration_s,30)
 
+    def test_explicit_repeated_routes_preserve_bounds_and_shared_work(self):
+        self.config['route_repetitions']=3
+        self.config['settings']['pilot_resilience_v2']=dict(enabled=True,fault_mode='fixed_time')
+        self.write_input();plan=pilots.prepare(self.input,self.root/'long_routes')
+        missions=[pilots.read(pilots.resolve(p)) for p in plan['mission_files'].values()]
+        self.assertEqual(missions[0]['tasks'],missions[1]['tasks'])
+        self.assertTrue(all(len(t['waypoints'])==12 for t in missions[0]['tasks']))
+        source=pilots.read(pilots.resolve(self.config['mission_source']))
+        self.assertEqual(missions[0]['guardian'],source['guardian'])
+        for value in [0,True,9]:
+            with self.assertRaises(ValueError):pilots.validate_config({**self.config,'route_repetitions':value})
+        self.config['settings'].pop('pilot_resilience_v2')
+        with self.assertRaises(ValueError):pilots.validate_config(self.config)
+
+    def test_fixed_time_prechecks_are_small_and_do_not_use_held_out_seeds(self):
+        from scripts.prepare_phase18_calibration import build_checks
+        result=build_checks(self.input,self.root/'prechecks')
+        self.assertEqual(result['cases_per_precheck'],2)
+        self.assertFalse(result['calibration_approved'])
+        for architecture,path in result['precheck_batches'].items():
+            entries=pilots.read(path)['experiments']
+            self.assertEqual({e['architecture'] for e in entries},{architecture})
+            self.assertEqual({e['network_profile'] for e in entries},{'nominal'})
+            self.assertTrue(all(e['random_seed'] not in self.config['held_out_seeds'] for e in entries))
+            self.assertEqual({e['settings']['scenario']['fail_at_s'] for e in entries},{self.config['fail_at_s']})
+
     def test_bad_seeds_network_and_shared_settings_are_rejected(self):
         mutations=[dict(held_out_seeds=[42]),dict(pilot_seeds=[41,41]),dict(settings={'dt':0}),
                    dict(settings={'policy':{}}),dict(fail_at_s=600),dict(architectures=['A','D'])]

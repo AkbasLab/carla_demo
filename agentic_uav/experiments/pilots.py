@@ -41,7 +41,11 @@ def resolve(path):
 def validate_config(c):
     required={'schema_version','pilot_seeds','held_out_seeds','architectures','team_sizes','conditions','failure_profiles',
               'mission_source','network_profiles','settings','duration_s','fail_at_s','model','calibration'}
-    if set(c)!=required or c['schema_version']!=1:raise ValueError('Invalid pilot configuration fields')
+    if set(c)-{'route_repetitions'}!=required or c['schema_version']!=1:raise ValueError('Invalid pilot configuration fields')
+    repetitions=c.get('route_repetitions',1)
+    if type(repetitions) is not int or not 1<=repetitions<=8:raise ValueError('route_repetitions must be an integer from 1 to 8')
+    if repetitions>1 and not c.get('settings',{}).get('pilot_resilience_v2',{}).get('enabled'):
+        raise ValueError('Repeated routes require V2 per-waypoint execution/feasibility checks')
     for field in ('pilot_seeds','held_out_seeds'):
         values=c[field]
         if not isinstance(values,list) or not values or len(values)!=len(set(values)) or any(type(s) is not int or s<0 for s in values):
@@ -85,12 +89,24 @@ def materialize_missions(c,root):
         # Keep work constant across team sizes. Longer routes expose mid-task faults.
         for task in m['tasks']:
             y=task['waypoints'][0][1];z=task['waypoints'][0][2]
-            task['waypoints']=[[6,y,z],[12,y,z],[12,y+3,z],[6,y+3,z]]
+            task['waypoints']=[[6,y,z],[12,y,z],[12,y+3,z],[6,y+3,z]]*c.get('route_repetitions',1)
         from agentic_uav.control.runtime_guardian import Action,Config,RuntimeGuardian,State
         guardian=RuntimeGuardian(Config(**m['guardian']))
         first=m['tasks'][0]['waypoints']
         feasible=False
         for aid,v in m['vehicles'].items():
+            if c.get('route_repetitions',1)>1:
+                # The actual executor dispatches separate guarded waypoint
+                # commands, not the whole repeated route in one 30 s command.
+                position=tuple(v['start_position']);battery=80.;valid=True
+                for target in first:
+                    action=Action('pilot_leg_preflight',aid,'MOVE',0,30,(tuple(target),),1)
+                    check=guardian.evaluate(action,State(aid,position,0,battery,tuple(v['home'])),0)
+                    if check.outcome.value not in ('APPROVE','APPROVE_WITH_MODIFICATION'):valid=False;break
+                    battery-=math.dist(position,target)*guardian.config.battery_cost_percent_per_m
+                    position=tuple(target)
+                feasible=feasible or valid
+                continue
             action=Action('pilot_route_preflight',aid,'MOVE',0,30,tuple(tuple(p) for p in first),1)
             check=guardian.evaluate(action,State(aid,tuple(v['start_position']),0,80,tuple(v['home'])),0)
             feasible=feasible or check.outcome.value in ('APPROVE','APPROVE_WITH_MODIFICATION')
