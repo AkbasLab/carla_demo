@@ -1,0 +1,11 @@
+{"time_s": 60.30014538299292, "agent_id": "Drone4", "event": "deadline_bid_submitted", "task_id": "SEARCH_SECTOR_C", "version": 1, "deadline": 90.20012854598463, "remaining_s": 29.899983162991703, "estimated_admission_s": 60.0, "estimated_inference_s": 30.0, "source": "deterministic_deadline_guard"}
+{"time_s": 90.4001288190484, "agent_id": "Drone4", "event": "deadline_bid_submitted", "task_id": "SEARCH_SECTOR_D", "version": 1, "deadline": 120.30012512300164, "remaining_s": 29.89999630395323, "estimated_admission_s": 0.0, "estimated_inference_s": 30.0, "source": "deterministic_deadline_guard"}
+{"time_s": 120.40013832598925, "agent_id": "Drone4", "event": "policy_error", "reason_code": "inference_timeout", "correction_attempt": 0, "validation_details": null}
+{"time_s": 120.40013832598925, "agent_id": "Drone4", "event": "deterministic_fallback", "reason_code": "inference_timeout"}
+{"time_s": 210.6001336169429, "agent_id": "Drone4", "event": "inference_timeout", "request_id": "Drone4:2"}
+{"time_s": 210.6001336169429, "agent_id": "Drone4", "event": "policy_error", "reason_code": "inference_timeout", "correction_attempt": 0, "validation_details": null}
+{"time_s": 210.6001336169429, "agent_id": "Drone4", "event": "deterministic_fallback", "reason_code": "inference_timeout"}
+{"time_s": 210.6001336169429, "agent_id": "Drone4", "event": "search_authorized", "task_id": "SEARCH_SECTOR_D", "version": 1, "source": "deterministic_fallback", "tool": "start_search", "request_id": null, "authorized_at": 210.6001336169429, "start_position": [0, 24, -3]}
+{"time_s": 210.7000956980046, "agent_id": "Drone4", "event": "late_response_discarded", "request_id": "Drone4:2"}
+{"time_s": 215.3001613090746, "agent_id": "Drone4", "event": "policy_progress_observed", "task_id": "SEARCH_SECTOR_D", "version": 1, "index": 0, "source": "deterministic_fallback", "request_id": null}
+{"time_s": 219.40015704208054, "agent_id": "Drone4", "event": "policy_progress_observed", "task_id": "SEARCH_SECTOR_D", "version": 1, "index": 1, "source": "deterministic_fallback", "request_id": null}

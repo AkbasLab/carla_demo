@@ -1,0 +1,7 @@
+{"time_s": 0.10016653500497341, "agent_id": "Drone1", "event": "deadline_bid_submitted", "task_id": "SEARCH_SECTOR_A", "version": 1, "deadline": 30.000008260132745, "remaining_s": 29.89984172512777, "estimated_admission_s": 90.0, "estimated_inference_s": 30.0, "source": "deterministic_deadline_guard"}
+{"time_s": 90.30012512300164, "agent_id": "Drone1", "event": "policy_error", "reason_code": "inference_timeout", "correction_attempt": 0, "validation_details": null}
+{"time_s": 90.30012512300164, "agent_id": "Drone1", "event": "deterministic_fallback", "reason_code": "inference_timeout"}
+{"time_s": 90.30012512300164, "agent_id": "Drone1", "event": "search_authorized", "task_id": "SEARCH_SECTOR_A", "version": 1, "source": "deterministic_fallback", "tool": "start_search", "request_id": null, "authorized_at": 90.30012512300164, "start_position": [0, 0, -3]}
+{"time_s": 95.00015017413534, "agent_id": "Drone1", "event": "policy_progress_observed", "task_id": "SEARCH_SECTOR_A", "version": 1, "index": 0, "source": "deterministic_fallback", "request_id": null}
+{"time_s": 99.00017560902052, "agent_id": "Drone1", "event": "policy_progress_observed", "task_id": "SEARCH_SECTOR_A", "version": 1, "index": 1, "source": "deterministic_fallback", "request_id": null}
+{"time_s": 99.10017148707993, "agent_id": "Drone1", "event": "deadline_bid_submitted", "task_id": "SEARCH_SECTOR_D", "version": 1, "deadline": 120.30012512300164, "remaining_s": 21.199953635921702, "estimated_admission_s": 60.0, "estimated_inference_s": 30.0, "source": "deterministic_deadline_guard"}
