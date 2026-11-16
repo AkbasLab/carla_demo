@@ -143,6 +143,17 @@ def locked_inputs(c, phase17_root):
     return root,lock,pilot,missions
 
 
+def verify_common_fault_time(pilot):
+    """The main fixed-time factorial cannot silently inherit V2 owned-motion pilots."""
+    v2=pilot.get('settings',{}).get('pilot_resilience_v2',{})
+    if v2.get('enabled') and v2.get('fault_mode','owned_motion')!='fixed_time':
+        raise ValueError('Phase 18 requires a common fixed fault time; calibrate and freeze fault_mode=fixed_time before main execution')
+    time=pilot.get('fail_at_s');duration=pilot.get('duration_s')
+    if (type(time) not in (int,float) or not math.isfinite(time) or
+            type(duration) not in (int,float) or not math.isfinite(duration) or not 0<time<duration):
+        raise ValueError('Phase 18 fixed fault time must be finite and within the mission budget')
+
+
 def materialize(missions, sizes, root):
     target=root/'fixtures';target.mkdir();paths={}
     for n in sizes:
@@ -160,6 +171,7 @@ def materialize(missions, sizes, root):
 
 
 def entries(c,pilot,missions,seeds,stage):
+    verify_common_fault_time(pilot)
     result=[];rng=random.Random(c['order_seed'])
     # Block by common seed and condition, randomize only architecture order.
     for seed,n,p,f in itertools.product(seeds,c['team_sizes'],c['conditions'],c['failure_profiles']):

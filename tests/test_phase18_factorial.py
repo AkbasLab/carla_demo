@@ -42,6 +42,19 @@ class FactorialTests(unittest.TestCase):
         self.assertEqual(set(self.c['test_seeds']),set(self.pilot['held_out_seeds']))
         with self.assertRaises(FileExistsError):f.plan(source,self.root/'draft')
 
+    def test_main_rejects_movement_triggered_fault_even_with_a_shared_configured_time(self):
+        pilot=copy.deepcopy(self.pilot)
+        paths=self.fixture_paths()
+        pilot['settings']['pilot_resilience_v2']=dict(enabled=True,fault_mode='owned_motion')
+        with self.assertRaisesRegex(ValueError,'common fixed fault time'):
+            f.entries(self.c,pilot,paths,[101],'held_out')
+        pilot['settings']['pilot_resilience_v2']['fault_mode']='fixed_time'
+        batch=f.entries(self.c,pilot,paths,[101],'held_out')
+        faults=[e for e in batch['experiments'] if e['failure_profile']!='none']
+        self.assertTrue(faults)
+        self.assertEqual({e['settings']['scenario']['fail_at_s'] for e in faults},{pilot['fail_at_s']})
+        self.assertTrue(all(e['settings']['pilot_resilience_v2']['fault_mode']=='fixed_time' for e in faults))
+
     def test_invalid_seed_sets_and_factors_rejected(self):
         for change in [dict(test_seeds=[42]),dict(validation_seeds=[41,42,101]),dict(team_sizes=[8]),
                        dict(max_attempts_per_seed=0),dict(replications=19),dict(architectures=['D','D']),dict(partition_interval_s=[5,5])]:

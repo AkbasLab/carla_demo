@@ -2,6 +2,13 @@
 
 This phase adds a prospective factorial definition, validation gates, a resumable runner and replication accounting. It does **not** establish the Phase 18 exit criterion by itself. That requires collecting the declared number of technically valid replications in every selected cell. Mission failures remain valid observations.
 
+For the transition from the recent V4 pilots, first read
+[Phase 18 transition readiness](phase18_transition_readiness.md). The older
+calibration example does not automatically inherit V4 settings, and enabled
+movement-triggered (`owned_motion`) faults are rejected by the fixed-time
+factorial entry builder. A new calibrated fixed-time definition is required;
+historical result directories must not be reused for new calibration outputs.
+
 ## Design and scope
 
 | Factor | Initial design |
