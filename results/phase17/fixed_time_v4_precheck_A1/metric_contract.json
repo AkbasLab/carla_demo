@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "definition_id": "phase15.route_metrics.v1",
+  "mission_score_mode": "strict_route_success",
+  "work_unit": "required_task_waypoint",
+  "continuity_reference": "unique_matched_nominal_run",
+  "role_return_window_s": 30.0,
+  "separation_threshold": "mission_guardian_min_separation_m",
+  "unavailable_policy": "null_with_reason",
+  "failed_time_policy": "censored_not_successful_time",
+  "recovery_acceptance": "replacement_local_ownership_acceptance",
+  "token_policy": "reported_provider_usage_only"
+}

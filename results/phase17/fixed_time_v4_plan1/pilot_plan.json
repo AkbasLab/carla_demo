@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "profile": "pinned",
+  "pilot_seeds": [
+    10,
+    11,
+    12
+  ],
+  "held_out_seeds": [
+    101,
+    102,
+    103,
+    104,
+    105,
+    106,
+    107,
+    108,
+    109,
+    110,
+    111,
+    112,
+    113,
+    114,
+    115,
+    116,
+    117,
+    118,
+    119,
+    120
+  ],
+  "planned_experiments": 48,
+  "mission_files": {
+    "2": "results/phase17/fixed_time_v4_plan1/fixtures/team_2.json",
+    "4": "results/phase17/fixed_time_v4_plan1/fixtures/team_4.json"
+  },
+  "files_sha256": {
+    "pilot_config.json": "bd8d2c106089eefd36c9cd6b8743f778b722fc71fc10a585990889d7c1f21ec0",
+    "pilot_batch.json": "e3260ebed67a3edd34c088d0b26953044d7e804dac852788694c146d343409d0",
+    "fixtures/team_2.json": "1bcf7b3c587af171c131713198a9e5b6aca48042189353631b046266177c0c6a",
+    "fixtures/team_4.json": "f49280e9db6c7e60675d64a0f9d2fec64ac4f826e25a304abc9af6afc6b12a5c"
+  },
+  "notes": [
+    "Validation D is replay, not LLM evidence",
+    "Fixed fault timing is audited for actual owned moving work",
+    "Four tasks held constant across two and four drones",
+    "Pilot and held-out seeds must never overlap"
+  ]
+}

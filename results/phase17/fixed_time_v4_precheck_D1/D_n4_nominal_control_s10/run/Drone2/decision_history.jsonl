@@ -1,0 +1,51 @@
+{"time_s": 7.980037480592728e-06, "agent_id": "Drone2", "event": "v2_policy_waiting_for_safe_context", "reasons": ["missing_peer_beliefs"]}
+{"time_s": 0.2002700068987906, "agent_id": "Drone2", "event": "deadline_bid_submitted", "task_id": "SEARCH_SECTOR_A", "version": 1, "deadline": 6.000007980037481, "remaining_s": 5.79973797313869, "estimated_admission_s": 90.0, "estimated_inference_s": 30.0, "source": "deterministic_deadline_guard"}
+{"time_s": 6.0002442540135235, "agent_id": "Drone2", "event": "coordination_membership_observed", "eligible_peers": ["Drone1", "Drone3", "Drone4"], "timeout_s": 3.0, "physical_peers_retained": ["Drone1", "Drone3", "Drone4"], "assumption": "local_timeout_not_partition_consensus"}
+{"time_s": 6.200218640966341, "agent_id": "Drone2", "event": "delivered_bid_evidence_reconciled", "task_id": "SEARCH_SECTOR_A", "version": 1, "message_id": "phase8:Drone1:25:tx:35"}
+{"time_s": 6.400204258039594, "agent_id": "Drone2", "event": "deadline_bid_submitted", "task_id": "SEARCH_SECTOR_B", "version": 1, "deadline": 12.200218640966341, "remaining_s": 5.800014382926747, "estimated_admission_s": 0.0, "estimated_inference_s": 30.0, "source": "deterministic_deadline_guard"}
+{"time_s": 7.400219339877367, "agent_id": "Drone2", "event": "delivered_bid_evidence_reconciled", "task_id": "SEARCH_SECTOR_A", "version": 1, "message_id": "phase8:Drone1:25:tx:41"}
+{"time_s": 8.600177408894524, "agent_id": "Drone2", "event": "delivered_bid_evidence_reconciled", "task_id": "SEARCH_SECTOR_A", "version": 1, "message_id": "phase8:Drone1:25:tx:48"}
+{"time_s": 9.8002371028997, "agent_id": "Drone2", "event": "delivered_bid_evidence_reconciled", "task_id": "SEARCH_SECTOR_A", "version": 1, "message_id": "phase8:Drone1:25:tx:55"}
+{"time_s": 11.000249976059422, "agent_id": "Drone2", "event": "delivered_bid_evidence_reconciled", "task_id": "SEARCH_SECTOR_A", "version": 1, "message_id": "phase8:Drone1:25:tx:62"}
+{"time_s": 12.00023106392473, "agent_id": "Drone2", "event": "delivered_bid_evidence_reconciled", "task_id": "SEARCH_SECTOR_A", "version": 1, "message_id": "phase8:Drone1:25:tx:68"}
+{"time_s": 19.000215050997213, "agent_id": "Drone2", "event": "delivered_bid_evidence_reconciled", "task_id": "SEARCH_SECTOR_C", "version": 1, "message_id": "phase8:Drone3:83:tx:120"}
+{"time_s": 20.00020503788255, "agent_id": "Drone2", "event": "delivered_bid_evidence_reconciled", "task_id": "SEARCH_SECTOR_C", "version": 1, "message_id": "phase8:Drone3:83:tx:127"}
+{"time_s": 21.200228753034025, "agent_id": "Drone2", "event": "delivered_bid_evidence_reconciled", "task_id": "SEARCH_SECTOR_C", "version": 1, "message_id": "phase8:Drone3:83:tx:135"}
+{"time_s": 22.40024497685954, "agent_id": "Drone2", "event": "delivered_bid_evidence_reconciled", "task_id": "SEARCH_SECTOR_C", "version": 1, "message_id": "phase8:Drone3:83:tx:143"}
+{"time_s": 23.60024930885993, "agent_id": "Drone2", "event": "delivered_bid_evidence_reconciled", "task_id": "SEARCH_SECTOR_C", "version": 1, "message_id": "phase8:Drone3:83:tx:151"}
+{"time_s": 24.800204856088385, "agent_id": "Drone2", "event": "delivered_bid_evidence_reconciled", "task_id": "SEARCH_SECTOR_C", "version": 1, "message_id": "phase8:Drone3:83:tx:159"}
+{"time_s": 25.200258838944137, "agent_id": "Drone2", "event": "delivered_bid_evidence_reconciled", "task_id": "SEARCH_SECTOR_D", "version": 1, "message_id": "phase8:Drone4:111:tx:163"}
+{"time_s": 26.400246887933463, "agent_id": "Drone2", "event": "delivered_bid_evidence_reconciled", "task_id": "SEARCH_SECTOR_D", "version": 1, "message_id": "phase8:Drone4:111:tx:169"}
+{"time_s": 27.600245726993307, "agent_id": "Drone2", "event": "delivered_bid_evidence_reconciled", "task_id": "SEARCH_SECTOR_D", "version": 1, "message_id": "phase8:Drone4:111:tx:175"}
+{"time_s": 28.80025784508325, "agent_id": "Drone2", "event": "delivered_bid_evidence_reconciled", "task_id": "SEARCH_SECTOR_D", "version": 1, "message_id": "phase8:Drone4:111:tx:181"}
+{"time_s": 30.0002535530366, "agent_id": "Drone2", "event": "delivered_bid_evidence_reconciled", "task_id": "SEARCH_SECTOR_D", "version": 1, "message_id": "phase8:Drone4:111:tx:187"}
+{"time_s": 31.200235795928165, "agent_id": "Drone2", "event": "delivered_bid_evidence_reconciled", "task_id": "SEARCH_SECTOR_D", "version": 1, "message_id": "phase8:Drone4:111:tx:193"}
+{"time_s": 32.20022075297311, "agent_id": "Drone2", "event": "policy_error", "request_id": "Drone2:1", "reason_code": "task_context_changed", "correction_attempt": 0, "disposition": "refresh_without_execution"}
+{"time_s": 32.20022075297311, "agent_id": "Drone2", "event": "decision_superseded", "request_id": "Drone2:1", "task_id": "SEARCH_SECTOR_B", "previous": [1, "bidding", null], "current": [1, "assigned", "Drone2"]}
+{"time_s": 79.80023882095702, "agent_id": "Drone2", "event": "approach_revalidated", "task_id": "SEARCH_SECTOR_B", "version": 1, "index": 0, "target": [6, 8, -3], "reasons": ["bounded_motion_segment"], "outcome": "APPROVE_WITH_MODIFICATION"}
+{"time_s": 79.80023882095702, "agent_id": "Drone2", "event": "search_authorized", "task_id": "SEARCH_SECTOR_B", "version": 1, "source": "llm", "tool": "start_search", "request_id": "Drone2:2", "authorized_at": 79.80023882095702, "start_position": [0, 8, -3]}
+{"time_s": 79.80023882095702, "agent_id": "Drone2", "event": "policy_decision_applied", "request_id": "Drone2:2", "decision": {"situation_assessment": {"mission_progress": "partial", "communication_status": "nominal", "current_risk": "low"}, "selected_tool": "start_search", "parameters": {"task_id": "SEARCH_SECTOR_B", "task_version": 1}, "outgoing_messages": [], "confidence": 0.8}, "tool_result": {"status": "search_authorized", "task_id": "SEARCH_SECTOR_B", "version": 1}, "source": "llm", "flight_phase": "AIRBORNE"}
+{"time_s": 86.4002721440047, "agent_id": "Drone2", "event": "policy_progress_observed", "task_id": "SEARCH_SECTOR_B", "version": 1, "index": 0, "source": "llm", "request_id": "Drone2:2"}
+{"time_s": 93.20018693804741, "agent_id": "Drone2", "event": "policy_progress_observed", "task_id": "SEARCH_SECTOR_B", "version": 1, "index": 1, "source": "llm", "request_id": "Drone2:2"}
+{"time_s": 96.80019979504868, "agent_id": "Drone2", "event": "policy_progress_observed", "task_id": "SEARCH_SECTOR_B", "version": 1, "index": 2, "source": "llm", "request_id": "Drone2:2"}
+{"time_s": 100.40019592200406, "agent_id": "Drone2", "event": "delivered_bid_evidence_reconciled", "task_id": "SEARCH_SECTOR_C", "version": 2, "message_id": "phase8:Drone3:366:tx:433"}
+{"time_s": 101.60017809993587, "agent_id": "Drone2", "event": "delivered_bid_evidence_reconciled", "task_id": "SEARCH_SECTOR_C", "version": 2, "message_id": "phase8:Drone3:366:tx:439"}
+{"time_s": 102.8001930268947, "agent_id": "Drone2", "event": "delivered_bid_evidence_reconciled", "task_id": "SEARCH_SECTOR_C", "version": 2, "message_id": "phase8:Drone3:366:tx:446"}
+{"time_s": 103.40020039700903, "agent_id": "Drone2", "event": "policy_progress_observed", "task_id": "SEARCH_SECTOR_B", "version": 1, "index": 3, "source": "llm", "request_id": "Drone2:2"}
+{"time_s": 104.00018745893613, "agent_id": "Drone2", "event": "delivered_bid_evidence_reconciled", "task_id": "SEARCH_SECTOR_C", "version": 2, "message_id": "phase8:Drone3:366:tx:453"}
+{"time_s": 105.20018051890656, "agent_id": "Drone2", "event": "delivered_bid_evidence_reconciled", "task_id": "SEARCH_SECTOR_C", "version": 2, "message_id": "phase8:Drone3:366:tx:460"}
+{"time_s": 106.2002335570287, "agent_id": "Drone2", "event": "delivered_bid_evidence_reconciled", "task_id": "SEARCH_SECTOR_C", "version": 2, "message_id": "phase8:Drone3:366:tx:466"}
+{"time_s": 106.60026136692613, "agent_id": "Drone2", "event": "delivered_bid_evidence_reconciled", "task_id": "SEARCH_SECTOR_D", "version": 2, "message_id": "phase8:Drone4:394:tx:472"}
+{"time_s": 106.60026136692613, "agent_id": "Drone2", "event": "policy_progress_observed", "task_id": "SEARCH_SECTOR_B", "version": 1, "index": 4, "source": "llm", "request_id": "Drone2:2"}
+{"time_s": 107.80022717104293, "agent_id": "Drone2", "event": "delivered_bid_evidence_reconciled", "task_id": "SEARCH_SECTOR_D", "version": 2, "message_id": "phase8:Drone4:394:tx:479"}
+{"time_s": 108.80022297007963, "agent_id": "Drone2", "event": "delivered_bid_evidence_reconciled", "task_id": "SEARCH_SECTOR_D", "version": 2, "message_id": "phase8:Drone4:394:tx:485"}
+{"time_s": 109.80024872091599, "agent_id": "Drone2", "event": "delivered_bid_evidence_reconciled", "task_id": "SEARCH_SECTOR_D", "version": 2, "message_id": "phase8:Drone4:394:tx:491"}
+{"time_s": 111.00026181805879, "agent_id": "Drone2", "event": "delivered_bid_evidence_reconciled", "task_id": "SEARCH_SECTOR_D", "version": 2, "message_id": "phase8:Drone4:394:tx:498"}
+{"time_s": 112.00024715391919, "agent_id": "Drone2", "event": "delivered_bid_evidence_reconciled", "task_id": "SEARCH_SECTOR_D", "version": 2, "message_id": "phase8:Drone4:394:tx:505"}
+{"time_s": 113.6002404668834, "agent_id": "Drone2", "event": "policy_progress_observed", "task_id": "SEARCH_SECTOR_B", "version": 1, "index": 5, "source": "llm", "request_id": "Drone2:2"}
+{"time_s": 117.2002247038763, "agent_id": "Drone2", "event": "policy_progress_observed", "task_id": "SEARCH_SECTOR_B", "version": 1, "index": 6, "source": "llm", "request_id": "Drone2:2"}
+{"time_s": 123.80022735591047, "agent_id": "Drone2", "event": "policy_progress_observed", "task_id": "SEARCH_SECTOR_B", "version": 1, "index": 7, "source": "llm", "request_id": "Drone2:2"}
+{"time_s": 127.40023023192771, "agent_id": "Drone2", "event": "policy_progress_observed", "task_id": "SEARCH_SECTOR_B", "version": 1, "index": 8, "source": "llm", "request_id": "Drone2:2"}
+{"time_s": 134.40024993102998, "agent_id": "Drone2", "event": "policy_progress_observed", "task_id": "SEARCH_SECTOR_B", "version": 1, "index": 9, "source": "llm", "request_id": "Drone2:2"}
+{"time_s": 137.60019575199112, "agent_id": "Drone2", "event": "policy_progress_observed", "task_id": "SEARCH_SECTOR_B", "version": 1, "index": 10, "source": "llm", "request_id": "Drone2:2"}
+{"time_s": 144.60025536897592, "agent_id": "Drone2", "event": "policy_progress_observed", "task_id": "SEARCH_SECTOR_B", "version": 1, "index": 11, "source": "llm", "request_id": "Drone2:2"}

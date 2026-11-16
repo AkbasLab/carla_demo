@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "started_at_utc": "2026-11-16T20:47:30.387442+00:00",
+  "finished_at_utc": "2026-11-16T20:53:07.124502+00:00",
+  "status": "finished",
+  "planned_experiments": 2,
+  "runs": [
+    {
+      "experiment_id": "C_n4_nominal_control_s10",
+      "status": "completed",
+      "run_completed": true,
+      "mission_complete": true,
+      "error": null,
+      "result_dir": "results/phase17/fixed_time_v4_precheck_C1/C_n4_nominal_control_s10"
+    },
+    {
+      "experiment_id": "C_n4_nominal_loss_s10",
+      "status": "incomplete",
+      "run_completed": true,
+      "mission_complete": false,
+      "error": null,
+      "result_dir": "results/phase17/fixed_time_v4_precheck_C1/C_n4_nominal_loss_s10"
+    }
+  ],
+  "finished_runs": 2,
+  "successful_missions": 1,
+  "errors": 0,
+  "evaluation": {
+    "definition_id": "phase15.route_metrics.v1",
+    "prespecified": true,
+    "evaluation_type": "predeclared",
+    "evaluator_source_sha256": "90c96d19d9d8b13391d66138dc53ce30b5461b68352b36dc79f2632a11821a92",
+    "experiments_evaluated": 2,
+    "mission_successes": 1,
+    "not_started": 0,
+    "censored_missions": 1,
+    "evidence_issues": 0,
+    "limitations": [
+      "Route waypoint work is not area coverage",
+      "Absent collision/target/return sensing is not a zero measurement",
+      "Recovery acceptance is local ownership, not consensus or safe execution",
+      "Physical/between-sample safety is not certified",
+      "Retrospective analysis does not establish preregistration"
+    ]
+  }
+}

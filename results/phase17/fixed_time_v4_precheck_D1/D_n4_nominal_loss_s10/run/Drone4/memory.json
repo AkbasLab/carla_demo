@@ -1,0 +1,39 @@
+{
+  "agent_id": "Drone4",
+  "memory": [
+    {
+      "time_s": 181.4002294759266,
+      "selected_tool": "start_search",
+      "parameters": {
+        "task_id": "SEARCH_SECTOR_C",
+        "task_version": 2
+      },
+      "result": {
+        "status": "search_authorized",
+        "task_id": "SEARCH_SECTOR_C",
+        "version": 2
+      }
+    },
+    {
+      "time_s": 181.60025589494035,
+      "selected_tool": "deterministic_fallback",
+      "result": {
+        "status": "deterministic_fallback",
+        "reason_code": "task_authorization_revoked"
+      }
+    },
+    {
+      "time_s": 237.8001838871278,
+      "selected_tool": "start_search",
+      "parameters": {
+        "task_id": "SEARCH_SECTOR_C",
+        "task_version": 3
+      },
+      "result": {
+        "status": "search_authorized",
+        "task_id": "SEARCH_SECTOR_C",
+        "version": 3
+      }
+    }
+  ]
+}

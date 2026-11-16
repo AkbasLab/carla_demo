@@ -1,0 +1,20 @@
+{"time_s": 8.41403380036354e-06, "agent_id": "Drone4", "event": "temporary_approach_wait", "task_id": "SEARCH_SECTOR_D", "version": 1, "reasons": ["missing_peer_beliefs"]}
+{"time_s": 8.41403380036354e-06, "agent_id": "Drone4", "event": "v2_policy_waiting_for_safe_context", "reasons": ["missing_peer_beliefs"]}
+{"time_s": 0.20026385900564492, "agent_id": "Drone4", "event": "state_wait_resolved", "task_id": "SEARCH_SECTOR_D", "version": 1, "waited_s": 0.20025544497184455}
+{"time_s": 40.600272273179144, "agent_id": "Drone4", "event": "peer_health_changed", "peer": "Drone1", "previous": "HEALTHY", "state": "SUSPECTED"}
+{"time_s": 42.800249899039045, "agent_id": "Drone4", "event": "peer_health_changed", "peer": "Drone1", "previous": "SUSPECTED", "state": "UNREACHABLE"}
+{"time_s": 78.20021107117645, "agent_id": "Drone4", "event": "approach_revalidated", "task_id": "SEARCH_SECTOR_D", "version": 1, "index": 0, "target": [6, 24, -3], "reasons": ["bounded_motion_segment"], "outcome": "APPROVE_WITH_MODIFICATION"}
+{"time_s": 78.20021107117645, "agent_id": "Drone4", "event": "search_authorized", "task_id": "SEARCH_SECTOR_D", "version": 1, "source": "llm", "tool": "start_search", "request_id": "Drone4:1", "authorized_at": 78.20021107117645, "start_position": [0, 24, -3]}
+{"time_s": 78.20021107117645, "agent_id": "Drone4", "event": "policy_decision_applied", "request_id": "Drone4:1", "decision": {"situation_assessment": {"mission_progress": "partial", "communication_status": "nominal", "current_risk": "low"}, "selected_tool": "start_search", "parameters": {"task_id": "SEARCH_SECTOR_D", "task_version": 1}, "outgoing_messages": [], "confidence": 0.8}, "tool_result": {"status": "search_authorized", "task_id": "SEARCH_SECTOR_D", "version": 1}, "source": "llm", "flight_phase": "AIRBORNE"}
+{"time_s": 84.80025187903084, "agent_id": "Drone4", "event": "policy_progress_observed", "task_id": "SEARCH_SECTOR_D", "version": 1, "index": 0, "source": "llm", "request_id": "Drone4:1"}
+{"time_s": 91.80021624313667, "agent_id": "Drone4", "event": "policy_progress_observed", "task_id": "SEARCH_SECTOR_D", "version": 1, "index": 1, "source": "llm", "request_id": "Drone4:1"}
+{"time_s": 95.20027470006607, "agent_id": "Drone4", "event": "policy_progress_observed", "task_id": "SEARCH_SECTOR_D", "version": 1, "index": 2, "source": "llm", "request_id": "Drone4:1"}
+{"time_s": 101.80027071619406, "agent_id": "Drone4", "event": "policy_progress_observed", "task_id": "SEARCH_SECTOR_D", "version": 1, "index": 3, "source": "llm", "request_id": "Drone4:1"}
+{"time_s": 105.20023701502942, "agent_id": "Drone4", "event": "policy_progress_observed", "task_id": "SEARCH_SECTOR_D", "version": 1, "index": 4, "source": "llm", "request_id": "Drone4:1"}
+{"time_s": 111.80022664414719, "agent_id": "Drone4", "event": "policy_progress_observed", "task_id": "SEARCH_SECTOR_D", "version": 1, "index": 5, "source": "llm", "request_id": "Drone4:1"}
+{"time_s": 115.00024620210752, "agent_id": "Drone4", "event": "policy_progress_observed", "task_id": "SEARCH_SECTOR_D", "version": 1, "index": 6, "source": "llm", "request_id": "Drone4:1"}
+{"time_s": 121.80028474307619, "agent_id": "Drone4", "event": "policy_progress_observed", "task_id": "SEARCH_SECTOR_D", "version": 1, "index": 7, "source": "llm", "request_id": "Drone4:1"}
+{"time_s": 125.40024135820568, "agent_id": "Drone4", "event": "policy_progress_observed", "task_id": "SEARCH_SECTOR_D", "version": 1, "index": 8, "source": "llm", "request_id": "Drone4:1"}
+{"time_s": 132.60022364906035, "agent_id": "Drone4", "event": "policy_progress_observed", "task_id": "SEARCH_SECTOR_D", "version": 1, "index": 9, "source": "llm", "request_id": "Drone4:1"}
+{"time_s": 135.80026620603167, "agent_id": "Drone4", "event": "policy_progress_observed", "task_id": "SEARCH_SECTOR_D", "version": 1, "index": 10, "source": "llm", "request_id": "Drone4:1"}
+{"time_s": 142.80028067412786, "agent_id": "Drone4", "event": "policy_progress_observed", "task_id": "SEARCH_SECTOR_D", "version": 1, "index": 11, "source": "llm", "request_id": "Drone4:1"}
