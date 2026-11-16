@@ -1,0 +1,239 @@
+{
+  "rows": [
+    {
+      "architecture": "A",
+      "condition": "control",
+      "tasks": 4,
+      "mission_complete": true,
+      "time_s": 66.0002748791594,
+      "error": null,
+      "policy_errors": {
+        "Drone1": {},
+        "Drone2": {},
+        "Drone3": {},
+        "Drone4": {}
+      },
+      "productive_llm_decisions": 0,
+      "guardian_reasons": {
+        "bounded_motion_segment": 198
+      }
+    },
+    {
+      "architecture": "A",
+      "condition": "loss",
+      "tasks": 3,
+      "mission_complete": false,
+      "time_s": 239.80022544017993,
+      "error": null,
+      "policy_errors": {
+        "Drone1": {},
+        "Drone2": {
+          "unsafe_action:peer_reachable_region_conflict": 9
+        },
+        "Drone3": {
+          "unsafe_action:peer_reachable_region_conflict": 6
+        },
+        "Drone4": {
+          "unsafe_action:peer_reachable_region_conflict": 3
+        }
+      },
+      "productive_llm_decisions": 0,
+      "guardian_reasons": {
+        "bounded_motion_segment": 255,
+        "runtime_timeout_or_state_violation": 19,
+        "no_verified_safe_fallback": 19,
+        "peer_reachable_region_conflict": 2
+      },
+      "fault_s": 40.000229850178584,
+      "pre_fault_sample_s": 39.80024516908452,
+      "speed_mps": 1.0,
+      "owned_tasks": [
+        "SEARCH_SECTOR_A"
+      ],
+      "execution_task_id": "SEARCH_SECTOR_A",
+      "active_command_kind": "MOVE",
+      "interrupted_owned_motion": true,
+      "first_replacement_execution_s": 113.6002350540366,
+      "first_new_replacement_arrival_s": null,
+      "pre_fault_position": [
+        10.200083543080837,
+        3.0,
+        -3.0
+      ]
+    },
+    {
+      "architecture": "B",
+      "condition": "control",
+      "tasks": 4,
+      "mission_complete": true,
+      "time_s": 142.60026223794557,
+      "error": null,
+      "policy_errors": {
+        "Drone1": {},
+        "Drone2": {},
+        "Drone3": {},
+        "Drone4": {}
+      },
+      "productive_llm_decisions": 4,
+      "guardian_reasons": {
+        "bounded_motion_segment": 220
+      }
+    },
+    {
+      "architecture": "B",
+      "condition": "loss",
+      "tasks": 3,
+      "mission_complete": false,
+      "time_s": 239.80025704205036,
+      "error": null,
+      "policy_errors": {
+        "Drone1": {},
+        "Drone2": {},
+        "Drone3": {},
+        "Drone4": {}
+      },
+      "productive_llm_decisions": 4,
+      "guardian_reasons": {
+        "bounded_motion_segment": 210
+      },
+      "fault_s": 40.0002343931701,
+      "pre_fault_sample_s": 39.80020709801465,
+      "speed_mps": 1.0,
+      "owned_tasks": [
+        "SEARCH_SECTOR_A"
+      ],
+      "execution_task_id": "SEARCH_SECTOR_A",
+      "active_command_kind": "MOVE",
+      "interrupted_owned_motion": true,
+      "first_replacement_execution_s": null,
+      "first_new_replacement_arrival_s": null,
+      "pre_fault_position": [
+        9.000019964994863,
+        3.0,
+        -3.0
+      ]
+    },
+    {
+      "architecture": "C",
+      "condition": "control",
+      "tasks": 4,
+      "mission_complete": true,
+      "time_s": 94.20022788597271,
+      "error": null,
+      "policy_errors": {
+        "Drone1": {},
+        "Drone2": {},
+        "Drone3": {},
+        "Drone4": {}
+      },
+      "productive_llm_decisions": 0,
+      "guardian_reasons": {
+        "bounded_motion_segment": 262
+      }
+    },
+    {
+      "architecture": "C",
+      "condition": "loss",
+      "tasks": 3,
+      "mission_complete": false,
+      "time_s": 239.80029135709628,
+      "error": null,
+      "policy_errors": {
+        "Drone1": {},
+        "Drone2": {
+          "unsafe_action:peer_reachable_region_conflict": 5
+        },
+        "Drone3": {
+          "unsafe_action:peer_reachable_region_conflict": 1
+        },
+        "Drone4": {}
+      },
+      "productive_llm_decisions": 0,
+      "guardian_reasons": {
+        "bounded_motion_segment": 277,
+        "runtime_timeout_or_state_violation": 6,
+        "no_verified_safe_fallback": 6
+      },
+      "fault_s": 40.00028542219661,
+      "pre_fault_sample_s": 39.80025619617663,
+      "speed_mps": 1.0,
+      "owned_tasks": [
+        "SEARCH_SECTOR_A"
+      ],
+      "execution_task_id": "SEARCH_SECTOR_A",
+      "active_command_kind": "MOVE",
+      "interrupted_owned_motion": true,
+      "first_replacement_execution_s": 127.00028078816831,
+      "first_new_replacement_arrival_s": 141.00027863821015,
+      "pre_fault_position": [
+        6.199980874080211,
+        0.0,
+        -3.0
+      ]
+    },
+    {
+      "architecture": "D",
+      "condition": "control",
+      "tasks": 4,
+      "mission_complete": true,
+      "time_s": 224.80024397396483,
+      "error": null,
+      "policy_errors": {
+        "Drone1": {},
+        "Drone2": {
+          "task_context_changed": 1
+        },
+        "Drone3": {
+          "task_context_changed": 1
+        },
+        "Drone4": {}
+      },
+      "productive_llm_decisions": 4,
+      "guardian_reasons": {
+        "bounded_motion_segment": 233
+      }
+    },
+    {
+      "architecture": "D",
+      "condition": "loss",
+      "tasks": 1,
+      "mission_complete": false,
+      "time_s": 239.800226746127,
+      "error": null,
+      "policy_errors": {
+        "Drone1": {},
+        "Drone2": {
+          "task_context_changed": 1,
+          "inference_timeout": 1
+        },
+        "Drone3": {
+          "task_context_changed": 1
+        },
+        "Drone4": {
+          "task_context_changed": 1
+        }
+      },
+      "productive_llm_decisions": 2,
+      "guardian_reasons": {
+        "bounded_motion_segment": 168
+      },
+      "fault_s": 40.00026103993878,
+      "pre_fault_sample_s": 39.800241495948285,
+      "speed_mps": 0.0,
+      "owned_tasks": [
+        "SEARCH_SECTOR_A"
+      ],
+      "execution_task_id": null,
+      "active_command_kind": null,
+      "interrupted_owned_motion": false,
+      "first_replacement_execution_s": 153.40025007608347,
+      "first_new_replacement_arrival_s": 191.20025754207745,
+      "pre_fault_position": [
+        0,
+        0,
+        -3
+      ]
+    }
+  ],
+  "source_hashes_match": true
+}
