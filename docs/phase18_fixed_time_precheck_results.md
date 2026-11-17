@@ -73,3 +73,48 @@ MPLCONFIGDIR=/tmp/phase18-mpl python scripts/plot_phase18_fixed_time_prechecks.p
 ```
 
 The script reads existing artifacts only and saves three PNGs plus `inspection.json` containing the extracted measurements. This is a retrospective diagnostic, not a replacement for the registered metrics or freeze gates.
+
+## Follow-up: pinned 70B B/D prechecks
+
+Inspected commit `475b474`, adding `fixed_time_v4_precheck_B70b_run1` and `fixed_time_v4_precheck_D70b_run1` under `results/phase17`. These are four additional single-seed nominal runs, not new successful final-calibration evidence.
+
+The recorded model is `phase18:pinned`, with digest `a6eb4748fd2990ad2952b2335a95a7f952d1a06119a0aa6a2df6cd052a93a3fa`, identified by the experimenter as the 70B model. A name and digest pin its identity; parameter count is not inferred from that alias alone. Inner source-hash dictionaries match the earlier B/D prechecks. Effective configuration differences are the policy/model identity and output directory; the shared-input hash changes because it includes the primary policy configuration. Mission, timing, network and safety settings remain matched. This still does not control machine load or establish statistical model superiority.
+
+| Case | Original model | 70B outcome | Productive 70B LLM decisions | Recorded timeout responses | 70B fallback-authorized arrivals |
+|---|---|---|---:|---:|---:|
+| B control | 4/4; 142.6 s | 0/4; incomplete at 239.8 s | 0 | 7 | 0 |
+| B failure | 3/4; incomplete | 0/4; incomplete at 239.8 s | 0 | 7 | 0 |
+| D control | 4/4; 224.8 s | 4/4; 223.2 s | 0 | 5 | 48 |
+| D failure | 1/4; incomplete | 4/4; 237.4 s | 0 | 5 | 48 |
+
+![Original versus 70B prechecks](figures/phase18_70b_prechecks/model_comparison.png)
+
+### Model deadlines, not demonstrated reasoning improvement
+
+All **24 stored response records** in the new runs contain `error_type: TimeoutError`, with observed request durations approximately 30.01–30.04 s. These are timeout durations, not successful inference times. The runner reports no unhandled run-level error, but each summary records handled `inference_timeout` policy errors. All four summaries have `llm_integration_observed: false`, `llm_exit_criterion_observed: false` and `llm_supported_execution_success: false`.
+
+B records no waypoint arrivals and no productive LLM decisions. Drone1 never moves in either B run. Thus the larger-model configuration is worse operationally than the original B prechecks within the existing 30-second response deadline.
+
+D completes both missions, but every one of the 48 recorded arrivals in each run is authorized by `deterministic_fallback`. Its productive LLM decision count is zero for every agent. This is evidence of functioning fallback-supported mission execution, **not successful 70B agent reasoning or a demonstrated benefit from model size**. The original D control is only 1.6 s slower; this single observation cannot establish a speed improvement.
+
+### Fixed-time exposure remains invalid for interrupted motion
+
+Both 70B failure runs stop Drone1 at approximately 40.0001 s with confirmed cancellation. Immediately before the fault, Drone1 owns Sector A but remains at `[0, 0, -3]`, with zero velocity and no executing task or MOVE command. This now affects **both B and D**. The D control's first Drone1 movement is at 68.0 s; in the D failure run, Drone1 never moves.
+
+The D failure nevertheless demonstrates recovery of unstarted owned work: Drone2 starts Sector A version 2 at 142.4 s, records its first required visit at 155.6 s and its last at 213.4 s. All four tasks finish at 237.4 s. This is a useful fallback recovery outcome, but it does not meet the intended interrupted-moving-work exposure condition. It also changes the geometry at the point of failure: the stopped drone is at spawn rather than on the Sector A route. Therefore this successful recovery does **not** show that the A/C blocked-on-route approach problem has been solved.
+
+### What to do before further calibration
+
+Preserve these four runs as valid unfavorable/diagnostic outcomes. Do not freeze this candidate on the basis of D's completion. First test one saved structured request against the pinned 70B server outside the mission runner, measure cold and warm successful response times, and inspect Ollama/GPU memory and competing workload. A timeout alone cannot distinguish inadequate hardware throughput, cold loading, contention or server-side work continuing after client timeout. Do not infer malformed output or poor reasoning when no completed output was received.
+
+If warm requests exceed 30 s, the current 70B deployment does not meet the current decision budget. A longer timeout, different concurrency, quantization or a smaller model is a changed experimental treatment and should be saved in a new configuration/folder. Longer inference deadlines also require reassessing context freshness, lease feasibility and fixed-time motion exposure; simply increasing a timeout does not validate calibration. Retain matched original-model controls and do not use held-out seeds to tune deployment.
+
+The separately identified A/C safe remaining-route execution issue is unchanged by these B/D model trials. Address that mechanism without deleting the stopped physical drone or weakening separation checks.
+
+To reproduce the added comparison from the uploaded artifacts:
+
+```bash
+MPLCONFIGDIR=/tmp/phase18-mpl python scripts/plot_phase18_70b_prechecks.py
+```
+
+This writes `docs/figures/phase18_70b_prechecks/model_comparison.png` and `comparison.json`. It does not call Ollama or rerun missions.

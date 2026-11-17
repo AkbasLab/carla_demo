@@ -1,0 +1,168 @@
+[
+  {
+    "architecture": "B",
+    "model": "original",
+    "condition": "control",
+    "tasks": 4,
+    "complete": true,
+    "time_s": 142.60026223794557,
+    "productive_llm_decisions": 4,
+    "responses": 4,
+    "timeouts": 0,
+    "recorded_latency_s": [
+      19.41031157784164,
+      19.144326747162268,
+      19.39052703906782,
+      18.876012133900076
+    ],
+    "arrivals": 48,
+    "fallback_authorized_arrivals": 0
+  },
+  {
+    "architecture": "B",
+    "model": "original",
+    "condition": "loss",
+    "tasks": 3,
+    "complete": false,
+    "time_s": 239.80025704205036,
+    "productive_llm_decisions": 4,
+    "responses": 4,
+    "timeouts": 0,
+    "recorded_latency_s": [
+      19.468633777927607,
+      18.919029298936948,
+      19.558122009970248,
+      19.58587092999369
+    ],
+    "arrivals": 39,
+    "fallback_authorized_arrivals": 0
+  },
+  {
+    "architecture": "B",
+    "model": "70b",
+    "condition": "control",
+    "tasks": 0,
+    "complete": false,
+    "time_s": 239.80014407099225,
+    "productive_llm_decisions": 0,
+    "responses": 7,
+    "timeouts": 7,
+    "recorded_latency_s": [
+      30.007661188021302,
+      30.035065785050392,
+      30.032605623127893,
+      30.032845861045644,
+      30.0353118351195,
+      30.03320899908431,
+      30.023524555843323
+    ],
+    "arrivals": 0,
+    "fallback_authorized_arrivals": 0
+  },
+  {
+    "architecture": "B",
+    "model": "70b",
+    "condition": "loss",
+    "tasks": 0,
+    "complete": false,
+    "time_s": 239.80013893102296,
+    "productive_llm_decisions": 0,
+    "responses": 7,
+    "timeouts": 7,
+    "recorded_latency_s": [
+      30.035236310912296,
+      30.035563071956858,
+      30.01705977297388,
+      30.034801645204425,
+      30.034958731848747,
+      30.035187259083614,
+      30.034622236853465
+    ],
+    "arrivals": 0,
+    "fallback_authorized_arrivals": 0
+  },
+  {
+    "architecture": "D",
+    "model": "original",
+    "condition": "control",
+    "tasks": 4,
+    "complete": true,
+    "time_s": 224.80024397396483,
+    "productive_llm_decisions": 4,
+    "responses": 6,
+    "timeouts": 0,
+    "recorded_latency_s": [
+      28.321675126906484,
+      22.765411166008562,
+      26.1128918339964,
+      26.678719375981018,
+      25.81793650588952,
+      24.691384056815878
+    ],
+    "arrivals": 48,
+    "fallback_authorized_arrivals": 0
+  },
+  {
+    "architecture": "D",
+    "model": "original",
+    "condition": "loss",
+    "tasks": 1,
+    "complete": false,
+    "time_s": 239.800226746127,
+    "productive_llm_decisions": 2,
+    "responses": 8,
+    "timeouts": 1,
+    "recorded_latency_s": [
+      28.383123204112053,
+      28.161227977834642,
+      29.550087459152564,
+      26.149831044953316,
+      28.21806673007086,
+      21.928928358014673,
+      30.037260001990944,
+      26.603821833152324
+    ],
+    "arrivals": 26,
+    "fallback_authorized_arrivals": 12
+  },
+  {
+    "architecture": "D",
+    "model": "70b",
+    "condition": "control",
+    "tasks": 4,
+    "complete": true,
+    "time_s": 223.20010665990412,
+    "productive_llm_decisions": 0,
+    "responses": 5,
+    "timeouts": 5,
+    "recorded_latency_s": [
+      30.035826875828207,
+      30.03713002987206,
+      30.03406013082713,
+      30.037093146936968,
+      30.01762023102492
+    ],
+    "arrivals": 48,
+    "fallback_authorized_arrivals": 48
+  },
+  {
+    "architecture": "D",
+    "model": "70b",
+    "condition": "loss",
+    "tasks": 4,
+    "complete": true,
+    "time_s": 237.40013078786433,
+    "productive_llm_decisions": 0,
+    "responses": 5,
+    "timeouts": 5,
+    "recorded_latency_s": [
+      30.03253756207414,
+      30.03600645507686,
+      30.035969726042822,
+      30.03498057485558,
+      30.036847457988188
+    ],
+    "arrivals": 48,
+    "fallback_authorized_arrivals": 48
+  }
+]
